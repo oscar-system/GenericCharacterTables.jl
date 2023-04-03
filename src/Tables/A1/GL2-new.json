@@ -1,0 +1,22 @@
+{
+	"order": {"_ns":{"Oscar":["https://github.com/oscar-system/Oscar.jl",{"major":0,"minor":12,"patch":0,"prerelease":["DEV"],"build":[]}]},"id":"930c1ead-da2f-4cb2-90f4-a1b5943eabde","type":"QQPolyRingElem","data":{"parent":{"id":"cdb7065f-d390-43bf-94e2-72e28bf03218","type":"QQPolyRing","data":{"base_ring":{"type":"QQField"},"symbols":{"id":"645629e0-c1a8-4f9c-8218-2c833a973ba1","type":"Vector","data":{"vector":["q"],"entry_type":"Symbol"}}}},"coeffs":{"id":"bf23b8fa-1f46-45bd-9c7f-cbd0d9d31751","type":"Vector","data":{"vector":["0","1","-1","-1","1"],"entry_type":"QQFieldElem"}}}},
+	"chardegree": {"_ns":{"Oscar":["https://github.com/oscar-system/Oscar.jl",{"major":0,"minor":12,"patch":0,"prerelease":["DEV"],"build":[]}]},"id":"af014d63-5dc3-4a32-a4a0-d39600a9d0c5","type":"Vector","data":{"vector":[{"id":"628dedb0-9fb9-4b73-a722-d1be31392b09","type":"QQPolyRingElem","data":{"parent":{"id":"6e89ef9a-761e-4782-a70b-a52f772ef6ed","type":"QQPolyRing","data":{"base_ring":{"type":"QQField"},"symbols":{"id":"695f37e3-421d-4e82-b5aa-1813416b1d1d","type":"Vector","data":{"vector":["q"],"entry_type":"Symbol"}}}},"coeffs":{"id":"2b2cd948-91dd-485e-ab0e-d952b79a14eb","type":"Vector","data":{"vector":["1"],"entry_type":"QQFieldElem"}}}},{"id":"8a78991f-7437-4104-a270-bcc11a57268a","type":"QQPolyRingElem","data":{"parent":{"version":1,"id":"6e89ef9a-761e-4782-a70b-a52f772ef6ed","type":"#backref"},"coeffs":{"id":"8da15793-2dcd-414b-afd4-710522fe0606","type":"Vector","data":{"vector":["0","1"],"entry_type":"QQFieldElem"}}}},{"id":"f7841340-5e35-4285-82dc-c8615ba05605","type":"QQPolyRingElem","data":{"parent":{"version":1,"id":"6e89ef9a-761e-4782-a70b-a52f772ef6ed","type":"#backref"},"coeffs":{"id":"7772b9e9-2d61-439f-aeda-526decef16fd","type":"Vector","data":{"vector":["1","1"],"entry_type":"QQFieldElem"}}}},{"id":"25a6bf72-17b7-4343-9f8b-201e4931654f","type":"QQPolyRingElem","data":{"parent":{"version":1,"id":"6e89ef9a-761e-4782-a70b-a52f772ef6ed","type":"#backref"},"coeffs":{"id":"d00e529a-5b5b-4bff-8179-7aeeb52de052","type":"Vector","data":{"vector":["-1","1"],"entry_type":"QQFieldElem"}}}}]}},
+	"classlength": {"_ns":{"Oscar":["https://github.com/oscar-system/Oscar.jl",{"major":0,"minor":12,"patch":0,"prerelease":["DEV"],"build":[]}]},"id":"20480703-b23e-472d-97ce-719969651b7a","type":"Vector","data":{"vector":[{"id":"610366a5-fbb3-43a2-abef-7a7f73f35601","type":"QQPolyRingElem","data":{"parent":{"id":"bb75219a-fc71-4514-b371-86664608f448","type":"QQPolyRing","data":{"base_ring":{"type":"QQField"},"symbols":{"id":"a4114442-a826-472a-935a-35bdcd0926d3","type":"Vector","data":{"vector":["q"],"entry_type":"Symbol"}}}},"coeffs":{"id":"d95940fa-6bea-4314-802a-d4aa4b45ba5d","type":"Vector","data":{"vector":["1"],"entry_type":"QQFieldElem"}}}},{"id":"18ea59a2-6cfa-4d4d-9795-04ccc7a0d41d","type":"QQPolyRingElem","data":{"parent":{"version":1,"id":"bb75219a-fc71-4514-b371-86664608f448","type":"#backref"},"coeffs":{"id":"57df846c-340c-41c5-8737-3746936df79b","type":"Vector","data":{"vector":["-1","0","1"],"entry_type":"QQFieldElem"}}}},{"id":"9a7e2097-f30c-4f46-8f50-b745e04479c9","type":"QQPolyRingElem","data":{"parent":{"version":1,"id":"bb75219a-fc71-4514-b371-86664608f448","type":"#backref"},"coeffs":{"id":"e7276d78-dee3-4f71-a629-fd925749905e","type":"Vector","data":{"vector":["0","1","1"],"entry_type":"QQFieldElem"}}}},{"id":"5c96f34f-ea13-4730-bead-c5b4842e2f3a","type":"QQPolyRingElem","data":{"parent":{"version":1,"id":"bb75219a-fc71-4514-b371-86664608f448","type":"#backref"},"coeffs":{"id":"3dc00bf1-2524-43a5-84dd-198dcef42424","type":"Vector","data":{"vector":["0","-1","1"],"entry_type":"QQFieldElem"}}}}]}},
+	"information": [
+		"- Information about the generic character table of $GL_2(q)$.",
+		"",
+		"- CHEVIE-name of the table: ``GL2``",
+		"",
+		"- The table was first computed in:",
+		"  {\\sc H.~Jordan}, Group-characters of various types of linear groups,",
+		"  {\\em Amer.\\ J.~Math.} {\\bf 29} (1907), 387--405.",
+		"",
+		"  {\\sc I.~Schur}, Untersuchungen über die Darstellung der",
+		"  endlichen Gruppen durch gebrochene lineare Substitutionen,",
+		"  {\\em J.~reine angew.\\ Math.} {\\bf 132} (1907), 85--137.",
+		"",
+		"- See also:",
+		"  {\\sc R.~Steinberg}, The representations of $GL(3,q)$, $GL(4,q)$, $PGL(3,q)$",
+		"  and $PGL(4,q)$, {\\em Can.\\ J.~Math.} {\\bf 3} (1951), 225--235."
+	]
+}
