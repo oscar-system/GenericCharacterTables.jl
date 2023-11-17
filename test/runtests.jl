@@ -1,6 +1,8 @@
 using GenericCharacterTables
-using Nemo
+using GenericCharacterTables.Oscar
 using Test
+
+include("Aqua.jl")
 
 @testset "Cyclotomic" begin
 	R, q = PolynomialRing(QQ, "q")

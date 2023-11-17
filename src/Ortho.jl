@@ -11,7 +11,7 @@ Return the (generic) class multiplication constant of the class types `class1`, 
 julia> g=genchartab(\"SL2.0\");
 
 julia> classmult(g,2,2,4)
-(q + 1, Set(GenericCharacterTables.ParameterException{Nemo.QQPolyRingElem}[1//(q + 1)*a3 ∈ ℤ]))
+(q + 1, Set(GenericCharacterTables.ParameterException{QQPolyRingElem}[1//(q + 1)*a3 ∈ ℤ]))
 
 ```
 """
@@ -94,7 +94,7 @@ Return the scalar product between the character types `char1` and `char2`.
 julia> g=genchartab(\"GL2\");
 
 julia> scalar(g,3,2)
-(0, Set(GenericCharacterTables.ParameterException{Nemo.QQPolyRingElem}[1//(q - 1)*l1 + 1//(q - 1)*k1 - 2//(q - 1)*k2 ∈ ℤ, 1//(q - 1)*l1 - 1//(q - 1)*k2 ∈ ℤ, 1//(q - 1)*k1 - 1//(q - 1)*k2 ∈ ℤ]))
+(0, Set(GenericCharacterTables.ParameterException{QQPolyRingElem}[1//(q - 1)*l1 + 1//(q - 1)*k1 - 2//(q - 1)*k2 ∈ ℤ, 1//(q - 1)*l1 - 1//(q - 1)*k2 ∈ ℤ, 1//(q - 1)*k1 - 1//(q - 1)*k2 ∈ ℤ]))
 
 ```
 """
@@ -185,7 +185,7 @@ Return the (generic) scalar product between the class types `class1` and `class2
 julia> g=genchartab(\"GL2\");
 
 julia> ortho2scalar(g,3,2) 
-(0, Set(GenericCharacterTables.ParameterException{Nemo.QQPolyRingElem}[1//(q - 1)*i1 + 1//(q - 1)*j1 - 2//(q - 1)*i2 ∈ ℤ, 1//(q - 1)*i1 - 1//(q - 1)*i2 ∈ ℤ, 1//(q - 1)*j1 - 1//(q - 1)*i2 ∈ ℤ]))
+(0, Set(GenericCharacterTables.ParameterException{QQPolyRingElem}[1//(q - 1)*i1 + 1//(q - 1)*j1 - 2//(q - 1)*i2 ∈ ℤ, 1//(q - 1)*i1 - 1//(q - 1)*i2 ∈ ℤ, 1//(q - 1)*j1 - 1//(q - 1)*i2 ∈ ℤ]))
 
 ```
 """

@@ -96,7 +96,7 @@ julia> a = e2p(1//(q-1)*i)
 (1) * exp(2π𝑖(1//(q - 1)*i))
 
 julia> nesum(a, i, 1, q-1)
-((0)  //  (1), Set(GenericCharacterTables.ParameterException{Nemo.QQPolyRingElem}[1//(q - 1) ∈ ℤ]))
+((0)  //  (1), Set(GenericCharacterTables.ParameterException{QQPolyRingElem}[1//(q - 1) ∈ ℤ]))
 
 ```
 """
