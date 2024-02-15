@@ -5,7 +5,7 @@ K, sqrt2 = number_field(polynomial(QQ,[-2,0,1]), "sqrt(2)")
 R, q = polynomial_ring(K, "q")
 
 order = q^4*(q^2-1)*(q^4+1)
-table = Generic.Poly{nf_elem}[[
+table = Generic.Poly{AbsSimpleNumFieldElem}[[
 	q^4+1,
 	R(1),
 	R(1),

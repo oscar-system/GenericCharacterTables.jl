@@ -38,7 +38,7 @@ function rootkey(f::QQPolyRingElem)
 	coeff=collect(coefficients(f))
 	return RootKey(coeff, zeros(QQFieldElem, length(coeff)), :nothing)
 end
-function rootkey(f::Generic.Poly{nf_elem})
+function rootkey(f::Generic.Poly{AbsSimpleNumFieldElem})
 	coeffs=collect(coefficients(f))
 	return RootKey(coeff.(coeffs,0),coeff.(coeffs,1) ,var(parent(coeffs[1])))
 end
@@ -190,7 +190,7 @@ function ordexp(b::Generic.Frac{QQPolyRingElem})
 	d = lcm(denominator.(collect(coefficients(num))))
 	return num*d, den*d	
 end
-function ordexp(b::Generic.Frac{Generic.Poly{nf_elem}})
+function ordexp(b::Generic.Frac{Generic.Poly{AbsSimpleNumFieldElem}})
 	num, den = numerator(b), denominator(b)
 	d = lcm(denominator.(coeff.(collect(coefficients(num)),0)))
 	return num*d, den*d
