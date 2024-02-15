@@ -14,3 +14,10 @@ makedocs(
 		"unexported.md"
 	]
 )
+
+deploydocs(
+   repo   = "github.com/oscar-system/GenericCharacterTables.jl.git",
+   target = "build",
+   deps = nothing,
+   make   = nothing,
+)
