@@ -6,7 +6,7 @@ CurrentModule = GenericCharacterTables
 
 ## About
 
-[GenericCharacterTables](https://gitlab.rhrk.uni-kl.de/chevie-for-julia/GenericCharacterTables.jl)
+[GenericCharacterTables](https://github.com/oscar-system/GenericCharacterTables.jl)
 is a library for working with generic character tables. It is based on
 [CHEVIE](http://www.math.rwth-aachen.de/homes/CHEVIE/index.html)
 and aims to provide all its features originally implemented in
