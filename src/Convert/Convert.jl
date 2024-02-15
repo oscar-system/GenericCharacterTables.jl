@@ -92,7 +92,7 @@ function readmaple(path::String, folder::String)
 		kfin=cfin
 		params=[]
 		imports="using ..GenericCharacterTables\nimport ..GenericCharacterTables: ExtendableMatrix, SimpleCharTable\nusing Oscar\n"
-		head="R, q = PolynomialRing(QQ, \"q\")\n"
+		head="R, q = polynomial_ring(QQ, \"q\")\n"
 		Coda = "TABLE=SimpleCharTable(order,ExtendableMatrix(permutedims(table)),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information)\n"
 	end
 	
@@ -118,7 +118,7 @@ function readmaple(path::String, folder::String)
 	if !NurPolynom
 		summationsprozeduren = convert_summen_parameter(removecomments(String(summationsprozeduren)),cht, clt, joinedparams)
 		imports="using ..GenericCharacterTables\nimport ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterException, ParameterSubstitution, ExtendableMatrix, CharTable\nusing Oscar\n"
-		head = "R, q = PolynomialRing(QQ, \"q\")\nQ = FractionField(R)\nS = UniversalPolynomialRing(Q, cached=false)\n"
+		head = "R, q = polynomial_ring(QQ, \"q\")\nQ = fraction_field(R)\nS = UniversalPolynomialRing(Q, cached=false)\n"
 		ring = join(rr[1:nrpar],",")*", _...=gens(S, "*repr(rr)*")\n"
 	end
 

@@ -1,9 +1,9 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterException, ParameterSubstitution, ExtendableMatrix, CharTable
 using Oscar
-K, sqrt3 = NumberField(polynomial(QQ,[-3,0,1]), "sqrt(3)")
-R, q = PolynomialRing(K, "q")
-Q = FractionField(R)
+K, sqrt3 = number_field(polynomial(QQ,[-3,0,1]), "sqrt(3)")
+R, q = polynomial_ring(K, "q")
+Q = fraction_field(R)
 S = UniversalPolynomialRing(Q, cached=false)
 i,j,k,l, _...=gens(S, ["i", "j", "k", "l", "i1", "j1", "k1", "l1", "i2", "j2", "k2", "l2", "i3", "j3", "k3", "l3", "it1", "jt1", "kt1", "lt1", "it2", "jt2", "kt2", "lt2"])
 

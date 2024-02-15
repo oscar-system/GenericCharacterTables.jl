@@ -1,8 +1,8 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: ExtendableMatrix, SimpleCharTable
 using Oscar
-K, sqrt3 = NumberField(polynomial(QQ,[-3,0,1]), "sqrt(3)")
-R, q = PolynomialRing(K, "q")
+K, sqrt3 = number_field(polynomial(QQ,[-3,0,1]), "sqrt(3)")
+R, q = polynomial_ring(K, "q")
 
 order = q^6*(q^2-1)*(q^2+1)*(q^4-q^2+1)
 table = Generic.Poly{nf_elem}[[

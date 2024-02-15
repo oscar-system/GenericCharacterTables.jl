@@ -1,7 +1,7 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: ExtendableMatrix, SimpleCharTable
 using Oscar
-R, q = PolynomialRing(QQ, "q")
+R, q = polynomial_ring(QQ, "q")
 
 order = q^4*(q-1)^3*(q+1)^2*(q^2+1)
 table = QQPolyRingElem[[

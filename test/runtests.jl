@@ -5,8 +5,8 @@ using Test
 include("Aqua.jl")
 
 @testset "Cyclotomic" begin
-	R, q = PolynomialRing(QQ, "q")
-	Q = FractionField(R)
+	R, q = polynomial_ring(QQ, "q")
+	Q = fraction_field(R)
 	S = UniversalPolynomialRing(Q)
 	i, j = gens(S, ["i", "j"])
 
