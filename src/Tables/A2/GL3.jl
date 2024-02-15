@@ -1,8 +1,8 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterException, ParameterSubstitution, ExtendableMatrix, CharTable
 using Oscar
-R, q = PolynomialRing(QQ, "q")
-Q = FractionField(R)
+R, q = polynomial_ring(QQ, "q")
+Q = fraction_field(R)
 S = UniversalPolynomialRing(Q, cached=false)
 a,b,c,l,m,n, _...=gens(S, ["a", "b", "c", "l", "m", "n", "a1", "b1", "c1", "l1", "m1", "n1", "a2", "b2", "c2", "l2", "m2", "n2", "a3", "b3", "c3", "l3", "m3", "n3", "at1", "bt1", "ct1", "lt1", "mt1", "nt1", "at2", "bt2", "ct2", "lt2", "mt2", "nt2"])
 

@@ -104,7 +104,7 @@ roots = Dict{RootKey, Root}([
 (RootKey(QQFieldElem[], QQFieldElem[], :nothing),NUL)])
 
 #return matching root for order, given as polynomial
-function root(base::T) where T<:PolyElem
+function root(base::T) where T<:PolyRingElem
 	key = rootkey(base)
 	if haskey(roots,key)
 		re = roots[key]
@@ -203,9 +203,9 @@ Return `a` as an expression of primitive roots with whole exponents.
 
 Set `rootformat=true` for using the format of primitive roots as in chevie.
 ```jldoctest
-julia> R, q = PolynomialRing(QQ, \"q\");
+julia> R, q = polynomial_ring(QQ, \"q\");
 
-julia> Q = FractionField(R);
+julia> Q = fraction_field(R);
 
 julia> S = UniversalPolynomialRing(Q);
 
@@ -222,7 +222,7 @@ julia> zeta(f,true)
 
 ```
 """
-function zeta(a::GenericCharacterTables.Cyclo{T}, rootformat::Bool=false) where T<:PolyElem
+function zeta(a::GenericCharacterTables.Cyclo{T}, rootformat::Bool=false) where T<:PolyRingElem
 	zetas = Dict{T,FracPoly{T}}()
 	for (coeff, monomial) in zip(coefficients(a.argument), monomials(a.argument)) 
 		exponent, order = ordexp(coeff)
@@ -237,9 +237,9 @@ function zeta(a::GenericCharacterTables.Cyclo{T}, rootformat::Bool=false) where 
 	# end
 	return Zeta{T}(a.modulus,zetas, rootformat)
 end
-function zeta(a::GenericCharacterTables.CycloSum{T}, rootformat::Bool=false) where T<:PolyElem
+function zeta(a::GenericCharacterTables.CycloSum{T}, rootformat::Bool=false) where T<:PolyRingElem
 	return ZetaSum{T}(zeta.(a.summands, Ref(rootformat)))
 end
-function zeta(a::GenericCharacterTables.CycloFrac{T}, rootformat::Bool=false) where T<:PolyElem
+function zeta(a::GenericCharacterTables.CycloFrac{T}, rootformat::Bool=false) where T<:PolyRingElem
 	return ZetaFrac{T}(zeta(a.numerator, a.rootformat),zeta(a.denominator, a.rootformat))
 end

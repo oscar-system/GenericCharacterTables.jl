@@ -38,7 +38,7 @@ function ishalf(a::FracPoly{T}) where T<:NfPoly
 end
 
 """
-    eesubs(a::Union{Cyclotomic{T},FracPoly{T}}, vars::Union{Vector{<:FracPoly{T}},Vector{Int64}}, vals::Vector{<:RingElement}) where T<:PolyElem
+    eesubs(a::Union{Cyclotomic{T},FracPoly{T}}, vars::Union{Vector{<:FracPoly{T}},Vector{Int64}}, vals::Vector{<:RingElement}) where T<:PolyRingElem
 
 Substitute `vals[i]` for `vars[i]` in `a`.
 
@@ -46,9 +46,9 @@ If `vars` is `Vector{Int64}`, then `vars[i]` represents the index of the variabl
 
 # Examples
 ```jldoctest
-julia> R, q = PolynomialRing(QQ, \"q\");
+julia> R, q = polynomial_ring(QQ, \"q\");
 
-julia> Q=FractionField(R);
+julia> Q=fraction_field(R);
 
 julia> S=UniversalPolynomialRing(Q);
 
@@ -62,21 +62,21 @@ julia> eesubs(a,[i,k],[j,3*i])
 
 ```
 """
-function eesubs(a::FracPoly{T}, vars::Union{Vector{<:FracPoly{T}},Vector{Int64}}, vals::Vector{<:RingElement}) where T<:PolyElem
+function eesubs(a::FracPoly{T}, vars::Union{Vector{<:FracPoly{T}},Vector{Int64}}, vals::Vector{<:RingElement}) where T<:PolyRingElem
 	return evaluate(a, vars, vals)
 end
-function eesubs(a::Cyclo{T}, vars::Union{Vector{<:FracPoly{T}},Vector{Int64}}, vals::Vector{<:RingElement}) where T <: PolyElem
+function eesubs(a::Cyclo{T}, vars::Union{Vector{<:FracPoly{T}},Vector{Int64}}, vals::Vector{<:RingElement}) where T <: PolyRingElem
 	return Cyclo(a.modulus, eesubs(a.argument, vars, vals))
 end
-function eesubs(a::CycloSum{T}, vars::Union{Vector{<:FracPoly{T}},Vector{Int64}}, vals::Vector{<:RingElement}) where T <: PolyElem
+function eesubs(a::CycloSum{T}, vars::Union{Vector{<:FracPoly{T}},Vector{Int64}}, vals::Vector{<:RingElement}) where T <: PolyRingElem
 	return CycloSum(map(x -> eesubs(x, vars, vals), a.summands))
 end
-function eesubs(a::CycloFrac{T}, vars::Union{Vector{<:FracPoly{T}},Vector{Int64}}, vals::Vector{<:RingElement}) where T <: PolyElem
+function eesubs(a::CycloFrac{T}, vars::Union{Vector{<:FracPoly{T}},Vector{Int64}}, vals::Vector{<:RingElement}) where T <: PolyRingElem
 	return CycloFrac(eesubs(a.numerator, vars, vals), eesubs(a.denominator, vars, vals))
 end
 
 """
-    nesum(a::Cyclotomic{T}, var::Union{FracPoly{T},Int64}, lower::Int64, upper::Union{Int64,T}, congruence::Union{Tuple{T,T},Nothing}=nothing) where T<:PolyElem
+    nesum(a::Cyclotomic{T}, var::Union{FracPoly{T},Int64}, lower::Int64, upper::Union{Int64,T}, congruence::Union{Tuple{T,T},Nothing}=nothing) where T<:PolyRingElem
 
 Return the sum of `a`, from `var=lower` to `upper` as `CycloFrac{T}`.
 
@@ -84,9 +84,9 @@ Return the sum of `a`, from `var=lower` to `upper` as `CycloFrac{T}`.
 The second return value is a set of exceptions where the result may be false.
 # Examples
 ```jldoctest
-julia> R, q = PolynomialRing(QQ, \"q\");
+julia> R, q = polynomial_ring(QQ, \"q\");
 
-julia> Q=FractionField(R);
+julia> Q=fraction_field(R);
 
 julia> S=UniversalPolynomialRing(Q);
 

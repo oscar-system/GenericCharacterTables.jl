@@ -1,7 +1,7 @@
 export e2p
 
 FracPoly{T} = Generic.UnivPoly{Generic.Frac{T}, Generic.MPoly{Generic.Frac{T}}} where T
-NfPoly = Union{PolyElem{QQFieldElem}, PolyElem{nf_elem}}
+NfPoly = Union{PolyRingElem{QQFieldElem}, PolyRingElem{nf_elem}}
 
 """
     normalize(a::FracPoly)
@@ -171,9 +171,9 @@ Base.iszero(x::CycloFrac) = iszero(x.numerator)
 
 Return a `CycloSum` representing ``\\exp(2\\pi \\mathrm{i} \\cdot a)`` 
 ```jldoctest
-julia> R, q = PolynomialRing(QQ, \"q\");
+julia> R, q = polynomial_ring(QQ, \"q\");
 
-julia> Q = FractionField(R);
+julia> Q = fraction_field(R);
 
 julia> S = UniversalPolynomialRing(Q);
 
@@ -200,36 +200,36 @@ Base.zero(x::Cyclo) = Cyclo(zero(x.modulus), zero(x.argument), simplify=false)
 Base.zero(x::CycloSum) = CycloSum([zero(x.summands[1])], simplify=false)
 Base.zero(x::CycloFrac) = CycloFrac(zero(x.numerator), one(x.denominator), simplify=false)
 
-Base.:(==)(x::Cyclo{T}, y::Cyclo{T}) where T<:PolyElem = x.modulus == y.modulus && x.argument == y.argument
+Base.:(==)(x::Cyclo{T}, y::Cyclo{T}) where T<:PolyRingElem = x.modulus == y.modulus && x.argument == y.argument
 
-Base.:+(x::Cyclo{T}, y::Cyclo{T}) where T<:PolyElem = CycloSum([x,y])
-Base.:+(x::CycloSum{T}, y::CycloSum{T}) where T<:PolyElem = CycloSum(vcat(x.summands,y.summands))
+Base.:+(x::Cyclo{T}, y::Cyclo{T}) where T<:PolyRingElem = CycloSum([x,y])
+Base.:+(x::CycloSum{T}, y::CycloSum{T}) where T<:PolyRingElem = CycloSum(vcat(x.summands,y.summands))
 
-Base.:*(factor::T, x::Cyclo{T}) where T<:PolyElem = iszero(factor) ? zero(x) : Cyclo(factor*x.modulus, x.argument, simplify=false)
-Base.:*(factor::T, x::CycloSum{T}) where T<:PolyElem = iszero(factor) ? zero(x) : CycloSum(x.summands.*factor, simplify=false)
-Base.:*(factor::T, x::CycloFrac{T}) where T<:PolyElem = iszero(factor) ? zero(x) : CycloFrac(x.numerator*factor, x.denominator, simplify=false)
-Base.:*(x::Cyclotomic{T}, factor::T) where T<:PolyElem = factor*x
+Base.:*(factor::T, x::Cyclo{T}) where T<:PolyRingElem = iszero(factor) ? zero(x) : Cyclo(factor*x.modulus, x.argument, simplify=false)
+Base.:*(factor::T, x::CycloSum{T}) where T<:PolyRingElem = iszero(factor) ? zero(x) : CycloSum(x.summands.*factor, simplify=false)
+Base.:*(factor::T, x::CycloFrac{T}) where T<:PolyRingElem = iszero(factor) ? zero(x) : CycloFrac(x.numerator*factor, x.denominator, simplify=false)
+Base.:*(x::Cyclotomic{T}, factor::T) where T<:PolyRingElem = factor*x
 
-Base.:*(factor::S, x::Cyclo{T}) where {S<:RingElement, T<:PolyElem{S}} = iszero(factor) ? zero(x) : Cyclo(factor*x.modulus, x.argument, simplify=false)
-Base.:*(factor::S, x::CycloSum{T}) where {S<:RingElement, T<:PolyElem{S}} = iszero(factor) ? zero(x) : CycloSum(x.summands.*factor, simplify=false)
-Base.:*(factor::S, x::CycloFrac{T}) where {S<:RingElement, T<:PolyElem{S}} = iszero(factor) ? zero(x) : CycloFrac(x.numerator*factor, x.denominator, simplify=false)
-Base.:*(x::Cyclotomic{T}, factor::S) where {S<:RingElement, T<:PolyElem{S}} = factor*x
+Base.:*(factor::S, x::Cyclo{T}) where {S<:RingElement, T<:PolyRingElem{S}} = iszero(factor) ? zero(x) : Cyclo(factor*x.modulus, x.argument, simplify=false)
+Base.:*(factor::S, x::CycloSum{T}) where {S<:RingElement, T<:PolyRingElem{S}} = iszero(factor) ? zero(x) : CycloSum(x.summands.*factor, simplify=false)
+Base.:*(factor::S, x::CycloFrac{T}) where {S<:RingElement, T<:PolyRingElem{S}} = iszero(factor) ? zero(x) : CycloFrac(x.numerator*factor, x.denominator, simplify=false)
+Base.:*(x::Cyclotomic{T}, factor::S) where {S<:RingElement, T<:PolyRingElem{S}} = factor*x
 
 Base.:*(factor::Union{Int64, Rational{Int64}}, x::Cyclo{<:NfPoly}) = iszero(factor) ? zero(x) : Cyclo(factor*x.modulus, x.argument, simplify=false)
 Base.:*(factor::Union{Int64, Rational{Int64}}, x::CycloSum{<:NfPoly}) = iszero(factor) ? zero(x) : CycloSum(x.summands.*factor, simplify=false)
 Base.:*(factor::Union{Int64, Rational{Int64}}, x::CycloFrac{<:NfPoly}) = iszero(factor) ? zero(x) : CycloFrac(x.numerator*factor, x.denominator, simplify=false)
 Base.:*(x::Cyclotomic{<:NfPoly}, factor::Union{Int64, Rational{Int64}}) = factor*x
 
-Base.:*(factor::Generic.Frac{T}, x::Cyclotomic{T}) where T<:PolyElem = (numerator(factor)*x)//denominator(factor)
-Base.:*(x::Cyclotomic{T}, factor::Generic.Frac{T}) where T<:PolyElem = factor*x
+Base.:*(factor::Generic.Frac{T}, x::Cyclotomic{T}) where T<:PolyRingElem = (numerator(factor)*x)//denominator(factor)
+Base.:*(x::Cyclotomic{T}, factor::Generic.Frac{T}) where T<:PolyRingElem = factor*x
 
-Base.:+(x::Union{T,Generic.Frac{T}}, y::Cyclotomic{T}) where T<:PolyElem = x*one(y)+y
-Base.:+(x::Cyclotomic{T}, y::Union{T,Generic.Frac{T}}) where T<:PolyElem = y+x
+Base.:+(x::Union{T,Generic.Frac{T}}, y::Cyclotomic{T}) where T<:PolyRingElem = x*one(y)+y
+Base.:+(x::Cyclotomic{T}, y::Union{T,Generic.Frac{T}}) where T<:PolyRingElem = y+x
 Base.:+(x::Union{Int64, Rational{Int64}}, y::Cyclotomic{<:NfPoly}) = x*one(y)+y
 Base.:+(x::Cyclotomic{<:NfPoly}, y::Union{Int64, Rational{Int64}}) = y+x
 
-Base.:-(x::Union{T,Generic.Frac{T}}, y::Cyclotomic{T}) where T<:PolyElem = x*one(y)-y
-Base.:-(x::Cyclotomic{T}, y::Union{T,Generic.Frac{T}}) where T<:PolyElem = x-(y*one(x))
+Base.:-(x::Union{T,Generic.Frac{T}}, y::Cyclotomic{T}) where T<:PolyRingElem = x*one(y)-y
+Base.:-(x::Cyclotomic{T}, y::Union{T,Generic.Frac{T}}) where T<:PolyRingElem = x-(y*one(x))
 Base.:-(x::Union{Int64, Rational{Int64}}, y::Cyclotomic{<:NfPoly}) = x*one(y)-y
 Base.:-(x::Cyclotomic{<:NfPoly}, y::Union{Int64, Rational{Int64}}) = x-(y*one(x))
 
@@ -247,7 +247,7 @@ function Base.:*(x::Cyclo, y::Cyclo)
 	end
 end
 
-function Base.:*(x::CycloSum{T}, y::CycloSum{T}) where T <: PolyElem
+function Base.:*(x::CycloSum{T}, y::CycloSum{T}) where T <: PolyRingElem
 	if isone(x)
 		return y
 	elseif isone(y)
@@ -281,17 +281,17 @@ function Base.:+(x::CycloFrac, y::CycloFrac)
 	end
 end
 
-Base.://(x::CycloSum{T}, y::CycloSum{T}) where T <: PolyElem = CycloFrac(x,y)
-Base.://(x::Cyclo{T}, y::Cyclo{T}) where T <: PolyElem = CycloSum([x], simplify=false)//CycloSum([y], simplify=false)
-Base.://(x::CycloFrac{T}, y::CycloFrac{T}) where T <: PolyElem = x * CycloFrac(y.denominator, y.numerator, simplify=false)
+Base.://(x::CycloSum{T}, y::CycloSum{T}) where T <: PolyRingElem = CycloFrac(x,y)
+Base.://(x::Cyclo{T}, y::Cyclo{T}) where T <: PolyRingElem = CycloSum([x], simplify=false)//CycloSum([y], simplify=false)
+Base.://(x::CycloFrac{T}, y::CycloFrac{T}) where T <: PolyRingElem = x * CycloFrac(y.denominator, y.numerator, simplify=false)
 
-Base.://(x::Cyclotomic{T}, y::T) where T <: PolyElem = x//(y*one(x))
-Base.://(x::T, y::Cyclotomic{T}) where T <: PolyElem = (x*one(y))//y
+Base.://(x::Cyclotomic{T}, y::T) where T <: PolyRingElem = x//(y*one(x))
+Base.://(x::T, y::Cyclotomic{T}) where T <: PolyRingElem = (x*one(y))//y
 Base.://(x::Cyclotomic{<:NfPoly}, y::Int64) = (1//y)*x
 Base.://(x::Int64, y::Cyclotomic{<:NfPoly}) = (x*one(y))//y
 
-Base.://(x::Cyclotomic{T}, y::Generic.Frac{T}) where T <: PolyElem = (denominator(y)*x)//numerator(y)
-Base.://(x::Generic.Frac{T}, y::Cyclotomic{T}) where T <: PolyElem = numerator(x)//(denominator(x)*y)
+Base.://(x::Cyclotomic{T}, y::Generic.Frac{T}) where T <: PolyRingElem = (denominator(y)*x)//numerator(y)
+Base.://(x::Generic.Frac{T}, y::Cyclotomic{T}) where T <: PolyRingElem = numerator(x)//(denominator(x)*y)
 Base.://(x::Cyclotomic{<:NfPoly}, y::Rational{Int64}) = inv(y)*x
 Base.://(x::Rational{Int64}, y::Cyclotomic{<:NfPoly}) = (x*one(y))//y
 
@@ -299,20 +299,20 @@ Base.conj(x::Cyclo) = Cyclo(x.modulus,-x.argument)  # TODO
 Base.conj(x::CycloSum) = CycloSum(conj.(x.summands), simplify=false)
 Base.conj(x::CycloFrac) = CycloFrac(conj(x.numerator), conj(x.denominator), simplify=false)
 
-Base.convert(::Type{CycloSum{T}}, x::Cyclo{T}) where T <: PolyElem = CycloSum([x], simplify=false)
-Base.convert(::Type{CycloFrac{T}}, x::CycloSum{T}) where T <: PolyElem = CycloFrac(x, one(x), simplify=false)
-Base.convert(::Type{CycloFrac{T}}, x::Cyclo{T}) where T <: PolyElem = convert(CycloFrac{T}, convert(CycloSum{T}, x))
+Base.convert(::Type{CycloSum{T}}, x::Cyclo{T}) where T <: PolyRingElem = CycloSum([x], simplify=false)
+Base.convert(::Type{CycloFrac{T}}, x::CycloSum{T}) where T <: PolyRingElem = CycloFrac(x, one(x), simplify=false)
+Base.convert(::Type{CycloFrac{T}}, x::Cyclo{T}) where T <: PolyRingElem = convert(CycloFrac{T}, convert(CycloSum{T}, x))
 
-Base.promote_rule(::Type{CycloSum{T}}, ::Type{Cyclo{T}}) where T <: PolyElem = CycloSum{T}
-Base.promote_rule(::Type{CycloFrac{T}}, ::Type{CycloSum{T}}) where T <: PolyElem = CycloFrac{T}
-Base.promote_rule(::Type{CycloFrac{T}}, ::Type{Cyclo{T}}) where T <: PolyElem = CycloFrac{T}
+Base.promote_rule(::Type{CycloSum{T}}, ::Type{Cyclo{T}}) where T <: PolyRingElem = CycloSum{T}
+Base.promote_rule(::Type{CycloFrac{T}}, ::Type{CycloSum{T}}) where T <: PolyRingElem = CycloFrac{T}
+Base.promote_rule(::Type{CycloFrac{T}}, ::Type{Cyclo{T}}) where T <: PolyRingElem = CycloFrac{T}
 
-Base.:+(x::Cyclotomic{T}, y::Cyclotomic{T}) where T <: PolyElem = +(promote(x,y)...)
-Base.:-(x::Cyclotomic{T}, y::Cyclotomic{T}) where T <: PolyElem = x+(-y)
-Base.:*(x::Cyclotomic{T}, y::Cyclotomic{T}) where T <: PolyElem = *(promote(x,y)...)
-Base.://(x::Cyclotomic{T}, y::Cyclotomic{T}) where T <: PolyElem = //(promote(x,y)...)
+Base.:+(x::Cyclotomic{T}, y::Cyclotomic{T}) where T <: PolyRingElem = +(promote(x,y)...)
+Base.:-(x::Cyclotomic{T}, y::Cyclotomic{T}) where T <: PolyRingElem = x+(-y)
+Base.:*(x::Cyclotomic{T}, y::Cyclotomic{T}) where T <: PolyRingElem = *(promote(x,y)...)
+Base.://(x::Cyclotomic{T}, y::Cyclotomic{T}) where T <: PolyRingElem = //(promote(x,y)...)
 
-function Base.show(io::IO, m::MIME{Symbol("text/latex")}, z::FracPoly{T}) where T <: PolyElem
+function Base.show(io::IO, m::MIME{Symbol("text/latex")}, z::FracPoly{T}) where T <: PolyRingElem
 	show(io,MIME("text/latex"),z.p)
 end
 
