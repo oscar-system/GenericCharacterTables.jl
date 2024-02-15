@@ -3,6 +3,10 @@ name: Invalidations
 on:
   pull_request:
 
+permissions:
+  actions: write
+  contents: read
+
 concurrency:
   # Skip intermediate builds: always.
   # Cancel intermediate builds: always.
