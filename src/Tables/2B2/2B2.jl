@@ -1,7 +1,7 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterException, ParameterSubstitution, ExtendableMatrix, CharTable
 using Oscar
-K, sqrt2 = number_field(polynomial(QQ,[-2,0,1]), "sqrt(2)")
+K, sqrt2 = quadratic_field(2)
 R, q = polynomial_ring(K, "q")
 Q = fraction_field(R)
 S = UniversalPolynomialRing(Q, cached=false)
