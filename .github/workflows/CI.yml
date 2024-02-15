@@ -8,6 +8,10 @@ on:
     tags: '*'
   pull_request:
 
+permissions:
+  actions: write
+  contents: read
+
 concurrency:
   # group by workflow and ref; the last slightly strange component ensures that for pull
   # requests, we limit to 1 concurrent job, but for the master branch we don't
