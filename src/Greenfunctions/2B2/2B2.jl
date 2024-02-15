@@ -1,7 +1,7 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: ExtendableMatrix, SimpleCharTable
 using Oscar
-K, sqrt2 = number_field(polynomial(QQ,[-2,0,1]), "sqrt(2)")
+K, sqrt2 = quadratic_field(2)
 R, q = polynomial_ring(K, "q")
 
 order = q^4*(q^2-1)*(q^4+1)
