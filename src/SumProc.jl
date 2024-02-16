@@ -3,7 +3,7 @@ export eesubs, nesum
 function isunitfraction(a::QQFieldElem)
 	isone(numerator(a))
 end
-function isunitfraction(a::nf_elem)
+function isunitfraction(a::AbsSimpleNumFieldElem)
 	rational_part=coeff(a,0)
 	if a == rational_part
 		return isunitfraction(rational_part)

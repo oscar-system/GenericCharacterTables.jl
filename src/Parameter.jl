@@ -12,7 +12,7 @@ end
 
 Return the sign of the leading coefficient of the polynomial representation of `a`.
 """
-function weak_sign(a::nf_elem)
+function weak_sign(a::AbsSimpleNumFieldElem)
 	for deg in reverse(range(1, degree(parent(a))-1))
 		signum=sign(coeff(a, deg))
 		if !iszero(signum)
@@ -105,7 +105,7 @@ end
 
 
 isint(a::QQFieldElem) = isone(denominator(a))
-function isint(a::nf_elem)
+function isint(a::AbsSimpleNumFieldElem)
 	rational_part=coeff(a,0)
 	if a == rational_part
 		return isint(rational_part)
