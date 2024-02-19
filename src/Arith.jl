@@ -1,7 +1,7 @@
 export e2p
 
-FracPoly{T} = Generic.UnivPoly{Generic.Frac{T}, Generic.MPoly{Generic.Frac{T}}} where T
-NfPoly = Union{PolyRingElem{QQFieldElem}, PolyRingElem{nf_elem}}
+const FracPoly{T} = Generic.UnivPoly{Generic.Frac{T}, Generic.MPoly{Generic.Frac{T}}} where T
+const NfPoly = Union{PolyRingElem{QQFieldElem}, PolyRingElem{nf_elem}}
 
 """
     normalize(a::FracPoly)
