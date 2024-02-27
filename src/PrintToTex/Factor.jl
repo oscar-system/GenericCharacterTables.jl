@@ -185,12 +185,12 @@ end
 Base.show(io::IO, z::ZetaFrac) = print(io, "($(z.numerator))  //  ($(z.denominator))")
 Base.show(io::IO, m::MIME{Symbol("text/latex")}, z::ZetaFrac) = print(io, "\\frac{$(repr("text/latex", z.numerator))}{$(repr("text/latex",z.denominator))}")
 
-function ordexp(b::Generic.Frac{QQPolyRingElem})
+function ordexp(b::Generic.FracFieldElem{QQPolyRingElem})
 	num, den = numerator(b), denominator(b)
 	d = lcm(denominator.(collect(coefficients(num))))
 	return num*d, den*d	
 end
-function ordexp(b::Generic.Frac{Generic.Poly{nf_elem}})
+function ordexp(b::Generic.FracFieldElem{Generic.Poly{nf_elem}})
 	num, den = numerator(b), denominator(b)
 	d = lcm(denominator.(coeff.(collect(coefficients(num)),0)))
 	return num*d, den*d
