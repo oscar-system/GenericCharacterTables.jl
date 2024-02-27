@@ -31,7 +31,7 @@ end
 # `argumentring` is expected to have 6 complete batches of variables.
 # These are used to shift the variables to calculate e.g. scalar products.
 # `linkomb!` may add variables to `argumentring` to shift the variables even further.
-# Therefore it is needed to disable chaching in `argumentring`
+# Therefore it is needed to disable caching in `argumentring`
 # to fix possible interplay issues caused by using multiple tables.
 # See for example A1/GL2.jl
 struct CharTable{T} <: Table{T}
