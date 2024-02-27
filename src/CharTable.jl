@@ -102,8 +102,12 @@ Omitting `x` will return the names of all importable character tables.
 
 # Examples
 ```jldoctest
-julia> g=genchartab(\"GL2\");
-
+julia> g = genchartab("GL2")
+Generic character table
+  of order q^4 - q^3 - q^2 + q
+  with 4 irreducible character types
+  with 4 class types
+  with parameters (i, j, l, k)
 ```
 """
 genchartab(x::String) = gentab(x, "Tables")
@@ -118,8 +122,12 @@ Omitting `x` will return the names of all importable greenfunctions.
 
 # Examples
 ```jldoctest
-julia> g=greenfuntab(\"GL2\");
-
+julia> g = greenfuntab("GL2")
+Generic character table
+  of order q^4 - q^3 - q^2 + q
+  with 2 irreducible character types
+  with 2 class types
+  without parameters
 ```
 """
 greenfuntab(x::String) = gentab(x, "Greenfunctions")
