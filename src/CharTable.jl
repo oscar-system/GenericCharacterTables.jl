@@ -72,24 +72,25 @@ function loadtab(path::String)
 end
 
 function gentab(table::String, tabletype::String)
-	if isempty(table)
-		tables=[]
+	!isempty(table) || error("table name must not be empty")
+	!isempty(tabletype) || error("tabletype name must not be empty")
+	path=@__DIR__
+	for dir in readdir("$path/$tabletype")
+	    fname = "$path/$tabletype/$dir/$table.jl"
+	    isfile(fname) && return loadtab(fname)
 	end
+	error("table '$table' not found")
+end
+
+function gentab(tabletype::String)
+    tables=[]
 	path=@__DIR__
 	for dir in readdir("$path/$tabletype")
 		for table_file in readdir("$path/$tabletype/$dir")
-			if isempty(table)
-				push!(tables, replace(table_file, ".jl" => ""))
-			else
-				if table_file == "$table.jl"
-					return loadtab("$path/$tabletype/$dir/$table.jl")
-				end
-			end
+            push!(tables, replace(table_file, ".jl" => ""))
 		end
 	end
-	if isempty(table)
-		return tables
-	end
+    return tables
 end
 
 """
@@ -106,7 +107,7 @@ julia> g=genchartab(\"GL2\");
 ```
 """
 genchartab(x::String) = gentab(x, "Tables")
-genchartab() = genchartab("")
+genchartab() = gentab("Tables")
 
 """
 	greenfuntab(x::String)
@@ -122,4 +123,4 @@ julia> g=greenfuntab(\"GL2\");
 ```
 """
 greenfuntab(x::String) = gentab(x, "Greenfunctions")
-greenfuntab() = greenfuntab("")
+greenfuntab() = gentab("Greenfunctions")
