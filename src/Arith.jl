@@ -1,6 +1,6 @@
 export e2p
 
-const FracPoly{T} = Generic.UnivPoly{Generic.Frac{T}, Generic.MPoly{Generic.Frac{T}}} where T
+const FracPoly{T} = Generic.UnivPoly{Generic.FracFieldElem{T}, Generic.MPoly{Generic.FracFieldElem{T}}} where T
 const NfPoly = Union{PolyRingElem{QQFieldElem}, PolyRingElem{nf_elem}}
 
 """
@@ -220,16 +220,16 @@ Base.:*(factor::Union{Int64, Rational{Int64}}, x::CycloSum{<:NfPoly}) = iszero(f
 Base.:*(factor::Union{Int64, Rational{Int64}}, x::CycloFrac{<:NfPoly}) = iszero(factor) ? zero(x) : CycloFrac(x.numerator*factor, x.denominator, simplify=false)
 Base.:*(x::Cyclotomic{<:NfPoly}, factor::Union{Int64, Rational{Int64}}) = factor*x
 
-Base.:*(factor::Generic.Frac{T}, x::Cyclotomic{T}) where T<:PolyRingElem = (numerator(factor)*x)//denominator(factor)
-Base.:*(x::Cyclotomic{T}, factor::Generic.Frac{T}) where T<:PolyRingElem = factor*x
+Base.:*(factor::Generic.FracFieldElem{T}, x::Cyclotomic{T}) where T<:PolyRingElem = (numerator(factor)*x)//denominator(factor)
+Base.:*(x::Cyclotomic{T}, factor::Generic.FracFieldElem{T}) where T<:PolyRingElem = factor*x
 
-Base.:+(x::Union{T,Generic.Frac{T}}, y::Cyclotomic{T}) where T<:PolyRingElem = x*one(y)+y
-Base.:+(x::Cyclotomic{T}, y::Union{T,Generic.Frac{T}}) where T<:PolyRingElem = y+x
+Base.:+(x::Union{T,Generic.FracFieldElem{T}}, y::Cyclotomic{T}) where T<:PolyRingElem = x*one(y)+y
+Base.:+(x::Cyclotomic{T}, y::Union{T,Generic.FracFieldElem{T}}) where T<:PolyRingElem = y+x
 Base.:+(x::Union{Int64, Rational{Int64}}, y::Cyclotomic{<:NfPoly}) = x*one(y)+y
 Base.:+(x::Cyclotomic{<:NfPoly}, y::Union{Int64, Rational{Int64}}) = y+x
 
-Base.:-(x::Union{T,Generic.Frac{T}}, y::Cyclotomic{T}) where T<:PolyRingElem = x*one(y)-y
-Base.:-(x::Cyclotomic{T}, y::Union{T,Generic.Frac{T}}) where T<:PolyRingElem = x-(y*one(x))
+Base.:-(x::Union{T,Generic.FracFieldElem{T}}, y::Cyclotomic{T}) where T<:PolyRingElem = x*one(y)-y
+Base.:-(x::Cyclotomic{T}, y::Union{T,Generic.FracFieldElem{T}}) where T<:PolyRingElem = x-(y*one(x))
 Base.:-(x::Union{Int64, Rational{Int64}}, y::Cyclotomic{<:NfPoly}) = x*one(y)-y
 Base.:-(x::Cyclotomic{<:NfPoly}, y::Union{Int64, Rational{Int64}}) = x-(y*one(x))
 
@@ -290,8 +290,8 @@ Base.://(x::T, y::Cyclotomic{T}) where T <: PolyRingElem = (x*one(y))//y
 Base.://(x::Cyclotomic{<:NfPoly}, y::Int64) = (1//y)*x
 Base.://(x::Int64, y::Cyclotomic{<:NfPoly}) = (x*one(y))//y
 
-Base.://(x::Cyclotomic{T}, y::Generic.Frac{T}) where T <: PolyRingElem = (denominator(y)*x)//numerator(y)
-Base.://(x::Generic.Frac{T}, y::Cyclotomic{T}) where T <: PolyRingElem = numerator(x)//(denominator(x)*y)
+Base.://(x::Cyclotomic{T}, y::Generic.FracFieldElem{T}) where T <: PolyRingElem = (denominator(y)*x)//numerator(y)
+Base.://(x::Generic.FracFieldElem{T}, y::Cyclotomic{T}) where T <: PolyRingElem = numerator(x)//(denominator(x)*y)
 Base.://(x::Cyclotomic{<:NfPoly}, y::Rational{Int64}) = inv(y)*x
 Base.://(x::Rational{Int64}, y::Cyclotomic{<:NfPoly}) = (x*one(y))//y
 
