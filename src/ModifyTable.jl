@@ -12,6 +12,7 @@ Append the tensor product of the character types `char1` and `char2` to the tabl
 julia> g=genchartab(\"GL2\");
 
 julia> tensor!(g,1,2)
+5
 
 julia> printinfochar(g,5)
 5	Any[\"Tensor of type 1 and 2\"]
@@ -34,7 +35,7 @@ function tensor!(t::CharTable{T}, char1::Int64, char2::Int64) where T <: NfPoly
 	param1 = shift_char_parameters(t, t.charparams[char1], 4)
 	param2 = shift_char_parameters(t, t.charparams[char2], 5)
 	push!(t.charparams, Parameters(vcat(param1.params, param2.params), vcat(param1.exceptions, param2.exceptions), ParameterSubstitution{T}[]))
-	return nothing
+	return length(t.charinfo)
 end
 function tensor!(t::SimpleCharTable{T}, char1::Int64, char2::Int64) where T <: NfPoly
 	if any((char1, char2).>chartypes(t))
@@ -47,7 +48,7 @@ function tensor!(t::SimpleCharTable{T}, char1::Int64, char2::Int64) where T <: N
 	end
 	push!(t.table, new_char)
 	push!(t.charinfo, ["Tensor of type $char1 and $char2"])
-	return nothing
+	return length(t.charinfo)
 end
 
 """
@@ -60,6 +61,7 @@ Append the (generic) central character of the character type `char` to the table
 julia> g=genchartab(\"GL2\");
 
 julia> omega!(g,1)
+5
 
 julia> printinfochar(g,5)
 5	Any[\"Omega of type 1\"]
@@ -78,7 +80,7 @@ function omega!(t::CharTable{T}, char::Int64) where T <: NfPoly
 	push!(t.table, new_char)
 	push!(t.charinfo, ["Omega of type $char"])
 	push!(t.charparams, t.charparams[char])
-	return nothing
+	return length(t.charinfo)
 end
 function omega!(t::SimpleCharTable{T}, char::Int64) where T <: NfPoly  # TODO is correct?
 	if char > chartypes(t)
@@ -91,7 +93,7 @@ function omega!(t::SimpleCharTable{T}, char::Int64) where T <: NfPoly  # TODO is
 	end
 	push!(t.table, new_char)
 	push!(t.charinfo, ["Omega of type $char"])
-	return nothing
+	return length(t.charinfo)
 end
 
 """
@@ -104,6 +106,7 @@ Append the linear combination of the character types `chars` with coefficients `
 julia> g=genchartab(\"GL2\");
 
 julia> lincomb!(g,[5,1],[1,2])
+5
 
 julia> printinfochar(g,5)
 5	Any[\"Lincomb 5 * type 1 + 1 * type 2\"]
@@ -145,7 +148,7 @@ function lincomb!(t::CharTable{T}, coeffs::Vector{Int64}, chars::Vector{Int64}) 
 		params[i]=shift_char_parameters(t, t.charparams[chars[i]], 5+i)
 	end
 	push!(t.charparams, Parameters(vcat(map(x -> x.params, params)...), vcat(map(x -> x.exceptions, params)...), ParameterSubstitution{T}[]))
-	return nothing
+	return length(t.charinfo)
 end
 function lincomb!(t::SimpleCharTable{T}, coeffs::Vector{Int64}, chars::Vector{Int64}) where T <: NfPoly
 	if length(coeffs)!=length(chars)
@@ -165,7 +168,7 @@ function lincomb!(t::SimpleCharTable{T}, coeffs::Vector{Int64}, chars::Vector{In
 	push!(t.table, new_char)
 	info=join(map(x -> join(x, " * type "), zip(coeffs, chars)), " + ")  # TODO
 	push!(t.charinfo, ["Lincomb $info"])
-	return nothing
+	return length(t.charinfo)
 end
 
 """
