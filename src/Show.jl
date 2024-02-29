@@ -328,7 +328,7 @@ julia> g=genchartab(\"GL2\");
 
 julia> printval(g,char=1)
 
-Value of charater type 1 on class type
+Value of character type 1 on class type
 
 1	(1) * exp(2π𝑖(2//(q - 1)*i*k))
 2	(1) * exp(2π𝑖(2//(q - 1)*i*k))
@@ -337,7 +337,7 @@ Value of charater type 1 on class type
 
 julia> printval(g,char=4,class=2)
 
-Value of charater type 4 on class type
+Value of character type 4 on class type
 
 2	(-1) * exp(2π𝑖(1//(q - 1)*i*k))
 
@@ -361,7 +361,7 @@ function printval(t::Table; char::Union{Int64, Nothing}=nothing, class::Union{In
 		classes=[class]
 	end
 	for i in chars
-		println("\nValue of charater type $i on class type\n")
+		println("\nValue of character type $i on class type\n")
 		for j in classes
 			println(j, "\t", t.table[i,j])
 		end

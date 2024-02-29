@@ -182,7 +182,7 @@ julia> g=genchartab(\"GL2\");
 
 julia> printval(g,char=1)
 
-Value of charater type 1 on class type
+Value of character type 1 on class type
 
 1	(1) * exp(2π𝑖(2//(q - 1)*i*k))
 2	(1) * exp(2π𝑖(2//(q - 1)*i*k))
@@ -195,7 +195,7 @@ julia> speccharparam!(g, 1, i, q)
 
 julia> printval(g,char=1)
 
-Value of charater type 1 on class type
+Value of character type 1 on class type
 
 1	(1) * exp(2π𝑖(2//(q - 1)*k))
 2	(1) * exp(2π𝑖(2//(q - 1)*k))
@@ -229,19 +229,19 @@ julia> g=genchartab(\"GL2\");
 
 julia> printval(g,class=1)
 
-Value of charater type 1 on class type
+Value of character type 1 on class type
 
 1	(1) * exp(2π𝑖(2//(q - 1)*i*k))
 
-Value of charater type 2 on class type
+Value of character type 2 on class type
 
 1	(q) * exp(2π𝑖(2//(q - 1)*i*k))
 
-Value of charater type 3 on class type
+Value of character type 3 on class type
 
 1	(q + 1) * exp(2π𝑖(1//(q - 1)*i*l + 1//(q - 1)*i*k))
 
-Value of charater type 4 on class type
+Value of character type 4 on class type
 
 1	(q - 1) * exp(2π𝑖(1//(q - 1)*i*k))
 
@@ -251,19 +251,19 @@ julia> specclassparam!(g, 1, k, 3)
 
 julia> printval(g,class=1)
 
-Value of charater type 1 on class type
+Value of character type 1 on class type
 
 1	(1) * exp(2π𝑖(6//(q - 1)*i))
 
-Value of charater type 2 on class type
+Value of character type 2 on class type
 
 1	(q) * exp(2π𝑖(6//(q - 1)*i))
 
-Value of charater type 3 on class type
+Value of character type 3 on class type
 
 1	(q + 1) * exp(2π𝑖(1//(q - 1)*i*l + 3//(q - 1)*i))
 
-Value of charater type 4 on class type
+Value of character type 4 on class type
 
 1	(q - 1) * exp(2π𝑖(3//(q - 1)*i))
 
