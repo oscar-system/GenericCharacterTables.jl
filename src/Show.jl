@@ -1,4 +1,6 @@
+import Oscar.order
 export chartypes, irrchartypes, classtypes, status, printinfotab, printval, printinfoclass, printinfochar, printclassparam, printcharparam, centord, chardeg, nrchars, nrclasses, nrparams, params
+export order
 # TODO PrintValPhi, PrintToTex?
 
 import Oscar: pretty, Indent
@@ -103,6 +105,21 @@ This usually includes the time the table was first computed.
 function printinfotab(t::Table)
 	println(t.information)
 end
+
+"""
+    order(t::Table)
+
+Return the order of the table `t`.
+
+# Examples
+```jldoctest
+julia> g=genchartab("GL2");
+
+julia> order(g)
+q^4 - q^3 - q^2 + q
+```
+"""
+order(t::Table) = t.order
 
 """
     centord(t::Table, class::Int64)
