@@ -218,9 +218,9 @@ end
 ]
 
 classparams=[
-Parameters([Parameter(k, q+1)], ParameterException{QQPolyRingElem}[]),
-Parameters([Parameter(k, q+1)], ParameterException{QQPolyRingElem}[]),
-Parameters([Parameter(k, q+1)], ParameterException{QQPolyRingElem}[]),
+Parameters([Parameter(k, q+1)]),
+Parameters([Parameter(k, q+1)]),
+Parameters([Parameter(k, q+1)]),
 Parameters([Parameter(k, q+1), Parameter(l, q+1)], [ParameterException((k-l)*1//(q+1))]),
 Parameters([Parameter(k, q+1), Parameter(l, q+1)], [ParameterException((k-l)*1//(q+1))]),
 Parameters([Parameter(k, q+1), Parameter(l, q+1), Parameter(m, q+1)], [ParameterException((k-l)*1//(q+1)), ParameterException((k-m)*1//(q+1)), ParameterException((l-m)*1//(q+1))]),
@@ -229,9 +229,9 @@ Parameters([Parameter(k, q^3+1)], [ParameterException((k)*1//(q^2-q+1))])
 ]
 
 charparams=[
-Parameters([Parameter(u, q+1)], ParameterException{QQPolyRingElem}[]),
-Parameters([Parameter(u, q+1)], ParameterException{QQPolyRingElem}[]),
-Parameters([Parameter(u, q+1)], ParameterException{QQPolyRingElem}[]),
+Parameters([Parameter(u, q+1)]),
+Parameters([Parameter(u, q+1)]),
+Parameters([Parameter(u, q+1)]),
 Parameters([Parameter(u, q+1), Parameter(v, q+1)], [ParameterException((u-v)*1//(q+1))]),
 Parameters([Parameter(u, q+1), Parameter(v, q+1)], [ParameterException((u-v)*1//(q+1))]),
 Parameters([Parameter(u, q+1), Parameter(v, q+1), Parameter(w, q+1)], [ParameterException((u-v)*1//(q+1)), ParameterException((u-w)*1//(q+1)), ParameterException((v-w)*1//(q+1))]),

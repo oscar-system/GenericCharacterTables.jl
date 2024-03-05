@@ -284,29 +284,29 @@ end
 ]
 
 classparams=[
-Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[]),
-Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[]),
-Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[]),
-Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[]),
-Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[]),
+Parameters(Parameter{QQPolyRingElem}[]),
+Parameters(Parameter{QQPolyRingElem}[]),
+Parameters(Parameter{QQPolyRingElem}[]),
+Parameters(Parameter{QQPolyRingElem}[]),
+Parameters(Parameter{QQPolyRingElem}[]),
 Parameters([Parameter(a, q+1)], [ParameterException((a)*1//((q+1)*1//3))]),
 Parameters([Parameter(a, q+1)], [ParameterException((a)*1//((q+1)*1//3))]),
-Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[]),
+Parameters(Parameter{QQPolyRingElem}[]),
 Parameters([Parameter(a, q+1), Parameter(b, q+1)], [ParameterException((a)*1//((q+1)*1//3)), ParameterException((b)*1//((q+1)*1//3)), ParameterException((a-b)*1//(q+1))]),
 Parameters([Parameter(a, q^2-1)], [ParameterException((a)*1//(q-1))]),
 Parameters([Parameter(a, q^2-q+1)], [ParameterException((a)*1//((q^2-q+1)*1//3))])
 ]
 
 charparams=[
-Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[]),
-Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[]),
-Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[]),
+Parameters(Parameter{QQPolyRingElem}[]),
+Parameters(Parameter{QQPolyRingElem}[]),
+Parameters(Parameter{QQPolyRingElem}[]),
 Parameters([Parameter(n, (q+1)*1//3)], [ParameterException((n)*1//((q+1)*1//3))]),
 Parameters([Parameter(n, (q+1)*1//3)], [ParameterException((n)*1//((q+1)*1//3))]),
 Parameters([Parameter(n, (q^2-1)*1//3)], [ParameterException((n)*1//((q-1)*1//3))]),
-Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[]),
-Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[]),
-Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[]),
+Parameters(Parameter{QQPolyRingElem}[]),
+Parameters(Parameter{QQPolyRingElem}[]),
+Parameters(Parameter{QQPolyRingElem}[]),
 Parameters([Parameter(n, (q+1)*1//3), Parameter(m, q+1)], [ParameterException((3*n-m)*1//(q+1)), ParameterException((m)*1//(q+1)), ParameterException((3*n-2*m)*1//(q+1))]),
 Parameters([Parameter(n, (q^2-q+1)*1//3)], [ParameterException((n)*1//((q^2-q+1)*1//3))])
 ]
