@@ -180,19 +180,19 @@ chardegree = R.([
 
 classsums=[
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
 	ss6,e1=nesum(tt, a, 1, q-2, congruence)
@@ -207,7 +207,7 @@ function (tt::Cyclotomic)
 	(1//3*ss6-1//3*tt1-1//3*tt2, e1)
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
 	ss5,e1=nesum(tt, a, 0, q-2, congruence)
@@ -237,28 +237,28 @@ end
 
 charsums=[
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
-end,
-function (tt::Cyclotomic)
-	nesum(tt, n, 1, (q-4)*1//3, congruence)
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
 	nesum(tt, n, 1, (q-4)*1//3, congruence)
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	nesum(tt, n, 1, (q-4)*1//3, congruence)
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
+end,
+function (tt::Cyclotomic)
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
 	ss5a,e1=nesum(tt, m, 1, q-2, congruence)

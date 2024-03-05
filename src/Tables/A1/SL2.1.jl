@@ -96,22 +96,22 @@ end
 
 charsums=[
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [k], [(q^2-1)*1//2])

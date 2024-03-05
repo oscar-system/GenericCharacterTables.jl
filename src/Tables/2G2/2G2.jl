@@ -268,34 +268,34 @@ chardegree = R.([
 
 classsums=[
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i], [0])
@@ -322,34 +322,34 @@ function (tt::Cyclotomic)
 
 charsums=[
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [k], [0])

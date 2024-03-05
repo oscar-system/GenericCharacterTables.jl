@@ -180,25 +180,19 @@ chardegree = R.([
 
 classsums=[
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
-end,
-function (tt::Cyclotomic)
-	ss6,e1=nesum(tt, a, 1, q, congruence)
-	tt1=eesubs(tt, [a], [(q+1)*1//3])
-	tt2=eesubs(tt, [a], [2*(q+1)*1//3])
-	(1//3*ss6-1//3*tt1-1//3*tt2, e1)
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
 	ss6,e1=nesum(tt, a, 1, q, congruence)
@@ -207,7 +201,13 @@ function (tt::Cyclotomic)
 	(1//3*ss6-1//3*tt1-1//3*tt2, e1)
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	ss6,e1=nesum(tt, a, 1, q, congruence)
+	tt1=eesubs(tt, [a], [(q+1)*1//3])
+	tt2=eesubs(tt, [a], [2*(q+1)*1//3])
+	(1//3*ss6-1//3*tt1-1//3*tt2, e1)
+end,
+function (tt::Cyclotomic)
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
 	ss5,e1=nesum(tt, a, 0, q, congruence)
@@ -237,13 +237,13 @@ end
 
 charsums=[
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
 	nesum(tt, n, 1, (q-2)*1//3, congruence)
@@ -258,13 +258,13 @@ function (tt::Cyclotomic)
 	(1//2*ss7-1//2*ss8, union(e1,e2))
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
 	ss5a,e1=nesum(tt, m, 1, q, congruence)

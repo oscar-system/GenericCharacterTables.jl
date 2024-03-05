@@ -1453,223 +1453,223 @@ chardegree = R.([
 
 classsums=[
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end
 ]
 
 charsums=[
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end
 ]
 

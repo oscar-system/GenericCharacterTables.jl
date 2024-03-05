@@ -45,13 +45,13 @@ chardegree = R.([1, q, q+1, q-1])
 
 classsums=[
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
 	s1,e1=nesum(tt, i, 1, q-2, congruence)
@@ -59,7 +59,7 @@ function (tt::Cyclotomic)
 	(1//2*s1-1//2*tt1, e1)
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{QQPolyRingElem}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
 	s1,e1=nesum(tt, i, 1, q, congruence)

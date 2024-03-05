@@ -2293,61 +2293,61 @@ chardegree = R.([
 
 classsums=[
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
 	s1,e1=nesum(tt, a, 1, q^2-2, congruence)
@@ -2391,19 +2391,19 @@ function (tt::Cyclotomic)
 	(1//16*s2-1//16*s3-1//16*s4-1//16*s5-1//16*s6-1//16*s7-1//16*s8, union(e1,e2,e3,e4,e5,e6,e7,e8))
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
 	s1,e1=nesum(tt, a, 1, q^2, congruence)
@@ -2533,67 +2533,67 @@ end
 
 charsums=[
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
 	s1,e1=nesum(tt, k, 1, q^2-2, congruence)
@@ -2637,10 +2637,10 @@ function (tt::Cyclotomic)
 	(1//16*s2-1//16*s3-1//16*s4-1//16*s5-1//16*s6-1//16*s7-1//16*s8, union(e1,e2,e3,e4,e5,e6,e7,e8))
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
 	s1,e1=nesum(tt, k, 1, q^2, congruence)

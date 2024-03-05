@@ -86,16 +86,16 @@ chardegree = R.([1, q*1//sqrt2*(q^2-1), q*1//sqrt2*(q^2-1), q^4, q^4+1, (q^2-1)*
 
 classsums=[
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
 	s1,e1=nesum(tt, a, 1, q^2-2, congruence)
@@ -113,16 +113,16 @@ end
 
 charsums=[
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
-	(tt, Set{ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}}())
+	(tt, Set())
 end,
 function (tt::Cyclotomic)
 	s1,e1=nesum(tt, s, 1, q^2-2, congruence)
