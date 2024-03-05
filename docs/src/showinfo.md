@@ -20,6 +20,7 @@ order(t::Table)
 chartypes
 irrchartypes
 nrchars
+nrirrchars
 chardeg
 printcharparam
 printinfochar

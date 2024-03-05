@@ -7,6 +7,7 @@ export classtypes
 export irrchartypes
 export nrchars
 export nrclasses
+export nrirrchars
 export nrparams
 export order
 export param
@@ -69,6 +70,26 @@ function irrchartypes(t::Table)
 end
 
 """
+    nrirrchars(t::Table)
+
+Return the number of irreducible characters of table `t`.
+
+For example this excludes characters created with [`tensor!`](@ref) or [`lincomb!`](@ref).
+
+# Examples
+```jldoctest
+julia> g=genchartab(\"GL2\");
+
+julia> nrirrchars(g)
+q^2 - 1
+
+```
+"""
+function nrirrchars(t::Table)
+	return sum(nrchars.(Ref(t), 1:irrchartypes(t)))
+end
+
+"""
     classtypes(t::Table)
 
 Return the number of conjugacy class types of table `t`.
@@ -84,6 +105,24 @@ julia> classtypes(g)
 """
 function classtypes(t::Table)
 	size(t.table, 2)
+end
+
+"""
+    nrclasses(t::Table)
+
+Return the number of conjugacy classes of table `t`.
+
+# Examples
+```jldoctest
+julia> g=genchartab(\"GL2\");
+
+julia> nrclasses(g)
+q^2 - 1
+
+```
+"""
+function nrclasses(t::Table)
+	return sum(nrclasses.(Ref(t), 1:classtypes(t)))
 end
 
 """
