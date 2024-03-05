@@ -16,7 +16,7 @@ function printlatex(z::Cyclo{T}) where T <: NfPoly
 	zetas = Dict{T,FracPoly{T}}()
 	for (coeff, monomial) in zip(coefficients(z.argument), monomials(z.argument)) 
 		saved=get(zetas, denominator(coeff), nothing)
-		if saved == nothing
+		if saved === nothing
 			zetas[denominator(coeff)] = numerator(coeff)*monomial
 		else
 			zetas[denominator(coeff)] = saved + numerator(coeff)*monomial

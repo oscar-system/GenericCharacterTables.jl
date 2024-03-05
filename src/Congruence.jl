@@ -36,7 +36,7 @@ end
 Simplify `x` according to the congruence relation given by `t`.
 """
 function simplify(x::Union{Cyclotomic{T}, ParameterException{T}}, t::CharTable{T}) where T <: NfPoly
-	if t.congruence == nothing
+	if t.congruence === nothing
 		return x
 	else
 		c=t.congruence[2]*gen(t.modulusring)+t.congruence[1]
