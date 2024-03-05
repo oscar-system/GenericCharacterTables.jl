@@ -1,7 +1,7 @@
 export e2p
 
 const FracPoly{T} = Generic.UnivPoly{Generic.FracFieldElem{T}, Generic.MPoly{Generic.FracFieldElem{T}}} where T
-const NfPoly = Union{PolyRingElem{QQFieldElem}, PolyRingElem{nf_elem}}
+const NfPoly = Union{PolyRingElem{QQFieldElem}, PolyRingElem{AbsSimpleNumFieldElem}}
 
 """
     normalize(a::FracPoly)
@@ -17,7 +17,7 @@ function normalize(a::QQFieldElem)
 		return mod(numerator(a), denominator(a))//denominator(a)
 	end
 end
-function normalize(a::nf_elem)
+function normalize(a::AbsSimpleNumFieldElem)
 	if isone(denominator(a))
 		return zero(a)
 	else
@@ -25,7 +25,7 @@ function normalize(a::nf_elem)
 		return a-rational_part+normalize(rational_part)
 	end
 end
-function normalize(a::Union{QQPolyRingElem, Generic.Poly{nf_elem}})
+function normalize(a::Union{QQPolyRingElem, Generic.Poly{AbsSimpleNumFieldElem}})
 	return parent(a)(collect(map(normalize, coefficients(a))))
 end
 function normalize(a::FracPoly{T}) where T <: NfPoly
