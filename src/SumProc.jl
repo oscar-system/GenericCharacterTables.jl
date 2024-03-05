@@ -108,7 +108,7 @@ function nesum(a::CycloFrac{T}, var::Int64, lower::Int64, upper::Union{Int64,T},
 		sum, exc = nesum(a, var, 0, upper, congruence)
 		return (sum-nesum(a, var, 0, lower-1), exc)
 	end
-	if congruence != nothing
+	if congruence !== nothing
 		ring=parent(a.numerator.summands[1].modulus)
 		c=congruence[2]*gen(ring)+congruence[1]
 		cinv=(gen(ring)-congruence[1])//congruence[2]
@@ -121,13 +121,13 @@ function nesum(a::CycloFrac{T}, var::Int64, lower::Int64, upper::Union{Int64,T},
 			co=eesubs(root.argument, [var], [0])
 			ke=e2p(cl)
 			summand=(root.modulus*e2p((upper+1)*cl+co)-root.modulus*e2p(co))//((ke-1)*a.denominator)
-			if congruence == nothing
+			if congruence === nothing
 				sum+=summand
 			else
 				sum+=simplify(summand, c, cinv)
 			end
 			if !(ishalf(root.argument) && isunitfraction(cl))
-				if congruence == nothing
+				if congruence === nothing
 					push!(exceptions, ParameterException(cl))
 				else
 					push!(exceptions, simplify(ParameterException(cl), c, cinv))

@@ -225,7 +225,7 @@ julia> printcharparam(g)
 ```
 """
 function printcharparam(t::CharTable, char::Union{Int64, Nothing}=nothing)
-	if char == nothing
+	if char === nothing
 		chars=range(1, chartypes(t))
 	else
 		if char > chartypes(t)
@@ -258,7 +258,7 @@ julia> printclassparam(g)
 ```
 """
 function printclassparam(t::CharTable, class::Union{Int64, Nothing}=nothing)
-	if class == nothing
+	if class === nothing
 		classes=range(1, classtypes(t))
 	else
 		if class > classtypes(t)
@@ -291,7 +291,7 @@ julia> printinfochar(g)
 ```
 """
 function printinfochar(t::Table, char::Union{Int64, Nothing}=nothing)
-	if char == nothing
+	if char === nothing
 		chars=range(1, chartypes(t))
 	else
 		if char > chartypes(t)
@@ -324,7 +324,7 @@ julia> printinfoclass(g)
 ```
 """
 function printinfoclass(t::Table, class::Union{Int64, Nothing}=nothing)
-	if class == nothing
+	if class === nothing
 		classes=range(1, classtypes(t))
 	else
 		if class > classtypes(t)
@@ -367,7 +367,7 @@ Value of character type 4 on class type
 ```
 """
 function printval(t::Table; char::Union{Int64, Nothing}=nothing, class::Union{Int64, Nothing}=nothing)
-	if char == nothing
+	if char === nothing
 		chars=range(1, chartypes(t))
 	else
 		if char > chartypes(t)
@@ -375,7 +375,7 @@ function printval(t::Table; char::Union{Int64, Nothing}=nothing, class::Union{In
 		end
 		chars=[char]
 	end
-	if class == nothing
+	if class === nothing
 		classes=range(1, classtypes(t))
 	else
 		if class > classtypes(t)
