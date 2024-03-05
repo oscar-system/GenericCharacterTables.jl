@@ -4,7 +4,7 @@ export order
 export param
 # TODO PrintValPhi, PrintToTex?
 
-import Oscar: pretty, Indent
+import Oscar: pretty, Indent, Dedent
 
 function Base.show(io::IO, t::Table)
     io = pretty(io)
@@ -228,14 +228,13 @@ This includes the parameter names, ranges and exceptions. Leaving `char` unspeci
 
 # Examples
 ```jldoctest
-julia> g=genchartab(\"GL2\");
+julia> g=genchartab("GL2");
 
 julia> printcharparam(g)
 1	k ∈ {1,…, q - 1}
 2	k ∈ {1,…, q - 1}
-3	k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except 1//(q - 1)*l - 1//(q - 1)*k ∈ ℤ
-4	k ∈ {1,…, q^2 - 1} except 1//(q + 1)*k ∈ ℤ
-
+3	k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except (l - k)//(q - 1) ∈ ℤ
+4	k ∈ {1,…, q^2 - 1} except (k)//(q + 1) ∈ ℤ
 ```
 """
 function printcharparam(t::CharTable, char::Union{Int64, Nothing}=nothing)
@@ -261,14 +260,13 @@ This includes the parameter names, ranges and exceptions. Leaving `class` unspec
 
 # Examples
 ```jldoctest
-julia> g=genchartab(\"GL2\");
+julia> g=genchartab("GL2");
 
 julia> printclassparam(g)
 1	i ∈ {1,…, q - 1}
 2	i ∈ {1,…, q - 1}
-3	i ∈ {1,…, q - 1}, j ∈ {1,…, q - 1} except 1//(q - 1)*i - 1//(q - 1)*j ∈ ℤ
-4	i ∈ {1,…, q^2 - 1} except 1//(q + 1)*i ∈ ℤ
-
+3	i ∈ {1,…, q - 1}, j ∈ {1,…, q - 1} except (i - j)//(q - 1) ∈ ℤ
+4	i ∈ {1,…, q^2 - 1} except (i)//(q + 1) ∈ ℤ
 ```
 """
 function printclassparam(t::CharTable, class::Union{Int64, Nothing}=nothing)
@@ -361,26 +359,21 @@ Leaving both unspecified will print all values of t
 
 # Examples
 ```jldoctest
-julia> g=genchartab(\"GL2\");
+julia> g=genchartab("GL2");
 
 julia> printval(g,char=1)
-
 Value of character type 1 on class type
-
-1	(1) * exp(2π𝑖(2//(q - 1)*i*k))
-2	(1) * exp(2π𝑖(2//(q - 1)*i*k))
-3	(1) * exp(2π𝑖(1//(q - 1)*i*k + 1//(q - 1)*j*k))
-4	(1) * exp(2π𝑖(1//(q - 1)*i*k))
+  1: (1) * exp(2π𝑖(2//(q - 1)*i*k))
+  2: (1) * exp(2π𝑖(2//(q - 1)*i*k))
+  3: (1) * exp(2π𝑖(1//(q - 1)*i*k + 1//(q - 1)*j*k))
+  4: (1) * exp(2π𝑖(1//(q - 1)*i*k))
 
 julia> printval(g,char=4,class=2)
-
 Value of character type 4 on class type
-
-2	(-1) * exp(2π𝑖(1//(q - 1)*i*k))
-
+  2: (-1) * exp(2π𝑖(1//(q - 1)*i*k))
 ```
 """
-function printval(t::Table; char::Union{Int64, Nothing}=nothing, class::Union{Int64, Nothing}=nothing)
+function printval(io::IO, t::Table; char::Union{Int64, Nothing}=nothing, class::Union{Int64, Nothing}=nothing)
 	if char === nothing
 		chars=range(1, chartypes(t))
 	else
@@ -397,13 +390,38 @@ function printval(t::Table; char::Union{Int64, Nothing}=nothing, class::Union{In
 		end
 		classes=[class]
 	end
+	io = pretty(io)
 	for i in chars
-		println("\nValue of character type $i on class type\n")
+		println(io, "Value of character type $i on class type", Indent())
 		for j in classes
-			println(j, "\t", t.table[i,j])
+			println(io, j, ": ", t.table[i,j])
 		end
+		print(io, Dedent())
 	end
 end
+
+printval(t::Table; kwarg...) = printval(stdout, t; kwarg...)
+
+# TODO: document this (and/or replace it by something better)
+function print_decomposition(io::IO, t::CharTable, char::Int)
+    io = pretty(io)
+    print(io, "Decomposing character $char:", Indent())
+    for i in 1:irrchartypes(t)
+        println(io)
+        s, e = scalar(t, i, char)
+        print(io, "<$i,$char> = $s  ")
+        if !isempty(e)
+            print(io, "with possible exceptions:", Indent())
+            for ex in e
+                print(io, "\n", ex)
+            end
+            print(io, Dedent())
+        end
+    end
+end
+
+print_decomposition(t::CharTable, char::Int) = print_decomposition(stdout, t, char)
+export print_decomposition
 
 """
     nrparams(t::CharTable)

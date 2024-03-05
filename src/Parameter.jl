@@ -48,9 +48,23 @@ struct ParameterException{T}
 		end
 	end
 end
-Base.show(io::IO, a::ParameterException) = print(io, "$(a.expression) ∈ ℤ")
+function Base.show(io::IO, a::ParameterException)
+    # merge multiple denominators from coefficients into one for nicer printing
+    d = lcm(map(denominator,Oscar.coefficients(a.expression)))
+    if is_one(d)
+        print(io, "$(a.expression) ∈ ℤ")
+    else
+        print(io, "($(a.expression*d))//($d) ∈ ℤ")
+    end
+end
 function Base.show(io::IO, m::MIME{Symbol("text/latex")}, a::ParameterException)
-	print(io, "$(repr("text/latex",a.expression)) \\in \\mathbb{Z}")
+    # merge multiple denominators from coefficients into one for nicer printing
+    d = lcm(map(denominator,Oscar.coefficients(a.expression)))
+    if is_one(d)
+        print(io, repr("text/latex",a.expression), " \\in \\mathbb{Z}")
+    else
+        print(io, "\\frac{", repr("text/latex",a.expression*d), "}{", d, "} \\in \\mathbb{Z}")
+    end
 end
 Base.:(==)(x::ParameterException, y::ParameterException) = x.expression == y.expression  # needed for Set to work
 Base.hash(x::ParameterException, h::UInt) = hash(x.expression, h)  # needed for Set to work
