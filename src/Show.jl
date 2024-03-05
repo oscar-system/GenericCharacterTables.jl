@@ -1,6 +1,25 @@
 export chartypes, irrchartypes, classtypes, status, printinfotab, printval, printinfoclass, printinfochar, printclassparam, printcharparam, centord, chardeg, nrchars, nrclasses, nrparams, params
 # TODO PrintValPhi, PrintToTex?
 
+import Oscar: pretty, Indent
+
+function Base.show(io::IO, t::Table)
+    io = pretty(io)
+    println(io, "Generic character table", Indent())
+    println(io, "of order ", t.order)
+    c = congruence(t)
+    if c !== nothing
+        println(io, "restricted to q congruent to ", c[1], " modulo ", c[2])
+    end
+    println(io, "with ", irrchartypes(t)," irreducible character types")
+    println(io, "with ", classtypes(t)," class types")
+    if t isa SimpleCharTable
+        print(io, "without parameters")
+    else
+        print(io, "with parameters ", params(t)[2])
+    end
+end
+
 """
     chartypes(t::Table)
 
@@ -47,6 +66,10 @@ julia> classtypes(g)
 function classtypes(t::Table)
 	size(t.table, 2)
 end
+
+# TODO: document (and export) this?
+congruence(x::CharTable) = x.congruence
+congruence(x::SimpleCharTable) = nothing
 
 """
     status(t::Table)
