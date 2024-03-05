@@ -69,6 +69,15 @@ struct Parameters{T}
 	exceptions::Vector{ParameterException{T}}
 	substitutions::Vector{ParameterSubstitution{T}}
 end
+
+function Parameters(p::Vector{Parameter{T}},e::Vector{ParameterException{T}}) where T
+    return Parameters{T}(p,e,ParameterSubstitution{T}[])
+end
+
+function Parameters(p::Vector{Parameter{T}}) where T
+    return Parameters{T}(p,ParameterException{T}[],ParameterSubstitution{T}[])
+end
+
 function Base.show(io::IO, a::Parameters) 
 	if isempty(a.exceptions)
 		if isempty(a.substitutions)

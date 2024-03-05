@@ -1,5 +1,5 @@
 using ..GenericCharacterTables
-import ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterException, ParameterSubstitution, ExtendableMatrix, CharTable
+import ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterException, ExtendableMatrix, CharTable
 using Oscar
 R, q = polynomial_ring(QQ, "q")
 Q = fraction_field(R)
@@ -74,17 +74,17 @@ end
 ]
 
 classparams=[
-Parameters([Parameter(i, q-1)], ParameterException{QQPolyRingElem}[], ParameterSubstitution{QQPolyRingElem}[]),
-Parameters([Parameter(i, q-1)], ParameterException{QQPolyRingElem}[], ParameterSubstitution{QQPolyRingElem}[]),
-Parameters([Parameter(i, q-1), Parameter(j, q-1)], [ParameterException((i-j)*1//(q-1))], ParameterSubstitution{QQPolyRingElem}[]),
-Parameters([Parameter(i, q^2-1)], [ParameterException((i)*1//(q+1))], ParameterSubstitution{QQPolyRingElem}[])
+Parameters([Parameter(i, q-1)]),
+Parameters([Parameter(i, q-1)]),
+Parameters([Parameter(i, q-1), Parameter(j, q-1)], [ParameterException((i-j)*1//(q-1))]),
+Parameters([Parameter(i, q^2-1)], [ParameterException((i)*1//(q+1))])
 ]
 
 charparams=[
-Parameters([Parameter(k, q-1)], ParameterException{QQPolyRingElem}[], ParameterSubstitution{QQPolyRingElem}[]),
-Parameters([Parameter(k, q-1)], ParameterException{QQPolyRingElem}[], ParameterSubstitution{QQPolyRingElem}[]),
-Parameters([Parameter(k, q-1), Parameter(l, q-1)], [ParameterException((k-l)*1//(q-1))], ParameterSubstitution{QQPolyRingElem}[]),
-Parameters([Parameter(k, q^2-1)], [ParameterException((k)*1//(q+1))], ParameterSubstitution{QQPolyRingElem}[])
+Parameters([Parameter(k, q-1)]),
+Parameters([Parameter(k, q-1)]),
+Parameters([Parameter(k, q-1), Parameter(l, q-1)], [ParameterException((k-l)*1//(q-1))]),
+Parameters([Parameter(k, q^2-1)], [ParameterException((k)*1//(q+1))])
 ]
 
 classparamindex=var_index.([i,j])
