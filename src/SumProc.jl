@@ -84,20 +84,19 @@ Return the sum of `a`, from `var=lower` to `upper` as `CycloFrac{T}`.
 The second return value is a set of exceptions where the result may be false.
 # Examples
 ```jldoctest
-julia> R, q = polynomial_ring(QQ, \"q\");
+julia> R, q = polynomial_ring(QQ, "q");
 
 julia> Q=fraction_field(R);
 
 julia> S=UniversalPolynomialRing(Q);
 
-julia> i, = gens(S, [\"i\"]);
+julia> i, = gens(S, ["i"]);
 
 julia> a = e2p(1//(q-1)*i)
 (1) * exp(2π𝑖(1//(q - 1)*i))
 
 julia> nesum(a, i, 1, q-1)
-((0)  //  (1), Set(GenericCharacterTables.ParameterException{QQPolyRingElem}[1//(q - 1) ∈ ℤ]))
-
+((0)  //  (1), Set(GenericCharacterTables.ParameterException{QQPolyRingElem}[(1)//(q - 1) ∈ ℤ]))
 ```
 """
 function nesum(a::CycloFrac{T}, var::Int64, lower::Int64, upper::Union{Int64,T}, congruence::Union{Tuple{T,T},Nothing}=nothing) where T <: NfPoly

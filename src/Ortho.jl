@@ -8,11 +8,10 @@ Return the (generic) class multiplication constant of the class types `class1`, 
 
 # Examples
 ```jldoctest
-julia> g=genchartab(\"SL2.0\");
+julia> g=genchartab("SL2.0");
 
 julia> classmult(g,2,2,4)
-(q + 1, Set(GenericCharacterTables.ParameterException{QQPolyRingElem}[1//(q + 1)*a3 ∈ ℤ]))
-
+(q + 1, Set(GenericCharacterTables.ParameterException{QQPolyRingElem}[(a3)//(q + 1) ∈ ℤ]))
 ```
 """
 function classmult(t::CharTable{T}, class1::Int64, class2::Int64, class3::Int64) where T <: NfPoly
@@ -91,11 +90,10 @@ Return the scalar product between the character types `char1` and `char2`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab(\"GL2\");
+julia> g=genchartab("GL2");
 
 julia> scalar(g,3,2)
-(0, Set(GenericCharacterTables.ParameterException{QQPolyRingElem}[1//(q - 1)*l1 + 1//(q - 1)*k1 - 2//(q - 1)*k2 ∈ ℤ, 1//(q - 1)*l1 - 1//(q - 1)*k2 ∈ ℤ, 1//(q - 1)*k1 - 1//(q - 1)*k2 ∈ ℤ]))
-
+(0, Set(GenericCharacterTables.ParameterException{QQPolyRingElem}[(l1 + k1 - 2*k2)//(q - 1) ∈ ℤ, (l1 - k2)//(q - 1) ∈ ℤ, (k1 - k2)//(q - 1) ∈ ℤ]))
 ```
 """
 function scalar(t::CharTable{T}, char1::Int64, char2::Int64) where T <: NfPoly
@@ -142,11 +140,10 @@ Return the (generic) norm of the class type `class`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab(\"GL2\");
+julia> g=genchartab("GL2");
 
 julia> ortho2norm(g,2)
 (1, Set{GenericCharacterTables.ParameterException{QQPolyRingElem}}())
-
 ```
 """
 function ortho2norm(t::CharTable{T}, class::Int64) where T <: NfPoly
@@ -182,11 +179,10 @@ Return the (generic) scalar product between the class types `class1` and `class2
 
 # Examples
 ```jldoctest
-julia> g=genchartab(\"GL2\");
+julia> g=genchartab("GL2");
 
-julia> ortho2scalar(g,3,2) 
-(0, Set(GenericCharacterTables.ParameterException{QQPolyRingElem}[1//(q - 1)*i1 + 1//(q - 1)*j1 - 2//(q - 1)*i2 ∈ ℤ, 1//(q - 1)*i1 - 1//(q - 1)*i2 ∈ ℤ, 1//(q - 1)*j1 - 1//(q - 1)*i2 ∈ ℤ]))
-
+julia> ortho2scalar(g,3,2)
+(0, Set(GenericCharacterTables.ParameterException{QQPolyRingElem}[(i1 + j1 - 2*i2)//(q - 1) ∈ ℤ, (i1 - i2)//(q - 1) ∈ ℤ, (j1 - i2)//(q - 1) ∈ ℤ]))
 ```
 """
 function ortho2scalar(t::CharTable{T}, class1::Int64, class2::Int64) where T <: NfPoly
