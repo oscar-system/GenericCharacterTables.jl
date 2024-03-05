@@ -1,5 +1,5 @@
 using ..GenericCharacterTables
-import ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterException, ParameterSubstitution, ExtendableMatrix, CharTable
+import ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterException, ExtendableMatrix, CharTable
 using Oscar
 R, q = polynomial_ring(QQ, "q")
 Q = fraction_field(R)
@@ -126,22 +126,22 @@ end
 ]
 
 classparams=[
-Parameters([Parameter(i, R(2))], ParameterException{QQPolyRingElem}[], ParameterSubstitution{QQPolyRingElem}[]),
-Parameters([Parameter(i, R(2))], ParameterException{QQPolyRingElem}[], ParameterSubstitution{QQPolyRingElem}[]),
-Parameters([Parameter(i, R(2))], ParameterException{QQPolyRingElem}[], ParameterSubstitution{QQPolyRingElem}[]),
-Parameters([Parameter(i, q^2-1)], [ParameterException((i)*1//((q^2-1)*1//2))], ParameterSubstitution{QQPolyRingElem}[]),
-Parameters([Parameter(i, q^2+1)], [ParameterException((i)*1//((q^2+1)*1//2))], ParameterSubstitution{QQPolyRingElem}[])
+Parameters([Parameter(i, R(2))], ParameterException{QQPolyRingElem}[]),
+Parameters([Parameter(i, R(2))], ParameterException{QQPolyRingElem}[]),
+Parameters([Parameter(i, R(2))], ParameterException{QQPolyRingElem}[]),
+Parameters([Parameter(i, q^2-1)], [ParameterException((i)*1//((q^2-1)*1//2))]),
+Parameters([Parameter(i, q^2+1)], [ParameterException((i)*1//((q^2+1)*1//2))])
 ]
 
 charparams=[
-Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[], ParameterSubstitution{QQPolyRingElem}[]),
-Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[], ParameterSubstitution{QQPolyRingElem}[]),
-Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[], ParameterSubstitution{QQPolyRingElem}[]),
-Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[], ParameterSubstitution{QQPolyRingElem}[]),
-Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[], ParameterSubstitution{QQPolyRingElem}[]),
-Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[], ParameterSubstitution{QQPolyRingElem}[]),
-Parameters([Parameter(k, q^2-1)], [ParameterException((k)*1//((q^2-1)*1//2))], ParameterSubstitution{QQPolyRingElem}[]),
-Parameters([Parameter(k, q^2+1)], [ParameterException((k)*1//((q^2+1)*1//2))], ParameterSubstitution{QQPolyRingElem}[])
+Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[]),
+Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[]),
+Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[]),
+Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[]),
+Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[]),
+Parameters(Parameter{QQPolyRingElem}[], ParameterException{QQPolyRingElem}[]),
+Parameters([Parameter(k, q^2-1)], [ParameterException((k)*1//((q^2-1)*1//2))]),
+Parameters([Parameter(k, q^2+1)], [ParameterException((k)*1//((q^2+1)*1//2))])
 ]
 
 classparamindex=var_index.([i])

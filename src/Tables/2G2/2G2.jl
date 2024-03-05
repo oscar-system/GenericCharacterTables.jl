@@ -1,5 +1,5 @@
 using ..GenericCharacterTables
-import ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterException, ParameterSubstitution, ExtendableMatrix, CharTable
+import ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterException, ExtendableMatrix, CharTable
 using Oscar
 K, sqrt3 = quadratic_field(3)
 R, q = polynomial_ring(K, "q")
@@ -375,37 +375,37 @@ function (tt::Cyclotomic)
 ]
 
 classparams=[
-Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters([Parameter(i, q^2-1)], [ParameterException((i)*1//((q^2-1)*1//2))], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters([Parameter(i, q^2-sqrt3*q+1)], [ParameterException((i)*1//(q^2-sqrt3*q+1))], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters([Parameter(i, (q^2+1)*1//2), Parameter(j, R(2))], [ParameterException((i)*1//((q^2+1)*1//4))], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters([Parameter(i, q^2+sqrt3*q+1)], [ParameterException((i)*1//(q^2-sqrt3*q+1))], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[])
+Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[]),
+Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[]),
+Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[]),
+Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[]),
+Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[]),
+Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[]),
+Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[]),
+Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[]),
+Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[]),
+Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[]),
+Parameters([Parameter(i, q^2-1)], [ParameterException((i)*1//((q^2-1)*1//2))]),
+Parameters([Parameter(i, q^2-sqrt3*q+1)], [ParameterException((i)*1//(q^2-sqrt3*q+1))]),
+Parameters([Parameter(i, (q^2+1)*1//2), Parameter(j, R(2))], [ParameterException((i)*1//((q^2+1)*1//4))]),
+Parameters([Parameter(i, q^2+sqrt3*q+1)], [ParameterException((i)*1//(q^2-sqrt3*q+1))])
 ]
 
 charparams=[
-Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters([Parameter(k, q^2-1)], [ParameterException((k)*1//((q^2-1)*1//2))], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters([Parameter(k, q^2-sqrt3*q+1)], [ParameterException((k)*1//(q^2-sqrt3*q+1))], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters([Parameter(k, (q^2+1)*1//2), Parameter(l, R(2))], [ParameterException((k)*1//((q^2+1)*1//4))], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[]),
-Parameters([Parameter(k, q^2+sqrt3*q+1)], [ParameterException((k)*1//(q^2-sqrt3*q+1))], ParameterSubstitution{Generic.Poly{AbsSimpleNumFieldElem}}[])
+Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[]),
+Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[]),
+Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[]),
+Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[]),
+Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[]),
+Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[]),
+Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[]),
+Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[]),
+Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[]),
+Parameters(Parameter{Generic.Poly{AbsSimpleNumFieldElem}}[], ParameterException{Generic.Poly{AbsSimpleNumFieldElem}}[]),
+Parameters([Parameter(k, q^2-1)], [ParameterException((k)*1//((q^2-1)*1//2))]),
+Parameters([Parameter(k, q^2-sqrt3*q+1)], [ParameterException((k)*1//(q^2-sqrt3*q+1))]),
+Parameters([Parameter(k, (q^2+1)*1//2), Parameter(l, R(2))], [ParameterException((k)*1//((q^2+1)*1//4))]),
+Parameters([Parameter(k, q^2+sqrt3*q+1)], [ParameterException((k)*1//(q^2-sqrt3*q+1))])
 ]
 
 classparamindex=var_index.([i,j])
