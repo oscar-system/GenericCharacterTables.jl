@@ -206,7 +206,7 @@ function convertparameter(parameter::String, nr::Int64, vars::String)
 		else
 			parsed_exceptions="["*parsed_exceptions*"]"
 		end
-		push!(re, "Parameters("*parsed_params*", "*parsed_exceptions*", ParameterSubstitution{QQPolyRingElem}[])")  # TODO
+		push!(re, "Parameters("*parsed_params*", "*parsed_exceptions*")")  # TODO
 	end
 	return convertpoly.(re)
 end
