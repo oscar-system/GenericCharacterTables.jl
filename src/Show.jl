@@ -1,6 +1,7 @@
 import Oscar.order
 export chartypes, irrchartypes, classtypes, status, printinfotab, printval, printinfoclass, printinfochar, printclassparam, printcharparam, centord, chardeg, nrchars, nrclasses, nrparams, params
 export order
+export param
 # TODO PrintValPhi, PrintToTex?
 
 import Oscar: pretty, Indent
@@ -68,10 +69,6 @@ julia> classtypes(g)
 function classtypes(t::Table)
 	size(t.table, 2)
 end
-
-# TODO: document (and export) this?
-congruence(x::CharTable) = x.congruence
-congruence(x::SimpleCharTable) = nothing
 
 """
     status(t::Table)
@@ -444,3 +441,7 @@ function params(t::CharTable)
 	q=gen(t.modulusring)
 	return (q, Tuple(gens(t.argumentring)[1:nrparams(t)]))
 end
+
+# HACK: allow requesting a free form parameter e.g. for use with `speccharparam!`
+# TODO: document this? or replace it by a better interface...
+param(t::CharTable, x::VarName) = gen(t.argumentring, x)

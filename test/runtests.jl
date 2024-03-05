@@ -41,6 +41,17 @@ end
 	@test isone(GenericCharacterTables.simplify(a, g))
 end
 
+@testset "setcongruence(table)" begin
+	g=genchartab("SL3.n1")
+	h=tensor!(g,2,2)
+	@test 0 == scalar(g,6,h)[1]
+	q,(a,b,m,n)=params(g)
+	x=param(g,"x")
+	g2=setcongruence(g, (0,2))
+	speccharparam!(g2, 6, n, -m+(q-1)*x)
+	@test 1 == scalar(g2,6,h)[1]
+end
+
 @testset "Import green functions" begin
 	list=greenfuntab()
 	for green in list
