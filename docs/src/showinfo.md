@@ -11,6 +11,7 @@ printval
 printinfotab
 nrparams
 params
+order(t::Table)
 ```
 
 ## About Characters
