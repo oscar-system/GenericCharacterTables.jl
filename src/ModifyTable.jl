@@ -208,7 +208,7 @@ function speccharparam!(t::CharTable{T}, char::Int64, var::FracPoly{T}, expr::Ri
 	if char > chartypes(t)
 		throw(DomainError(char, "Character type is out of range."))
 	end
-	if !isgen(var)
+	if !is_gen(var)
 		throw(DomainError(var, "Not a single variable."))
 	end
 	for class in range(1,classtypes(t))
@@ -273,7 +273,7 @@ function specclassparam!(t::CharTable{T}, class::Int64, var::FracPoly{T}, expr::
 	if class > classtypes(t)
 		throw(DomainError(class, "Class type is out of range."))
 	end
-	if !isgen(var)
+	if !is_gen(var)
 		throw(DomainError(var, "Not a single variable."))
 	end
 	for char in range(1,chartypes(t))
