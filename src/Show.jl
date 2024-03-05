@@ -1,7 +1,23 @@
 import Oscar.order
-export chartypes, irrchartypes, classtypes, status, printinfotab, printval, printinfoclass, printinfochar, printclassparam, printcharparam, centord, chardeg, nrchars, nrclasses, nrparams, params
+
+export centord
+export chardeg
+export chartypes
+export classtypes
+export irrchartypes
+export nrchars
+export nrclasses
+export nrparams
 export order
 export param
+export params
+export printcharparam
+export printclassparam
+export printinfochar
+export printinfoclass
+export printinfotab
+export printval
+export status
 # TODO PrintValPhi, PrintToTex?
 
 import Oscar: pretty, Indent
