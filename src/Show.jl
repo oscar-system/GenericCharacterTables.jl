@@ -24,20 +24,20 @@ export status
 import Oscar: pretty, Indent, Dedent
 
 function Base.show(io::IO, t::Table)
-    io = pretty(io)
-    println(io, "Generic character table", Indent())
-    println(io, "of order ", t.order)
-    c = congruence(t)
-    if c !== nothing
-        println(io, "restricted to q congruent to ", c[1], " modulo ", c[2])
-    end
-    println(io, "with ", irrchartypes(t)," irreducible character types")
-    println(io, "with ", classtypes(t)," class types")
-    if t isa SimpleCharTable
-        print(io, "without parameters")
-    else
-        print(io, "with parameters ", params(t)[2])
-    end
+	io = pretty(io)
+	println(io, "Generic character table", Indent())
+	println(io, "of order ", t.order)
+	c = congruence(t)
+	if c !== nothing
+		println(io, "restricted to q congruent to ", c[1], " modulo ", c[2])
+	end
+	println(io, "with ", irrchartypes(t)," irreducible character types")
+	println(io, "with ", classtypes(t)," class types")
+	if t isa SimpleCharTable
+		print(io, "without parameters")
+	else
+		print(io, "with parameters ", params(t)[2])
+	end
 end
 
 """
@@ -459,20 +459,20 @@ printval(t::Table; kwarg...) = printval(stdout, t; kwarg...)
 
 # TODO: document this (and/or replace it by something better)
 function print_decomposition(io::IO, t::CharTable, char::Int)
-    io = pretty(io)
-    print(io, "Decomposing character $char:", Indent())
-    for i in 1:irrchartypes(t)
-        println(io)
-        s, e = scalar(t, i, char)
-        print(io, "<$i,$char> = $s  ")
-        if !isempty(e)
-            print(io, "with possible exceptions:", Indent())
-            for ex in e
-                print(io, "\n", ex)
-            end
-            print(io, Dedent())
-        end
-    end
+	io = pretty(io)
+	print(io, "Decomposing character $char:", Indent())
+	for i in 1:irrchartypes(t)
+		println(io)
+		s, e = scalar(t, i, char)
+		print(io, "<$i,$char> = $s  ")
+		if !isempty(e)
+			print(io, "with possible exceptions:", Indent())
+			for ex in e
+				print(io, "\n", ex)
+			end
+			print(io, Dedent())
+		end
+	end
 end
 
 print_decomposition(t::CharTable, char::Int) = print_decomposition(stdout, t, char)

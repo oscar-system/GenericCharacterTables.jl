@@ -76,25 +76,25 @@ function gentab(table::String, tabletype::String)
 	!isempty(tabletype) || error("tabletype name must not be empty")
 	path=@__DIR__
 	for dir in readdir("$path/$tabletype")
-	    fname = "$path/$tabletype/$dir/$table.jl"
-	    isfile(fname) && return loadtab(fname)
+		fname = "$path/$tabletype/$dir/$table.jl"
+		isfile(fname) && return loadtab(fname)
 	end
 	error("table '$table' not found")
 end
 
 function gentab(tabletype::String)
-    tables=[]
+	tables=[]
 	path=@__DIR__
 	for dir in readdir("$path/$tabletype")
 		for table_file in readdir("$path/$tabletype/$dir")
-            push!(tables, replace(table_file, ".jl" => ""))
+		push!(tables, replace(table_file, ".jl" => ""))
 		end
 	end
-    return tables
+	return tables
 end
 
 """
-	genchartab(x::String)
+    genchartab(x::String)
 
 Return the generic character table with name `x`.
 
@@ -114,7 +114,7 @@ genchartab(x::String) = gentab(x, "Tables")
 genchartab() = gentab("Tables")
 
 """
-	greenfuntab(x::String)
+    greenfuntab(x::String)
 
 Return the greenfunction table with name `x`.
 
