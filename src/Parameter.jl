@@ -40,7 +40,7 @@ struct ParameterException{T}
 	expression::FracPoly{T}
 	function ParameterException(expression::FracPoly{T}; simplify::Bool=true) where T <: NfPoly
 		if simplify
-			normalized=normalize(expression)
+			normalized=normal_form(expression)
 			signum=weak_sign(leading_coefficient(numerator(leading_coefficient(normalized))))
 			return new{T}(signum*normalized)
 		else
