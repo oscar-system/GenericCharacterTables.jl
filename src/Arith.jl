@@ -4,35 +4,35 @@ const FracPoly{T} = Generic.UnivPoly{Generic.FracFieldElem{T}, Generic.MPoly{Gen
 const NfPoly = Union{PolyRingElem{QQFieldElem}, PolyRingElem{AbsSimpleNumFieldElem}}
 
 """
-    normalize(a::FracPoly)
+    normal_form(a::FracPoly)
 
 Return a normal form `b` of `a` such that ``\\exp(2\\pi \\mathrm{i} \\cdot a) = \\exp(2\\pi \\mathrm{i} \\cdot b)``.
 
 This is done by reducing the numerators of the coefficients modulo their denominators.
 """
-function normalize(a::QQFieldElem)
+function normal_form(a::QQFieldElem)
 	if isone(denominator(a))
 		return zero(a)
 	else
 		return mod(numerator(a), denominator(a))//denominator(a)
 	end
 end
-function normalize(a::AbsSimpleNumFieldElem)
+function normal_form(a::AbsSimpleNumFieldElem)
 	if isone(denominator(a))
 		return zero(a)
 	else
 		rational_part=coeff(a,0)
-		return a-rational_part+normalize(rational_part)
+		return a-rational_part+normal_form(rational_part)
 	end
 end
-function normalize(a::Union{QQPolyRingElem, Generic.Poly{AbsSimpleNumFieldElem}})
-	return parent(a)(collect(map(normalize, coefficients(a))))
+function normal_form(a::Union{QQPolyRingElem, Generic.Poly{AbsSimpleNumFieldElem}})
+	return parent(a)(collect(map(normal_form, coefficients(a))))
 end
-function normalize(a::FracPoly{T}) where T <: NfPoly
+function normal_form(a::FracPoly{T}) where T <: NfPoly
 	normalized=zero(a)
 	for (coeff, monomial) in zip(coefficients(a), monomials(a))
 		normalized+=(mod(numerator(coeff), denominator(coeff))//denominator(coeff))*monomial
-		normalized+=normalize(div(numerator(coeff), denominator(coeff)))*monomial
+		normalized+=normal_form(div(numerator(coeff), denominator(coeff)))*monomial
 	end
 	return normalized
 end
@@ -51,7 +51,7 @@ struct Cyclo{T} <: Cyclotomic{T}
 			if iszero(modulus)
 				return new{T}(modulus, zero(argument))
 			else
-				new_argument=normalize(argument)
+				new_argument=normal_form(argument)
 				if constant_coefficient(new_argument) == 1//2
 					return new{T}(-modulus, new_argument-1//2)
 				else
