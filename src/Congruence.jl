@@ -26,33 +26,33 @@ end
 # TODO: should we only allow to specify *additional* congruences?
 # TODO: simplify? always? on request? never?
 function setcongruence(x::CharTable{T}, new_congruence::Tuple{T, T}) where T
-    # For now don't allow changing the congruence once it has been set, as this
-    # could lead to inconsistencies. In the future we could interpret this as *adding*
-    # a congruence relation, but then we need to come up with a way to handle it.
-    x.congruence === nothing || error("cannot override already set congruence")
-    return typeof(x)(
-        x.order,
-        deepcopy(x.table),
-        deepcopy(x.classinfo),
-        deepcopy(x.classlength),
-        deepcopy(x.charinfo),
-        deepcopy(x.chardegree),
-        deepcopy(x.classsums),
-        deepcopy(x.charsums),
-        deepcopy(x.classparamindex),
-        deepcopy(x.charparamindex),
-        deepcopy(x.classparams),
-        deepcopy(x.charparams),
-        new_congruence,  # <- this changed
-        x.modulusring,
-        x.argumentring,
-        x.information,
-    )
+	# For now don't allow changing the congruence once it has been set, as this
+	# could lead to inconsistencies. In the future we could interpret this as *adding*
+	# a congruence relation, but then we need to come up with a way to handle it.
+	x.congruence === nothing || error("cannot override already set congruence")
+	return typeof(x)(
+		x.order,
+		deepcopy(x.table),
+		deepcopy(x.classinfo),
+		deepcopy(x.classlength),
+		deepcopy(x.charinfo),
+		deepcopy(x.chardegree),
+		deepcopy(x.classsums),
+		deepcopy(x.charsums),
+		deepcopy(x.classparamindex),
+		deepcopy(x.charparamindex),
+		deepcopy(x.classparams),
+		deepcopy(x.charparams),
+		new_congruence,  # <- this changed
+		x.modulusring,
+		x.argumentring,
+		x.information,
+	)
 end
 
 function setcongruence(x::CharTable, new_congruence::Tuple{Int, Int})
-    R = parent(x.order)
-    setcongruence(x, R.(new_congruence))
+	R = parent(x.order)
+	setcongruence(x, R.(new_congruence))
 end
 
 congruence(x::CharTable) = x.congruence

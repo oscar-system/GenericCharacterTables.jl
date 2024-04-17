@@ -49,22 +49,22 @@ struct ParameterException{T}
 	end
 end
 function Base.show(io::IO, a::ParameterException)
-    # merge multiple denominators from coefficients into one for nicer printing
-    d = lcm(map(denominator,Oscar.coefficients(a.expression)))
-    if is_one(d)
-        print(io, "$(a.expression) ∈ ℤ")
-    else
-        print(io, "($(a.expression*d))//($d) ∈ ℤ")
-    end
+	# merge multiple denominators from coefficients into one for nicer printing
+	d = lcm(map(denominator,Oscar.coefficients(a.expression)))
+	if is_one(d)
+		print(io, "$(a.expression) ∈ ℤ")
+	else
+		print(io, "($(a.expression*d))//($d) ∈ ℤ")
+	end
 end
 function Base.show(io::IO, m::MIME{Symbol("text/latex")}, a::ParameterException)
-    # merge multiple denominators from coefficients into one for nicer printing
-    d = lcm(map(denominator,Oscar.coefficients(a.expression)))
-    if is_one(d)
-        print(io, repr("text/latex",a.expression), " \\in \\mathbb{Z}")
-    else
-        print(io, "\\frac{", repr("text/latex",a.expression*d), "}{", d, "} \\in \\mathbb{Z}")
-    end
+	# merge multiple denominators from coefficients into one for nicer printing
+	d = lcm(map(denominator,Oscar.coefficients(a.expression)))
+	if is_one(d)
+		print(io, repr("text/latex",a.expression), " \\in \\mathbb{Z}")
+	else
+		print(io, "\\frac{", repr("text/latex",a.expression*d), "}{", d, "} \\in \\mathbb{Z}")
+	end
 end
 Base.:(==)(x::ParameterException, y::ParameterException) = x.expression == y.expression  # needed for Set to work
 Base.hash(x::ParameterException, h::UInt) = hash(x.expression, h)  # needed for Set to work
@@ -85,11 +85,11 @@ struct Parameters{T}
 end
 
 function Parameters(p::Vector{Parameter{T}},e::Vector{ParameterException{T}}) where T
-    return Parameters{T}(p,e,ParameterSubstitution{T}[])
+	return Parameters{T}(p,e,ParameterSubstitution{T}[])
 end
 
 function Parameters(p::Vector{Parameter{T}}) where T
-    return Parameters{T}(p,ParameterException{T}[],ParameterSubstitution{T}[])
+	return Parameters{T}(p,ParameterException{T}[],ParameterSubstitution{T}[])
 end
 
 function Base.show(io::IO, a::Parameters) 
