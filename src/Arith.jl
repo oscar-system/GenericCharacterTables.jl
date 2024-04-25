@@ -25,7 +25,7 @@ function normal_form(a::AbsSimpleNumFieldElem)
 		return a-rational_part+normal_form(rational_part)
 	end
 end
-function normal_form(a::Union{QQPolyRingElem, Generic.Poly{AbsSimpleNumFieldElem}})
+function normal_form(a::NfPoly)
 	return parent(a)(collect(map(normal_form, coefficients(a))))
 end
 function normal_form(a::FracPoly{T}) where T <: NfPoly
