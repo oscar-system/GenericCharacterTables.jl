@@ -55,10 +55,10 @@ julia> S=UniversalPolynomialRing(Q);
 julia> i, j, k, l = gens(S, [\"i\", \"j\", \"k\", \"l\"]);
 
 julia> a = e2p(2//(q-1)*i*j+1//q*k^2+1//2*i*l)
-(1) * exp(2π𝑖(2//(q - 1)*i*j + 1//2*i*l + 1//q*k^2))
+exp(2π𝑖(2//(q - 1)*i*j + 1//2*i*l + 1//q*k^2))
 
 julia> eesubs(a,[i,k],[j,3*i])
-(1) * exp(2π𝑖(9//q*i^2 + 2//(q - 1)*j^2 + 1//2*j*l))
+exp(2π𝑖(9//q*i^2 + 2//(q - 1)*j^2 + 1//2*j*l))
 
 ```
 """
@@ -93,10 +93,10 @@ julia> S=UniversalPolynomialRing(Q);
 julia> i, = gens(S, ["i"]);
 
 julia> a = e2p(1//(q-1)*i)
-(1) * exp(2π𝑖(1//(q - 1)*i))
+exp(2π𝑖(1//(q - 1)*i))
 
 julia> nesum(a, i, 1, q-1)
-((0)  //  (1), Set(GenericCharacterTables.ParameterException{QQPolyRingElem}[(1)//(q - 1) ∈ ℤ]))
+(0//1, Set(GenericCharacterTables.ParameterException{QQPolyRingElem}[(1)//(q - 1) ∈ ℤ]))
 ```
 """
 function nesum(a::CycloFrac{T}, var::Int64, lower::Int64, upper::Union{Int64,T}, congruence::Union{Tuple{T,T},Nothing}=nothing) where T <: NfPoly

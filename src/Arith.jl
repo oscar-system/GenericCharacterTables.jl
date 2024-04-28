@@ -198,7 +198,7 @@ julia> S = UniversalPolynomialRing(Q);
 julia> i, j = gens(S, [\"i\", \"j\"]);
 
 julia> e2p(1//(q-1)*i+j)
-(1) * exp(2π𝑖(1//(q - 1)*i))
+exp(2π𝑖(1//(q - 1)*i))
 
 ```
 """

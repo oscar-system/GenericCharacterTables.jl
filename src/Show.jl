@@ -418,14 +418,14 @@ julia> g=genchartab("GL2");
 
 julia> printval(g,char=1)
 Value of character type 1 on class type
-  1: (1) * exp(2π𝑖(2//(q - 1)*i*k))
-  2: (1) * exp(2π𝑖(2//(q - 1)*i*k))
-  3: (1) * exp(2π𝑖(1//(q - 1)*i*k + 1//(q - 1)*j*k))
-  4: (1) * exp(2π𝑖(1//(q - 1)*i*k))
+  1: exp(2π𝑖(2//(q - 1)*i*k))
+  2: exp(2π𝑖(2//(q - 1)*i*k))
+  3: exp(2π𝑖(1//(q - 1)*i*k + 1//(q - 1)*j*k))
+  4: exp(2π𝑖(1//(q - 1)*i*k))
 
 julia> printval(g,char=4,class=2)
 Value of character type 4 on class type
-  2: (-1) * exp(2π𝑖(1//(q - 1)*i*k))
+  2: -1*exp(2π𝑖(1//(q - 1)*i*k))
 ```
 """
 function printval(io::IO, t::Table; char::Union{Int64, Nothing}=nothing, class::Union{Int64, Nothing}=nothing)
