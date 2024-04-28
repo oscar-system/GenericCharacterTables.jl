@@ -66,8 +66,12 @@ end
 function Base.show(io::IO, z::Cyclo)
 	if iszero(z.argument)
 		print(io, z.modulus)
+	elseif isone(z.modulus)
+		print(io, "exp(2π𝑖($(z.argument)))")
+	elseif is_term(z.modulus)
+		print(io, "$(z.modulus)*exp(2π𝑖($(z.argument)))")
 	else
-		print(io, "($(z.modulus)) * exp(2π𝑖($(z.argument)))")
+		print(io, "($(z.modulus))*exp(2π𝑖($(z.argument)))")
 	end
 end
 function Base.show(io::IO, m::MIME{Symbol("text/latex")}, z::Cyclo)
@@ -160,7 +164,21 @@ struct CycloFrac{T} <: Cyclotomic{T}
 		end
 	end
 end
-Base.show(io::IO, z::CycloFrac) = print(io, "($(z.numerator))  //  ($(z.denominator))")
+function Base.show(io::IO, z::CycloFrac)
+	if isone(length(z.numerator.summands))
+		if isone(length(z.denominator.summands))
+			print(io, "$(z.numerator)//$(z.denominator)")
+		else
+			print(io, "$(z.numerator)//($(z.denominator))")
+		end
+	else
+		if isone(length(z.denominator.summands))
+			print(io, "($(z.numerator))//$(z.denominator)")
+		else
+			print(io, "($(z.numerator))//($(z.denominator))")
+		end
+	end
+end
 Base.show(io::IO, m::MIME{Symbol("text/latex")}, z::CycloFrac) = print(io, "\\frac{$(repr("text/latex", z.numerator))}{$(repr("text/latex",z.denominator))}")
 Base.isone(x::CycloFrac) = isone(x.numerator) && isone(x.denominator)
 Base.iszero(x::CycloFrac) = iszero(x.numerator)
