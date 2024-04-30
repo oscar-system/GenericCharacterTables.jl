@@ -78,7 +78,8 @@ end
 """
     nesum(a::Cyclotomic{T}, var::Union{FracPoly{T},Int64}, lower::Int64, upper::Union{Int64,T}, congruence::Union{Tuple{T,T},Nothing}=nothing) where T<:PolyRingElem
 
-Return the sum of `a`, from `var=lower` to `upper` as `CycloFrac{T}`.
+Return the sum of `a`, from `var=lower` to `upper` as `CycloFrac{T}` using the closed formular for geometric sums. If this is not possible
+an exception will be thrown. Note that any occurence of `var` in the denominator of `a` will be silently ignored.
 
 `congruence[1]` gives the remainder modulo `congruence[2]` of the generator of the polynomials of type `T`. This is used to simplify the result.
 The second return value is a set of exceptions where the result may be false.
@@ -107,6 +108,7 @@ function nesum(a::CycloFrac{T}, var::Int64, lower::Int64, upper::Union{Int64,T},
 		sum, exc = nesum(a, var, 0, upper, congruence)
 		return (sum-nesum(a, var, 0, lower-1), exc)
 	end
+	# From now on `lower` can be assumed to be zero.
 	if congruence !== nothing
 		ring=parent(a.numerator.summands[1].modulus)
 		c=congruence[2]*gen(ring)+congruence[1]
@@ -114,29 +116,37 @@ function nesum(a::CycloFrac{T}, var::Int64, lower::Int64, upper::Union{Int64,T},
 	end
 	sum=0
 	exceptions=Set{ParameterException{T}}()
-	for root in a.numerator.summands
-		if degrees(root.argument)[var] > 0
-			cl=coeff(root.argument, [var], [1])
-			co=eesubs(root.argument, [var], [0])
-			ke=e2p(cl)
-			summand=(root.modulus*e2p((upper+1)*cl+co)-root.modulus*e2p(co))//((ke-1)*a.denominator)
+	# Using the commutativity of the addition in the ring of generic cyclotomics
+	# the sum can be computed separately for each of the summands of `a.numerator`.
+	# Also `a.denominator` will be ignored and added back to the result later.
+	for summand in a.numerator.summands
+		var_degree=degrees(summand.argument)[var]
+		if var_degree <= 0  # `summand` doesn't depend on `var` at all and thus the sum boils down to a simple multiplication.
+			sum+=(upper+1)*summand
+		elseif isone(var_degree)  # `summand.argument` linearly depends on `var` hence the sum is a geometric sum.
+			var_coeff=coeff(summand.argument, [var], [1])
+			constant=eesubs(summand.argument, [var], [0])
+			geometric_sum=summand.modulus*e2p(constant)*(e2p((upper+1)*var_coeff)-1)//(e2p(var_coeff)-1)
 			if congruence === nothing
-				sum+=summand
+				sum+=geometric_sum
 			else
-				sum+=simplify(summand, c, cinv)
+				sum+=simplify(geometric_sum, c, cinv)
 			end
-			if !(ishalf(root.argument) && isunitfraction(cl))
+			# If `var_coeff` evaluates to an integer `e2p(var_coeff)` evaluates to one and thus `e2p(var_coeff)-1` to zero.
+			# So in this case the closed formular for the geometric sum doesn't hold.
+			if !(ishalf(var_coeff) && isunitfraction(var_coeff))  # TODO make this more general to skip more exceptions?
 				if congruence === nothing
-					push!(exceptions, ParameterException(cl))
+					push!(exceptions, ParameterException(var_coeff))
 				else
-					push!(exceptions, simplify(ParameterException(cl), c, cinv))
+					push!(exceptions, simplify(ParameterException(var_coeff), c, cinv))
 				end
 			end
-		else
-			sum+=((upper+1)*root)//a.denominator
+		else  # `summand.argument` nonlinearly depends on `var` so the sum is currently not computable.
+			# This exception shouldn't be thrown when using the included character tables.
+			throw(DomainError(summand, "Nonlinear dependencies on the summation variable can't be resolved."))
 		end
 	end
-	return (sum, exceptions)
+	return (sum//a.denominator, exceptions)
 end
 function nesum(a::CycloSum{T}, var::Int64, lower::Int64, upper::Union{Int64,T}, congruence::Union{Tuple{T,T},Nothing}=nothing) where T <: NfPoly
 	nesum(convert(CycloFrac{T}, a), var, lower, upper, congruence)
