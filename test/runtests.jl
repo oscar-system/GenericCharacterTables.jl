@@ -25,6 +25,9 @@ include("Aqua.jl")
 
 	@test isone(a//a)
 	@test isone((a//c)*(c//a))
+
+	d=e2p(1//(q-1)*i)
+	@test nesum(a, i, 1, q-1)[1]-eesubs(a, [1], [1])==nesum(a, i, 2, q-1)[1]
 end
 
 @testset "Shifts" begin
