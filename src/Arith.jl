@@ -254,6 +254,7 @@ Base.:-(x::Cyclotomic{<:NfPoly}, y::Union{Int64, Rational{Int64}}) = x-(y*one(x)
 Base.:-(y::Cyclotomic) = (-1)*y
 
 Base.:(==)(x::CycloSum, y::CycloSum) = iszero(x-y)
+Base.:(==)(x::CycloFrac, y::CycloFrac) = iszero(x-y)
 
 function Base.:*(x::Cyclo, y::Cyclo)
 	if isone(x)

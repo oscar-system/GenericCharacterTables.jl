@@ -105,8 +105,9 @@ function nesum(a::CycloFrac{T}, var::Int64, lower::Int64, upper::Union{Int64,T},
 		sum, exc = nesum(a, var, 0, upper, congruence)
 		return (sum-eesubs(a, [var], [0]), exc)
 	elseif lower > 1
-		sum, exc = nesum(a, var, 0, upper, congruence)
-		return (sum-nesum(a, var, 0, lower-1), exc)
+		sum1, exc1 = nesum(a, var, 0, upper, congruence)
+		sum2, exc2 = nesum(a, var, 0, lower-1)
+		return (sum1-sum2, union(exc1, exc2))
 	end
 	# From now on `lower` can be assumed to be zero.
 	if congruence !== nothing
