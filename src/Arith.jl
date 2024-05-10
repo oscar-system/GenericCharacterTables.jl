@@ -154,12 +154,9 @@ struct CycloFrac{T} <: Cyclotomic{T}
 			elseif numerator == denominator
 				o=one(denominator)
 				return new{T}(o, o, exceptions)
-			else
-				return new{T}(numerator, denominator, exceptions)
 			end
-		else
-			return new{T}(numerator, denominator, exceptions)
 		end
+		return new{T}(numerator, denominator, exceptions)
 	end
 end
 
@@ -198,17 +195,18 @@ function Base.show(io::IO, z::CycloFrac)
 	end
 	if isone(length(z.numerator.summands))
 		if isone(length(z.denominator.summands))
-			print(io, "$(z.numerator)//$(z.denominator)$(exceptions)")
+			print(io, "$(z.numerator)//$(z.denominator)")
 		else
-			print(io, "$(z.numerator)//($(z.denominator))$(exceptions)")
+			print(io, "$(z.numerator)//($(z.denominator))")
 		end
 	else
 		if isone(length(z.denominator.summands))
-			print(io, "($(z.numerator))//$(z.denominator)$(exceptions)")
+			print(io, "($(z.numerator))//$(z.denominator)")
 		else
-			print(io, "($(z.numerator))//($(z.denominator))$(exceptions)")
+			print(io, "($(z.numerator))//($(z.denominator))")
 		end
 	end
+	print(io, exceptions)
 end
 Base.show(io::IO, m::MIME{Symbol("text/latex")}, z::CycloFrac) = print(io, "\\frac{$(repr("text/latex", z.numerator))}{$(repr("text/latex",z.denominator))}")
 Base.isone(x::CycloFrac) = isone(x.numerator) && isone(x.denominator)
