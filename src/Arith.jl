@@ -162,9 +162,11 @@ struct CycloFrac{T} <: Cyclotomic{T}
 		end
 	end
 end
+
 function add_exception!(a::CycloFrac{T}, exception::ParameterException{T}) where T<:PolyRingElem
 	push!(a.exceptions, exception)
 end
+
 """
     shrink(a::CycloFrac{<:NfPoly})
 
