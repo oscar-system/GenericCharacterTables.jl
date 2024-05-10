@@ -72,7 +72,10 @@ function eesubs(a::CycloSum{T}, vars::Union{Vector{<:FracPoly{T}},Vector{Int64}}
 	return CycloSum(map(x -> eesubs(x, vars, vals), a.summands))
 end
 function eesubs(a::CycloFrac{T}, vars::Union{Vector{<:FracPoly{T}},Vector{Int64}}, vals::Vector{<:RingElement}) where T <: PolyRingElem
-	return CycloFrac(eesubs(a.numerator, vars, vals), eesubs(a.denominator, vars, vals))
+	return CycloFrac(eesubs(a.numerator, vars, vals), eesubs(a.denominator, vars, vals), Set{ParameterException{T}}(eesubs.(a.exceptions, Ref(vars), Ref(vals))))
+end
+function eesubs(a::ParameterException{T}, vars::Union{Vector{<:FracPoly{T}},Vector{Int64}}, vals::Vector{<:RingElement}) where T <: PolyRingElem
+	return ParameterExcepion(eesubs(a.expression, vars, vals))
 end
 
 """
@@ -82,7 +85,6 @@ Return the sum of `a`, from `var=lower` to `upper` as `CycloFrac{T}` using the c
 an exception will be thrown. Note that any occurence of `var` in the denominator of `a` will be silently ignored.
 
 `congruence[1]` gives the remainder modulo `congruence[2]` of the generator of the polynomials of type `T`. This is used to simplify the result.
-The second return value is a set of exceptions where the result may be false.
 # Examples
 ```jldoctest
 julia> R, q = polynomial_ring(QQ, "q");
@@ -97,17 +99,16 @@ julia> a = e2p(1//(q-1)*i)
 exp(2π𝑖(1//(q - 1)*i))
 
 julia> nesum(a, i, 1, q-1)
-(0//1, Set(GenericCharacterTables.ParameterException{QQPolyRingElem}[(1)//(q - 1) ∈ ℤ]))
+0//1
+With exceptions:
+  (1)//(q - 1) ∈ ℤ
 ```
 """
 function nesum(a::CycloFrac{T}, var::Int64, lower::Int64, upper::Union{Int64,T}, congruence::Union{Tuple{T,T},Nothing}=nothing) where T <: NfPoly
 	if isone(lower)
-		sum, exc = nesum(a, var, 0, upper, congruence)
-		return (sum-eesubs(a, [var], [0]), exc)
+		return nesum(a, var, 0, upper, congruence)-eesubs(a, [var], [0])
 	elseif lower > 1
-		sum1, exc1 = nesum(a, var, 0, upper, congruence)
-		sum2, exc2 = nesum(a, var, 0, lower-1)
-		return (sum1-sum2, union(exc1, exc2))
+		return nesum(a, var, 0, upper, congruence)-nesum(a, var, 0, lower-1)
 	end
 	# From now on `lower` can be assumed to be zero.
 	if congruence !== nothing
@@ -115,8 +116,7 @@ function nesum(a::CycloFrac{T}, var::Int64, lower::Int64, upper::Union{Int64,T},
 		c=congruence[2]*gen(ring)+congruence[1]
 		cinv=(gen(ring)-congruence[1])//congruence[2]
 	end
-	sum=0
-	exceptions=Set{ParameterException{T}}()
+	sum=zero(a)
 	# Using the commutativity of the addition in the ring of generic cyclotomics
 	# the sum can be computed separately for each of the summands of `a.numerator`.
 	# Also `a.denominator` will be ignored and added back to the result later.
@@ -137,17 +137,18 @@ function nesum(a::CycloFrac{T}, var::Int64, lower::Int64, upper::Union{Int64,T},
 			# So in this case the closed formular for the geometric sum doesn't hold.
 			if !(ishalf(var_coeff) && isunitfraction(var_coeff))  # TODO make this more general to skip more exceptions?
 				if congruence === nothing
-					push!(exceptions, ParameterException(var_coeff))
+					exception=ParameterException(var_coeff)
 				else
-					push!(exceptions, simplify(ParameterException(var_coeff), c, cinv))
+					exception=simplify(ParameterException(var_coeff), c, cinv)
 				end
+				add_exception!(sum, exception)
 			end
 		else  # `summand.argument` nonlinearly depends on `var` so the sum is currently not computable.
 			# This exception shouldn't be thrown when using the included character tables.
 			throw(DomainError(summand, "Nonlinear dependencies on the summation variable can't be resolved."))
 		end
 	end
-	return (sum//a.denominator, exceptions)
+	return sum//a.denominator
 end
 function nesum(a::CycloSum{T}, var::Int64, lower::Int64, upper::Union{Int64,T}, congruence::Union{Tuple{T,T},Nothing}=nothing) where T <: NfPoly
 	nesum(convert(CycloFrac{T}, a), var, lower, upper, congruence)

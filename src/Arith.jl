@@ -1,8 +1,5 @@
 export e2p
 
-const FracPoly{T} = Generic.UnivPoly{Generic.FracFieldElem{T}, Generic.MPoly{Generic.FracFieldElem{T}}} where T
-const NfPoly = Union{PolyRingElem{QQFieldElem}, PolyRingElem{AbsSimpleNumFieldElem}}
-
 """
     normal_form(a::FracPoly)
 
@@ -149,39 +146,71 @@ Base.iszero(x::CycloSum) = iszero(x.summands[1])  # isone(length(x.summands)) is
 struct CycloFrac{T} <: Cyclotomic{T}
 	numerator::CycloSum{T}
 	denominator::CycloSum{T}
-	function CycloFrac(numerator::CycloSum{T}, denominator::CycloSum{T}; simplify::Bool=true) where T<:NfPoly
+	exceptions::Set{ParameterException{T}}
+	function CycloFrac(numerator::CycloSum{T}, denominator::CycloSum{T}, exceptions::Set{ParameterException{T}}; simplify::Bool=true) where T<:NfPoly
 		if simplify
 			if iszero(numerator)
-				return new{T}(numerator, one(denominator))
+				return new{T}(numerator, one(denominator), exceptions)
 			elseif numerator == denominator
 				o=one(denominator)
-				return new{T}(o, o)
+				return new{T}(o, o, exceptions)
 			else
-				return new{T}(numerator, denominator)
+				return new{T}(numerator, denominator, exceptions)
 			end
 		else
-			return new{T}(numerator, denominator)
+			return new{T}(numerator, denominator, exceptions)
 		end
 	end
 end
+function add_exception!(a::CycloFrac{T}, exception::ParameterException{T}) where T<:PolyRingElem
+	push!(a.exceptions, exception)
+end
+"""
+    shrink(a::CycloFrac{<:NfPoly})
+
+Remove exceptions from `a` that follow from the others. And try to simplify the representation of `a`.
+"""
+function shrink(a::CycloFrac{T}) where T <: NfPoly  # TODO Move this to the constructor of CycloFrac?
+	new_numerator=a.numerator
+	new_denominator=a.denominator
+	if isone(length(a.numerator.summands)) && isone(length(a.denominator.summands))
+		principal_numerator=a.numerator.summands[1]
+		principal_denominator=a.denominator.summands[1]
+		if iszero(principal_numerator.argument) && iszero(principal_denominator.argument)
+			b=principal_numerator.modulus//principal_denominator.modulus
+			o=one(a.numerator)
+			new_numerator=o*numerator(b)
+			new_denominator=o*denominator(b)
+		end
+	end
+	return CycloFrac(new_numerator, new_denominator, shrink(a.exceptions), simplify=false)
+end
 function Base.show(io::IO, z::CycloFrac)
+	if isempty(z.exceptions)
+		exceptions=""
+	else
+		exceptions="\nWith exceptions:"
+		for exception in z.exceptions
+			exceptions*="\n  $(exception)"
+		end
+	end
 	if isone(length(z.numerator.summands))
 		if isone(length(z.denominator.summands))
-			print(io, "$(z.numerator)//$(z.denominator)")
+			print(io, "$(z.numerator)//$(z.denominator)$(exceptions)")
 		else
-			print(io, "$(z.numerator)//($(z.denominator))")
+			print(io, "$(z.numerator)//($(z.denominator))$(exceptions)")
 		end
 	else
 		if isone(length(z.denominator.summands))
-			print(io, "($(z.numerator))//$(z.denominator)")
+			print(io, "($(z.numerator))//$(z.denominator)$(exceptions)")
 		else
-			print(io, "($(z.numerator))//($(z.denominator))")
+			print(io, "($(z.numerator))//($(z.denominator))$(exceptions)")
 		end
 	end
 end
 Base.show(io::IO, m::MIME{Symbol("text/latex")}, z::CycloFrac) = print(io, "\\frac{$(repr("text/latex", z.numerator))}{$(repr("text/latex",z.denominator))}")
 Base.isone(x::CycloFrac) = isone(x.numerator) && isone(x.denominator)
-Base.iszero(x::CycloFrac) = iszero(x.numerator)
+Base.iszero(x::CycloFrac) = iszero(x.numerator)  # TODO deal with exceptions?
 
 # operators
 """
@@ -209,14 +238,14 @@ end
 
 Base.one(x::Cyclo) = Cyclo(one(x.modulus), zero(x.argument), simplify=false)
 Base.one(x::CycloSum) = CycloSum([one(x.summands[1])], simplify=false)
-function Base.one(x::CycloFrac)
+function Base.one(x::CycloFrac{T}) where T<:PolyRingElem
 	o=one(x.numerator)
-	return CycloFrac(o, o, simplify=false)
+	return CycloFrac(o, o, x.exceptions, simplify=false)
 end
 
 Base.zero(x::Cyclo) = Cyclo(zero(x.modulus), zero(x.argument), simplify=false)
 Base.zero(x::CycloSum) = CycloSum([zero(x.summands[1])], simplify=false)
-Base.zero(x::CycloFrac) = CycloFrac(zero(x.numerator), one(x.denominator), simplify=false)
+Base.zero(x::CycloFrac{T}) where T<:PolyRingElem = CycloFrac(zero(x.numerator), one(x.denominator), x.exceptions, simplify=false)
 
 Base.:(==)(x::Cyclo{T}, y::Cyclo{T}) where T<:PolyRingElem = x.modulus == y.modulus && x.argument == y.argument
 
@@ -225,17 +254,17 @@ Base.:+(x::CycloSum{T}, y::CycloSum{T}) where T<:PolyRingElem = CycloSum(vcat(x.
 
 Base.:*(factor::T, x::Cyclo{T}) where T<:PolyRingElem = iszero(factor) ? zero(x) : Cyclo(factor*x.modulus, x.argument, simplify=false)
 Base.:*(factor::T, x::CycloSum{T}) where T<:PolyRingElem = iszero(factor) ? zero(x) : CycloSum(x.summands.*factor, simplify=false)
-Base.:*(factor::T, x::CycloFrac{T}) where T<:PolyRingElem = iszero(factor) ? zero(x) : CycloFrac(x.numerator*factor, x.denominator, simplify=false)
+Base.:*(factor::T, x::CycloFrac{T}) where T<:PolyRingElem = iszero(factor) ? zero(x) : CycloFrac(x.numerator*factor, x.denominator, x.exceptions, simplify=false)
 Base.:*(x::Cyclotomic{T}, factor::T) where T<:PolyRingElem = factor*x
 
 Base.:*(factor::S, x::Cyclo{T}) where {S<:RingElement, T<:PolyRingElem{S}} = iszero(factor) ? zero(x) : Cyclo(factor*x.modulus, x.argument, simplify=false)
 Base.:*(factor::S, x::CycloSum{T}) where {S<:RingElement, T<:PolyRingElem{S}} = iszero(factor) ? zero(x) : CycloSum(x.summands.*factor, simplify=false)
-Base.:*(factor::S, x::CycloFrac{T}) where {S<:RingElement, T<:PolyRingElem{S}} = iszero(factor) ? zero(x) : CycloFrac(x.numerator*factor, x.denominator, simplify=false)
+Base.:*(factor::S, x::CycloFrac{T}) where {S<:RingElement, T<:PolyRingElem{S}} = iszero(factor) ? zero(x) : CycloFrac(x.numerator*factor, x.denominator, x.exceptions, simplify=false)
 Base.:*(x::Cyclotomic{T}, factor::S) where {S<:RingElement, T<:PolyRingElem{S}} = factor*x
 
 Base.:*(factor::Union{Int64, Rational{Int64}}, x::Cyclo{<:NfPoly}) = iszero(factor) ? zero(x) : Cyclo(factor*x.modulus, x.argument, simplify=false)
 Base.:*(factor::Union{Int64, Rational{Int64}}, x::CycloSum{<:NfPoly}) = iszero(factor) ? zero(x) : CycloSum(x.summands.*factor, simplify=false)
-Base.:*(factor::Union{Int64, Rational{Int64}}, x::CycloFrac{<:NfPoly}) = iszero(factor) ? zero(x) : CycloFrac(x.numerator*factor, x.denominator, simplify=false)
+Base.:*(factor::Union{Int64, Rational{Int64}}, x::CycloFrac{<:NfPoly}) = iszero(factor) ? zero(x) : CycloFrac(x.numerator*factor, x.denominator, x.exceptions, simplify=false)
 Base.:*(x::Cyclotomic{<:NfPoly}, factor::Union{Int64, Rational{Int64}}) = factor*x
 
 Base.:*(factor::Generic.FracFieldElem{T}, x::Cyclotomic{T}) where T<:PolyRingElem = (numerator(factor)*x)//denominator(factor)
@@ -254,7 +283,7 @@ Base.:-(x::Cyclotomic{<:NfPoly}, y::Union{Int64, Rational{Int64}}) = x-(y*one(x)
 Base.:-(y::Cyclotomic) = (-1)*y
 
 Base.:(==)(x::CycloSum, y::CycloSum) = iszero(x-y)
-Base.:(==)(x::CycloFrac, y::CycloFrac) = iszero(x-y)
+Base.:(==)(x::CycloFrac, y::CycloFrac) = iszero(x-y)  # TODO deal with exceptions?
 
 function Base.:*(x::Cyclo, y::Cyclo)
 	if isone(x)
@@ -287,22 +316,24 @@ end
 function Base.:*(x::CycloFrac, y::CycloFrac)
 	numerator=x.numerator*y.numerator
 	denominator=x.denominator*y.denominator
-	CycloFrac(numerator, denominator)
+	exceptions=union(x.exceptions, y.exceptions)
+	CycloFrac(numerator, denominator, exceptions)
 end
 
 function Base.:+(x::CycloFrac, y::CycloFrac)
 	if x.denominator == y.denominator
-		return CycloFrac(x.numerator+y.numerator, x.denominator, simplify=!isone(x.denominator))
+		return CycloFrac(x.numerator+y.numerator, x.denominator, union(x.exceptions, y.exceptions), simplify=!isone(x.denominator))
 	else
 		numerator=x.numerator*y.denominator+y.numerator*x.denominator
 		denominator=x.denominator*y.denominator
-		return CycloFrac(numerator, denominator)
+		exceptions=union(x.exceptions, y.exceptions)
+		return CycloFrac(numerator, denominator, exceptions)
 	end
 end
 
-Base.://(x::CycloSum{T}, y::CycloSum{T}) where T <: PolyRingElem = CycloFrac(x,y)
+Base.://(x::CycloSum{T}, y::CycloSum{T}) where T <: PolyRingElem = CycloFrac(x,y,Set{ParameterException{T}}())
 Base.://(x::Cyclo{T}, y::Cyclo{T}) where T <: PolyRingElem = CycloSum([x], simplify=false)//CycloSum([y], simplify=false)
-Base.://(x::CycloFrac{T}, y::CycloFrac{T}) where T <: PolyRingElem = x * CycloFrac(y.denominator, y.numerator, simplify=false)
+Base.://(x::CycloFrac{T}, y::CycloFrac{T}) where T <: PolyRingElem = x * CycloFrac(y.denominator, y.numerator, y.exceptions, simplify=false)
 
 Base.://(x::Cyclotomic{T}, y::T) where T <: PolyRingElem = x//(y*one(x))
 Base.://(x::T, y::Cyclotomic{T}) where T <: PolyRingElem = (x*one(y))//y
@@ -316,10 +347,10 @@ Base.://(x::Rational{Int64}, y::Cyclotomic{<:NfPoly}) = (x*one(y))//y
 
 Base.conj(x::Cyclo) = Cyclo(x.modulus,-x.argument)  # TODO
 Base.conj(x::CycloSum) = CycloSum(conj.(x.summands), simplify=false)
-Base.conj(x::CycloFrac) = CycloFrac(conj(x.numerator), conj(x.denominator), simplify=false)
+Base.conj(x::CycloFrac) = CycloFrac(conj(x.numerator), conj(x.denominator), x.exceptions, simplify=false)
 
 Base.convert(::Type{CycloSum{T}}, x::Cyclo{T}) where T <: PolyRingElem = CycloSum([x], simplify=false)
-Base.convert(::Type{CycloFrac{T}}, x::CycloSum{T}) where T <: PolyRingElem = CycloFrac(x, one(x), simplify=false)
+Base.convert(::Type{CycloFrac{T}}, x::CycloSum{T}) where T <: PolyRingElem = CycloFrac(x, one(x), Set{ParameterException{T}}(), simplify=false)
 Base.convert(::Type{CycloFrac{T}}, x::Cyclo{T}) where T <: PolyRingElem = convert(CycloFrac{T}, convert(CycloSum{T}, x))
 
 Base.promote_rule(::Type{CycloSum{T}}, ::Type{Cyclo{T}}) where T <: PolyRingElem = CycloSum{T}
@@ -333,25 +364,4 @@ Base.://(x::Cyclotomic{T}, y::Cyclotomic{T}) where T <: PolyRingElem = //(promot
 
 function Base.show(io::IO, m::MIME{Symbol("text/latex")}, z::FracPoly{T}) where T <: PolyRingElem
 	show(io,MIME("text/latex"),z.p)
-end
-
-"""
-    try_convert_to_real(x::CycloFrac{<:NfPoly})
-
-Try to convert `x` to a real number.
-
-This only works if `x` is a fraction of trivial sums where all arguments are zero.
-"""
-function try_convert_to_real(x::CycloFrac{<:NfPoly})
-	if isone(length(x.numerator.summands)) && isone(length(x.denominator.summands))
-		numerator=x.numerator.summands[1]
-		denominator=x.denominator.summands[1]
-		if iszero(numerator.argument) && iszero(denominator.argument)
-			return numerator.modulus//denominator.modulus
-		else
-			return x
-		end
-	else
-		return x
-	end
 end

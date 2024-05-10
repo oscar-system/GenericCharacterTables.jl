@@ -63,49 +63,49 @@ chardegree = R.([1, q^2, 1//2*(q^2-1), 1//2*(q^2-1), q^2+1, q^2-1])
 
 classsums=[
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, i, 1, (q^2-3)*1//2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, i, 1, (q^2-3)*1//2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, i, 1, (q^2-1)*1//2, congruence)
+	s1=nesum(tt, i, 1, (q^2-1)*1//2, congruence)
 	s2=eesubs(tt, [i], [(q^2+1)*1//4])
-	(1//2*s1-1//2*s2, e1)
+	1//2*s1-1//2*s2
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end
 ]
 
 charsums=[
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k, 1, (q^2-3)*1//2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, k, 1, (q^2-3)*1//2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [k], [(q^2+1)*1//4])
-	t1,e1=nesum(tt, k, 1, (q^2-1)*1//2, congruence)
-	(1//2*t1-1//2*s1, e1)
+	t1=nesum(tt, k, 1, (q^2-1)*1//2, congruence)
+	1//2*t1-1//2*s1
 end
 ]
 

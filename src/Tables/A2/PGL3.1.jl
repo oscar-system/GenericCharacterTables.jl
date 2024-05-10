@@ -123,45 +123,45 @@ chardegree = R.([1, q^2+q, q^3, q^2+q+1, q*(q^2+q+1), (q+1)*(q^2+q+1), (q-1)*(q^
 
 classsums=[
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
-end,
-function (tt::Cyclotomic)
-	nesum(tt, a, 1, q-2, congruence)
+	tt
 end,
 function (tt::Cyclotomic)
 	nesum(tt, a, 1, q-2, congruence)
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	nesum(tt, a, 1, q-2, congruence)
 end,
 function (tt::Cyclotomic)
-	ss5a,e1=nesum(tt, a, 1, q-2, congruence)
-	ss5,e2=nesum(ss5a, b, 1, q-2, congruence)
+	tt
+end,
+function (tt::Cyclotomic)
+	ss5a=nesum(tt, a, 1, q-2, congruence)
+	ss5=nesum(ss5a, b, 1, q-2, congruence)
 	tt1=eesubs(tt, [b], [a])
-	ss6,e3=nesum(tt1, a, 1, q-2, congruence)
+	ss6=nesum(tt1, a, 1, q-2, congruence)
 	ss7=eesubs(tt, [a,b], S.([(q-1)*1//3,2*(q-1)*1//3]))
-	(1//6*ss5-1//6*ss6-1//3*ss7, union(e1,e2,e3))
+	1//6*ss5-1//6*ss6-1//3*ss7
 end,
 function (tt::Cyclotomic)
-	ss7,e1=nesum(tt, a, 0, q^2-2, congruence)
+	ss7=nesum(tt, a, 0, q^2-2, congruence)
 	tt1=eesubs(tt, [a], [(q+1)*a])
-	ss8,e2=nesum(tt1, a, 0, q-2, congruence)
-	(1//2*ss7-1//2*ss8, union(e1,e2))
+	ss8=nesum(tt1, a, 0, q-2, congruence)
+	1//2*ss7-1//2*ss8
 end,
 function (tt::Cyclotomic)
 	nesum(tt, a, 1, 2, congruence)
 end,
 function (tt::Cyclotomic)
-	ss10,e1=nesum(tt, a, 0, q^2+q, congruence)
+	ss10=nesum(tt, a, 0, q^2+q, congruence)
 	tt1=eesubs(tt, [a], [(q^2+q+1)*1//3*a])
-	ss11,e2=nesum(tt1, a, 0, 2, congruence)
-	(1//3*ss10-1//3*ss11, union(e1,e2))
+	ss11=nesum(tt1, a, 0, 2, congruence)
+	1//3*ss10-1//3*ss11
 end
 ]
 
@@ -176,41 +176,41 @@ function (tt::Cyclotomic)
 	nesum(tt, n, 0, 2, congruence)
 end,
 function (tt::Cyclotomic)
-	ss6,e1=nesum(tt, n, 1, q-2, congruence)
+	ss6=nesum(tt, n, 1, q-2, congruence)
 	tt1=eesubs(tt, [n], [(q-1)*1//3])
 	tt2=eesubs(tt, [n], [2*(q-1)*1//3])
-	(ss6-tt1-tt2, e1)
+	ss6-tt1-tt2
 end,
 function (tt::Cyclotomic)
-	ss6,e1=nesum(tt, n, 1, q-2, congruence)
+	ss6=nesum(tt, n, 1, q-2, congruence)
 	tt1=eesubs(tt, [n], [(q-1)*1//3])
 	tt2=eesubs(tt, [n], [2*(q-1)*1//3])
-	(ss6-tt1-tt2, e1)
+	ss6-tt1-tt2
 end,
 function (tt::Cyclotomic)
-	ss5,e1=nesum(tt, n, 0, q-2, congruence)
-	ss8,e2=nesum(ss5, m, 0, q-2, congruence)
+	ss5=nesum(tt, n, 0, q-2, congruence)
+	ss8=nesum(ss5, m, 0, q-2, congruence)
 	tt1=eesubs(tt, [m], [-2*n])
-	ss9,e3=nesum(tt1, n, 0, q-2, congruence)
+	ss9=nesum(tt1, n, 0, q-2, congruence)
 	tt1=eesubs(tt, [n], [-2*m])
-	ss10,e4=nesum(tt1, m, 0, q-2, congruence)
+	ss10=nesum(tt1, m, 0, q-2, congruence)
 	tt1=eesubs(tt, [m], [n])
-	ss11,e5=nesum(tt1, n, 0, q-2, congruence)
+	ss11=nesum(tt1, n, 0, q-2, congruence)
 	tt1=eesubs(tt1, [n], [(q-1)*1//3*n])
-	ss12,e6=nesum(tt1, n, 0, 2, congruence)
-	(1//6*ss8-1//6*ss9-1//6*ss10-1//6*ss11+1//3*ss12, union(e1,e2,e3,e4,e5,e6))
+	ss12=nesum(tt1, n, 0, 2, congruence)
+	1//6*ss8-1//6*ss9-1//6*ss10-1//6*ss11+1//3*ss12
 end,
 function (tt::Cyclotomic)
-	ss7,e1=nesum(tt, n, 0, q^2-2, congruence)
+	ss7=nesum(tt, n, 0, q^2-2, congruence)
 	tt1=eesubs(tt, [n], [(q+1)*n])
-	ss8,e2=nesum(tt1, n, 0, q-2, congruence)
-	(1//2*ss7-1//2*ss8, union(e1,e2))
+	ss8=nesum(tt1, n, 0, q-2, congruence)
+	1//2*ss7-1//2*ss8
 end,
 function (tt::Cyclotomic)
-	s10,e1=nesum(tt, n, 1, q^2+q, congruence)
+	s10=nesum(tt, n, 1, q^2+q, congruence)
 	tt1=eesubs(tt, [n], [(q^2+q+1)*1//3])
 	tt2=eesubs(tt, [n], [2*(q^2+q+1)*1//3])
-	(1//3*s10-1//3*tt1-1//3*tt2, e1)
+	1//3*s10-1//3*tt1-1//3*tt2
 end
 ]
 

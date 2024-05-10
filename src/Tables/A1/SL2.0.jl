@@ -31,35 +31,35 @@ chardegree = R.([1, q, q+1, q-1])
 
 classsums=[
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, a, 1, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, a, 1, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, a, 1, q, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, a, 1, q, congruence)
+	1//2*s1
 end
 ]
 
 charsums=[
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, n, 1, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, n, 1, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, n, 1, q, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, n, 1, q, congruence)
+	1//2*s1
 end
 ]
 

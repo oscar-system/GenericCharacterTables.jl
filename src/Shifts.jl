@@ -18,7 +18,7 @@ function var_shift(a::CycloSum{<:NfPoly}, vars::Vector{Int64}, step_size::Int64,
 	return CycloSum(var_shift.(a.summands, Ref(vars), Ref(step_size), Ref(steps)),simplify=false)
 end
 function var_shift(a::CycloFrac{<:NfPoly}, vars::Vector{Int64}, step_size::Int64, steps::Int64)
-	return CycloFrac(var_shift(a.numerator, vars, step_size, steps), var_shift(a.denominator, vars, step_size, steps),simplify=false)
+	return CycloFrac(var_shift(a.numerator, vars, step_size, steps), var_shift(a.denominator, vars, step_size, steps), Set{ParameterException{T}}(var_shift(a.exceptions, Ref(vars), Ref(step_size), Ref(steps))), simplify=false)
 end
 function var_shift(a::Parameter{<:NfPoly}, vars::Vector{Int64}, step_size::Int64, steps::Int64)
 	return Parameter(var_shift(a.var, vars, step_size, steps), a.modulus)

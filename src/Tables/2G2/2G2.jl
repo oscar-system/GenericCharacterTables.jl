@@ -268,110 +268,112 @@ chardegree = R.([
 
 classsums=[
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i], [0])
 	s2=eesubs(tt, [i], [(q^2-1)*1//2])
-	s3,e1=nesum(tt, i, 0, q^2-2, congruence)
-	(1//2*s3-1//2*s2-1//2*s1, e1)
+	s3=nesum(tt, i, 0, q^2-2, congruence)
+	1//2*s3-1//2*s2-1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, i, 1, q^2-sqrt3*q, congruence)
-	(1//6*s1, e1)
+	s1=nesum(tt, i, 1, q^2-sqrt3*q, congruence)
+	1//6*s1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i], [(q^2+1)*1//4])
-	s2,e1=nesum(tt, i, 1, (q^2-1)*1//2, congruence)
+	s2=nesum(tt, i, 1, (q^2-1)*1//2, congruence)
 	s2=1//6*s2-1//6*s1
 	s1=eesubs(s2, [j], [0])
 	s2=eesubs(s2, [j], [1])
-	(s1+s2, e1)
+	s1+s2
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, i, 1, q^2+sqrt3*q, congruence)
-	(1//6*s1, e1)end
+	s1=nesum(tt, i, 1, q^2+sqrt3*q, congruence)
+	1//6*s1
+end
 ]
 
 charsums=[
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [k], [0])
 	s2=eesubs(tt, [k], [(q^2-1)*1//2])
-	s3,e1=nesum(tt, k, 0, q^2-2, congruence)
-	(1//2*s3-1//2*s2-1//2*s1, e1)
+	s3=nesum(tt, k, 0, q^2-2, congruence)
+	1//2*s3-1//2*s2-1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k, 1, q^2-sqrt3*q, congruence)
-	(1//6*s1, e1)
+	s1=nesum(tt, k, 1, q^2-sqrt3*q, congruence)
+	1//6*s1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [k], [(q^2+1)*1//4])
-	s2,e1=nesum(tt, k, 1, (q^2-1)*1//2, congruence)
+	s2=nesum(tt, k, 1, (q^2-1)*1//2, congruence)
 	s2=1//6*s2-1//6*s1
 	s1=eesubs(s2, [l], [0])
 	s2=eesubs(s2, [l], [1])
-	(s1+s2, e1)
+	s1+s2
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k, 1, q^2+sqrt3*q, congruence)
-	(1//6*s1, e1)end
+	s1=nesum(tt, k, 1, q^2+sqrt3*q, congruence)
+	1//6*s1
+end
 ]
 
 classparams=[
