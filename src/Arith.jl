@@ -210,7 +210,18 @@ function Base.show(io::IO, z::CycloFrac)
 end
 Base.show(io::IO, m::MIME{Symbol("text/latex")}, z::CycloFrac) = print(io, "\\frac{$(repr("text/latex", z.numerator))}{$(repr("text/latex",z.denominator))}")
 Base.isone(x::CycloFrac) = isone(x.numerator) && isone(x.denominator)
-Base.iszero(x::CycloFrac) = iszero(x.numerator)  # TODO deal with exceptions?
+
+"""
+    iszero(x::CycloFrac; ignore_exceptions::Bool=false)
+
+Return if `x` is zero. If `ignore_exceptions` is true then the exceptions of `x` will not be considered.
+"""
+function Base.iszero(x::CycloFrac; ignore_exceptions::Bool=false)
+	if ignore_exceptions
+		return iszero(x.numerator)
+	end
+	return iszero(x.numerator) && isempty(x.exceptions)
+end
 
 # operators
 """
@@ -283,7 +294,7 @@ Base.:-(x::Cyclotomic{<:NfPoly}, y::Union{Int64, Rational{Int64}}) = x-(y*one(x)
 Base.:-(y::Cyclotomic) = (-1)*y
 
 Base.:(==)(x::CycloSum, y::CycloSum) = iszero(x-y)
-Base.:(==)(x::CycloFrac, y::CycloFrac) = iszero(x-y)  # TODO deal with exceptions?
+Base.:(==)(x::CycloFrac, y::CycloFrac) = iszero((x-y).numerator)
 
 function Base.:*(x::Cyclo, y::Cyclo)
 	if isone(x)
