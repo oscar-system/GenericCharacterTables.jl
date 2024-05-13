@@ -9463,604 +9463,604 @@ end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q-1//2])
-	zw1,e1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
-	(1//2*zw1, union(e1,e2))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//2*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q-1//2])
-	zw1,e1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
-	(1//2*zw1, union(e1,e2))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//2*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q-1//2])
-	zw1,e1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
-	(1//2*zw1, union(e1,e2))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//2*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q-1//2])
-	zw1,e1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
-	(1//2*zw1, union(e1,e2))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//2*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q-1//2])
-	zw1,e1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
-	(1//2*zw1, union(e1,e2))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//2*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q+1//2])
-	zw1,e1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
-	(1//2*zw1, union(e1,e2))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//2*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q+1//2])
-	zw1,e1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
-	(1//2*zw1, union(e1,e2))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//2*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q+1//2])
-	zw1,e1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
-	(1//2*zw1, union(e1,e2))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//2*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q+1//2])
-	zw1,e1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
-	(1//2*zw1, union(e1,e2))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//2*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q+1//2])
-	zw1,e1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
-	(1//2*zw1, union(e1,e2))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//2*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q-1//2])
-	zw1,e1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i2], [2*i11])
-	zw1,e2=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2,e3=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(tt, i1, 0, q-2, congruence)
 	zw2=eesubs(zw2, [i2], [2*i11+1])
-	zw2,e4=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
-	(1//2*zw1+1//2*zw2, union(e1,e2,e3,e4))
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	1//2*zw1+1//2*zw2
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q-1//2])
-	zw1,e1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i2], [2*i11])
-	zw1,e2=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2,e3=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(tt, i1, 0, q-2, congruence)
 	zw2=eesubs(zw2, [i2], [2*i11+1])
-	zw2,e4=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
-	(1//2*zw1+1//2*zw2, union(e1,e2,e3,e4))
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	1//2*zw1+1//2*zw2
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q-1//2])
-	zw1,e1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i2], [2*i11])
-	zw1,e2=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2,e3=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(tt, i1, 0, q-2, congruence)
 	zw2=eesubs(zw2, [i2], [2*i11+1])
-	zw2,e4=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
-	(1//2*zw1+1//2*zw2, union(e1,e2,e3,e4))
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	1//2*zw1+1//2*zw2
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q+1//2])
-	zw1,e1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q, congruence)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i2], [2*i11])
-	zw1,e2=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2,e3=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(tt, i1, 0, q, congruence)
 	zw2=eesubs(zw2, [i2], [2*i11+1])
-	zw2,e4=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
-	(1//2*zw1+1//2*zw2, union(e1,e2,e3,e4))
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	1//2*zw1+1//2*zw2
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q+1//2])
-	zw1,e1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q, congruence)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i2], [2*i11])
-	zw1,e2=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2,e3=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(tt, i1, 0, q, congruence)
 	zw2=eesubs(zw2, [i2], [2*i11+1])
-	zw2,e4=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
-	(1//2*zw1+1//2*zw2, union(e1,e2,e3,e4))
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	1//2*zw1+1//2*zw2
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q+1//2])
-	zw1,e1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q, congruence)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i2], [2*i11])
-	zw1,e2=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2,e3=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(tt, i1, 0, q, congruence)
 	zw2=eesubs(zw2, [i2], [2*i11+1])
-	zw2,e4=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
-	(1//2*zw1+1//2*zw2, union(e1,e2,e3,e4))
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	1//2*zw1+1//2*zw2
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i2], [i1])
 	s2=eesubs(tt, [i2], [i1+1//2*q-1//2])
-	zw1,e1=nesum(tt, i2, 0, q-2, congruence)
+	zw1=nesum(tt, i2, 0, q-2, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i1, 0, q-2, congruence)
-	(1//4*zw1, union(e1,e2))
+	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	1//4*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i2], [i1])
 	s2=eesubs(tt, [i2], [i1+1//2*q-1//2])
-	zw1,e1=nesum(tt, i2, 0, q-2, congruence)
+	zw1=nesum(tt, i2, 0, q-2, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i1, 0, q-2, congruence)
-	(1//4*zw1, union(e1,e2))
+	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	1//4*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i2], [i1])
 	s2=eesubs(tt, [i2], [i1+1//2*q-1//2])
-	zw1,e1=nesum(tt, i2, 0, q-2, congruence)
+	zw1=nesum(tt, i2, 0, q-2, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i1, 0, q-2, congruence)
-	(1//4*zw1, union(e1,e2))
+	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	1//4*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i2], [i1])
 	s2=eesubs(tt, [i2], [i1+1//2*q-1//2])
-	zw1,e1=nesum(tt, i2, 0, q-2, congruence)
+	zw1=nesum(tt, i2, 0, q-2, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i1, 0, q-2, congruence)
-	(1//4*zw1, union(e1,e2))
+	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	1//4*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i2], [i1])
 	s2=eesubs(tt, [i2], [i1+1//2*q-1//2])
-	zw1,e1=nesum(tt, i2, 0, q-2, congruence)
+	zw1=nesum(tt, i2, 0, q-2, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i1, 0, q-2, congruence)
-	(1//4*zw1, union(e1,e2))
+	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	1//4*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q-1//2])
-	zw1,e1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
-	(1//2*zw1, union(e1,e2))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//2*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q-1//2])
-	zw1,e1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
-	(1//2*zw1, union(e1,e2))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//2*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q-1//2])
-	zw1,e1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
-	(1//2*zw1, union(e1,e2))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//2*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q-1//2])
-	zw1,e1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
-	(1//2*zw1, union(e1,e2))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//2*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i2], [i1])
 	s2=eesubs(tt, [i2], [i1+1//2*q+1//2])
-	zw1,e1=nesum(tt, i2, 0, q, congruence)
+	zw1=nesum(tt, i2, 0, q, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i1, 0, q-2, congruence)
-	(1//4*zw1, union(e1,e2))
+	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	1//4*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i2], [i1])
 	s2=eesubs(tt, [i2], [i1+1//2*q+1//2])
-	zw1,e1=nesum(tt, i2, 0, q, congruence)
+	zw1=nesum(tt, i2, 0, q, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i1, 0, q-2, congruence)
-	(1//4*zw1, union(e1,e2))
+	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	1//4*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i2], [i1])
 	s2=eesubs(tt, [i2], [i1+1//2*q+1//2])
-	zw1,e1=nesum(tt, i2, 0, q, congruence)
+	zw1=nesum(tt, i2, 0, q, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i1, 0, q-2, congruence)
-	(1//4*zw1, union(e1,e2))
+	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	1//4*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i2], [i1])
 	s2=eesubs(tt, [i2], [i1+1//2*q+1//2])
-	zw1,e1=nesum(tt, i2, 0, q, congruence)
+	zw1=nesum(tt, i2, 0, q, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i1, 0, q-2, congruence)
-	(1//4*zw1, union(e1,e2))
+	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	1//4*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i2], [i1])
 	s2=eesubs(tt, [i2], [i1+1//2*q+1//2])
-	zw1,e1=nesum(tt, i2, 0, q, congruence)
+	zw1=nesum(tt, i2, 0, q, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i1, 0, q-2, congruence)
-	(1//4*zw1, union(e1,e2))
+	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	1//4*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q+1//2])
-	zw1,e1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
-	(1//2*zw1, union(e1,e2))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//2*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q+1//2])
-	zw1,e1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
-	(1//2*zw1, union(e1,e2))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//2*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q+1//2])
-	zw1,e1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
-	(1//2*zw1, union(e1,e2))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//2*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q+1//2])
-	zw1,e1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
-	(1//2*zw1, union(e1,e2))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//2*zw1
 end,
 function (tt::Cyclotomic)
-	zw1,e1=nesum(tt, i2, 0, q-2, congruence)
-	zw1,e2=nesum(zw1, i1, 0, q-2, congruence)
-	(1//4*zw1, union(e1,e2))
+	zw1=nesum(tt, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	1//4*zw1
 end,
 function (tt::Cyclotomic)
-	zw1,e1=nesum(tt, i2, 0, q-2, congruence)
-	zw1,e2=nesum(zw1, i1, 0, q-2, congruence)
-	(1//4*zw1, union(e1,e2))
+	zw1=nesum(tt, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	1//4*zw1
 end,
 function (tt::Cyclotomic)
-	zw1,e1=nesum(tt, i2, 0, q-2, congruence)
-	zw1,e2=nesum(zw1, i1, 0, q-2, congruence)
-	(1//4*zw1, union(e1,e2))
+	zw1=nesum(tt, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	1//4*zw1
 end,
 function (tt::Cyclotomic)
-	zw1,e1=nesum(tt, i2, 0, q, congruence)
-	zw1,e2=nesum(zw1, i1, 0, q-2, congruence)
-	(1//4*zw1, union(e1,e2))
+	zw1=nesum(tt, i2, 0, q, congruence)
+	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	1//4*zw1
 end,
 function (tt::Cyclotomic)
-	zw1,e1=nesum(tt, i2, 0, q, congruence)
-	zw1,e2=nesum(zw1, i1, 0, q-2, congruence)
-	(1//4*zw1, union(e1,e2))
+	zw1=nesum(tt, i2, 0, q, congruence)
+	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	1//4*zw1
 end,
 function (tt::Cyclotomic)
-	zw1,e1=nesum(tt, i2, 0, q, congruence)
-	zw1,e2=nesum(zw1, i1, 0, q-2, congruence)
-	(1//4*zw1, union(e1,e2))
+	zw1=nesum(tt, i2, 0, q, congruence)
+	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	1//4*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i3])
 	s2=eesubs(tt, [i1], [i3+1//2*q-1//2])
 	s3=eesubs(tt, [i1], [i2])
 	s4=eesubs(tt, [i1], [2*i3-i2])
-	zw1,e1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i2], [i3])
 	s2=eesubs(zw1, [i2], [i3+1//2*q-1//2])
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
 	zw1=zw1-s1-s2
-	zw1,e3=nesum(zw1, i3, 0, q-2, congruence)
-	(1//8*zw1, union(e1,e2,e3))
+	zw1=nesum(zw1, i3, 0, q-2, congruence)
+	1//8*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i3])
 	s2=eesubs(tt, [i1], [i3+1//2*q-1//2])
 	s3=eesubs(tt, [i1], [i2])
 	s4=eesubs(tt, [i1], [2*i3-i2])
-	zw1,e1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i2], [i3])
 	s2=eesubs(zw1, [i2], [i3+1//2*q-1//2])
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
 	zw1=zw1-s1-s2
-	zw1,e3=nesum(zw1, i3, 0, q-2, congruence)
-	(1//8*zw1, union(e1,e2,e3))
+	zw1=nesum(zw1, i3, 0, q-2, congruence)
+	1//8*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q-1//2])
 	s3=eesubs(tt, [i1], [i2])
 	s4=eesubs(tt, [i1], [2*i11-i2])
-	zw1,e1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q-1//2])
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1,e3=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [2*i11+1-i2])
-	zw2,e4=nesum(tt, i1, 0, q-2, congruence)
+	zw2=nesum(tt, i1, 0, q-2, congruence)
 	zw2=zw2-s1-s2
-	zw2,e5=nesum(zw2, i2, 0, q-2, congruence)
+	zw2=nesum(zw2, i2, 0, q-2, congruence)
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2,e6=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
-	(1//4*zw1+1//4*zw2, union(e1,e2,e3,e4,e5,e6))
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	1//4*zw1+1//4*zw2
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q-1//2])
 	s3=eesubs(tt, [i1], [i2])
 	s4=eesubs(tt, [i1], [2*i11-i2])
-	zw1,e1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q-1//2])
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1,e3=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [2*i11+1-i2])
-	zw2,e4=nesum(tt, i1, 0, q-2, congruence)
+	zw2=nesum(tt, i1, 0, q-2, congruence)
 	zw2=zw2-s1-s2
-	zw2,e5=nesum(zw2, i2, 0, q-2, congruence)
+	zw2=nesum(zw2, i2, 0, q-2, congruence)
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2,e6=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
-	(1//4*zw1+1//4*zw2, union(e1,e2,e3,e4,e5,e6))
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	1//4*zw1+1//4*zw2
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i3])
 	s2=eesubs(tt, [i1], [i3+1//2*q-1//2])
-	zw1,e1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2
 	s1=eesubs(zw1, [i2], [i3])
 	s2=eesubs(zw1, [i2], [i3+1//2*q+1//2])
-	zw1,e2=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q, congruence)
 	zw1=zw1-s1-s2
-	zw1,e3=nesum(zw1, i3, 0, q-2, congruence)
-	(1//4*zw1, union(e1,e2,e3))
+	zw1=nesum(zw1, i3, 0, q-2, congruence)
+	1//4*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i3])
 	s2=eesubs(tt, [i1], [i3+1//2*q-1//2])
-	zw1,e1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2
 	s1=eesubs(zw1, [i2], [i3])
 	s2=eesubs(zw1, [i2], [i3+1//2*q+1//2])
-	zw1,e2=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q, congruence)
 	zw1=zw1-s1-s2
-	zw1,e3=nesum(zw1, i3, 0, q-2, congruence)
-	(1//4*zw1, union(e1,e2,e3))
+	zw1=nesum(zw1, i3, 0, q-2, congruence)
+	1//4*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i1*(q+1)])
 	s2=eesubs(tt, [i1], [2*i2+i1*(q-1)])
 	s3=eesubs(tt, [i1], [i2*(q+1)])
 	s4=eesubs(tt, [i1], [i2*(q+1)+1//2*q^2-1//2])
-	s1,e1=nesum(s1, i1, 0, q-2, congruence)
-	s2,e2=nesum(s2, i1, 0, q, congruence)
-	zw1,e3=nesum(tt, i1, 0, q^2-2, congruence)
+	s1=nesum(s1, i1, 0, q-2, congruence)
+	s2=nesum(s2, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q^2-2, congruence)
 	zw1=zw1-s1-s2+s3+s4
-	zw1,e4=nesum(zw1, i2, 0, q-2, congruence)
-	(1//4*zw1, union(e1,e2,e3,e4))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//4*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i1*(q+1)])
 	s2=eesubs(tt, [i1], [2*i2+i1*(q-1)])
 	s3=eesubs(tt, [i1], [i2*(q+1)])
 	s4=eesubs(tt, [i1], [i2*(q+1)+1//2*q^2-1//2])
-	s1,e1=nesum(s1, i1, 0, q-2, congruence)
-	s2,e2=nesum(s2, i1, 0, q, congruence)
-	zw1,e3=nesum(tt, i1, 0, q^2-2, congruence)
+	s1=nesum(s1, i1, 0, q-2, congruence)
+	s2=nesum(s2, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q^2-2, congruence)
 	zw1=zw1-s1-s2+s3+s4
-	zw1,e4=nesum(zw1, i2, 0, q-2, congruence)
-	(1//4*zw1, union(e1,e2,e3,e4))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//4*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q-1//2])
-	zw1,e1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q+1//2])
-	zw1,e2=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q, congruence)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1,e3=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2,e4=nesum(tt, i1, 0, q-2, congruence)
-	zw2,e5=nesum(zw2, i2, 0, q, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(tt, i1, 0, q-2, congruence)
+	zw2=nesum(zw2, i2, 0, q, congruence)
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2,e6=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
-	(1//4*zw1+1//4*zw2, union(e1,e2,e3,e4,e5,e6))
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	1//4*zw1+1//4*zw2
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q-1//2])
-	zw1,e1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q+1//2])
-	zw1,e2=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q, congruence)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1,e3=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2,e4=nesum(tt, i1, 0, q-2, congruence)
-	zw2,e5=nesum(zw2, i2, 0, q, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(tt, i1, 0, q-2, congruence)
+	zw2=nesum(zw2, i2, 0, q, congruence)
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2,e6=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
-	(1//4*zw1+1//4*zw2, union(e1,e2,e3,e4,e5,e6))
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	1//4*zw1+1//4*zw2
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q+1//2])
-	zw1,e1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q, congruence)
 	zw1=zw1-s1-s2
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q-1//2])
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1,e3=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2,e4=nesum(tt, i1, 0, q, congruence)
-	zw2,e5=nesum(zw2, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(tt, i1, 0, q, congruence)
+	zw2=nesum(zw2, i2, 0, q-2, congruence)
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2,e6=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
-	(1//4*zw1+1//4*zw2, union(e1,e2,e3,e4,e5,e6))
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	1//4*zw1+1//4*zw2
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q+1//2])
-	zw1,e1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q, congruence)
 	zw1=zw1-s1-s2
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q-1//2])
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1,e3=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2,e4=nesum(tt, i1, 0, q, congruence)
-	zw2,e5=nesum(zw2, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(tt, i1, 0, q, congruence)
+	zw2=nesum(zw2, i2, 0, q-2, congruence)
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2,e6=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
-	(1//4*zw1+1//4*zw2, union(e1,e2,e3,e4,e5,e6))
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	1//4*zw1+1//4*zw2
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i3])
 	s2=eesubs(tt, [i1], [i3+1//2*q+1//2])
 	s3=eesubs(tt, [i1], [i2])
 	s4=eesubs(tt, [i1], [2*i3-i2])
-	zw1,e1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q, congruence)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i2], [i3])
 	s2=eesubs(zw1, [i2], [i3+1//2*q+1//2])
-	zw1,e2=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q, congruence)
 	zw1=zw1-s1-s2
-	zw1,e3=nesum(zw1, i3, 0, q-2, congruence)
-	(1//8*zw1, union(e1,e2,e3))
+	zw1=nesum(zw1, i3, 0, q-2, congruence)
+	1//8*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i3])
 	s2=eesubs(tt, [i1], [i3+1//2*q+1//2])
 	s3=eesubs(tt, [i1], [i2])
 	s4=eesubs(tt, [i1], [2*i3-i2])
-	zw1,e1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q, congruence)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i2], [i3])
 	s2=eesubs(zw1, [i2], [i3+1//2*q+1//2])
-	zw1,e2=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q, congruence)
 	zw1=zw1-s1-s2
-	zw1,e3=nesum(zw1, i3, 0, q-2, congruence)
-	(1//8*zw1, union(e1,e2,e3))
+	zw1=nesum(zw1, i3, 0, q-2, congruence)
+	1//8*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i2*(q+1)])
 	s2=eesubs(tt, [i1], [i2*(q+1)+1//2*q^2+1//2])
-	zw1,e1=nesum(tt, i1, 0, q^2, congruence)
+	zw1=nesum(tt, i1, 0, q^2, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
-	(1//4*zw1, union(e1,e2))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//4*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i2*(q+1)])
 	s2=eesubs(tt, [i1], [i2*(q+1)+1//2*q^2+1//2])
-	zw1,e1=nesum(tt, i1, 0, q^2, congruence)
+	zw1=nesum(tt, i1, 0, q^2, congruence)
 	zw1=zw1-s1-s2
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
-	(1//4*zw1, union(e1,e2))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//4*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [-i11])
 	s2=eesubs(tt, [i1], [-i11+1//2*q+1//2])
 	s3=eesubs(tt, [i1], [i2])
 	s4=eesubs(tt, [i1], [-i3-i2])
-	zw1,e1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q, congruence)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i2], [-i11])
 	s2=eesubs(zw1, [i2], [-i11+1//2*q+1//2])
-	zw1,e2=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q, congruence)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1,e3=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [-i3-i2])
-	zw2,e4=nesum(tt, i1, 0, q, congruence)
+	zw2=nesum(tt, i1, 0, q, congruence)
 	zw2=zw2-s1-s2
-	zw2,e5=nesum(zw2, i2, 0, q, congruence)
+	zw2=nesum(zw2, i2, 0, q, congruence)
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2,e6=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
-	(1//4*zw1+1//4*zw2, union(e1,e2,e3,e4,e5,e6))
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	1//4*zw1+1//4*zw2
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [-i11])
 	s2=eesubs(tt, [i1], [-i11+1//2*q+1//2])
 	s3=eesubs(tt, [i1], [i2])
 	s4=eesubs(tt, [i1], [-i3-i2])
-	zw1,e1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q, congruence)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i2], [-i11])
 	s2=eesubs(zw1, [i2], [-i11+1//2*q+1//2])
-	zw1,e2=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q, congruence)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1,e3=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [-i3-i2])
-	zw2,e4=nesum(tt, i1, 0, q, congruence)
+	zw2=nesum(tt, i1, 0, q, congruence)
 	zw2=zw2-s1-s2
-	zw2,e5=nesum(zw2, i2, 0, q, congruence)
+	zw2=nesum(zw2, i2, 0, q, congruence)
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2,e6=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
-	(1//4*zw1+1//4*zw2, union(e1,e2,e3,e4,e5,e6))
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	1//4*zw1+1//4*zw2
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i3], [i11])
@@ -10069,172 +10069,172 @@ function (tt::Cyclotomic)
 	s4=eesubs(tt, [i3], [2*i11-i1])
 	s5=eesubs(tt, [i3], [i2])
 	s6=eesubs(tt, [i3], [2*i11-i2])
-	zw1,e1=nesum(tt, i3, 0, q-2, congruence)
+	zw1=nesum(tt, i3, 0, q-2, congruence)
 	zw1=zw1-s1-s2-s3-s4-s5-s6
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q-1//2])
 	s3=eesubs(zw1, [i2], [i1])
 	s4=eesubs(zw1, [i2], [2*i11-i1])
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i1], [i11])
 	s2=eesubs(zw1, [i1], [i11+1//2*q-1//2])
-	zw1,e3=nesum(zw1, i1, 0, q-2, congruence)
+	zw1=nesum(zw1, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i4], [2*i11])
-	zw1,e4=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
 	s1=eesubs(tt, [i3], [i1])
 	s2=eesubs(tt, [i3], [2*i11+1-i1])
 	s3=eesubs(tt, [i3], [i2])
 	s4=eesubs(tt, [i3], [2*i11+1-i2])
-	zw2,e5=nesum(tt, i3, 0, q-2, congruence)
+	zw2=nesum(tt, i3, 0, q-2, congruence)
 	zw2=zw2-s1-s2-s3-s4
 	s1=eesubs(zw2, [i2], [i1])
 	s2=eesubs(zw2, [i2], [2*i11+1-i1])
-	zw2,e6=nesum(zw2, i2, 0, q-2, congruence)
+	zw2=nesum(zw2, i2, 0, q-2, congruence)
 	zw2=zw2-s1-s2
-	zw2,e7=nesum(zw2, i1, 0, q-2, congruence)
+	zw2=nesum(zw2, i1, 0, q-2, congruence)
 	zw2=eesubs(zw2, [i4], [2*i11+1])
-	zw2,e8=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
-	(1//48*zw1+1//48*zw2, union(e1,e2,e3,e4,e5,e6,e7,e8))
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	1//48*zw1+1//48*zw2
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q-1//2])
 	s3=eesubs(tt, [i1], [i2])
 	s4=eesubs(tt, [i1], [2*i11-i2])
-	zw1,e1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q-1//2])
-	zw1,e2=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
 	zw1=zw1-s1-s2
 	s1=eesubs(zw1, [i3], [i11])
 	s2=eesubs(zw1, [i3], [i11+1//2*q+1//2])
-	zw1,e3=nesum(zw1, i3, 0, q, congruence)
+	zw1=nesum(zw1, i3, 0, q, congruence)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i4], [2*i11])
-	zw1,e4=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [2*i11+1-i2])
-	zw2,e5=nesum(tt, i1, 0, q-2, congruence)
+	zw2=nesum(tt, i1, 0, q-2, congruence)
 	zw2=zw2-s1-s2
-	zw2,e6=nesum(zw2, i2, 0, q-2, congruence)
-	zw2,e7=nesum(zw2, i3, 0, q, congruence)
+	zw2=nesum(zw2, i2, 0, q-2, congruence)
+	zw2=nesum(zw2, i3, 0, q, congruence)
 	zw2=eesubs(zw2, [i4], [2*i11+1])
-	zw2,e8=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
-	(1//16*zw1+1//16*zw2, union(e1,e2,e3,e4,e5,e6,e7,e8))
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	1//16*zw1+1//16*zw2
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i1*(q+1)])
 	s2=eesubs(tt, [i1], [2*i11+i1*(q-1)])
 	s3=eesubs(tt, [i1], [i11*(q+1)])
 	s4=eesubs(tt, [i1], [i11*(q+1)+1//2*q^2-1//2])
-	s1,e1=nesum(s1, i1, 0, q-2, congruence)
-	s2,e2=nesum(s2, i1, 0, q, congruence)
-	zw1,e3=nesum(tt, i1, 0, q^2-2, congruence)
+	s1=nesum(s1, i1, 0, q-2, congruence)
+	s2=nesum(s2, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q^2-2, congruence)
 	zw1=zw1-s1-s2+s3+s4
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q-1//2])
-	zw1,e4=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1,e5=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
 	s1=eesubs(tt, [i1], [i1*(q+1)])
 	s2=eesubs(tt, [i1], [2*i11+1+i1*(q-1)])
 	s3=eesubs(tt, [i1], [1//2*(2*i11+1)*(q+1)])
 	s4=eesubs(tt, [i1], [1//2*(2*i11+1)*(q+1)+1//2*q^2-1//2])
-	s1,e6=nesum(s1, i1, 0, q-2, congruence)
-	s2,e7=nesum(s2, i1, 0, q, congruence)
-	zw2,e8=nesum(tt, i1, 0, q^2-2, congruence)
+	s1=nesum(s1, i1, 0, q-2, congruence)
+	s2=nesum(s2, i1, 0, q, congruence)
+	zw2=nesum(tt, i1, 0, q^2-2, congruence)
 	zw2=zw2-s1-s2-s3-s4
-	zw2,e9=nesum(zw2, i2, 0, q-2, congruence)
+	zw2=nesum(zw2, i2, 0, q-2, congruence)
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2,e10=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
-	(1//8*zw1+1//8*zw2, union(e1,e2,e3,e4,e5,e6,e7,e8,e9,e10))
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	1//8*zw1+1//8*zw2
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q-1//2])
-	zw1,e1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q+1//2])
 	s3=eesubs(zw1, [i2], [i3])
 	s4=eesubs(zw1, [i2], [i4-i3])
-	zw1,e2=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q, congruence)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i3], [i11])
 	s2=eesubs(zw1, [i3], [i11+1//2*q+1//2])
-	zw1,e3=nesum(zw1, i3, 0, q, congruence)
+	zw1=nesum(zw1, i3, 0, q, congruence)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i4], [2*i11])
-	zw1,e4=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2,e5=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(tt, i1, 0, q-2, congruence)
 	s1=eesubs(zw2, [i2], [i3])
 	s2=eesubs(zw2, [i2], [i4-i3])
-	zw2,e6=nesum(zw2, i2, 0, q, congruence)
+	zw2=nesum(zw2, i2, 0, q, congruence)
 	zw2=zw2-s1-s2
-	zw2,e7=nesum(zw2, i3, 0, q, congruence)
+	zw2=nesum(zw2, i3, 0, q, congruence)
 	zw2=eesubs(zw2, [i4], [2*i11+1])
-	zw2,e8=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
-	(1//16*zw1+1//16*zw2, union(e1,e2,e3,e4,e5,e6,e7,e8))
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	1//16*zw1+1//16*zw2
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i1*(q+1)])
 	s2=eesubs(tt, [i1], [2*i11+i1*(q-1)])
 	s3=eesubs(tt, [i1], [i11*(q+1)])
 	s4=eesubs(tt, [i1], [i11*(q+1)+1//2*q^2-1//2])
-	s1,e1=nesum(s1, i1, 0, q-2, congruence)
-	s2,e2=nesum(s2, i1, 0, q, congruence)
-	zw1,e3=nesum(tt, i1, 0, q^2-2, congruence)
+	s1=nesum(s1, i1, 0, q-2, congruence)
+	s2=nesum(s2, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q^2-2, congruence)
 	zw1=zw1-s1-s2+s3+s4
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q+1//2])
-	zw1,e4=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q, congruence)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1,e5=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
 	s1=eesubs(tt, [i1], [i1*(q+1)])
 	s2=eesubs(tt, [i1], [2*i11+1+i1*(q-1)])
 	s3=eesubs(tt, [i1], [1//2*(2*i11+1)*(q+1)])
 	s4=eesubs(tt, [i1], [1//2*(2*i11+1)*(q+1)+1//2*q^2-1//2])
-	s1,e6=nesum(s1, i1, 0, q-2, congruence)
-	s2,e7=nesum(s2, i1, 0, q, congruence)
-	zw2,e8=nesum(tt, i1, 0, q^2-2, congruence)
+	s1=nesum(s1, i1, 0, q-2, congruence)
+	s2=nesum(s2, i1, 0, q, congruence)
+	zw2=nesum(tt, i1, 0, q^2-2, congruence)
 	zw2=zw2-s1-s2-s3-s4
-	zw2,e9=nesum(zw2, i2, 0, q, congruence)
+	zw2=nesum(zw2, i2, 0, q, congruence)
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2,e10=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
-	(1//8*zw1+1//8*zw2, union(e1,e2,e3,e4,e5,e6,e7,e8,e9,e10))
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	1//8*zw1+1//8*zw2
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q-1//2])
-	zw1,e1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2, congruence)
 	zw1=zw1-s1-s2
 	s1=eesubs(zw1, [i2], [1//2*i3*(q+1)])
 	s2=eesubs(zw1, [i2], [1//2*i3*(q+1)+1//2*q^2+1//2])
-	zw1,e2=nesum(zw1, i2, 0, q^2, congruence)
+	zw1=nesum(zw1, i2, 0, q^2, congruence)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1,e3=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2,e4=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(tt, i1, 0, q-2, congruence)
 	s1=eesubs(zw2, [i2], [1//2*i3*(q+1)])
 	s2=eesubs(zw2, [i2], [1//2*i3*(q+1)+1//2*q^2+1//2])
-	zw2,e5=nesum(zw2, i2, 0, q^2, congruence)
+	zw2=nesum(zw2, i2, 0, q^2, congruence)
 	zw2=zw2-s1-s2
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2,e6=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
-	(1//8*zw1+1//8*zw2, union(e1,e2,e3,e4,e5,e6))
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	1//8*zw1+1//8*zw2
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [i1*(q^2+q+1)])
-	s1,e1=nesum(s1, i1, 0, q-2, congruence)
-	zw1,e2=nesum(tt, i1, 0, q^3-2, congruence)
+	s1=nesum(s1, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q^3-2, congruence)
 	zw1=zw1-s1
-	zw1,e3=nesum(zw1, i2, 0, q-2, congruence)
-	(1//6*zw1, union(e1,e2,e3))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//6*zw1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [-i11])
@@ -10243,62 +10243,62 @@ function (tt::Cyclotomic)
 	s4=eesubs(tt, [i1], [-i4-i3])
 	s5=eesubs(tt, [i1], [i2])
 	s6=eesubs(tt, [i1], [-i4-i2])
-	zw1,e1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q, congruence)
 	zw1=zw1-s1-s2-s3-s4-s5-s6
 	s1=eesubs(zw1, [i2], [-i11])
 	s2=eesubs(zw1, [i2], [-i11+1//2*q+1//2])
 	s3=eesubs(zw1, [i2], [i3])
 	s4=eesubs(zw1, [i2], [-i4-i3])
-	zw1,e2=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q, congruence)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i3], [-i11])
 	s2=eesubs(zw1, [i3], [-i11+1//2*q+1//2])
-	zw1,e3=nesum(zw1, i3, 0, q, congruence)
+	zw1=nesum(zw1, i3, 0, q, congruence)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i4], [2*i11])
-	zw1,e4=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
 	s1=eesubs(tt, [i1], [i3])
 	s2=eesubs(tt, [i1], [-i4-i3])
 	s3=eesubs(tt, [i1], [i2])
 	s4=eesubs(tt, [i1], [-i4-i2])
-	zw2,e5=nesum(tt, i1, 0, q, congruence)
+	zw2=nesum(tt, i1, 0, q, congruence)
 	zw2=zw2-s1-s2-s3-s4
 	s1=eesubs(zw2, [i2], [i3])
 	s2=eesubs(zw2, [i2], [-i4-i3])
-	zw2,e6=nesum(zw2, i2, 0, q, congruence)
+	zw2=nesum(zw2, i2, 0, q, congruence)
 	zw2=zw2-s1-s2
-	zw2,e7=nesum(zw2, i3, 0, q, congruence)
+	zw2=nesum(zw2, i3, 0, q, congruence)
 	zw2=eesubs(zw2, [i4], [2*i11+1])
-	zw2,e8=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
-	(1//48*zw1+1//48*zw2, union(e1,e2,e3,e4,e5,e6,e7,e8))
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	1//48*zw1+1//48*zw2
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [1//2*i3*(q+1)])
 	s2=eesubs(tt, [i1], [1//2*i3*(q+1)+1//2*q^2+1//2])
-	zw1,e1=nesum(tt, i1, 0, q^2, congruence)
+	zw1=nesum(tt, i1, 0, q^2, congruence)
 	zw1=zw1-s1-s2
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q+1//2])
-	zw1,e2=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q, congruence)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1,e3=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
 	s1=eesubs(tt, [i1], [1//2*i3*(q+1)])
 	s2=eesubs(tt, [i1], [1//2*i3*(q+1)+1//2*q^2+1//2])
-	zw2,e4=nesum(tt, i1, 0, q^2, congruence)
+	zw2=nesum(tt, i1, 0, q^2, congruence)
 	zw2=zw2-s1-s2
-	zw2,e5=nesum(zw2, i2, 0, q, congruence)
+	zw2=nesum(zw2, i2, 0, q, congruence)
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2,e6=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
-	(1//8*zw1+1//8*zw2, union(e1,e2,e3,e4,e5,e6))
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	1//8*zw1+1//8*zw2
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i1], [q*i2+i1*(q^2-q+1)])
-	s1,e1=nesum(s1, i1, 0, q, congruence)
-	zw1,e2=nesum(tt, i1, 0, q^3, congruence)
+	s1=nesum(s1, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q^3, congruence)
 	zw1=zw1-s1
-	zw1,e3=nesum(zw1, i2, 0, q-2, congruence)
-	(1//6*zw1, union(e1,e2,e3))
+	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	1//6*zw1
 end
 ]
 
@@ -10340,623 +10340,623 @@ function (tt::Cyclotomic)
 	nesum(tt, k1, 0, q-2, congruence)
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 0, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, k1, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 0, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, k1, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 0, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, k1, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 0, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, k1, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 0, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, k1, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 0, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, k1, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 0, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, k1, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 0, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, k1, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 0, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, k1, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 0, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, k1, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 0, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, k1, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 0, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, k1, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 0, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, k1, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 0, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, k1, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 0, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, k1, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 0, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, k1, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 0, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, k1, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 0, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, k1, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 0, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, k1, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 0, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, k1, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 0, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, k1, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 0, q-2, congruence)
-	(1//2*s1, e1)
+	s1=nesum(tt, k1, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 1, q-2, congruence)
-	s1,e2=nesum(s1, k2, 0, q-2, congruence)
-	(1//2*s1, union(e1,e2))
+	s1=nesum(tt, k1, 1, q-2, congruence)
+	s1=nesum(s1, k2, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 1, q-2, congruence)
-	s1,e2=nesum(s1, k2, 0, q-2, congruence)
-	(1//2*s1, union(e1,e2))
+	s1=nesum(tt, k1, 1, q-2, congruence)
+	s1=nesum(s1, k2, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 1, q-2, congruence)
-	s1,e2=nesum(s1, k2, 0, q-2, congruence)
-	(1//2*s1, union(e1,e2))
+	s1=nesum(tt, k1, 1, q-2, congruence)
+	s1=nesum(s1, k2, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 1, q-2, congruence)
-	s1,e2=nesum(s1, k2, 0, q-2, congruence)
-	(1//2*s1, union(e1,e2))
+	s1=nesum(tt, k1, 1, q-2, congruence)
+	s1=nesum(s1, k2, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 1, q-2, congruence)
-	s1,e2=nesum(s1, k2, 0, q-2, congruence)
-	(1//2*s1, union(e1,e2))
+	s1=nesum(tt, k1, 1, q-2, congruence)
+	s1=nesum(s1, k2, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k1, 1, q-2, congruence)
-	s1,e2=nesum(s1, k2, 0, q-2, congruence)
-	(1//2*s1, union(e1,e2))
+	s1=nesum(tt, k1, 1, q-2, congruence)
+	s1=nesum(s1, k2, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k2, 0, q-2, congruence)
-	s1,e2=nesum(s1, k1, 1, q, congruence)
-	(1//2*s1, union(e1,e2))
+	s1=nesum(tt, k2, 0, q-2, congruence)
+	s1=nesum(s1, k1, 1, q, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k2, 0, q-2, congruence)
-	s1,e2=nesum(s1, k1, 1, q, congruence)
-	(1//2*s1, union(e1,e2))
+	s1=nesum(tt, k2, 0, q-2, congruence)
+	s1=nesum(s1, k1, 1, q, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k2, 0, q-2, congruence)
-	s1,e2=nesum(s1, k1, 1, q, congruence)
-	(1//2*s1, union(e1,e2))
+	s1=nesum(tt, k2, 0, q-2, congruence)
+	s1=nesum(s1, k1, 1, q, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k2, 0, q-2, congruence)
-	s1,e2=nesum(s1, k1, 1, q, congruence)
-	(1//2*s1, union(e1,e2))
+	s1=nesum(tt, k2, 0, q-2, congruence)
+	s1=nesum(s1, k1, 1, q, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k2, 0, q-2, congruence)
-	s1,e2=nesum(s1, k1, 1, q, congruence)
-	(1//2*s1, union(e1,e2))
+	s1=nesum(tt, k2, 0, q-2, congruence)
+	s1=nesum(s1, k1, 1, q, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s1,e1=nesum(tt, k2, 0, q-2, congruence)
-	s1,e2=nesum(s1, k1, 1, q, congruence)
-	(1//2*s1, union(e1,e2))
-end,
-function (tt::Cyclotomic)
-	s1=eesubs(tt, [k1], [1//2*q-1//2])
-	s2,e1=nesum(tt, k1, 1, q-2, congruence)
-	s1=s2-s1
-	s1,e2=nesum(s1, k2, 0, q-2, congruence)
-	(1//2*s1, union(e1,e2))
+	s1=nesum(tt, k2, 0, q-2, congruence)
+	s1=nesum(s1, k1, 1, q, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [k1], [1//2*q-1//2])
-	s2,e1=nesum(tt, k1, 1, q-2, congruence)
+	s2=nesum(tt, k1, 1, q-2, congruence)
 	s1=s2-s1
-	s1,e2=nesum(s1, k2, 0, q-2, congruence)
-	(1//2*s1, union(e1,e2))
+	s1=nesum(s1, k2, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [k1], [1//2*q-1//2])
-	s2,e1=nesum(tt, k1, 1, q-2, congruence)
+	s2=nesum(tt, k1, 1, q-2, congruence)
 	s1=s2-s1
-	s1,e2=nesum(s1, k2, 0, q-2, congruence)
-	(1//2*s1, union(e1,e2))
+	s1=nesum(s1, k2, 0, q-2, congruence)
+	1//2*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s1=eesubs(tt, [k1], [1//2*q-1//2])
+	s2=nesum(tt, k1, 1, q-2, congruence)
+	s1=s2-s1
+	s1=nesum(s1, k2, 0, q-2, congruence)
+	1//2*s1
+end,
+function (tt::Cyclotomic)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2,e2=nesum(s2, k1, 1, q, congruence)
-	(1//2*s2-1//2*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q, congruence)
+	1//2*s2-1//2*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2,e2=nesum(s2, k1, 1, q, congruence)
-	(1//2*s2-1//2*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q, congruence)
+	1//2*s2-1//2*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2,e2=nesum(s2, k1, 1, q, congruence)
-	(1//2*s2-1//2*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q, congruence)
+	1//2*s2-1//2*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2,e2=nesum(s2, k1, 1, q-2, congruence)
-	(1//4*s2-1//4*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q-2, congruence)
+	1//4*s2-1//4*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2,e2=nesum(s2, k1, 1, q-2, congruence)
-	(1//4*s2-1//4*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q-2, congruence)
+	1//4*s2-1//4*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2,e2=nesum(s2, k1, 1, q-2, congruence)
-	(1//4*s2-1//4*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q-2, congruence)
+	1//4*s2-1//4*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2,e2=nesum(s2, k1, 1, q-2, congruence)
-	(1//4*s2-1//4*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q-2, congruence)
+	1//4*s2-1//4*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2,e2=nesum(s2, k1, 1, q-2, congruence)
-	(1//2*s2-1//2*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q-2, congruence)
+	1//2*s2-1//2*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2,e2=nesum(s2, k1, 1, q-2, congruence)
-	(1//2*s2-1//2*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q-2, congruence)
+	1//2*s2-1//2*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2,e2=nesum(s2, k1, 1, q-2, congruence)
-	(1//2*s2-1//2*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q-2, congruence)
+	1//2*s2-1//2*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2,e2=nesum(s2, k1, 1, q-2, congruence)
-	(1//2*s2-1//2*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q-2, congruence)
+	1//2*s2-1//2*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2,e2=nesum(s2, k1, 1, q, congruence)
-	(1//4*s2-1//4*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q, congruence)
+	1//4*s2-1//4*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2,e2=nesum(s2, k1, 1, q, congruence)
-	(1//4*s2-1//4*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q, congruence)
+	1//4*s2-1//4*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2,e2=nesum(s2, k1, 1, q, congruence)
-	(1//4*s2-1//4*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q, congruence)
+	1//4*s2-1//4*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2,e2=nesum(s2, k1, 1, q, congruence)
-	(1//4*s2-1//4*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q, congruence)
+	1//4*s2-1//4*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2,e2=nesum(s2, k1, 1, q, congruence)
-	(1//2*s2-1//2*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q, congruence)
+	1//2*s2-1//2*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2,e2=nesum(s2, k1, 1, q, congruence)
-	(1//2*s2-1//2*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q, congruence)
+	1//2*s2-1//2*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2,e2=nesum(s2, k1, 1, q, congruence)
-	(1//2*s2-1//2*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q, congruence)
+	1//2*s2-1//2*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2,e2=nesum(s2, k1, 1, q, congruence)
-	(1//2*s2-1//2*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q, congruence)
+	1//2*s2-1//2*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2,e2=nesum(s2, k1, 1, q-2, congruence)
-	(1//4*s2-1//4*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q-2, congruence)
+	1//4*s2-1//4*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2,e2=nesum(s2, k1, 1, q-2, congruence)
-	(1//4*s2-1//4*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q-2, congruence)
+	1//4*s2-1//4*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2,e2=nesum(s2, k1, 1, q, congruence)
-	(1//4*s2-1//4*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q, congruence)
+	1//4*s2-1//4*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2,e2=nesum(s2, k1, 1, q, congruence)
-	(1//4*s2-1//4*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q, congruence)
+	1//4*s2-1//4*s1
 end,
 function (tt::Cyclotomic)
-	s5,e1=nesum(tt, k3, 0, q-2, congruence)
+	s5=nesum(tt, k3, 0, q-2, congruence)
 	s1=eesubs(s5, [k1,k2], [1//2*q-1//2,1//2*q-1//2])
 	s2=eesubs(s5, [k1], [k2])
 	s3=eesubs(s5, [k1], [-k2])
 	s4=eesubs(s5, [k1], [1//2*q-1//2])
-	s5,e2=nesum(s5, k1, 1, q-2, congruence)
+	s5=nesum(s5, k1, 1, q-2, congruence)
 	s5=s5-s2-s3-s4
-	s5,e3=nesum(s5, k2, 1, q-2, congruence)
-	(1//4*s5+1//2*s1, union(e1,e2,e3))
+	s5=nesum(s5, k2, 1, q-2, congruence)
+	1//4*s5+1//2*s1
 end,
 function (tt::Cyclotomic)
-	s5,e1=nesum(tt, k3, 0, q-2, congruence)
+	s5=nesum(tt, k3, 0, q-2, congruence)
 	s1=eesubs(s5, [k1,k2], [1//2*q-1//2,1//2*q-1//2])
 	s2=eesubs(s5, [k1], [k2])
 	s3=eesubs(s5, [k1], [-k2])
 	s4=eesubs(s5, [k1], [1//2*q-1//2])
-	s5,e2=nesum(s5, k1, 1, q-2, congruence)
+	s5=nesum(s5, k1, 1, q-2, congruence)
 	s5=s5-s2-s3-s4
-	s5,e3=nesum(s5, k2, 1, q-2, congruence)
-	(1//4*s5+1//2*s1, union(e1,e2,e3))
+	s5=nesum(s5, k2, 1, q-2, congruence)
+	1//4*s5+1//2*s1
 end,
 function (tt::Cyclotomic)
-	s4,e1=nesum(tt, k3, 0, q-2, congruence)
+	s4=nesum(tt, k3, 0, q-2, congruence)
 	s1=eesubs(s4, [k1,k2], [1//2*q-1//2,1//2*q-1//2])
 	s2=eesubs(s4, [k1], [k2])
 	s3=eesubs(s4, [k1], [-k2])
-	s4,e2=nesum(s4, k1, 1, q-2, congruence)
+	s4=nesum(s4, k1, 1, q-2, congruence)
 	s4=s4-s2-s3
-	s4,e3=nesum(s4, k2, 1, q-2, congruence)
-	(1//8*s4+1//8*s1, union(e1,e2,e3))
+	s4=nesum(s4, k2, 1, q-2, congruence)
+	1//8*s4+1//8*s1
 end,
 function (tt::Cyclotomic)
-	s4,e1=nesum(tt, k3, 0, q-2, congruence)
+	s4=nesum(tt, k3, 0, q-2, congruence)
 	s1=eesubs(s4, [k1,k2], [1//2*q-1//2,1//2*q-1//2])
 	s2=eesubs(s4, [k1], [k2])
 	s3=eesubs(s4, [k1], [-k2])
-	s4,e2=nesum(s4, k1, 1, q-2, congruence)
+	s4=nesum(s4, k1, 1, q-2, congruence)
 	s4=s4-s2-s3
-	s4,e3=nesum(s4, k2, 1, q-2, congruence)
-	(1//8*s4+1//8*s1, union(e1,e2,e3))
+	s4=nesum(s4, k2, 1, q-2, congruence)
+	1//8*s4+1//8*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k3, 0, q-2, congruence)
+	s2=nesum(tt, k3, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2,e2=nesum(s2, k1, 1, q-2, congruence)
+	s2=nesum(s2, k1, 1, q-2, congruence)
 	s1=s2-s1
-	s1,e3=nesum(s1, k2, 1, q, congruence)
-	(1//4*s1, union(e1,e2,e3))
+	s1=nesum(s1, k2, 1, q, congruence)
+	1//4*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k3, 0, q-2, congruence)
+	s2=nesum(tt, k3, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2,e2=nesum(s2, k1, 1, q-2, congruence)
+	s2=nesum(s2, k1, 1, q-2, congruence)
 	s1=s2-s1
-	s1,e3=nesum(s1, k2, 1, q, congruence)
-	(1//4*s1, union(e1,e2,e3))
+	s1=nesum(s1, k2, 1, q, congruence)
+	1//4*s1
 end,
 function (tt::Cyclotomic)
-	s4,e1=nesum(tt, k2, 0, q-2, congruence)
+	s4=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s4, [k1], [1//2*q^2-1//2])
 	s2=eesubs(s4, [k1], [k1*(q-1)])
-	s2,e2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q, congruence)
 	s3=eesubs(s4, [k1], [k1*(q+1)])
-	s3,e3=nesum(s3, k1, 1, q-2, congruence)
-	s4,e4=nesum(s4, k1, 1, q^2-2, congruence)
-	(1//4*s4-1//4*s2-1//4*s3+1//4*s1, union(e1,e2,e3,e4))
+	s3=nesum(s3, k1, 1, q-2, congruence)
+	s4=nesum(s4, k1, 1, q^2-2, congruence)
+	1//4*s4-1//4*s2-1//4*s3+1//4*s1
 end,
 function (tt::Cyclotomic)
-	s4,e1=nesum(tt, k2, 0, q-2, congruence)
+	s4=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s4, [k1], [1//2*q^2-1//2])
 	s2=eesubs(s4, [k1], [k1*(q-1)])
-	s2,e2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q, congruence)
 	s3=eesubs(s4, [k1], [k1*(q+1)])
-	s3,e3=nesum(s3, k1, 1, q-2, congruence)
-	s4,e4=nesum(s4, k1, 1, q^2-2, congruence)
-	(1//4*s4-1//4*s2-1//4*s3+1//4*s1, union(e1,e2,e3,e4))
+	s3=nesum(s3, k1, 1, q-2, congruence)
+	s4=nesum(s4, k1, 1, q^2-2, congruence)
+	1//4*s4-1//4*s2-1//4*s3+1//4*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k3, 0, q-2, congruence)
+	s2=nesum(tt, k3, 0, q-2, congruence)
 	s1=eesubs(s2, [k1,k2], [1//2*q-1//2,1//2*q+1//2])
-	s2,e2=nesum(s2, k1, 1, q-2, congruence)
-	s2,e3=nesum(s2, k2, 1, q, congruence)
-	(1//4*s2-1//4*s1, union(e1,e2,e3))
+	s2=nesum(s2, k1, 1, q-2, congruence)
+	s2=nesum(s2, k2, 1, q, congruence)
+	1//4*s2-1//4*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k3, 0, q-2, congruence)
+	s2=nesum(tt, k3, 0, q-2, congruence)
 	s1=eesubs(s2, [k1,k2], [1//2*q-1//2,1//2*q+1//2])
-	s2,e2=nesum(s2, k1, 1, q-2, congruence)
-	s2,e3=nesum(s2, k2, 1, q, congruence)
-	(1//4*s2-1//4*s1, union(e1,e2,e3))
+	s2=nesum(s2, k1, 1, q-2, congruence)
+	s2=nesum(s2, k2, 1, q, congruence)
+	1//4*s2-1//4*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k3, 0, q-2, congruence)
+	s2=nesum(tt, k3, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2,e2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q, congruence)
 	s1=s2-s1
-	s1,e3=nesum(s1, k2, 1, q-2, congruence)
-	(1//4*s1, union(e1,e2,e3))
+	s1=nesum(s1, k2, 1, q-2, congruence)
+	1//4*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k3, 0, q-2, congruence)
+	s2=nesum(tt, k3, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2,e2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q, congruence)
 	s1=s2-s1
-	s1,e3=nesum(s1, k2, 1, q-2, congruence)
-	(1//4*s1, union(e1,e2,e3))
+	s1=nesum(s1, k2, 1, q-2, congruence)
+	1//4*s1
 end,
 function (tt::Cyclotomic)
-	s5,e1=nesum(tt, k3, 0, q-2, congruence)
+	s5=nesum(tt, k3, 0, q-2, congruence)
 	s1=eesubs(s5, [k1,k2], [1//2*q+1//2,1//2*q+1//2])
 	s2=eesubs(s5, [k1], [k2])
 	s3=eesubs(s5, [k1], [-k2])
 	s4=eesubs(s5, [k1], [1//2*q+1//2])
-	s5,e2=nesum(s5, k1, 1, q, congruence)
+	s5=nesum(s5, k1, 1, q, congruence)
 	s5=s5-s2-s3-s4
-	s5,e3=nesum(s5, k2, 1, q, congruence)
-	(1//4*s5+1//2*s1, union(e1,e2,e3))
+	s5=nesum(s5, k2, 1, q, congruence)
+	1//4*s5+1//2*s1
 end,
 function (tt::Cyclotomic)
-	s5,e1=nesum(tt, k3, 0, q-2, congruence)
+	s5=nesum(tt, k3, 0, q-2, congruence)
 	s1=eesubs(s5, [k1,k2], [1//2*q+1//2,1//2*q+1//2])
 	s2=eesubs(s5, [k1], [k2])
 	s3=eesubs(s5, [k1], [-k2])
 	s4=eesubs(s5, [k1], [1//2*q+1//2])
-	s5,e2=nesum(s5, k1, 1, q, congruence)
+	s5=nesum(s5, k1, 1, q, congruence)
 	s5=s5-s2-s3-s4
-	s5,e3=nesum(s5, k2, 1, q, congruence)
-	(1//4*s5+1//2*s1, union(e1,e2,e3))
+	s5=nesum(s5, k2, 1, q, congruence)
+	1//4*s5+1//2*s1
 end,
 function (tt::Cyclotomic)
-	s4,e1=nesum(tt, k3, 0, q-2, congruence)
+	s4=nesum(tt, k3, 0, q-2, congruence)
 	s1=eesubs(s4, [k1,k2], [1//2*q+1//2,1//2*q+1//2])
 	s2=eesubs(s4, [k1], [k2])
 	s3=eesubs(s4, [k1], [-k2])
-	s4,e2=nesum(s4, k1, 1, q, congruence)
+	s4=nesum(s4, k1, 1, q, congruence)
 	s4=s4-s2-s3
-	s4,e3=nesum(s4, k2, 1, q, congruence)
-	(1//8*s4+1//8*s1, union(e1,e2,e3))
+	s4=nesum(s4, k2, 1, q, congruence)
+	1//8*s4+1//8*s1
 end,
 function (tt::Cyclotomic)
-	s4,e1=nesum(tt, k3, 0, q-2, congruence)
+	s4=nesum(tt, k3, 0, q-2, congruence)
 	s1=eesubs(s4, [k1,k2], [1//2*q+1//2,1//2*q+1//2])
 	s2=eesubs(s4, [k1], [k2])
 	s3=eesubs(s4, [k1], [-k2])
-	s4,e2=nesum(s4, k1, 1, q, congruence)
+	s4=nesum(s4, k1, 1, q, congruence)
 	s4=s4-s2-s3
-	s4,e3=nesum(s4, k2, 1, q, congruence)
-	(1//8*s4+1//8*s1, union(e1,e2,e3))
+	s4=nesum(s4, k2, 1, q, congruence)
+	1//8*s4+1//8*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q^2+1//2])
-	s2,e2=nesum(s2, k1, 1, q^2, congruence)
-	(1//4*s2-1//4*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q^2, congruence)
+	1//4*s2-1//4*s1
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q^2+1//2])
-	s2,e2=nesum(s2, k1, 1, q^2, congruence)
-	(1//4*s2-1//4*s1, union(e1,e2))
+	s2=nesum(s2, k1, 1, q^2, congruence)
+	1//4*s2-1//4*s1
 end,
 function (tt::Cyclotomic)
-	s7,e1=nesum(tt, k4, 0, q-2, congruence)
+	s7=nesum(tt, k4, 0, q-2, congruence)
 	s1=eesubs(s7, [k1,k2], [1//2*q-1//2,1//2*q-1//2])
 	s2=eesubs(s7, [k1], [k2])
 	s3=eesubs(s7, [k1], [-k2])
 	s4=eesubs(s7, [k1], [k3])
 	s5=eesubs(s7, [k1], [-k3])
-	s6,e2=nesum(s7, k1, 1, q-2, congruence)
+	s6=nesum(s7, k1, 1, q-2, congruence)
 	s6=s6-s5-s4-s3-s2
 	s2=eesubs(s6, [k2], [k3])
 	s3=eesubs(s6, [k2], [-k3])
-	s6,e3=nesum(s6, k2, 1, q-2, congruence)
+	s6=nesum(s6, k2, 1, q-2, congruence)
 	s6=s6-s2-s3+s1
 	s2=eesubs(s6, [k3], [1//2*q-1//2])
-	s6,e4=nesum(s6, k3, 1, q-2, congruence)
+	s6=nesum(s6, k3, 1, q-2, congruence)
 	zw1=s6-s2
 	s1=eesubs(s7, [k1], [k2])
 	s2=eesubs(s7, [k1], [-k2])
 	s3=eesubs(s7, [k1], [1//2*q-1//2])
-	s4,e5=nesum(s7, k1, 1, q-2, congruence)
+	s4=nesum(s7, k1, 1, q-2, congruence)
 	s4=s4-s3-s2-s1
 	s1=eesubs(s4, [k2], [1//2*q-1//2])
-	s4,e6=nesum(s4, k2, 1, q-2, congruence)
+	s4=nesum(s4, k2, 1, q-2, congruence)
 	s4=s4-s1
 	zw2=eesubs(s4, [k3], [1//2*q-1//2])
-	(1//48*zw1+1//48*zw2, union(e1,e2,e3,e4,e5,e6))
+	1//48*zw1+1//48*zw2
 end,
 function (tt::Cyclotomic)
-	s5,e1=nesum(tt, k4, 0, q-2, congruence)
+	s5=nesum(tt, k4, 0, q-2, congruence)
 	s1=eesubs(s5, [k1,k2], [1//2*q-1//2,1//2*q-1//2])
 	s2=eesubs(s5, [k1], [k2])
 	s3=eesubs(s5, [k1], [-k2])
-	s4,e2=nesum(s5, k1, 1, q-2, congruence)
+	s4=nesum(s5, k1, 1, q-2, congruence)
 	s4=s4-s3-s2
-	s4,e3=nesum(s4, k2, 1, q-2, congruence)
+	s4=nesum(s4, k2, 1, q-2, congruence)
 	s4=s4+s1
 	s2=eesubs(s4, [k3], [1//2*q+1//2])
-	s4,e4=nesum(s4, k3, 1, q, congruence)
+	s4=nesum(s4, k3, 1, q, congruence)
 	zw1=s4-s2
 	s1=eesubs(s5, [k1], [k2])
 	s2=eesubs(s5, [k1], [-k2])
 	s3=eesubs(s5, [k1], [1//2*q-1//2])
-	s4,e5=nesum(s5, k1, 1, q-2, congruence)
+	s4=nesum(s5, k1, 1, q-2, congruence)
 	s4=s4-s3-s2-s1
 	s1=eesubs(s4, [k2], [1//2*q-1//2])
-	s4,e6=nesum(s4, k2, 1, q-2, congruence)
+	s4=nesum(s4, k2, 1, q-2, congruence)
 	s4=s4-s1
 	zw2=eesubs(s4, [k3], [1//2*q+1//2])
-	(1//16*zw1+1//16*zw2, union(e1,e2,e3,e4,e5,e6))
+	1//16*zw1+1//16*zw2
 end,
 function (tt::Cyclotomic)
-	s4,e1=nesum(tt, k3, 0, q-2, congruence)
+	s4=nesum(tt, k3, 0, q-2, congruence)
 	s1=eesubs(s4, [k1], [1//2*q^2-1//2])
 	s2=eesubs(s4, [k1], [k1*(q-1)])
-	s2,e2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q, congruence)
 	s3=eesubs(s4, [k1], [k1*(q+1)])
-	s3,e3=nesum(s3, k1, 1, q-2, congruence)
-	s4,e4=nesum(s4, k1, 1, q^2-2, congruence)
+	s3=nesum(s3, k1, 1, q-2, congruence)
+	s4=nesum(s4, k1, 1, q^2-2, congruence)
 	s4=s4-s2-s3+s1
-	s4,e5=nesum(s4, k2, 1, q-2, congruence)
-	(1//8*s4, union(e1,e2,e3,e4,e5))
+	s4=nesum(s4, k2, 1, q-2, congruence)
+	1//8*s4
 end,
 function (tt::Cyclotomic)
-	s5,e1=nesum(tt, k4, 0, q-2, congruence)
+	s5=nesum(tt, k4, 0, q-2, congruence)
 	s1=eesubs(s5, [k1,k2], [1//2*q-1//2,1//2*q+1//2])
-	s2,e2=nesum(s5, k1, 1, q-2, congruence)
+	s2=nesum(s5, k1, 1, q-2, congruence)
 	s3=eesubs(s2, [k2], [k3])
 	s4=eesubs(s2, [k2], [-k3])
-	s2,e3=nesum(s2, k2, 1, q, congruence)
+	s2=nesum(s2, k2, 1, q, congruence)
 	s2=s2-s3-s4-s1
 	s3=eesubs(s2, [k3], [1//2*q+1//2])
-	s2,e4=nesum(s2, k3, 1, q, congruence)
+	s2=nesum(s2, k3, 1, q, congruence)
 	zw1=s2-s3
 	s1=eesubs(s5, [k1], [1//2*q-1//2])
-	s2,e5=nesum(s5, k1, 1, q-2, congruence)
+	s2=nesum(s5, k1, 1, q-2, congruence)
 	s1=s2-s1
 	s2=eesubs(s1, [k2], [1//2*q+1//2])
-	s1,e6=nesum(s1, k2, 1, q, congruence)
+	s1=nesum(s1, k2, 1, q, congruence)
 	s1=s1-s2
 	zw2=eesubs(s1, [k3], [1//2*q+1//2])
-	(1//16*zw1+1//16*zw2, union(e1,e2,e3,e4,e5,e6))
+	1//16*zw1+1//16*zw2
 end,
 function (tt::Cyclotomic)
-	s4,e1=nesum(tt, k3, 0, q-2, congruence)
+	s4=nesum(tt, k3, 0, q-2, congruence)
 	s1=eesubs(s4, [k1], [1//2*q^2-1//2])
 	s2=eesubs(s4, [k1], [k1*(q-1)])
-	s2,e2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q, congruence)
 	s3=eesubs(s4, [k1], [k1*(q+1)])
-	s3,e3=nesum(s3, k1, 1, q-2, congruence)
-	s4,e4=nesum(s4, k1, 1, q^2-2, congruence)
+	s3=nesum(s3, k1, 1, q-2, congruence)
+	s4=nesum(s4, k1, 1, q^2-2, congruence)
 	s4=s4-s2-s3+s1
-	s4,e5=nesum(s4, k2, 1, q, congruence)
-	(1//8*s4, union(e1,e2,e3,e4,e5))
+	s4=nesum(s4, k2, 1, q, congruence)
+	1//8*s4
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k3, 0, q-2, congruence)
-	s1,e2=nesum(s2, k1, 1, q-2, congruence)
+	s2=nesum(tt, k3, 0, q-2, congruence)
+	s1=nesum(s2, k1, 1, q-2, congruence)
 	s2=eesubs(s1, [k2], [1//2*q^2+1//2])
-	s1,e3=nesum(s1, k2, 1, q^2, congruence)
-	(1//8*s1-1//8*s2, union(e1,e2,e3))
+	s1=nesum(s1, k2, 1, q^2, congruence)
+	1//8*s1-1//8*s2
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [(q^2+q+1)*k1])
-	s1,e2=nesum(s1, k1, 0, q-2, congruence)
-	s2,e3=nesum(s2, k1, 0, q^3-2, congruence)
-	(1//6*s2-1//6*s1, union(e1,e2,e3))
+	s1=nesum(s1, k1, 0, q-2, congruence)
+	s2=nesum(s2, k1, 0, q^3-2, congruence)
+	1//6*s2-1//6*s1
 end,
 function (tt::Cyclotomic)
-	s7,e1=nesum(tt, k4, 0, q-2, congruence)
+	s7=nesum(tt, k4, 0, q-2, congruence)
 	s1=eesubs(s7, [k1,k2], [1//2*q+1//2,1//2*q+1//2])
 	s2=eesubs(s7, [k1], [k2])
 	s3=eesubs(s7, [k1], [-k2])
 	s4=eesubs(s7, [k1], [k3])
 	s5=eesubs(s7, [k1], [-k3])
-	s6,e2=nesum(s7, k1, 1, q, congruence)
+	s6=nesum(s7, k1, 1, q, congruence)
 	s6=s6-s5-s4-s3-s2
 	s2=eesubs(s6, [k2], [k3])
 	s3=eesubs(s6, [k2], [-k3])
-	s6,e3=nesum(s6, k2, 1, q, congruence)
+	s6=nesum(s6, k2, 1, q, congruence)
 	s6=s6-s2-s3+s1
 	s2=eesubs(s6, [k3], [1//2*q+1//2])
-	s6,e4=nesum(s6, k3, 1, q, congruence)
+	s6=nesum(s6, k3, 1, q, congruence)
 	zw1=s6-s2
 	s1=eesubs(s7, [k1], [k2])
 	s2=eesubs(s7, [k1], [-k2])
 	s3=eesubs(s7, [k1], [1//2*q+1//2])
-	s4,e5=nesum(s7, k1, 1, q, congruence)
+	s4=nesum(s7, k1, 1, q, congruence)
 	s4=s4-s3-s2-s1
 	s1=eesubs(s4, [k2], [1//2*q+1//2])
-	s4,e6=nesum(s4, k2, 1, q, congruence)
+	s4=nesum(s4, k2, 1, q, congruence)
 	s4=s4-s1
 	zw2=eesubs(s4, [k3], [1//2*q+1//2])
-	(1//48*zw1+1//48*zw2, union(e1,e2,e3,e4,e5,e6))
+	1//48*zw1+1//48*zw2
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k3, 0, q-2, congruence)
+	s2=nesum(tt, k3, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [1//2*q^2+1//2])
-	s2,e2=nesum(s2, k1, 1, q^2, congruence)
+	s2=nesum(s2, k1, 1, q^2, congruence)
 	s2=s2-s1
-	s2,e3=nesum(s2, k2, 1, q, congruence)
-	(1//8*s2, union(e1,e2,e3))
+	s2=nesum(s2, k2, 1, q, congruence)
+	1//8*s2
 end,
 function (tt::Cyclotomic)
-	s2,e1=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2, congruence)
 	s1=eesubs(s2, [k1], [(q^2-q+1)*k1])
-	s1,e2=nesum(s1, k1, 0, q, congruence)
-	s2,e3=nesum(s2, k1, 0, q^3, congruence)
-	(1//6*s2-1//6*s1, union(e1,e2,e3))
+	s1=nesum(s1, k1, 0, q, congruence)
+	s2=nesum(s2, k1, 0, q^3, congruence)
+	1//6*s2-1//6*s1
 end
 ]
 

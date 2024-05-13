@@ -81,7 +81,7 @@ For example this excludes characters created with [`tensor!`](@ref) or [`lincomb
 julia> g=genchartab(\"GL2\");
 
 julia> nrirrchars(g)
-q^2 - 1
+q^2 - 1//1
 
 ```
 """
@@ -117,7 +117,7 @@ Return the number of conjugacy classes of table `t`.
 julia> g=genchartab(\"GL2\");
 
 julia> nrclasses(g)
-q^2 - 1
+q^2 - 1//1
 
 ```
 """
@@ -227,7 +227,7 @@ In the case of a `SimpleCharTable` this is always one.
 julia> g=genchartab(\"GL2\");
 
 julia> nrchars(g, 1)
-q - 1
+q - 1//1
 
 ```
 """
@@ -235,8 +235,8 @@ function nrchars(t::CharTable{T}, char::Int64) where T <: NfPoly
 	if char > irrchartypes(t)
 		throw(DomainError(char, "Cannot calculate number of characters in reducible types."))
 	else
-		result=simplify(t.charsums[char](e2p(t.argumentring(0))//e2p(t.argumentring(0)))[1], t)
-		return try_convert_to_real(result)
+		result=simplify(t.charsums[char](e2p(t.argumentring(0))//e2p(t.argumentring(0))), t)
+		return shrink(result)
 	end
 end
 function nrchars(t::SimpleCharTable, char::Int64)
@@ -256,7 +256,7 @@ Return the number of conjugacy classes in the class type `class` of the table `t
 julia> g=genchartab(\"GL2\");
 
 julia> nrclasses(g, 1)
-q - 1
+q - 1//1
 
 ```
 """
@@ -264,8 +264,8 @@ function nrclasses(t::CharTable{T}, class::Int64) where T <: NfPoly
 	if class > classtypes(t)
 		throw(DomainError(class, "Class type is out of range."))
 	end
-	result=simplify(t.classsums[class](e2p(t.argumentring(0))//e2p(t.argumentring(0)))[1], t)
-	return try_convert_to_real(result)
+	result=simplify(t.classsums[class](e2p(t.argumentring(0))//e2p(t.argumentring(0))), t)
+	return shrink(result)
 end
 function nrclasses(t::SimpleCharTable, class::Int64)
 	if class > classtypes(t)

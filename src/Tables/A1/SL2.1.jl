@@ -84,44 +84,44 @@ function (tt::Cyclotomic)
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i], [(q^2-1)*1//2])
-	t1,e1=nesum(tt, i, 1, q^2-2, congruence)
-	(1//2*t1-1//2*s1, e1)
+	t1=nesum(tt, i, 1, q^2-2, congruence)
+	1//2*t1-1//2*s1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [i], [(q^2+1)*1//2])
-	t1,e1=nesum(tt, i, 1, q^2, congruence)
-	(1//2*t1-1//2*s1, e1)
+	t1=nesum(tt, i, 1, q^2, congruence)
+	1//2*t1-1//2*s1
 end
 ]
 
 charsums=[
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [k], [(q^2-1)*1//2])
-	t1,e1=nesum(tt, k, 1, q^2-2, congruence)
-	(1//2*t1-1//2*s1, e1)
+	t1=nesum(tt, k, 1, q^2-2, congruence)
+	1//2*t1-1//2*s1
 end,
 function (tt::Cyclotomic)
 	s1=eesubs(tt, [k], [(q^2+1)*1//2])
-	t1,e1=nesum(tt, k, 1, q^2, congruence)
-	(1//2*t1-1//2*s1, e1)
+	t1=nesum(tt, k, 1, q^2, congruence)
+	1//2*t1-1//2*s1
 end
 ]
 

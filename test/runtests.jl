@@ -27,7 +27,7 @@ include("Aqua.jl")
 	@test isone((a//c)*(c//a))
 
 	d=e2p(1//(q-1)*i)
-	@test nesum(a, i, 1, q-1)[1]-eesubs(a, [1], [1])==nesum(a, i, 2, q-1)[1]
+	@test nesum(a, i, 1, q-1)-eesubs(a, [1], [1])==nesum(a, i, 2, q-1)
 end
 
 @testset "Shifts" begin
@@ -47,12 +47,12 @@ end
 @testset "setcongruence(table)" begin
 	g=genchartab("SL3.n1")
 	h=tensor!(g,2,2)
-	@test 0 == scalar(g,6,h)[1]
+	@test iszero(scalar(g,6,h), ignore_exceptions=true)
 	q,(a,b,m,n)=params(g)
 	x=param(g,"x")
 	g2=setcongruence(g, (0,2))
 	speccharparam!(g2, 6, n, -m+(q-1)*x)
-	@test 1 == scalar(g2,6,h)[1]
+	@test isone(scalar(g2,6,h))
 end
 
 @testset "Import green functions" begin

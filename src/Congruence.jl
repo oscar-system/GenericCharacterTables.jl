@@ -15,7 +15,7 @@ function setcongruence(x::CycloSum{T}, c::Union{T, Generic.FracFieldElem{T}}; si
 	CycloSum(summands, simplify=simplify)
 end
 function setcongruence(x::CycloFrac{T}, c::Union{T, Generic.FracFieldElem{T}}; simplify::Bool=true) where T <: NfPoly
-	CycloFrac(setcongruence(x.numerator, c), setcongruence(x.denominator, c), simplify=simplify)
+	CycloFrac(setcongruence(x.numerator, c), setcongruence(x.denominator, c), Set{ParameterException{T}}(setcongruence.(x.exceptions, Ref(c))), simplify=simplify)
 end
 function setcongruence(x::ParameterException{T}, c::Union{T, Generic.FracFieldElem{T}}; simplify::Bool=true) where T <: NfPoly
 	ParameterException(setcongruence(x.expression, c), simplify=simplify)

@@ -1453,223 +1453,223 @@ chardegree = R.([
 
 classsums=[
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end
 ]
 
 charsums=[
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end,
 function (tt::Cyclotomic)
-	(tt, Set())
+	tt
 end
 ]
 

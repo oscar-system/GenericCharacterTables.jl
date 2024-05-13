@@ -19,8 +19,11 @@ module GenericCharacterTables
 using Oscar
 import Oscar.AbstractAlgebra.Generic
 
-include("Arith.jl")
+const FracPoly{T} = Generic.UnivPoly{Generic.FracFieldElem{T}, Generic.MPoly{Generic.FracFieldElem{T}}} where T
+const NfPoly = Union{PolyRingElem{QQFieldElem}, PolyRingElem{AbsSimpleNumFieldElem}}
+
 include("Parameter.jl")
+include("Arith.jl")
 include("CharTable.jl")
 include("Shifts.jl")
 include("SumProc.jl")
