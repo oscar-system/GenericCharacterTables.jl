@@ -99,7 +99,7 @@ julia> a = e2p(1//(q-1)*i)
 exp(2π𝑖(1//(q - 1)*i))
 
 julia> nesum(a, i, 1, q-1)
-0//1
+0
 With exceptions:
   (1)//(q - 1) ∈ ℤ
 ```

@@ -11,7 +11,7 @@ Return the (generic) class multiplication constant of the class types `class1`, 
 julia> g=genchartab("SL2.0");
 
 julia> classmult(g,2,2,4)
-q + 1//1
+q + 1
 With exceptions:
   (a3)//(q + 1) ∈ ℤ
 ```
@@ -51,7 +51,7 @@ Return the norm of the character type `char`.
 julia> g=genchartab(\"GL2\");
 
 julia> norm(g,1)
-1//1
+1
 
 ```
 """
@@ -87,7 +87,7 @@ Return the scalar product between the character types `char1` and `char2`.
 julia> g=genchartab("GL2");
 
 julia> scalar(g,3,2)
-0//1
+0
 With exceptions:
   (l1 + k1 - 2*k2)//(q - 1) ∈ ℤ
   (l1 - k2)//(q - 1) ∈ ℤ
@@ -137,7 +137,7 @@ Return the (generic) norm of the class type `class`.
 julia> g=genchartab("GL2");
 
 julia> ortho2norm(g,2)
-1//1
+1
 ```
 """
 function ortho2norm(t::CharTable{T}, class::Int64) where T <: NfPoly
@@ -172,7 +172,7 @@ Return the (generic) scalar product between the class types `class1` and `class2
 julia> g=genchartab("GL2");
 
 julia> ortho2scalar(g,3,2)
-0//1
+0
 With exceptions:
   (i1 + j1 - 2*i2)//(q - 1) ∈ ℤ
   (i1 - i2)//(q - 1) ∈ ℤ

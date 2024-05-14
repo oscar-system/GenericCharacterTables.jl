@@ -81,7 +81,7 @@ For example this excludes characters created with [`tensor!`](@ref) or [`lincomb
 julia> g=genchartab(\"GL2\");
 
 julia> nrirrchars(g)
-q^2 - 1//1
+q^2 - 1
 
 ```
 """
@@ -117,7 +117,7 @@ Return the number of conjugacy classes of table `t`.
 julia> g=genchartab(\"GL2\");
 
 julia> nrclasses(g)
-q^2 - 1//1
+q^2 - 1
 
 ```
 """
@@ -227,7 +227,7 @@ In the case of a `SimpleCharTable` this is always one.
 julia> g=genchartab(\"GL2\");
 
 julia> nrchars(g, 1)
-q - 1//1
+q - 1
 
 ```
 """
@@ -256,7 +256,7 @@ Return the number of conjugacy classes in the class type `class` of the table `t
 julia> g=genchartab(\"GL2\");
 
 julia> nrclasses(g, 1)
-q - 1//1
+q - 1
 
 ```
 """
