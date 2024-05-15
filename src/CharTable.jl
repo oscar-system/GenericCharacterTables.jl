@@ -74,7 +74,7 @@ end
 function gentab(table::String, tabletype::String)
 	!isempty(table) || error("table name must not be empty")
 	!isempty(tabletype) || error("tabletype name must not be empty")
-	path=@__DIR__
+	path=joinpath(@__DIR__, "..", "data")
 	for dir in readdir("$path/$tabletype")
 		fname = "$path/$tabletype/$dir/$table.jl"
 		isfile(fname) && return loadtab(fname)
@@ -84,7 +84,7 @@ end
 
 function gentab(tabletype::String)
 	tables=[]
-	path=@__DIR__
+	path=joinpath(@__DIR__, "..", "data")
 	for dir in readdir("$path/$tabletype")
 		for table_file in readdir("$path/$tabletype/$dir")
 		push!(tables, replace(table_file, ".jl" => ""))
