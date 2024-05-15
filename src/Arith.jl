@@ -185,28 +185,32 @@ function shrink(a::CycloFrac{T}) where T <: NfPoly  # TODO Move this to the cons
 	return CycloFrac(new_numerator, new_denominator, shrink(a.exceptions), simplify=false)
 end
 function Base.show(io::IO, z::CycloFrac)
-	if isempty(z.exceptions)
-		exceptions=""
+	if isone(z.denominator)
+		print(io, "$(z.numerator)")
 	else
-		exceptions="\nWith exceptions:"
+		if isone(length(z.numerator.summands))
+			print(io, "$(z.numerator)//")
+		else
+			print(io, "($(z.numerator))//")
+		end
+		if isone(length(z.denominator.summands))
+			modulus=z.denominator.summands[1].modulus
+			argument=z.denominator.summands[1].argument
+			if iszero(argument) && (is_monomial(modulus) || is_constant(modulus))
+				print(io, "$(z.denominator)")
+			else
+				print(io, "($(z.denominator))")
+			end
+		else
+			print(io, "($(z.denominator))")
+		end
+	end
+	if !isempty(z.exceptions)
+		print(io, "\nWith exceptions:")
 		for exception in z.exceptions
-			exceptions*="\n  $(exception)"
+			print(io, "\n  $(exception)")
 		end
 	end
-	if isone(length(z.numerator.summands))
-		if isone(length(z.denominator.summands))
-			print(io, "$(z.numerator)//$(z.denominator)")
-		else
-			print(io, "$(z.numerator)//($(z.denominator))")
-		end
-	else
-		if isone(length(z.denominator.summands))
-			print(io, "($(z.numerator))//$(z.denominator)")
-		else
-			print(io, "($(z.numerator))//($(z.denominator))")
-		end
-	end
-	print(io, exceptions)
 end
 Base.show(io::IO, m::MIME{Symbol("text/latex")}, z::CycloFrac) = print(io, "\\frac{$(repr("text/latex", z.numerator))}{$(repr("text/latex",z.denominator))}")
 Base.isone(x::CycloFrac) = isone(x.numerator) && isone(x.denominator)
