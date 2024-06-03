@@ -1,5 +1,5 @@
 using ..GenericCharacterTables
-import ..GenericCharacterTables: ExtendableMatrix, SimpleCharTable
+import ..GenericCharacterTables: SimpleCharTable
 using Oscar
 R, q = polynomial_ring(QQ, "q")
 
@@ -746,4 +746,4 @@ information = "- Information about the Green functions of \$F_4(q)\$, \$p>3\$.
     {\\em Comm. Algebra \\bf10} (1982), 505--543.
 "
 
-TABLE=SimpleCharTable(order,ExtendableMatrix(permutedims(table)),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information)
+TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information)

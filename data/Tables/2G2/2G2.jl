@@ -1,5 +1,5 @@
 using ..GenericCharacterTables
-import ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterException, ExtendableMatrix, CharTable
+import ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterException, CharTable
 using Oscar
 K, sqrt3 = quadratic_field(3)
 R, q = polynomial_ring(K, "q")
@@ -435,5 +435,5 @@ information = "
   the classes.
 "
 
-TABLE=CharTable(order,ExtendableMatrix(permutedims(table)),classinfo,classlength,charinfo,chardegree,
+TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
 	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,R,S,information)

@@ -1,5 +1,5 @@
 using ..GenericCharacterTables
-import ..GenericCharacterTables: ExtendableMatrix, SimpleCharTable
+import ..GenericCharacterTables: SimpleCharTable
 using Oscar
 K, sqrt3 = quadratic_field(3)
 R, q = polynomial_ring(K, "q")
@@ -56,4 +56,4 @@ information = "- Information about the Green functions of \$^2G_2(q^2)\$.
     Soc. \\bf121} (1966), 62--89.
 "
 
-TABLE=SimpleCharTable(order,ExtendableMatrix(permutedims(table)),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information)
+TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information)

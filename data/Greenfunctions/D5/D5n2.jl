@@ -1,5 +1,5 @@
 using ..GenericCharacterTables
-import ..GenericCharacterTables: ExtendableMatrix, SimpleCharTable
+import ..GenericCharacterTables: SimpleCharTable
 using Oscar
 R, q = polynomial_ring(QQ, "q")
 
@@ -390,4 +390,4 @@ chardegree = R.([
 	-(q-1)^5*(q+1)^3*(q^2+q+1)*(q^2+1)^2*(q^4+q^3+q^2+q+1)*(q^2-q+1)])
 
 information = ""
-TABLE=SimpleCharTable(order,ExtendableMatrix(permutedims(table)),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information)
+TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information)

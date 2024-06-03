@@ -1,5 +1,5 @@
 using ..GenericCharacterTables
-import ..GenericCharacterTables: ExtendableMatrix, SimpleCharTable
+import ..GenericCharacterTables: SimpleCharTable
 using Oscar
 R, q = polynomial_ring(QQ, "q")
 
@@ -268,4 +268,4 @@ information = "- Information about the generic character table of \$CSp_4(q)\$ w
   this  release.
 "
 
-TABLE=SimpleCharTable(order,ExtendableMatrix(permutedims(table)),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information)
+TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information)
