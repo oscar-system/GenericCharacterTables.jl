@@ -32,7 +32,7 @@ end
 
 @testset "Shifts" begin
 	g=genchartab("GL2")
-	a=GenericCharacterTables.shift_class_parameters(g, g.table[1,1], 1)
+	a=GenericCharacterTables.shift_class_parameters(g, g[1,1], 1)
 	q,(i,j,l,k)=params(g)
 	@test a==eesubs(a,[i],[0])
 end

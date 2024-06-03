@@ -1,30 +1,7 @@
 export genchartab, greenfuntab
 
 abstract type Table{T} end
-
-# This matrix type is needed to be able to extend the character tables by new character types calculated by the methods in ModifyTable.jl
-# https://discourse.julialang.org/t/silly-question-how-to-add-a-row-to-array/33601/10
-mutable struct ExtendableMatrix{T} <: AbstractMatrix{T}
-	m::Int
-	original_m::Int
-	n::Int
-	data::Vector{T}
-	function ExtendableMatrix{T}(m::Int, n::Int, data::Vector{T}) where T
-		new{T}(m,m,n,data)
-	end
-end
-Base.size(a::ExtendableMatrix) = (a.m, a.n)
-Base.getindex(a::ExtendableMatrix, i::Integer, j::Integer) = a.data[(Int(i)-1)*a.n + Int(j)]
-Base.setindex!(a::ExtendableMatrix, v, i::Integer, j::Integer) = setindex!(a.data, v, (Int(i)-1)*a.n + Int(j))
-ExtendableMatrix{T}(::UndefInitializer, m::Integer, n::Integer) where {T} = ExtendableMatrix{T}(m, n, Array{T}(undef, m*n))
-ExtendableMatrix(a::AbstractMatrix{T}) where {T} = copyto!(ExtendableMatrix{T}(undef, size(a)...), a)
-function Base.push!(a::ExtendableMatrix, row::AbstractVector)
-	a.n == length(row) || throw(DimensionMismatch("row size must match matrix"))
-	resize!(a.data, length(a) + a.n)
-	a.data[length(a)+1:length(a.data)] = row
-	a.m += 1
-	return a
-end
+abstract type AbstractGenericCharacter{T} end
 
 # This is the main generic character table type.
 # T is usually of the type NfPoly.
@@ -36,50 +13,83 @@ end
 # See for example A1/GL2.jl
 struct CharTable{T} <: Table{T}
 	order::T  # Order of the associated group
-	table::ExtendableMatrix{Cyclotomic{T}}  # Character values
 	classinfo::Vector{<:Any}  # Info about class types
 	classlength::Vector{T}  # Order of the classes in each type
-	charinfo::Vector{<:Any}  # Info about char types
-	chardegree::Vector{T}  # Degree of the characters in each type
 	classsums::Vector{Function}  # Functions to sum a Cyclotomic over all classes in a type
-	charsums::Vector{Function}  # Functions to sum a Cyclotomic over all characters in a type
 	classparamindex::Vector{Int64}  # Indices of the class parameters
 	charparamindex::Vector{Int64}  # Indices of the character parameters
 	classparams::Vector{Parameters{T}}  # Info about the parameters of each class type
-	charparams::Vector{Parameters{T}}  # Info about the parameters of each character type
 	congruence::Union{Tuple{T, T}, Nothing}  # Congruence of the main parameter q (of T). q is congruent to congruence[1] mod congruence[2].
 	modulusring::PolyRing  # Ring of polynomials of type T used in table (also ring of modulus of Cyclotomics)
 	argumentring::Generic.UniversalPolyRing{Generic.FracFieldElem{T}, Generic.MPoly{Generic.FracFieldElem{T}}}  # Ring of argument of the Cyclotomics in table
 	information::String  # General info about the table
+	chars::Vector{<:AbstractGenericCharacter{T}}
+	irrchartypes::Int64  # Number of irreducible character types
 end
 function CharTable(order::T, table::Matrix{Cyclotomic{T}}, classinfo::Vector{<:Any}, classlength::Vector{T},
 	charinfo::Vector{<:Any}, chardegree::Vector{T}, classsums::Vector{Function}, charsums::Vector{Function},
 	classparamindex::Vector{Int64}, charparamindex::Vector{Int64}, classparams::Vector{Parameters{T}}, charparams::Vector{Parameters{T}},
 	congruence::Union{Tuple{T, T}, Nothing}, modulusring::PolyRing, argumentring::Generic.UniversalPolyRing{Generic.FracFieldElem{T},
 	Generic.MPoly{Generic.FracFieldElem{T}}}, information::String) where T<:NfPoly
-	ct=CharTable{T}(order, ExtendableMatrix(table), classinfo, classlength, charinfo, chardegree, classsums, charsums, classparamindex,
-			charparamindex, classparams, charparams, congruence, modulusring, argumentring, information)
+	num_chars=size(table, 1)
+	chars=Vector{GenericCharacter{T}}(undef, num_chars)
+	ct=CharTable{T}(order, classinfo, classlength, classsums, classparamindex, charparamindex,
+			classparams, congruence, modulusring, argumentring, information, chars, num_chars)
+	for i in range(1, num_chars)
+		ct.chars[i]=GenericCharacter(ct, table[i,:], charinfo[i], chardegree[i], charsums[i], charparams[i])
+	end
 	return ct
+end
+
+Base.getindex(ct::CharTable{T}, i::Integer) where T<:NfPoly = ct.chars[i]::GenericCharacter{T}
+Base.getindex(ct::CharTable{T}, i::Integer, j::Integer) where T<:NfPoly = ct.chars[i].values[j]::Cyclotomic{T}
+Base.setindex!(ct::CharTable{T}, v::Cyclotomic{T}, i::Integer, j::Integer) where T<:NfPoly = setindex!(ct.chars[i].values, v, j)
+
+struct GenericCharacter{T} <: AbstractGenericCharacter{T}
+	parent::CharTable{T}
+	values::Vector{Cyclotomic{T}}
+	info::Any
+	degree::T  # Degree of the characters in this type
+	sum::Union{Function, Nothing}  # Function to sum a Cyclotomic over all characters in this type
+	params::Parameters{T}  # Info about the parameters in this character type
 end
 
 # This is another generic character table type used for much simpler tables.
 # T is usually of th type NfPoly.
 struct SimpleCharTable{T} <: Table{T}
 	order::T  # Order of the associated group
-	table::ExtendableMatrix{T}  # Character values
 	classinfo::Vector{<:Any}  # Info about class types
 	classlength::Vector{T}  # Order of the classes in each type
 	classtypeorder::Vector{T}  # Number of classes in each type
-	charinfo::Vector{<:Any}  # Info about char types
-	chardegree::Vector{T}  # Degree of the characters in each type
 	ring::PolyRing  # Ring of polynomials of type T used in table
 	information::String  # General info about the table
+	chars::Vector{<:AbstractGenericCharacter{T}}
+	irrchartypes::Int64  # Number of irreducible character types
+	function SimpleCharTable(order::T, table::Matrix{T}, classinfo::Vector{<:Any}, classlength::Vector{T},
+		classtypeorder::Vector{T}, charinfo::Vector{<:Any}, chardegree::Vector{T}, ring::PolyRing, information::String) where T<:NfPoly
+		num_chars=size(table, 1)
+		chars=Vector{SimpleGenericCharacter{T}}(undef, num_chars)
+		ct=new{T}(order, classinfo, classlength, classtypeorder, ring, information, chars, num_chars)
+		for i in range(1, num_chars)
+			ct.chars[i]=SimpleGenericCharacter(ct, table[i,:], charinfo[i], chardegree[i])
+		end
+		return ct
+	end
 end
-function SimpleCharTable(order::T, table::Matrix{T}, classinfo::Vector{<:Any}, classlength::Vector{T}, classtypeorder::Vector{T},
-	charinfo::Vector{<:Any}, chardegree::Vector{T}, ring::PolyRing, information::String) where T<:NfPoly
-	ct=SimpleCharTable{T}(order, ExtendableMatrix(table), classinfo, classlength, classtypeorder, charinfo, chardegree, ring, information)
-	return ct
+
+Base.getindex(ct::SimpleCharTable{T}, i::Integer) where T<:NfPoly = ct.chars[i]::SimpleGenericCharacter{T}
+Base.getindex(ct::SimpleCharTable{T}, i::Integer, j::Integer) where T<:NfPoly = ct.chars[i].values[j]::T
+Base.setindex!(ct::SimpleCharTable{T}, v::T, i::Integer, j::Integer) where T<:NfPoly = setindex!(ct.chars[i].values, v, j)
+
+struct SimpleGenericCharacter{T} <: AbstractGenericCharacter{T}
+	parent::SimpleCharTable{T}
+	values::Vector{T}
+	info::Any
+	degree::T  # Degree of the characters in this type
 end
+
+AbstractAlgebra.parent(c::AbstractGenericCharacter) = c.parent
+Base.getindex(c::AbstractGenericCharacter, i::Integer) = c.values[i]
 
 function loadtab(path::String)
 	return (@eval module $(gensym("CHAR_TABLE")) include($(path)) end).TABLE
