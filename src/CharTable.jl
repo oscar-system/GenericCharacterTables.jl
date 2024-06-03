@@ -52,6 +52,15 @@ struct CharTable{T} <: Table{T}
 	argumentring::Generic.UniversalPolyRing{Generic.FracFieldElem{T}, Generic.MPoly{Generic.FracFieldElem{T}}}  # Ring of argument of the Cyclotomics in table
 	information::String  # General info about the table
 end
+function CharTable(order::T, table::Matrix{Cyclotomic{T}}, classinfo::Vector{<:Any}, classlength::Vector{T},
+	charinfo::Vector{<:Any}, chardegree::Vector{T}, classsums::Vector{Function}, charsums::Vector{Function},
+	classparamindex::Vector{Int64}, charparamindex::Vector{Int64}, classparams::Vector{Parameters{T}}, charparams::Vector{Parameters{T}},
+	congruence::Union{Tuple{T, T}, Nothing}, modulusring::PolyRing, argumentring::Generic.UniversalPolyRing{Generic.FracFieldElem{T},
+	Generic.MPoly{Generic.FracFieldElem{T}}}, information::String) where T<:NfPoly
+	ct=CharTable{T}(order, ExtendableMatrix(table), classinfo, classlength, charinfo, chardegree, classsums, charsums, classparamindex,
+			charparamindex, classparams, charparams, congruence, modulusring, argumentring, information)
+	return ct
+end
 
 # This is another generic character table type used for much simpler tables.
 # T is usually of th type NfPoly.
@@ -65,6 +74,11 @@ struct SimpleCharTable{T} <: Table{T}
 	chardegree::Vector{T}  # Degree of the characters in each type
 	ring::PolyRing  # Ring of polynomials of type T used in table
 	information::String  # General info about the table
+end
+function SimpleCharTable(order::T, table::Matrix{T}, classinfo::Vector{<:Any}, classlength::Vector{T}, classtypeorder::Vector{T},
+	charinfo::Vector{<:Any}, chardegree::Vector{T}, ring::PolyRing, information::String) where T<:NfPoly
+	ct=SimpleCharTable{T}(order, ExtendableMatrix(table), classinfo, classlength, classtypeorder, charinfo, chardegree, ring, information)
+	return ct
 end
 
 function loadtab(path::String)
