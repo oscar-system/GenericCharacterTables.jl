@@ -67,7 +67,7 @@ function readmaple(path::String, folder::String)
 		params=getparams(konvertierungen,"c")
 		konvertierungen = convert_konvertierungen(String(konvertierungen))
 
-		Coda = "TABLE=CharTable(order,ExtendableMatrix(permutedims(table)),classinfo,classlength,charinfo,chardegree,
+		Coda = "TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
 	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,R,S,information)\n"
 	else
 		# 5) Informationen:
@@ -91,9 +91,9 @@ function readmaple(path::String, folder::String)
 		
 		kfin=cfin
 		params=[]
-		imports="using ..GenericCharacterTables\nimport ..GenericCharacterTables: ExtendableMatrix, SimpleCharTable\nusing Oscar\n"
+		imports="using ..GenericCharacterTables\nimport ..GenericCharacterTables: SimpleCharTable\nusing Oscar\n"
 		head="R, q = polynomial_ring(QQ, \"q\")\n"
-		Coda = "TABLE=SimpleCharTable(order,ExtendableMatrix(permutedims(table)),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information)\n"
+		Coda = "TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information)\n"
 	end
 	
 	nrpar=length(params) 
@@ -117,7 +117,7 @@ function readmaple(path::String, folder::String)
 	
 	if !NurPolynom
 		summationsprozeduren = convert_summen_parameter(removecomments(String(summationsprozeduren)),cht, clt, joinedparams)
-		imports="using ..GenericCharacterTables\nimport ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterException, ParameterSubstitution, ExtendableMatrix, CharTable\nusing Oscar\n"
+		imports="using ..GenericCharacterTables\nimport ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterException, ParameterSubstitution, CharTable\nusing Oscar\n"
 		head = "R, q = polynomial_ring(QQ, \"q\")\nQ = fraction_field(R)\nS = UniversalPolynomialRing(Q, cached=false)\n"
 		ring = join(rr[1:nrpar],",")*", _...=gens(S, "*repr(rr)*")\n"
 	end

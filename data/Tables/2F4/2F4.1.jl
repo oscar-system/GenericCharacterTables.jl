@@ -1,5 +1,5 @@
 using ..GenericCharacterTables
-import ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterException, ExtendableMatrix, CharTable
+import ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterException, CharTable
 using Oscar
 K, d = number_field(polynomial(QQ,[1,0,-10,0,1]), "(sqrt(2)+sqrt(3))")
 sqrt2 = 1//2*d^3 - 9//2*d
@@ -2643,6 +2643,9 @@ function (tt::Cyclotomic)
 	tt
 end,
 function (tt::Cyclotomic)
+	tt
+end,
+function (tt::Cyclotomic)
 	s1=nesum(tt, k, 1, q^2, congruence)
 	s2=eesubs(tt, [k], [(q^2+1)*1//3])
 	s3=eesubs(tt, [k], [2*(q^2+1)*1//3])
@@ -2842,5 +2845,5 @@ information = "- Information about the generic character table of \$^2F_4(q^2)\$
 - The other irreducible characters were added by G. Malle
 "
 
-TABLE=CharTable(order,ExtendableMatrix(permutedims(table)),classinfo,classlength,charinfo,chardegree,
+TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
 	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,R,S,information)

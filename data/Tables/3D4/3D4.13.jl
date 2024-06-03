@@ -1,5 +1,5 @@
 using ..GenericCharacterTables
-import ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterException, ExtendableMatrix, CharTable
+import ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterException, CharTable
 using Oscar
 R, q = polynomial_ring(QQ, "q")
 Q = fraction_field(R)
@@ -1677,5 +1677,5 @@ information = "- Information about the generic character table of \$^3D_4(q)\$,
     \\bf303} (1987), 39--70.
 "
 
-TABLE=CharTable(order,ExtendableMatrix(permutedims(table)),classinfo,classlength,charinfo,chardegree,
+TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
 	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,R,S,information)
