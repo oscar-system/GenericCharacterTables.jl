@@ -8,6 +8,7 @@ export irrchartypes
 export nrchars
 export nrclasses
 export nrirrchars
+export chartypeid
 export nrparams
 export order
 export param
@@ -55,7 +56,7 @@ julia> chartypes(g)
 ```
 """
 function chartypes(t::Table)
-	size(t.table, 1)
+	length(t.chars)
 end
 
 """
@@ -66,7 +67,7 @@ Return the number of irreducible character types of table `t`.
 For example this excludes character types created with [`tensor!`](@ref) or [`lincomb!`](@ref).
 """
 function irrchartypes(t::Table)
-	return t.table.original_m
+	return t.irrchartypes
 end
 
 """
@@ -90,6 +91,29 @@ function nrirrchars(t::Table)
 end
 
 """
+    chartypeid(c::AbstractGenericCharacter)
+
+Return if the index of `c` in `parent(c)`. If `c` is not in `parent(c)` (e.g. if it is a tensor product) `0` is returned.
+# Examples
+```jldoctest
+julia> g=genchartab(\"GL2\");
+
+julia> chartypeid(g[1])
+1
+
+```
+"""
+function chartypeid(c::AbstractGenericCharacter)
+	ct=parent(c)
+	for i in 1:irrchartypes(ct)
+		if ct[i] === c
+			return i
+		end
+	end
+	return 0
+end
+
+"""
     classtypes(t::Table)
 
 Return the number of conjugacy class types of table `t`.
@@ -103,8 +127,8 @@ julia> classtypes(g)
 
 ```
 """
-function classtypes(t::Table)
-	size(t.table, 2)
+function classtypes(t::Table)  # TODO ?
+	length(t.chars[1].values)
 end
 
 """
@@ -212,7 +236,7 @@ function chardeg(t::Table, char::Int64)
 	if char > chartypes(t)
 		throw(DomainError(char, "Character type is out of range."))
 	end
-	t.chardegree[char]
+	t[char].degree
 end
 
 """
@@ -235,7 +259,7 @@ function nrchars(t::CharTable{T}, char::Int64) where T <: NfPoly
 	if char > irrchartypes(t)
 		throw(DomainError(char, "Cannot calculate number of characters in reducible types."))
 	else
-		result=simplify(t.charsums[char](e2p(t.argumentring(0))//e2p(t.argumentring(0))), t)
+		result=simplify(t[char].sum(e2p(t.argumentring(0))//e2p(t.argumentring(0))), t)
 		return shrink(result)
 	end
 end
@@ -302,7 +326,7 @@ function printcharparam(t::CharTable, char::Union{Int64, Nothing}=nothing)
 		chars=[char]
 	end
 	for i in chars
-		println(i, "\t", t.charparams[i])
+		println(i, "\t", t[i].params)
 	end
 end
 
@@ -367,7 +391,7 @@ function printinfochar(t::Table, char::Union{Int64, Nothing}=nothing)
 		chars=[char]
 	end
 	for i in chars
-		println(i, "\t", t.charinfo[i])
+		println(i, "\t", t[i].info)
 	end
 end
 
@@ -449,7 +473,7 @@ function printval(io::IO, t::Table; char::Union{Int64, Nothing}=nothing, class::
 	for i in chars
 		println(io, "Value of character type $i on class type", Indent())
 		for j in classes
-			println(io, j, ": ", t.table[i,j])
+			println(io, j, ": ", t[i,j])
 		end
 		print(io, Dedent())
 	end

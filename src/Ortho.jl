@@ -22,10 +22,10 @@ function classmult(t::CharTable{T}, class1::Int64, class2::Int64, class3::Int64)
 	end
 	sum=0
 	for char in range(1, irrchartypes(t))
-		val1=shift_class_parameters(t, t.table[char, class1], 1)
-		val2=shift_class_parameters(t, t.table[char, class2], 2)
-		val3=shift_class_parameters(t, t.table[char, class3], 3)
-		sum+=t.order*t.charsums[char](val1*val2*conj(val3))//t.chardegree[char]  # TODO move t.order* to the end of the function
+		val1=shift_class_parameters(t, t[char, class1], 1)
+		val2=shift_class_parameters(t, t[char, class2], 2)
+		val3=shift_class_parameters(t, t[char, class3], 3)
+		sum+=t.order*t[char].sum(val1*val2*conj(val3))//t[char].degree  # TODO move t.order* to the end of the function
 	end
 	return shrink(simplify((t.classlength[class1]*t.classlength[class2])*sum//(t.order^2), t))
 end
@@ -35,8 +35,8 @@ function classmult(t::SimpleCharTable{T}, class1::Int64, class2::Int64, class3::
 	end
 	sum=0
 	for char in range(1, irrchartypes(t))
-		sum1=t.table[char, class1]*t.table[char, class2]*t.table[char, class3]
-		sum+=t.order*sum1//t.chardegree[char]  # TODO move t.order* to the end of the function
+		sum1=t[char, class1]*t[char, class2]*t[char, class3]
+		sum+=t.order*sum1//t[char].degree  # TODO move t.order* to the end of the function
 	end
 	return (t.classlength[class1]*t.classlength[class2])*sum//(t.order^2)
 end
@@ -61,7 +61,7 @@ function Oscar.norm(t::CharTable{T}, char::Int64) where T <: NfPoly
 	end
 	sum=0
 	for class in range(1, classtypes(t))
-		val=t.table[char, class]
+		val=t[char, class]
 		sum+=t.classlength[class]*t.classsums[class](val*conj(val))
 	end
 	return shrink(simplify(sum//t.order, t))
@@ -72,7 +72,7 @@ function Oscar.norm(t::SimpleCharTable{T}, char::Int64) where T <: NfPoly
 	end
 	sum=0
 	for class in range(1, classtypes(t))
-		sum+=t.table[char,class]^2*t.classlength[class]*t.classtypeorder[class]
+		sum+=t[char,class]^2*t.classlength[class]*t.classtypeorder[class]
 	end
 	return sum//t.order
 end
@@ -100,8 +100,8 @@ function scalar(t::CharTable{T}, char1::Int64, char2::Int64) where T <: NfPoly
 	end
 	sum=0
 	for class in range(1, classtypes(t))
-		val1=shift_char_parameters(t, t.table[char1, class], 1)
-		val2=shift_char_parameters(t, t.table[char2, class], 2)
+		val1=shift_char_parameters(t, t[char1, class], 1)
+		val2=shift_char_parameters(t, t[char2, class], 2)
 		sum+=t.classlength[class]*t.classsums[class](val1*conj(val2))
 	end
 	return shrink(simplify(sum//t.order, t))
@@ -112,7 +112,7 @@ function scalar(t::SimpleCharTable{T}, char1::Int64, char2::Int64) where T <:NfP
 	end
 	sum=0
 	for class in range(1, classtypes(t))
-		sum+=t.table[char1,class]*t.table[char2,class]*t.classlength[class]*t.classtypeorder[class]
+		sum+=t[char1,class]*t[char2,class]*t.classlength[class]*t.classtypeorder[class]
 	end
 	return sum//t.order
 end
@@ -146,8 +146,8 @@ function ortho2norm(t::CharTable{T}, class::Int64) where T <: NfPoly
 	end
 	sum=0
 	for char in range(1, irrchartypes(t))
-		val=t.table[char, class]
-		sum+=t.charsums[char](val*conj(val))
+		val=t[char, class]
+		sum+=t[char].sum(val*conj(val))
 	end
 	return shrink(simplify(t.classlength[class]*sum//t.order, t))
 end
@@ -157,7 +157,7 @@ function ortho2norm(t::SimpleCharTable{T}, class::Int64) where T <: NfPoly  # TO
 	end
 	sum=0
 	for char in range(1, irrchartypes(t))
-		sum+=t.table[char, class]^2
+		sum+=t[char, class]^2
 	end
 	return t.classlength[class]*sum//t.order
 end
@@ -185,9 +185,9 @@ function ortho2scalar(t::CharTable{T}, class1::Int64, class2::Int64) where T <: 
 	end
 	sum=0
 	for char in range(1, irrchartypes(t))
-		val1=shift_class_parameters(t, t.table[char, class1], 1)
-		val2=shift_class_parameters(t, t.table[char, class2], 2)
-		sum+=t.charsums[char](val1*conj(val2))
+		val1=shift_class_parameters(t, t[char, class1], 1)
+		val2=shift_class_parameters(t, t[char, class2], 2)
+		sum+=t[char].sum(val1*conj(val2))
 	end
 	return shrink(simplify(t.classlength[class1]*sum//t.order, t))
 end
@@ -197,7 +197,7 @@ function ortho2scalar(t::SimpleCharTable{T}, class1::Int64, class2::Int64) where
 	end
 	sum=0
 	for char in range(1, irrchartypes(t))
-		sum+=t.table[char, class1]*t.table[char, class2]
+		sum+=t[char, class1]*t[char, class2]
 	end
 	return t.classlength[class1]*sum//t.order
 end

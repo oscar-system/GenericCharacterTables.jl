@@ -32,21 +32,18 @@ function setcongruence(x::CharTable{T}, new_congruence::Tuple{T, T}) where T
 	x.congruence === nothing || error("cannot override already set congruence")
 	return typeof(x)(
 		x.order,
-		deepcopy(x.table),
 		deepcopy(x.classinfo),
 		deepcopy(x.classlength),
-		deepcopy(x.charinfo),
-		deepcopy(x.chardegree),
 		deepcopy(x.classsums),
-		deepcopy(x.charsums),
 		deepcopy(x.classparamindex),
 		deepcopy(x.charparamindex),
 		deepcopy(x.classparams),
-		deepcopy(x.charparams),
 		new_congruence,  # <- this changed
 		x.modulusring,
 		x.argumentring,
 		x.information,
+		deepcopy(x.chars),
+		x.irrchartypes
 	)
 end
 
