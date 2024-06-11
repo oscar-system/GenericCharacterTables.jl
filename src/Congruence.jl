@@ -30,7 +30,7 @@ function setcongruence(x::CharTable{T}, new_congruence::Tuple{T, T}) where T
 	# could lead to inconsistencies. In the future we could interpret this as *adding*
 	# a congruence relation, but then we need to come up with a way to handle it.
 	x.congruence === nothing || error("cannot override already set congruence")
-	return typeof(x)(
+	t=typeof(x)(
 		x.order,
 		deepcopy(x.classinfo),
 		deepcopy(x.classlength),
@@ -42,9 +42,21 @@ function setcongruence(x::CharTable{T}, new_congruence::Tuple{T, T}) where T
 		x.modulusring,
 		x.argumentring,
 		x.information,
-		deepcopy(x.chars),
+		Vector{GenericCharacter{T}}(undef, chartypes(x)),
 		x.irrchartypes
 	)
+	for i in range(1, chartypes(x))
+		char=x[i]
+		t.chars[i]=GenericCharacter(
+			t,
+			deepcopy(char.values),
+			deepcopy(char.info),
+			deepcopy(char.degree),
+			deepcopy(char.sum),
+			deepcopy(char.params)
+		)
+	end
+	return t
 end
 
 function setcongruence(x::CharTable, new_congruence::Tuple{Int, Int})

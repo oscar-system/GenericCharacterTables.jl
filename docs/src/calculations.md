@@ -13,7 +13,7 @@ fulfilled if the evaluation of this polynomial is an integer.
 
 ## On Characters
 ```@docs
-norm(t::CharTable{T}, char::Int64) where T <: NfPoly
+norm(t::Table{T}, char::Int64) where T <: NfPoly
 scalar
 ```
 

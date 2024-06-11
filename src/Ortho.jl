@@ -42,6 +42,29 @@ function classmult(t::SimpleCharTable{T}, class1::Int64, class2::Int64, class3::
 end
 
 """
+    norm(char::AbstractGenericCharacter{T}) where T <: NfPoly
+
+Return the norm of the character type `char`.
+"""
+function Oscar.norm(char::GenericCharacter{T}) where T <: NfPoly
+	t=parent(char)
+	sum=0
+	for class in range(1, classtypes(t))
+		val=char[class]
+		sum+=t.classlength[class]*t.classsums[class](val*conj(val))
+	end
+	return shrink(simplify(sum//t.order, t))
+end
+function Oscar.norm(char::SimpleGenericCharacter{T}) where T <: NfPoly
+	t=parent(char)
+	sum=0
+	for class in range(1, classtypes(t))
+		sum+=char[class]^2*t.classlength[class]*t.classtypeorder[class]
+	end
+	return sum//t.order
+end
+
+"""
     norm(t::Table{T}, char::Int64) where T <: NfPoly
 
 Return the norm of the character type `char`.
@@ -55,24 +78,40 @@ julia> norm(g,1)
 
 ```
 """
-function Oscar.norm(t::CharTable{T}, char::Int64) where T <: NfPoly
+function Oscar.norm(t::Table{T}, char::Int64) where T <: NfPoly
 	if char > chartypes(t)
 		throw(DomainError(char, "Character type is out of range."))
 	end
+	return norm(t[char])
+end
+
+"""
+    scalar(char1::AbstractGenericCharacter{T}, char2::AbstractGenericCharacter{T}) where T <: NfPoly
+
+Return the scalar product between the character types `char1` and `char2`.
+"""
+
+function scalar(char1::GenericCharacter{T}, char2::GenericCharacter{T}) where T <: NfPoly
+	if parent(char1) != parent(char2)
+		throw(DomainError((parent(char1),parent(char2)), "Tables do not match."))
+	end
+	t=parent(char1)
 	sum=0
 	for class in range(1, classtypes(t))
-		val=t[char, class]
-		sum+=t.classlength[class]*t.classsums[class](val*conj(val))
+		val1=shift_char_parameters(t, char1[class], 1)
+		val2=shift_char_parameters(t, char2[class], 2)
+		sum+=t.classlength[class]*t.classsums[class](val1*conj(val2))
 	end
 	return shrink(simplify(sum//t.order, t))
 end
-function Oscar.norm(t::SimpleCharTable{T}, char::Int64) where T <: NfPoly
-	if char > chartypes(t)
-		throw(DomainError(char, "Character type is out of range."))
+function scalar(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T <:NfPoly
+	if parent(char1) != parent(char2)
+		throw(DomainError((parent(char1),parent(char2)), "Tables do not match."))
 	end
+	t=parent(char1)
 	sum=0
 	for class in range(1, classtypes(t))
-		sum+=t[char,class]^2*t.classlength[class]*t.classtypeorder[class]
+		sum+=char1[class]*char2[class]*t.classlength[class]*t.classtypeorder[class]
 	end
 	return sum//t.order
 end
@@ -94,27 +133,11 @@ With exceptions:
   (k1 - k2)//(q - 1) ∈ ℤ
 ```
 """
-function scalar(t::CharTable{T}, char1::Int64, char2::Int64) where T <: NfPoly
+function scalar(t::Table{T}, char1::Int64, char2::Int64) where T <: NfPoly
 	if any((char1, char2).>chartypes(t))
 		throw(DomainError((char1,char2), "Some character types are out of range."))
 	end
-	sum=0
-	for class in range(1, classtypes(t))
-		val1=shift_char_parameters(t, t[char1, class], 1)
-		val2=shift_char_parameters(t, t[char2, class], 2)
-		sum+=t.classlength[class]*t.classsums[class](val1*conj(val2))
-	end
-	return shrink(simplify(sum//t.order, t))
-end
-function scalar(t::SimpleCharTable{T}, char1::Int64, char2::Int64) where T <:NfPoly
-	if any((char1, char2).>chartypes(t))
-		throw(DomainError((char1,char2), "Some character types are out of range."))
-	end
-	sum=0
-	for class in range(1, classtypes(t))
-		sum+=t[char1,class]*t[char2,class]*t.classlength[class]*t.classtypeorder[class]
-	end
-	return sum//t.order
+	return scalar(t[char1], t[char2])
 end
 
 #TODO remove
