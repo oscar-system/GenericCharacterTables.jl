@@ -374,10 +374,10 @@ Leaving `char` unspecified will print the infolists of all character types.
 julia> g=genchartab(\"GL2\");
 
 julia> printinfochar(g)
-1	Any[\"\", [1, 0], Any[\"A_1\", [2]]]
-2	Any[\"\", [1, 1], Any[\"A_1\", [1, 1]]]
-3	Any[\"\", [2, 0], Any[\"A_0\", [1]]]
-4	Any[\"\", [3, 0], Any[\"A_0\", [1]]]
+1	Any[Any[1, 0], Any[\"A_1\", [2]]]
+2	Any[Any[1, 1], Any[\"A_1\", [1, 1]]]
+3	Any[Any[2, 0], Any[\"A_0\", [1]]]
+4	Any[Any[3, 0], Any[\"A_0\", [1]]]
 
 ```
 """
@@ -407,10 +407,10 @@ Leaving `class` unspecified will print the infolists of all class types.
 julia> g=genchartab(\"GL2\");
 
 julia> printinfoclass(g)
-1	Any[\"\", [1, 0], Any[\"A_1\", [1, 1]]]
-2	Any[\"\", [1, 1], Any[\"A_1\", [2]]]
-3	Any[\"\", [2, 0], Any[\"A_0\", [1]]]
-4	Any[\"\", [3, 0], Any[\"A_0\", [1]]]
+1	Any[Any[1, 0], Any[\"A_1\", [1, 1]]]
+2	Any[Any[1, 1], Any[\"A_1\", [2]]]
+3	Any[Any[2, 0], Any[\"A_0\", [1]]]
+4	Any[Any[3, 0], Any[\"A_0\", [1]]]
 
 ```
 """

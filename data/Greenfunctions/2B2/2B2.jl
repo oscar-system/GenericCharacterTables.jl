@@ -18,7 +18,7 @@ table = Generic.Poly{AbsSimpleNumFieldElem}[[
 	sqrt2*q+1,
 	R(1),
 	R(1)]]
-classinfo = Vector{Any}[[""], [""], [""], [""]]
+classinfo = Vector{Any}[[], [], [], []]
 classlength = R.([1, (q-1)*(q+1)*(q^4+1), 1//2*q^2*(q-1)*(q+1)*(q^4+1), 1//2*q^2*(q-1)*(q+1)*(q^4+1)])
 classtypeorder = R.([1, 1, 1, 1])
 charinfo = Vector{Any}[["T_1"], ["T_2"], ["T_3"]]

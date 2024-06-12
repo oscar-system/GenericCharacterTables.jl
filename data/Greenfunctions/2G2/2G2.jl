@@ -34,7 +34,7 @@ table = Generic.Poly{AbsSimpleNumFieldElem}[[
 	R(1),
 	R(1),
 	R(1)]]
-classinfo = Vector{Any}[[""], [""], [""], [""], [""], [""], [""]]
+classinfo = Vector{Any}[[], [], [], [], [], [], []]
 classlength = R.([
 	1,
 	(q^2-1)*(q^2+1)*(q^4-q^2+1),
