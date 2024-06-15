@@ -33,4 +33,4 @@ information = "- Information about the Green functions of \$^2B_2(q^2)\$.
     Math. \\bf75} (1962), 105--145.
 "
 
-TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information)
+TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])

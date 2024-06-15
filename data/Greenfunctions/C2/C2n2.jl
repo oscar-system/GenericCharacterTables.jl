@@ -61,4 +61,4 @@ information = "- Information about the tables of Green functions for CSp_4(q), q
 - The names of the unipotent classes are taken from the article of Shinoda.
 "
 
-TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information)
+TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])

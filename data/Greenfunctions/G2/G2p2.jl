@@ -84,4 +84,4 @@ information = "- Information about the Green functions of \$G_2(2^n)\$.
   The notation for the unipotent classes is taken from that paper.
 "
 
-TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information)
+TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])

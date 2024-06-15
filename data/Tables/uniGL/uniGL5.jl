@@ -457,4 +457,4 @@ information = "- Information about the tables of unipotent characters for GL_5(q
   unipotent characters as linear combinations of them.
 "
 
-TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information)
+TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])

@@ -25,16 +25,17 @@ struct CharTable{T} <: Table{T}
 	information::String  # General info about the table
 	chars::Vector{<:AbstractGenericCharacter{T}}
 	irrchartypes::Int64  # Number of irreducible character types
+	importname::String  # This name can be used to import the table, a "*" indicates a modified table
 end
 function CharTable(order::T, table::Matrix{Cyclotomic{T}}, classinfo::Vector{<:Any}, classlength::Vector{T},
 	charinfo::Vector{<:Any}, chardegree::Vector{T}, classsums::Vector{Function}, charsums::Vector{Function},
 	classparamindex::Vector{Int64}, charparamindex::Vector{Int64}, classparams::Vector{Parameters{T}}, charparams::Vector{Parameters{T}},
 	congruence::Union{Tuple{T, T}, Nothing}, modulusring::PolyRing, argumentring::Generic.UniversalPolyRing{Generic.FracFieldElem{T},
-	Generic.MPoly{Generic.FracFieldElem{T}}}, information::String) where T<:NfPoly
+	Generic.MPoly{Generic.FracFieldElem{T}}}, information::String, importname::String) where T<:NfPoly
 	num_chars=size(table, 1)
 	chars=Vector{GenericCharacter{T}}(undef, num_chars)
 	ct=CharTable{T}(order, classinfo, classlength, classsums, classparamindex, charparamindex,
-			classparams, congruence, modulusring, argumentring, information, chars, num_chars)
+			classparams, congruence, modulusring, argumentring, information, chars, num_chars, importname)
 	for i in range(1, num_chars)
 		ct.chars[i]=GenericCharacter(ct, table[i,:], charinfo[i], chardegree[i], charsums[i], charparams[i])
 	end
@@ -65,11 +66,13 @@ struct SimpleCharTable{T} <: Table{T}
 	information::String  # General info about the table
 	chars::Vector{<:AbstractGenericCharacter{T}}
 	irrchartypes::Int64  # Number of irreducible character types
+	importname::String  # This name can be used to import the table
 	function SimpleCharTable(order::T, table::Matrix{T}, classinfo::Vector{<:Any}, classlength::Vector{T},
-		classtypeorder::Vector{T}, charinfo::Vector{<:Any}, chardegree::Vector{T}, ring::PolyRing, information::String) where T<:NfPoly
+		classtypeorder::Vector{T}, charinfo::Vector{<:Any}, chardegree::Vector{T},
+		ring::PolyRing, information::String, importname::String) where T<:NfPoly
 		num_chars=size(table, 1)
 		chars=Vector{SimpleGenericCharacter{T}}(undef, num_chars)
-		ct=new{T}(order, classinfo, classlength, classtypeorder, ring, information, chars, num_chars)
+		ct=new{T}(order, classinfo, classlength, classtypeorder, ring, information, chars, num_chars, importname)
 		for i in range(1, num_chars)
 			ct.chars[i]=SimpleGenericCharacter(ct, table[i,:], charinfo[i], chardegree[i])
 		end

@@ -721,4 +721,4 @@ information = "- Information about the Green functions of \$^2E_6(q)\$, \$p>3\$.
     {\\em J. Algebra \\bf88} (1984), 584--614.
 "
 
-TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information)
+TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])
