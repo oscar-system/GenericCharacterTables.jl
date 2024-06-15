@@ -1,5 +1,7 @@
 export e2p
 
+import Oscar: pretty, Indent, Dedent
+
 """
     normal_form(a::FracPoly)
 
@@ -185,6 +187,7 @@ function shrink(a::CycloFrac{T}) where T <: NfPoly  # TODO Move this to the cons
 	return CycloFrac(new_numerator, new_denominator, shrink(a.exceptions), simplify=false)
 end
 function Base.show(io::IO, z::CycloFrac)
+	io=pretty(io)
 	if isone(z.denominator)
 		print(io, "$(z.numerator)")
 	else
@@ -206,9 +209,9 @@ function Base.show(io::IO, z::CycloFrac)
 		end
 	end
 	if !isempty(z.exceptions)
-		print(io, "\nWith exceptions:")
+		print(io, "\nWith exceptions:", Indent())
 		for exception in z.exceptions
-			print(io, "\n  $(exception)")
+			print(io, "\n$(exception)")
 		end
 	end
 end

@@ -172,15 +172,17 @@ function status(t::Table)
 end
 
 """
-    printinfotab(t::Table)
+    printinfotab(io::IO, t::Table)
 
-Print metadata of `t` in the latex format.
+Print metadata of `t` in the latex format to `io` where `io` is optional.
 
 This usually includes the time the table was first computed.
 """
-function printinfotab(t::Table)
-	println(t.information)
+function printinfotab(io::IO, t::Table)
+	println(io, t.information)
 end
+
+printinfotab(t::Table) = printinfotab(Base.stdout, t)
 
 """
     order(t::Table)
@@ -299,9 +301,9 @@ function nrclasses(t::SimpleCharTable, class::Int64)
 end
 
 """
-    printcharparam(t::CharTable, char::Union{Int64, Nothing}=nothing)
+    printcharparam(io::IO, t::CharTable, char::Union{Int64, Nothing}=nothing)
 
-Print the parameters of the character type `char` of the table `t`.
+Print the parameters of the character type `char` of the table `t` to `io` where `io` is optional.
 
 This includes the parameter names, ranges and exceptions. Leaving `char` unspecified will print the parameters of all character types.
 
@@ -316,7 +318,7 @@ julia> printcharparam(g)
 4	k ∈ {1,…, q^2 - 1} except (k)//(q + 1) ∈ ℤ
 ```
 """
-function printcharparam(t::CharTable, char::Union{Int64, Nothing}=nothing)
+function printcharparam(io::IO, t::CharTable, char::Union{Int64, Nothing}=nothing)
 	if char === nothing
 		chars=range(1, chartypes(t))
 	else
@@ -326,14 +328,16 @@ function printcharparam(t::CharTable, char::Union{Int64, Nothing}=nothing)
 		chars=[char]
 	end
 	for i in chars
-		println(i, "\t", t[i].params)
+		println(io, i, "\t", t[i].params)
 	end
 end
 
-"""
-    printclassparam(t::CharTable, class::Union{Int64, Nothing}=nothing)
+printcharparam(t::CharTable, char::Union{Int64, Nothing}=nothing) = printcharparam(Base.stdout, t, char)
 
-Print the parameters of the class type `class` of the table `t`.
+"""
+    printclassparam(io::IO, t::CharTable, class::Union{Int64, Nothing}=nothing)
+
+Print the parameters of the class type `class` of the table `t` to `io` where `io` is optional.
 
 This includes the parameter names, ranges and exceptions. Leaving `class` unspecified will print the parameters of all character types.
 
@@ -348,7 +352,7 @@ julia> printclassparam(g)
 4	i ∈ {1,…, q^2 - 1} except (i)//(q + 1) ∈ ℤ
 ```
 """
-function printclassparam(t::CharTable, class::Union{Int64, Nothing}=nothing)
+function printclassparam(io::IO, t::CharTable, class::Union{Int64, Nothing}=nothing)
 	if class === nothing
 		classes=range(1, classtypes(t))
 	else
@@ -358,14 +362,16 @@ function printclassparam(t::CharTable, class::Union{Int64, Nothing}=nothing)
 		classes=[class]
 	end
 	for i in classes
-		println(i, "\t", t.classparams[i])
+		println(io, i, "\t", t.classparams[i])
 	end
 end
 
-"""
-    printinfochar(t::Table, char::Union{Int64, Nothing}=nothing)
+printclassparam(t::CharTable, class::Union{Int64, Nothing}=nothing) = printclassparam(Base.stdout, t, class)
 
-Print the infolists of the character type `char` of the table `t`.
+"""
+    printinfochar(io::IO, t::Table, char::Union{Int64, Nothing}=nothing)
+
+Print the infolists of the character type `char` of the table `t` to `io` where `io` is optional.
 
 Leaving `char` unspecified will print the infolists of all character types.
 
@@ -381,7 +387,7 @@ julia> printinfochar(g)
 
 ```
 """
-function printinfochar(t::Table, char::Union{Int64, Nothing}=nothing)
+function printinfochar(io::IO, t::Table, char::Union{Int64, Nothing}=nothing)
 	if char === nothing
 		chars=range(1, chartypes(t))
 	else
@@ -391,14 +397,16 @@ function printinfochar(t::Table, char::Union{Int64, Nothing}=nothing)
 		chars=[char]
 	end
 	for i in chars
-		println(i, "\t", t[i].info)
+		println(io, i, "\t", t[i].info)
 	end
 end
 
-"""
-    printinfoclass(t::Table, class::Union{Int64, Nothing}=nothing)
+printinfochar(t::Table, char::Union{Int64, Nothing}=nothing) = printinfochar(Base.stdout, t, char)
 
-Print the infolists of the class type `class` of the table `t`.
+"""
+    printinfoclass(io::IO, t::Table, class::Union{Int64, Nothing}=nothing)
+
+Print the infolists of the class type `class` of the table `t` to `io` where `io` is optional.
 
 Leaving `class` unspecified will print the infolists of all class types.
 
@@ -414,7 +422,7 @@ julia> printinfoclass(g)
 
 ```
 """
-function printinfoclass(t::Table, class::Union{Int64, Nothing}=nothing)
+function printinfoclass(io::IO, t::Table, class::Union{Int64, Nothing}=nothing)
 	if class === nothing
 		classes=range(1, classtypes(t))
 	else
@@ -424,14 +432,16 @@ function printinfoclass(t::Table, class::Union{Int64, Nothing}=nothing)
 		classes=[class]
 	end
 	for i in classes
-		println(i, "\t", t.classinfo[i])
+		println(io, i, "\t", t.classinfo[i])
 	end
 end
 
-"""
-    printval(t::Table; char::Union{Int64, Nothing}=nothing, class::Union{Int64, Nothing}=nothing)
+printinfoclass(t::Table, class::Union{Int64, Nothing}=nothing) = printinfoclass(Base.stdout, t, class)
 
-Print the values of the char type `char` and the class type `class` of the table `t`.
+"""
+    printval(io::IO, t::Table; char::Union{Int64, Nothing}=nothing, class::Union{Int64, Nothing}=nothing)
+
+Print the values of the char type `char` and the class type `class` of the table `t` to `io` where `io` is optional.
 
 Leaving `class` unspecified will print the values of all class types at `char`.
 Leaving both unspecified will print all values of t
