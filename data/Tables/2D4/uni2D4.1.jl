@@ -1027,4 +1027,4 @@ information = "- Information about the generic table of unipotent characters of 
 - This table was computed by F.Luebeck, most of it with general programs.
 "
 
-TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information)
+TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])

@@ -60,6 +60,7 @@ end
 	for green in list
 		g=greenfuntab(green)
 		@test g!=nothing
+		@test g.importname==green
 	end
 end
 
@@ -68,5 +69,6 @@ end
 	for table in list
 		g=genchartab(table)
 		@test g!=nothing
+		@test g.importname==table
 	end
 end

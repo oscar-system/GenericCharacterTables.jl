@@ -91,4 +91,4 @@ information = "- Information about the Green functions of \$^3D_4(2^n)\$.
     {\\em Comment. Math. Helvetici \\bf57} (1982), 676--691.
 "
 
-TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information)
+TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])

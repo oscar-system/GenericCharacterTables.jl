@@ -45,4 +45,4 @@ information = "- Information about the Green functions of \$GL_4(2^n):2\$.
     {\\em J. Algebra \\bf159} (1993), 64--97.
 "
 
-TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information)
+TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])

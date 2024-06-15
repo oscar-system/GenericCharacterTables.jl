@@ -1050,4 +1050,4 @@ information = "Information about the table of unipotent characters of \$Sp_6(q)\
   of ``Sp6.0``, then dont use ``uniSp6.0``.
 "
 
-TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information)
+TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])

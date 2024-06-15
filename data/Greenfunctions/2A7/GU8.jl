@@ -606,4 +606,4 @@ information = "- Information about the tables of Green functions for GU_8(q^2).
   > PrintInfoTab(GL2green);
 "
 
-TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information)
+TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])

@@ -38,4 +38,4 @@ information = raw"""- Information about the tables of Green functions for GL_1(q
   These programs are written by U. Porsch and F. Luebeck.
 """
 
-TABLE=SimpleCharTable(order,reshape(table,1,1),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information)
+TABLE=SimpleCharTable(order,reshape(table,1,1),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])

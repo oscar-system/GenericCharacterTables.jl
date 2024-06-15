@@ -43,7 +43,8 @@ function setcongruence(x::CharTable{T}, new_congruence::Tuple{T, T}) where T
 		x.argumentring,
 		x.information,
 		Vector{GenericCharacter{T}}(undef, chartypes(x)),
-		x.irrchartypes
+		x.irrchartypes,
+		x.importname*"*"
 	)
 	for i in range(1, chartypes(x))
 		char=x[i]
