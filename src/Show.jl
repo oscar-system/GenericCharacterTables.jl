@@ -24,6 +24,22 @@ export status
 
 import Oscar: pretty, Indent, Dedent
 
+"""
+    show(io::IO, t::Table)
+
+Display a summary of the generic character table `t`.
+
+# Examples
+```jldoctest
+julia> g=genchartab(\"GL2\")
+Generic character table GL2
+  of order q^4 - q^3 - q^2 + q
+  with 4 irreducible character types
+  with 4 class types
+  with parameters (i, j, l, k)
+
+```
+"""
 function Base.show(io::IO, t::Table)
 	io = pretty(io)
 	println(io, "Generic character table ", t.importname, Indent())
