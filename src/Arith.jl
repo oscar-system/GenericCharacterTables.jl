@@ -2,10 +2,10 @@ export e2p
 
 import Oscar: pretty, Indent, Dedent
 
-"""
+@doc raw"""
     normal_form(a::FracPoly)
 
-Return a normal form `b` of `a` such that ``\\exp(2\\pi \\mathrm{i} \\cdot a) = \\exp(2\\pi \\mathrm{i} \\cdot b)``.
+Return a normal form `b` of `a` such that ``\exp(2\pi \mathrm{i} \cdot a) = \exp(2\pi \mathrm{i} \cdot b)``.
 
 This is done by reducing the numerators of the coefficients modulo their denominators.
 """
@@ -166,7 +166,7 @@ function add_exception!(a::CycloFrac{T}, exception::ParameterException{T}) where
 	push!(a.exceptions, exception)
 end
 
-"""
+@doc raw"""
     shrink(a::CycloFrac{<:NfPoly})
 
 Remove exceptions from `a` that follow from the others. And try to simplify the representation of `a`.
@@ -218,7 +218,7 @@ end
 Base.show(io::IO, m::MIME{Symbol("text/latex")}, z::CycloFrac) = print(io, "\\frac{$(repr("text/latex", z.numerator))}{$(repr("text/latex",z.denominator))}")
 Base.isone(x::CycloFrac) = isone(x.numerator) && isone(x.denominator)
 
-"""
+@doc raw"""
     iszero(x::CycloFrac; ignore_exceptions::Bool=false)
 
 Return if `x` is zero. If `ignore_exceptions` is true then the exceptions of `x` will not be considered.
@@ -231,18 +231,18 @@ function Base.iszero(x::CycloFrac; ignore_exceptions::Bool=false)
 end
 
 # operators
-"""
+@doc raw"""
     e2p(a::FracPoly{<:NfPoly})
 
-Return a `CycloSum` representing ``\\exp(2\\pi \\mathrm{i} \\cdot a)`` 
+Return a `CycloSum` representing ``\exp(2\pi \mathrm{i} \cdot a)``
 ```jldoctest
-julia> R, q = polynomial_ring(QQ, \"q\");
+julia> R, q = polynomial_ring(QQ, "q");
 
 julia> Q = fraction_field(R);
 
 julia> S = UniversalPolynomialRing(Q);
 
-julia> i, j = gens(S, [\"i\", \"j\"]);
+julia> i, j = gens(S, ["i", "j"]);
 
 julia> e2p(1//(q-1)*i+j)
 exp(2π𝑖(1//(q - 1)*i))

@@ -1,7 +1,7 @@
 export norm, scalar, ortho2norm, ortho2scalar, classmult
 # TODO Should we really return Set{ParameterException{T}}() in SimpleCharTable methods? This seems a bit weird.
 
-"""
+@doc raw"""
     classmult(t::Table{T}, class1::Int64, class2::Int64, class3::Int64) where T <: NfPoly
 
 Return the (generic) class multiplication constant of the class types `class1`, `class2` and `class3` of the table `t`.
@@ -41,7 +41,7 @@ function classmult(t::SimpleCharTable{T}, class1::Int64, class2::Int64, class3::
 	return (t.classlength[class1]*t.classlength[class2])*sum//(t.order^2)
 end
 
-"""
+@doc raw"""
     norm(char::AbstractGenericCharacter{T}) where T <: NfPoly
 
 Return the norm of the character type `char`.
@@ -64,14 +64,14 @@ function Oscar.norm(char::SimpleGenericCharacter{T}) where T <: NfPoly
 	return sum//t.order
 end
 
-"""
+@doc raw"""
     norm(t::Table{T}, char::Int64) where T <: NfPoly
 
 Return the norm of the character type `char`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab(\"GL2\");
+julia> g=genchartab("GL2");
 
 julia> norm(g,1)
 1
@@ -85,7 +85,7 @@ function Oscar.norm(t::Table{T}, char::Int64) where T <: NfPoly
 	return norm(t[char])
 end
 
-"""
+@doc raw"""
     scalar(char1::AbstractGenericCharacter{T}, char2::AbstractGenericCharacter{T}) where T <: NfPoly
 
 Return the scalar product between the character types `char1` and `char2`.
@@ -116,7 +116,7 @@ function scalar(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{
 	return sum//t.order
 end
 
-"""
+@doc raw"""
     scalar(t::Table{T}, char1::Int64, char2::Int64) where T <: NfPoly
 
 Return the scalar product between the character types `char1` and `char2`.
@@ -150,7 +150,7 @@ function scalar(t::Table{T}) where T <: NfPoly
 end
 
 
-"""
+@doc raw"""
     ortho2norm(t::Table{T}, class::Int64) where T <: NfPoly
 
 Return the (generic) norm of the class type `class`.
@@ -185,7 +185,7 @@ function ortho2norm(t::SimpleCharTable{T}, class::Int64) where T <: NfPoly  # TO
 	return t.classlength[class]*sum//t.order
 end
 
-"""
+@doc raw"""
     ortho2scalar(t::Table{T}, class1::Int64, class2::Int64) where T <: NfPoly
 
 Return the (generic) scalar product between the class types `class1` and `class2`.

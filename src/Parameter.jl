@@ -1,4 +1,4 @@
-"""
+@doc raw"""
     weak_sign(a::QQFieldElem)
 
 Return the sign of `a`.
@@ -7,7 +7,7 @@ function weak_sign(a::QQFieldElem)
 	return sign(a)
 end
 
-"""
+@doc raw"""
     weak_sign(a::QQFieldElem)
 
 Return the sign of the leading coefficient of the polynomial representation of `a`.
@@ -154,7 +154,7 @@ function isint(a::FracPoly)
 	end
 end
 
-"""
+@doc raw"""
     shrink(a::Set{ParameterException{<:NfPoly}})
 
 Remove exceptions from `a` that follow from the others.

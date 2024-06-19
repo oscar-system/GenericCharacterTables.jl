@@ -68,7 +68,7 @@ end
 congruence(x::CharTable) = x.congruence
 congruence(x::SimpleCharTable) = nothing
 
-"""
+@doc raw"""
     simplify(x::Union{Cyclotomic{T}, ParameterException{T}}, c::T, cinv::Generic.FracFieldElem{T}) where T <: NfPoly
 
 Simplify `x` by replacing the generator of the polynomials of type `T` by `c` and then back to `cinv`.
@@ -79,7 +79,7 @@ function simplify(x::Union{Cyclotomic{T}, ParameterException{T}}, c::T, cinv::Ge
 	setcongruence(setcongruence(x, c), cinv, simplify=false)
 end
 
-"""
+@doc raw"""
     simplify(x::Union{Cyclotomic{T}, ParameterException{T}}, t::CharTable{T}) where T <: NfPoly
 
 Simplify `x` according to the congruence relation given by `t`.

@@ -35,7 +35,7 @@ function var_shift(a::Parameters{<:NfPoly}, vars::Vector{Int64}, step_size::Int6
 		var_shift.(a.substitutions, Ref(vars),Ref(step_size), Ref(steps)))
 end
 
-"""
+@doc raw"""
     shift_class_parameters(t::CharTable{T}, a::Union{Parameters{T},Cyclotomic{T}}, steps::Int64) where T <: NfPoly
 
 Replace all class parameters of `t` in `a` by their counterparts suffixed with `steps`.
@@ -46,7 +46,7 @@ function shift_class_parameters(t::CharTable{T}, a::Union{Parameters{T},Cyclotom
 	return var_shift(a, t.classparamindex, nrparams(t), steps)
 end
 
-"""
+@doc raw"""
     shift_char_parameters(t::CharTable{T}, a::Union{Parameters{T},Cyclotomic{T}}, steps::Int64) where T <: NfPoly
 
 Replace all character parameters of `t` in `a` by their counterparts suffixed with `steps`.

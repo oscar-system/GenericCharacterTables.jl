@@ -44,20 +44,20 @@ function Base.:*(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter
 	return SimpleGenericCharacter{T}(t, new_char_values, ["Tensor of type $char1id and $char2id"], new_char_degree)
 end
 
-"""
+@doc raw"""
     tensor!(t::Table{T}, char1::Int64, char2::Int64) where T <: NfPoly
 
 Append the tensor product of the character types `char1` and `char2` to the table `t`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab(\"GL2\");
+julia> g=genchartab("GL2");
 
 julia> tensor!(g,1,2)
 5
 
 julia> printinfochar(g,5)
-5	[\"Tensor of type 1 and 2\"]
+5	["Tensor of type 1 and 2"]
 
 ```
 """
@@ -69,20 +69,20 @@ function tensor!(t::Table{T}, char1::Int64, char2::Int64) where T <: NfPoly
 	return length(t.chars)
 end
 
-"""
+@doc raw"""
     omega!(t::Table{T}, char::Int64) where T <: NfPoly
 
 Append the (generic) central character of the character type `char` to the table `t`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab(\"GL2\");
+julia> g=genchartab("GL2");
 
 julia> omega!(g,1)
 5
 
 julia> printinfochar(g,5)
-5	[\"Omega of type 1\"]
+5	["Omega of type 1"]
 
 ```
 """
@@ -113,7 +113,7 @@ function omega!(t::SimpleCharTable{T}, char::Int64) where T <: NfPoly  # TODO is
 	return length(t.chars)
 end
 
-"""
+@doc raw"""
     lincomb(coeffs::Vector{Int64}, chars::Vector{AbstractGenericCharacter{T}}) where T <: NfPoly
 
 Return the linear combination of the character types `chars` with coefficients `coeffs`.
@@ -196,20 +196,20 @@ function lincomb(t::SimpleCharTable{T}, coeffs::Vector{Int64}, chars::Vector{Int
 	return SimpleGenericCharacter{T}(t, new_char_values, ["Lincomb $info"], new_char_degree)
 end
 
-"""
+@doc raw"""
     lincomb!(t::Table{T}, coeffs::Vector{Int64}, chars::Vector{Int64}) where T <: NfPoly
 
 Append the linear combination of the character types `chars` with coefficients `coeffs` to the table `t`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab(\"GL2\");
+julia> g=genchartab("GL2");
 
 julia> lincomb!(g,[5,1],[1,2])
 5
 
 julia> printinfochar(g,5)
-5	[\"Lincomb 5 * type 1 + 1 * type 2\"]
+5	["Lincomb 5 * type 1 + 1 * type 2"]
 
 ```
 """
@@ -222,7 +222,7 @@ function lincomb!(t::Table{T}, coeffs::Vector{Int64}, chars::Vector{Int64}) wher
 	return length(t.chars)
 end
 
-"""
+@doc raw"""
     speccharparam!(t::CharTable{T}, char::Int64, var::FracPoly{T}, expr::RingElement) where T <: NfPoly
 
 Replace the parameter `var` with `expr` in the character type `char`.
@@ -264,7 +264,7 @@ function speccharparam!(t::CharTable{T}, char::Int64, var::FracPoly{T}, expr::Ri
 	return nothing
 end
 
-"""
+@doc raw"""
     specclassparam!(t::CharTable{T}, class::Int64, var::FracPoly{T}, expr::RingElement) where T <: NfPoly
 
 Replace the parameter `var` with `expr` in the class type `class`.

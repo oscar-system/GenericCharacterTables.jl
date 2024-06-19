@@ -37,7 +37,7 @@ function ishalf(a::FracPoly{T}) where T<:NfPoly
 	return true
 end
 
-"""
+@doc raw"""
     eesubs(a::Union{Cyclotomic{T},FracPoly{T}}, vars::Union{Vector{<:FracPoly{T}},Vector{Int64}}, vals::Vector{<:RingElement}) where T<:PolyRingElem
 
 Substitute `vals[i]` for `vars[i]` in `a`.
@@ -46,13 +46,13 @@ If `vars` is `Vector{Int64}`, then `vars[i]` represents the index of the variabl
 
 # Examples
 ```jldoctest
-julia> R, q = polynomial_ring(QQ, \"q\");
+julia> R, q = polynomial_ring(QQ, "q");
 
 julia> Q=fraction_field(R);
 
 julia> S=UniversalPolynomialRing(Q);
 
-julia> i, j, k, l = gens(S, [\"i\", \"j\", \"k\", \"l\"]);
+julia> i, j, k, l = gens(S, ["i", "j", "k", "l"]);
 
 julia> a = e2p(2//(q-1)*i*j+1//q*k^2+1//2*i*l)
 exp(2π𝑖(2//(q - 1)*i*j + 1//2*i*l + 1//q*k^2))
@@ -78,7 +78,7 @@ function eesubs(a::ParameterException{T}, vars::Union{Vector{<:FracPoly{T}},Vect
 	return ParameterExcepion(eesubs(a.expression, vars, vals))
 end
 
-"""
+@doc raw"""
     nesum(a::Cyclotomic{T}, var::Union{FracPoly{T},Int64}, lower::Int64, upper::Union{Int64,T}, congruence::Union{Tuple{T,T},Nothing}=nothing) where T<:PolyRingElem
 
 Return the sum of `a`, from `var=lower` to `upper` as `CycloFrac{T}` using the closed formular for geometric sums. If this is not possible
