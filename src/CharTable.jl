@@ -130,7 +130,7 @@ Omitting `x` will return the names of all importable character tables.
 # Examples
 ```jldoctest
 julia> g = genchartab("GL2")
-Generic character table
+Generic character table GL2
   of order q^4 - q^3 - q^2 + q
   with 4 irreducible character types
   with 4 class types
@@ -150,7 +150,7 @@ Omitting `x` will return the names of all importable greenfunctions.
 # Examples
 ```jldoctest
 julia> g = greenfuntab("GL2")
-Generic character table
+Generic character table GL2
   of order q^4 - q^3 - q^2 + q
   with 2 irreducible character types
   with 2 class types

@@ -24,9 +24,25 @@ export status
 
 import Oscar: pretty, Indent, Dedent
 
+"""
+    show(io::IO, t::Table)
+
+Display a summary of the generic character table `t`.
+
+# Examples
+```jldoctest
+julia> g=genchartab(\"GL2\")
+Generic character table GL2
+  of order q^4 - q^3 - q^2 + q
+  with 4 irreducible character types
+  with 4 class types
+  with parameters (i, j, l, k)
+
+```
+"""
 function Base.show(io::IO, t::Table)
 	io = pretty(io)
-	println(io, "Generic character table", Indent())
+	println(io, "Generic character table ", t.importname, Indent())
 	println(io, "of order ", t.order)
 	c = congruence(t)
 	if c !== nothing
@@ -38,6 +54,42 @@ function Base.show(io::IO, t::Table)
 		print(io, "without parameters")
 	else
 		print(io, "with parameters ", params(t)[2])
+	end
+end
+
+"""
+    show(io::IO, c::AbstractGenericCharacter)
+
+Display a summary of the generic character `c`.
+
+# Examples
+```jldoctest
+julia> g=genchartab(\"GL2\");
+
+julia> g[3]
+Generic character of GL2
+  with paramenters
+    k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except (l - k)//(q - 1) ∈ ℤ
+  of degree q + 1
+  with values
+    (q + 1)*exp(2π𝑖(1//(q - 1)*i*l + 1//(q - 1)*i*k))
+    exp(2π𝑖(1//(q - 1)*i*l + 1//(q - 1)*i*k))
+    exp(2π𝑖(1//(q - 1)*i*k + 1//(q - 1)*j*l)) + exp(2π𝑖(1//(q - 1)*i*l + 1//(q - 1)*j*k))
+    0
+
+```
+"""
+function Base.show(io::IO, c::AbstractGenericCharacter)
+	io = pretty(io)
+	println(io, "Generic character of ", parent(c).importname, Indent())
+	if c isa GenericCharacter
+		println(io, "with paramenters ", Indent())
+		println(io, c.params, Dedent())
+	end
+	println(io, "of degree ", c.degree)
+	print(io, "with values", Indent())
+	for val in c.values
+		print(io, "\n", val)
 	end
 end
 
