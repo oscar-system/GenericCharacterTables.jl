@@ -120,7 +120,7 @@ function gentab(tabletype::String)
 	return tables
 end
 
-"""
+@doc raw"""
     genchartab(x::String)
 
 Return the generic character table with name `x`.
@@ -140,7 +140,7 @@ Generic character table GL2
 genchartab(x::String) = gentab(x, "Tables")
 genchartab() = gentab("Tables")
 
-"""
+@doc raw"""
     greenfuntab(x::String)
 
 Return the greenfunction table with name `x`.
