@@ -414,8 +414,7 @@ classparamindex=var_index.([i,j])
 charparamindex=var_index.([k,l])
 congruence=R.((-sqrt3,4*sqrt3))
 
-information = "
-- Information about the generic character table of the Ree groups
+information = "- Information about the generic character table of the Ree groups
   ``^2G_2(q)``. The possible values for q are given by
    \$q^2 = 3^{2*m+1}\$ with m a non negative integer.
 

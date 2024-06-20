@@ -1025,7 +1025,7 @@ chardegree = R.([
 	1//2*q^4*(q^2+q+1)*(q-1)^2,
 	q^9])
 
-information = "Information about the table of unipotent characters of \$Sp_6(q)\$, \$q\$ even
+information = "- Information about the table of unipotent characters of \$Sp_6(q)\$, \$q\$ even
 
 - CHEVIE-name of the table: ``uniSp6.0``
 

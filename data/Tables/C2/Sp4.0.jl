@@ -670,7 +670,7 @@ classparamindex=var_index.([i,j])
 charparamindex=var_index.([k,l])
 congruence=R.((0,2))
 
-information = "Information about the generic character table of \$Sp_4(q)\$, \$q\$ even
+information = "- Information about the generic character table of \$Sp_4(q)\$, \$q\$ even
 
 - CHEVIE-name of the table: ``Sp4.0``
 

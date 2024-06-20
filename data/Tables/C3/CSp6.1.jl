@@ -11205,7 +11205,7 @@ classparamindex=var_index.([i1,i2,i3,i4])
 charparamindex=var_index.([k1,k2,k3,k4])
 congruence=R.((1,2))
 
-information = "Information about the generic character table of \$CSp_6(q)\$, \$q\$ odd
+information = "- Information about the generic character table of \$CSp_6(q)\$, \$q\$ odd
 
 - CHEVIE-name of the table: ``CSp6.1``
 
