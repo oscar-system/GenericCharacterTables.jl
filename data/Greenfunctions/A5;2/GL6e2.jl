@@ -152,13 +152,13 @@ chardegree = R.([
 	-(q-1)^3*(q+1)^2*(q^2+q+1)*(q^2-q+1),
 	-(q-1)^3*(q+1)^2*(q^2+q+1)*(q^2+1)])
 
-information = "- Information about the Green functions of \$GL_6(2^n):2\$.
+information = raw"""- Information about the Green functions of $GL_6(2^n):2$.
 
 - CHEVIE-name of the table: ``GL6e2green``
 
 - The table was first computed in:
-  {\\sc G. Malle}, Generalized Deligne-Lusztig characters,
-    {\\em J. Algebra \\bf159} (1993), 64--97.
-"
+  {\sc G. Malle}, Generalized Deligne-Lusztig characters,
+    {\em J. Algebra \bf159} (1993), 64--97.
+"""
 
 TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])

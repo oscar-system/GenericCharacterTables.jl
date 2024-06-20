@@ -1253,20 +1253,20 @@ classparamindex=var_index.([i,j])
 charparamindex=var_index.([k,l])
 congruence=R.((-1,4))
 
-information = "- Information about the generic character table of \$G_2(q)\$,
-   \$q\$ a power of \$3\$, congruent to \$3\$ modulo \$4\$.
+information = raw"""- Information about the generic character table of $G_2(q)$,
+   $q$ a power of $3$, congruent to $3$ modulo $4$.
 
 - CHEVIE-name of the table: ``G2.10``
 
 - The table was first computed in:
-  {\\sc H.~Enomoto}, The characters of the finite Chevalley group
-  \$G_2(q), q = 3^f\$, {\\em Japan.\\ J.~Math.}, {\\bf 2} (1976), 191--248.
+  {\sc H.~Enomoto}, The characters of the finite Chevalley group
+  $G_2(q), q = 3^f$, {\em Japan.\ J.~Math.}, {\bf 2} (1976), 191--248.
 
 - See also:
-  {\\sc B.~Chang and R.~Ree}, The characters of \$G_2(q)\$, {\\em in}:
+  {\sc B.~Chang and R.~Ree}, The characters of $G_2(q)$, {\em in}:
   Symposia Mathematica Vol.~13, pp.~395--413, Academic Press, London, 1974.
 
-  {\\sc G.~Hiss}, Zerlegungszahlen endlicher Gruppen vom Lie-Typ in
+  {\sc G.~Hiss}, Zerlegungszahlen endlicher Gruppen vom Lie-Typ in
   nicht-definierender Charakteristik, Habilitationsschrift, Aachen 1990.
 
 - Note:
@@ -1286,12 +1286,12 @@ information = "- Information about the generic character table of \$G_2(q)\$,
 cht   Information
 
 ======================================================
-6   [ , [1, 5], [G_2, G_2[1]], X_{18}, \\vartheta_{10}]
+6   [ , [1, 5], [G_2, G_2[1]], X_{18}, \vartheta_{10}]
 
 - Explanation of example:
-  Character type 6 of G2.10 is called \\vartheta_{10} by Enomoto
+  Character type 6 of G2.10 is called \vartheta_{10} by Enomoto
   and corresponds to X_{18} in Chang--Ree.
-"
+"""
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
 	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,R,S,information,splitext(basename(@__FILE__))[1])

@@ -81,16 +81,16 @@ classparamindex=var_index.([a])
 charparamindex=var_index.([n])
 congruence=R.((0,2))
 
-information = "- Information about the generic character table of \$SL_2(q)\$, \$q\$ even
-  (See ``SL2.1`` for the generic character table of \$SL_2(q)\$, \$q\$ odd)
+information = raw"""- Information about the generic character table of $SL_2(q)$, $q$ even
+  (See ``SL2.1`` for the generic character table of $SL_2(q)$, $q$ odd)
 
 - CHEVIE-name of the table: ``SL2.0``
 
 - The table was first computed in:
-  {\\sc I.~Schur}, Untersuchungen über die Darstellung der
+  {\sc I.~Schur}, Untersuchungen über die Darstellung der
   endlichen Gruppen durch gebrochene lineare Substitutionen,
-  {\\em J.~reine angew.\\ Math.} {\\bf 132} (1907), 85--137.
-"
+  {\em J.~reine angew.\ Math.} {\bf 132} (1907), 85--137.
+"""
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
 	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,R,S,information,splitext(basename(@__FILE__))[1])

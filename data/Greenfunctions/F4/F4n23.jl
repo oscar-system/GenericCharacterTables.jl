@@ -737,13 +737,13 @@ chardegree = R.([
 	-(q-1)^3*(1+q+q^2)*(q+1)^3*(1-q+q^2)^2*(q^2+1)^2*(1-q^2+q^4)*(1+q^4),
 	-(q-1)^3*(1+q+q^2)^2*(q+1)^3*(1-q+q^2)*(q^2+1)^2*(1-q^2+q^4)*(1+q^4)])
 
-information = "- Information about the Green functions of \$F_4(q)\$, \$p>3\$.
+information = raw"""- Information about the Green functions of $F_4(q)$, $p>3$.
 
 - CHEVIE-name of the table: ``F4n23green``
 
 - The table was first computed in:
-  {\\sc T. Shoji}, On the Green polynomials of a Chevalley group of type \$F_4\$,
-    {\\em Comm. Algebra \\bf10} (1982), 505--543.
-"
+  {\sc T. Shoji}, On the Green polynomials of a Chevalley group of type $F_4$,
+    {\em Comm. Algebra \bf10} (1982), 505--543.
+"""
 
 TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])

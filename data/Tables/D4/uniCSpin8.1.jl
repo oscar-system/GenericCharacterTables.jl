@@ -2997,17 +2997,17 @@ chardegree = R.([
 	q^7*(q^2+1)^2,
 	q^12])
 
-information = "- Information about the unipotent character table of \$CSpin_8(q)\$, \$q\$ odd
+information = raw"""- Information about the unipotent character table of $CSpin_8(q)$, $q$ odd
 
 - CHEVIE-name of the table: ``uniCSpin8.1``
 
 - The table was first computed in:
-  {\\sc M.~Geck and G.~Pfeiffer}, Unipotent characters of the Chevalley groups
-  \$D_4(q)\$, \$q\$ odd, {\\em Manuscripta Math.} {\\bf 76} (1992), 281--304.
+  {\sc M.~Geck and G.~Pfeiffer}, Unipotent characters of the Chevalley groups
+  $D_4(q)$, $q$ odd, {\em Manuscripta Math.} {\bf 76} (1992), 281--304.
 
 - The symbols parametrizing the unipotent characters are given in form
   of a pair of lists in (the 2nd part of) position 3 of the character
   information list. (Look at ``uniCSpin8.1``[i,-1][3][2], i = 1, ... ,14.)
-"
+"""
 
 TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])

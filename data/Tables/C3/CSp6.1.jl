@@ -11205,13 +11205,13 @@ classparamindex=var_index.([i1,i2,i3,i4])
 charparamindex=var_index.([k1,k2,k3,k4])
 congruence=R.((1,2))
 
-information = "- Information about the generic character table of \$CSp_6(q)\$, \$q\$ odd
+information = raw"""- Information about the generic character table of $CSp_6(q)$, $q$ odd
 
 - CHEVIE-name of the table: ``CSp6.1``
 
 - The computation of this table is explained in:
-  {\\sc F.Lübeck}, Charaktertafeln für die Gruppen
-  \$CSp_6(q)\$ mit ungeradem \$q\$ und \$Sp_6(q)\$ mit geradem \$q\$,
+  {\sc F.Lübeck}, Charaktertafeln für die Gruppen
+  $CSp_6(q)$ mit ungeradem $q$ und $Sp_6(q)$ mit geradem $q$,
   Dissertation, Heidelberg (1993)
 
 - This table is very big. The best way to work with it
@@ -11228,7 +11228,7 @@ information = "- Information about the generic character table of \$CSp_6(q)\$, 
   Specialize  the parameter kK1 to a multiple of q-1 e.g., kK1=0.
   If you are *only* interested in the unipotent characters, you can
   use the table ``uniCSp6.1``, which allows faster calculations.
-"
+"""
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
 	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,R,S,information,splitext(basename(@__FILE__))[1])

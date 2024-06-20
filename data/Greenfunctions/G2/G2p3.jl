@@ -80,15 +80,15 @@ chardegree = R.([
 	(q-1)^2*(q+1)^2*(q^2-q+1),
 	(q-1)^2*(q^2+q+1)*(q^2-q+1)])
 
-information = "- Information about the Green functions of \$G_2(3^n)\$.
+information = raw"""- Information about the Green functions of $G_2(3^n)$.
 
 - CHEVIE-name of the table: ``G2p3green``
 
 - The table was first computed in:
-  {\\sc H. Enomoto}, The characters of the finite Chevalley groups \$G_2(q)\$,
-    \$q=3^f\$, {\\em Japann J. Math. \\bf2} (1976), 191--248.
+  {\sc H. Enomoto}, The characters of the finite Chevalley groups $G_2(q)$,
+    $q=3^f$, {\em Japann J. Math. \bf2} (1976), 191--248.
 
   The notation for the unipotent classes is taken from that paper.
-"
+"""
 
 TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])

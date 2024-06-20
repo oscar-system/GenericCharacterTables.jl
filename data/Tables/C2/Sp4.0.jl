@@ -670,13 +670,13 @@ classparamindex=var_index.([i,j])
 charparamindex=var_index.([k,l])
 congruence=R.((0,2))
 
-information = "- Information about the generic character table of \$Sp_4(q)\$, \$q\$ even
+information = raw"""- Information about the generic character table of $Sp_4(q)$, $q$ even
 
 - CHEVIE-name of the table: ``Sp4.0``
 
 - The table was first computed in:
-  {\\sc H.Enomoto}, The characters of the finite symplectic group
-  \$Sp(4,q)\$, \$q=2^f\$, {\\em Osaka J. Math.} {\\bf 9} (1972), 75--94.
+  {\sc H.Enomoto}, The characters of the finite symplectic group
+  $Sp(4,q)$, $q=2^f$, {\em Osaka J. Math.} {\bf 9} (1972), 75--94.
 
 - The table in the cited paper contains a lot of misprints.
   The table in the CHEVIE-library was recomputed by F.Luebeck
@@ -691,7 +691,7 @@ information = "- Information about the generic character table of \$Sp_4(q)\$, \
 
   shows, that the class type of the third column of the table
   is called A31 by Enomoto.
-"
+"""
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
 	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,R,S,information,splitext(basename(@__FILE__))[1])

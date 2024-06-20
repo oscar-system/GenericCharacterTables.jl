@@ -1163,20 +1163,20 @@ classparamindex=var_index.([i,j])
 charparamindex=var_index.([k,l])
 congruence=R.((-1,3))
 
-information = "- Information about the generic character table of \$G_2(q)\$,
-   \$q\$ even, congruent to \$2\$ modulo \$3\$
+information = raw"""- Information about the generic character table of $G_2(q)$,
+   $q$ even, congruent to $2$ modulo $3$
 
 - CHEVIE-name of the table: ``G2.02``
 
 - The table was first computed in:
-  {\\sc H.~Enomoto and H.~Yamada}, The characters of \$G_2(2^n)\$,
-  {\\em Japan.\\ J.~Math.}, {\\bf 12} (1986), 325--377.
+  {\sc H.~Enomoto and H.~Yamada}, The characters of $G_2(2^n)$,
+  {\em Japan.\ J.~Math.}, {\bf 12} (1986), 325--377.
 
 - See also:
-  {\\sc B.~Chang and R.~Ree}, The characters of \$G_2(q)\$, {\\em in}:
+  {\sc B.~Chang and R.~Ree}, The characters of $G_2(q)$, {\em in}:
   Symposia Mathematica Vol.~13, pp.~395--413, Academic Press, London, 1974.
 
-  {\\sc G.~Hiss}, Zerlegungszahlen endlicher Gruppen vom Lie-Typ in
+  {\sc G.~Hiss}, Zerlegungszahlen endlicher Gruppen vom Lie-Typ in
   nicht-definierender Charakteristik, Habilitationsschrift, Aachen 1990.
 
 - Note:
@@ -1196,12 +1196,12 @@ information = "- Information about the generic character table of \$G_2(q)\$,
 cht   Information
 
 ======================================================
-6   [ , [1, 5], [G_2, G_2[1]], X_{18}, \\vartheta_1']
+6   [ , [1, 5], [G_2, G_2[1]], X_{18}, \vartheta_1']
 
 - Explanation of example:
-  Character type 6 of G2.02 is called \\vartheta_1' by Enomoto--Yamada
+  Character type 6 of G2.02 is called \vartheta_1' by Enomoto--Yamada
   and corresponds to X_{18} in Chang--Ree.
-"
+"""
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
 	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,R,S,information,splitext(basename(@__FILE__))[1])

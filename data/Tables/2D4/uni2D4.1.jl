@@ -1019,12 +1019,12 @@ chardegree = R.([
 	q*(q^4+1),
 	1])
 
-information = "- Information about the generic table of unipotent characters of \$CO_8^-(q)\$,
+information = raw"""- Information about the generic table of unipotent characters of $CO_8^-(q)$,
   with odd q.
 
 - CHEVIE-name of the table: ``uni2D4.1``
 
 - This table was computed by F.Luebeck, most of it with general programs.
-"
+"""
 
 TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])

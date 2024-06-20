@@ -12505,13 +12505,13 @@ chardegree = R.([
 	q*(q^6-q^5+q^4-q^3+q^2-q+1),
 	1])
 
-information = "- Information about the tables of unipotent characters for GU_8(q).
+information = raw"""- Information about the tables of unipotent characters for GU_8(q).
 
 - CHEVIE-name of the table: uniGU8
 
 - This table is computed with general programs written by F.Luebeck.
   They compute the Deligne-Lusztig characters R_T^G(1) and find the
   unipotent characters as linear combinations of them.
-"
+"""
 
 TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])

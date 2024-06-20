@@ -817,15 +817,15 @@ chardegree = R.([
 	(q-1)^4*(q+1)^4*(q^2+q+1)^2*(q^2+1)^2*(q^2-q+1)^2*(q^4+1),
 	(q-1)^4*(q+1)^4*(q^2+q+1)^2*(q^2+1)^2*(q^4+1)*(q^4-q^2+1)])
 
-information = "- Information about the Green functions of \$E_6(2^n):2\$.
+information = raw"""- Information about the Green functions of $E_6(2^n):2$.
 
 - CHEVIE-name of the table: ``E6e2green``
 
 - The table was first computed in:
-  {\\sc G. Malle}, Green functions for groups of types E_6 and F_4 in
-    characteristic 2, {\\em Comm. Algebra \\bf21} (1993), 747--798.
+  {\sc G. Malle}, Green functions for groups of types E_6 and F_4 in
+    characteristic 2, {\em Comm. Algebra \bf21} (1993), 747--798.
 
 - The notation for the unipotent classes is as in that paper.
-"
+"""
 
 TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])

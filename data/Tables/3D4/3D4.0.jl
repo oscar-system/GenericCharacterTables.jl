@@ -1340,15 +1340,15 @@ classparamindex=var_index.([a,b])
 charparamindex=var_index.([k,l])
 congruence=nothing
 
-information = "- Information about the generic character table of \$^3D_4(2^n)\$.
+information = raw"""- Information about the generic character table of $^3D_4(2^n)$.
 
 - CHEVIE-name of the table: ``3D4.0``
 
 - The table was first computed in:
-  {\\sc D. I. Deriziotis, G. O. Michler}, Character table and blocks
-    of finite simple triality groups \$^3D_4(q)\$, {\\em Trans. Am. Math. Soc.
-    \\bf303} (1987), 39--70.
-"
+  {\sc D. I. Deriziotis, G. O. Michler}, Character table and blocks
+    of finite simple triality groups $^3D_4(q)$, {\em Trans. Am. Math. Soc.
+    \bf303} (1987), 39--70.
+"""
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
 	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,R,S,information,splitext(basename(@__FILE__))[1])

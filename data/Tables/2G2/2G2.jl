@@ -414,15 +414,15 @@ classparamindex=var_index.([i,j])
 charparamindex=var_index.([k,l])
 congruence=R.((-sqrt3,4*sqrt3))
 
-information = "- Information about the generic character table of the Ree groups
+information = raw"""- Information about the generic character table of the Ree groups
   ``^2G_2(q)``. The possible values for q are given by
-   \$q^2 = 3^{2*m+1}\$ with m a non negative integer.
+   $q^2 = 3^{2*m+1}$ with m a non negative integer.
 
 - CHEVIE-name of the table: ``ree``
 
 - Most of the table was determined in:
-  {\\sc H.~N.~Ward}, On Ree's series of simple groups,
-  {\\em Trans.\\ Amer.\\ Math.\\ Soc.} {\\bf 121} (1966), 62--89.
+  {\sc H.~N.~Ward}, On Ree's series of simple groups,
+  {\em Trans.\ Amer.\ Math.\ Soc.} {\bf 121} (1966), 62--89.
 
 - The values of the irreducible Deligne-Lusztig characters were
   computed by F.Luebeck.
@@ -432,7 +432,7 @@ information = "- Information about the generic character table of the Ree groups
   information given by ``PrintInfoClass`` and ``PrintInfoChar``.
   These names are also used as names for the unipotent parts of
   the classes.
-"
+"""
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
 	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,R,S,information,splitext(basename(@__FILE__))[1])

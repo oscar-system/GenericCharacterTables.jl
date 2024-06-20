@@ -107,23 +107,23 @@ classparamindex=var_index.([i,j])
 charparamindex=var_index.([l,k])
 congruence=R.((1,2))
 
-information = "- Information about the generic character table of \$PGL_2(q)\$, \$q\$ odd
-  (See ``SL2.0`` for the generic character table of \$PGL_2(q)\$, \$q\$ even)
+information = raw"""- Information about the generic character table of $PGL_2(q)$, $q$ odd
+  (See ``SL2.0`` for the generic character table of $PGL_2(q)$, $q$ even)
 
 - CHEVIE-name of the table: ``PGL2.1``
 
 - The table was first computed in:
-  {\\sc H.~Jordan}, Group-characters of various types of linear groups,
-  {\\em Amer.\\ J.~Math.} {\\bf 29} (1907), 387--405.
+  {\sc H.~Jordan}, Group-characters of various types of linear groups,
+  {\em Amer.\ J.~Math.} {\bf 29} (1907), 387--405.
 
-  {\\sc I.~Schur}, Untersuchungen über die Darstellung der
+  {\sc I.~Schur}, Untersuchungen über die Darstellung der
   endlichen Gruppen durch gebrochene lineare Substitutionen,
-  {\\em J.~reine angew.\\ Math.} {\\bf 132} (1907), 85--137.
+  {\em J.~reine angew.\ Math.} {\bf 132} (1907), 85--137.
 
 - See also:
-  {\\sc R.~Steinberg}, The representations of \$GL(3,q)\$, \$GL(4,q)\$, \$PGL(3,q)\$
-  and \$PGL(4,q)\$, {\\em Can.\\ J.~Math.} {\\bf 3} (1951), 225--235.
-"
+  {\sc R.~Steinberg}, The representations of $GL(3,q)$, $GL(4,q)$, $PGL(3,q)$
+  and $PGL(4,q)$, {\em Can.\ J.~Math.} {\bf 3} (1951), 225--235.
+"""
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
 	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,R,S,information,splitext(basename(@__FILE__))[1])

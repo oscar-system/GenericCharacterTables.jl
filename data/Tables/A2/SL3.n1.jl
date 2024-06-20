@@ -198,29 +198,29 @@ classparamindex=var_index.([a,b])
 charparamindex=var_index.([m,n])
 congruence=nothing
 
-information = "- Information about the generic character table of \$SL_3(q)\$,
-  \$q\$ not congruent to \$1\$ modulo \$3\$
-  (See ``SL3.1`` for the generic character table of \$SL_3(q)\$,
-  \$q\$ congruent to \$1\$ modulo \$3\$.)
+information = raw"""- Information about the generic character table of $SL_3(q)$,
+  $q$ not congruent to $1$ modulo $3$
+  (See ``SL3.1`` for the generic character table of $SL_3(q)$,
+  $q$ congruent to $1$ modulo $3$.)
 
 - Note:
-  The three groups \$SL_3(q)\$, \$PGL_3(q)\$ and \$PSL_3(q)\$ are
-  mutually isomorphic for these values of \$q\$.
+  The three groups $SL_3(q)$, $PGL_3(q)$ and $PSL_3(q)$ are
+  mutually isomorphic for these values of $q$.
 
 - CHEVIE-name of the table: ``SL3.n1``
 
 - The table was first computed in:
-  {\\sc W.~A.~Simpson and J.~S.~Frame}, The character tables for
-  \$SL(3,q)\$, \$SU(3,q^2)\$, \$PSL(3,q)\$, \$PSU(3,q^2)\$,
-  {\\em Can.\\ J.~Math.} {\\bf 25} (1973), 486--494.
+  {\sc W.~A.~Simpson and J.~S.~Frame}, The character tables for
+  $SL(3,q)$, $SU(3,q^2)$, $PSL(3,q)$, $PSU(3,q^2)$,
+  {\em Can.\ J.~Math.} {\bf 25} (1973), 486--494.
 
 - See also:
-  {\\sc R.~Steinberg}, The representations of \$GL(3,q)\$, \$GL(4,q)\$, \$PGL(3,q)\$
-  and \$PGL(4,q)\$, {\\em Can.\\ J.~Math.} {\\bf 3} (1951), 225--235.
+  {\sc R.~Steinberg}, The representations of $GL(3,q)$, $GL(4,q)$, $PGL(3,q)$
+  and $PGL(4,q)$, {\em Can.\ J.~Math.} {\bf 3} (1951), 225--235.
 
-  {\\sc J.~A.~Green}, The characters of the finite general linear groups,
-  {\\em Trans.\\ Amer.\\ Math.\\ Soc.} {\\bf 80} (1955), 402--447.
-"
+  {\sc J.~A.~Green}, The characters of the finite general linear groups,
+  {\em Trans.\ Amer.\ Math.\ Soc.} {\bf 80} (1955), 402--447.
+"""
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
 	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,R,S,information,splitext(basename(@__FILE__))[1])
