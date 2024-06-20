@@ -763,10 +763,10 @@ chardegree = R.([
 	-(q-1)^5*(q^2+1)^2*(q^2+q+1)^3*(q+1)^3*(q^2-q+1)^2*(q^4+1)*(q^6+q^3+1)*(q^4-q^2+1),
 	-(q-1)^5*(q+1)^3*(q^2+q+1)^3*(q^2+1)*(q^4+q^3+q^2+q+1)*(q^4+1)*(q^2-q+1)*(q^6+q^3+1)*(q^4-q^2+1)])
 
-information = "- Information about the Green functions of \$E_6(3^n)\$.
+information = raw"""- Information about the Green functions of $E_6(3^n)$.
 
 - CHEVIE-name of the table: ``E6p3green``
 
-"
+"""
 
 TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])

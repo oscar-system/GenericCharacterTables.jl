@@ -131,22 +131,22 @@ classparamindex=var_index.([i])
 charparamindex=var_index.([k])
 congruence=R.((-1,4))
 
-information = "- Information about the generic character table of \$PSL_2(q^2)\$,
-  \$q^2\$ congruent to \$3\$ modulo \$4\$. The possible values for q are given by
-  \$q^2 = p^m\$ with m a non negative integer and \$p\$ a prime number.
+information = raw"""- Information about the generic character table of $PSL_2(q^2)$,
+  $q^2$ congruent to $3$ modulo $4$. The possible values for q are given by
+  $q^2 = p^m$ with m a non negative integer and $p$ a prime number.
 
 - CHEVIE-name of the table: ``PSL2.3``
 
 - The table was first (implicitly) computed in:
-  {\\sc F.~G.~Frobenius}, Über Gruppencharaktere, Sitzungsberichte
+  {\sc F.~G.~Frobenius}, Über Gruppencharaktere, Sitzungsberichte
   der Königlich Preussischen Akademie der Wissenschaften zu
   Berlin (1896), 985--1021.
 
 - See also:
-  {\\sc I.~Schur}, Untersuchungen über die Darstellung der
+  {\sc I.~Schur}, Untersuchungen über die Darstellung der
   endlichen Gruppen durch gebrochene lineare Substitutionen,
-  {\\em J.~reine angew.\\ Math.} {\\bf 132} (1907), 85--137.
-"
+  {\em J.~reine angew.\ Math.} {\bf 132} (1907), 85--137.
+"""
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
 	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,R,S,information,splitext(basename(@__FILE__))[1])

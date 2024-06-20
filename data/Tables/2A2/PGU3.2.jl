@@ -242,22 +242,22 @@ classparamindex=var_index.([k,l])
 charparamindex=var_index.([u,v])
 congruence=R.((-1,3))
 
-information = "- Information about the generic character table of \$PGU_3(q)\$,
-  \$q\$ congruent to \$2\$ modulo \$3\$.
-  (See ``SU3.n2`` for the generic character table of \$PGU_3(q)\$,
-  \$q\$ not congruent to \$2\$ modulo \$3\$.)
+information = raw"""- Information about the generic character table of $PGU_3(q)$,
+  $q$ congruent to $2$ modulo $3$.
+  (See ``SU3.n2`` for the generic character table of $PGU_3(q)$,
+  $q$ not congruent to $2$ modulo $3$.)
 
 - CHEVIE-name of the table: ``PGU3.2``
 
 - The table was derived by Meinolf Geck from:
-  {\\sc V.~Ennola}, On the characters of the finite unitary groups,
-  {\\em Ann.\\ Acad.\\ Sci.\\ Fenn.\\ Ser.~A~I} {\\bf 323} (1963), 1--36.
+  {\sc V.~Ennola}, On the characters of the finite unitary groups,
+  {\em Ann.\ Acad.\ Sci.\ Fenn.\ Ser.~A~I} {\bf 323} (1963), 1--36.
 
 
 - See also:
-  {\\sc V.~Ennola}, On the conjugacy classes of the finite unitary groups,
-  {\\em Ann.\\ Acad.\\ Sci.\\ Fenn.\\ Ser.~A~I} {\\bf 313} (1962), 1--14.
-"
+  {\sc V.~Ennola}, On the conjugacy classes of the finite unitary groups,
+  {\em Ann.\ Acad.\ Sci.\ Fenn.\ Ser.~A~I} {\bf 313} (1962), 1--14.
+"""
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
 	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,R,S,information,splitext(basename(@__FILE__))[1])

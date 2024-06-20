@@ -2833,17 +2833,17 @@ classparamindex=var_index.([a,b])
 charparamindex=var_index.([k,l])
 congruence=R.((-sqrt2, 3*sqrt2))
 
-information = "- Information about the generic character table of \$^2F_4(q^2)\$,
-  \$\\frac{q}{\\sqrt{2}}\$ congruent to \$2\$ modulo \$3\$.
+information = raw"""- Information about the generic character table of $^2F_4(q^2)$,
+  $\frac{q}{\sqrt{2}}$ congruent to $2$ modulo $3$.
 
 - CHEVIE-name of the table: ``Ree``
 
 - The unipotent characters were first computed in:
-  {\\sc G. Malle}, Die unipotenten Charaktere von \$^2F_4(q^2)\$,
-    {\\em Comm. Algebra \\bf18} (1990), 2361--2381.
+  {\sc G. Malle}, Die unipotenten Charaktere von $^2F_4(q^2)$,
+    {\em Comm. Algebra \bf18} (1990), 2361--2381.
 
 - The other irreducible characters were added by G. Malle
-"
+"""
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
 	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,R,S,information,splitext(basename(@__FILE__))[1])

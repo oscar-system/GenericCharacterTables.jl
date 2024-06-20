@@ -20,12 +20,12 @@ information = raw"""- Information about the tables of Green functions for GL_1(q
   groups, {\em Trans. Amer. Math. Soc.} {\bf 80} (1955), 402--447.
 
 - See also:
-  {\sc R.~Steinberg}, The representations of $GL(3,q)$,  $GL(4,q)$, $PGL(3,q)$ 
+  {\sc R.~Steinberg}, The representations of $GL(3,q)$,  $GL(4,q)$, $PGL(3,q)$
   and $PGL(4,q)$, {\em Can. J. of Math.} {\bf 3} (1951), 225--235.
 
 - This CHEVIE-table is computed by an algorithm from 
   the following article:
-  {\sc A.~Lascoux and M.~P.~Schützenberger}, Sur une conjecture de 
+  {\sc A.~Lascoux and M.~P.~Schützenberger}, Sur une conjecture de
   H.~O.~Foulkes, {\em C. R. Acad. Sci. Paris} {\bf 286A}  (1978), 323--324.
 
 

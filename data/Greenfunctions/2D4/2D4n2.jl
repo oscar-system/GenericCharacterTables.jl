@@ -120,7 +120,7 @@ charinfo = Vector{Any}[ # TODO
 
 chardegree = R.([0, 0, 0, 0, 0, 0, 0, 0, 0])
 
-information = "- Information about the Green functions of \$O_8^-(q)\$ with odd \$q\$.
+information = raw"""- Information about the Green functions of $O_8^-(q)$ with odd $q$.
 
 - CHEVIE-name of the table: ``2D4n2green``
 
@@ -133,6 +133,6 @@ information = "- Information about the Green functions of \$O_8^-(q)\$ with odd 
 
 - Position [-1,-1] contains the transformation matrix to the
   Foulkes functions and [0,-1] the corresponding labels.
-"
+"""
 
 TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])

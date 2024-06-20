@@ -242,21 +242,21 @@ classparamindex=var_index.([a,b])
 charparamindex=var_index.([m,n])
 congruence=R.((1,3))
 
-information = "- Information about the generic character table of \$PGL_3(q)\$,
-  \$q\$ congruent to \$1\$ modulo \$3\$.
-  (See ``SL3.n1`` for the generic character table of \$PGL_3(q)\$,
-  \$q\$ not congruent to \$1\$ modulo \$3\$.)
+information = raw"""- Information about the generic character table of $PGL_3(q)$,
+  $q$ congruent to $1$ modulo $3$.
+  (See ``SL3.n1`` for the generic character table of $PGL_3(q)$,
+  $q$ not congruent to $1$ modulo $3$.)
 
 - CHEVIE-name of the table: ``PGL3.1``
 
 - The table was first computed in:
-  {\\sc R.~Steinberg}, The representations of \$GL(3,q)\$, \$GL(4,q)\$, \$PGL(3,q)\$
-  and \$PGL(4,q)\$, {\\em Can.\\ J.~Math.} {\\bf 3} (1951), 225--235.
+  {\sc R.~Steinberg}, The representations of $GL(3,q)$, $GL(4,q)$, $PGL(3,q)$
+  and $PGL(4,q)$, {\em Can.\ J.~Math.} {\bf 3} (1951), 225--235.
 
 - See also:
-  {\\sc J.~A.~Green}, The characters of the finite general linear groups,
-  {\\em Trans.\\ Amer.\\ Math.\\ Soc.} {\\bf 80} (1955), 402--447.
-"
+  {\sc J.~A.~Green}, The characters of the finite general linear groups,
+  {\em Trans.\ Amer.\ Math.\ Soc.} {\bf 80} (1955), 402--447.
+"""
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
 	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,R,S,information,splitext(basename(@__FILE__))[1])

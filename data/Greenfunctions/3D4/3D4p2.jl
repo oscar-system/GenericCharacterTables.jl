@@ -82,13 +82,13 @@ chardegree = R.([
 	(q+1)^2*(q-1)^2*(q^2-q+1)^2*(q^2+q+1)^2,
 	(q^2-q+1)*(q^4-q^2+1)*(q-1)^2*(q^2+q+1)^2])
 
-information = "- Information about the Green functions of \$^3D_4(2^n)\$.
+information = raw"""- Information about the Green functions of $^3D_4(2^n)$.
 
 - CHEVIE-name of the table: ``3D4p2green``
 
 - The table was first computed in:
-  {\\sc N. Spaltenstein}, Caract``eres unipotents de \$^3D_4(F_q)\$,
-    {\\em Comment. Math. Helvetici \\bf57} (1982), 676--691.
-"
+  {\sc N. Spaltenstein}, Caract``eres unipotents de $^3D_4(F_q)$,
+    {\em Comment. Math. Helvetici \bf57} (1982), 676--691.
+"""
 
 TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])

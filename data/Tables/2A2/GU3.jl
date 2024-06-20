@@ -243,19 +243,19 @@ classparamindex=var_index.([k,l,m])
 charparamindex=var_index.([u,v,w])
 congruence=nothing
 
-information = "- Information about the generic character table of \$GU_3(q)\$.
+information = raw"""- Information about the generic character table of $GU_3(q)$.
 
 - CHEVIE-name of the table: ``GU3``
 
 - The table was first computed in:
-  {\\sc V.~Ennola}, On the characters of the finite unitary groups,
-  {\\em Ann.\\ Acad.\\ Sci.\\ Fenn.\\ Ser.~A~I} {\\bf 323} (1963), 1--36.
+  {\sc V.~Ennola}, On the characters of the finite unitary groups,
+  {\em Ann.\ Acad.\ Sci.\ Fenn.\ Ser.~A~I} {\bf 323} (1963), 1--36.
 
 
 - See also:
-  {\\sc V.~Ennola}, On the conjugacy classes of the finite unitary groups,
-  {\\em Ann.\\ Acad.\\ Sci.\\ Fenn.\\ Ser.~A~I} {\\bf 313} (1962), 1--14.
-"
+  {\sc V.~Ennola}, On the conjugacy classes of the finite unitary groups,
+  {\em Ann.\ Acad.\ Sci.\ Fenn.\ Ser.~A~I} {\bf 313} (1962), 1--14.
+"""
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
 	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,R,S,information,splitext(basename(@__FILE__))[1])

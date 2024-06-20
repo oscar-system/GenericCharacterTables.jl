@@ -1476,21 +1476,21 @@ classparamindex=var_index.([i,j])
 charparamindex=var_index.([k,l])
 congruence=R.((1,12))
 
-information = "- Information about the generic character table of \$G_2(q)\$,
-  \$q\$ odd, congruent to \$1\$ modulo \$3\$ and \$4\$.
+information = raw"""- Information about the generic character table of $G_2(q)$,
+  $q$ odd, congruent to $1$ modulo $3$ and $4$.
 
 - CHEVIE-name of the table: ``G2.11``
 
 - The table was first computed in:
-  {\\sc B.~Chang and R.~Ree}, The characters of \$G_2(q)\$, {\\em in}:
+  {\sc B.~Chang and R.~Ree}, The characters of $G_2(q)$, {\em in}:
   Symposia Mathematica Vol.~13, pp.~395--413, Academic Press, London, 1974.
 
 - See also:
 
-  {\\sc B.~Chang}, The conjugate classes of Chevalley groups of
-  type (\$G_2\$), {\\em J.~Algebra} {\\bf 9} (1968), 190--211.
+  {\sc B.~Chang}, The conjugate classes of Chevalley groups of
+  type ($G_2$), {\em J.~Algebra} {\bf 9} (1968), 190--211.
 
-  {\\sc G.~Hiss}, Zerlegungszahlen endlicher Gruppen vom Lie-Typ in
+  {\sc G.~Hiss}, Zerlegungszahlen endlicher Gruppen vom Lie-Typ in
   nicht-definierender Charakteristik, Habilitationsschrift, Aachen 1990.
 
 - Note:
@@ -1510,7 +1510,7 @@ cht   Information
 
 - Explanation of example:
   Character type 6 of G2.11 is called X_{18} by Chang and Ree
-"
+"""
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
 	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,R,S,information,splitext(basename(@__FILE__))[1])

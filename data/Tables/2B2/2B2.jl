@@ -162,14 +162,14 @@ classparamindex=var_index.([a,b,c])
 charparamindex=var_index.([s,k,u])
 congruence=R.((0,sqrt2))
 
-information = "- Information about the generic character table of \$^2B_2(q^2)\$.
+information = raw"""- Information about the generic character table of $^2B_2(q^2)$.
 
 - CHEVIE-name of the table: ``Sz``
 
 - The table was first computed in:
-  {\\sc M. Suzuki}, On a class of doubly transitive groups, {\\em Ann. of
-    Math. \\bf75} (1962), 105--145.
-"
+  {\sc M. Suzuki}, On a class of doubly transitive groups, {\em Ann. of
+    Math. \bf75} (1962), 105--145.
+"""
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
 	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,R,S,information,splitext(basename(@__FILE__))[1])

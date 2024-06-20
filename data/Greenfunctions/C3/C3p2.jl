@@ -163,20 +163,20 @@ chardegree = R.([
 	-(q-1)^3*(q+1)^2*(q^2+q+1)*(q^2-q+1),
 	-(q-1)^3*(q+1)^2*(q^2+q+1)*(q^2+1)])
 
-information = "- Information about the Green functions of \$Sp_6(2^n)\$.
+information = raw"""- Information about the Green functions of $Sp_6(2^n)$.
 
 - CHEVIE-name of the table: ``C3p2green``
 
 - The table was published in:
-  {\\sc G. Malle}, Green functions for groups of types E_6 and F_4 in
-  characteristic 2, {\\em Comm. Algebra} {\\bf21} (1993), 747--798.
+  {\sc G. Malle}, Green functions for groups of types E_6 and F_4 in
+  characteristic 2, {\em Comm. Algebra} {\bf21} (1993), 747--798.
 
 - The unipotent classes were determined in:
-  {\\sc K. Shinoda}, The conjugacy classes of Chevalley groups of type,
-  \$(F_4)\$ over finite fields of characteristic 2, {\\em J. Fac Sci
-  Univ. Tokyo} {\\bf21} (1974), 133--159.
+  {\sc K. Shinoda}, The conjugacy classes of Chevalley groups of type,
+  $(F_4)$ over finite fields of characteristic 2, {\em J. Fac Sci
+  Univ. Tokyo} {\bf21} (1974), 133--159.
 
 - The notation for the unipotent classes is taken from that paper.
-"
+"""
 
 TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])

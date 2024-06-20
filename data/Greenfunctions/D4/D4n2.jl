@@ -219,5 +219,5 @@ chardegree = R.([
 	(q-1)^4*(q+1)^4*(q^2+q+1)*(q^2-q+1),
 	(q-1)^4*(q+1)^2*(q^2+q+1)*(q^2+1)^2])
 
-information = ""
+information = raw""""""
 TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])

@@ -2470,7 +2470,7 @@ chardegree = R.([
 	q^7*(q^2+1)^2,
 	q^12])
 
-information = "- Information about the unipotent character table of \$Spin_8(q)\$, \$q\$ even
+information = raw"""- Information about the unipotent character table of $Spin_8(q)$, $q$ even
 
 - CHEVIE-name of the table: ``uniSpin8.0``
 
@@ -2479,6 +2479,6 @@ information = "- Information about the unipotent character table of \$Spin_8(q)\
 - The symbols parametrizing the unipotent characters are given in form
   of a pair of lists in (the 2nd part of) position 3 of the character
   information list. (Look at ``uniSpin8.0``[i,-1][3][2], i = 1, ... ,14.)
-"
+"""
 
 TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])
