@@ -22,7 +22,7 @@ export printval
 export status
 # TODO PrintValPhi, PrintToTex?
 
-import Oscar: pretty, Indent, Dedent
+import Oscar: pretty, Indent, Dedent, terse, is_terse
 
 @doc raw"""
     show(io::IO, t::Table)
@@ -38,9 +38,13 @@ Generic character table GL2
   with 4 class types
   with parameters (i, j, l, k)
 
+julia> [g]
+1-element Vector{GenericCharacterTables.CharTable{QQPolyRingElem}}:
+ Generic character table GL2
+
 ```
 """
-function Base.show(io::IO, t::Table)
+function Base.show(io::IO, ::MIME"text/plain", t::Table)
 	io = pretty(io)
 	println(io, "Generic character table ", t.importname, Indent())
 	println(io, "of order ", t.order)
@@ -55,6 +59,10 @@ function Base.show(io::IO, t::Table)
 	else
 		print(io, "with parameters ", params(t)[2])
 	end
+end
+
+function Base.show(io::IO, t::Table)
+	print(io, "Generic character table ", t.importname)
 end
 
 @doc raw"""
@@ -77,9 +85,13 @@ Generic character of GL2
     exp(2π𝑖(1//(q - 1)*i*k + 1//(q - 1)*j*l)) + exp(2π𝑖(1//(q - 1)*i*l + 1//(q - 1)*j*k))
     0
 
+julia> [g[3]]
+1-element Vector{GenericCharacterTables.GenericCharacter{QQPolyRingElem}}:
+ Generic character of GL2
+
 ```
 """
-function Base.show(io::IO, c::AbstractGenericCharacter)
+function Base.show(io::IO, ::MIME"text/plain", c::AbstractGenericCharacter)
 	io = pretty(io)
 	println(io, "Generic character of ", parent(c).importname, Indent())
 	if c isa GenericCharacter
@@ -91,6 +103,10 @@ function Base.show(io::IO, c::AbstractGenericCharacter)
 	for val in c.values
 		print(io, "\n", val)
 	end
+end
+
+function Base.show(io::IO, c::AbstractGenericCharacter)
+	print(io, "Generic character of ", parent(c).importname)
 end
 
 @doc raw"""
