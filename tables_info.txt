@@ -1,3 +1,0 @@
-"many" Exceptions:
-	2F4/*
-	3D4/*
