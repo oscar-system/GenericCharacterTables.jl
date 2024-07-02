@@ -110,8 +110,6 @@ function readmaple(path::String, folder::String)
 	
 	w=bracket2vector(removecomments(re),2)
 
-	# re=GEW2e2p(,joinedparams)
-	
 	cht=parse(Int64,w[1][4])
 	clt=parse(Int64,w[1][6])
 	
@@ -150,7 +148,7 @@ function readmaple(path::String, folder::String)
 	else
 		for (i,wi) in enumerate(w[4:3+cht])
 			# println(wi)
-			ret = GEW2e2p.(wi[3:2+clt],Ref(joinedparams))
+			ret = GEW2cyclo.(wi[3:2+clt],Ref(joinedparams))
 			v[i]="[\n\t"*join(ret,",\n\t")*"]"
 
 			vch[i] = convertpoly(replace(wi[2]," "=>"","\n"=>""))

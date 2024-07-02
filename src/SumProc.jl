@@ -54,7 +54,7 @@ julia> S=UniversalPolynomialRing(Q);
 
 julia> i, j, k, l = gens(S, ["i", "j", "k", "l"]);
 
-julia> a = e2p(2//(q-1)*i*j+1//q*k^2+1//2*i*l)
+julia> a = CycloSum(R(1), 2//(q-1)*i*j+1//q*k^2+1//2*i*l)
 exp(2π𝑖(2//(q - 1)*i*j + 1//2*i*l + 1//q*k^2))
 
 julia> eesubs(a,[i,k],[j,3*i])
@@ -95,7 +95,7 @@ julia> S=UniversalPolynomialRing(Q);
 
 julia> i, = gens(S, ["i"]);
 
-julia> a = e2p(1//(q-1)*i)
+julia> a = CycloSum(R(1), 1//(q-1)*i)
 exp(2π𝑖(1//(q - 1)*i))
 
 julia> nesum(a, i, 1, q-1)
@@ -127,14 +127,15 @@ function nesum(a::CycloFrac{T}, var::Int64, lower::Int64, upper::Union{Int64,T},
 		elseif isone(var_degree)  # `summand.argument` linearly depends on `var` hence the sum is a geometric sum.
 			var_coeff=coeff(summand.argument, [var], [1])
 			constant=eesubs(summand.argument, [var], [0])
-			geometric_sum=summand.modulus*e2p(constant)*(e2p((upper+1)*var_coeff)-1)//(e2p(var_coeff)-1)
+			o=one(summand.modulus)
+			geometric_sum=CycloSum(summand.modulus, constant)*(CycloSum(o, (upper+1)*var_coeff)-1)//(CycloSum(o, var_coeff)-1)
 			if congruence === nothing
 				sum+=geometric_sum
 			else
 				sum+=simplify(geometric_sum, c, cinv)
 			end
-			# If `var_coeff` evaluates to an integer `e2p(var_coeff)` evaluates to one and thus `e2p(var_coeff)-1` to zero.
-			# So in this case the closed formular for the geometric sum doesn't hold.
+			# If `var_coeff` evaluates to an integer `CycloSum(o, var_coeff)` evaluates to one and thus `CycloSum(o, var_coeff)-1`
+			# to zero. So in this case the closed formular for the geometric sum doesn't hold.
 			if !(ishalf(var_coeff) && isunitfraction(var_coeff))  # TODO make this more general to skip more exceptions?
 				if congruence === nothing
 					exception=ParameterException(var_coeff)

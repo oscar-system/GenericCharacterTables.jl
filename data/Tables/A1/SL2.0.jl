@@ -8,22 +8,22 @@ a,n, _...=gens(S, ["a", "n", "a1", "n1", "a2", "n2", "a3", "n3", "at1", "nt1", "
 
 order = q*(q-1)*(q+1)
 table = Cyclotomic{QQPolyRingElem}[[
-	(1)*e2p(S(0)),
-	(1)*e2p(S(0)),
-	(1)*e2p(S(0)),
-	(1)*e2p(S(0))] [
-	(q)*e2p(S(0)),
-	(0)*e2p(S(0)),
-	(1)*e2p(S(0)),
-	(-1)*e2p(S(0))] [
-	((q+1))*e2p(S(0)),
-	(1)*e2p(S(0)),
-	e2p((n*a)*S(1//(q-1)))+e2p((-n*a)*S(1//(q-1))),
-	(0)*e2p(S(0))] [
-	((q-1))*e2p(S(0)),
-	(-1)*e2p(S(0)),
-	(0)*e2p(S(0)),
-	-e2p((n*a)*S(1//(q+1)))-e2p((-n*a)*S(1//(q+1)))]]
+	CycloSum(R(1), S(0)),
+	CycloSum(R(1), S(0)),
+	CycloSum(R(1), S(0)),
+	CycloSum(R(1), S(0))] [
+	(q)*CycloSum(R(1), S(0)),
+	CycloSum(R(0), S(0)),
+	CycloSum(R(1), S(0)),
+	-CycloSum(R(1), S(0))] [
+	((q+1))*CycloSum(R(1), S(0)),
+	CycloSum(R(1), S(0)),
+	CycloSum(R(1), (n*a)*S(1//(q-1)))+CycloSum(R(1), (-n*a)*S(1//(q-1))),
+	CycloSum(R(0), S(0))] [
+	((q-1))*CycloSum(R(1), S(0)),
+	-CycloSum(R(1), S(0)),
+	CycloSum(R(0), S(0)),
+	-CycloSum(R(1), (n*a)*S(1//(q+1)))-CycloSum(R(1), (-n*a)*S(1//(q+1)))]]
 classinfo = Vector{Any}[[[1,0],["A_1",[1,1]]], [[1,1],["A_1",[2]]], [[2,0],["A_0",[1]]], [[3,0],["A_0",[1]]]]
 classlength = R.([1, (q-1)*(q+1), q*(q+1), q*(q-1)])
 charinfo = Vector{Any}[[[1,0],["A_1",[2]]], [[1,1],["A_1",[1,1]]], [[2,0],["A_0",[1]]], [[3,0],["A_0",[1]]]]

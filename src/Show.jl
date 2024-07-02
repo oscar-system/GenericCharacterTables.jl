@@ -329,7 +329,8 @@ function nrchars(t::CharTable{T}, char::Int64) where T <: NfPoly
 	if char > irrchartypes(t)
 		throw(DomainError(char, "Cannot calculate number of characters in reducible types."))
 	else
-		result=simplify(t[char].sum(e2p(t.argumentring(0))//e2p(t.argumentring(0))), t)
+		o=CycloSum(t.modulusring(1), t.argumentring(0))
+		result=simplify(t[char].sum(o//o), t)
 		return shrink(result)
 	end
 end
@@ -358,7 +359,8 @@ function nrclasses(t::CharTable{T}, class::Int64) where T <: NfPoly
 	if class > classtypes(t)
 		throw(DomainError(class, "Class type is out of range."))
 	end
-	result=simplify(t.classsums[class](e2p(t.argumentring(0))//e2p(t.argumentring(0))), t)
+	o=CycloSum(t.modulusring(1), t.argumentring(0))
+	result=simplify(t.classsums[class](o//o), t)
 	return shrink(result)
 end
 function nrclasses(t::SimpleCharTable, class::Int64)

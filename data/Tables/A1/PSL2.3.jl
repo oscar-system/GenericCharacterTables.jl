@@ -8,42 +8,42 @@ i,k, _...=gens(S, ["i", "k", "i1", "k1", "i2", "k2", "i3", "k3", "it1", "kt1", "
 
 order = q^2*(q^2-1)*(q^2+1)*1//2
 table = Cyclotomic{QQPolyRingElem}[[
-	(1)*e2p(S(0)),
-	(1)*e2p(S(0)),
-	(1)*e2p(S(0)),
-	(1)*e2p(S(0)),
-	(1)*e2p(S(0)),
-	(1)*e2p(S(0))] [
-	(q^2)*e2p(S(0)),
-	(0)*e2p(S(0)),
-	(0)*e2p(S(0)),
-	(1)*e2p(S(0)),
-	(-1)*e2p(S(0)),
-	(-1)*e2p(S(0))] [
-	(1//2*(q^2-1))*e2p(S(0)),
-	-1//2+1//2*q*e2p(S(1//(4))),
-	-1//2-1//2*q*e2p(S(1//(4))),
-	(0)*e2p(S(0)),
-	-e2p(i*S(1//(2))),
-	-e2p(((q^2+1)*1//4)*S(1//(2)))] [
-	(1//2*(q^2-1))*e2p(S(0)),
-	-1//2-1//2*q*e2p(S(1//(4))),
-	-1//2+1//2*q*e2p(S(1//(4))),
-	(0)*e2p(S(0)),
-	-e2p(i*S(1//(2))),
-	-e2p(((q^2+1)*1//4)*S(1//(2)))] [
-	(q^2+1)*e2p(S(0)),
-	(1)*e2p(S(0)),
-	(1)*e2p(S(0)),
-	e2p((2*i*k)*S(1//(q^2-1)))+e2p((-2*i*k)*S(1//(q^2-1))),
-	(0)*e2p(S(0)),
-	(0)*e2p(S(0))] [
-	(q^2-1)*e2p(S(0)),
-	(-1)*e2p(S(0)),
-	(-1)*e2p(S(0)),
-	(0)*e2p(S(0)),
-	-e2p((2*i*k)*S(1//(q^2+1)))-e2p((-2*i*k)*S(1//(q^2+1))),
-	-e2p(k*S(1//(2)))-e2p((-k)*S(1//(2)))]]
+	CycloSum(R(1), S(0)),
+	CycloSum(R(1), S(0)),
+	CycloSum(R(1), S(0)),
+	CycloSum(R(1), S(0)),
+	CycloSum(R(1), S(0)),
+	CycloSum(R(1), S(0))] [
+	(q^2)*CycloSum(R(1), S(0)),
+	CycloSum(R(0), S(0)),
+	CycloSum(R(0), S(0)),
+	CycloSum(R(1), S(0)),
+	-CycloSum(R(1), S(0)),
+	-CycloSum(R(1), S(0))] [
+	(1//2*(q^2-1))*CycloSum(R(1), S(0)),
+	-1//2+1//2*q*CycloSum(R(1), S(1//(4))),
+	-1//2-1//2*q*CycloSum(R(1), S(1//(4))),
+	CycloSum(R(0), S(0)),
+	-CycloSum(R(1), i*S(1//(2))),
+	-CycloSum(R(1), ((q^2+1)*1//4)*S(1//(2)))] [
+	(1//2*(q^2-1))*CycloSum(R(1), S(0)),
+	-1//2-1//2*q*CycloSum(R(1), S(1//(4))),
+	-1//2+1//2*q*CycloSum(R(1), S(1//(4))),
+	CycloSum(R(0), S(0)),
+	-CycloSum(R(1), i*S(1//(2))),
+	-CycloSum(R(1), ((q^2+1)*1//4)*S(1//(2)))] [
+	(q^2+1)*CycloSum(R(1), S(0)),
+	CycloSum(R(1), S(0)),
+	CycloSum(R(1), S(0)),
+	CycloSum(R(1), (2*i*k)*S(1//(q^2-1)))+CycloSum(R(1), (-2*i*k)*S(1//(q^2-1))),
+	CycloSum(R(0), S(0)),
+	CycloSum(R(0), S(0))] [
+	(q^2-1)*CycloSum(R(1), S(0)),
+	-CycloSum(R(1), S(0)),
+	-CycloSum(R(1), S(0)),
+	CycloSum(R(0), S(0)),
+	-CycloSum(R(1), (2*i*k)*S(1//(q^2+1)))-CycloSum(R(1), (-2*i*k)*S(1//(q^2+1))),
+	-CycloSum(R(1), k*S(1//(2)))-CycloSum(R(1), (-k)*S(1//(2)))]]
 classinfo = Vector{Any}[
 	["1",[1,0],["A_1",[1,1]]],
 	["2",[1,1],["A_1",[2]]],
