@@ -10,15 +10,15 @@ include("Aqua.jl")
 	S = UniversalPolynomialRing(Q)
 	i, j = gens(S, ["i", "j"])
 
-	a=e2p(1//(q-1)*i+2//(q-1)*j+q^2//(q+1)*i)
-	b=e2p(2*q//(q^2-1)*i+2//(q-1)*j)
+	a=CycloSum(R(1), 1//(q-1)*i+2//(q-1)*j+q^2//(q+1)*i)
+	b=CycloSum(R(1), 2*q//(q^2-1)*i+2//(q-1)*j)
 	@test a==b
 
-	c=e2p(1//q*j)
+	c=CycloSum(R(1), 1//q*j)
 	@test (a+c)==(c+a)
 	@test iszero(-c+c)
 
-	@test a-1+e2p(S(0))==a
+	@test a-1+CycloSum(R(1), S(0))==a
 	@test a*1==a
 	@test 2*a-a==a
 	@test 2*a+a==3*a
@@ -26,7 +26,7 @@ include("Aqua.jl")
 	@test isone(a//a)
 	@test isone((a//c)*(c//a))
 
-	d=e2p(1//(q-1)*i)
+	d=CycloSum(R(1), 1//(q-1)*i)
 	@test nesum(a, i, 1, q-1)-eesubs(a, [1], [1])==nesum(a, i, 2, q-1)
 end
 
@@ -40,7 +40,7 @@ end
 @testset "Congruence" begin
 	g=genchartab("SL3.1")
 	q,(a,b,m,n)=params(g)
-	a=e2p((q-1)//3*a)
+	a=CycloSum(g.modulusring(1), (q-1)//3*a)
 	@test isone(GenericCharacterTables.simplify(a, g))
 end
 

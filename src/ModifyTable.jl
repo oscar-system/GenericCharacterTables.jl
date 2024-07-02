@@ -151,7 +151,7 @@ function lincomb(coeffs::Vector{Int64}, chars::Vector{GenericCharacter{T}}) wher
 	new_char_degree=sum(coeffs.*degrees)
 	new_char_values=Vector{CycloSum{T}}(undef, classtypes(t))
 	for class in range(1, classtypes(t))
-		new_char_values[class]=t.modulusring(0)*e2p(t.argumentring(0))
+		new_char_values[class]=CycloSum(t.modulusring(0), t.argumentring(0))
 		for i in range(1, n)
 			new_char_values[class]+=shift_char_parameters(t, coeffs[i]*chars[i][class], 5+i)
 		end

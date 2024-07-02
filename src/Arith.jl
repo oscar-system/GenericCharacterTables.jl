@@ -1,4 +1,4 @@
-export e2p
+export CycloSum
 
 import Oscar: pretty, Indent, Dedent
 
@@ -231,29 +231,6 @@ function Base.iszero(x::CycloFrac; ignore_exceptions::Bool=false)
 end
 
 # operators
-@doc raw"""
-    e2p(a::FracPoly{<:NfPoly})
-
-Return a `CycloSum` representing ``\exp(2\pi \mathrm{i} \cdot a)``
-```jldoctest
-julia> R, q = polynomial_ring(QQ, "q");
-
-julia> Q = fraction_field(R);
-
-julia> S = UniversalPolynomialRing(Q);
-
-julia> i, j = gens(S, ["i", "j"]);
-
-julia> e2p(1//(q-1)*i+j)
-exp(2π𝑖(1//(q - 1)*i))
-
-```
-"""
-function e2p(a::FracPoly{<:NfPoly})
-	modulus=base_ring(base_ring(parent(a)))(1)
-	CycloSum(modulus, a)
-end
-
 Base.one(x::Cyclo) = Cyclo(one(x.modulus), zero(x.argument), simplify=false)
 Base.one(x::CycloSum) = CycloSum([one(x.summands[1])], simplify=false)
 function Base.one(x::CycloFrac{T}) where T<:PolyRingElem

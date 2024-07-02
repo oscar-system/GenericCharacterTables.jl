@@ -1,4 +1,4 @@
-export convertvars, convertpoly, GEW2e2p, bracket2vector, removecomments, convertparameter, convertsumme, convert_summen_parameter, convert_konvertierungen, getparams, convert2R
+export convertvars, convertpoly, GEW2cyclo, bracket2vector, removecomments, convertparameter, convertsumme, convert_summen_parameter, convert_konvertierungen, getparams, convert2R
 
 konvertGEWlist=[
 ("GEWZ1Y2", "(q-1)*(q^2+1)"),
@@ -50,7 +50,7 @@ end
 
 function replaceGEW(gew::String, base::String, pol::String)
 	search=base*"\\^(\\w+)"
-	replac="e2p(\\1*S(1//("*pol*")))"
+	replac="CycloSum(R(1), \\1*S(1//("*pol*")))"
 	re=replace(gew, Regex(search) => SubstitutionString(replac))
 	ranges=[0]
 	ran=findnext(base*"^", re, 1)
@@ -78,17 +78,17 @@ function replaceGEW(gew::String, base::String, pol::String)
 		ret=""
 		idx=3
 		while idx <= length(ranges)
-			ret*=re[ranges[idx-2]+1:ranges[idx-1]-1]*"e2p("*re[ranges[idx]+1:ranges[idx+1]]*"*S(1//("*pol*")))"
+			ret*=re[ranges[idx-2]+1:ranges[idx-1]-1]*"CycloSum(R(1), "*re[ranges[idx]+1:ranges[idx+1]]*"*S(1//("*pol*")))"
 			idx+=3
 		end
 		ret*=re[ranges[end]+1:end]
 	else
 		ret=re
 	end
-	return replace(ret, base => "e2p(S(1//("*pol*")))")
+	return replace(ret, base => "CycloSum(R(1), S(1//("*pol*")))")
 end
 
-function GEW2e2p(gew::String, vars::String)
+function GEW2cyclo(gew::String, vars::String)
 	parsed_gew=replace(gew, "\n"=>"", " "=>"")
 	parsed_gew=convertpoly(parsed_gew)
 	re=parsed_gew
@@ -102,7 +102,7 @@ function GEW2e2p(gew::String, vars::String)
 		re=replaceGEW(re, base, pol)
 	end
 	if re == parsed_gew
-		re="("*re*")*e2p(S(0))"
+		re="CycloSum("*re*", S(0))"
 	else
 		re=convertvars(re, vars)
 	end

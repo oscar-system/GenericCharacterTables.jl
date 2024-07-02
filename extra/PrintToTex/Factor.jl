@@ -211,7 +211,7 @@ julia> S = UniversalPolynomialRing(Q);
 
 julia> i, j = gens(S, [\"i\", \"j\"]);
 
-julia> f = e2p(1//(q-1)*i+j)+ e2p(1//(q - 1)*i*j^2 + 1//(q - 1)*j)
+julia> f = CycloSum(R(1), 1//(q-1)*i+j)+ CycloSum(R(1), 1//(q - 1)*i*j^2 + 1//(q - 1)*j)
 (1) * exp(2π𝑖(1//(q - 1)*i))
 
 julia> zeta(f)
