@@ -88,9 +88,8 @@ function simplify(x::Union{Cyclotomic{T}, ParameterException{T}}, t::CharTable{T
 	if t.congruence === nothing
 		return x
 	else
-		q=gen(base_ring(base_ring(t.argumentring)))
-		c=t.congruence[2]*q+t.congruence[1]
-		cinv=(q-t.congruence[1])//t.congruence[2]
+		c=t.congruence[2]*gen(t.modulusring)+t.congruence[1]
+		cinv=(gen(t.modulusring)-t.congruence[1])//t.congruence[2]
 		return simplify(x, c, cinv)
 	end
 end
