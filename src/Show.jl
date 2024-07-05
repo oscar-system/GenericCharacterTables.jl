@@ -615,7 +615,7 @@ julia> params(g)
 ```
 """
 function params(t::CharTable)
-	q=gen(base_ring(base_ring(t.argumentring)))
+	q=gen(t.modulusring)
 	return (q, Tuple(gens(t.argumentring)[1:nrparams(t)]))
 end
 

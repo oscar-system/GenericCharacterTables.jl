@@ -42,7 +42,10 @@ abstract type Cyclotomic{T} end
 struct Cyclo{T} <: Cyclotomic{T}
 	modulus::T  # Distance form the origin as polynomial in one variable over some real number field
 	argument::FracPoly{T} # Angle as multiple of 2π
-	function Cyclo(modulus::T, argument::FracPoly{<:NfPoly}; simplify::Bool=true) where T<:NfPoly
+	function Cyclo(modulus::T, argument::FracPoly{T}; simplify::Bool=true) where T<:NfPoly
+		if parent(modulus)!=base_ring(base_ring(parent(argument)))
+			error("Base rings of modulus and argument do not match!")
+		end
 		if simplify
 			if iszero(modulus)
 				return new{T}(modulus, zero(argument))
