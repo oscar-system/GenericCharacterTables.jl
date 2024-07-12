@@ -4,10 +4,12 @@ authors = ["Andreas Leim <leim@rhrk.uni-kl.de>", "Martin Wagner <marwagne@rhrk.u
 version = "0.3.2"
 
 [deps]
+Compat = "34da2185-b29b-5c13-b0c7-acf172513d20"
 JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
 Oscar = "f1435218-dba5-11e9-1e4d-f1a5fab5fc13"
 
 [compat]
+Compat = "4.11"
 JSON = "^0.20, ^0.21"
 Oscar = "0.14, 1.0"
 julia = "1.6"
