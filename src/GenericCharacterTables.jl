@@ -19,7 +19,13 @@ module GenericCharacterTables
 using Oscar
 import Oscar.AbstractAlgebra.Generic
 
-const FracPoly{T} = Generic.UnivPoly{Generic.FracFieldElem{T}, Generic.MPoly{Generic.FracFieldElem{T}}} where T
+import Compat
+
+if Compat.pkgversion(Oscar.AbstractAlgebra) >= v"0.42.0"
+    const FracPoly{T} = Generic.UnivPoly{Generic.FracFieldElem{T}} where T
+else
+    const FracPoly{T} = Generic.UnivPoly{Generic.FracFieldElem{T}, Generic.MPoly{Generic.FracFieldElem{T}}} where T
+end
 const NfPoly = Union{PolyRingElem{QQFieldElem}, PolyRingElem{AbsSimpleNumFieldElem}}
 
 include("Parameter.jl")
