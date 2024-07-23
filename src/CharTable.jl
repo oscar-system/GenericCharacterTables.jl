@@ -21,7 +21,7 @@ struct CharTable{T} <: Table{T}
 	classparams::Vector{Parameters{T}}  # Info about the parameters of each class type
 	congruence::Union{Tuple{T, T}, Nothing}  # Congruence of the main parameter q (of T). q is congruent to congruence[1] mod congruence[2].
 	modulusring::PolyRing  # Ring of polynomials of type T used in table (also ring of modulus of Cyclotomics)
-	argumentring::Generic.UniversalPolyRing{Generic.FracFieldElem{T}, Generic.MPoly{Generic.FracFieldElem{T}}}  # Ring of argument of the Cyclotomics in table
+	argumentring::Generic.UniversalPolyRing{Generic.FracFieldElem{T}}  # Ring of argument of the Cyclotomics in table
 	information::String  # General info about the table
 	chars::Vector{<:AbstractGenericCharacter{T}}
 	irrchartypes::Int64  # Number of irreducible character types
@@ -30,8 +30,8 @@ end
 function CharTable(order::T, table::Matrix{Cyclotomic{T}}, classinfo::Vector{<:Any}, classlength::Vector{T},
 	charinfo::Vector{<:Any}, chardegree::Vector{T}, classsums::Vector{Function}, charsums::Vector{Function},
 	classparamindex::Vector{Int64}, charparamindex::Vector{Int64}, classparams::Vector{Parameters{T}}, charparams::Vector{Parameters{T}},
-	congruence::Union{Tuple{T, T}, Nothing}, modulusring::PolyRing, argumentring::Generic.UniversalPolyRing{Generic.FracFieldElem{T},
-	Generic.MPoly{Generic.FracFieldElem{T}}}, information::String, importname::String) where T<:NfPoly
+	congruence::Union{Tuple{T, T}, Nothing}, modulusring::PolyRing, argumentring::Generic.UniversalPolyRing{Generic.FracFieldElem{T}},
+	information::String, importname::String) where T<:NfPoly
 	num_chars=size(table, 1)
 	chars=Vector{GenericCharacter{T}}(undef, num_chars)
 	ct=CharTable{T}(order, classinfo, classlength, classsums, classparamindex, charparamindex,
