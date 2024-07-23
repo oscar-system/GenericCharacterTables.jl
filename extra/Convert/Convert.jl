@@ -116,7 +116,7 @@ function readmaple(path::String, folder::String)
 	if !NurPolynom
 		summationsprozeduren = convert_summen_parameter(removecomments(String(summationsprozeduren)),cht, clt, joinedparams)
 		imports="using ..GenericCharacterTables\nimport ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterException, ParameterSubstitution, CharTable\nusing Oscar\n"
-		head = "R, q = polynomial_ring(QQ, \"q\")\nQ = fraction_field(R)\nS = UniversalPolynomialRing(Q, cached=false)\n"
+		head = "R, q = polynomial_ring(QQ, \"q\")\nQ = fraction_field(R)\nS = universal_polynomial_ring(Q; cached=false)\n"
 		ring = join(rr[1:nrpar],",")*", _...=gens(S, "*repr(rr)*")\n"
 	end
 

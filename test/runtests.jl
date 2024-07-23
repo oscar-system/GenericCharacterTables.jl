@@ -7,7 +7,7 @@ include("Aqua.jl")
 @testset "Cyclotomic" begin
 	R, q = polynomial_ring(QQ, "q")
 	Q = fraction_field(R)
-	S = UniversalPolynomialRing(Q)
+	S = universal_polynomial_ring(Q)
 	i, j = gens(S, ["i", "j"])
 
 	a=CycloSum(R(1), 1//(q-1)*i+2//(q-1)*j+q^2//(q+1)*i)
