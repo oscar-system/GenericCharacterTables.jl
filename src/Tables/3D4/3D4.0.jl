@@ -3,7 +3,7 @@ import ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterExc
 using Oscar
 R, q = polynomial_ring(QQ, "q")
 Q = fraction_field(R)
-S = UniversalPolynomialRing(Q, cached=false)
+S = universal_polynomial_ring(Q; cached=false)
 a,b,k,l, _...=gens(S, ["a", "b", "k", "l", "a1", "b1", "k1", "l1", "a2", "b2", "k2", "l2", "a3", "b3", "k3", "l3", "at1", "bt1", "kt1", "lt1", "at2", "bt2", "kt2", "lt2"])
 
 order = q^12*(q^8+q^4+1)*(q^6-1)*(q^2-1)
