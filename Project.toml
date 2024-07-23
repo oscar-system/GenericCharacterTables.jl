@@ -1,7 +1,7 @@
 name = "GenericCharacterTables"
 uuid = "fdcc7804-6c20-4e83-8118-baad6b7d05b7"
 authors = ["Andreas Leim <leim@rhrk.uni-kl.de>", "Martin Wagner <marwagne@rhrk.uni-kl.de>", "Max Horn <mhorn@rptu.de>"]
-version = "0.2.1"
+version = "0.2.2"
 
 [deps]
 JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
