@@ -4,7 +4,7 @@ using Oscar
 K, sqrt2 = quadratic_field(2)
 R, q = polynomial_ring(K, "q")
 Q = fraction_field(R)
-S = UniversalPolynomialRing(Q, cached=false)
+S = universal_polynomial_ring(Q; cached=false)
 a,b,c,s,k,u, _...=gens(S, ["a", "b", "c", "s", "k", "u", "a1", "b1", "c1", "s1", "k1", "u1", "a2", "b2", "c2", "s2", "k2", "u2", "a3", "b3", "c3", "s3", "k3", "u3", "at1", "bt1", "ct1", "st1", "kt1", "ut1", "at2", "bt2", "ct2", "st2", "kt2", "ut2"])
 
 order = q^4*(q^4+1)*(q^2-1)

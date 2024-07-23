@@ -49,7 +49,7 @@ struct CharTable{T} <: Table{T}
 	charparams::Vector{Parameters{T}}  # Info about the parameters of each character type
 	congruence::Union{Tuple{T, T}, Nothing}  # Congruence of the main parameter q (of T). q is congruent to congruence[1] mod congruence[2].
 	modulusring::PolyRing  # Ring of polynomials of type T used in table (also ring of modulus of Cyclotomics)
-	argumentring::Generic.UniversalPolyRing{Generic.FracFieldElem{T}, Generic.MPoly{Generic.FracFieldElem{T}}}  # Ring of argument of the Cyclotomics in table
+	argumentring::Generic.UniversalPolyRing{Generic.FracFieldElem{T}}  # Ring of argument of the Cyclotomics in table
 	information::String  # General info about the table
 end
 

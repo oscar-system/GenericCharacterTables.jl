@@ -207,7 +207,7 @@ julia> R, q = polynomial_ring(QQ, \"q\");
 
 julia> Q = fraction_field(R);
 
-julia> S = UniversalPolynomialRing(Q);
+julia> S = universal_polynomial_ring(Q);
 
 julia> i, j = gens(S, [\"i\", \"j\"]);
 
