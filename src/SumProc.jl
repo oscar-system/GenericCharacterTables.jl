@@ -101,7 +101,7 @@ exp(2π𝑖(1//(q - 1)*i))
 julia> nesum(a, i, 1, q-1)
 0
 With exceptions:
-  (1)//(q - 1) ∈ ℤ
+  1 ∈ (q - 1)ℤ
 ```
 """
 function nesum(a::CycloFrac{T}, var::Int64, lower::Int64, upper::Union{Int64,T}, congruence::Union{Tuple{T,T},Nothing}=nothing) where T <: NfPoly

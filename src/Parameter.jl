@@ -54,7 +54,7 @@ function Base.show(io::IO, a::ParameterException)
 	if is_one(d)
 		print(io, "$(a.expression) ∈ ℤ")
 	else
-		print(io, "($(a.expression*d))//($d) ∈ ℤ")
+		print(io, "$(a.expression*d) ∈ ($d)ℤ")
 	end
 end
 function Base.show(io::IO, m::MIME{Symbol("text/latex")}, a::ParameterException)

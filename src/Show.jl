@@ -77,7 +77,7 @@ julia> g=genchartab("GL2");
 julia> g[3]
 Generic character of GL2
   with parameters
-    k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except (l - k)//(q - 1) ∈ ℤ
+    k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except l - k ∈ (q - 1)ℤ
   of degree q + 1
   with values
     (q + 1)*exp(2π𝑖(1//(q - 1)*i*l + 1//(q - 1)*i*k))
@@ -384,8 +384,8 @@ julia> g=genchartab("GL2");
 julia> printcharparam(g)
 1	k ∈ {1,…, q - 1}
 2	k ∈ {1,…, q - 1}
-3	k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except (l - k)//(q - 1) ∈ ℤ
-4	k ∈ {1,…, q^2 - 1} except (k)//(q + 1) ∈ ℤ
+3	k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except l - k ∈ (q - 1)ℤ
+4	k ∈ {1,…, q^2 - 1} except k ∈ (q + 1)ℤ
 ```
 """
 function printcharparam(io::IO, t::CharTable, char::Union{Int64, Nothing}=nothing)
@@ -418,8 +418,8 @@ julia> g=genchartab("GL2");
 julia> printclassparam(g)
 1	i ∈ {1,…, q - 1}
 2	i ∈ {1,…, q - 1}
-3	i ∈ {1,…, q - 1}, j ∈ {1,…, q - 1} except (i - j)//(q - 1) ∈ ℤ
-4	i ∈ {1,…, q^2 - 1} except (i)//(q + 1) ∈ ℤ
+3	i ∈ {1,…, q - 1}, j ∈ {1,…, q - 1} except i - j ∈ (q - 1)ℤ
+4	i ∈ {1,…, q^2 - 1} except i ∈ (q + 1)ℤ
 ```
 """
 function printclassparam(io::IO, t::CharTable, class::Union{Int64, Nothing}=nothing)
