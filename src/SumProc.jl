@@ -75,7 +75,7 @@ function eesubs(a::CycloFrac{T}, vars::Union{Vector{<:FracPoly{T}},Vector{Int64}
 	return CycloFrac(eesubs(a.numerator, vars, vals), eesubs(a.denominator, vars, vals), Set{ParameterException{T}}(eesubs.(a.exceptions, Ref(vars), Ref(vals))))
 end
 function eesubs(a::ParameterException{T}, vars::Union{Vector{<:FracPoly{T}},Vector{Int64}}, vals::Vector{<:RingElement}) where T <: PolyRingElem
-	return ParameterExcepion(eesubs(a.expression, vars, vals))
+	return ParameterException(eesubs(a.expression, vars, vals))
 end
 
 @doc raw"""
