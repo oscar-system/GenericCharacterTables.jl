@@ -76,7 +76,7 @@ julia> g=genchartab("GL2");
 
 julia> g[3]
 Generic character of GL2
-  with paramenters
+  with parameters
     k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except (l - k)//(q - 1) ∈ ℤ
   of degree q + 1
   with values
@@ -94,8 +94,8 @@ julia> [g[3]]
 function Base.show(io::IO, ::MIME"text/plain", c::AbstractGenericCharacter)
 	io = pretty(io)
 	println(io, "Generic character of ", parent(c).importname, Indent())
-	if c isa GenericCharacter
-		println(io, "with paramenters ", Indent())
+	if c isa GenericCharacter && !isempty(c.params.params)
+		println(io, "with parameters ", Indent())
 		println(io, c.params, Dedent())
 	end
 	println(io, "of degree ", c.degree)
