@@ -562,23 +562,19 @@ end
 printval(t::Table; kwarg...) = printval(stdout, t; kwarg...)
 
 # TODO: document this (and/or replace it by something better)
-function print_decomposition(io::IO, t::CharTable, char::Int)
+function print_decomposition(io::IO, t::CharTable, chi::AbstractGenericCharacter)
 	io = pretty(io)
-	print(io, "Decomposing character $char:", Indent())
+	print(io, "Decomposing character chi:", Indent())
 	for i in 1:irrchartypes(t)
 		println(io)
-		s, e = scalar(t, i, char)
-		print(io, "<$i,$char> = $s  ")
-		if !isempty(e)
-			print(io, "with possible exceptions:", Indent())
-			for ex in e
-				print(io, "\n", ex)
-			end
-			print(io, Dedent())
-		end
+		s = scalar(t[i], chi)
+		print(io, "<$i,chi> = ", Indent(), s, Dedent())
 	end
+	print(io, Dedent())
 end
 
+print_decomposition(io::IO, t::CharTable, char::Int) = print_decomposition(io, t, t[char])
+print_decomposition(t::CharTable, char::AbstractGenericCharacter) = print_decomposition(stdout, t, char)
 print_decomposition(t::CharTable, char::Int) = print_decomposition(stdout, t, char)
 export print_decomposition
 

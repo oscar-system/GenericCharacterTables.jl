@@ -213,6 +213,7 @@ function Base.show(io::IO, z::CycloFrac)
 		for exception in z.exceptions
 			print(io, "\n$(exception)")
 		end
+		print(io, Dedent())
 	end
 end
 Base.show(io::IO, m::MIME{Symbol("text/latex")}, z::CycloFrac) = print(io, "\\frac{$(repr("text/latex", z.numerator))}{$(repr("text/latex",z.denominator))}")
