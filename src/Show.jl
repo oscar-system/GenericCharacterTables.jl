@@ -1,9 +1,10 @@
-import Oscar.order
+import Oscar: degree, order
 
 export centord
 export chardeg
 export chartypes
 export classtypes
+export degree
 export irrchartypes
 export nrchars
 export nrclasses
@@ -303,15 +304,13 @@ q + 1
 
 ```
 """
-function chardeg(t::Table, char::Int64)
-	if char > chartypes(t)
-		throw(DomainError(char, "Character type is out of range."))
-	end
-	t[char].degree
-end
+chardeg(t::Table, char::Int64) = degree(t[char])
+
+# TODO: document this
+degree(c::AbstractGenericCharacter) = c.degree
 
 @doc raw"""
-    nrchars(t::Table{T}, char::Int64) where T <: NfPoly
+    nrchars(t::Table, char::Int64)
 
 Return the number of characters in the character type `char` of the table `t`.
 
