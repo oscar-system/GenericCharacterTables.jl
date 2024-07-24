@@ -1,8 +1,10 @@
-export tensor!, omega!, lincomb, lincomb!, speccharparam!, specclassparam!
+import Oscar: tensor_product
+
+export tensor_product, tensor!, omega!, lincomb, lincomb!, speccharparam!, specclassparam!
 
 # TODO deal with ParameterSubstitution, this is not done in the original implementation.
 
-function Base.:*(char1::GenericCharacter{T}, char2::GenericCharacter{T}) where T<:PolyRingElem
+function tensor_product(char1::GenericCharacter{T}, char2::GenericCharacter{T}) where T<:PolyRingElem
 	if parent(char1) != parent(char2)
 		throw(DomainError((parent(char1),parent(char2)), "Tables do not match."))
 	end
@@ -26,7 +28,8 @@ function Base.:*(char1::GenericCharacter{T}, char2::GenericCharacter{T}) where T
 	new_char_params=Parameters(vcat(param1.params, param2.params), vcat(param1.exceptions, param2.exceptions), ParameterSubstitution{T}[])
 	return GenericCharacter{T}(t, new_char_values, ["Tensor of type $char1id and $char2id"], new_char_degree, nothing, new_char_params)
 end
-function Base.:*(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T<:PolyRingElem
+
+function tensor_product(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T<:PolyRingElem
 	if parent(char1) != parent(char2)
 		throw(DomainError((parent(char1),parent(char2)), "Tables do not match."))
 	end
@@ -43,6 +46,10 @@ function Base.:*(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter
 	end
 	return SimpleGenericCharacter{T}(t, new_char_values, ["Tensor of type $char1id and $char2id"], new_char_degree)
 end
+
+# 'classical' group characters in OSCAR treat '*' as tensor product, so we do it, too
+Base.:*(char1::AbstractGenericCharacter, char2::AbstractGenericCharacter) = tensor_product(char1, char2)
+
 
 @doc raw"""
     tensor!(t::Table{T}, char1::Int64, char2::Int64) where T <: NfPoly
