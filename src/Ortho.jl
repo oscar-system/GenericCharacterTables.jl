@@ -45,6 +45,14 @@ end
     norm(char::AbstractGenericCharacter{T}) where T <: NfPoly
 
 Return the norm of the character type `char`.
+
+# Examples
+```jldoctest
+julia> g=genchartab("GL2");
+
+julia> norm(g[1])
+1
+```
 """
 function Oscar.norm(char::GenericCharacter{T}) where T <: NfPoly
 	t=parent(char)
@@ -75,7 +83,6 @@ julia> g=genchartab("GL2");
 
 julia> norm(g,1)
 1
-
 ```
 """
 function Oscar.norm(t::Table{T}, char::Int64) where T <: NfPoly
@@ -90,6 +97,17 @@ end
 
 Return the scalar product between the character types `char1` and `char2`.
 
+# Examples
+```jldoctest
+julia> g=genchartab("GL2");
+
+julia> scalar(g[3],g[2])
+0
+With exceptions:
+  l1 + k1 - 2*k2 ∈ (q - 1)ℤ
+  l1 - k2 ∈ (q - 1)ℤ
+  k1 - k2 ∈ (q - 1)ℤ
+```
 """
 function scalar(char1::GenericCharacter{T}, char2::GenericCharacter{T}) where T <: NfPoly
 	if parent(char1) != parent(char2)
