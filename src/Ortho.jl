@@ -158,15 +158,6 @@ function scalar(t::Table{T}, char1::Int64, char2::Int64) where T <: NfPoly
 	return scalar(t[char1], t[char2])
 end
 
-#TODO remove
-function scalar(t::Table{T}) where T <: NfPoly
-	for char1 in range(1, chartypes(t))
-		for char2 in range(1, char1)
-			println("$char1, $char2:\t", scalar(t,char1,char2))
-		end
-	end
-end
-
 
 @doc raw"""
     ortho2norm(t::Table{T}, class::Int64) where T <: NfPoly
