@@ -3,44 +3,12 @@ CurrentModule = GenericCharacterTables
 DocTestSetup = :(using GenericCharacterTables, Oscar)
 ```
 
-# An example
+# An extended example
 
-$\newcommand\FF{\mathbb{F}}$
-
-- TODO: better title
-- TODO: mention and ref OSCAR book [OSCAR-book](@cite)]
-- TODO: adjust text
-- TODO: insert examples
-
-We have already seen what a character table of a single finite group is. Some
-finite groups come in families. For example, the matrix groups
-$\mathrm{GL}_n(\mathbb{F}_q)$ or $\mathrm{SL}_n(\mathbb{F}_q)$, for $n>1$ and
-$q$ a prime power. These groups have many properties in common. It turns out
-that for a fixed rank (say $n=2$) it is possible to parametrize the conjugacy
-classes and irreducible characters of these group in terms of $q$, and to
-write this down into a so-called *generic character table*. This was first
-done by Schur for $\mathrm{SL}_2(\mathbb{F}_q)$.
-
-Generic character tables were so far exclusive to the CHEVIE system
-(see e.g. [MR1486215](@cite) for details),
-which involves use of an old version of \Maple
-which heavily restricts the access to this data.
-Attempts to port this
-to e.g. \GAP in the past were never published due to it being considered too slow.
-
-Thanks to Julia's impressive performance,
-we were able to overcome this obstacle with data imported from CHEVIE.
-The code is still in early stages
-as we write this, but this situation is rapidly improving -- so be sure to
-check <https://book.oscar-system.org> for updated examples for this section.
-
-Right now the code is in a separate repository. To use it, enter within a Julia interactive command-line (REPL):
-```
-julia> import Pkg; Pkg.add("GenericCharacterTables"); using GenericCharacterTables
-```
-
-In the following we replicate parts of Section 5.3 of [MR1486215](@cite),
-and strongly recommend to read that concurrently with the present text.
+The following is based on an example in [OSCAR-book](@cite),
+which in turn is based on Section 5.3 of [MR1486215](@cite).
+To fully understand what is going on we strongly recommend to read the latter
+source concurrently with the present text.
 
 To start we load the generic character table for $\mathrm{SL}_3(q)$ with
 $q\not\equiv 1\pmod 3$.
@@ -99,33 +67,32 @@ except when $q-1$ divides $2n_1$, where $n_1$ indicates the value of the paramet
 For a “generic decomposition” we need to compute all the scalar products and
 exceptions.
 ```jldoctest book
-julia> print_decomposition(T, h)
-Decomposing character chi:
-  <1,chi> = 1
-  <2,chi> = 2
-  <3,chi> = 2
-  <4,chi> = 0
-    With exceptions:
-      2*n1 ∈ (q - 1)ℤ
-  <5,chi> = 0
-    With exceptions:
-      2*n1 ∈ (q - 1)ℤ
-  <6,chi> = 0
-    With exceptions:
-      m1 + n1 ∈ (q - 1)ℤ
-      2*m1 - n1 ∈ (q - 1)ℤ
-      n1 ∈ (q - 1)ℤ
-      m1 ∈ (q - 1)ℤ
-      m1 - n1 ∈ (q - 1)ℤ
-      m1 - 2*n1 ∈ (q - 1)ℤ
-  <7,chi> = 0
-    With exceptions:
-      n1 ∈ (q - 1)ℤ
-  <8,chi> = 0
-    With exceptions:
-      (q + 1)*n1 ∈ (q^2 + q + 1)ℤ
-      q*n1 ∈ (q^2 + q + 1)ℤ
-      n1 ∈ (q^2 + q + 1)ℤ
+julia> for i in 1:8 println("<$i, h> = ", scalar(T[i], h)) end
+<1, h> = 1
+<2, h> = 2
+<3, h> = 2
+<4, h> = 0
+With exceptions:
+  2*n1 ∈ (q - 1)ℤ
+<5, h> = 0
+With exceptions:
+  2*n1 ∈ (q - 1)ℤ
+<6, h> = 0
+With exceptions:
+  m1 + n1 ∈ (q - 1)ℤ
+  2*m1 - n1 ∈ (q - 1)ℤ
+  n1 ∈ (q - 1)ℤ
+  m1 ∈ (q - 1)ℤ
+  m1 - n1 ∈ (q - 1)ℤ
+  m1 - 2*n1 ∈ (q - 1)ℤ
+<7, h> = 0
+With exceptions:
+  n1 ∈ (q - 1)ℤ
+<8, h> = 0
+With exceptions:
+  (q + 1)*n1 ∈ (q^2 + q + 1)ℤ
+  q*n1 ∈ (q^2 + q + 1)ℤ
+  n1 ∈ (q^2 + q + 1)ℤ
 ```
 
 This suggest a decomposition of $\chi_2\otimes\chi_2$ into $\chi_1+2\chi_2+2\chi_3$ “in general”.
