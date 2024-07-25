@@ -240,9 +240,10 @@ function status(t::Table)
 end
 
 @doc raw"""
-    printinfotab(io::IO, t::Table)
+    printinfotab([io::IO], t::Table)
 
-Print metadata of `t` in the latex format to `io` where `io` is optional.
+Print to `io` (or to the default output stream `stdout` if `io` is not given)
+metadata of `t` in LaTeX format.
 
 This usually includes the time the table was first computed.
 """
@@ -371,9 +372,10 @@ function nrclasses(t::SimpleCharTable, class::Int64)
 end
 
 @doc raw"""
-    printcharparam(io::IO, t::CharTable, char::Union{Int64, Nothing}=nothing)
+    printcharparam([io::IO], t::CharTable, char::Union{Int64, Nothing}=nothing)
 
-Print the parameters of the character type `char` of the table `t` to `io` where `io` is optional.
+Print to `io` (or to the default output stream `stdout` if `io` is not given)
+the parameters of the character type `char` of the table `t`.
 
 This includes the parameter names, ranges and exceptions. Leaving `char` unspecified will print the parameters of all character types.
 
@@ -405,9 +407,10 @@ end
 printcharparam(t::CharTable, char::Union{Int64, Nothing}=nothing) = printcharparam(Base.stdout, t, char)
 
 @doc raw"""
-    printclassparam(io::IO, t::CharTable, class::Union{Int64, Nothing}=nothing)
+    printclassparam([io::IO], t::CharTable, class::Union{Int64, Nothing}=nothing)
 
-Print the parameters of the class type `class` of the table `t` to `io` where `io` is optional.
+Print to `io` (or to the default output stream `stdout` if `io` is not given)
+the parameters of the class type `class` of the table `t`.
 
 This includes the parameter names, ranges and exceptions. Leaving `class` unspecified will print the parameters of all character types.
 
@@ -439,9 +442,10 @@ end
 printclassparam(t::CharTable, class::Union{Int64, Nothing}=nothing) = printclassparam(Base.stdout, t, class)
 
 @doc raw"""
-    printinfochar(io::IO, t::Table, char::Union{Int64, Nothing}=nothing)
+    printinfochar([io::IO], t::Table, char::Union{Int64, Nothing}=nothing)
 
-Print the infolists of the character type `char` of the table `t` to `io` where `io` is optional.
+Print to `io` (or to the default output stream `stdout` if `io` is not given)
+the infolists of the character type `char` of the table `t`.
 
 Leaving `char` unspecified will print the infolists of all character types.
 
@@ -474,9 +478,10 @@ end
 printinfochar(t::Table, char::Union{Int64, Nothing}=nothing) = printinfochar(Base.stdout, t, char)
 
 @doc raw"""
-    printinfoclass(io::IO, t::Table, class::Union{Int64, Nothing}=nothing)
+    printinfoclass([io::IO], t::Table, class::Union{Int64, Nothing}=nothing)
 
-Print the infolists of the class type `class` of the table `t` to `io` where `io` is optional.
+Print to `io` (or to the default output stream `stdout` if `io` is not given)
+the infolists of the class type `class` of the table `t`.
 
 Leaving `class` unspecified will print the infolists of all class types.
 
@@ -509,9 +514,10 @@ end
 printinfoclass(t::Table, class::Union{Int64, Nothing}=nothing) = printinfoclass(Base.stdout, t, class)
 
 @doc raw"""
-    printval(io::IO, t::Table; char::Union{Int64, Nothing}=nothing, class::Union{Int64, Nothing}=nothing)
+    printval([io::IO], t::Table; char::Union{Int64, Nothing}=nothing, class::Union{Int64, Nothing}=nothing)
 
-Print the values of the char type `char` and the class type `class` of the table `t` to `io` where `io` is optional.
+Print to `io` (or to the default output stream `stdout` if `io` is not given)
+the values of the char type `char` and the class type `class` of the table `t`.
 
 Leaving `class` unspecified will print the values of all class types at `char`.
 Leaving both unspecified will print all values of t
