@@ -44,7 +44,6 @@ end
 
 Base.getindex(ct::CharTable{T}, i::Integer) where T<:NfPoly = ct.chars[i]::GenericCharacter{T}
 Base.getindex(ct::CharTable{T}, i::Integer, j::Integer) where T<:NfPoly = ct.chars[i].values[j]::Cyclotomic{T}
-Base.setindex!(ct::CharTable{T}, v::Cyclotomic{T}, i::Integer, j::Integer) where T<:NfPoly = setindex!(ct.chars[i].values, v, j)
 
 struct GenericCharacter{T} <: AbstractGenericCharacter{T}
 	parent::CharTable{T}
