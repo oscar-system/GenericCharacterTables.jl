@@ -89,8 +89,8 @@ end
     scalar(char1::AbstractGenericCharacter{T}, char2::AbstractGenericCharacter{T}) where T <: NfPoly
 
 Return the scalar product between the character types `char1` and `char2`.
-"""
 
+"""
 function scalar(char1::GenericCharacter{T}, char2::GenericCharacter{T}) where T <: NfPoly
 	if parent(char1) != parent(char2)
 		throw(DomainError((parent(char1),parent(char2)), "Tables do not match."))
