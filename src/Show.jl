@@ -326,21 +326,29 @@ q - 1
 
 ```
 """
-function nrchars(t::CharTable, char::Int64)
-	if char > irrchartypes(t)
-		throw(DomainError(char, "Cannot calculate number of characters in reducible types."))
-	else
-		o=t.ring(1)
-		result=t[char].sum(o//o)
-		return shrink(result)
-	end
+nrchars(t::Table, char::Int64) = nrchars(t[char])
+
+@doc raw"""
+    nrchars(chi::GenericCharacter)
+
+Return the number of characters in the generic character `chi`.
+
+# Examples
+```jldoctest
+julia> g=genchartab("GL2");
+
+julia> nrchars(g[1])
+q - 1
+
+```
+"""
+function nrchars(chi::GenericCharacter)
+    t = parent(chi)
+    o=CycloSum(t.modulusring(1), t.argumentring(0))
+    result=simplify(chi.sum(o//o), t)
+    return shrink(result)
 end
-function nrchars(t::SimpleCharTable, char::Int64)
-	if char > chartypes(t)
-		throw(DomainError(char, "Character type is out of range."))
-	end
-	1
-end
+nrchars(chi::SimpleGenericCharacter) = 1
 
 @doc raw"""
     nrclasses(t::Table, class::Int64)
