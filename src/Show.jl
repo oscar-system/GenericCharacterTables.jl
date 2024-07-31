@@ -1,9 +1,10 @@
-import Oscar.order
+import Oscar: degree, order
 
 export centord
 export chardeg
 export chartypes
 export classtypes
+export degree
 export irrchartypes
 export nrchars
 export nrclasses
@@ -303,15 +304,13 @@ q + 1
 
 ```
 """
-function chardeg(t::Table, char::Int64)
-	if char > chartypes(t)
-		throw(DomainError(char, "Character type is out of range."))
-	end
-	t[char].degree
-end
+chardeg(t::Table, char::Int64) = degree(t[char])
+
+# TODO: document this
+degree(c::AbstractGenericCharacter) = c.degree
 
 @doc raw"""
-    nrchars(t::Table{T}, char::Int64) where T <: NfPoly
+    nrchars(t::Table, char::Int64)
 
 Return the number of characters in the character type `char` of the table `t`.
 
@@ -326,21 +325,29 @@ q - 1
 
 ```
 """
-function nrchars(t::CharTable{T}, char::Int64) where T <: NfPoly
-	if char > irrchartypes(t)
-		throw(DomainError(char, "Cannot calculate number of characters in reducible types."))
-	else
-		o=CycloSum(t.modulusring(1), t.argumentring(0))
-		result=simplify(t[char].sum(o//o), t)
-		return shrink(result)
-	end
+nrchars(t::Table, char::Int64) = nrchars(t[char])
+
+@doc raw"""
+    nrchars(chi::GenericCharacter)
+
+Return the number of characters in the generic character `chi`.
+
+# Examples
+```jldoctest
+julia> g=genchartab("GL2");
+
+julia> nrchars(g[1])
+q - 1
+
+```
+"""
+function nrchars(chi::GenericCharacter)
+    t = parent(chi)
+    o=CycloSum(t.modulusring(1), t.argumentring(0))
+    result=simplify(chi.sum(o//o), t)
+    return shrink(result)
 end
-function nrchars(t::SimpleCharTable, char::Int64)
-	if char > chartypes(t)
-		throw(DomainError(char, "Character type is out of range."))
-	end
-	1
-end
+nrchars(chi::SimpleGenericCharacter) = 1
 
 @doc raw"""
     nrclasses(t::Table{T}, class::Int64) where T <: NfPoly

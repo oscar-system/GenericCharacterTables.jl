@@ -1,6 +1,13 @@
-using Documenter, GenericCharacterTables
+using Documenter
+using DocumenterCitations
+using GenericCharacterTables
 
 DocMeta.setdocmeta!(GenericCharacterTables, :DocTestSetup, :(using GenericCharacterTables, Oscar); recursive=true)
+
+bib = CitationBibliography(
+    joinpath(@__DIR__, "src", "refs.bib");
+    style=:numeric
+)
 
 makedocs(
 	sitename="GenericCharacterTables.jl",
@@ -11,8 +18,11 @@ makedocs(
 		"showinfo.md",
 		"calculations.md",
 		"modify.md",
-		"unexported.md"
-	]
+		"book.md",
+		"unexported.md",
+		"references.md",
+	],
+	plugins=[bib],
 )
 
 deploydocs(
