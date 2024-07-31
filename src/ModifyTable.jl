@@ -4,6 +4,28 @@ export tensor_product, tensor!, omega!, lincomb, lincomb!, speccharparam!, specc
 
 # TODO deal with ParameterSubstitution, this is not done in the original implementation.
 
+@doc raw"""
+    tensor_product(char1::T, char2::T) where T <: AbstractGenericCharacter
+
+Return the tensor product of the character types `char1` and `char2`.
+This can also be obtained via `char1 * char2`.
+
+# Examples
+```jldoctest
+julia> g = genchartab("GL2");
+
+julia> tensor_product(g[1], g[2])
+Generic character of GL2
+  with parameters
+    kt1 ∈ {1,…, q - 1}, kt2 ∈ {1,…, q - 1}
+  of degree q
+  with values
+    q*exp(2π𝑖(2//(q - 1)*i*kt1 + 2//(q - 1)*i*kt2))
+    0
+    exp(2π𝑖(1//(q - 1)*i*kt1 + 1//(q - 1)*i*kt2 + 1//(q - 1)*j*kt1 + 1//(q - 1)*j*kt2))
+    -1*exp(2π𝑖(1//(q - 1)*i*kt1 + 1//(q - 1)*i*kt2))
+```
+"""
 function tensor_product(char1::GenericCharacter{T}, char2::GenericCharacter{T}) where T<:PolyRingElem
 	if parent(char1) != parent(char2)
 		throw(DomainError((parent(char1),parent(char2)), "Tables do not match."))
