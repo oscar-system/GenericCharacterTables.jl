@@ -22,6 +22,7 @@ import Oscar.AbstractAlgebra.Generic
 const FracPoly{T} = Generic.UnivPoly{Generic.FracFieldElem{T}} where T
 const NfPoly = Union{PolyRingElem{QQFieldElem}, PolyRingElem{AbsSimpleNumFieldElem}}
 
+include("GenericCyclotomics.jl")
 include("Parameter.jl")
 include("Arith.jl")
 include("CharTable.jl")
