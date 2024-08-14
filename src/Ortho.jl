@@ -1,4 +1,4 @@
-export norm, scalar, ortho2norm, ortho2scalar, classmult
+export norm, scalar_product, scalar, ortho2norm, ortho2scalar, classmult
 # TODO Should we really return Set{ParameterException{T}}() in SimpleCharTable methods? This seems a bit weird.
 
 @doc raw"""
@@ -93,7 +93,7 @@ function Oscar.norm(t::Table{T}, char::Int64) where T <: NfPoly
 end
 
 @doc raw"""
-    scalar(char1::AbstractGenericCharacter{T}, char2::AbstractGenericCharacter{T}) where T <: NfPoly
+    scalar_product(char1::AbstractGenericCharacter{T}, char2::AbstractGenericCharacter{T}) where T <: NfPoly
 
 Return the scalar product between the character types `char1` and `char2`.
 
@@ -101,7 +101,7 @@ Return the scalar product between the character types `char1` and `char2`.
 ```jldoctest
 julia> g=genchartab("GL2");
 
-julia> scalar(g[3],g[2])
+julia> scalar_product(g[3],g[2])
 0
 With exceptions:
   l1 + k1 - 2*k2 ∈ (q - 1)ℤ
@@ -109,7 +109,7 @@ With exceptions:
   k1 - k2 ∈ (q - 1)ℤ
 ```
 """
-function scalar(char1::GenericCharacter{T}, char2::GenericCharacter{T}) where T <: NfPoly
+function Oscar.scalar_product(char1::GenericCharacter{T}, char2::GenericCharacter{T}) where T <: NfPoly
 	if parent(char1) != parent(char2)
 		throw(DomainError((parent(char1),parent(char2)), "Tables do not match."))
 	end
@@ -122,7 +122,7 @@ function scalar(char1::GenericCharacter{T}, char2::GenericCharacter{T}) where T 
 	end
 	return shrink(simplify(sum//t.order, t))
 end
-function scalar(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T <:NfPoly
+function Oscar.scalar_product(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T <:NfPoly
 	if parent(char1) != parent(char2)
 		throw(DomainError((parent(char1),parent(char2)), "Tables do not match."))
 	end
@@ -135,7 +135,7 @@ function scalar(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{
 end
 
 @doc raw"""
-    scalar(t::Table{T}, char1::Int64, char2::Int64) where T <: NfPoly
+    scalar_product(t::Table{T}, char1::Int64, char2::Int64) where T <: NfPoly
 
 Return the scalar product between the character types `char1` and `char2`.
 
@@ -143,7 +143,7 @@ Return the scalar product between the character types `char1` and `char2`.
 ```jldoctest
 julia> g=genchartab("GL2");
 
-julia> scalar(g,3,2)
+julia> scalar_product(g,3,2)
 0
 With exceptions:
   l1 + k1 - 2*k2 ∈ (q - 1)ℤ
@@ -151,11 +151,11 @@ With exceptions:
   k1 - k2 ∈ (q - 1)ℤ
 ```
 """
-function scalar(t::Table{T}, char1::Int64, char2::Int64) where T <: NfPoly
+function Oscar.scalar_product(t::Table{T}, char1::Int64, char2::Int64) where T <: NfPoly
 	if any((char1, char2).>chartypes(t))
 		throw(DomainError((char1,char2), "Some character types are out of range."))
 	end
-	return scalar(t[char1], t[char2])
+	return scalar_product(t[char1], t[char2])
 end
 
 
@@ -233,3 +233,7 @@ function ortho2scalar(t::SimpleCharTable{T}, class1::Int64, class2::Int64) where
 	end
 	return t.classlength[class1]*sum//t.order
 end
+
+# Aliases
+scalar(char1::GenericCharacter{T}, char2::GenericCharacter{T}) where T <: NfPoly = scalar_product(char1, char2)
+scalar(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T <: NfPoly = scalar_product(char1, char2)

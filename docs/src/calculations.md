@@ -14,7 +14,7 @@ fulfilled if the evaluation of this polynomial is an integer.
 ## On Characters
 ```@docs
 norm(t::Table{T}, char::Int64) where T <: NfPoly
-scalar
+scalar_product(char1::GenericCharacter{T}, char2::GenericCharacter{T}) where T <: NfPoly
 ```
 
 ## On Classes

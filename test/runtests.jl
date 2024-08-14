@@ -47,12 +47,12 @@ end
 @testset "setcongruence(table)" begin
 	g=genchartab("SL3.n1")
 	h=tensor!(g,2,2)
-	@test iszero(scalar(g,6,h), ignore_exceptions=true)
+	@test iszero(scalar_product(g,6,h), ignore_exceptions=true)
 	q,(a,b,m,n)=params(g)
 	x=param(g,"x")
 	g2=setcongruence(g, (0,2))
 	speccharparam!(g2, 6, n, -m+(q-1)*x)
-	@test isone(scalar(g2,6,h))
+	@test isone(scalar_product(g2,6,h))
 end
 
 @testset "Import green functions" begin

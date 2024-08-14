@@ -573,7 +573,7 @@ function print_decomposition(io::IO, t::CharTable, chi::AbstractGenericCharacter
 	print(io, "Decomposing character chi:", Indent())
 	for i in 1:irrchartypes(t)
 		println(io)
-		s = scalar(t[i], chi)
+		s = scalar_product(t[i], chi)
 		print(io, "<$i,chi> = ", Indent(), s, Dedent())
 	end
 	print(io, Dedent())
