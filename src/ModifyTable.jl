@@ -1,6 +1,6 @@
 import Oscar: tensor_product
 
-export tensor_product, tensor!, omega!, lincomb, lincomb!, speccharparam!, specclassparam!
+export tensor_product, tensor!, omega, omega!, lincomb, lincomb!, speccharparam!, specclassparam!
 
 # TODO deal with ParameterSubstitution, this is not done in the original implementation.
 
@@ -99,6 +99,49 @@ function tensor!(t::Table{T}, char1::Int64, char2::Int64) where T <: NfPoly
 end
 
 @doc raw"""
+    omega(char::T) where T <: AbstractGenericCharacter
+
+Return the (generic) central character of the character type `char`.
+
+# Examples
+```jldoctest
+julia> g=genchartab("GL2");
+
+julia> omega(g[1])
+Generic character of GL2
+  with parameters
+    k ∈ {1,…, q - 1}
+  of degree 1
+  with values
+    exp(2π𝑖(2//(q - 1)*i*k))
+    (q^2 - 1)*exp(2π𝑖(2//(q - 1)*i*k))
+    (q^2 + q)*exp(2π𝑖(1//(q - 1)*i*k + 1//(q - 1)*j*k))
+    (q^2 - q)*exp(2π𝑖(1//(q - 1)*i*k))
+
+```
+"""
+function omega(char::GenericCharacter{T}) where T <: NfPoly
+	t=parent(char)
+	charid=chartypeid(char)
+	new_char_degree=t.modulusring(1)
+	new_char_values=Vector{CycloFrac{T}}(undef, classtypes(t))
+	for class in range(1, classtypes(t))
+		new_char_values[class]=t.classlength[class]*char[class]//char.degree
+	end
+	return GenericCharacter{T}(t, new_char_values, ["Omega of type $charid"], new_char_degree, nothing, char.params)
+end
+function omega(char::SimpleGenericCharacter{T}) where T <: NfPoly  # TODO is correct?
+	t=parent(char)
+	charid=chartypeid(char)
+	new_char_degree=t.ring(1)
+	new_char_values=Vector{T}(undef, classtypes(t))
+	for class in range(1, classtypes(t))
+		new_char_values[class]=div(t.classlength[class]*char[class], char.degree)
+	end
+	return SimpleGenericCharacter{T}(t, new_char_values, ["Omega of type $charid"], new_char_degree)
+end
+
+@doc raw"""
     omega!(t::Table{T}, char::Int64) where T <: NfPoly
 
 Append the (generic) central character of the character type `char` to the table `t`.
@@ -115,30 +158,11 @@ julia> printinfochar(g,5)
 
 ```
 """
-function omega!(t::CharTable{T}, char::Int64) where T <: NfPoly
+function omega!(t::Table{T}, char::Int64) where T <: NfPoly
 	if char > chartypes(t)
 		throw(DomainError(char, "Character type is out of range."))
 	end
-	new_char_degree=t.modulusring(1)
-	new_char_values=Vector{CycloFrac{T}}(undef, classtypes(t))
-	for class in range(1, classtypes(t))
-		new_char_values[class]=t.classlength[class]*t[char,class]//t[char].degree
-	end
-	new_char=GenericCharacter{T}(t, new_char_values, ["Omega of type $char"], new_char_degree, nothing, t[char].params)
-	push!(t.chars, new_char)
-	return length(t.chars)
-end
-function omega!(t::SimpleCharTable{T}, char::Int64) where T <: NfPoly  # TODO is correct?
-	if char > chartypes(t)
-		throw(DomainError(char, "Character type is out of range."))
-	end
-	new_char_degree=t.ring(1)
-	new_char_values=Vector{T}(undef, classtypes(t))
-	for class in range(1, classtypes(t))
-		new_char_values[class]=div(t.classlength[class]*t[char,class], t[char].degree)
-	end
-	new_char=SimpleGenericCharacter{T}(t, new_char_values, ["Omega of type $char"], new_char_degree)
-	push!(t.chars, new_char)
+	push!(t.chars, omega(t[char]))
 	return length(t.chars)
 end
 
