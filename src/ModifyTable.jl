@@ -94,7 +94,7 @@ function tensor!(t::Table{T}, char1::Int64, char2::Int64) where T <: NfPoly
 	if any((char1, char2).>chartypes(t))
 		throw(DomainError((char1,char2), "Some character types are out of range."))
 	end
-	push!(t.chars, t[char1]*t[char2])
+	push!(t.chars, tensor_product(t[char1], t[char2]))
 	return length(t.chars)
 end
 
