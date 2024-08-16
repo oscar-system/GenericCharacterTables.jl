@@ -50,7 +50,7 @@ function Base.show(io::IO, ::MIME"text/plain", t::Table)
 	println(io, "of order ", t.order)
 	c = congruence(t)
 	if c !== nothing
-		println(io, "restricted to q congruent to ", c[1], " modulo ", c[2])
+		println(io, "restricted to ", gen(t.modulusring), " congruent to ", c[1], " modulo ", c[2])
 	end
 	println(io, "with ", irrchartypes(t)," irreducible character types")
 	println(io, "with ", classtypes(t)," class types")
