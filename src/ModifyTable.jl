@@ -1,6 +1,6 @@
 import Oscar: tensor_product
 
-export tensor_product, tensor!, omega, omega!, lincomb, lincomb!, speccharparam!, specclassparam!
+export tensor_product, tensor!, omega, omega!, lincomb, lincomb!, specialize, specclassparam!
 
 # TODO deal with ParameterSubstitution, this is not done in the original implementation.
 
@@ -276,9 +276,9 @@ function lincomb!(t::Table{T}, coeffs::Vector{Int64}, chars::Vector{Int64}) wher
 end
 
 @doc raw"""
-    speccharparam!(t::CharTable{T}, char::Int64, var::FracPoly{T}, expr::RingElement) where T <: NfPoly
+    specialize(char::GenericCharacter{T}, var::FracPoly{T}, expr::RingElement) where T <: NfPoly
 
-Replace the parameter `var` with `expr` in the character type `char`.
+Return the generic character where the parameter `var` is replaced with `expr` in `char`.
 
 # Examples
 ```jldoctest
@@ -293,28 +293,33 @@ Value of character type 1 on class type
 
 julia> q,(i,j,l,k) = params(g);
 
-julia> speccharparam!(g, 1, i, q)
+julia> specialize(g[1], i, q)
+Generic character of GL2
+  with parameters
+    k ∈ {1,…, q - 1}, substitutions: i = q
+  of degree 1
+  with values
+    exp(2π𝑖(2//(q - 1)*k))
+    exp(2π𝑖(2//(q - 1)*k))
+    exp(2π𝑖(1//(q - 1)*j*k + 1//(q - 1)*k))
+    exp(2π𝑖(1//(q - 1)*k))
 
-julia> printval(g,char=1)
-Value of character type 1 on class type
-  1: exp(2π𝑖(2//(q - 1)*k))
-  2: exp(2π𝑖(2//(q - 1)*k))
-  3: exp(2π𝑖(1//(q - 1)*j*k + 1//(q - 1)*k))
-  4: exp(2π𝑖(1//(q - 1)*k))
 ```
 """
-function speccharparam!(t::CharTable{T}, char::Int64, var::FracPoly{T}, expr::RingElement) where T <: NfPoly
-	if char > chartypes(t)
-		throw(DomainError(char, "Character type is out of range."))
-	end
+function specialize(char::GenericCharacter{T}, var::FracPoly{T}, expr::RingElement) where T <: NfPoly
 	if !is_gen(var)
 		throw(DomainError(var, "Not a single variable."))
 	end
-	for class in range(1,classtypes(t))
-		t[char,class]=simplify(eesubs(t[char,class], [var], [expr]), t)
+	t=parent(char)
+	new_char_values=Vector{CycloSum{T}}(undef, classtypes(t))
+	for class in range(1, classtypes(t))
+		new_char_values[class]=simplify(eesubs(char[class], [var], [expr]), t)
 	end
-	push!(t[char].params.substitutions, ParameterSubstitution(var, t.argumentring(expr)))
-	return nothing
+	new_params=deepcopy(char.params)
+	push!(new_params.substitutions, ParameterSubstitution(var, t.argumentring(expr)))
+	# TODO: What about the sum function here?
+	return GenericCharacter{T}(t, new_char_values, char.info, char.degree, nothing, new_params)
+
 end
 
 @doc raw"""
