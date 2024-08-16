@@ -364,7 +364,7 @@ function specclassparam!(t::CharTable{T}, class::Int64, var::FracPoly{T}, expr::
 		throw(DomainError(var, "Not a single variable."))
 	end
 	for char in range(1,chartypes(t))
-		t[char,class]=simplify(eesubs(t[char,class], [var], [expr]), t)
+		t[char].values[class]=simplify(eesubs(t[char,class], [var], [expr]), t)
 	end
 	push!(t.classparams[class].substitutions, ParameterSubstitution(var, t.argumentring(expr)))
 	return nothing
