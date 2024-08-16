@@ -51,8 +51,8 @@ end
 	q,(a,b,m,n)=params(g)
 	x=param(g,"x")
 	g2=setcongruence(g, (0,2))
-	speccharparam!(g2, 6, n, -m+(q-1)*x)
-	@test isone(scalar_product(g2,6,h))
+	j=specialize(g2[6], n, -m+(q-1)*x)
+	@test isone(scalar_product(j,g2[h]))
 end
 
 @testset "Import green functions" begin

@@ -621,6 +621,6 @@ function params(t::CharTable)
 	return (q, Tuple(gens(t.argumentring)[1:nrparams(t)]))
 end
 
-# HACK: allow requesting a free form parameter e.g. for use with `speccharparam!`
+# HACK: allow requesting a free form parameter e.g. for use with `specclassparam!`
 # TODO: document this? or replace it by a better interface...
 param(t::CharTable, x::VarName) = gen(t.argumentring, x)
