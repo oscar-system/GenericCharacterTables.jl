@@ -271,7 +271,26 @@ function lincomb(coeffs::Vector{Int64}, chars::Vector{GenericCharacter{T}}) wher
 	new_char_params=Parameters(vcat(map(x -> x.params, params)...), vcat(map(x -> x.exceptions, params)...), ParameterSubstitution{T}[])
 	return GenericCharacter{T}(t, new_char_values, ["Lincomb $info"], new_char_degree, nothing, new_char_params)
 end
-function lincomb(t::SimpleCharTable{T}, coeffs::Vector{Int64}, chars::Vector{Int64}) where T <: NfPoly
+
+@doc raw"""
+    lincomb(coeffs::Vector{Int64}, chars::Vector{SimpleGenericCharacter{T}}) where T <: NfPoly
+
+Return the linear combination of the character types `chars` with coefficients `coeffs`.
+
+# Examples
+```jldoctest
+julia> g=greenfuntab("GL3");
+
+julia> lincomb([5,1],[g[1],g[2]])
+Generic character of GL3
+  of degree 4*q^3 + 10*q^2 + 10*q + 6
+  with values
+    4*q^3 + 10*q^2 + 10*q + 6
+    10*q + 6
+    6
+```
+"""
+function lincomb(coeffs::Vector{Int64}, chars::Vector{SimpleGenericCharacter{T}}) where T <: NfPoly
 	if length(coeffs)!=length(chars)
 		throw(DomainError((coeffs,chars), "Different number of coefficients and character types."))
 	end
