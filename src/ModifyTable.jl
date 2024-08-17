@@ -5,7 +5,7 @@ export tensor_product, tensor!, omega, omega!, lincomb, lincomb!, specialize, sp
 # TODO deal with ParameterSubstitution, this is not done in the original implementation.
 
 @doc raw"""
-    tensor_product(char1::T, char2::T) where T <: AbstractGenericCharacter
+    tensor_product(char1::GenericCharacter{T}, char2::GenericCharacter{T}) where T<:PolyRingElem
 
 Return the tensor product of the character types `char1` and `char2`.
 This can also be obtained via `char1 * char2`.
@@ -51,6 +51,25 @@ function tensor_product(char1::GenericCharacter{T}, char2::GenericCharacter{T}) 
 	return GenericCharacter{T}(t, new_char_values, ["Tensor of type $char1id and $char2id"], new_char_degree, nothing, new_char_params)
 end
 
+@doc raw"""
+    tensor_product(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T<:PolyRingElem
+
+Return the tensor product of the character types `char1` and `char2`.
+This can also be obtained via `char1 * char2`.
+
+# Examples
+```jldoctest
+julia> g = greenfuntab("GL3");
+
+julia> tensor_product(g[1],g[2])
+Generic character of GL3
+  of degree -q^6 - 2*q^5 - 2*q^4 + 2*q^2 + 2*q + 1
+  with values
+    -q^6 - 2*q^5 - 2*q^4 + 2*q^2 + 2*q + 1
+    2*q + 1
+    1
+```
+"""
 function tensor_product(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T<:PolyRingElem
 	if parent(char1) != parent(char2)
 		throw(DomainError((parent(char1),parent(char2)), "Tables do not match."))
@@ -99,7 +118,7 @@ function tensor!(t::Table{T}, char1::Int64, char2::Int64) where T <: NfPoly
 end
 
 @doc raw"""
-    omega(char::T) where T <: AbstractGenericCharacter
+    omega(char::GenericCharacter{T}) where T <: NfPoly
 
 Return the (generic) central character of the character type `char`.
 
@@ -130,6 +149,25 @@ function omega(char::GenericCharacter{T}) where T <: NfPoly
 	end
 	return GenericCharacter{T}(t, new_char_values, ["Omega of type $charid"], new_char_degree, nothing, char.params)
 end
+
+@doc raw"""
+    omega(char::SimpleGenericCharacter{T}) where T <: NfPoly
+
+Return the (generic) central character of the character type `char`.
+
+# Examples
+```jldoctest
+julia> g=greenfuntab("GL3");
+
+julia> omega(g[1])
+Generic character of GL3
+  of degree 1
+  with values
+    1
+    2*q^2 - q - 1
+    q^3 - 2*q^2 + q
+```
+"""
 function omega(char::SimpleGenericCharacter{T}) where T <: NfPoly  # TODO is correct?
 	t=parent(char)
 	charid=chartypeid(char)
@@ -167,9 +205,25 @@ function omega!(t::Table{T}, char::Int64) where T <: NfPoly
 end
 
 @doc raw"""
-    lincomb(coeffs::Vector{Int64}, chars::Vector{AbstractGenericCharacter{T}}) where T <: NfPoly
+    lincomb(coeffs::Vector{Int64}, chars::Vector{GenericCharacter{T}}) where T <: NfPoly
 
 Return the linear combination of the character types `chars` with coefficients `coeffs`.
+
+# Examples
+```jldoctest
+julia> g=genchartab("GL2");
+
+julia> lincomb([5,1],[g[1],g[2]])
+Generic character of GL2
+  with parameters
+    kl1 ∈ {1,…, q - 1}, kl2 ∈ {1,…, q - 1}
+  of degree q + 5
+  with values
+    q*exp(2π𝑖(2//(q - 1)*i*kl2)) + 5*exp(2π𝑖(2//(q - 1)*i*kl1))
+    5*exp(2π𝑖(2//(q - 1)*i*kl1))
+    exp(2π𝑖(1//(q - 1)*i*kl2 + 1//(q - 1)*j*kl2)) + 5*exp(2π𝑖(1//(q - 1)*i*kl1 + 1//(q - 1)*j*kl1))
+    5*exp(2π𝑖(1//(q - 1)*i*kl1)) + -1*exp(2π𝑖(1//(q - 1)*i*kl2))
+```
 """
 function lincomb(coeffs::Vector{Int64}, chars::Vector{GenericCharacter{T}}) where T <: NfPoly
 	if length(coeffs)!=length(chars)
