@@ -2,7 +2,7 @@ export norm, scalar_product, scalar, ortho2norm, ortho2scalar, classmult
 # TODO Should we really return Set{ParameterException{T}}() in SimpleCharTable methods? This seems a bit weird.
 
 @doc raw"""
-    classmult(t::Table{T}, class1::Int64, class2::Int64, class3::Int64) where T <: NfPoly
+    classmult(t::CharTable{T}, class1::Int64, class2::Int64, class3::Int64) where T <: NfPoly
 
 Return the (generic) class multiplication constant of the class types `class1`, `class2` and `class3` of the table `t`.
 
@@ -29,6 +29,20 @@ function classmult(t::CharTable{T}, class1::Int64, class2::Int64, class3::Int64)
 	end
 	return shrink(simplify((t.classlength[class1]*t.classlength[class2])*sum//(t.order^2), t))
 end
+
+@doc raw"""
+    classmult(t::SimpleCharTable{T}, class1::Int64, class2::Int64, class3::Int64) where T <: NfPoly
+
+Return the (generic) class multiplication constant of the class types `class1`, `class2` and `class3` of the table `t`.
+
+# Examples
+```jldoctest
+julia> g=greenfuntab("GL3");
+
+julia> classmult(g,1,2,3)
+(q + 3)//(q^5 - 2*q^4 + q^3)
+```
+"""
 function classmult(t::SimpleCharTable{T}, class1::Int64, class2::Int64, class3::Int64) where T <: NfPoly  # TODO is correct?
 	if any((class1, class2, class3).>classtypes(t))
 		throw(DomainError((class1,class2,class3), "Some class types are out of range."))
@@ -42,7 +56,7 @@ function classmult(t::SimpleCharTable{T}, class1::Int64, class2::Int64, class3::
 end
 
 @doc raw"""
-    norm(char::AbstractGenericCharacter{T}) where T <: NfPoly
+    norm(char::GenericCharacter{T}) where T <: NfPoly
 
 Return the norm of the character type `char`.
 
@@ -63,6 +77,20 @@ function Oscar.norm(char::GenericCharacter{T}) where T <: NfPoly
 	end
 	return shrink(simplify(sum//t.order, t))
 end
+
+@doc raw"""
+    norm(char::SimpleGenericCharacter{T}) where T <: NfPoly
+
+Return the norm of the character type `char`.
+
+# Examples
+```jldoctest
+julia> g=greenfuntab("GL3");
+
+julia> norm(g[1])
+6//(q^3 - 3*q^2 + 3*q - 1)
+```
+"""
 function Oscar.norm(char::SimpleGenericCharacter{T}) where T <: NfPoly
 	t=parent(char)
 	sum=0
@@ -93,7 +121,7 @@ function Oscar.norm(t::Table{T}, char::Int64) where T <: NfPoly
 end
 
 @doc raw"""
-    scalar_product(char1::AbstractGenericCharacter{T}, char2::AbstractGenericCharacter{T}) where T <: NfPoly
+    scalar_product(char1::GenericCharacter{T}, char2::GenericCharacter{T}) where T <: NfPoly
 
 Return the scalar product between the character types `char1` and `char2`.
 
@@ -122,6 +150,20 @@ function Oscar.scalar_product(char1::GenericCharacter{T}, char2::GenericCharacte
 	end
 	return shrink(simplify(sum//t.order, t))
 end
+
+@doc raw"""
+    scalar_product(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T <: NfPoly
+
+Return the scalar product between the character types `char1` and `char2`.
+
+# Examples
+```jldoctest
+julia> g=greenfuntab("GL3");
+
+julia> scalar_product(g[1],g[2])
+0
+```
+"""
 function Oscar.scalar_product(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T <:NfPoly
 	if parent(char1) != parent(char2)
 		throw(DomainError((parent(char1),parent(char2)), "Tables do not match."))
@@ -158,9 +200,8 @@ function Oscar.scalar_product(t::Table{T}, char1::Int64, char2::Int64) where T <
 	return scalar_product(t[char1], t[char2])
 end
 
-
 @doc raw"""
-    ortho2norm(t::Table{T}, class::Int64) where T <: NfPoly
+    ortho2norm(t::CharTable{T}, class::Int64) where T <: NfPoly
 
 Return the (generic) norm of the class type `class`.
 
@@ -183,6 +224,20 @@ function ortho2norm(t::CharTable{T}, class::Int64) where T <: NfPoly
 	end
 	return shrink(simplify(t.classlength[class]*sum//t.order, t))
 end
+
+@doc raw"""
+    ortho2norm(t::SimpleCharTable{T}, class::Int64) where T <: NfPoly
+
+Return the (generic) norm of the class type `class`.
+
+# Examples
+```jldoctest
+julia> g=greenfuntab("GL3");
+
+julia> ortho2norm(g,2)
+(5*q^2 + 2*q + 3)//(q^5 - 2*q^4 + q^3)
+```
+"""
 function ortho2norm(t::SimpleCharTable{T}, class::Int64) where T <: NfPoly  # TODO is correct?
 	if class > classtypes(t)
 		throw(DomainError(class, "Class type is out of range."))
@@ -195,7 +250,7 @@ function ortho2norm(t::SimpleCharTable{T}, class::Int64) where T <: NfPoly  # TO
 end
 
 @doc raw"""
-    ortho2scalar(t::Table{T}, class1::Int64, class2::Int64) where T <: NfPoly
+    ortho2scalar(t::CharTable{T}, class1::Int64, class2::Int64) where T <: NfPoly
 
 Return the (generic) scalar product between the class types `class1` and `class2`.
 
@@ -223,6 +278,20 @@ function ortho2scalar(t::CharTable{T}, class1::Int64, class2::Int64) where T <: 
 	end
 	return shrink(simplify(t.classlength[class1]*sum//t.order, t))
 end
+
+@doc raw"""
+    ortho2scalar(t::SimpleCharTable{T}, class1::Int64, class2::Int64) where T <: NfPoly
+
+Return the (generic) scalar product between the class types `class1` and `class2`.
+
+# Examples
+```jldoctest
+julia> g=greenfuntab("GL3");
+
+julia> ortho2scalar(g,2,2)
+(5*q^2 + 2*q + 3)//(q^5 - 2*q^4 + q^3)
+```
+"""
 function ortho2scalar(t::SimpleCharTable{T}, class1::Int64, class2::Int64) where T <: NfPoly  # TODO is correct?
 	if any((class1, class2).>classtypes(t))
 		throw(DomainError((class1,class2), "Some class types are out of range."))
