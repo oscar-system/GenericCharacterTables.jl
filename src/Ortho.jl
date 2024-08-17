@@ -1,5 +1,4 @@
 export norm, scalar_product, scalar, ortho2norm, ortho2scalar, classmult
-# TODO Should we really return Set{ParameterException{T}}() in SimpleCharTable methods? This seems a bit weird.
 
 @doc raw"""
     classmult(t::CharTable{T}, class1::Int64, class2::Int64, class3::Int64) where T <: NfPoly
