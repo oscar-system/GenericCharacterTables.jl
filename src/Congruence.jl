@@ -46,7 +46,7 @@ function setcongruence(x::CharTable{T}, new_congruence::Tuple{T, T}) where T
 		x.irrchartypes,
 		x.importname*"*"
 	)
-	for i in range(1, chartypes(x))
+	for i in 1:chartypes(x)
 		char=x[i]
 		t.chars[i]=GenericCharacter(
 			t,

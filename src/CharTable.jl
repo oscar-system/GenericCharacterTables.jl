@@ -36,7 +36,7 @@ function CharTable(order::T, table::Matrix{Cyclotomic{T}}, classinfo::Vector{<:A
 	chars=Vector{GenericCharacter{T}}(undef, num_chars)
 	ct=CharTable{T}(order, classinfo, classlength, classsums, classparamindex, charparamindex,
 			classparams, congruence, modulusring, argumentring, information, chars, num_chars, importname)
-	for i in range(1, num_chars)
+	for i in 1:num_chars
 		ct.chars[i]=GenericCharacter(ct, table[i,:], charinfo[i], chardegree[i], charsums[i], charparams[i])
 	end
 	return ct
@@ -72,7 +72,7 @@ struct SimpleCharTable{T} <: Table{T}
 		num_chars=size(table, 1)
 		chars=Vector{SimpleGenericCharacter{T}}(undef, num_chars)
 		ct=new{T}(order, classinfo, classlength, classtypeorder, ring, information, chars, num_chars, importname)
-		for i in range(1, num_chars)
+		for i in 1:num_chars
 			ct.chars[i]=SimpleGenericCharacter(ct, table[i,:], charinfo[i], chardegree[i])
 		end
 		return ct

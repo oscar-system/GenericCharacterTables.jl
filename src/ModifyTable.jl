@@ -38,7 +38,7 @@ function tensor_product(char1::GenericCharacter{T}, char2::GenericCharacter{T}) 
 	end
 	new_char_degree=char1.degree*char2.degree
 	new_char_values=Vector{CycloSum{T}}(undef, classtypes(t))
-	for class in range(1, classtypes(t))
+	for class in 1:classtypes(t)
 		# The first 4 variable sets are reserved for the computations in Ortho.jl
 		# so we can use the 5th and 6th set here.
 		val1=shift_char_parameters(t, char1[class], 4)
@@ -82,7 +82,7 @@ function tensor_product(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCh
 	end
 	new_char_degree=char1.degree*char2.degree
 	new_char_values=Vector{T}(undef, classtypes(t))
-	for class in range(1, classtypes(t))
+	for class in 1:classtypes(t)
 		new_char_values[class]=char1[class]*char2[class]
 	end
 	return SimpleGenericCharacter{T}(t, new_char_values, ["Tensor of type $char1id and $char2id"], new_char_degree)
@@ -144,7 +144,7 @@ function omega(char::GenericCharacter{T}) where T <: NfPoly
 	charid=chartypeid(char)
 	new_char_degree=t.modulusring(1)
 	new_char_values=Vector{CycloFrac{T}}(undef, classtypes(t))
-	for class in range(1, classtypes(t))
+	for class in 1:classtypes(t)
 		new_char_values[class]=t.classlength[class]*char[class]//char.degree
 	end
 	return GenericCharacter{T}(t, new_char_values, ["Omega of type $charid"], new_char_degree, nothing, char.params)
@@ -173,7 +173,7 @@ function omega(char::SimpleGenericCharacter{T}) where T <: NfPoly  # TODO is cor
 	charid=chartypeid(char)
 	new_char_degree=t.ring(1)
 	new_char_values=Vector{T}(undef, classtypes(t))
-	for class in range(1, classtypes(t))
+	for class in 1:classtypes(t)
 		new_char_values[class]=div(t.classlength[class]*char[class], char.degree)
 	end
 	return SimpleGenericCharacter{T}(t, new_char_values, ["Omega of type $charid"], new_char_degree)
@@ -249,7 +249,7 @@ function lincomb(coeffs::Vector{Int64}, chars::Vector{GenericCharacter{T}}) wher
 	missing_var_batches=n-extra_var_batches
 	if missing_var_batches > 0
 		vars=map(x -> String(x), symbols(S)[1:nrparams(t)]).*"l"
-		for i in range(1, missing_var_batches)
+		for i in 1:missing_var_batches
 			gens(S, vars.*string(i))
 		end
 	end
@@ -257,15 +257,15 @@ function lincomb(coeffs::Vector{Int64}, chars::Vector{GenericCharacter{T}}) wher
 	degrees=map(x -> x.degree, chars)
 	new_char_degree=sum(coeffs.*degrees)
 	new_char_values=Vector{CycloSum{T}}(undef, classtypes(t))
-	for class in range(1, classtypes(t))
+	for class in 1:classtypes(t)
 		new_char_values[class]=CycloSum(t.modulusring(0), t.argumentring(0))
-		for i in range(1, n)
+		for i in 1:n
 			new_char_values[class]+=shift_char_parameters(t, coeffs[i]*chars[i][class], 5+i)
 		end
 	end
 	info=join(map(x -> join(x, " * type "), zip(coeffs, charids)), " + ")  # TODO
 	params=Vector{Parameters{T}}(undef, n)
-	for i in range(1, n)
+	for i in 1:n
 		params[i]=shift_char_parameters(t, chars[i].params, 5+i)
 	end
 	new_char_params=Parameters(vcat(map(x -> x.params, params)...), vcat(map(x -> x.exceptions, params)...), ParameterSubstitution{T}[])
@@ -312,9 +312,9 @@ function lincomb(coeffs::Vector{Int64}, chars::Vector{SimpleGenericCharacter{T}}
 	degrees=map(x -> x.degree, chars)
 	new_char_degree=sum(coeffs.*degrees)
 	new_char_values=Vector{T}(undef, classtypes(t))
-	for class in range(1, classtypes(t))
+	for class in 1:classtypes(t)
 		new_char_values[class]=t.ring(0)
-		for i in range(1, n)
+		for i in 1:n
 			new_char_values[class]+=coeffs[i]*chars[i][class]
 		end
 	end
@@ -385,7 +385,7 @@ function specialize(char::GenericCharacter{T}, var::FracPoly{T}, expr::RingEleme
 	end
 	t=parent(char)
 	new_char_values=Vector{CycloSum{T}}(undef, classtypes(t))
-	for class in range(1, classtypes(t))
+	for class in 1:classtypes(t)
 		new_char_values[class]=simplify(eesubs(char[class], [var], [expr]), t)
 	end
 	new_params=deepcopy(char.params)
@@ -436,7 +436,7 @@ function specclassparam!(t::CharTable{T}, class::Int64, var::FracPoly{T}, expr::
 	if !is_gen(var)
 		throw(DomainError(var, "Not a single variable."))
 	end
-	for char in range(1,chartypes(t))
+	for char in 1:chartypes(t)
 		t[char].values[class]=simplify(eesubs(t[char,class], [var], [expr]), t)
 	end
 	push!(t.classparams[class].substitutions, ParameterSubstitution(var, t.argumentring(expr)))

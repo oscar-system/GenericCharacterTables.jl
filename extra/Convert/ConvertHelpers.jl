@@ -299,7 +299,7 @@ function convertsumme(summe::String, vars::String)
 			if isone(exceptions)
 				parsed_lines[end]="("*parsed_lines[end]*", e1)"
 			else
-				es="e"*join(range(1,exceptions), ",e")
+				es="e"*join(1:exceptions, ",e")
 				parsed_lines[end]="("*parsed_lines[end]*", union("*es*"))"
 			end
 		end

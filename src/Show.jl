@@ -392,7 +392,7 @@ julia> printcharparam(g)
 """
 function printcharparam(io::IO, t::CharTable, char::Union{Int64, Nothing}=nothing)
 	if char === nothing
-		chars=range(1, chartypes(t))
+		chars=1:chartypes(t)
 	else
 		if char > chartypes(t)
 			throw(DomainError(char, "Character type is out of range."))
@@ -427,7 +427,7 @@ julia> printclassparam(g)
 """
 function printclassparam(io::IO, t::CharTable, class::Union{Int64, Nothing}=nothing)
 	if class === nothing
-		classes=range(1, classtypes(t))
+		classes=1:classtypes(t)
 	else
 		if class > classtypes(t)
 			throw(DomainError(class, "Class type is out of range."))
@@ -463,7 +463,7 @@ julia> printinfochar(g)
 """
 function printinfochar(io::IO, t::Table, char::Union{Int64, Nothing}=nothing)
 	if char === nothing
-		chars=range(1, chartypes(t))
+		chars=1:chartypes(t)
 	else
 		if char > chartypes(t)
 			throw(DomainError(char, "Character type is out of range."))
@@ -499,7 +499,7 @@ julia> printinfoclass(g)
 """
 function printinfoclass(io::IO, t::Table, class::Union{Int64, Nothing}=nothing)
 	if class === nothing
-		classes=range(1, classtypes(t))
+		classes=1:classtypes(t)
 	else
 		if class > classtypes(t)
 			throw(DomainError(class, "Class type is out of range."))
@@ -540,7 +540,7 @@ Value of character type 4 on class type
 """
 function printval(io::IO, t::Table; char::Union{Int64, Nothing}=nothing, class::Union{Int64, Nothing}=nothing)
 	if char === nothing
-		chars=range(1, chartypes(t))
+		chars=1:chartypes(t)
 	else
 		if char > chartypes(t)
 			throw(DomainError(char, "Character type is out of range."))
@@ -548,7 +548,7 @@ function printval(io::IO, t::Table; char::Union{Int64, Nothing}=nothing, class::
 		chars=[char]
 	end
 	if class === nothing
-		classes=range(1, classtypes(t))
+		classes=1:classtypes(t)
 	else
 		if class > classtypes(t)
 			throw(DomainError(class, "Class type is out of range."))
