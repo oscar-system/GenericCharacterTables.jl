@@ -1,2 +1,0 @@
-#!/bin/sh
-bibtool docs/src/refs.bib -o docs/src/refs.bib
