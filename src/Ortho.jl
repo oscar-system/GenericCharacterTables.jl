@@ -20,7 +20,7 @@ function classmult(t::CharTable{T}, class1::Int64, class2::Int64, class3::Int64)
 		throw(DomainError((class1,class2,class3), "Some class types are out of range."))
 	end
 	sum=0
-	for char in range(1, irrchartypes(t))
+	for char in 1:irrchartypes(t)
 		val1=shift_class_parameters(t, t[char, class1], 1)
 		val2=shift_class_parameters(t, t[char, class2], 2)
 		val3=shift_class_parameters(t, t[char, class3], 3)
@@ -47,7 +47,7 @@ function classmult(t::SimpleCharTable{T}, class1::Int64, class2::Int64, class3::
 		throw(DomainError((class1,class2,class3), "Some class types are out of range."))
 	end
 	sum=0
-	for char in range(1, irrchartypes(t))
+	for char in 1:irrchartypes(t)
 		sum1=t[char, class1]*t[char, class2]*t[char, class3]
 		sum+=t.order*sum1//t[char].degree  # TODO move t.order* to the end of the function
 	end
@@ -70,7 +70,7 @@ julia> norm(g[1])
 function Oscar.norm(char::GenericCharacter{T}) where T <: NfPoly
 	t=parent(char)
 	sum=0
-	for class in range(1, classtypes(t))
+	for class in 1:classtypes(t)
 		val=char[class]
 		sum+=t.classlength[class]*t.classsums[class](val*conj(val))
 	end
@@ -93,7 +93,7 @@ julia> norm(g[1])
 function Oscar.norm(char::SimpleGenericCharacter{T}) where T <: NfPoly
 	t=parent(char)
 	sum=0
-	for class in range(1, classtypes(t))
+	for class in 1:classtypes(t)
 		sum+=char[class]^2*t.classlength[class]*t.classtypeorder[class]
 	end
 	return sum//t.order
@@ -142,7 +142,7 @@ function Oscar.scalar_product(char1::GenericCharacter{T}, char2::GenericCharacte
 	end
 	t=parent(char1)
 	sum=0
-	for class in range(1, classtypes(t))
+	for class in 1:classtypes(t)
 		val1=shift_char_parameters(t, char1[class], 1)
 		val2=shift_char_parameters(t, char2[class], 2)
 		sum+=t.classlength[class]*t.classsums[class](val1*conj(val2))
@@ -169,7 +169,7 @@ function Oscar.scalar_product(char1::SimpleGenericCharacter{T}, char2::SimpleGen
 	end
 	t=parent(char1)
 	sum=0
-	for class in range(1, classtypes(t))
+	for class in 1:classtypes(t)
 		sum+=char1[class]*char2[class]*t.classlength[class]*t.classtypeorder[class]
 	end
 	return sum//t.order
@@ -217,7 +217,7 @@ function ortho2norm(t::CharTable{T}, class::Int64) where T <: NfPoly
 		throw(DomainError(class, "Class type is out of range."))
 	end
 	sum=0
-	for char in range(1, irrchartypes(t))
+	for char in 1:irrchartypes(t)
 		val=t[char, class]
 		sum+=t[char].sum(val*conj(val))
 	end
@@ -242,7 +242,7 @@ function ortho2norm(t::SimpleCharTable{T}, class::Int64) where T <: NfPoly  # TO
 		throw(DomainError(class, "Class type is out of range."))
 	end
 	sum=0
-	for char in range(1, irrchartypes(t))
+	for char in 1:irrchartypes(t)
 		sum+=t[char, class]^2
 	end
 	return t.classlength[class]*sum//t.order
@@ -270,7 +270,7 @@ function ortho2scalar(t::CharTable{T}, class1::Int64, class2::Int64) where T <: 
 		throw(DomainError((class1,class2), "Some class types are out of range."))
 	end
 	sum=0
-	for char in range(1, irrchartypes(t))
+	for char in 1:irrchartypes(t)
 		val1=shift_class_parameters(t, t[char, class1], 1)
 		val2=shift_class_parameters(t, t[char, class2], 2)
 		sum+=t[char].sum(val1*conj(val2))
@@ -296,7 +296,7 @@ function ortho2scalar(t::SimpleCharTable{T}, class1::Int64, class2::Int64) where
 		throw(DomainError((class1,class2), "Some class types are out of range."))
 	end
 	sum=0
-	for char in range(1, irrchartypes(t))
+	for char in 1:irrchartypes(t)
 		sum+=t[char, class1]*t[char, class2]
 	end
 	return t.classlength[class1]*sum//t.order

@@ -13,7 +13,7 @@ end
 Return the sign of the leading coefficient of the polynomial representation of `a`.
 """
 function weak_sign(a::AbsSimpleNumFieldElem)
-	for deg in reverse(range(1, degree(parent(a))-1))
+	for deg in reverse(1:degree(parent(a))-1)
 		signum=sign(coeff(a, deg))
 		if !iszero(signum)
 			return signum
