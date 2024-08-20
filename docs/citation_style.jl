@@ -1,3 +1,5 @@
+# Copyright (c) 2023 Lars Göttgens, The OSCAR Development Team
+# This file was copied from https://github.com/oscar-system/Oscar.jl version 1.1.0
 #
 # This file is included by docs/make_work.jl to define the custom citation style `oscar_style`.
 #
