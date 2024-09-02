@@ -15,6 +15,52 @@ end
 
 test_Ring_interface(S)
 
+@testset "GenericCyclo" begin
+	R = universal_polynomial_ring(QQ)
+	q, i, j = gens(R, [:q, :i, :j])
+	S = generic_cyclotomic_ring(R)
+
+	a=S(Dict(1//(q-1)*i+2//(q-1)*j+q^2//(q+1)*i => R(1)))
+	b=S(Dict(2*q//(q^2-1)*i+2//(q-1)*j => R(1)))
+	@test a==b
+
+	c=S(Dict(1//q*j => R(1)))
+	@test (a+c)==(c+a)
+	@test iszero(-c+c)
+
+	@test a-1+S(Dict(0//R(1) => R(1)))==a
+	@test a*1==a
+	@test 2*a-a==a
+	@test 2*a+a==3*a
+
+	@test isone(a//a)
+	@test isone((a//c)*inv(a//c))
+
+	d=S(Dict(1//R(3) => R(-1)))
+	@test isone(d+conj(d))
+
+	e=evaluate(a, [1, 2], [2, 6//5])
+	f=S(Dict(1//R(5) => R(1)))^3
+	@test e==f
+
+	g=evaluate(a//f, [1, 2], [2, 6//5])
+	@test isone(g)
+
+	@test iszero(S(0)//S(2))
+	@test iszero(zero(S(1)//S(1)))
+	@test isone(one(S(0)//S(1)))
+	@test iszero(1//S(1)-1)
+	@test iszero(1-S(1)//1)
+	@test 1//(S(1)//S(1)) == (S(1)//S(1))//1
+	@test isone((S(1)//S(2))//(S(1)//S(2)))
+	@test iszero((S(1)//S(2))-(S(1)//S(2)))
+	@test isone((S(1)//S(2))+(S(1)//S(2)))
+	@test (S(1)//S(3))+(S(1)//S(6)) == (S(1)//S(2))
+	@test isone((S(1)//S(2))*2)
+
+	@test conj(a//c) == conj(a)//conj(c)
+end
+
 @testset "Cyclotomic" begin
 	R, q = polynomial_ring(QQ, "q")
 	Q = fraction_field(R)
