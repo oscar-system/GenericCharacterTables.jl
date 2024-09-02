@@ -55,7 +55,8 @@ test_Ring_interface(S)
 	@test isone((S(1)//S(2))//(S(1)//S(2)))
 	@test iszero((S(1)//S(2))-(S(1)//S(2)))
 	@test isone((S(1)//S(2))+(S(1)//S(2)))
-	@test (S(1)//S(3))+(S(1)//S(6)) == (S(1)//S(2))
+	@test (S(1)//S(3))+(S(1)//S(6)) == 1//2
+	@test 1//3+1//6 == S(1)//S(2)
 	@test isone((S(1)//S(2))*2)
 
 	@test conj(a//c) == conj(a)//conj(c)
