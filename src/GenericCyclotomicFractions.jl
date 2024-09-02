@@ -139,7 +139,7 @@ inv(x::GenericCycloFrac) = GenericCycloFrac(x.denominator, x.numerator, x.except
 
 # Binary operations
 
-*(factor::RingElement, x::GenericCycloFrac) = iszero(factor) ? zero(x) : GenericCycloFrac(factor*x.numerator, x.denominator, x.exceptions, simplify=false)
+*(factor::RingElement, x::GenericCycloFrac) = iszero(factor) ? zero(x) : GenericCycloFrac(factor*x.numerator, x.denominator, x.exceptions)
 *(x::GenericCycloFrac, factor::RingElement) = factor*x
 
 (==)(x::GenericCycloFrac, y::GenericCycloFrac) = iszero((x-y).numerator)  # TODO compare exceptions?
