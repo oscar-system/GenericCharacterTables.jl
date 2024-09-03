@@ -474,7 +474,7 @@ function evaluate(x::GenericCyclo, vars::Vector{Int64}, vals::Vector{<:RingEleme
 	f = Dict{UPolyFrac, UPoly}()
 	for (key,value) in x.f
 		new_key=evaluate(key, vars, vals)
-		if haskey(f, key)
+		if haskey(f, new_key)
 			f[new_key]+=evaluate(value, vars, vals)
 		else
 			f[new_key]=evaluate(value, vars, vals)
