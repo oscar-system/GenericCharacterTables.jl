@@ -184,6 +184,10 @@ end
 
 //(x::GenericCyclo, y::GenericCyclo) = GenericCycloFrac(x, y, Set{UPolyFrac}())
 
+//(x::GenericCyclo, y::UPoly) = GenericCycloFrac(x, parent(x)(y), Set{UPolyFrac}())
+
+//(x::UPoly, y::GenericCyclo) = GenericCycloFrac(parent(y)(x), y, Set{UPolyFrac}())
+
 # evaluate
 
 function evaluate(x::GenericCycloFrac, vars::Vector{Int64}, vals::Vector{<:RingElement})
