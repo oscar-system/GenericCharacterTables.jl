@@ -48,17 +48,18 @@ function shrink(a::GenericCycloFrac)  # TODO Move this to the constructor of Gen
 		end
 	end
 	new_exceptions = Set{UPolyFrac}()
-	for exception1 in a.exceptions
+	exceptions=collect(a.exceptions)
+	for i in 1:length(exceptions)
 		needed = true
-		for exception2 in setdiff(a.exceptions,[exception1])
-			quotient=exception2//exception1
+		for j in (i+1):length(exceptions)
+			quotient=exceptions[j]//exceptions[i]
 			if isone(denominator(quotient))
 				if is_constant(numerator(quotient))
 					c=constant_coefficient(numerator(quotient))
 					if isone(denominator(c))
-						# In this case exception2 is an integer multiple of exception1, so if exception1 evaluates to an
-						# integer exception2 does as well. Hence, it suffices to track exception2 and we can discard
-						# exception1.
+						# In this case exceptions[j] is an integer multiple of exceptions[i], so if exception1 evaluates to an
+						# integer exceptions[j] does as well. Hence, it suffices to track exceptions[j] and we can discard
+						# exceptions[i].
 						needed = false
 						break
 					end
@@ -68,7 +69,7 @@ function shrink(a::GenericCycloFrac)  # TODO Move this to the constructor of Gen
 		if needed
 			# TODO test if exception1 is a rational number and apply normal_form to the "whole" part of exception1, similar to the
 			# simplification of GenericCyclotomic.
-			push!(new_exceptions,exception1)
+			push!(new_exceptions,exceptions[i])
 		end
 	end
 	return GenericCycloFrac(new_numerator, new_denominator, new_exceptions, simplify=false)
