@@ -7,7 +7,7 @@ import Oscar.AbstractAlgebra: parent_type, elem_type, base_ring, base_ring_type,
 import Oscar: pretty, Indent, Dedent, terse, is_terse
 import Oscar.AbstractAlgebra: normal_form
 
-import Base: show, +, -, *, ^, ==, inv, isone, iszero, one, zero, rand, deepcopy_internal, hash, conj
+import Base: show, +, -, *, ^, ==, inv, isone, iszero, one, zero, rand, deepcopy_internal, hash, conj, div
 
 import Compat
 
@@ -480,5 +480,11 @@ function evaluate(x::GenericCyclo, vars::Vector{Int64}, vals::Vector{<:RingEleme
 			f[new_key]=evaluate(value, vars, vals)
 		end
 	end
+	return parent(x)(f)
+end
+
+function div(x::GenericCyclo, y::UPoly)
+	f=deepcopy(x.f)
+	map!(p -> div(p,y), values(f))
 	return parent(x)(f)
 end
