@@ -378,6 +378,10 @@ function (R::GenericCycloRing)(c::UPoly)
 	return GenericCyclo(Dict(base_ring(R)()//base_ring(R)(1) => c), R)
 end
 
+function (R::GenericCycloRing)(x::RingElement; exponent::UPolyFrac)
+	return R(Dict(exponent => base_ring(R)(x)))
+end
+
 function (R::GenericCycloRing)(f::Dict{UPolyFrac, UPoly}; simplify::Bool=true)  # TODO check parent rings?
 	if !simplify
 		return GenericCyclo(f, R)
