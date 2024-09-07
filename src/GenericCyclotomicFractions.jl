@@ -177,9 +177,9 @@ end
 
 -(x::RingElement, y::GenericCycloFrac) = x+(-y)
 
-//(x::GenericCycloFrac, y::GenericCycloFrac) = x*GenericCycloFrac(y.denominator, y.numerator, y.exceptions, simplify=false)
+//(x::GenericCycloFrac, y::GenericCycloFrac) = x*GenericCycloFrac(y.denominator, y.numerator, y.exceptions)
 
-//(x::GenericCycloFrac, y::RingElement) = GenericCycloFrac(x.numerator, x.denominator*y, x.exceptions, simplify=false)
+//(x::GenericCycloFrac, y::RingElement) = GenericCycloFrac(x.numerator, x.denominator*y, x.exceptions)
 
 //(x::RingElement, y::GenericCycloFrac) = x*inv(y)
 
