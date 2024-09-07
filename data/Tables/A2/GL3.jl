@@ -1,77 +1,77 @@
 using ..GenericCharacterTables
-import ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterException, CharTable
+import ..GenericCharacterTables: Parameters, Parameter, CharTable, GenericCyclo, GenericCycloFrac
 using Oscar
-R, q = polynomial_ring(QQ, "q")
-Q = fraction_field(R)
-S = universal_polynomial_ring(Q; cached=false)
-a,b,c,l,m,n, _...=gens(S, ["a", "b", "c", "l", "m", "n", "a1", "b1", "c1", "l1", "m1", "n1", "a2", "b2", "c2", "l2", "m2", "n2", "a3", "b3", "c3", "l3", "m3", "n3", "at1", "bt1", "ct1", "lt1", "mt1", "nt1", "at2", "bt2", "ct2", "lt2", "mt2", "nt2"])
+R = universal_polynomial_ring(QQ; cached=false)
+q = gen(R, "q")
+S = generic_cyclotomic_ring(R)
+a,b,c,l,m,n, _...=gens(R, ["a", "b", "c", "l", "m", "n", "a1", "b1", "c1", "l1", "m1", "n1", "a2", "b2", "c2", "l2", "m2", "n2", "a3", "b3", "c3", "l3", "m3", "n3", "at1", "bt1", "ct1", "lt1", "mt1", "nt1", "at2", "bt2", "ct2", "lt2", "mt2", "nt2"])
 
 order = q^3*(q-1)^3*(q+1)*(q^2+q+1)
-table = Cyclotomic{QQPolyRingElem}[[
-	CycloSum(R(1), (3*n*a)*S(1//(q-1))),
-	CycloSum(R(1), (3*n*a)*S(1//(q-1))),
-	CycloSum(R(1), (3*n*a)*S(1//(q-1))),
-	CycloSum(R(1), (2*n*a+n*b)*S(1//(q-1))),
-	CycloSum(R(1), (2*n*a+n*b)*S(1//(q-1))),
-	CycloSum(R(1), (n*a+n*b+n*c)*S(1//(q-1))),
-	CycloSum(R(1), (n*a+n*b)*S(1//(q-1))),
-	CycloSum(R(1), (n*a)*S(1//(q-1)))] [
-	(q^2+q)*CycloSum(R(1), (3*n*a)*S(1//(q-1))),
-	q*CycloSum(R(1), (3*n*a)*S(1//(q-1))),
-	CycloSum(R(0), S(0)),
-	(q+1)*CycloSum(R(1), (2*n*a+n*b)*S(1//(q-1))),
-	CycloSum(R(1), (2*n*a+n*b)*S(1//(q-1))),
-	2*CycloSum(R(1), (n*a+n*b+n*c)*S(1//(q-1))),
-	CycloSum(R(0), S(0)),
-	-CycloSum(R(1), (n*a)*S(1//(q-1)))] [
-	q^3*CycloSum(R(1), (3*n*a)*S(1//(q-1))),
-	CycloSum(R(0), S(0)),
-	CycloSum(R(0), S(0)),
-	q*CycloSum(R(1), (2*n*a+n*b)*S(1//(q-1))),
-	CycloSum(R(0), S(0)),
-	CycloSum(R(1), (n*a+n*b+n*c)*S(1//(q-1))),
-	-CycloSum(R(1), (n*a+n*b)*S(1//(q-1))),
-	CycloSum(R(1), (n*a)*S(1//(q-1)))] [
-	(q^2+q+1)*CycloSum(R(1), (m*a+2*n*a)*S(1//(q-1))),
-	(q+1)*CycloSum(R(1), (m*a+2*n*a)*S(1//(q-1))),
-	CycloSum(R(1), (m*a+2*n*a)*S(1//(q-1))),
-	(q+1)*CycloSum(R(1), (m*a+n*a+n*b)*S(1//(q-1)))+CycloSum(R(1), (2*n*a+m*b)*S(1//(q-1))),
-	CycloSum(R(1), (m*a+n*a+n*b)*S(1//(q-1)))+CycloSum(R(1), (2*n*a+m*b)*S(1//(q-1))),
-	CycloSum(R(1), (m*a+n*b+n*c)*S(1//(q-1)))+CycloSum(R(1), (m*b+n*a+n*c)*S(1//(q-1)))+CycloSum(R(1), (m*c+n*a+n*b)*S(1//(q-1))),
-	CycloSum(R(1), (m*a+n*b)*S(1//(q-1))),
-	CycloSum(R(0), S(0))] [
-	q*(q^2+q+1)*CycloSum(R(1), (m*a+2*n*a)*S(1//(q-1))),
-	q*CycloSum(R(1), (m*a+2*n*a)*S(1//(q-1))),
-	CycloSum(R(0), S(0)),
-	(q+1)*CycloSum(R(1), (m*a+n*a+n*b)*S(1//(q-1)))+q*CycloSum(R(1), (2*n*a+m*b)*S(1//(q-1))),
-	CycloSum(R(1), (m*a+n*a+n*b)*S(1//(q-1))),
-	CycloSum(R(1), (m*a+n*b+n*c)*S(1//(q-1)))+CycloSum(R(1), (m*b+n*a+n*c)*S(1//(q-1)))+CycloSum(R(1), (m*c+n*a+n*b)*S(1//(q-1))),
-	-CycloSum(R(1), (m*a+n*b)*S(1//(q-1))),
-	CycloSum(R(0), S(0))] [
-	(q+1)*(q^2+q+1)*CycloSum(R(1), (l*a+m*a+n*a)*S(1//(q-1))),
-	(2*q+1)*CycloSum(R(1), (l*a+m*a+n*a)*S(1//(q-1))),
-	CycloSum(R(1), (l*a+m*a+n*a)*S(1//(q-1))),
-	(q+1)*(CycloSum(R(1), (l*a+m*a+n*b)*S(1//(q-1)))+CycloSum(R(1), (m*a+n*a+l*b)*S(1//(q-1)))+CycloSum(R(1), (l*a+n*a+m*b)*S(1//(q-1)))),
-	CycloSum(R(1), (l*a+m*a+n*b)*S(1//(q-1)))+CycloSum(R(1), (l*a+n*a+m*b)*S(1//(q-1)))+CycloSum(R(1), (m*a+n*a+l*b)*S(1//(q-1))),
-	CycloSum(R(1), (l*a+m*b+n*c)*S(1//(q-1)))+CycloSum(R(1), (l*a+n*b+m*c)*S(1//(q-1)))+CycloSum(R(1), (m*a+n*b+l*c)*S(1//(q-1)))+CycloSum(R(1), (m*a+l*b+n*c)*S(1//(q-1)))+CycloSum(R(1), (n*a+m*b+l*c)*S(1//(q-1)))+CycloSum(R(1), (n*a+l*b+m*c)*S(1//(q-1))),
-	CycloSum(R(0), S(0)),
-	CycloSum(R(0), S(0))] [
-	(q-1)*(q^2+q+1)*CycloSum(R(1), (m*a+n*a)*S(1//(q-1))),
-	-CycloSum(R(1), (m*a+n*a)*S(1//(q-1))),
-	-CycloSum(R(1), (m*a+n*a)*S(1//(q-1))),
-	(q-1)*CycloSum(R(1), (n*a+m*b)*S(1//(q-1))),
-	-CycloSum(R(1), (n*a+m*b)*S(1//(q-1))),
-	CycloSum(R(0), S(0)),
-	-CycloSum(R(1), (m*a*q+m*a+n*b)*S(1//(q^2-1)))-CycloSum(R(1), (m*a*q+m*a+n*b*q)*S(1//(q^2-1))),
-	CycloSum(R(0), S(0))] [
-	(q-1)^2*(q+1)*CycloSum(R(1), (n*a)*S(1//(q-1))),
-	-(q-1)*CycloSum(R(1), (n*a)*S(1//(q-1))),
-	CycloSum(R(1), (n*a)*S(1//(q-1))),
-	CycloSum(R(0), S(0)),
-	CycloSum(R(0), S(0)),
-	CycloSum(R(0), S(0)),
-	CycloSum(R(0), S(0)),
-	CycloSum(R(1), (n*a)*S(1//(q^3-1)))+CycloSum(R(1), (n*a*q)*S(1//(q^3-1)))+CycloSum(R(1), (n*a*q^2)*S(1//(q^3-1)))]]
+table = GenericCyclo[[
+	S(1, exponent=(3*n*a)*1//R((q-1))),
+	S(1, exponent=(3*n*a)*1//R((q-1))),
+	S(1, exponent=(3*n*a)*1//R((q-1))),
+	S(1, exponent=(2*n*a+n*b)*1//R((q-1))),
+	S(1, exponent=(2*n*a+n*b)*1//R((q-1))),
+	S(1, exponent=(n*a+n*b+n*c)*1//R((q-1))),
+	S(1, exponent=(n*a+n*b)*1//R((q-1))),
+	S(1, exponent=(n*a)*1//R((q-1)))] [
+	(q^2+q)*S(1, exponent=(3*n*a)*1//R((q-1))),
+	q*S(1, exponent=(3*n*a)*1//R((q-1))),
+	S(0),
+	(q+1)*S(1, exponent=(2*n*a+n*b)*1//R((q-1))),
+	S(1, exponent=(2*n*a+n*b)*1//R((q-1))),
+	2*S(1, exponent=(n*a+n*b+n*c)*1//R((q-1))),
+	S(0),
+	-S(1, exponent=(n*a)*1//R((q-1)))] [
+	q^3*S(1, exponent=(3*n*a)*1//R((q-1))),
+	S(0),
+	S(0),
+	q*S(1, exponent=(2*n*a+n*b)*1//R((q-1))),
+	S(0),
+	S(1, exponent=(n*a+n*b+n*c)*1//R((q-1))),
+	-S(1, exponent=(n*a+n*b)*1//R((q-1))),
+	S(1, exponent=(n*a)*1//R((q-1)))] [
+	(q^2+q+1)*S(1, exponent=(m*a+2*n*a)*1//R((q-1))),
+	(q+1)*S(1, exponent=(m*a+2*n*a)*1//R((q-1))),
+	S(1, exponent=(m*a+2*n*a)*1//R((q-1))),
+	(q+1)*S(1, exponent=(m*a+n*a+n*b)*1//R((q-1)))+S(1, exponent=(2*n*a+m*b)*1//R((q-1))),
+	S(1, exponent=(m*a+n*a+n*b)*1//R((q-1)))+S(1, exponent=(2*n*a+m*b)*1//R((q-1))),
+	S(1, exponent=(m*a+n*b+n*c)*1//R((q-1)))+S(1, exponent=(m*b+n*a+n*c)*1//R((q-1)))+S(1, exponent=(m*c+n*a+n*b)*1//R((q-1))),
+	S(1, exponent=(m*a+n*b)*1//R((q-1))),
+	S(0)] [
+	q*(q^2+q+1)*S(1, exponent=(m*a+2*n*a)*1//R((q-1))),
+	q*S(1, exponent=(m*a+2*n*a)*1//R((q-1))),
+	S(0),
+	(q+1)*S(1, exponent=(m*a+n*a+n*b)*1//R((q-1)))+q*S(1, exponent=(2*n*a+m*b)*1//R((q-1))),
+	S(1, exponent=(m*a+n*a+n*b)*1//R((q-1))),
+	S(1, exponent=(m*a+n*b+n*c)*1//R((q-1)))+S(1, exponent=(m*b+n*a+n*c)*1//R((q-1)))+S(1, exponent=(m*c+n*a+n*b)*1//R((q-1))),
+	-S(1, exponent=(m*a+n*b)*1//R((q-1))),
+	S(0)] [
+	(q+1)*(q^2+q+1)*S(1, exponent=(l*a+m*a+n*a)*1//R((q-1))),
+	(2*q+1)*S(1, exponent=(l*a+m*a+n*a)*1//R((q-1))),
+	S(1, exponent=(l*a+m*a+n*a)*1//R((q-1))),
+	(q+1)*(S(1, exponent=(l*a+m*a+n*b)*1//R((q-1)))+S(1, exponent=(m*a+n*a+l*b)*1//R((q-1)))+S(1, exponent=(l*a+n*a+m*b)*1//R((q-1)))),
+	S(1, exponent=(l*a+m*a+n*b)*1//R((q-1)))+S(1, exponent=(l*a+n*a+m*b)*1//R((q-1)))+S(1, exponent=(m*a+n*a+l*b)*1//R((q-1))),
+	S(1, exponent=(l*a+m*b+n*c)*1//R((q-1)))+S(1, exponent=(l*a+n*b+m*c)*1//R((q-1)))+S(1, exponent=(m*a+n*b+l*c)*1//R((q-1)))+S(1, exponent=(m*a+l*b+n*c)*1//R((q-1)))+S(1, exponent=(n*a+m*b+l*c)*1//R((q-1)))+S(1, exponent=(n*a+l*b+m*c)*1//R((q-1))),
+	S(0),
+	S(0)] [
+	(q-1)*(q^2+q+1)*S(1, exponent=(m*a+n*a)*1//R((q-1))),
+	-S(1, exponent=(m*a+n*a)*1//R((q-1))),
+	-S(1, exponent=(m*a+n*a)*1//R((q-1))),
+	(q-1)*S(1, exponent=(n*a+m*b)*1//R((q-1))),
+	-S(1, exponent=(n*a+m*b)*1//R((q-1))),
+	S(0),
+	-S(1, exponent=(m*a*q+m*a+n*b)*1//R((q^2-1)))-S(1, exponent=(m*a*q+m*a+n*b*q)*1//R((q^2-1))),
+	S(0)] [
+	(q-1)^2*(q+1)*S(1, exponent=(n*a)*1//R((q-1))),
+	-(q-1)*S(1, exponent=(n*a)*1//R((q-1))),
+	S(1, exponent=(n*a)*1//R((q-1))),
+	S(0),
+	S(0),
+	S(0),
+	S(0),
+	S(1, exponent=(n*a)*1//R((q^3-1)))+S(1, exponent=(n*a*q)*1//R((q^3-1)))+S(1, exponent=(n*a*q^2)*1//R((q^3-1)))]]
 classinfo = Vector{Any}[
 	[[1,0],["A_2",[1,1,1]]],
 	[[1,1],["A_2",[2,1]]],
@@ -102,30 +102,30 @@ charinfo = Vector{Any}[
 chardegree = R.([1, q^2+q, q^3, q^2+q+1, q*(q^2+q+1), (q+1)*(q^2+q+1), (q-1)*(q^2+q+1), (q-1)^2*(q+1)])
 
 classsums=[
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	nesum(tt, a, 0, q-2, congruence)
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	nesum(tt, a, 0, q-2, congruence)
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	nesum(tt, a, 0, q-2, congruence)
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	tt1=eesubs(tt, [b], [a])
 	ss4=nesum(tt, b, 0, q-2, congruence)
 	ss5=ss4-tt1
 	ss5=nesum(ss5, a, 0, q-2, congruence)
 	ss5
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	tt1=eesubs(tt, [b], [a])
 	ss4=nesum(tt, b, 0, q-2, congruence)
 	ss5=ss4-tt1
 	ss5=nesum(ss5, a, 0, q-2, congruence)
 	ss5
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss6a=nesum(tt, a, 0, q-2, congruence)
 	ss6b=nesum(ss6a, b, 0, q-2, congruence)
 	ss6=nesum(ss6b, c, 0, q-2, congruence)
@@ -143,7 +143,7 @@ function (tt::Cyclotomic)
 	ss10=nesum(tt4, a, 0, q-2, congruence)
 	1//6*ss6-1//6*ss7-1//6*ss8-1//6*ss9+1//3*ss10
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss7=nesum(tt, b, 0, q^2-2, congruence)
 	tt1=eesubs(tt, [b], [(q+1)*b])
 	ss8=nesum(tt1, b, 0, q-2, congruence)
@@ -151,7 +151,7 @@ function (tt::Cyclotomic)
 	ss9=nesum(tt1, a, 0, q-2, congruence)
 	1//2*ss9
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss8=nesum(tt, a, 0, q^3-2, congruence)
 	tt1=eesubs(tt, [a], [(q^2+q+1)*a])
 	ss9=nesum(tt1, a, 0, q-2, congruence)
@@ -160,30 +160,30 @@ end
 ]
 
 charsums=[
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	nesum(tt, n, 0, q-2, congruence)
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	nesum(tt, n, 0, q-2, congruence)
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	nesum(tt, n, 0, q-2, congruence)
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	tt1=eesubs(tt, [m], [n])
 	ss4=nesum(tt, m, 0, q-2, congruence)
 	ss5=ss4-tt1
 	ss5=nesum(ss5, n, 0, q-2, congruence)
 	ss5
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	tt1=eesubs(tt, [m], [n])
 	ss4=nesum(tt, m, 0, q-2, congruence)
 	ss5=ss4-tt1
 	ss5=nesum(ss5, n, 0, q-2, congruence)
 	ss5
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss6a=nesum(tt, n, 0, q-2, congruence)
 	ss6b=nesum(ss6a, m, 0, q-2, congruence)
 	ss6=nesum(ss6b, l, 0, q-2, congruence)
@@ -201,7 +201,7 @@ function (tt::Cyclotomic)
 	ss10=nesum(tt4, n, 0, q-2, congruence)
 	1//6*ss6-1//6*ss7-1//6*ss8-1//6*ss9+1//3*ss10
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss7=nesum(tt, n, 0, q^2-2, congruence)
 	tt1=eesubs(tt, [n], [(q+1)*n])
 	ss8=nesum(tt1, n, 0, q-2, congruence)
@@ -209,7 +209,7 @@ function (tt::Cyclotomic)
 	ss9=nesum(tt1, m, 0, q-2, congruence)
 	1//2*ss9
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss8=nesum(tt, n, 0, q^3-2, congruence)
 	tt1=eesubs(tt, [n], [(q^2+q+1)*n])
 	ss9=nesum(tt1, n, 0, q-2, congruence)
@@ -221,22 +221,22 @@ classparams=[
 Parameters([Parameter(a, q-1)]),
 Parameters([Parameter(a, q-1)]),
 Parameters([Parameter(a, q-1)]),
-Parameters([Parameter(a, q-1), Parameter(b, q-1)], [ParameterException((a-b)*1//(q-1))]),
-Parameters([Parameter(a, q-1), Parameter(b, q-1)], [ParameterException((a-b)*1//(q-1))]),
-Parameters([Parameter(a, q-1), Parameter(b, q-1), Parameter(c, q-1)], [ParameterException((a-b)*1//(q-1)), ParameterException((a-c)*1//(q-1)), ParameterException((b-c)*1//(q-1))]),
-Parameters([Parameter(a, q-1), Parameter(b, q^2-1)], [ParameterException((b)*1//(q+1))]),
-Parameters([Parameter(a, q^3-1)], [ParameterException((a)*1//(q^2+q+1))])
+Parameters([Parameter(a, q-1), Parameter(b, q-1)], [((a-b)*1//(q-1))]),
+Parameters([Parameter(a, q-1), Parameter(b, q-1)], [((a-b)*1//(q-1))]),
+Parameters([Parameter(a, q-1), Parameter(b, q-1), Parameter(c, q-1)], [((a-b)*1//(q-1)), ((a-c)*1//(q-1)), ((b-c)*1//(q-1))]),
+Parameters([Parameter(a, q-1), Parameter(b, q^2-1)], [((b)*1//(q+1))]),
+Parameters([Parameter(a, q^3-1)], [((a)*1//(q^2+q+1))])
 ]
 
 charparams=[
 Parameters([Parameter(n, q-1)]),
 Parameters([Parameter(n, q-1)]),
 Parameters([Parameter(n, q-1)]),
-Parameters([Parameter(n, q-1), Parameter(m, q-1)], [ParameterException((n-m)*1//(q-1))]),
-Parameters([Parameter(n, q-1), Parameter(m, q-1)], [ParameterException((n-m)*1//(q-1))]),
-Parameters([Parameter(n, q-1), Parameter(m, q-1), Parameter(l, q-1)], [ParameterException((n-m)*1//(q-1)), ParameterException((n-l)*1//(q-1)), ParameterException((m-l)*1//(q-1))]),
-Parameters([Parameter(m, q-1), Parameter(n, q^2-1)], [ParameterException((n)*1//(q+1))]),
-Parameters([Parameter(n, q^3-1)], [ParameterException((n)*1//(q^2+q+1))])
+Parameters([Parameter(n, q-1), Parameter(m, q-1)], [((n-m)*1//(q-1))]),
+Parameters([Parameter(n, q-1), Parameter(m, q-1)], [((n-m)*1//(q-1))]),
+Parameters([Parameter(n, q-1), Parameter(m, q-1), Parameter(l, q-1)], [((n-m)*1//(q-1)), ((n-l)*1//(q-1)), ((m-l)*1//(q-1))]),
+Parameters([Parameter(m, q-1), Parameter(n, q^2-1)], [((n)*1//(q+1))]),
+Parameters([Parameter(n, q^3-1)], [((n)*1//(q^2+q+1))])
 ]
 
 classparamindex=var_index.([a,b,c])
@@ -257,4 +257,4 @@ information = raw"""- Information about the generic character table of $GL_3(q)$
 """
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
-	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,R,S,information,splitext(basename(@__FILE__))[1])
+	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,S,information,splitext(basename(@__FILE__))[1])

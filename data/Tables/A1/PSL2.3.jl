@@ -1,49 +1,49 @@
 using ..GenericCharacterTables
-import ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterException, CharTable
+import ..GenericCharacterTables: Parameters, Parameter, CharTable, GenericCyclo, GenericCycloFrac
 using Oscar
-R, q = polynomial_ring(QQ, "q")
-Q = fraction_field(R)
-S = universal_polynomial_ring(Q; cached=false)
-i,k, _...=gens(S, ["i", "k", "i1", "k1", "i2", "k2", "i3", "k3", "it1", "kt1", "it2", "kt2"])
+R = universal_polynomial_ring(QQ; cached=false)
+q = gen(R, "q")
+S = generic_cyclotomic_ring(R)
+i,k, _...=gens(R, ["i", "k", "i1", "k1", "i2", "k2", "i3", "k3", "it1", "kt1", "it2", "kt2"])
 
 order = q^2*(q^2-1)*(q^2+1)*1//2
-table = Cyclotomic{QQPolyRingElem}[[
-	CycloSum(R(1), S(0)),
-	CycloSum(R(1), S(0)),
-	CycloSum(R(1), S(0)),
-	CycloSum(R(1), S(0)),
-	CycloSum(R(1), S(0)),
-	CycloSum(R(1), S(0))] [
-	(q^2)*CycloSum(R(1), S(0)),
-	CycloSum(R(0), S(0)),
-	CycloSum(R(0), S(0)),
-	CycloSum(R(1), S(0)),
-	-CycloSum(R(1), S(0)),
-	-CycloSum(R(1), S(0))] [
-	(1//2*(q^2-1))*CycloSum(R(1), S(0)),
-	-1//2+1//2*q*CycloSum(R(1), S(1//(4))),
-	-1//2-1//2*q*CycloSum(R(1), S(1//(4))),
-	CycloSum(R(0), S(0)),
-	-CycloSum(R(1), i*S(1//(2))),
-	-CycloSum(R(1), ((q^2+1)*1//4)*S(1//(2)))] [
-	(1//2*(q^2-1))*CycloSum(R(1), S(0)),
-	-1//2-1//2*q*CycloSum(R(1), S(1//(4))),
-	-1//2+1//2*q*CycloSum(R(1), S(1//(4))),
-	CycloSum(R(0), S(0)),
-	-CycloSum(R(1), i*S(1//(2))),
-	-CycloSum(R(1), ((q^2+1)*1//4)*S(1//(2)))] [
-	(q^2+1)*CycloSum(R(1), S(0)),
-	CycloSum(R(1), S(0)),
-	CycloSum(R(1), S(0)),
-	CycloSum(R(1), (2*i*k)*S(1//(q^2-1)))+CycloSum(R(1), (-2*i*k)*S(1//(q^2-1))),
-	CycloSum(R(0), S(0)),
-	CycloSum(R(0), S(0))] [
-	(q^2-1)*CycloSum(R(1), S(0)),
-	-CycloSum(R(1), S(0)),
-	-CycloSum(R(1), S(0)),
-	CycloSum(R(0), S(0)),
-	-CycloSum(R(1), (2*i*k)*S(1//(q^2+1)))-CycloSum(R(1), (-2*i*k)*S(1//(q^2+1))),
-	-CycloSum(R(1), k*S(1//(2)))-CycloSum(R(1), (-k)*S(1//(2)))]]
+table = GenericCyclo[[
+	S(1),
+	S(1),
+	S(1),
+	S(1),
+	S(1),
+	S(1)] [
+	(q^2)*S(1),
+	S(0),
+	S(0),
+	S(1),
+	-S(1),
+	-S(1)] [
+	(1//2*(q^2-1))*S(1),
+	-1//2+1//2*q*S(1, exponent=1//R((4))),
+	-1//2-1//2*q*S(1, exponent=1//R((4))),
+	S(0),
+	-S(1, exponent=i*1//R((2))),
+	-S(1, exponent=((q^2+1)*1//4)*1//R((2)))] [
+	(1//2*(q^2-1))*S(1),
+	-1//2-1//2*q*S(1, exponent=1//R((4))),
+	-1//2+1//2*q*S(1, exponent=1//R((4))),
+	S(0),
+	-S(1, exponent=i*1//R((2))),
+	-S(1, exponent=((q^2+1)*1//4)*1//R((2)))] [
+	(q^2+1)*S(1),
+	S(1),
+	S(1),
+	S(1, exponent=(2*i*k)*1//R((q^2-1)))+S(1, exponent=(-2*i*k)*1//R((q^2-1))),
+	S(0),
+	S(0)] [
+	(q^2-1)*S(1),
+	-S(1),
+	-S(1),
+	S(0),
+	-S(1, exponent=(2*i*k)*1//R((q^2+1)))-S(1, exponent=(-2*i*k)*1//R((q^2+1))),
+	-S(1, exponent=k*1//R((2)))-S(1, exponent=(-k)*1//R((2)))]]
 classinfo = Vector{Any}[
 	["1",[1,0],["A_1",[1,1]]],
 	["2",[1,1],["A_1",[2]]],
@@ -62,47 +62,47 @@ charinfo = Vector{Any}[
 chardegree = R.([1, q^2, 1//2*(q^2-1), 1//2*(q^2-1), q^2+1, q^2-1])
 
 classsums=[
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	tt
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	tt
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	tt
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=nesum(tt, i, 1, (q^2-3)*1//2, congruence)
 	1//2*s1
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=nesum(tt, i, 1, (q^2-1)*1//2, congruence)
 	s2=eesubs(tt, [i], [(q^2+1)*1//4])
 	1//2*s1-1//2*s2
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	tt
 end
 ]
 
 charsums=[
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	tt
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	tt
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	tt
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	tt
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=nesum(tt, k, 1, (q^2-3)*1//2, congruence)
 	1//2*s1
 end,
-function (tt::Cyclotomic)
+function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [k], [(q^2+1)*1//4])
 	t1=nesum(tt, k, 1, (q^2-1)*1//2, congruence)
 	1//2*t1-1//2*s1
@@ -110,26 +110,26 @@ end
 ]
 
 classparams=[
-Parameters(Parameter{QQPolyRingElem}[]),
-Parameters(Parameter{QQPolyRingElem}[]),
-Parameters(Parameter{QQPolyRingElem}[]),
-Parameters([Parameter(i, (q^2-1)*1//2)], [ParameterException((i)*1//((q^2-1)*1//2))]),
-Parameters([Parameter(i, (q^2+1)*1//2)], [ParameterException((i)*1//((q^2+1)*1//4))]),
-Parameters(Parameter{QQPolyRingElem}[])
+Parameters(Parameter[]),
+Parameters(Parameter[]),
+Parameters(Parameter[]),
+Parameters([Parameter(i, (q^2-1)*1//2)], [((i)*1//((q^2-1)*1//2))]),
+Parameters([Parameter(i, (q^2+1)*1//2)], [((i)*1//((q^2+1)*1//4))]),
+Parameters(Parameter[])
 ]
 
 charparams=[
-Parameters(Parameter{QQPolyRingElem}[]),
-Parameters(Parameter{QQPolyRingElem}[]),
-Parameters(Parameter{QQPolyRingElem}[]),
-Parameters(Parameter{QQPolyRingElem}[]),
-Parameters([Parameter(k, (q^2-1)*1//2)], [ParameterException((k)*1//((q^2-1)*1//2))]),
-Parameters([Parameter(k, (q^2+1)*1//2)], [ParameterException((k)*1//((q^2+1)*1//4))])
+Parameters(Parameter[]),
+Parameters(Parameter[]),
+Parameters(Parameter[]),
+Parameters(Parameter[]),
+Parameters([Parameter(k, (q^2-1)*1//2)], [((k)*1//((q^2-1)*1//2))]),
+Parameters([Parameter(k, (q^2+1)*1//2)], [((k)*1//((q^2+1)*1//4))])
 ]
 
 classparamindex=var_index.([i])
 charparamindex=var_index.([k])
-congruence=R.((-1,4))
+congruence=QQ.((-1,4))
 
 information = raw"""- Information about the generic character table of $PSL_2(q^2)$,
   $q^2$ congruent to $3$ modulo $4$. The possible values for q are given by
@@ -149,4 +149,4 @@ information = raw"""- Information about the generic character table of $PSL_2(q^
 """
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
-	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,R,S,information,splitext(basename(@__FILE__))[1])
+	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,S,information,splitext(basename(@__FILE__))[1])
