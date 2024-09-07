@@ -5,7 +5,7 @@ export tensor_product, tensor!, omega, omega!, lincomb, lincomb!, specialize, sp
 # TODO deal with ParameterSubstitution, this is not done in the original implementation.
 
 @doc raw"""
-    tensor_product(char1::GenericCharacter{T}, char2::GenericCharacter{T}) where T<:PolyRingElem
+    tensor_product(char1::GenericCharacter, char2::GenericCharacter)
 
 Return the tensor product of the character types `char1` and `char2`.
 This can also be obtained via `char1 * char2`.
@@ -20,13 +20,13 @@ Generic character of GL2
     kt1 ∈ {1,…, q - 1}, kt2 ∈ {1,…, q - 1}
   of degree q
   with values
-    q*exp(2π𝑖(2//(q - 1)*i*kt1 + 2//(q - 1)*i*kt2))
+    q*exp(2π𝑖((2*i*kt1 + 2*i*kt2)//(q - 1)))
     0
-    exp(2π𝑖(1//(q - 1)*i*kt1 + 1//(q - 1)*i*kt2 + 1//(q - 1)*j*kt1 + 1//(q - 1)*j*kt2))
-    -1*exp(2π𝑖(1//(q - 1)*i*kt1 + 1//(q - 1)*i*kt2))
+    exp(2π𝑖((i*kt1 + i*kt2 + j*kt1 + j*kt2)//(q - 1)))
+    (-1)*exp(2π𝑖((i*kt1 + i*kt2)//(q - 1)))
 ```
 """
-function tensor_product(char1::GenericCharacter{T}, char2::GenericCharacter{T}) where T<:PolyRingElem
+function tensor_product(char1::GenericCharacter, char2::GenericCharacter)
 	if parent(char1) != parent(char2)
 		throw(DomainError((parent(char1),parent(char2)), "Tables do not match."))
 	end
@@ -37,7 +37,7 @@ function tensor_product(char1::GenericCharacter{T}, char2::GenericCharacter{T}) 
 		throw(DomainError((char1,char2), "Characters are not both irreducible."))
 	end
 	new_char_degree=char1.degree*char2.degree
-	new_char_values=Vector{CycloSum{T}}(undef, classtypes(t))
+	new_char_values=Vector{GenericCyclo}(undef, classtypes(t))
 	for class in 1:classtypes(t)
 		# The first 4 variable sets are reserved for the computations in Ortho.jl
 		# so we can use the 5th and 6th set here.
@@ -47,8 +47,8 @@ function tensor_product(char1::GenericCharacter{T}, char2::GenericCharacter{T}) 
 	end
 	param1 = shift_char_parameters(t, char1.params, 4)
 	param2 = shift_char_parameters(t, char2.params, 5)
-	new_char_params=Parameters(vcat(param1.params, param2.params), vcat(param1.exceptions, param2.exceptions), ParameterSubstitution{T}[])
-	return GenericCharacter{T}(t, new_char_values, ["Tensor of type $char1id and $char2id"], new_char_degree, nothing, new_char_params)
+	new_char_params=Parameters(vcat(param1.params, param2.params), vcat(param1.exceptions, param2.exceptions), ParameterSubstitution[])
+	return GenericCharacter(t, new_char_values, ["Tensor of type $char1id and $char2id"], new_char_degree, nothing, new_char_params)
 end
 
 @doc raw"""
@@ -93,7 +93,7 @@ Base.:*(char1::AbstractGenericCharacter, char2::AbstractGenericCharacter) = tens
 
 
 @doc raw"""
-    tensor!(t::Table{T}, char1::Int64, char2::Int64) where T <: NfPoly
+    tensor!(t::Table, char1::Int64, char2::Int64)
 
 Append the tensor product of the character types `char1` and `char2` to the table `t`.
 
@@ -109,7 +109,7 @@ julia> printinfochar(g,5)
 
 ```
 """
-function tensor!(t::Table{T}, char1::Int64, char2::Int64) where T <: NfPoly
+function tensor!(t::Table, char1::Int64, char2::Int64)
 	if any((char1, char2).>chartypes(t))
 		throw(DomainError((char1,char2), "Some character types are out of range."))
 	end
@@ -118,7 +118,7 @@ function tensor!(t::Table{T}, char1::Int64, char2::Int64) where T <: NfPoly
 end
 
 @doc raw"""
-    omega(char::GenericCharacter{T}) where T <: NfPoly
+    omega(char::GenericCharacter)
 
 Return the (generic) central character of the character type `char`.
 
@@ -132,22 +132,22 @@ Generic character of GL2
     k ∈ {1,…, q - 1}
   of degree 1
   with values
-    exp(2π𝑖(2//(q - 1)*i*k))
-    (q^2 - 1)*exp(2π𝑖(2//(q - 1)*i*k))
-    (q^2 + q)*exp(2π𝑖(1//(q - 1)*i*k + 1//(q - 1)*j*k))
-    (q^2 - q)*exp(2π𝑖(1//(q - 1)*i*k))
+    exp(2π𝑖((2*i*k)//(q - 1)))
+    (q^2 - 1)*exp(2π𝑖((2*i*k)//(q - 1)))
+    (q^2 + q)*exp(2π𝑖((i*k + j*k)//(q - 1)))
+    (q^2 - q)*exp(2π𝑖((i*k)//(q - 1)))
 
 ```
 """
-function omega(char::GenericCharacter{T}) where T <: NfPoly
+function omega(char::GenericCharacter)
 	t=parent(char)
 	charid=chartypeid(char)
-	new_char_degree=t.modulusring(1)
-	new_char_values=Vector{CycloFrac{T}}(undef, classtypes(t))
+	new_char_degree=base_ring(t.ring)(1)
+	new_char_values=Vector{GenericCyclo}(undef, classtypes(t))
 	for class in 1:classtypes(t)
-		new_char_values[class]=t.classlength[class]*char[class]//char.degree
+		new_char_values[class]=div(t.classlength[class]*char[class], char.degree)  # TODO can this really be fractional?
 	end
-	return GenericCharacter{T}(t, new_char_values, ["Omega of type $charid"], new_char_degree, nothing, char.params)
+	return GenericCharacter(t, new_char_values, ["Omega of type $charid"], new_char_degree, nothing, char.params)
 end
 
 @doc raw"""
@@ -180,7 +180,7 @@ function omega(char::SimpleGenericCharacter{T}) where T <: NfPoly  # TODO is cor
 end
 
 @doc raw"""
-    omega!(t::Table{T}, char::Int64) where T <: NfPoly
+    omega!(t::Table, char::Int64)
 
 Append the (generic) central character of the character type `char` to the table `t`.
 
@@ -196,7 +196,7 @@ julia> printinfochar(g,5)
 
 ```
 """
-function omega!(t::Table{T}, char::Int64) where T <: NfPoly
+function omega!(t::Table, char::Int64)
 	if char > chartypes(t)
 		throw(DomainError(char, "Character type is out of range."))
 	end
@@ -205,7 +205,7 @@ function omega!(t::Table{T}, char::Int64) where T <: NfPoly
 end
 
 @doc raw"""
-    lincomb(coeffs::Vector{Int64}, chars::Vector{GenericCharacter{T}}) where T <: NfPoly
+    lincomb(coeffs::Vector{Int64}, chars::Vector{<:GenericCharacter})
 
 Return the linear combination of the character types `chars` with coefficients `coeffs`.
 
@@ -219,13 +219,13 @@ Generic character of GL2
     kl1 ∈ {1,…, q - 1}, kl2 ∈ {1,…, q - 1}
   of degree q + 5
   with values
-    q*exp(2π𝑖(2//(q - 1)*i*kl2)) + 5*exp(2π𝑖(2//(q - 1)*i*kl1))
-    5*exp(2π𝑖(2//(q - 1)*i*kl1))
-    exp(2π𝑖(1//(q - 1)*i*kl2 + 1//(q - 1)*j*kl2)) + 5*exp(2π𝑖(1//(q - 1)*i*kl1 + 1//(q - 1)*j*kl1))
-    5*exp(2π𝑖(1//(q - 1)*i*kl1)) + -1*exp(2π𝑖(1//(q - 1)*i*kl2))
+    (5)*exp(2π𝑖((2*i*kl1)//(q - 1))) + q*exp(2π𝑖((2*i*kl2)//(q - 1)))
+    (5)*exp(2π𝑖((2*i*kl1)//(q - 1)))
+    exp(2π𝑖((i*kl2 + j*kl2)//(q - 1))) + (5)*exp(2π𝑖((i*kl1 + j*kl1)//(q - 1)))
+    (-1)*exp(2π𝑖((i*kl2)//(q - 1))) + (5)*exp(2π𝑖((i*kl1)//(q - 1)))
 ```
 """
-function lincomb(coeffs::Vector{Int64}, chars::Vector{GenericCharacter{T}}) where T <: NfPoly
+function lincomb(coeffs::Vector{Int64}, chars::Vector{<:GenericCharacter})
 	if length(coeffs)!=length(chars)
 		throw(DomainError((coeffs,chars), "Different number of coefficients and character types."))
 	end
@@ -243,33 +243,32 @@ function lincomb(coeffs::Vector{Int64}, chars::Vector{GenericCharacter{T}}) wher
 			throw(DomainError(chars[i], "Character is not irreducible."))
 		end
 	end
-	S=t.argumentring
+	S=base_ring(t.ring)
 	# There a 6 pre defined variable sets used in Ortho.jl and for tensor products.
-	extra_var_batches=nvars(S)÷nrparams(t)-6
+	extra_var_batches=(nvars(S)-1)÷nrparams(t)-6
 	missing_var_batches=n-extra_var_batches
 	if missing_var_batches > 0
-		vars=map(x -> String(x), symbols(S)[1:nrparams(t)]).*"l"
+		vars=map(x -> String(x), symbols(S)[2:(nrparams(t)+1)]).*"l"
 		for i in 1:missing_var_batches
 			gens(S, vars.*string(i))
 		end
 	end
-	coeffs=map(x -> t.modulusring(x), coeffs)  # TODO modulusring needed?
 	degrees=map(x -> x.degree, chars)
 	new_char_degree=sum(coeffs.*degrees)
-	new_char_values=Vector{CycloSum{T}}(undef, classtypes(t))
+	new_char_values=Vector{GenericCyclo}(undef, classtypes(t))
 	for class in 1:classtypes(t)
-		new_char_values[class]=CycloSum(t.modulusring(0), t.argumentring(0))
+		new_char_values[class]=t.ring(0)
 		for i in 1:n
 			new_char_values[class]+=shift_char_parameters(t, coeffs[i]*chars[i][class], 5+i)
 		end
 	end
 	info=join(map(x -> join(x, " * type "), zip(coeffs, charids)), " + ")  # TODO
-	params=Vector{Parameters{T}}(undef, n)
+	params=Vector{Parameters}(undef, n)
 	for i in 1:n
 		params[i]=shift_char_parameters(t, chars[i].params, 5+i)
 	end
-	new_char_params=Parameters(vcat(map(x -> x.params, params)...), vcat(map(x -> x.exceptions, params)...), ParameterSubstitution{T}[])
-	return GenericCharacter{T}(t, new_char_values, ["Lincomb $info"], new_char_degree, nothing, new_char_params)
+	new_char_params=Parameters(vcat(map(x -> x.params, params)...), vcat(map(x -> x.exceptions, params)...), ParameterSubstitution[])
+	return GenericCharacter(t, new_char_values, ["Lincomb $info"], new_char_degree, nothing, new_char_params)
 end
 
 @doc raw"""
@@ -323,7 +322,7 @@ function lincomb(coeffs::Vector{Int64}, chars::Vector{SimpleGenericCharacter{T}}
 end
 
 @doc raw"""
-    lincomb!(t::Table{T}, coeffs::Vector{Int64}, chars::Vector{Int64}) where T <: NfPoly
+    lincomb!(t::Table, coeffs::Vector{Int64}, chars::Vector{Int64})
 
 Append the linear combination of the character types `chars` with coefficients `coeffs` to the table `t`.
 
@@ -339,7 +338,7 @@ julia> printinfochar(g,5)
 
 ```
 """
-function lincomb!(t::Table{T}, coeffs::Vector{Int64}, chars::Vector{Int64}) where T <: NfPoly
+function lincomb!(t::Table, coeffs::Vector{Int64}, chars::Vector{Int64})
 	if any(chars.>chartypes(t))
 		throw(DomainError(chars, "Some character types are out of range."))
 	end
@@ -349,7 +348,7 @@ function lincomb!(t::Table{T}, coeffs::Vector{Int64}, chars::Vector{Int64}) wher
 end
 
 @doc raw"""
-    specialize(char::GenericCharacter{T}, var::FracPoly{T}, expr::RingElement) where T <: NfPoly
+    specialize(char::GenericCharacter, var::UPoly, expr::RingElement)
 
 Return the generic character where the parameter `var` is replaced with `expr` in `char`.
 
@@ -359,10 +358,10 @@ julia> g=genchartab("GL2");
 
 julia> printval(g,char=1)
 Value of character type 1 on class type
-  1: exp(2π𝑖(2//(q - 1)*i*k))
-  2: exp(2π𝑖(2//(q - 1)*i*k))
-  3: exp(2π𝑖(1//(q - 1)*i*k + 1//(q - 1)*j*k))
-  4: exp(2π𝑖(1//(q - 1)*i*k))
+  1: exp(2π𝑖((2*i*k)//(q - 1)))
+  2: exp(2π𝑖((2*i*k)//(q - 1)))
+  3: exp(2π𝑖((i*k + j*k)//(q - 1)))
+  4: exp(2π𝑖((i*k)//(q - 1)))
 
 julia> q,(i,j,l,k) = params(g);
 
@@ -372,31 +371,31 @@ Generic character of GL2
     k ∈ {1,…, q - 1}, substitutions: i = q
   of degree 1
   with values
-    exp(2π𝑖(2//(q - 1)*k))
-    exp(2π𝑖(2//(q - 1)*k))
-    exp(2π𝑖(1//(q - 1)*j*k + 1//(q - 1)*k))
-    exp(2π𝑖(1//(q - 1)*k))
+    exp(2π𝑖((2*k)//(q - 1)))
+    exp(2π𝑖((2*k)//(q - 1)))
+    exp(2π𝑖((j*k + k)//(q - 1)))
+    exp(2π𝑖(k//(q - 1)))
 
 ```
 """
-function specialize(char::GenericCharacter{T}, var::FracPoly{T}, expr::RingElement) where T <: NfPoly
+function specialize(char::GenericCharacter, var::UPoly, expr::RingElement)
 	if !is_gen(var)
 		throw(DomainError(var, "Not a single variable."))
 	end
 	t=parent(char)
-	new_char_values=Vector{CycloSum{T}}(undef, classtypes(t))
+	new_char_values=Vector{GenericCyclo}(undef, classtypes(t))
 	for class in 1:classtypes(t)
-		new_char_values[class]=simplify(eesubs(char[class], [var], [expr]), t)
+		new_char_values[class]=simplify(evaluate(char[class], [var_index(var)], [expr]), t)
 	end
 	new_params=deepcopy(char.params)
-	push!(new_params.substitutions, ParameterSubstitution(var, t.argumentring(expr)))
+	push!(new_params.substitutions, ParameterSubstitution(var, base_ring(t.ring)(expr)))
 	# TODO: What about the sum function here?
-	return GenericCharacter{T}(t, new_char_values, char.info, char.degree, nothing, new_params)
+	return GenericCharacter(t, new_char_values, char.info, char.degree, nothing, new_params)
 
 end
 
 @doc raw"""
-    specclassparam!(t::CharTable{T}, class::Int64, var::FracPoly{T}, expr::RingElement) where T <: NfPoly
+    specclassparam!(t::CharTable, class::Int64, var::UPoly, expr::RingElement)
 
 Replace the parameter `var` with `expr` in the class type `class`.
 
@@ -406,13 +405,13 @@ julia> g=genchartab("GL2");
 
 julia> printval(g,class=1)
 Value of character type 1 on class type
-  1: exp(2π𝑖(2//(q - 1)*i*k))
+  1: exp(2π𝑖((2*i*k)//(q - 1)))
 Value of character type 2 on class type
-  1: q*exp(2π𝑖(2//(q - 1)*i*k))
+  1: q*exp(2π𝑖((2*i*k)//(q - 1)))
 Value of character type 3 on class type
-  1: (q + 1)*exp(2π𝑖(1//(q - 1)*i*l + 1//(q - 1)*i*k))
+  1: (q + 1)*exp(2π𝑖((i*l + i*k)//(q - 1)))
 Value of character type 4 on class type
-  1: (q - 1)*exp(2π𝑖(1//(q - 1)*i*k))
+  1: (q - 1)*exp(2π𝑖((i*k)//(q - 1)))
 
 julia> q,(i,j,l,k) = params(g);
 
@@ -420,16 +419,16 @@ julia> specclassparam!(g, 1, k, 3)
 
 julia> printval(g,class=1)
 Value of character type 1 on class type
-  1: exp(2π𝑖(6//(q - 1)*i))
+  1: exp(2π𝑖((6*i)//(q - 1)))
 Value of character type 2 on class type
-  1: q*exp(2π𝑖(6//(q - 1)*i))
+  1: q*exp(2π𝑖((6*i)//(q - 1)))
 Value of character type 3 on class type
-  1: (q + 1)*exp(2π𝑖(1//(q - 1)*i*l + 3//(q - 1)*i))
+  1: (q + 1)*exp(2π𝑖((i*l + 3*i)//(q - 1)))
 Value of character type 4 on class type
-  1: (q - 1)*exp(2π𝑖(3//(q - 1)*i))
+  1: (q - 1)*exp(2π𝑖((3*i)//(q - 1)))
 ```
 """
-function specclassparam!(t::CharTable{T}, class::Int64, var::FracPoly{T}, expr::RingElement) where T <: NfPoly
+function specclassparam!(t::CharTable, class::Int64, var::UPoly, expr::RingElement)
 	if class > classtypes(t)
 		throw(DomainError(class, "Class type is out of range."))
 	end
@@ -437,8 +436,8 @@ function specclassparam!(t::CharTable{T}, class::Int64, var::FracPoly{T}, expr::
 		throw(DomainError(var, "Not a single variable."))
 	end
 	for char in 1:chartypes(t)
-		t[char].values[class]=simplify(eesubs(t[char,class], [var], [expr]), t)
+		t[char].values[class]=simplify(evaluate(t[char,class], [var_index(var)], [expr]), t)
 	end
-	push!(t.classparams[class].substitutions, ParameterSubstitution(var, t.argumentring(expr)))
+	push!(t.classparams[class].substitutions, ParameterSubstitution(var, base_ring(t.ring)(expr)))
 	return nothing
 end

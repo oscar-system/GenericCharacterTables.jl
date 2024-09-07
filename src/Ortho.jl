@@ -1,7 +1,7 @@
 export norm, scalar_product, scalar, ortho2norm, ortho2scalar, classmult
 
 @doc raw"""
-    classmult(t::CharTable{T}, class1::Int64, class2::Int64, class3::Int64) where T <: NfPoly
+    classmult(t::CharTable, class1::Int64, class2::Int64, class3::Int64)
 
 Return the (generic) class multiplication constant of the class types `class1`, `class2` and `class3` of the table `t`.
 
@@ -12,10 +12,10 @@ julia> g=genchartab("SL2.0");
 julia> classmult(g,2,2,4)
 q + 1
 With exceptions:
-  a3 ∈ (q + 1)ℤ
+  -a3 ∈ (q + 1)ℤ
 ```
 """
-function classmult(t::CharTable{T}, class1::Int64, class2::Int64, class3::Int64) where T <: NfPoly
+function classmult(t::CharTable, class1::Int64, class2::Int64, class3::Int64)
 	if any((class1, class2, class3).>classtypes(t))
 		throw(DomainError((class1,class2,class3), "Some class types are out of range."))
 	end
@@ -55,7 +55,7 @@ function classmult(t::SimpleCharTable{T}, class1::Int64, class2::Int64, class3::
 end
 
 @doc raw"""
-    norm(char::GenericCharacter{T}) where T <: NfPoly
+    norm(char::GenericCharacter)
 
 Return the norm of the character type `char`.
 
@@ -67,7 +67,7 @@ julia> norm(g[1])
 1
 ```
 """
-function Oscar.norm(char::GenericCharacter{T}) where T <: NfPoly
+function Oscar.norm(char::GenericCharacter)
 	t=parent(char)
 	sum=0
 	for class in 1:classtypes(t)
@@ -100,7 +100,7 @@ function Oscar.norm(char::SimpleGenericCharacter{T}) where T <: NfPoly
 end
 
 @doc raw"""
-    norm(t::Table{T}, char::Int64) where T <: NfPoly
+    norm(t::Table, char::Int64)
 
 Return the norm of the character type `char`.
 
@@ -112,7 +112,7 @@ julia> norm(g,1)
 1
 ```
 """
-function Oscar.norm(t::Table{T}, char::Int64) where T <: NfPoly
+function Oscar.norm(t::Table, char::Int64)
 	if char > chartypes(t)
 		throw(DomainError(char, "Character type is out of range."))
 	end
@@ -120,7 +120,7 @@ function Oscar.norm(t::Table{T}, char::Int64) where T <: NfPoly
 end
 
 @doc raw"""
-    scalar_product(char1::GenericCharacter{T}, char2::GenericCharacter{T}) where T <: NfPoly
+    scalar_product(char1::GenericCharacter, char2::GenericCharacter)
 
 Return the scalar product between the character types `char1` and `char2`.
 
@@ -132,11 +132,11 @@ julia> scalar_product(g[3],g[2])
 0
 With exceptions:
   l1 + k1 - 2*k2 ∈ (q - 1)ℤ
-  l1 - k2 ∈ (q - 1)ℤ
   k1 - k2 ∈ (q - 1)ℤ
+  l1 - k2 ∈ (q - 1)ℤ
 ```
 """
-function Oscar.scalar_product(char1::GenericCharacter{T}, char2::GenericCharacter{T}) where T <: NfPoly
+function Oscar.scalar_product(char1::GenericCharacter, char2::GenericCharacter)
 	if parent(char1) != parent(char2)
 		throw(DomainError((parent(char1),parent(char2)), "Tables do not match."))
 	end
@@ -176,7 +176,7 @@ function Oscar.scalar_product(char1::SimpleGenericCharacter{T}, char2::SimpleGen
 end
 
 @doc raw"""
-    scalar_product(t::Table{T}, char1::Int64, char2::Int64) where T <: NfPoly
+    scalar_product(t::Table, char1::Int64, char2::Int64)
 
 Return the scalar product between the character types `char1` and `char2`.
 
@@ -188,11 +188,11 @@ julia> scalar_product(g,3,2)
 0
 With exceptions:
   l1 + k1 - 2*k2 ∈ (q - 1)ℤ
-  l1 - k2 ∈ (q - 1)ℤ
   k1 - k2 ∈ (q - 1)ℤ
+  l1 - k2 ∈ (q - 1)ℤ
 ```
 """
-function Oscar.scalar_product(t::Table{T}, char1::Int64, char2::Int64) where T <: NfPoly
+function Oscar.scalar_product(t::Table, char1::Int64, char2::Int64)
 	if any((char1, char2).>chartypes(t))
 		throw(DomainError((char1,char2), "Some character types are out of range."))
 	end
@@ -200,7 +200,7 @@ function Oscar.scalar_product(t::Table{T}, char1::Int64, char2::Int64) where T <
 end
 
 @doc raw"""
-    ortho2norm(t::CharTable{T}, class::Int64) where T <: NfPoly
+    ortho2norm(t::CharTable, class::Int64)
 
 Return the (generic) norm of the class type `class`.
 
@@ -212,7 +212,7 @@ julia> ortho2norm(g,2)
 1
 ```
 """
-function ortho2norm(t::CharTable{T}, class::Int64) where T <: NfPoly
+function ortho2norm(t::CharTable, class::Int64)
 	if class > classtypes(t)
 		throw(DomainError(class, "Class type is out of range."))
 	end
@@ -249,7 +249,7 @@ function ortho2norm(t::SimpleCharTable{T}, class::Int64) where T <: NfPoly  # TO
 end
 
 @doc raw"""
-    ortho2scalar(t::CharTable{T}, class1::Int64, class2::Int64) where T <: NfPoly
+    ortho2scalar(t::CharTable, class1::Int64, class2::Int64)
 
 Return the (generic) scalar product between the class types `class1` and `class2`.
 
@@ -261,11 +261,11 @@ julia> ortho2scalar(g,3,2)
 0
 With exceptions:
   i1 + j1 - 2*i2 ∈ (q - 1)ℤ
-  i1 - i2 ∈ (q - 1)ℤ
   j1 - i2 ∈ (q - 1)ℤ
+  i1 - i2 ∈ (q - 1)ℤ
 ```
 """
-function ortho2scalar(t::CharTable{T}, class1::Int64, class2::Int64) where T <: NfPoly
+function ortho2scalar(t::CharTable, class1::Int64, class2::Int64)
 	if any((class1, class2).>classtypes(t))
 		throw(DomainError((class1,class2), "Some class types are out of range."))
 	end
@@ -303,5 +303,5 @@ function ortho2scalar(t::SimpleCharTable{T}, class1::Int64, class2::Int64) where
 end
 
 # Aliases
-scalar(char1::GenericCharacter{T}, char2::GenericCharacter{T}) where T <: NfPoly = scalar_product(char1, char2)
+scalar(char1::GenericCharacter, char2::GenericCharacter) = scalar_product(char1, char2)
 scalar(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T <: NfPoly = scalar_product(char1, char2)

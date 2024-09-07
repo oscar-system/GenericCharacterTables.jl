@@ -13,9 +13,9 @@ fulfilled if the evaluation of this polynomial is an integer.
 
 ## On Characters
 ```@docs
-norm(char::GenericCharacter{T}) where T <: NfPoly
+norm(char::GenericCharacter)
 norm(char::SimpleGenericCharacter{T}) where T <: NfPoly
-scalar_product(char1::GenericCharacter{T}, char2::GenericCharacter{T}) where T <: NfPoly
+scalar_product(char1::GenericCharacter, char2::GenericCharacter)
 scalar_product(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T <: NfPoly
 ```
 

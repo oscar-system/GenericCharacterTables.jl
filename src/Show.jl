@@ -39,7 +39,7 @@ Generic character table GL2
   with parameters (i, j, l, k)
 
 julia> [g]
-1-element Vector{GenericCharacterTables.CharTable{QQPolyRingElem}}:
+1-element Vector{GenericCharacterTables.CharTable}:
  Generic character table GL2
 
 ```
@@ -50,7 +50,7 @@ function Base.show(io::IO, ::MIME"text/plain", t::Table)
 	println(io, "of order ", t.order)
 	c = congruence(t)
 	if c !== nothing
-		println(io, "restricted to ", gen(t.modulusring), " congruent to ", c[1], " modulo ", c[2])
+		println(io, "restricted to ", gens(base_ring(t.ring))[1], " congruent to ", c[1], " modulo ", c[2])
 	end
 	println(io, "with ", irrchartypes(t)," irreducible character types")
 	println(io, "with ", classtypes(t)," class types")
@@ -77,16 +77,16 @@ julia> g=genchartab("GL2");
 julia> g[3]
 Generic character of GL2
   with parameters
-    k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except l - k ∈ (q - 1)ℤ
+    k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except -l + k ∈ (q - 1)ℤ
   of degree q + 1
   with values
-    (q + 1)*exp(2π𝑖(1//(q - 1)*i*l + 1//(q - 1)*i*k))
-    exp(2π𝑖(1//(q - 1)*i*l + 1//(q - 1)*i*k))
-    exp(2π𝑖(1//(q - 1)*i*k + 1//(q - 1)*j*l)) + exp(2π𝑖(1//(q - 1)*i*l + 1//(q - 1)*j*k))
+    (q + 1)*exp(2π𝑖((i*l + i*k)//(q - 1)))
+    exp(2π𝑖((i*l + i*k)//(q - 1)))
+    exp(2π𝑖((i*l + j*k)//(q - 1))) + exp(2π𝑖((i*k + j*l)//(q - 1)))
     0
 
 julia> [g[3]]
-1-element Vector{GenericCharacterTables.GenericCharacter{QQPolyRingElem}}:
+1-element Vector{GenericCharacterTables.GenericCharacter}:
  Generic character of GL2
 
 ```
@@ -311,7 +311,7 @@ function chardeg(t::Table, char::Int64)
 end
 
 @doc raw"""
-    nrchars(t::Table{T}, char::Int64) where T <: NfPoly
+    nrchars(t::Table, char::Int64)
 
 Return the number of characters in the character type `char` of the table `t`.
 
@@ -326,11 +326,11 @@ q - 1
 
 ```
 """
-function nrchars(t::CharTable{T}, char::Int64) where T <: NfPoly
+function nrchars(t::CharTable, char::Int64)
 	if char > irrchartypes(t)
 		throw(DomainError(char, "Cannot calculate number of characters in reducible types."))
 	else
-		o=CycloSum(t.modulusring(1), t.argumentring(0))
+		o=t.ring(1)
 		result=simplify(t[char].sum(o//o), t)
 		return shrink(result)
 	end
@@ -343,7 +343,7 @@ function nrchars(t::SimpleCharTable, char::Int64)
 end
 
 @doc raw"""
-    nrclasses(t::Table{T}, class::Int64) where T <: NfPoly
+    nrclasses(t::Table, class::Int64)
 
 Return the number of conjugacy classes in the class type `class` of the table `t`.
 
@@ -356,11 +356,11 @@ q - 1
 
 ```
 """
-function nrclasses(t::CharTable{T}, class::Int64) where T <: NfPoly
+function nrclasses(t::CharTable, class::Int64)
 	if class > classtypes(t)
 		throw(DomainError(class, "Class type is out of range."))
 	end
-	o=CycloSum(t.modulusring(1), t.argumentring(0))
+	o=t.ring(1)
 	result=simplify(t.classsums[class](o//o), t)
 	return shrink(result)
 end
@@ -386,7 +386,7 @@ julia> g=genchartab("GL2");
 julia> printcharparam(g)
 1	k ∈ {1,…, q - 1}
 2	k ∈ {1,…, q - 1}
-3	k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except l - k ∈ (q - 1)ℤ
+3	k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except -l + k ∈ (q - 1)ℤ
 4	k ∈ {1,…, q^2 - 1} except k ∈ (q + 1)ℤ
 ```
 """
@@ -528,14 +528,14 @@ julia> g=genchartab("GL2");
 
 julia> printval(g,char=1)
 Value of character type 1 on class type
-  1: exp(2π𝑖(2//(q - 1)*i*k))
-  2: exp(2π𝑖(2//(q - 1)*i*k))
-  3: exp(2π𝑖(1//(q - 1)*i*k + 1//(q - 1)*j*k))
-  4: exp(2π𝑖(1//(q - 1)*i*k))
+  1: exp(2π𝑖((2*i*k)//(q - 1)))
+  2: exp(2π𝑖((2*i*k)//(q - 1)))
+  3: exp(2π𝑖((i*k + j*k)//(q - 1)))
+  4: exp(2π𝑖((i*k)//(q - 1)))
 
 julia> printval(g,char=4,class=2)
 Value of character type 4 on class type
-  2: -1*exp(2π𝑖(1//(q - 1)*i*k))
+  2: (-1)*exp(2π𝑖((i*k)//(q - 1)))
 ```
 """
 function printval(io::IO, t::Table; char::Union{Int64, Nothing}=nothing, class::Union{Int64, Nothing}=nothing)
@@ -617,10 +617,11 @@ julia> params(g)
 ```
 """
 function params(t::CharTable)
-	q=gen(t.modulusring)
-	return (q, Tuple(gens(t.argumentring)[1:nrparams(t)]))
+	vars=gens(base_ring(t.ring))
+	q=vars[1]
+	return (q, Tuple(vars[2:(nrparams(t)+1)]))
 end
 
 # HACK: allow requesting a free form parameter e.g. for use with `specclassparam!`
 # TODO: document this? or replace it by a better interface...
-param(t::CharTable, x::VarName) = gen(t.argumentring, x)
+param(t::CharTable, x::VarName) = gen(base_ring(t.ring), x)
