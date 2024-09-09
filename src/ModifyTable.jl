@@ -43,7 +43,7 @@ function tensor_product(char1::GenericCharacter, char2::GenericCharacter)
 		# so we can use the 5th and 6th set here.
 		val1=shift_char_parameters(t, char1[class], 4)
 		val2=shift_char_parameters(t, char2[class], 5)
-		new_char_values[class]=simplify(val1*val2, t)
+		new_char_values[class]=val1*val2
 	end
 	param1 = shift_char_parameters(t, char1.params, 4)
 	param2 = shift_char_parameters(t, char2.params, 5)
@@ -385,7 +385,7 @@ function specialize(char::GenericCharacter, var::UPoly, expr::RingElement)
 	t=parent(char)
 	new_char_values=Vector{GenericCyclo}(undef, classtypes(t))
 	for class in 1:classtypes(t)
-		new_char_values[class]=simplify(evaluate(char[class], [var_index(var)], [expr]), t)
+		new_char_values[class]=evaluate(char[class], [var_index(var)], [expr])
 	end
 	new_params=deepcopy(char.params)
 	push!(new_params.substitutions, ParameterSubstitution(var, base_ring(t.ring)(expr)))
@@ -436,7 +436,7 @@ function specclassparam!(t::CharTable, class::Int64, var::UPoly, expr::RingEleme
 		throw(DomainError(var, "Not a single variable."))
 	end
 	for char in 1:chartypes(t)
-		t[char].values[class]=simplify(evaluate(t[char,class], [var_index(var)], [expr]), t)
+		t[char].values[class]=evaluate(t[char,class], [var_index(var)], [expr])
 	end
 	push!(t.classparams[class].substitutions, ParameterSubstitution(var, base_ring(t.ring)(expr)))
 	return nothing

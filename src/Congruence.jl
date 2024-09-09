@@ -1,9 +1,5 @@
 export setcongruence
 
-# TODO this should mainly be removed due to the handling of congruences in GenericCycloRing
-
-setcongruence(x::Union{GenericCyclo, GenericCycloFrac}, c::UPoly; simplify=true) = evaluate(x, [1], [c])  # TODO support simplify
-
 # TODO: find a better name
 # TODO: what type should `c` have?
 # TODO: should we only allow to specify *additional* congruences?
@@ -49,30 +45,3 @@ end
 
 congruence(x::CharTable) = x.congruence
 congruence(x::SimpleCharTable) = nothing
-
-@doc raw"""
-    simplify(x::Union{GenericCyclo, GenericCycloFrac}, c::UPoly, cinv::UPoly)
-
-Simplify `x` by replacing the first free variable in `x` by `c` and then back to `cinv`.
-
-This is used to remove terms that look fractional but are in fact whole.
-"""
-function simplify(x::Union{GenericCyclo, GenericCycloFrac}, c::UPoly, cinv::UPoly)
-	setcongruence(setcongruence(x, c), cinv, simplify=false)
-end
-
-@doc raw"""
-    simplify(x::Union{GenericCyclo, GenericCycloFrac}, t::CharTable)
-
-Simplify `x` according to the congruence relation given by `t`.
-"""
-function simplify(x::Union{GenericCyclo, GenericCycloFrac}, t::CharTable)
-	if t.congruence === nothing
-		return x
-	else
-		var=gens(base_ring(t.ring))[1]
-		c=t.congruence[2]*var+t.congruence[1]
-		cinv=(var-t.congruence[1])*inv(t.congruence[2])  # TODO why is // not allowed here?
-		return simplify(x, c, cinv)
-	end
-end

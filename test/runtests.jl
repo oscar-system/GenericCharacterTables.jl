@@ -74,8 +74,7 @@ end
 	q,(a,b,m,n)=params(g)
 	R=parent(q)
 	S=g.ring
-	a=S(Dict(a*(q-1)//R(3) => R(1)))
-	@test isone(GenericCharacterTables.simplify(a, g))
+	@test isone(S(Dict(a*(q-1)//R(3) => R(1))))
 end
 
 @testset "setcongruence(table)" begin

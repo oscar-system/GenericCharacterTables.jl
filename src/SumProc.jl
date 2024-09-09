@@ -52,12 +52,11 @@ exp(2π𝑖((1//2*q^2*j*l + 9*q*i^2 + 2*q*j^2 - 1//2*q*j*l - 9*i^2)//(q^2 - q)))
 eesubs(a::Union{GenericCyclo,GenericCycloFrac}, vars::Vector{UPoly}, vals::Vector{<:RingElement}) = evaluate(a, var_index.(vars), vals)  # TODO remove?
 
 @doc raw"""
-    nesum(a::GenericCycloFrac, var::Int64, lower::Int64, upper::Union{Int64,UPoly}, congruence::Union{Tuple{QQFieldElem,QQFieldElem},Nothing}=nothing)
+    nesum(a::GenericCycloFrac, var::Int64, lower::Int64, upper::Union{Int64,UPoly})
 
 Return the sum of `a`, from `var=lower` to `upper` as `CycloFrac{T}` using the closed formular for geometric sums. If this is not possible
 an exception will be thrown. Note that any occurence of `var` in the denominator of `a` will be silently ignored.
 
-`congruence[1]` gives the remainder modulo `congruence[2]` of the generator of the polynomials of type `T`. This is used to simplify the result.
 # Examples
 ```jldoctest
 julia> R = universal_polynomial_ring(QQ; cached=false);
@@ -113,14 +112,7 @@ function nesum(a::GenericCycloFrac, var::Int64, lower::Int64, upper::Union{Int64
 			throw(DomainError(argument, "Nonlinear dependencies on the summation variable can't be resolved."))
 		end
 	end
-	if congruence === nothing
-		return sum//a.denominator
-	else
-		q=gens(base_ring(parent(a.numerator)))[1]
-		c=congruence[2]*q+congruence[1]
-		cinv=(q-congruence[1])*inv(congruence[2])  # TODO why is // not working here?
-		return simplify(sum//a.denominator, c, cinv)
-	end
+	return sum//a.denominator
 end
 function nesum(a::GenericCyclo, var::Int64, lower::Int64, upper::Union{Int64,UPoly}, congruence::Union{Tuple{QQFieldElem,QQFieldElem},Nothing}=nothing)
 	nesum(a//one(a), var, lower, upper, congruence)

@@ -26,7 +26,7 @@ function classmult(t::CharTable, class1::Int64, class2::Int64, class3::Int64)
 		val3=shift_class_parameters(t, t[char, class3], 3)
 		sum+=t.order*t[char].sum(val1*val2*conj(val3))//t[char].degree  # TODO move t.order* to the end of the function
 	end
-	return shrink(simplify((t.classlength[class1]*t.classlength[class2])*sum//(t.order^2), t))
+	return shrink((t.classlength[class1]*t.classlength[class2])*sum//(t.order^2))
 end
 
 @doc raw"""
@@ -74,7 +74,7 @@ function Oscar.norm(char::GenericCharacter)
 		val=char[class]
 		sum+=t.classlength[class]*t.classsums[class](val*conj(val))
 	end
-	return shrink(simplify(sum//t.order, t))
+	return shrink(sum//t.order)
 end
 
 @doc raw"""
@@ -147,7 +147,7 @@ function Oscar.scalar_product(char1::GenericCharacter, char2::GenericCharacter)
 		val2=shift_char_parameters(t, char2[class], 2)
 		sum+=t.classlength[class]*t.classsums[class](val1*conj(val2))
 	end
-	return shrink(simplify(sum//t.order, t))
+	return shrink(sum//t.order)
 end
 
 @doc raw"""
@@ -221,7 +221,7 @@ function ortho2norm(t::CharTable, class::Int64)
 		val=t[char, class]
 		sum+=t[char].sum(val*conj(val))
 	end
-	return shrink(simplify(t.classlength[class]*sum//t.order, t))
+	return shrink(t.classlength[class]*sum//t.order)
 end
 
 @doc raw"""
@@ -275,7 +275,7 @@ function ortho2scalar(t::CharTable, class1::Int64, class2::Int64)
 		val2=shift_class_parameters(t, t[char, class2], 2)
 		sum+=t[char].sum(val1*conj(val2))
 	end
-	return shrink(simplify(t.classlength[class1]*sum//t.order, t))
+	return shrink(t.classlength[class1]*sum//t.order)
 end
 
 @doc raw"""
