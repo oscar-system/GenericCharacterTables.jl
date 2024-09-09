@@ -31,44 +31,44 @@ chardegree = R.([1, q, q-1, q+1])
 
 classsums=[
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, k, 0, q, congruence)
+	nesum(tt, k, 0, q)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, k, 0, q, congruence)
+	nesum(tt, k, 0, q)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [l], [k])
-	s2=nesum(tt, l, 0, q, congruence)
+	s2=nesum(tt, l, 0, q)
 	s1=s2-s1
-	s2=nesum(s1, k, 0, q, congruence)
+	s2=nesum(s1, k, 0, q)
 	1//2*s2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [k], [(q-1)*k])
-	s1=nesum(s1, k, 0, q, congruence)
-	s2=nesum(tt, k, 0, q^2-2, congruence)
+	s1=nesum(s1, k, 0, q)
+	s2=nesum(tt, k, 0, q^2-2)
 	1//2*s2-1//2*s1
 end
 ]
 
 charsums=[
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, u, 0, q, congruence)
+	nesum(tt, u, 0, q)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, u, 0, q, congruence)
+	nesum(tt, u, 0, q)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [v], [u])
-	s2=nesum(tt, v, 0, q, congruence)
+	s2=nesum(tt, v, 0, q)
 	s1=s2-s1
-	s2=nesum(s1, u, 0, q, congruence)
+	s2=nesum(s1, u, 0, q)
 	1//2*s2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [u], [(q-1)*u])
-	s1=nesum(s1, u, 0, q, congruence)
-	s2=nesum(tt, u, 0, q^2-2, congruence)
+	s1=nesum(s1, u, 0, q)
+	s2=nesum(tt, u, 0, q^2-2)
 	1//2*s2-1//2*s1
 end
 ]

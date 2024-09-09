@@ -112,27 +112,27 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	tt
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, a, 1, q, congruence)
+	nesum(tt, a, 1, q)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, a, 1, q, congruence)
+	nesum(tt, a, 1, q)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	ss5=nesum(tt, a, 0, q, congruence)
-	ss6=nesum(ss5, b, 0, q, congruence)
+	ss5=nesum(tt, a, 0, q)
+	ss6=nesum(ss5, b, 0, q)
 	tt1=eesubs(tt, [b], [a])
-	ss7=nesum(tt1, a, 0, q, congruence)
+	ss7=nesum(tt1, a, 0, q)
 	tt2=eesubs(tt1, [a], [0])
 	1//6*ss6-1//2*ss7+1//3*tt2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	ss7=nesum(tt, a, 0, q^2-2, congruence)
+	ss7=nesum(tt, a, 0, q^2-2)
 	tt1=eesubs(tt, [a], [(q-1)*a])
-	ss8=nesum(tt1, a, 0, q, congruence)
+	ss8=nesum(tt1, a, 0, q)
 	1//2*ss7-1//2*ss8
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	ss8=nesum(tt, a, 1, q^2-q, congruence)
+	ss8=nesum(tt, a, 1, q^2-q)
 	1//3*ss8
 end
 ]
@@ -148,26 +148,26 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	tt
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, n, 1, q, congruence)
+	nesum(tt, n, 1, q)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, n, 1, q, congruence)
+	nesum(tt, n, 1, q)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	ss5=nesum(tt, n, 1, q, congruence)
-	ss6=nesum(ss5, m, 1, q, congruence)
+	ss5=nesum(tt, n, 1, q)
+	ss6=nesum(ss5, m, 1, q)
 	tt1=eesubs(tt, [m], [n])
-	ss7=nesum(tt1, n, 1, q, congruence)
+	ss7=nesum(tt1, n, 1, q)
 	1//6*ss6-1//6*ss7
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	ss7=nesum(tt, n, 0, q^2-2, congruence)
+	ss7=nesum(tt, n, 0, q^2-2)
 	tt1=eesubs(tt, [n], [(q-1)*n])
-	ss8=nesum(tt1, n, 0, q, congruence)
+	ss8=nesum(tt1, n, 0, q)
 	1//2*ss7-1//2*ss8
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	ss8=nesum(tt, n, 1, q^2-q, congruence)
+	ss8=nesum(tt, n, 1, q^2-q)
 	1//3*ss8
 end
 ]

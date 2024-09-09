@@ -76,13 +76,12 @@ With exceptions:
   1 ∈ (q - 1)ℤ
 ```
 """
-function nesum(a::GenericCycloFrac, var::Int64, lower::Int64, upper::Union{Int64,UPoly}, congruence::Union{Tuple{QQFieldElem,QQFieldElem},Nothing}=nothing)
+function nesum(a::GenericCycloFrac, var::Int64, lower::Int64, upper::Union{Int64,UPoly})
 	# TODO implement this just with GenericCyclo and write a wrapper for GenericCycloFrac
-	# TODO get rid of `congruence` here
 	if isone(lower)
-		return nesum(a, var, 0, upper, congruence)-evaluate(a, [var], [0])
+		return nesum(a, var, 0, upper)-evaluate(a, [var], [0])
 	elseif lower > 1
-		return nesum(a, var, 0, upper, congruence)-nesum(a, var, 0, lower-1)
+		return nesum(a, var, 0, upper)-nesum(a, var, 0, lower-1)
 	end
 	# From now on `lower` can be assumed to be zero.
 	sum=zero(a)
@@ -114,9 +113,9 @@ function nesum(a::GenericCycloFrac, var::Int64, lower::Int64, upper::Union{Int64
 	end
 	return sum//a.denominator
 end
-function nesum(a::GenericCyclo, var::Int64, lower::Int64, upper::Union{Int64,UPoly}, congruence::Union{Tuple{QQFieldElem,QQFieldElem},Nothing}=nothing)
-	nesum(a//one(a), var, lower, upper, congruence)
+function nesum(a::GenericCyclo, var::Int64, lower::Int64, upper::Union{Int64,UPoly})
+	nesum(a//one(a), var, lower, upper)
 end
-function nesum(a::Union{GenericCyclo,GenericCycloFrac}, var::UPoly, lower::Int64, upper::Union{Int64,UPoly}, congruence::Union{Tuple{QQFieldElem,QQFieldElem},Nothing}=nothing)
-	nesum(a, var_index(var), lower, upper, congruence)
+function nesum(a::Union{GenericCyclo,GenericCycloFrac}, var::UPoly, lower::Int64, upper::Union{Int64,UPoly})
+	nesum(a, var_index(var), lower, upper)
 end

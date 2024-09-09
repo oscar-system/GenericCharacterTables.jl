@@ -97,15 +97,15 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	tt
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, a, 1, 2*q0^2-2, congruence)
+	s1=nesum(tt, a, 1, 2*q0^2-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, b, 1, 2*q0^2+2*q0, congruence)
+	s1=nesum(tt, b, 1, 2*q0^2+2*q0)
 	1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, c, 1, 2*q0^2-2*q0, congruence)
+	s1=nesum(tt, c, 1, 2*q0^2-2*q0)
 	1//4*s1
 end
 ]
@@ -124,15 +124,15 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	tt
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, s, 1, 2*q0^2-2, congruence)
+	s1=nesum(tt, s, 1, 2*q0^2-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k, 1, 2*q0^2+2*q0, congruence)
+	s1=nesum(tt, k, 1, 2*q0^2+2*q0)
 	1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, u, 1, 2*q0^2-2*q0, congruence)
+	s1=nesum(tt, u, 1, 2*q0^2-2*q0)
 	1//4*s1
 end
 ]

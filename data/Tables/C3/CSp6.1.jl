@@ -9395,395 +9395,395 @@ chardegree = R.([
 
 classsums=[
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, i1, 0, q-2, congruence)
+	nesum(tt, i1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, i1, 0, q-2, congruence)
+	nesum(tt, i1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, i1, 0, q-2, congruence)
+	nesum(tt, i1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, i1, 0, q-2, congruence)
+	nesum(tt, i1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, i1, 0, q-2, congruence)
+	nesum(tt, i1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, i1, 0, q-2, congruence)
+	nesum(tt, i1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, i1, 0, q-2, congruence)
+	nesum(tt, i1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, i1, 0, q-2, congruence)
+	nesum(tt, i1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, i1, 0, q-2, congruence)
+	nesum(tt, i1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, i1, 0, q-2, congruence)
+	nesum(tt, i1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, i1, 0, q-2, congruence)
+	nesum(tt, i1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, i1, 0, q-2, congruence)
+	nesum(tt, i1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, i1, 0, q-2, congruence)
+	nesum(tt, i1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, i1, 0, q-2, congruence)
+	nesum(tt, i1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, i1, 0, q-2, congruence)
+	nesum(tt, i1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, i1, 0, q-2, congruence)
+	nesum(tt, i1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, i1, 0, q-2, congruence)
+	nesum(tt, i1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, i1, 0, q-2, congruence)
+	nesum(tt, i1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, i1, 0, q-2, congruence)
+	nesum(tt, i1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, i1, 0, q-2, congruence)
+	nesum(tt, i1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, i1, 0, q-2, congruence)
+	nesum(tt, i1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, i1, 0, q-2, congruence)
-end,
-function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=eesubs(tt, [i1], [i2])
-	s2=eesubs(tt, [i1], [i2+1//2*q-1//2])
-	zw1=nesum(tt, i1, 0, q-2, congruence)
-	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
-	1//2*zw1
+	nesum(tt, i1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q-1//2])
-	zw1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	1//2*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q-1//2])
-	zw1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	1//2*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q-1//2])
-	zw1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	1//2*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q-1//2])
-	zw1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
+	1//2*zw1
+end,
+function (tt::Union{GenericCyclo, GenericCycloFrac})
+	s1=eesubs(tt, [i1], [i2])
+	s2=eesubs(tt, [i1], [i2+1//2*q-1//2])
+	zw1=nesum(tt, i1, 0, q-2)
+	zw1=zw1-s1-s2
+	zw1=nesum(zw1, i2, 0, q-2)
 	1//2*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q+1//2])
-	zw1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	1//2*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q+1//2])
-	zw1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	1//2*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q+1//2])
-	zw1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	1//2*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q+1//2])
-	zw1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	1//2*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q+1//2])
-	zw1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	1//2*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q-1//2])
-	zw1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i2], [2*i11])
-	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2)
+	zw2=nesum(tt, i1, 0, q-2)
 	zw2=eesubs(zw2, [i2], [2*i11+1])
-	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2)
 	1//2*zw1+1//2*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q-1//2])
-	zw1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i2], [2*i11])
-	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2)
+	zw2=nesum(tt, i1, 0, q-2)
 	zw2=eesubs(zw2, [i2], [2*i11+1])
-	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2)
 	1//2*zw1+1//2*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q-1//2])
-	zw1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i2], [2*i11])
-	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2)
+	zw2=nesum(tt, i1, 0, q-2)
 	zw2=eesubs(zw2, [i2], [2*i11+1])
-	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2)
 	1//2*zw1+1//2*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q+1//2])
-	zw1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i2], [2*i11])
-	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2)
+	zw2=nesum(tt, i1, 0, q)
 	zw2=eesubs(zw2, [i2], [2*i11+1])
-	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2)
 	1//2*zw1+1//2*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q+1//2])
-	zw1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i2], [2*i11])
-	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2)
+	zw2=nesum(tt, i1, 0, q)
 	zw2=eesubs(zw2, [i2], [2*i11+1])
-	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2)
 	1//2*zw1+1//2*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q+1//2])
-	zw1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i2], [2*i11])
-	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2)
+	zw2=nesum(tt, i1, 0, q)
 	zw2=eesubs(zw2, [i2], [2*i11+1])
-	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2)
 	1//2*zw1+1//2*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i2], [i1])
 	s2=eesubs(tt, [i2], [i1+1//2*q-1//2])
-	zw1=nesum(tt, i2, 0, q-2, congruence)
+	zw1=nesum(tt, i2, 0, q-2)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	zw1=nesum(zw1, i1, 0, q-2)
 	1//4*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i2], [i1])
 	s2=eesubs(tt, [i2], [i1+1//2*q-1//2])
-	zw1=nesum(tt, i2, 0, q-2, congruence)
+	zw1=nesum(tt, i2, 0, q-2)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	zw1=nesum(zw1, i1, 0, q-2)
 	1//4*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i2], [i1])
 	s2=eesubs(tt, [i2], [i1+1//2*q-1//2])
-	zw1=nesum(tt, i2, 0, q-2, congruence)
+	zw1=nesum(tt, i2, 0, q-2)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	zw1=nesum(zw1, i1, 0, q-2)
 	1//4*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i2], [i1])
 	s2=eesubs(tt, [i2], [i1+1//2*q-1//2])
-	zw1=nesum(tt, i2, 0, q-2, congruence)
+	zw1=nesum(tt, i2, 0, q-2)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	zw1=nesum(zw1, i1, 0, q-2)
 	1//4*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i2], [i1])
 	s2=eesubs(tt, [i2], [i1+1//2*q-1//2])
-	zw1=nesum(tt, i2, 0, q-2, congruence)
+	zw1=nesum(tt, i2, 0, q-2)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	zw1=nesum(zw1, i1, 0, q-2)
 	1//4*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q-1//2])
-	zw1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	1//2*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q-1//2])
-	zw1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	1//2*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q-1//2])
-	zw1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	1//2*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q-1//2])
-	zw1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	1//2*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i2], [i1])
 	s2=eesubs(tt, [i2], [i1+1//2*q+1//2])
-	zw1=nesum(tt, i2, 0, q, congruence)
+	zw1=nesum(tt, i2, 0, q)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	zw1=nesum(zw1, i1, 0, q-2)
 	1//4*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i2], [i1])
 	s2=eesubs(tt, [i2], [i1+1//2*q+1//2])
-	zw1=nesum(tt, i2, 0, q, congruence)
+	zw1=nesum(tt, i2, 0, q)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	zw1=nesum(zw1, i1, 0, q-2)
 	1//4*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i2], [i1])
 	s2=eesubs(tt, [i2], [i1+1//2*q+1//2])
-	zw1=nesum(tt, i2, 0, q, congruence)
+	zw1=nesum(tt, i2, 0, q)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	zw1=nesum(zw1, i1, 0, q-2)
 	1//4*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i2], [i1])
 	s2=eesubs(tt, [i2], [i1+1//2*q+1//2])
-	zw1=nesum(tt, i2, 0, q, congruence)
+	zw1=nesum(tt, i2, 0, q)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	zw1=nesum(zw1, i1, 0, q-2)
 	1//4*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i2], [i1])
 	s2=eesubs(tt, [i2], [i1+1//2*q+1//2])
-	zw1=nesum(tt, i2, 0, q, congruence)
+	zw1=nesum(tt, i2, 0, q)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	zw1=nesum(zw1, i1, 0, q-2)
 	1//4*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q+1//2])
-	zw1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	1//2*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q+1//2])
-	zw1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	1//2*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q+1//2])
-	zw1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	1//2*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [i2+1//2*q+1//2])
-	zw1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	1//2*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	zw1=nesum(tt, i2, 0, q-2, congruence)
-	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i2, 0, q-2)
+	zw1=nesum(zw1, i1, 0, q-2)
 	1//4*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	zw1=nesum(tt, i2, 0, q-2, congruence)
-	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i2, 0, q-2)
+	zw1=nesum(zw1, i1, 0, q-2)
 	1//4*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	zw1=nesum(tt, i2, 0, q-2, congruence)
-	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i2, 0, q-2)
+	zw1=nesum(zw1, i1, 0, q-2)
 	1//4*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	zw1=nesum(tt, i2, 0, q, congruence)
-	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i2, 0, q)
+	zw1=nesum(zw1, i1, 0, q-2)
 	1//4*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	zw1=nesum(tt, i2, 0, q, congruence)
-	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i2, 0, q)
+	zw1=nesum(zw1, i1, 0, q-2)
 	1//4*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	zw1=nesum(tt, i2, 0, q, congruence)
-	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i2, 0, q)
+	zw1=nesum(zw1, i1, 0, q-2)
 	1//4*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
@@ -9791,13 +9791,13 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s2=eesubs(tt, [i1], [i3+1//2*q-1//2])
 	s3=eesubs(tt, [i1], [i2])
 	s4=eesubs(tt, [i1], [2*i3-i2])
-	zw1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i2], [i3])
 	s2=eesubs(zw1, [i2], [i3+1//2*q-1//2])
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i3, 0, q-2, congruence)
+	zw1=nesum(zw1, i3, 0, q-2)
 	1//8*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
@@ -9805,13 +9805,13 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s2=eesubs(tt, [i1], [i3+1//2*q-1//2])
 	s3=eesubs(tt, [i1], [i2])
 	s4=eesubs(tt, [i1], [2*i3-i2])
-	zw1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i2], [i3])
 	s2=eesubs(zw1, [i2], [i3+1//2*q-1//2])
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i3, 0, q-2, congruence)
+	zw1=nesum(zw1, i3, 0, q-2)
 	1//8*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
@@ -9819,21 +9819,21 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s2=eesubs(tt, [i1], [i11+1//2*q-1//2])
 	s3=eesubs(tt, [i1], [i2])
 	s4=eesubs(tt, [i1], [2*i11-i2])
-	zw1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q-1//2])
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [2*i11+1-i2])
-	zw2=nesum(tt, i1, 0, q-2, congruence)
+	zw2=nesum(tt, i1, 0, q-2)
 	zw2=zw2-s1-s2
-	zw2=nesum(zw2, i2, 0, q-2, congruence)
+	zw2=nesum(zw2, i2, 0, q-2)
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2)
 	1//4*zw1+1//4*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
@@ -9841,45 +9841,45 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s2=eesubs(tt, [i1], [i11+1//2*q-1//2])
 	s3=eesubs(tt, [i1], [i2])
 	s4=eesubs(tt, [i1], [2*i11-i2])
-	zw1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q-1//2])
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [2*i11+1-i2])
-	zw2=nesum(tt, i1, 0, q-2, congruence)
+	zw2=nesum(tt, i1, 0, q-2)
 	zw2=zw2-s1-s2
-	zw2=nesum(zw2, i2, 0, q-2, congruence)
+	zw2=nesum(zw2, i2, 0, q-2)
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2)
 	1//4*zw1+1//4*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i3])
 	s2=eesubs(tt, [i1], [i3+1//2*q-1//2])
-	zw1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2)
 	zw1=zw1-s1-s2
 	s1=eesubs(zw1, [i2], [i3])
 	s2=eesubs(zw1, [i2], [i3+1//2*q+1//2])
-	zw1=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i3, 0, q-2, congruence)
+	zw1=nesum(zw1, i3, 0, q-2)
 	1//4*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i3])
 	s2=eesubs(tt, [i1], [i3+1//2*q-1//2])
-	zw1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2)
 	zw1=zw1-s1-s2
 	s1=eesubs(zw1, [i2], [i3])
 	s2=eesubs(zw1, [i2], [i3+1//2*q+1//2])
-	zw1=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i3, 0, q-2, congruence)
+	zw1=nesum(zw1, i3, 0, q-2)
 	1//4*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
@@ -9887,11 +9887,11 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s2=eesubs(tt, [i1], [2*i2+i1*(q-1)])
 	s3=eesubs(tt, [i1], [i2*(q+1)])
 	s4=eesubs(tt, [i1], [i2*(q+1)+1//2*q^2-1//2])
-	s1=nesum(s1, i1, 0, q-2, congruence)
-	s2=nesum(s2, i1, 0, q, congruence)
-	zw1=nesum(tt, i1, 0, q^2-2, congruence)
+	s1=nesum(s1, i1, 0, q-2)
+	s2=nesum(s2, i1, 0, q)
+	zw1=nesum(tt, i1, 0, q^2-2)
 	zw1=zw1-s1-s2+s3+s4
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	1//4*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
@@ -9899,79 +9899,79 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s2=eesubs(tt, [i1], [2*i2+i1*(q-1)])
 	s3=eesubs(tt, [i1], [i2*(q+1)])
 	s4=eesubs(tt, [i1], [i2*(q+1)+1//2*q^2-1//2])
-	s1=nesum(s1, i1, 0, q-2, congruence)
-	s2=nesum(s2, i1, 0, q, congruence)
-	zw1=nesum(tt, i1, 0, q^2-2, congruence)
+	s1=nesum(s1, i1, 0, q-2)
+	s2=nesum(s2, i1, 0, q)
+	zw1=nesum(tt, i1, 0, q^2-2)
 	zw1=zw1-s1-s2+s3+s4
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	1//4*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q-1//2])
-	zw1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2)
 	zw1=zw1-s1-s2
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q+1//2])
-	zw1=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2=nesum(tt, i1, 0, q-2, congruence)
-	zw2=nesum(zw2, i2, 0, q, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2)
+	zw2=nesum(tt, i1, 0, q-2)
+	zw2=nesum(zw2, i2, 0, q)
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2)
 	1//4*zw1+1//4*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q-1//2])
-	zw1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2)
 	zw1=zw1-s1-s2
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q+1//2])
-	zw1=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2=nesum(tt, i1, 0, q-2, congruence)
-	zw2=nesum(zw2, i2, 0, q, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2)
+	zw2=nesum(tt, i1, 0, q-2)
+	zw2=nesum(zw2, i2, 0, q)
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2)
 	1//4*zw1+1//4*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q+1//2])
-	zw1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q)
 	zw1=zw1-s1-s2
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q-1//2])
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2=nesum(tt, i1, 0, q, congruence)
-	zw2=nesum(zw2, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2)
+	zw2=nesum(tt, i1, 0, q)
+	zw2=nesum(zw2, i2, 0, q-2)
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2)
 	1//4*zw1+1//4*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q+1//2])
-	zw1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q)
 	zw1=zw1-s1-s2
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q-1//2])
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2=nesum(tt, i1, 0, q, congruence)
-	zw2=nesum(zw2, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2)
+	zw2=nesum(tt, i1, 0, q)
+	zw2=nesum(zw2, i2, 0, q-2)
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2)
 	1//4*zw1+1//4*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
@@ -9979,13 +9979,13 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s2=eesubs(tt, [i1], [i3+1//2*q+1//2])
 	s3=eesubs(tt, [i1], [i2])
 	s4=eesubs(tt, [i1], [2*i3-i2])
-	zw1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i2], [i3])
 	s2=eesubs(zw1, [i2], [i3+1//2*q+1//2])
-	zw1=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i3, 0, q-2, congruence)
+	zw1=nesum(zw1, i3, 0, q-2)
 	1//8*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
@@ -9993,29 +9993,29 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s2=eesubs(tt, [i1], [i3+1//2*q+1//2])
 	s3=eesubs(tt, [i1], [i2])
 	s4=eesubs(tt, [i1], [2*i3-i2])
-	zw1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i2], [i3])
 	s2=eesubs(zw1, [i2], [i3+1//2*q+1//2])
-	zw1=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i3, 0, q-2, congruence)
+	zw1=nesum(zw1, i3, 0, q-2)
 	1//8*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i2*(q+1)])
 	s2=eesubs(tt, [i1], [i2*(q+1)+1//2*q^2+1//2])
-	zw1=nesum(tt, i1, 0, q^2, congruence)
+	zw1=nesum(tt, i1, 0, q^2)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	1//4*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i2*(q+1)])
 	s2=eesubs(tt, [i1], [i2*(q+1)+1//2*q^2+1//2])
-	zw1=nesum(tt, i1, 0, q^2, congruence)
+	zw1=nesum(tt, i1, 0, q^2)
 	zw1=zw1-s1-s2
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	1//4*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
@@ -10023,21 +10023,21 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s2=eesubs(tt, [i1], [-i11+1//2*q+1//2])
 	s3=eesubs(tt, [i1], [i2])
 	s4=eesubs(tt, [i1], [-i3-i2])
-	zw1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i2], [-i11])
 	s2=eesubs(zw1, [i2], [-i11+1//2*q+1//2])
-	zw1=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [-i3-i2])
-	zw2=nesum(tt, i1, 0, q, congruence)
+	zw2=nesum(tt, i1, 0, q)
 	zw2=zw2-s1-s2
-	zw2=nesum(zw2, i2, 0, q, congruence)
+	zw2=nesum(zw2, i2, 0, q)
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2)
 	1//4*zw1+1//4*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
@@ -10045,21 +10045,21 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s2=eesubs(tt, [i1], [-i11+1//2*q+1//2])
 	s3=eesubs(tt, [i1], [i2])
 	s4=eesubs(tt, [i1], [-i3-i2])
-	zw1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i2], [-i11])
 	s2=eesubs(zw1, [i2], [-i11+1//2*q+1//2])
-	zw1=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [-i3-i2])
-	zw2=nesum(tt, i1, 0, q, congruence)
+	zw2=nesum(tt, i1, 0, q)
 	zw2=zw2-s1-s2
-	zw2=nesum(zw2, i2, 0, q, congruence)
+	zw2=nesum(zw2, i2, 0, q)
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2)
 	1//4*zw1+1//4*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
@@ -10069,33 +10069,33 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s4=eesubs(tt, [i3], [2*i11-i1])
 	s5=eesubs(tt, [i3], [i2])
 	s6=eesubs(tt, [i3], [2*i11-i2])
-	zw1=nesum(tt, i3, 0, q-2, congruence)
+	zw1=nesum(tt, i3, 0, q-2)
 	zw1=zw1-s1-s2-s3-s4-s5-s6
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q-1//2])
 	s3=eesubs(zw1, [i2], [i1])
 	s4=eesubs(zw1, [i2], [2*i11-i1])
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i1], [i11])
 	s2=eesubs(zw1, [i1], [i11+1//2*q-1//2])
-	zw1=nesum(zw1, i1, 0, q-2, congruence)
+	zw1=nesum(zw1, i1, 0, q-2)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i4], [2*i11])
-	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2)
 	s1=eesubs(tt, [i3], [i1])
 	s2=eesubs(tt, [i3], [2*i11+1-i1])
 	s3=eesubs(tt, [i3], [i2])
 	s4=eesubs(tt, [i3], [2*i11+1-i2])
-	zw2=nesum(tt, i3, 0, q-2, congruence)
+	zw2=nesum(tt, i3, 0, q-2)
 	zw2=zw2-s1-s2-s3-s4
 	s1=eesubs(zw2, [i2], [i1])
 	s2=eesubs(zw2, [i2], [2*i11+1-i1])
-	zw2=nesum(zw2, i2, 0, q-2, congruence)
+	zw2=nesum(zw2, i2, 0, q-2)
 	zw2=zw2-s1-s2
-	zw2=nesum(zw2, i1, 0, q-2, congruence)
+	zw2=nesum(zw2, i1, 0, q-2)
 	zw2=eesubs(zw2, [i4], [2*i11+1])
-	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2)
 	1//48*zw1+1//48*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
@@ -10103,26 +10103,26 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s2=eesubs(tt, [i1], [i11+1//2*q-1//2])
 	s3=eesubs(tt, [i1], [i2])
 	s4=eesubs(tt, [i1], [2*i11-i2])
-	zw1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q-1//2])
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	zw1=zw1-s1-s2
 	s1=eesubs(zw1, [i3], [i11])
 	s2=eesubs(zw1, [i3], [i11+1//2*q+1//2])
-	zw1=nesum(zw1, i3, 0, q, congruence)
+	zw1=nesum(zw1, i3, 0, q)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i4], [2*i11])
-	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2)
 	s1=eesubs(tt, [i1], [i2])
 	s2=eesubs(tt, [i1], [2*i11+1-i2])
-	zw2=nesum(tt, i1, 0, q-2, congruence)
+	zw2=nesum(tt, i1, 0, q-2)
 	zw2=zw2-s1-s2
-	zw2=nesum(zw2, i2, 0, q-2, congruence)
-	zw2=nesum(zw2, i3, 0, q, congruence)
+	zw2=nesum(zw2, i2, 0, q-2)
+	zw2=nesum(zw2, i3, 0, q)
 	zw2=eesubs(zw2, [i4], [2*i11+1])
-	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2)
 	1//16*zw1+1//16*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
@@ -10130,54 +10130,54 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s2=eesubs(tt, [i1], [2*i11+i1*(q-1)])
 	s3=eesubs(tt, [i1], [i11*(q+1)])
 	s4=eesubs(tt, [i1], [i11*(q+1)+1//2*q^2-1//2])
-	s1=nesum(s1, i1, 0, q-2, congruence)
-	s2=nesum(s2, i1, 0, q, congruence)
-	zw1=nesum(tt, i1, 0, q^2-2, congruence)
+	s1=nesum(s1, i1, 0, q-2)
+	s2=nesum(s2, i1, 0, q)
+	zw1=nesum(tt, i1, 0, q^2-2)
 	zw1=zw1-s1-s2+s3+s4
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q-1//2])
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2)
 	s1=eesubs(tt, [i1], [i1*(q+1)])
 	s2=eesubs(tt, [i1], [2*i11+1+i1*(q-1)])
 	s3=eesubs(tt, [i1], [1//2*(2*i11+1)*(q+1)])
 	s4=eesubs(tt, [i1], [1//2*(2*i11+1)*(q+1)+1//2*q^2-1//2])
-	s1=nesum(s1, i1, 0, q-2, congruence)
-	s2=nesum(s2, i1, 0, q, congruence)
-	zw2=nesum(tt, i1, 0, q^2-2, congruence)
+	s1=nesum(s1, i1, 0, q-2)
+	s2=nesum(s2, i1, 0, q)
+	zw2=nesum(tt, i1, 0, q^2-2)
 	zw2=zw2-s1-s2-s3-s4
-	zw2=nesum(zw2, i2, 0, q-2, congruence)
+	zw2=nesum(zw2, i2, 0, q-2)
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2)
 	1//8*zw1+1//8*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q-1//2])
-	zw1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2)
 	zw1=zw1-s1-s2
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q+1//2])
 	s3=eesubs(zw1, [i2], [i3])
 	s4=eesubs(zw1, [i2], [i4-i3])
-	zw1=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i3], [i11])
 	s2=eesubs(zw1, [i3], [i11+1//2*q+1//2])
-	zw1=nesum(zw1, i3, 0, q, congruence)
+	zw1=nesum(zw1, i3, 0, q)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i4], [2*i11])
-	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2)
+	zw2=nesum(tt, i1, 0, q-2)
 	s1=eesubs(zw2, [i2], [i3])
 	s2=eesubs(zw2, [i2], [i4-i3])
-	zw2=nesum(zw2, i2, 0, q, congruence)
+	zw2=nesum(zw2, i2, 0, q)
 	zw2=zw2-s1-s2
-	zw2=nesum(zw2, i3, 0, q, congruence)
+	zw2=nesum(zw2, i3, 0, q)
 	zw2=eesubs(zw2, [i4], [2*i11+1])
-	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2)
 	1//16*zw1+1//16*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
@@ -10185,55 +10185,55 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s2=eesubs(tt, [i1], [2*i11+i1*(q-1)])
 	s3=eesubs(tt, [i1], [i11*(q+1)])
 	s4=eesubs(tt, [i1], [i11*(q+1)+1//2*q^2-1//2])
-	s1=nesum(s1, i1, 0, q-2, congruence)
-	s2=nesum(s2, i1, 0, q, congruence)
-	zw1=nesum(tt, i1, 0, q^2-2, congruence)
+	s1=nesum(s1, i1, 0, q-2)
+	s2=nesum(s2, i1, 0, q)
+	zw1=nesum(tt, i1, 0, q^2-2)
 	zw1=zw1-s1-s2+s3+s4
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q+1//2])
-	zw1=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2)
 	s1=eesubs(tt, [i1], [i1*(q+1)])
 	s2=eesubs(tt, [i1], [2*i11+1+i1*(q-1)])
 	s3=eesubs(tt, [i1], [1//2*(2*i11+1)*(q+1)])
 	s4=eesubs(tt, [i1], [1//2*(2*i11+1)*(q+1)+1//2*q^2-1//2])
-	s1=nesum(s1, i1, 0, q-2, congruence)
-	s2=nesum(s2, i1, 0, q, congruence)
-	zw2=nesum(tt, i1, 0, q^2-2, congruence)
+	s1=nesum(s1, i1, 0, q-2)
+	s2=nesum(s2, i1, 0, q)
+	zw2=nesum(tt, i1, 0, q^2-2)
 	zw2=zw2-s1-s2-s3-s4
-	zw2=nesum(zw2, i2, 0, q, congruence)
+	zw2=nesum(zw2, i2, 0, q)
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2)
 	1//8*zw1+1//8*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i11])
 	s2=eesubs(tt, [i1], [i11+1//2*q-1//2])
-	zw1=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(tt, i1, 0, q-2)
 	zw1=zw1-s1-s2
 	s1=eesubs(zw1, [i2], [1//2*i3*(q+1)])
 	s2=eesubs(zw1, [i2], [1//2*i3*(q+1)+1//2*q^2+1//2])
-	zw1=nesum(zw1, i2, 0, q^2, congruence)
+	zw1=nesum(zw1, i2, 0, q^2)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
-	zw2=nesum(tt, i1, 0, q-2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2)
+	zw2=nesum(tt, i1, 0, q-2)
 	s1=eesubs(zw2, [i2], [1//2*i3*(q+1)])
 	s2=eesubs(zw2, [i2], [1//2*i3*(q+1)+1//2*q^2+1//2])
-	zw2=nesum(zw2, i2, 0, q^2, congruence)
+	zw2=nesum(zw2, i2, 0, q^2)
 	zw2=zw2-s1-s2
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2)
 	1//8*zw1+1//8*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [i1*(q^2+q+1)])
-	s1=nesum(s1, i1, 0, q-2, congruence)
-	zw1=nesum(tt, i1, 0, q^3-2, congruence)
+	s1=nesum(s1, i1, 0, q-2)
+	zw1=nesum(tt, i1, 0, q^3-2)
 	zw1=zw1-s1
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	1//6*zw1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
@@ -10243,719 +10243,719 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s4=eesubs(tt, [i1], [-i4-i3])
 	s5=eesubs(tt, [i1], [i2])
 	s6=eesubs(tt, [i1], [-i4-i2])
-	zw1=nesum(tt, i1, 0, q, congruence)
+	zw1=nesum(tt, i1, 0, q)
 	zw1=zw1-s1-s2-s3-s4-s5-s6
 	s1=eesubs(zw1, [i2], [-i11])
 	s2=eesubs(zw1, [i2], [-i11+1//2*q+1//2])
 	s3=eesubs(zw1, [i2], [i3])
 	s4=eesubs(zw1, [i2], [-i4-i3])
-	zw1=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q)
 	zw1=zw1-s1-s2-s3-s4
 	s1=eesubs(zw1, [i3], [-i11])
 	s2=eesubs(zw1, [i3], [-i11+1//2*q+1//2])
-	zw1=nesum(zw1, i3, 0, q, congruence)
+	zw1=nesum(zw1, i3, 0, q)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i4], [2*i11])
-	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2)
 	s1=eesubs(tt, [i1], [i3])
 	s2=eesubs(tt, [i1], [-i4-i3])
 	s3=eesubs(tt, [i1], [i2])
 	s4=eesubs(tt, [i1], [-i4-i2])
-	zw2=nesum(tt, i1, 0, q, congruence)
+	zw2=nesum(tt, i1, 0, q)
 	zw2=zw2-s1-s2-s3-s4
 	s1=eesubs(zw2, [i2], [i3])
 	s2=eesubs(zw2, [i2], [-i4-i3])
-	zw2=nesum(zw2, i2, 0, q, congruence)
+	zw2=nesum(zw2, i2, 0, q)
 	zw2=zw2-s1-s2
-	zw2=nesum(zw2, i3, 0, q, congruence)
+	zw2=nesum(zw2, i3, 0, q)
 	zw2=eesubs(zw2, [i4], [2*i11+1])
-	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2)
 	1//48*zw1+1//48*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [1//2*i3*(q+1)])
 	s2=eesubs(tt, [i1], [1//2*i3*(q+1)+1//2*q^2+1//2])
-	zw1=nesum(tt, i1, 0, q^2, congruence)
+	zw1=nesum(tt, i1, 0, q^2)
 	zw1=zw1-s1-s2
 	s1=eesubs(zw1, [i2], [i11])
 	s2=eesubs(zw1, [i2], [i11+1//2*q+1//2])
-	zw1=nesum(zw1, i2, 0, q, congruence)
+	zw1=nesum(zw1, i2, 0, q)
 	zw1=zw1-s1-s2
 	zw1=eesubs(zw1, [i3], [2*i11])
-	zw1=nesum(zw1, i11, 0, 1//2*q-3//2, congruence)
+	zw1=nesum(zw1, i11, 0, 1//2*q-3//2)
 	s1=eesubs(tt, [i1], [1//2*i3*(q+1)])
 	s2=eesubs(tt, [i1], [1//2*i3*(q+1)+1//2*q^2+1//2])
-	zw2=nesum(tt, i1, 0, q^2, congruence)
+	zw2=nesum(tt, i1, 0, q^2)
 	zw2=zw2-s1-s2
-	zw2=nesum(zw2, i2, 0, q, congruence)
+	zw2=nesum(zw2, i2, 0, q)
 	zw2=eesubs(zw2, [i3], [2*i11+1])
-	zw2=nesum(zw2, i11, 0, 1//2*q-3//2, congruence)
+	zw2=nesum(zw2, i11, 0, 1//2*q-3//2)
 	1//8*zw1+1//8*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i1], [q*i2+i1*(q^2-q+1)])
-	s1=nesum(s1, i1, 0, q, congruence)
-	zw1=nesum(tt, i1, 0, q^3, congruence)
+	s1=nesum(s1, i1, 0, q)
+	zw1=nesum(tt, i1, 0, q^3)
 	zw1=zw1-s1
-	zw1=nesum(zw1, i2, 0, q-2, congruence)
+	zw1=nesum(zw1, i2, 0, q-2)
 	1//6*zw1
 end
 ]
 
 charsums=[
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, k1, 0, q-2, congruence)
+	nesum(tt, k1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, k1, 0, q-2, congruence)
+	nesum(tt, k1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, k1, 0, q-2, congruence)
+	nesum(tt, k1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, k1, 0, q-2, congruence)
+	nesum(tt, k1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, k1, 0, q-2, congruence)
+	nesum(tt, k1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, k1, 0, q-2, congruence)
+	nesum(tt, k1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, k1, 0, q-2, congruence)
+	nesum(tt, k1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, k1, 0, q-2, congruence)
+	nesum(tt, k1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, k1, 0, q-2, congruence)
+	nesum(tt, k1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, k1, 0, q-2, congruence)
+	nesum(tt, k1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, k1, 0, q-2, congruence)
+	nesum(tt, k1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, k1, 0, q-2, congruence)
+	nesum(tt, k1, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 0, q-2, congruence)
+	s1=nesum(tt, k1, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 0, q-2, congruence)
+	s1=nesum(tt, k1, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 0, q-2, congruence)
+	s1=nesum(tt, k1, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 0, q-2, congruence)
+	s1=nesum(tt, k1, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 0, q-2, congruence)
+	s1=nesum(tt, k1, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 0, q-2, congruence)
+	s1=nesum(tt, k1, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 0, q-2, congruence)
+	s1=nesum(tt, k1, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 0, q-2, congruence)
+	s1=nesum(tt, k1, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 0, q-2, congruence)
+	s1=nesum(tt, k1, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 0, q-2, congruence)
+	s1=nesum(tt, k1, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 0, q-2, congruence)
+	s1=nesum(tt, k1, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 0, q-2, congruence)
+	s1=nesum(tt, k1, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 0, q-2, congruence)
+	s1=nesum(tt, k1, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 0, q-2, congruence)
+	s1=nesum(tt, k1, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 0, q-2, congruence)
+	s1=nesum(tt, k1, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 0, q-2, congruence)
+	s1=nesum(tt, k1, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 0, q-2, congruence)
+	s1=nesum(tt, k1, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 0, q-2, congruence)
+	s1=nesum(tt, k1, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 0, q-2, congruence)
+	s1=nesum(tt, k1, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 0, q-2, congruence)
+	s1=nesum(tt, k1, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 0, q-2, congruence)
+	s1=nesum(tt, k1, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 0, q-2, congruence)
+	s1=nesum(tt, k1, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 1, q-2, congruence)
-	s1=nesum(s1, k2, 0, q-2, congruence)
+	s1=nesum(tt, k1, 1, q-2)
+	s1=nesum(s1, k2, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 1, q-2, congruence)
-	s1=nesum(s1, k2, 0, q-2, congruence)
+	s1=nesum(tt, k1, 1, q-2)
+	s1=nesum(s1, k2, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 1, q-2, congruence)
-	s1=nesum(s1, k2, 0, q-2, congruence)
+	s1=nesum(tt, k1, 1, q-2)
+	s1=nesum(s1, k2, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 1, q-2, congruence)
-	s1=nesum(s1, k2, 0, q-2, congruence)
+	s1=nesum(tt, k1, 1, q-2)
+	s1=nesum(s1, k2, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 1, q-2, congruence)
-	s1=nesum(s1, k2, 0, q-2, congruence)
+	s1=nesum(tt, k1, 1, q-2)
+	s1=nesum(s1, k2, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k1, 1, q-2, congruence)
-	s1=nesum(s1, k2, 0, q-2, congruence)
+	s1=nesum(tt, k1, 1, q-2)
+	s1=nesum(s1, k2, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k2, 0, q-2, congruence)
-	s1=nesum(s1, k1, 1, q, congruence)
+	s1=nesum(tt, k2, 0, q-2)
+	s1=nesum(s1, k1, 1, q)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k2, 0, q-2, congruence)
-	s1=nesum(s1, k1, 1, q, congruence)
+	s1=nesum(tt, k2, 0, q-2)
+	s1=nesum(s1, k1, 1, q)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k2, 0, q-2, congruence)
-	s1=nesum(s1, k1, 1, q, congruence)
+	s1=nesum(tt, k2, 0, q-2)
+	s1=nesum(s1, k1, 1, q)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k2, 0, q-2, congruence)
-	s1=nesum(s1, k1, 1, q, congruence)
+	s1=nesum(tt, k2, 0, q-2)
+	s1=nesum(s1, k1, 1, q)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k2, 0, q-2, congruence)
-	s1=nesum(s1, k1, 1, q, congruence)
+	s1=nesum(tt, k2, 0, q-2)
+	s1=nesum(s1, k1, 1, q)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k2, 0, q-2, congruence)
-	s1=nesum(s1, k1, 1, q, congruence)
-	1//2*s1
-end,
-function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=eesubs(tt, [k1], [1//2*q-1//2])
-	s2=nesum(tt, k1, 1, q-2, congruence)
-	s1=s2-s1
-	s1=nesum(s1, k2, 0, q-2, congruence)
+	s1=nesum(tt, k2, 0, q-2)
+	s1=nesum(s1, k1, 1, q)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [k1], [1//2*q-1//2])
-	s2=nesum(tt, k1, 1, q-2, congruence)
+	s2=nesum(tt, k1, 1, q-2)
 	s1=s2-s1
-	s1=nesum(s1, k2, 0, q-2, congruence)
+	s1=nesum(s1, k2, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [k1], [1//2*q-1//2])
-	s2=nesum(tt, k1, 1, q-2, congruence)
+	s2=nesum(tt, k1, 1, q-2)
 	s1=s2-s1
-	s1=nesum(s1, k2, 0, q-2, congruence)
+	s1=nesum(s1, k2, 0, q-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s1=eesubs(tt, [k1], [1//2*q-1//2])
+	s2=nesum(tt, k1, 1, q-2)
+	s1=s2-s1
+	s1=nesum(s1, k2, 0, q-2)
+	1//2*s1
+end,
+function (tt::Union{GenericCyclo, GenericCycloFrac})
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q)
 	1//2*s2-1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q)
 	1//2*s2-1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q)
 	1//2*s2-1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2=nesum(s2, k1, 1, q-2, congruence)
+	s2=nesum(s2, k1, 1, q-2)
 	1//4*s2-1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2=nesum(s2, k1, 1, q-2, congruence)
+	s2=nesum(s2, k1, 1, q-2)
 	1//4*s2-1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2=nesum(s2, k1, 1, q-2, congruence)
+	s2=nesum(s2, k1, 1, q-2)
 	1//4*s2-1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2=nesum(s2, k1, 1, q-2, congruence)
+	s2=nesum(s2, k1, 1, q-2)
 	1//4*s2-1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2=nesum(s2, k1, 1, q-2, congruence)
+	s2=nesum(s2, k1, 1, q-2)
 	1//2*s2-1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2=nesum(s2, k1, 1, q-2, congruence)
+	s2=nesum(s2, k1, 1, q-2)
 	1//2*s2-1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2=nesum(s2, k1, 1, q-2, congruence)
+	s2=nesum(s2, k1, 1, q-2)
 	1//2*s2-1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2=nesum(s2, k1, 1, q-2, congruence)
+	s2=nesum(s2, k1, 1, q-2)
 	1//2*s2-1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q)
 	1//4*s2-1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q)
 	1//4*s2-1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q)
 	1//4*s2-1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q)
 	1//4*s2-1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q)
 	1//2*s2-1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q)
 	1//2*s2-1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q)
 	1//2*s2-1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q)
 	1//2*s2-1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2=nesum(s2, k1, 1, q-2, congruence)
+	s2=nesum(s2, k1, 1, q-2)
 	1//4*s2-1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2=nesum(s2, k1, 1, q-2, congruence)
+	s2=nesum(s2, k1, 1, q-2)
 	1//4*s2-1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q)
 	1//4*s2-1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q)
 	1//4*s2-1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s5=nesum(tt, k3, 0, q-2, congruence)
+	s5=nesum(tt, k3, 0, q-2)
 	s1=eesubs(s5, [k1,k2], [1//2*q-1//2,1//2*q-1//2])
 	s2=eesubs(s5, [k1], [k2])
 	s3=eesubs(s5, [k1], [-k2])
 	s4=eesubs(s5, [k1], [1//2*q-1//2])
-	s5=nesum(s5, k1, 1, q-2, congruence)
+	s5=nesum(s5, k1, 1, q-2)
 	s5=s5-s2-s3-s4
-	s5=nesum(s5, k2, 1, q-2, congruence)
+	s5=nesum(s5, k2, 1, q-2)
 	1//4*s5+1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s5=nesum(tt, k3, 0, q-2, congruence)
+	s5=nesum(tt, k3, 0, q-2)
 	s1=eesubs(s5, [k1,k2], [1//2*q-1//2,1//2*q-1//2])
 	s2=eesubs(s5, [k1], [k2])
 	s3=eesubs(s5, [k1], [-k2])
 	s4=eesubs(s5, [k1], [1//2*q-1//2])
-	s5=nesum(s5, k1, 1, q-2, congruence)
+	s5=nesum(s5, k1, 1, q-2)
 	s5=s5-s2-s3-s4
-	s5=nesum(s5, k2, 1, q-2, congruence)
+	s5=nesum(s5, k2, 1, q-2)
 	1//4*s5+1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s4=nesum(tt, k3, 0, q-2, congruence)
+	s4=nesum(tt, k3, 0, q-2)
 	s1=eesubs(s4, [k1,k2], [1//2*q-1//2,1//2*q-1//2])
 	s2=eesubs(s4, [k1], [k2])
 	s3=eesubs(s4, [k1], [-k2])
-	s4=nesum(s4, k1, 1, q-2, congruence)
+	s4=nesum(s4, k1, 1, q-2)
 	s4=s4-s2-s3
-	s4=nesum(s4, k2, 1, q-2, congruence)
+	s4=nesum(s4, k2, 1, q-2)
 	1//8*s4+1//8*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s4=nesum(tt, k3, 0, q-2, congruence)
+	s4=nesum(tt, k3, 0, q-2)
 	s1=eesubs(s4, [k1,k2], [1//2*q-1//2,1//2*q-1//2])
 	s2=eesubs(s4, [k1], [k2])
 	s3=eesubs(s4, [k1], [-k2])
-	s4=nesum(s4, k1, 1, q-2, congruence)
+	s4=nesum(s4, k1, 1, q-2)
 	s4=s4-s2-s3
-	s4=nesum(s4, k2, 1, q-2, congruence)
+	s4=nesum(s4, k2, 1, q-2)
 	1//8*s4+1//8*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k3, 0, q-2, congruence)
+	s2=nesum(tt, k3, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2=nesum(s2, k1, 1, q-2, congruence)
+	s2=nesum(s2, k1, 1, q-2)
 	s1=s2-s1
-	s1=nesum(s1, k2, 1, q, congruence)
+	s1=nesum(s1, k2, 1, q)
 	1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k3, 0, q-2, congruence)
+	s2=nesum(tt, k3, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q-1//2])
-	s2=nesum(s2, k1, 1, q-2, congruence)
+	s2=nesum(s2, k1, 1, q-2)
 	s1=s2-s1
-	s1=nesum(s1, k2, 1, q, congruence)
+	s1=nesum(s1, k2, 1, q)
 	1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s4=nesum(tt, k2, 0, q-2, congruence)
+	s4=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s4, [k1], [1//2*q^2-1//2])
 	s2=eesubs(s4, [k1], [k1*(q-1)])
-	s2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q)
 	s3=eesubs(s4, [k1], [k1*(q+1)])
-	s3=nesum(s3, k1, 1, q-2, congruence)
-	s4=nesum(s4, k1, 1, q^2-2, congruence)
+	s3=nesum(s3, k1, 1, q-2)
+	s4=nesum(s4, k1, 1, q^2-2)
 	1//4*s4-1//4*s2-1//4*s3+1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s4=nesum(tt, k2, 0, q-2, congruence)
+	s4=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s4, [k1], [1//2*q^2-1//2])
 	s2=eesubs(s4, [k1], [k1*(q-1)])
-	s2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q)
 	s3=eesubs(s4, [k1], [k1*(q+1)])
-	s3=nesum(s3, k1, 1, q-2, congruence)
-	s4=nesum(s4, k1, 1, q^2-2, congruence)
+	s3=nesum(s3, k1, 1, q-2)
+	s4=nesum(s4, k1, 1, q^2-2)
 	1//4*s4-1//4*s2-1//4*s3+1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k3, 0, q-2, congruence)
+	s2=nesum(tt, k3, 0, q-2)
 	s1=eesubs(s2, [k1,k2], [1//2*q-1//2,1//2*q+1//2])
-	s2=nesum(s2, k1, 1, q-2, congruence)
-	s2=nesum(s2, k2, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q-2)
+	s2=nesum(s2, k2, 1, q)
 	1//4*s2-1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k3, 0, q-2, congruence)
+	s2=nesum(tt, k3, 0, q-2)
 	s1=eesubs(s2, [k1,k2], [1//2*q-1//2,1//2*q+1//2])
-	s2=nesum(s2, k1, 1, q-2, congruence)
-	s2=nesum(s2, k2, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q-2)
+	s2=nesum(s2, k2, 1, q)
 	1//4*s2-1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k3, 0, q-2, congruence)
+	s2=nesum(tt, k3, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q)
 	s1=s2-s1
-	s1=nesum(s1, k2, 1, q-2, congruence)
+	s1=nesum(s1, k2, 1, q-2)
 	1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k3, 0, q-2, congruence)
+	s2=nesum(tt, k3, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q+1//2])
-	s2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q)
 	s1=s2-s1
-	s1=nesum(s1, k2, 1, q-2, congruence)
+	s1=nesum(s1, k2, 1, q-2)
 	1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s5=nesum(tt, k3, 0, q-2, congruence)
+	s5=nesum(tt, k3, 0, q-2)
 	s1=eesubs(s5, [k1,k2], [1//2*q+1//2,1//2*q+1//2])
 	s2=eesubs(s5, [k1], [k2])
 	s3=eesubs(s5, [k1], [-k2])
 	s4=eesubs(s5, [k1], [1//2*q+1//2])
-	s5=nesum(s5, k1, 1, q, congruence)
+	s5=nesum(s5, k1, 1, q)
 	s5=s5-s2-s3-s4
-	s5=nesum(s5, k2, 1, q, congruence)
+	s5=nesum(s5, k2, 1, q)
 	1//4*s5+1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s5=nesum(tt, k3, 0, q-2, congruence)
+	s5=nesum(tt, k3, 0, q-2)
 	s1=eesubs(s5, [k1,k2], [1//2*q+1//2,1//2*q+1//2])
 	s2=eesubs(s5, [k1], [k2])
 	s3=eesubs(s5, [k1], [-k2])
 	s4=eesubs(s5, [k1], [1//2*q+1//2])
-	s5=nesum(s5, k1, 1, q, congruence)
+	s5=nesum(s5, k1, 1, q)
 	s5=s5-s2-s3-s4
-	s5=nesum(s5, k2, 1, q, congruence)
+	s5=nesum(s5, k2, 1, q)
 	1//4*s5+1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s4=nesum(tt, k3, 0, q-2, congruence)
+	s4=nesum(tt, k3, 0, q-2)
 	s1=eesubs(s4, [k1,k2], [1//2*q+1//2,1//2*q+1//2])
 	s2=eesubs(s4, [k1], [k2])
 	s3=eesubs(s4, [k1], [-k2])
-	s4=nesum(s4, k1, 1, q, congruence)
+	s4=nesum(s4, k1, 1, q)
 	s4=s4-s2-s3
-	s4=nesum(s4, k2, 1, q, congruence)
+	s4=nesum(s4, k2, 1, q)
 	1//8*s4+1//8*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s4=nesum(tt, k3, 0, q-2, congruence)
+	s4=nesum(tt, k3, 0, q-2)
 	s1=eesubs(s4, [k1,k2], [1//2*q+1//2,1//2*q+1//2])
 	s2=eesubs(s4, [k1], [k2])
 	s3=eesubs(s4, [k1], [-k2])
-	s4=nesum(s4, k1, 1, q, congruence)
+	s4=nesum(s4, k1, 1, q)
 	s4=s4-s2-s3
-	s4=nesum(s4, k2, 1, q, congruence)
+	s4=nesum(s4, k2, 1, q)
 	1//8*s4+1//8*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q^2+1//2])
-	s2=nesum(s2, k1, 1, q^2, congruence)
+	s2=nesum(s2, k1, 1, q^2)
 	1//4*s2-1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q^2+1//2])
-	s2=nesum(s2, k1, 1, q^2, congruence)
+	s2=nesum(s2, k1, 1, q^2)
 	1//4*s2-1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s7=nesum(tt, k4, 0, q-2, congruence)
+	s7=nesum(tt, k4, 0, q-2)
 	s1=eesubs(s7, [k1,k2], [1//2*q-1//2,1//2*q-1//2])
 	s2=eesubs(s7, [k1], [k2])
 	s3=eesubs(s7, [k1], [-k2])
 	s4=eesubs(s7, [k1], [k3])
 	s5=eesubs(s7, [k1], [-k3])
-	s6=nesum(s7, k1, 1, q-2, congruence)
+	s6=nesum(s7, k1, 1, q-2)
 	s6=s6-s5-s4-s3-s2
 	s2=eesubs(s6, [k2], [k3])
 	s3=eesubs(s6, [k2], [-k3])
-	s6=nesum(s6, k2, 1, q-2, congruence)
+	s6=nesum(s6, k2, 1, q-2)
 	s6=s6-s2-s3+s1
 	s2=eesubs(s6, [k3], [1//2*q-1//2])
-	s6=nesum(s6, k3, 1, q-2, congruence)
+	s6=nesum(s6, k3, 1, q-2)
 	zw1=s6-s2
 	s1=eesubs(s7, [k1], [k2])
 	s2=eesubs(s7, [k1], [-k2])
 	s3=eesubs(s7, [k1], [1//2*q-1//2])
-	s4=nesum(s7, k1, 1, q-2, congruence)
+	s4=nesum(s7, k1, 1, q-2)
 	s4=s4-s3-s2-s1
 	s1=eesubs(s4, [k2], [1//2*q-1//2])
-	s4=nesum(s4, k2, 1, q-2, congruence)
+	s4=nesum(s4, k2, 1, q-2)
 	s4=s4-s1
 	zw2=eesubs(s4, [k3], [1//2*q-1//2])
 	1//48*zw1+1//48*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s5=nesum(tt, k4, 0, q-2, congruence)
+	s5=nesum(tt, k4, 0, q-2)
 	s1=eesubs(s5, [k1,k2], [1//2*q-1//2,1//2*q-1//2])
 	s2=eesubs(s5, [k1], [k2])
 	s3=eesubs(s5, [k1], [-k2])
-	s4=nesum(s5, k1, 1, q-2, congruence)
+	s4=nesum(s5, k1, 1, q-2)
 	s4=s4-s3-s2
-	s4=nesum(s4, k2, 1, q-2, congruence)
+	s4=nesum(s4, k2, 1, q-2)
 	s4=s4+s1
 	s2=eesubs(s4, [k3], [1//2*q+1//2])
-	s4=nesum(s4, k3, 1, q, congruence)
+	s4=nesum(s4, k3, 1, q)
 	zw1=s4-s2
 	s1=eesubs(s5, [k1], [k2])
 	s2=eesubs(s5, [k1], [-k2])
 	s3=eesubs(s5, [k1], [1//2*q-1//2])
-	s4=nesum(s5, k1, 1, q-2, congruence)
+	s4=nesum(s5, k1, 1, q-2)
 	s4=s4-s3-s2-s1
 	s1=eesubs(s4, [k2], [1//2*q-1//2])
-	s4=nesum(s4, k2, 1, q-2, congruence)
+	s4=nesum(s4, k2, 1, q-2)
 	s4=s4-s1
 	zw2=eesubs(s4, [k3], [1//2*q+1//2])
 	1//16*zw1+1//16*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s4=nesum(tt, k3, 0, q-2, congruence)
+	s4=nesum(tt, k3, 0, q-2)
 	s1=eesubs(s4, [k1], [1//2*q^2-1//2])
 	s2=eesubs(s4, [k1], [k1*(q-1)])
-	s2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q)
 	s3=eesubs(s4, [k1], [k1*(q+1)])
-	s3=nesum(s3, k1, 1, q-2, congruence)
-	s4=nesum(s4, k1, 1, q^2-2, congruence)
+	s3=nesum(s3, k1, 1, q-2)
+	s4=nesum(s4, k1, 1, q^2-2)
 	s4=s4-s2-s3+s1
-	s4=nesum(s4, k2, 1, q-2, congruence)
+	s4=nesum(s4, k2, 1, q-2)
 	1//8*s4
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s5=nesum(tt, k4, 0, q-2, congruence)
+	s5=nesum(tt, k4, 0, q-2)
 	s1=eesubs(s5, [k1,k2], [1//2*q-1//2,1//2*q+1//2])
-	s2=nesum(s5, k1, 1, q-2, congruence)
+	s2=nesum(s5, k1, 1, q-2)
 	s3=eesubs(s2, [k2], [k3])
 	s4=eesubs(s2, [k2], [-k3])
-	s2=nesum(s2, k2, 1, q, congruence)
+	s2=nesum(s2, k2, 1, q)
 	s2=s2-s3-s4-s1
 	s3=eesubs(s2, [k3], [1//2*q+1//2])
-	s2=nesum(s2, k3, 1, q, congruence)
+	s2=nesum(s2, k3, 1, q)
 	zw1=s2-s3
 	s1=eesubs(s5, [k1], [1//2*q-1//2])
-	s2=nesum(s5, k1, 1, q-2, congruence)
+	s2=nesum(s5, k1, 1, q-2)
 	s1=s2-s1
 	s2=eesubs(s1, [k2], [1//2*q+1//2])
-	s1=nesum(s1, k2, 1, q, congruence)
+	s1=nesum(s1, k2, 1, q)
 	s1=s1-s2
 	zw2=eesubs(s1, [k3], [1//2*q+1//2])
 	1//16*zw1+1//16*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s4=nesum(tt, k3, 0, q-2, congruence)
+	s4=nesum(tt, k3, 0, q-2)
 	s1=eesubs(s4, [k1], [1//2*q^2-1//2])
 	s2=eesubs(s4, [k1], [k1*(q-1)])
-	s2=nesum(s2, k1, 1, q, congruence)
+	s2=nesum(s2, k1, 1, q)
 	s3=eesubs(s4, [k1], [k1*(q+1)])
-	s3=nesum(s3, k1, 1, q-2, congruence)
-	s4=nesum(s4, k1, 1, q^2-2, congruence)
+	s3=nesum(s3, k1, 1, q-2)
+	s4=nesum(s4, k1, 1, q^2-2)
 	s4=s4-s2-s3+s1
-	s4=nesum(s4, k2, 1, q, congruence)
+	s4=nesum(s4, k2, 1, q)
 	1//8*s4
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k3, 0, q-2, congruence)
-	s1=nesum(s2, k1, 1, q-2, congruence)
+	s2=nesum(tt, k3, 0, q-2)
+	s1=nesum(s2, k1, 1, q-2)
 	s2=eesubs(s1, [k2], [1//2*q^2+1//2])
-	s1=nesum(s1, k2, 1, q^2, congruence)
+	s1=nesum(s1, k2, 1, q^2)
 	1//8*s1-1//8*s2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [(q^2+q+1)*k1])
-	s1=nesum(s1, k1, 0, q-2, congruence)
-	s2=nesum(s2, k1, 0, q^3-2, congruence)
+	s1=nesum(s1, k1, 0, q-2)
+	s2=nesum(s2, k1, 0, q^3-2)
 	1//6*s2-1//6*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s7=nesum(tt, k4, 0, q-2, congruence)
+	s7=nesum(tt, k4, 0, q-2)
 	s1=eesubs(s7, [k1,k2], [1//2*q+1//2,1//2*q+1//2])
 	s2=eesubs(s7, [k1], [k2])
 	s3=eesubs(s7, [k1], [-k2])
 	s4=eesubs(s7, [k1], [k3])
 	s5=eesubs(s7, [k1], [-k3])
-	s6=nesum(s7, k1, 1, q, congruence)
+	s6=nesum(s7, k1, 1, q)
 	s6=s6-s5-s4-s3-s2
 	s2=eesubs(s6, [k2], [k3])
 	s3=eesubs(s6, [k2], [-k3])
-	s6=nesum(s6, k2, 1, q, congruence)
+	s6=nesum(s6, k2, 1, q)
 	s6=s6-s2-s3+s1
 	s2=eesubs(s6, [k3], [1//2*q+1//2])
-	s6=nesum(s6, k3, 1, q, congruence)
+	s6=nesum(s6, k3, 1, q)
 	zw1=s6-s2
 	s1=eesubs(s7, [k1], [k2])
 	s2=eesubs(s7, [k1], [-k2])
 	s3=eesubs(s7, [k1], [1//2*q+1//2])
-	s4=nesum(s7, k1, 1, q, congruence)
+	s4=nesum(s7, k1, 1, q)
 	s4=s4-s3-s2-s1
 	s1=eesubs(s4, [k2], [1//2*q+1//2])
-	s4=nesum(s4, k2, 1, q, congruence)
+	s4=nesum(s4, k2, 1, q)
 	s4=s4-s1
 	zw2=eesubs(s4, [k3], [1//2*q+1//2])
 	1//48*zw1+1//48*zw2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k3, 0, q-2, congruence)
+	s2=nesum(tt, k3, 0, q-2)
 	s1=eesubs(s2, [k1], [1//2*q^2+1//2])
-	s2=nesum(s2, k1, 1, q^2, congruence)
+	s2=nesum(s2, k1, 1, q^2)
 	s2=s2-s1
-	s2=nesum(s2, k2, 1, q, congruence)
+	s2=nesum(s2, k2, 1, q)
 	1//8*s2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s2=nesum(tt, k2, 0, q-2, congruence)
+	s2=nesum(tt, k2, 0, q-2)
 	s1=eesubs(s2, [k1], [(q^2-q+1)*k1])
-	s1=nesum(s1, k1, 0, q, congruence)
-	s2=nesum(s2, k1, 0, q^3, congruence)
+	s1=nesum(s1, k1, 0, q)
+	s2=nesum(s2, k1, 0, q^3)
 	1//6*s2-1//6*s1
 end
 ]

@@ -84,12 +84,12 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i], [(q^2-1)*1//2])
-	t1=nesum(tt, i, 1, q^2-2, congruence)
+	t1=nesum(tt, i, 1, q^2-2)
 	1//2*t1-1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i], [(q^2+1)*1//2])
-	t1=nesum(tt, i, 1, q^2, congruence)
+	t1=nesum(tt, i, 1, q^2)
 	1//2*t1-1//2*s1
 end
 ]
@@ -115,12 +115,12 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [k], [(q^2-1)*1//2])
-	t1=nesum(tt, k, 1, q^2-2, congruence)
+	t1=nesum(tt, k, 1, q^2-2)
 	1//2*t1-1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [k], [(q^2+1)*1//2])
-	t1=nesum(tt, k, 1, q^2, congruence)
+	t1=nesum(tt, k, 1, q^2)
 	1//2*t1-1//2*s1
 end
 ]
