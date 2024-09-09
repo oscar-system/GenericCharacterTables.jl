@@ -3,7 +3,7 @@ import ..GenericCharacterTables: Parameters, Parameter, CharTable, GenericCyclo,
 using Oscar
 R = universal_polynomial_ring(QQ; cached=false)
 q = gen(R, "q")
-S = generic_cyclotomic_ring(R)
+S = generic_cyclotomic_ring(R; congruence=QQ.((0,2)))
 i1,i2,i3,k1,k2,k3, _...=gens(R, ["i1", "i2", "i3", "k1", "k2", "k3", "i11", "i21", "i31", "k11", "k21", "k31", "i12", "i22", "i32", "k12", "k22", "k32", "i13", "i23", "i33", "k13", "k23", "k33", "i1t1", "i2t1", "i3t1", "k1t1", "k2t1", "k3t1", "i1t2", "i2t2", "i3t2", "k1t2", "k2t2", "k3t2"])
 
 order = q^9*(q^6-1)*(q^4-1)*(q^2-1)
