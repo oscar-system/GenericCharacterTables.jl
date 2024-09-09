@@ -1338,7 +1338,7 @@ Parameters([Parameter(k, q^3+1), Parameter(l, q+1)])
 
 classparamindex=var_index.([a,b])
 charparamindex=var_index.([k,l])
-congruence=nothing
+
 
 information = raw"""- Information about the generic character table of $^3D_4(2^n)$.
 
@@ -1351,4 +1351,4 @@ information = raw"""- Information about the generic character table of $^3D_4(2^
 """
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
-	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,S,information,splitext(basename(@__FILE__))[1])
+	classsums,charsums,classparamindex,charparamindex,classparams,charparams,S,information,splitext(basename(@__FILE__))[1])

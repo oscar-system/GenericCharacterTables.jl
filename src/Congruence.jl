@@ -8,7 +8,7 @@ function setcongruence(x::CharTable, new_congruence::Tuple{QQFieldElem, QQFieldE
 	# For now don't allow changing the congruence once it has been set, as this
 	# could lead to inconsistencies. In the future we could interpret this as *adding*
 	# a congruence relation, but then we need to come up with a way to handle it.
-	x.congruence === nothing || error("cannot override already set congruence")
+	x.ring.congruence === nothing || error("cannot override already set congruence")
 	t=typeof(x)(
 		x.order,
 		deepcopy(x.classinfo),
@@ -17,7 +17,6 @@ function setcongruence(x::CharTable, new_congruence::Tuple{QQFieldElem, QQFieldE
 		deepcopy(x.classparamindex),
 		deepcopy(x.charparamindex),
 		deepcopy(x.classparams),
-		new_congruence,  # <- this changed
 		x.ring,
 		x.information,
 		Vector{GenericCharacter}(undef, chartypes(x)),
@@ -43,5 +42,5 @@ function setcongruence(x::CharTable, new_congruence::Tuple{Int, Int})
 	setcongruence(x, QQ.(new_congruence))
 end
 
-congruence(x::CharTable) = x.congruence
+congruence(x::CharTable) = x.ring.congruence
 congruence(x::SimpleCharTable) = nothing

@@ -668,7 +668,7 @@ Parameters([Parameter(k, q+1), Parameter(l, q+1)], [((k+l)*1//(q+1)), ((k-l)*1//
 
 classparamindex=var_index.([i,j])
 charparamindex=var_index.([k,l])
-congruence=QQ.((0,2))
+
 
 information = raw"""- Information about the generic character table of $Sp_4(q)$, $q$ even
 
@@ -694,4 +694,4 @@ information = raw"""- Information about the generic character table of $Sp_4(q)$
 """
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
-	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,S,information,splitext(basename(@__FILE__))[1])
+	classsums,charsums,classparamindex,charparamindex,classparams,charparams,S,information,splitext(basename(@__FILE__))[1])

@@ -1251,7 +1251,7 @@ Parameters([Parameter(k, q^2-q+1)], [((k)*1//(q^2-q+1))])
 
 classparamindex=var_index.([i,j])
 charparamindex=var_index.([k,l])
-congruence=QQ.((-1,4))
+
 
 information = raw"""- Information about the generic character table of $G_2(q)$,
    $q$ a power of $3$, congruent to $3$ modulo $4$.
@@ -1294,4 +1294,4 @@ cht   Information
 """
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
-	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,S,information,splitext(basename(@__FILE__))[1])
+	classsums,charsums,classparamindex,charparamindex,classparams,charparams,S,information,splitext(basename(@__FILE__))[1])

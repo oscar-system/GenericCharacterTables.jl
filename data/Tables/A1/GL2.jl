@@ -89,7 +89,7 @@ Parameters([Parameter(k, q^2-1)], [((k)*1//(q+1))])
 
 classparamindex=var_index.([i,j])
 charparamindex=var_index.([l,k])
-congruence=nothing
+
 
 information = raw"""- Information about the generic character table of $GL_2(q)$.
 
@@ -109,4 +109,4 @@ information = raw"""- Information about the generic character table of $GL_2(q)$
 """
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
-	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,S,information,splitext(basename(@__FILE__))[1])
+	classsums,charsums,classparamindex,charparamindex,classparams,charparams,S,information,splitext(basename(@__FILE__))[1])

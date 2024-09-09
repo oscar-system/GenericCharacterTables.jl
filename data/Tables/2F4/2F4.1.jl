@@ -2829,7 +2829,7 @@ Parameters([Parameter(k, 4*q0^4+4*q0^3+2*q0^2+2*q0+1)], [((k)*1//(4*q0^4+4*q0^3+
 
 classparamindex=var_index.([a,b])
 charparamindex=var_index.([k,l])
-congruence=QQ.((1, 3))
+
 
 information = raw"""- Information about the generic character table of $^2F_4(q^2)$,
   where $\frac{q}{\sqrt{2}} = q_0$ is congruent to $1$ modulo $3$.
@@ -2844,4 +2844,4 @@ information = raw"""- Information about the generic character table of $^2F_4(q^
 """
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
-	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,S,information,splitext(basename(@__FILE__))[1])
+	classsums,charsums,classparamindex,charparamindex,classparams,charparams,S,information,splitext(basename(@__FILE__))[1])

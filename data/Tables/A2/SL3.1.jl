@@ -388,7 +388,7 @@ Parameters([Parameter(n, q^2+q+1)], [((n)*1//((q^2+q+1)*1//3))])
 
 classparamindex=var_index.([a,b])
 charparamindex=var_index.([m,n])
-congruence=QQ.((1,3))
+
 
 information = raw"""- Information about the generic character table of $SL_3(q)$,
   $q$ congruent to $1$ modulo $3$.
@@ -411,4 +411,4 @@ information = raw"""- Information about the generic character table of $SL_3(q)$
 """
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
-	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,S,information,splitext(basename(@__FILE__))[1])
+	classsums,charsums,classparamindex,charparamindex,classparams,charparams,S,information,splitext(basename(@__FILE__))[1])

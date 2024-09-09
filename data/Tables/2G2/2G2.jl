@@ -412,7 +412,7 @@ Parameters([Parameter(k, 3*q0^2+3*q0+1)], [((k)*1//(3*q0^2-3*q0+1))])
 
 classparamindex=var_index.([i,j])
 charparamindex=var_index.([k,l])
-congruence=QQ.((-1,4))
+
 
 information = raw"""- Information about the generic character table of the Ree groups
   ``^2G_2(q)``. The possible values for q are given by
@@ -436,4 +436,4 @@ information = raw"""- Information about the generic character table of the Ree g
 """
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
-	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,S,information,splitext(basename(@__FILE__))[1])
+	classsums,charsums,classparamindex,charparamindex,classparams,charparams,S,information,splitext(basename(@__FILE__))[1])

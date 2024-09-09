@@ -5477,7 +5477,7 @@ Parameters([Parameter(k1, q^3+1)], [((k1)*1//(q^2-q+1))])
 
 classparamindex=var_index.([i1,i2,i3])
 charparamindex=var_index.([k1,k2,k3])
-congruence=QQ.((0,2))
+
 
 information = raw"""- Information about the generic character table of $Sp_6(q)$, $q$ even
 
@@ -5510,4 +5510,4 @@ information = raw"""- Information about the generic character table of $Sp_6(q)$
 """
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
-	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,S,information,splitext(basename(@__FILE__))[1])
+	classsums,charsums,classparamindex,charparamindex,classparams,charparams,S,information,splitext(basename(@__FILE__))[1])

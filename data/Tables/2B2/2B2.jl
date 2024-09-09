@@ -159,7 +159,7 @@ Parameters([Parameter(u, 2*q0^2-2*q0+1)], [((u)*1//(2*q0^2-2*q0+1))])
 
 classparamindex=var_index.([a,b,c])
 charparamindex=var_index.([s,k,u])
-congruence=nothing
+
 
 information = raw"""- Information about the generic character table of $^2B_2(q^2)$,
   where ``q = \sqrt{2}q_0``.
@@ -172,4 +172,4 @@ information = raw"""- Information about the generic character table of $^2B_2(q^
 """
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
-	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,S,information,splitext(basename(@__FILE__))[1])
+	classsums,charsums,classparamindex,charparamindex,classparams,charparams,S,information,splitext(basename(@__FILE__))[1])

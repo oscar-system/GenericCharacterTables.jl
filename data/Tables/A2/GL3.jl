@@ -241,7 +241,7 @@ Parameters([Parameter(n, q^3-1)], [((n)*1//(q^2+q+1))])
 
 classparamindex=var_index.([a,b,c])
 charparamindex=var_index.([l,m,n])
-congruence=nothing
+
 
 information = raw"""- Information about the generic character table of $GL_3(q)$.
 
@@ -257,4 +257,4 @@ information = raw"""- Information about the generic character table of $GL_3(q)$
 """
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
-	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,S,information,splitext(basename(@__FILE__))[1])
+	classsums,charsums,classparamindex,charparamindex,classparams,charparams,S,information,splitext(basename(@__FILE__))[1])

@@ -129,7 +129,7 @@ Parameters([Parameter(k, (q^2+1)*1//2)], [((k)*1//((q^2+1)*1//4))])
 
 classparamindex=var_index.([i])
 charparamindex=var_index.([k])
-congruence=QQ.((-1,4))
+
 
 information = raw"""- Information about the generic character table of $PSL_2(q^2)$,
   $q^2$ congruent to $3$ modulo $4$. The possible values for q are given by
@@ -149,4 +149,4 @@ information = raw"""- Information about the generic character table of $PSL_2(q^
 """
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
-	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,S,information,splitext(basename(@__FILE__))[1])
+	classsums,charsums,classparamindex,charparamindex,classparams,charparams,S,information,splitext(basename(@__FILE__))[1])

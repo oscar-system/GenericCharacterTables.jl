@@ -79,7 +79,7 @@ Parameters([Parameter(n, q+1)], [((n)*1//(q+1))])
 
 classparamindex=var_index.([a])
 charparamindex=var_index.([n])
-congruence=QQ.((0,2))
+
 
 information = raw"""- Information about the generic character table of $SL_2(q)$, $q$ even
   (See ``SL2.1`` for the generic character table of $SL_2(q)$, $q$ odd)
@@ -93,4 +93,4 @@ information = raw"""- Information about the generic character table of $SL_2(q)$
 """
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
-	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,S,information,splitext(basename(@__FILE__))[1])
+	classsums,charsums,classparamindex,charparamindex,classparams,charparams,S,information,splitext(basename(@__FILE__))[1])
