@@ -135,81 +135,81 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	tt
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, k, 1, 2, congruence)
+	nesum(tt, k, 1, 2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, k, 1, q, congruence)
+	nesum(tt, k, 1, q)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, k, 1, q, congruence)
+	nesum(tt, k, 1, q)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	ss5a=nesum(tt, k, 1, q, congruence)
-	ss5=nesum(ss5a, l, 1, q, congruence)
+	ss5a=nesum(tt, k, 1, q)
+	ss5=nesum(ss5a, l, 1, q)
 	tt1=eesubs(tt, [l], [k])
-	ss6=nesum(tt1, k, 1, q, congruence)
+	ss6=nesum(tt1, k, 1, q)
 	ss7=eesubs(tt, [k,l], S.([(q+1)*1//3,2*(q+1)*1//3]))
 	1//6*ss5-1//6*ss6-1//3*ss7
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	ss7=nesum(tt, k, 0, q^2-2, congruence)
+	ss7=nesum(tt, k, 0, q^2-2)
 	tt1=eesubs(tt, [k], [(q-1)*k])
-	ss8=nesum(tt1, k, 0, q, congruence)
+	ss8=nesum(tt1, k, 0, q)
 	1//2*ss7-1//2*ss8
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	ss10=nesum(tt, k, 0, q^2-q, congruence)
+	ss10=nesum(tt, k, 0, q^2-q)
 	tt1=eesubs(tt, [k], [(q^2-q+1)*1//3*k])
-	ss11=nesum(tt1, k, 0, 2, congruence)
+	ss11=nesum(tt1, k, 0, 2)
 	1//3*ss10-1//3*ss11
 end
 ]
 
 charsums=[
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, u, 0, 2, congruence)
+	nesum(tt, u, 0, 2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, u, 0, 2, congruence)
+	nesum(tt, u, 0, 2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, u, 0, 2, congruence)
+	nesum(tt, u, 0, 2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	ss6=nesum(tt, u, 1, q, congruence)
+	ss6=nesum(tt, u, 1, q)
 	tt1=eesubs(tt, [u], [(q+1)*1//3])
 	tt2=eesubs(tt, [u], [2*(q+1)*1//3])
 	ss6-tt1-tt2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	ss6=nesum(tt, u, 1, q, congruence)
+	ss6=nesum(tt, u, 1, q)
 	tt1=eesubs(tt, [u], [(q+1)*1//3])
 	tt2=eesubs(tt, [u], [2*(q+1)*1//3])
 	ss6-tt1-tt2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	ss5=nesum(tt, u, 0, q, congruence)
-	ss8=nesum(ss5, v, 0, q, congruence)
+	ss5=nesum(tt, u, 0, q)
+	ss8=nesum(ss5, v, 0, q)
 	tt1=eesubs(tt, [v], [-2*u])
-	ss9=nesum(tt1, u, 0, q, congruence)
+	ss9=nesum(tt1, u, 0, q)
 	tt1=eesubs(tt, [u], [-2*v])
-	ss10=nesum(tt1, v, 0, q, congruence)
+	ss10=nesum(tt1, v, 0, q)
 	tt1=eesubs(tt, [v], [u])
-	ss11=nesum(tt1, u, 0, q, congruence)
+	ss11=nesum(tt1, u, 0, q)
 	tt1=eesubs(tt1, [u], [(q+1)*1//3*u])
-	ss12=nesum(tt1, u, 0, 2, congruence)
+	ss12=nesum(tt1, u, 0, 2)
 	1//6*ss8-1//6*ss9-1//6*ss10-1//6*ss11+1//3*ss12
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	ss7=nesum(tt, u, 0, q^2-2, congruence)
+	ss7=nesum(tt, u, 0, q^2-2)
 	tt1=eesubs(tt, [u], [(q-1)*u])
-	ss8=nesum(tt1, u, 0, q, congruence)
+	ss8=nesum(tt1, u, 0, q)
 	1//2*ss7-1//2*ss8
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	ss10=nesum(tt, u, 0, q^2-q, congruence)
+	ss10=nesum(tt, u, 0, q^2-q)
 	tt1=eesubs(tt, [u], [(q^2-q+1)*1//3*u])
-	ss11=nesum(tt1, u, 0, 2, congruence)
+	ss11=nesum(tt1, u, 0, 2)
 	1//3*ss10-1//3*ss11
 end
 ]
@@ -240,7 +240,7 @@ Parameters([Parameter(u, q^2-q+1)], [((u)*1//((q^2-q+1)*1//3))])
 
 classparamindex=var_index.([k,l])
 charparamindex=var_index.([u,v])
-congruence=QQ.((-1,3))
+
 
 information = raw"""- Information about the generic character table of $PGU_3(q)$,
   $q$ congruent to $2$ modulo $3$.
@@ -260,4 +260,4 @@ information = raw"""- Information about the generic character table of $PGU_3(q)
 """
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
-	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,S,information,splitext(basename(@__FILE__))[1])
+	classsums,charsums,classparamindex,charparamindex,classparams,charparams,S,information,splitext(basename(@__FILE__))[1])

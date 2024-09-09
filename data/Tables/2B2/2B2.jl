@@ -97,15 +97,15 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	tt
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, a, 1, 2*q0^2-2, congruence)
+	s1=nesum(tt, a, 1, 2*q0^2-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, b, 1, 2*q0^2+2*q0, congruence)
+	s1=nesum(tt, b, 1, 2*q0^2+2*q0)
 	1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, c, 1, 2*q0^2-2*q0, congruence)
+	s1=nesum(tt, c, 1, 2*q0^2-2*q0)
 	1//4*s1
 end
 ]
@@ -124,15 +124,15 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	tt
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, s, 1, 2*q0^2-2, congruence)
+	s1=nesum(tt, s, 1, 2*q0^2-2)
 	1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k, 1, 2*q0^2+2*q0, congruence)
+	s1=nesum(tt, k, 1, 2*q0^2+2*q0)
 	1//4*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, u, 1, 2*q0^2-2*q0, congruence)
+	s1=nesum(tt, u, 1, 2*q0^2-2*q0)
 	1//4*s1
 end
 ]
@@ -159,7 +159,7 @@ Parameters([Parameter(u, 2*q0^2-2*q0+1)], [((u)*1//(2*q0^2-2*q0+1))])
 
 classparamindex=var_index.([a,b,c])
 charparamindex=var_index.([s,k,u])
-congruence=nothing
+
 
 information = raw"""- Information about the generic character table of $^2B_2(q^2)$,
   where ``q = \sqrt{2}q_0``.
@@ -172,4 +172,4 @@ information = raw"""- Information about the generic character table of $^2B_2(q^
 """
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
-	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,S,information,splitext(basename(@__FILE__))[1])
+	classsums,charsums,classparamindex,charparamindex,classparams,charparams,S,information,splitext(basename(@__FILE__))[1])

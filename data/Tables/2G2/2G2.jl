@@ -300,23 +300,23 @@ end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i], [0])
 	s2=eesubs(tt, [i], [(3*q0^2-1)*1//2])
-	s3=nesum(tt, i, 0, 3*q0^2-2, congruence)
+	s3=nesum(tt, i, 0, 3*q0^2-2)
 	1//2*s3-1//2*s2-1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, i, 1, 3*q0^2-3*q0, congruence)
+	s1=nesum(tt, i, 1, 3*q0^2-3*q0)
 	1//6*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [i], [(3*q0^2+1)*1//4])
-	s2=nesum(tt, i, 1, (3*q0^2-1)*1//2, congruence)
+	s2=nesum(tt, i, 1, (3*q0^2-1)*1//2)
 	s2=1//6*s2-1//6*s1
 	s1=eesubs(s2, [j], [0])
 	s2=eesubs(s2, [j], [1])
 	s1+s2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, i, 1, 3*q0^2+3*q0, congruence)
+	s1=nesum(tt, i, 1, 3*q0^2+3*q0)
 	1//6*s1
 end
 ]
@@ -355,23 +355,23 @@ end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [k], [0])
 	s2=eesubs(tt, [k], [(3*q0^2-1)*1//2])
-	s3=nesum(tt, k, 0, 3*q0^2-2, congruence)
+	s3=nesum(tt, k, 0, 3*q0^2-2)
 	1//2*s3-1//2*s2-1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k, 1, 3*q0^2-3*q0, congruence)
+	s1=nesum(tt, k, 1, 3*q0^2-3*q0)
 	1//6*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [k], [(3*q0^2+1)*1//4])
-	s2=nesum(tt, k, 1, (3*q0^2-1)*1//2, congruence)
+	s2=nesum(tt, k, 1, (3*q0^2-1)*1//2)
 	s2=1//6*s2-1//6*s1
 	s1=eesubs(s2, [l], [0])
 	s2=eesubs(s2, [l], [1])
 	s1+s2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=nesum(tt, k, 1, 3*q0^2+3*q0, congruence)
+	s1=nesum(tt, k, 1, 3*q0^2+3*q0)
 	1//6*s1
 end
 ]
@@ -412,7 +412,7 @@ Parameters([Parameter(k, 3*q0^2+3*q0+1)], [((k)*1//(3*q0^2-3*q0+1))])
 
 classparamindex=var_index.([i,j])
 charparamindex=var_index.([k,l])
-congruence=QQ.((-1,4))
+
 
 information = raw"""- Information about the generic character table of the Ree groups
   ``^2G_2(q)``. The possible values for q are given by
@@ -436,4 +436,4 @@ information = raw"""- Information about the generic character table of the Ree g
 """
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
-	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,S,information,splitext(basename(@__FILE__))[1])
+	classsums,charsums,classparamindex,charparamindex,classparams,charparams,S,information,splitext(basename(@__FILE__))[1])

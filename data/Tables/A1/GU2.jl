@@ -31,44 +31,44 @@ chardegree = R.([1, q, q-1, q+1])
 
 classsums=[
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, k, 0, q, congruence)
+	nesum(tt, k, 0, q)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, k, 0, q, congruence)
+	nesum(tt, k, 0, q)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [l], [k])
-	s2=nesum(tt, l, 0, q, congruence)
+	s2=nesum(tt, l, 0, q)
 	s1=s2-s1
-	s2=nesum(s1, k, 0, q, congruence)
+	s2=nesum(s1, k, 0, q)
 	1//2*s2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [k], [(q-1)*k])
-	s1=nesum(s1, k, 0, q, congruence)
-	s2=nesum(tt, k, 0, q^2-2, congruence)
+	s1=nesum(s1, k, 0, q)
+	s2=nesum(tt, k, 0, q^2-2)
 	1//2*s2-1//2*s1
 end
 ]
 
 charsums=[
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, u, 0, q, congruence)
+	nesum(tt, u, 0, q)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, u, 0, q, congruence)
+	nesum(tt, u, 0, q)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [v], [u])
-	s2=nesum(tt, v, 0, q, congruence)
+	s2=nesum(tt, v, 0, q)
 	s1=s2-s1
-	s2=nesum(s1, u, 0, q, congruence)
+	s2=nesum(s1, u, 0, q)
 	1//2*s2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s1=eesubs(tt, [u], [(q-1)*u])
-	s1=nesum(s1, u, 0, q, congruence)
-	s2=nesum(tt, u, 0, q^2-2, congruence)
+	s1=nesum(s1, u, 0, q)
+	s2=nesum(tt, u, 0, q^2-2)
 	1//2*s2-1//2*s1
 end
 ]
@@ -89,7 +89,7 @@ Parameters([Parameter(u, q^2-1)], [((u)*1//(q-1))])
 
 classparamindex=var_index.([k,l])
 charparamindex=var_index.([u,v])
-congruence=nothing
+
 
 information = raw"""- Information about the generic character table of $GU_2(q)$.
 
@@ -106,4 +106,4 @@ information = raw"""- Information about the generic character table of $GU_2(q)$
 """
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
-	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,S,information,splitext(basename(@__FILE__))[1])
+	classsums,charsums,classparamindex,charparamindex,classparams,charparams,S,information,splitext(basename(@__FILE__))[1])

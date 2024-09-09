@@ -331,7 +331,7 @@ function nrchars(t::CharTable, char::Int64)
 		throw(DomainError(char, "Cannot calculate number of characters in reducible types."))
 	else
 		o=t.ring(1)
-		result=simplify(t[char].sum(o//o), t)
+		result=t[char].sum(o//o)
 		return shrink(result)
 	end
 end
@@ -361,7 +361,7 @@ function nrclasses(t::CharTable, class::Int64)
 		throw(DomainError(class, "Class type is out of range."))
 	end
 	o=t.ring(1)
-	result=simplify(t.classsums[class](o//o), t)
+	result=t.classsums[class](o//o)
 	return shrink(result)
 end
 function nrclasses(t::SimpleCharTable, class::Int64)

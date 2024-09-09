@@ -19,7 +19,6 @@ struct CharTable <: Table
 	classparamindex::Vector{Int64}  # Indices of the class parameters
 	charparamindex::Vector{Int64}  # Indices of the character parameters
 	classparams::Vector{Parameters}  # Info about the parameters of each class type
-	congruence::Union{Tuple{QQFieldElem, QQFieldElem}, Nothing}  # Congruence of the main parameter q (of T). q is congruent to congruence[1] mod congruence[2].
 	ring::GenericCycloRing  # Parent ring of the cyclotomics in this table
 	information::String  # General info about the table
 	chars::Vector{<:AbstractGenericCharacter}
@@ -29,11 +28,11 @@ end
 function CharTable(order::UPoly, table::Matrix{GenericCyclo}, classinfo::Vector{<:Any}, classlength::Vector{UPoly},
 	charinfo::Vector{<:Any}, chardegree::Vector{UPoly}, classsums::Vector{Function}, charsums::Vector{Function},
 	classparamindex::Vector{Int64}, charparamindex::Vector{Int64}, classparams::Vector{Parameters}, charparams::Vector{Parameters},
-	congruence::Union{Tuple{QQFieldElem, QQFieldElem}, Nothing}, ring::GenericCycloRing, information::String, importname::String)
+	ring::GenericCycloRing, information::String, importname::String)
 	num_chars=size(table, 1)
 	chars=Vector{GenericCharacter}(undef, num_chars)
 	ct=CharTable(order, classinfo, classlength, classsums, classparamindex, charparamindex,
-			classparams, congruence, ring, information, chars, num_chars, importname)
+			classparams, ring, information, chars, num_chars, importname)
 	for i in 1:num_chars
 		ct.chars[i]=GenericCharacter(ct, table[i,:], charinfo[i], chardegree[i], charsums[i], charparams[i])
 	end

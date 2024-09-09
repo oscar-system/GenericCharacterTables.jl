@@ -112,27 +112,27 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	tt
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, a, 1, q-2, congruence)
+	nesum(tt, a, 1, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, a, 1, q-2, congruence)
+	nesum(tt, a, 1, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	ss5=nesum(tt, a, 0, q-2, congruence)
-	ss6=nesum(ss5, b, 0, q-2, congruence)
+	ss5=nesum(tt, a, 0, q-2)
+	ss6=nesum(ss5, b, 0, q-2)
 	tt1=eesubs(tt, [b], [a])
-	ss7=nesum(tt1, a, 0, q-2, congruence)
+	ss7=nesum(tt1, a, 0, q-2)
 	tt2=eesubs(tt1, [a], [0])
 	1//6*ss6-1//2*ss7+1//3*tt2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	ss7=nesum(tt, a, 0, q^2-2, congruence)
+	ss7=nesum(tt, a, 0, q^2-2)
 	tt1=eesubs(tt, [a], [(q+1)*a])
-	ss8=nesum(tt1, a, 0, q-2, congruence)
+	ss8=nesum(tt1, a, 0, q-2)
 	1//2*ss7-1//2*ss8
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	ss8=nesum(tt, a, 1, q^2+q, congruence)
+	ss8=nesum(tt, a, 1, q^2+q)
 	1//3*ss8
 end
 ]
@@ -148,26 +148,26 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	tt
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, n, 1, q-2, congruence)
+	nesum(tt, n, 1, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	nesum(tt, n, 1, q-2, congruence)
+	nesum(tt, n, 1, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	ss5=nesum(tt, n, 1, q-2, congruence)
-	ss6=nesum(ss5, m, 1, q-2, congruence)
+	ss5=nesum(tt, n, 1, q-2)
+	ss6=nesum(ss5, m, 1, q-2)
 	tt1=eesubs(tt, [m], [n])
-	ss7=nesum(tt1, n, 1, q-2, congruence)
+	ss7=nesum(tt1, n, 1, q-2)
 	1//6*ss6-1//6*ss7
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	ss7=nesum(tt, n, 0, q^2-2, congruence)
+	ss7=nesum(tt, n, 0, q^2-2)
 	tt1=eesubs(tt, [n], [(q+1)*n])
-	ss8=nesum(tt1, n, 0, q-2, congruence)
+	ss8=nesum(tt1, n, 0, q-2)
 	1//2*ss7-1//2*ss8
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	ss8=nesum(tt, n, 1, q^2+q, congruence)
+	ss8=nesum(tt, n, 1, q^2+q)
 	1//3*ss8
 end
 ]
@@ -196,7 +196,7 @@ Parameters([Parameter(n, q^2+q+1)], [((n)*1//(q^2+q+1))])
 
 classparamindex=var_index.([a,b])
 charparamindex=var_index.([m,n])
-congruence=nothing
+
 
 information = raw"""- Information about the generic character table of $SL_3(q)$,
   $q$ not congruent to $1$ modulo $3$
@@ -223,4 +223,4 @@ information = raw"""- Information about the generic character table of $SL_3(q)$
 """
 
 TABLE=CharTable(order,permutedims(table),classinfo,classlength,charinfo,chardegree,
-	classsums,charsums,classparamindex,charparamindex,classparams,charparams,congruence,S,information,splitext(basename(@__FILE__))[1])
+	classsums,charsums,classparamindex,charparamindex,classparams,charparams,S,information,splitext(basename(@__FILE__))[1])
