@@ -1,7 +1,7 @@
 export genchartab, greenfuntab
 
-abstract type Table{T} end
-abstract type AbstractGenericCharacter{T} end
+abstract type Table end
+abstract type AbstractGenericCharacter end
 
 # This is the main generic character table type.
 # T is usually of the type NfPoly.
@@ -11,59 +11,57 @@ abstract type AbstractGenericCharacter{T} end
 # Therefore it is needed to disable caching in `argumentring`
 # to fix possible interplay issues caused by using multiple tables.
 # See for example A1/GL2.jl
-struct CharTable{T} <: Table{T}
-	order::T  # Order of the associated group
+struct CharTable <: Table
+	order::UPoly  # Order of the associated group
 	classinfo::Vector{<:Any}  # Info about class types
-	classlength::Vector{T}  # Order of the classes in each type
-	classsums::Vector{Function}  # Functions to sum a Cyclotomic over all classes in a type
+	classlength::Vector{UPoly}  # Order of the classes in each type
+	classsums::Vector{Function}  # Functions to sum a cyclotomic over all classes in a type
 	classparamindex::Vector{Int64}  # Indices of the class parameters
 	charparamindex::Vector{Int64}  # Indices of the character parameters
-	classparams::Vector{Parameters{T}}  # Info about the parameters of each class type
-	congruence::Union{Tuple{T, T}, Nothing}  # Congruence of the main parameter q (of T). q is congruent to congruence[1] mod congruence[2].
-	modulusring::PolyRing  # Ring of polynomials of type T used in table (also ring of modulus of Cyclotomics)
-	argumentring::Generic.UniversalPolyRing{Generic.FracFieldElem{T}}  # Ring of argument of the Cyclotomics in table
+	classparams::Vector{Parameters}  # Info about the parameters of each class type
+	congruence::Union{Tuple{QQFieldElem, QQFieldElem}, Nothing}  # Congruence of the main parameter q (of T). q is congruent to congruence[1] mod congruence[2].
+	ring::GenericCycloRing  # Parent ring of the cyclotomics in this table
 	information::String  # General info about the table
-	chars::Vector{<:AbstractGenericCharacter{T}}
+	chars::Vector{<:AbstractGenericCharacter}
 	irrchartypes::Int64  # Number of irreducible character types
 	importname::String  # This name can be used to import the table, a "*" indicates a modified table
 end
-function CharTable(order::T, table::Matrix{Cyclotomic{T}}, classinfo::Vector{<:Any}, classlength::Vector{T},
-	charinfo::Vector{<:Any}, chardegree::Vector{T}, classsums::Vector{Function}, charsums::Vector{Function},
-	classparamindex::Vector{Int64}, charparamindex::Vector{Int64}, classparams::Vector{Parameters{T}}, charparams::Vector{Parameters{T}},
-	congruence::Union{Tuple{T, T}, Nothing}, modulusring::PolyRing, argumentring::Generic.UniversalPolyRing{Generic.FracFieldElem{T}},
-	information::String, importname::String) where T<:NfPoly
+function CharTable(order::UPoly, table::Matrix{GenericCyclo}, classinfo::Vector{<:Any}, classlength::Vector{UPoly},
+	charinfo::Vector{<:Any}, chardegree::Vector{UPoly}, classsums::Vector{Function}, charsums::Vector{Function},
+	classparamindex::Vector{Int64}, charparamindex::Vector{Int64}, classparams::Vector{Parameters}, charparams::Vector{Parameters},
+	congruence::Union{Tuple{QQFieldElem, QQFieldElem}, Nothing}, ring::GenericCycloRing, information::String, importname::String)
 	num_chars=size(table, 1)
-	chars=Vector{GenericCharacter{T}}(undef, num_chars)
-	ct=CharTable{T}(order, classinfo, classlength, classsums, classparamindex, charparamindex,
-			classparams, congruence, modulusring, argumentring, information, chars, num_chars, importname)
+	chars=Vector{GenericCharacter}(undef, num_chars)
+	ct=CharTable(order, classinfo, classlength, classsums, classparamindex, charparamindex,
+			classparams, congruence, ring, information, chars, num_chars, importname)
 	for i in 1:num_chars
 		ct.chars[i]=GenericCharacter(ct, table[i,:], charinfo[i], chardegree[i], charsums[i], charparams[i])
 	end
 	return ct
 end
 
-Base.getindex(ct::CharTable{T}, i::Integer) where T<:NfPoly = ct.chars[i]::GenericCharacter{T}
-Base.getindex(ct::CharTable{T}, i::Integer, j::Integer) where T<:NfPoly = ct.chars[i].values[j]::Cyclotomic{T}
+Base.getindex(ct::CharTable, i::Integer) = ct.chars[i]::GenericCharacter
+Base.getindex(ct::CharTable, i::Integer, j::Integer) = ct.chars[i].values[j]::GenericCyclo
 
-struct GenericCharacter{T} <: AbstractGenericCharacter{T}
-	parent::CharTable{T}
-	values::Vector{Cyclotomic{T}}
+struct GenericCharacter <: AbstractGenericCharacter
+	parent::CharTable
+	values::Vector{GenericCyclo}
 	info::Any
-	degree::T  # Degree of the characters in this type
+	degree::UPoly  # Degree of the characters in this type
 	sum::Union{Function, Nothing}  # Function to sum a Cyclotomic over all characters in this type
-	params::Parameters{T}  # Info about the parameters in this character type
+	params::Parameters  # Info about the parameters in this character type
 end
 
 # This is another generic character table type used for much simpler tables.
 # T is usually of th type NfPoly.
-struct SimpleCharTable{T} <: Table{T}
+struct SimpleCharTable{T} <: Table
 	order::T  # Order of the associated group
 	classinfo::Vector{<:Any}  # Info about class types
 	classlength::Vector{T}  # Order of the classes in each type
 	classtypeorder::Vector{T}  # Number of classes in each type
 	ring::PolyRing  # Ring of polynomials of type T used in table
 	information::String  # General info about the table
-	chars::Vector{<:AbstractGenericCharacter{T}}
+	chars::Vector{<:AbstractGenericCharacter}
 	irrchartypes::Int64  # Number of irreducible character types
 	importname::String  # This name can be used to import the table
 	function SimpleCharTable(order::T, table::Matrix{T}, classinfo::Vector{<:Any}, classlength::Vector{T},
@@ -83,7 +81,7 @@ Base.getindex(ct::SimpleCharTable{T}, i::Integer) where T<:NfPoly = ct.chars[i]:
 Base.getindex(ct::SimpleCharTable{T}, i::Integer, j::Integer) where T<:NfPoly = ct.chars[i].values[j]::T
 Base.setindex!(ct::SimpleCharTable{T}, v::T, i::Integer, j::Integer) where T<:NfPoly = setindex!(ct.chars[i].values, v, j)
 
-struct SimpleGenericCharacter{T} <: AbstractGenericCharacter{T}
+struct SimpleGenericCharacter{T} <: AbstractGenericCharacter
 	parent::SimpleCharTable{T}
 	values::Vector{T}
 	info::Any

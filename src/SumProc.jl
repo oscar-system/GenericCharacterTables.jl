@@ -1,44 +1,31 @@
 export eesubs, nesum
 
-function isunitfraction(a::QQFieldElem)
-	isone(numerator(a))
-end
-function isunitfraction(a::AbsSimpleNumFieldElem)
-	rational_part=coeff(a,0)
-	if a == rational_part
-		return isunitfraction(rational_part)
-	else
+function isunitfraction(a::UPolyFrac)
+	if isone(denominator(a))
+		n=numerator(a)
+		if is_constant(n)
+			return isone(numerator(constant_coefficient(n)))
+		end
 		return false
 	end
-end
-function isunitfraction(a::NfPoly)
-	if is_constant(a)
-		constant=constant_coefficient(a)
-		return isunitfraction(constant)
-	else
-		return false
-	end
-end
-function isunitfraction(a::FracPoly{T}) where T<:NfPoly
-	if is_constant(a)
-		constant_numerator=numerator(constant_coefficient(a))
-		return isunitfraction(constant_numerator)
-	else
-		return false
-	end
+	return false
 end
 
-function ishalf(a::FracPoly{T}) where T<:NfPoly
-	for coeff in coefficients(a)
-		if denominator(coeff) != 2 && denominator(coeff) != 1  # second case always true with argument of Cyclo
-			return false
+function ishalf(a::UPolyFrac)  # TODO
+	if isone(denominator(a))
+		n=numerator(a)
+		for coeff in coefficients(a)
+			if denominator(coeff) != 2 && denominator(coeff) != 1  # TODO the second case should always be true for "argument" of GenericCyclo
+				return false
+			end
 		end
+		return true
 	end
-	return true
+	return false
 end
 
 @doc raw"""
-    eesubs(a::Union{Cyclotomic{T},FracPoly{T}}, vars::Union{Vector{<:FracPoly{T}},Vector{Int64}}, vals::Vector{<:RingElement}) where T<:PolyRingElem
+    eesubs(a::Union{GenericCyclo,GenericCycloFrac}, vars::Vector{UPoly}, vals::Vector{<:RingElement})
 
 Substitute `vals[i]` for `vars[i]` in `a`.
 
@@ -46,40 +33,26 @@ If `vars` is `Vector{Int64}`, then `vars[i]` represents the index of the variabl
 
 # Examples
 ```jldoctest
-julia> R, q = polynomial_ring(QQ, "q");
+julia> R = universal_polynomial_ring(QQ; cached=false);
 
-julia> Q=fraction_field(R);
+julia> q = gen(R, "q");
 
-julia> S=universal_polynomial_ring(Q);
+julia> S = generic_cyclotomic_ring(R);
 
-julia> i, j, k, l = gens(S, ["i", "j", "k", "l"]);
+julia> i, j, k, l = gens(R, ["i", "j", "k", "l"]);
 
-julia> a = CycloSum(R(1), 2//(q-1)*i*j+1//q*k^2+1//2*i*l)
-exp(2π𝑖(2//(q - 1)*i*j + 1//2*i*l + 1//q*k^2))
+julia> a = S(Dict(2//(q-1)*i*j+1//q*k^2+1//2*i*l => R(1)))
+exp(2π𝑖((1//2*q^2*i*l + 2*q*i*j - 1//2*q*i*l + q*k^2 - k^2)//(q^2 - q)))
 
 julia> eesubs(a,[i,k],[j,3*i])
-exp(2π𝑖(9//q*i^2 + 2//(q - 1)*j^2 + 1//2*j*l))
+exp(2π𝑖((1//2*q^2*j*l + 9*q*i^2 + 2*q*j^2 - 1//2*q*j*l - 9*i^2)//(q^2 - q)))
 
 ```
 """
-function eesubs(a::FracPoly{T}, vars::Union{Vector{<:FracPoly{T}},Vector{Int64}}, vals::Vector{<:RingElement}) where T<:PolyRingElem
-	return evaluate(a, vars, vals)
-end
-function eesubs(a::Cyclo{T}, vars::Union{Vector{<:FracPoly{T}},Vector{Int64}}, vals::Vector{<:RingElement}) where T <: PolyRingElem
-	return Cyclo(a.modulus, eesubs(a.argument, vars, vals))
-end
-function eesubs(a::CycloSum{T}, vars::Union{Vector{<:FracPoly{T}},Vector{Int64}}, vals::Vector{<:RingElement}) where T <: PolyRingElem
-	return CycloSum(map(x -> eesubs(x, vars, vals), a.summands))
-end
-function eesubs(a::CycloFrac{T}, vars::Union{Vector{<:FracPoly{T}},Vector{Int64}}, vals::Vector{<:RingElement}) where T <: PolyRingElem
-	return CycloFrac(eesubs(a.numerator, vars, vals), eesubs(a.denominator, vars, vals), Set{ParameterException{T}}(eesubs.(a.exceptions, Ref(vars), Ref(vals))))
-end
-function eesubs(a::ParameterException{T}, vars::Union{Vector{<:FracPoly{T}},Vector{Int64}}, vals::Vector{<:RingElement}) where T <: PolyRingElem
-	return ParameterException(eesubs(a.expression, vars, vals))
-end
+eesubs(a::Union{GenericCyclo,GenericCycloFrac}, vars::Vector{UPoly}, vals::Vector{<:RingElement}) = evaluate(a, var_index.(vars), vals)  # TODO remove?
 
 @doc raw"""
-    nesum(a::Cyclotomic{T}, var::Union{FracPoly{T},Int64}, lower::Int64, upper::Union{Int64,T}, congruence::Union{Tuple{T,T},Nothing}=nothing) where T<:PolyRingElem
+    nesum(a::GenericCycloFrac, var::Int64, lower::Int64, upper::Union{Int64,UPoly}, congruence::Union{Tuple{QQFieldElem,QQFieldElem},Nothing}=nothing)
 
 Return the sum of `a`, from `var=lower` to `upper` as `CycloFrac{T}` using the closed formular for geometric sums. If this is not possible
 an exception will be thrown. Note that any occurence of `var` in the denominator of `a` will be silently ignored.
@@ -87,16 +60,16 @@ an exception will be thrown. Note that any occurence of `var` in the denominator
 `congruence[1]` gives the remainder modulo `congruence[2]` of the generator of the polynomials of type `T`. This is used to simplify the result.
 # Examples
 ```jldoctest
-julia> R, q = polynomial_ring(QQ, "q");
+julia> R = universal_polynomial_ring(QQ; cached=false);
 
-julia> Q=fraction_field(R);
+julia> q = gen(R, "q");
 
-julia> S=universal_polynomial_ring(Q);
+julia> S = generic_cyclotomic_ring(R);
 
-julia> i, = gens(S, ["i"]);
+julia> i, = gens(R, ["i"]);
 
-julia> a = CycloSum(R(1), 1//(q-1)*i)
-exp(2π𝑖(1//(q - 1)*i))
+julia> a = S(Dict(1//(q-1)*i => R(1)))
+exp(2π𝑖(i//(q - 1)))
 
 julia> nesum(a, i, 1, q-1)
 0
@@ -104,59 +77,54 @@ With exceptions:
   1 ∈ (q - 1)ℤ
 ```
 """
-function nesum(a::CycloFrac{T}, var::Int64, lower::Int64, upper::Union{Int64,T}, congruence::Union{Tuple{T,T},Nothing}=nothing) where T <: NfPoly
+function nesum(a::GenericCycloFrac, var::Int64, lower::Int64, upper::Union{Int64,UPoly}, congruence::Union{Tuple{QQFieldElem,QQFieldElem},Nothing}=nothing)
+	# TODO implement this just with GenericCyclo and write a wrapper for GenericCycloFrac
+	# TODO get rid of `congruence` here
 	if isone(lower)
-		return nesum(a, var, 0, upper, congruence)-eesubs(a, [var], [0])
+		return nesum(a, var, 0, upper, congruence)-evaluate(a, [var], [0])
 	elseif lower > 1
 		return nesum(a, var, 0, upper, congruence)-nesum(a, var, 0, lower-1)
 	end
 	# From now on `lower` can be assumed to be zero.
-	if congruence !== nothing
-		ring=parent(a.numerator.summands[1].modulus)
-		c=congruence[2]*gen(ring)+congruence[1]
-		cinv=(gen(ring)-congruence[1])//congruence[2]
-	end
 	sum=zero(a)
+	R=parent(a.numerator)
 	# Using the commutativity of the addition in the ring of generic cyclotomics
 	# the sum can be computed separately for each of the summands of `a.numerator`.
 	# Also `a.denominator` will be ignored and added back to the result later.
-	for summand in a.numerator.summands
-		var_degree=degrees(summand.argument)[var]
-		if var_degree <= 0  # `summand` doesn't depend on `var` at all and thus the sum boils down to a simple multiplication.
-			sum+=(upper+1)*summand
-		elseif isone(var_degree)  # `summand.argument` linearly depends on `var` hence the sum is a geometric sum.
-			var_coeff=coeff(summand.argument, [var], [1])
-			constant=eesubs(summand.argument, [var], [0])
-			o=one(summand.modulus)
-			geometric_sum=CycloSum(summand.modulus, constant)*(CycloSum(o, (upper+1)*var_coeff)-1)//(CycloSum(o, var_coeff)-1)
-			if congruence === nothing
-				sum+=geometric_sum
-			else
-				sum+=simplify(geometric_sum, c, cinv)
-			end
-			# If `var_coeff` evaluates to an integer `CycloSum(o, var_coeff)` evaluates to one and thus `CycloSum(o, var_coeff)-1`
+	for (argument, modulus) in a.numerator.f
+		# `denominator(argument)` is assumed to be independent of `var`  # TODO maybe raise an exception otherwise?
+		# Also `modulus` is assumed to be independent of `var`  # TODO also rasie an exception?
+		var_degree=degrees(numerator(argument))[var]
+		if var_degree <= 0  # The current summand doesn't depend on `var` at all and thus the sum boils down to a simple multiplication.
+			sum+=(upper+1)*R(Dict(argument => modulus))
+		elseif isone(var_degree)  # `argument` linearly depends on `var` hence the sum is a geometric sum.
+			var_coeff=coeff(numerator(argument), [var], [1])//denominator(argument)
+			constant=evaluate(argument, [var], [0])
+			o=one(modulus)
+			geometric_sum=R(Dict(constant => modulus))*(R(Dict((upper+1)*var_coeff => o))-1)//(R(Dict(var_coeff => o))-1)
+			sum+=geometric_sum
+			# If `var_coeff` evaluates to an integer `R(Dict(var_coeff => o))` evaluates to one and thus `R(Dict(var_coeff => o))-1`
 			# to zero. So in this case the closed formular for the geometric sum doesn't hold.
 			if !(ishalf(var_coeff) && isunitfraction(var_coeff))  # TODO make this more general to skip more exceptions?
-				if congruence === nothing
-					exception=ParameterException(var_coeff)
-				else
-					exception=simplify(ParameterException(var_coeff), c, cinv)
-				end
-				add_exception!(sum, exception)
+				add_exception!(sum, var_coeff)
 			end
-		else  # `summand.argument` nonlinearly depends on `var` so the sum is currently not computable.
+		else  # `argument` nonlinearly depends on `var` so the sum is currently not computable.
 			# This exception shouldn't be thrown when using the included character tables.
-			throw(DomainError(summand, "Nonlinear dependencies on the summation variable can't be resolved."))
+			throw(DomainError(argument, "Nonlinear dependencies on the summation variable can't be resolved."))
 		end
 	end
-	return sum//a.denominator
+	if congruence === nothing
+		return sum//a.denominator
+	else
+		q=gens(base_ring(parent(a.numerator)))[1]
+		c=congruence[2]*q+congruence[1]
+		cinv=(q-congruence[1])*inv(congruence[2])  # TODO why is // not working here?
+		return simplify(sum//a.denominator, c, cinv)
+	end
 end
-function nesum(a::CycloSum{T}, var::Int64, lower::Int64, upper::Union{Int64,T}, congruence::Union{Tuple{T,T},Nothing}=nothing) where T <: NfPoly
-	nesum(convert(CycloFrac{T}, a), var, lower, upper, congruence)
+function nesum(a::GenericCyclo, var::Int64, lower::Int64, upper::Union{Int64,UPoly}, congruence::Union{Tuple{QQFieldElem,QQFieldElem},Nothing}=nothing)
+	nesum(a//one(a), var, lower, upper, congruence)
 end
-function nesum(a::Cyclo{T}, var::Int64, lower::Int64, upper::Union{Int64,T}, congruence::Union{Tuple{T,T},Nothing}=nothing) where T <: NfPoly
-	nesum(convert(CycloFrac{T}, a), var, lower, upper, congruence)
-end
-function nesum(a::Cyclotomic{T}, var::FracPoly{T}, lower::Int64, upper::Union{Int64,T}, congruence::Union{Tuple{T,T},Nothing}=nothing) where T<:NfPoly
+function nesum(a::Union{GenericCyclo,GenericCycloFrac}, var::UPoly, lower::Int64, upper::Union{Int64,UPoly}, congruence::Union{Tuple{QQFieldElem,QQFieldElem},Nothing}=nothing)
 	nesum(a, var_index(var), lower, upper, congruence)
 end

@@ -62,32 +62,6 @@ test_Ring_interface(S)
 	@test conj(a//c) == conj(a)//conj(c)
 end
 
-@testset "Cyclotomic" begin
-	R, q = polynomial_ring(QQ, "q")
-	Q = fraction_field(R)
-	S = universal_polynomial_ring(Q)
-	i, j = gens(S, ["i", "j"])
-
-	a=CycloSum(R(1), 1//(q-1)*i+2//(q-1)*j+q^2//(q+1)*i)
-	b=CycloSum(R(1), 2*q//(q^2-1)*i+2//(q-1)*j)
-	@test a==b
-
-	c=CycloSum(R(1), 1//q*j)
-	@test (a+c)==(c+a)
-	@test iszero(-c+c)
-
-	@test a-1+CycloSum(R(1), S(0))==a
-	@test a*1==a
-	@test 2*a-a==a
-	@test 2*a+a==3*a
-
-	@test isone(a//a)
-	@test isone((a//c)*(c//a))
-
-	d=CycloSum(R(1), 1//(q-1)*i)
-	@test nesum(a, i, 1, q-1)-eesubs(a, [1], [1])==nesum(a, i, 2, q-1)
-end
-
 @testset "Shifts" begin
 	g=genchartab("GL2")
 	a=GenericCharacterTables.shift_class_parameters(g, g[1,1], 1)
@@ -98,7 +72,9 @@ end
 @testset "Congruence" begin
 	g=genchartab("SL3.1")
 	q,(a,b,m,n)=params(g)
-	a=CycloSum(g.modulusring(1), (q-1)//3*a)
+	R=parent(q)
+	S=g.ring
+	a=S(Dict(a*(q-1)//R(3) => R(1)))
 	@test isone(GenericCharacterTables.simplify(a, g))
 end
 

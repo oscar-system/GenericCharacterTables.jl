@@ -25,7 +25,6 @@ const NfPoly = Union{PolyRingElem{QQFieldElem}, PolyRingElem{AbsSimpleNumFieldEl
 include("GenericCyclotomics.jl")
 include("GenericCyclotomicFractions.jl")
 include("Parameter.jl")
-include("Arith.jl")
 include("CharTable.jl")
 include("Shifts.jl")
 include("SumProc.jl")
