@@ -52,10 +52,10 @@ exp(2π𝑖((1//2*q^2*j*l + 9*q*i^2 + 2*q*j^2 - 1//2*q*j*l - 9*i^2)//(q^2 - q)))
 eesubs(a::Union{GenericCyclo,GenericCycloFrac}, vars::Vector{UPoly}, vals::Vector{<:RingElement}) = evaluate(a, var_index.(vars), vals)  # TODO remove?
 
 @doc raw"""
-    nesum(a::GenericCycloFrac, var::Int64, lower::Int64, upper::Union{Int64,UPoly})
+    nesum(a::GenericCyclo, var::Int64, lower::Int64, upper::Union{Int64,UPoly})
 
-Return the sum of `a`, from `var=lower` to `upper` as `CycloFrac{T}` using the closed formular for geometric sums. If this is not possible
-an exception will be thrown. Note that any occurence of `var` in the denominator of `a` will be silently ignored.
+Return the sum of `a`, from `var=lower` to `upper` as `GenericCycloFrac` using the closed formular for geometric sums. If this is not possible
+an exception will be thrown.
 
 # Examples
 ```jldoctest
@@ -76,8 +76,7 @@ With exceptions:
   1 ∈ (q - 1)ℤ
 ```
 """
-function nesum(a::GenericCycloFrac, var::Int64, lower::Int64, upper::Union{Int64,UPoly})
-	# TODO implement this just with GenericCyclo and write a wrapper for GenericCycloFrac
+function nesum(a::GenericCyclo, var::Int64, lower::Int64, upper::Union{Int64,UPoly})
 	if isone(lower)
 		return nesum(a, var, 0, upper)-evaluate(a, [var], [0])
 	elseif lower > 1
@@ -85,11 +84,10 @@ function nesum(a::GenericCycloFrac, var::Int64, lower::Int64, upper::Union{Int64
 	end
 	# From now on `lower` can be assumed to be zero.
 	sum=zero(a)
-	R=parent(a.numerator)
+	R=parent(a)
 	# Using the commutativity of the addition in the ring of generic cyclotomics
-	# the sum can be computed separately for each of the summands of `a.numerator`.
-	# Also `a.denominator` will be ignored and added back to the result later.
-	for (argument, modulus) in a.numerator.f
+	# the sum can be computed separately for each of the summands of `a`.
+	for (argument, modulus) in a.f
 		# `denominator(argument)` is assumed to be independent of `var`  # TODO maybe raise an exception otherwise?
 		# Also `modulus` is assumed to be independent of `var`  # TODO also rasie an exception?
 		var_degree=degrees(numerator(argument))[var]
@@ -111,10 +109,10 @@ function nesum(a::GenericCycloFrac, var::Int64, lower::Int64, upper::Union{Int64
 			throw(DomainError(argument, "Nonlinear dependencies on the summation variable can't be resolved."))
 		end
 	end
-	return sum//a.denominator
+	return sum
 end
-function nesum(a::GenericCyclo, var::Int64, lower::Int64, upper::Union{Int64,UPoly})
-	nesum(a//one(a), var, lower, upper)
+function nesum(a::GenericCycloFrac, var::Int64, lower::Int64, upper::Union{Int64,UPoly})
+	one(a)*nesum(a.numerator, var, lower, upper)//a.denominator  # one(a) is needed to track all exceptions
 end
 function nesum(a::Union{GenericCyclo,GenericCycloFrac}, var::UPoly, lower::Int64, upper::Union{Int64,UPoly})
 	nesum(a, var_index(var), lower, upper)
