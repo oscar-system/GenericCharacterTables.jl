@@ -5,9 +5,9 @@ import Oscar.AbstractAlgebra: parent_type, elem_type, base_ring, base_ring_type,
 	is_exact_type, canonical_unit, isequal, divexact, zero!, mul!, add!, addeq!,
 	get_cached!, is_unit, characteristic, Ring, RingElem, expressify, evaluate
 import Oscar: pretty, Indent, Dedent, terse, is_terse
-import Oscar.AbstractAlgebra: normal_form
+import Oscar.AbstractAlgebra: normal_form, divexact
 
-import Base: show, +, -, *, ^, ==, inv, isone, iszero, one, zero, rand, deepcopy_internal, hash, conj, div
+import Base: show, +, -, *, ^, ==, inv, isone, iszero, one, zero, rand, deepcopy_internal, hash, conj
 
 import Compat
 
@@ -487,8 +487,8 @@ function evaluate(x::GenericCyclo, vars::Vector{Int64}, vals::Vector{<:RingEleme
 	return parent(x)(f)
 end
 
-function div(x::GenericCyclo, y::UPoly)
+function divexact(x::GenericCyclo, y::UPoly; check::Bool=true)
 	f=deepcopy(x.f)
-	map!(p -> div(p,y), values(f))
+	map!(p -> divexact(p,y,check=check), values(f))
 	return parent(x)(f)
 end
