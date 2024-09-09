@@ -459,9 +459,13 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac, UPoly}; simplify::Bool=true)  
 	return GenericCyclo(filter(p -> !iszero(p.second), fp), R)
 end
 
+# TODO check congruence plausibility
 function (R::GenericCycloRing)(x::GenericCyclo)
-	R != parent(x) && error("Unable to coerce element")
-	return x
+	if R == parent(x)
+		return x
+	end
+	base_ring(R) != base_ring(parent(x)) && error("Unable to coerce element")
+	return R(x.f)
 end
 
 # Parent constructor
