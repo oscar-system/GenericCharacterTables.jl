@@ -145,7 +145,7 @@ function omega(char::GenericCharacter)
 	new_char_degree=base_ring(t.ring)(1)
 	new_char_values=Vector{GenericCyclo}(undef, classtypes(t))
 	for class in 1:classtypes(t)
-		new_char_values[class]=div(t.classlength[class]*char[class], char.degree)  # TODO can this really be fractional?
+		new_char_values[class]=divexact(t.classlength[class]*char[class], char.degree)
 	end
 	return GenericCharacter(t, new_char_values, ["Omega of type $charid"], new_char_degree, nothing, char.params)
 end
@@ -168,13 +168,13 @@ Generic character of GL3
     q^3 - 2*q^2 + q
 ```
 """
-function omega(char::SimpleGenericCharacter{T}) where T <: NfPoly  # TODO is correct?
+function omega(char::SimpleGenericCharacter{T}) where T <: NfPoly
 	t=parent(char)
 	charid=chartypeid(char)
 	new_char_degree=t.ring(1)
 	new_char_values=Vector{T}(undef, classtypes(t))
 	for class in 1:classtypes(t)
-		new_char_values[class]=div(t.classlength[class]*char[class], char.degree)
+		new_char_values[class]=divexact(t.classlength[class]*char[class], char.degree)
 	end
 	return SimpleGenericCharacter{T}(t, new_char_values, ["Omega of type $charid"], new_char_degree)
 end
