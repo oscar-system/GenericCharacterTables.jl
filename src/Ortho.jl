@@ -1,4 +1,4 @@
-export norm, scalar_product, scalar, ortho2norm, ortho2scalar, classmult
+export norm, scalar_product, ortho2norm, ortho2scalar, classmult
 
 @doc raw"""
     classmult(t::CharTable, class1::Int64, class2::Int64, class3::Int64)
@@ -100,26 +100,6 @@ function Oscar.norm(char::SimpleGenericCharacter{T}) where T <: NfPoly
 end
 
 @doc raw"""
-    norm(t::Table, char::Int64)
-
-Return the norm of the character type `char`.
-
-# Examples
-```jldoctest
-julia> g=genchartab("GL2");
-
-julia> norm(g,1)
-1
-```
-"""
-function Oscar.norm(t::Table, char::Int64)
-	if char > chartypes(t)
-		throw(DomainError(char, "Character type is out of range."))
-	end
-	return norm(t[char])
-end
-
-@doc raw"""
     scalar_product(char1::GenericCharacter, char2::GenericCharacter)
 
 Return the scalar product between the character types `char1` and `char2`.
@@ -173,30 +153,6 @@ function Oscar.scalar_product(char1::SimpleGenericCharacter{T}, char2::SimpleGen
 		sum+=char1[class]*char2[class]*t.classlength[class]*t.classtypeorder[class]
 	end
 	return sum//t.order
-end
-
-@doc raw"""
-    scalar_product(t::Table, char1::Int64, char2::Int64)
-
-Return the scalar product between the character types `char1` and `char2`.
-
-# Examples
-```jldoctest
-julia> g=genchartab("GL2");
-
-julia> scalar_product(g,3,2)
-0
-With exceptions:
-  l1 + k1 - 2*k2 ∈ (q - 1)ℤ
-  k1 - k2 ∈ (q - 1)ℤ
-  l1 - k2 ∈ (q - 1)ℤ
-```
-"""
-function Oscar.scalar_product(t::Table, char1::Int64, char2::Int64)
-	if any((char1, char2).>chartypes(t))
-		throw(DomainError((char1,char2), "Some character types are out of range."))
-	end
-	return scalar_product(t[char1], t[char2])
 end
 
 @doc raw"""
@@ -301,7 +257,3 @@ function ortho2scalar(t::SimpleCharTable{T}, class1::Int64, class2::Int64) where
 	end
 	return t.classlength[class1]*sum//t.order
 end
-
-# Aliases
-scalar(char1::GenericCharacter, char2::GenericCharacter) = scalar_product(char1, char2)
-scalar(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T <: NfPoly = scalar_product(char1, char2)
