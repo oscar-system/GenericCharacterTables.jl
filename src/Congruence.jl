@@ -1,15 +1,16 @@
 export setcongruence
 
 # TODO: find a better name
-# TODO: what type should `new_congruence` have?
-# TODO: should we only allow to specify *additional* congruences?
 # TODO: simplify? always? on request? never? (currently always)
-function setcongruence(x::CharTable, new_congruence::Tuple{ZZRingElem, ZZRingElem})
-	# For now don't allow changing the congruence once it has been set, as this
-	# could lead to inconsistencies. In the future we could interpret this as *adding*
-	# a congruence relation, but then we need to come up with a way to handle it.
-	x.ring.congruence === nothing || error("cannot override already set congruence")
-	S=generic_cyclotomic_ring(base_ring(x.ring); congruence=new_congruence)
+function setcongruence(x::CharTable, congruence::Tuple{ZZRingElem, ZZRingElem})
+	if x.ring.congruence === nothing
+		remainder,modulus=congruence
+	else
+		remainder=crt(congruence..., x.ring.congruence...)
+		modulus=lcm(congruence[2], x.ring.congruence[2])
+	end
+	# The coercion of `GnericCharacter` relies on `base_ring(S) == base_ring(x.ring)`
+	S=generic_cyclotomic_ring(base_ring(x.ring); congruence=(remainder, modulus))
 	t=typeof(x)(
 		x.order,
 		deepcopy(x.classinfo),
@@ -30,7 +31,7 @@ function setcongruence(x::CharTable, new_congruence::Tuple{ZZRingElem, ZZRingEle
 	return t
 end
 
-setcongruence(x::CharTable, new_congruence::Tuple{Int, Int}) = setcongruence(x, ZZ.(new_congruence))
+setcongruence(x::CharTable, congruence::Tuple{Int, Int}) = setcongruence(x, ZZ.(congruence))
 
 congruence(x::CharTable) = x.ring.congruence
 congruence(x::SimpleCharTable) = nothing
