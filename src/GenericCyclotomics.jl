@@ -148,7 +148,7 @@ strip_zeros!(f::Dict{UPolyFrac, UPoly}) = filter!(p->!iszero(p.second), f)
 
 mutable struct GenericCycloRing <: Ring
 	base_ring::UPolyRing
-	congruence::Union{Tuple{QQFieldElem, QQFieldElem}, Nothing}
+	congruence::Union{Tuple{ZZRingElem, ZZRingElem}, Nothing}
 end
 
 mutable struct GenericCyclo <: RingElem
@@ -391,7 +391,7 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac, UPoly}; simplify::Bool=true)  
 	if R.congruence !== nothing
 		q=gens(base_ring(R))[1]
 		substitute=R.congruence[2]*q+R.congruence[1]
-		substitute_inv=inv(R.congruence[2])*(q-R.congruence[1])
+		substitute_inv=(q-R.congruence[1])*1//R.congruence[2]
 	end
 
 	# reduce numerators modulo denominators
@@ -471,7 +471,7 @@ end
 # Parent constructor
 
 # TODO Maybe don't require at least one variable?
-function generic_cyclotomic_ring(R::UPolyRing; congruence::Union{Tuple{QQFieldElem, QQFieldElem}, Nothing}=nothing, cached::Bool=true)
+function generic_cyclotomic_ring(R::UPolyRing; congruence::Union{Tuple{ZZRingElem, ZZRingElem}, Nothing}=nothing, cached::Bool=true)
 	length(gens(R)) < 1 && error("At least one free variable is needed")
 	return GenericCycloRing(R, congruence)
 end
