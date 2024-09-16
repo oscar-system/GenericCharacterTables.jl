@@ -25,15 +25,7 @@ function setcongruence(x::CharTable, new_congruence::Tuple{QQFieldElem, QQFieldE
 		x.importname*"*"
 	)
 	for i in 1:chartypes(x)
-		char=x[i]
-		t.chars[i]=GenericCharacter(
-			t,
-			S.(char.values),  # <- this changed
-			deepcopy(char.info),
-			deepcopy(char.degree),
-			deepcopy(char.sum),
-			deepcopy(char.params)
-		)
+		t.chars[i]=t(x[i])
 	end
 	return t
 end

@@ -51,6 +51,22 @@ struct GenericCharacter <: AbstractGenericCharacter
 	params::Parameters  # Info about the parameters in this character type
 end
 
+@doc raw"""
+    (t::CharTable)(c::GenericCharacter)
+
+Return `c` as a generic character of `t`. This will only work if `t` is a version of the parent table of `c` with a more restricted congruence.
+"""
+function (t::CharTable)(c::GenericCharacter)
+	return GenericCharacter(
+			t,
+			t.ring.(c.values),
+			deepcopy(c.info),
+			deepcopy(c.degree),
+			deepcopy(c.sum),
+			deepcopy(c.params)
+		)
+end
+
 # This is another generic character table type used for much simpler tables.
 # T is usually of th type NfPoly.
 struct SimpleCharTable{T} <: Table
