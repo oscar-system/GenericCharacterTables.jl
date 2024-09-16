@@ -32,5 +32,6 @@ include("Show.jl")
 include("Ortho.jl")
 include("ModifyTable.jl")
 include("Congruence.jl")
+include("Deprecations.jl")
 
 end

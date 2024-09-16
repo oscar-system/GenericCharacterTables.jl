@@ -1,6 +1,6 @@
 import Oscar: tensor_product
 
-export tensor_product, tensor!, omega, omega!, lincomb, lincomb!, specialize, specclassparam!
+export tensor_product, omega, lincomb, specialize, specclassparam!
 
 # TODO deal with ParameterSubstitution, this is not done in the original implementation.
 
@@ -91,32 +91,6 @@ end
 # 'classical' group characters in OSCAR treat '*' as tensor product, so we do it, too
 Base.:*(char1::AbstractGenericCharacter, char2::AbstractGenericCharacter) = tensor_product(char1, char2)
 
-
-@doc raw"""
-    tensor!(t::Table, char1::Int64, char2::Int64)
-
-Append the tensor product of the character types `char1` and `char2` to the table `t`.
-
-# Examples
-```jldoctest
-julia> g=genchartab("GL2");
-
-julia> tensor!(g,1,2)
-5
-
-julia> printinfochar(g,5)
-5	["Tensor of type 1 and 2"]
-
-```
-"""
-function tensor!(t::Table, char1::Int64, char2::Int64)
-	if any((char1, char2).>chartypes(t))
-		throw(DomainError((char1,char2), "Some character types are out of range."))
-	end
-	push!(t.chars, tensor_product(t[char1], t[char2]))
-	return length(t.chars)
-end
-
 @doc raw"""
     omega(char::GenericCharacter)
 
@@ -177,31 +151,6 @@ function omega(char::SimpleGenericCharacter{T}) where T <: NfPoly
 		new_char_values[class]=divexact(t.classlength[class]*char[class], char.degree)
 	end
 	return SimpleGenericCharacter{T}(t, new_char_values, ["Omega of type $charid"], new_char_degree)
-end
-
-@doc raw"""
-    omega!(t::Table, char::Int64)
-
-Append the (generic) central character of the character type `char` to the table `t`.
-
-# Examples
-```jldoctest
-julia> g=genchartab("GL2");
-
-julia> omega!(g,1)
-5
-
-julia> printinfochar(g,5)
-5	["Omega of type 1"]
-
-```
-"""
-function omega!(t::Table, char::Int64)
-	if char > chartypes(t)
-		throw(DomainError(char, "Character type is out of range."))
-	end
-	push!(t.chars, omega(t[char]))
-	return length(t.chars)
 end
 
 @doc raw"""
@@ -319,32 +268,6 @@ function lincomb(coeffs::Vector{Int64}, chars::Vector{SimpleGenericCharacter{T}}
 	end
 	info=join(map(x -> join(x, " * type "), zip(coeffs, charids)), " + ")  # TODO
 	return SimpleGenericCharacter{T}(t, new_char_values, ["Lincomb $info"], new_char_degree)
-end
-
-@doc raw"""
-    lincomb!(t::Table, coeffs::Vector{Int64}, chars::Vector{Int64})
-
-Append the linear combination of the character types `chars` with coefficients `coeffs` to the table `t`.
-
-# Examples
-```jldoctest
-julia> g=genchartab("GL2");
-
-julia> lincomb!(g,[5,1],[1,2])
-5
-
-julia> printinfochar(g,5)
-5	["Lincomb 5 * type 1 + 1 * type 2"]
-
-```
-"""
-function lincomb!(t::Table, coeffs::Vector{Int64}, chars::Vector{Int64})
-	if any(chars.>chartypes(t))
-		throw(DomainError(chars, "Some character types are out of range."))
-	end
-	new_char=lincomb(coeffs, [t[i] for i in chars])
-	push!(t.chars, new_char)
-	return length(t.chars)
 end
 
 @doc raw"""
