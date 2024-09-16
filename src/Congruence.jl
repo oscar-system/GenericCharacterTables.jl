@@ -4,7 +4,7 @@ export setcongruence
 # TODO: what type should `new_congruence` have?
 # TODO: should we only allow to specify *additional* congruences?
 # TODO: simplify? always? on request? never? (currently always)
-function setcongruence(x::CharTable, new_congruence::Tuple{QQFieldElem, QQFieldElem})
+function setcongruence(x::CharTable, new_congruence::Tuple{ZZRingElem, ZZRingElem})
 	# For now don't allow changing the congruence once it has been set, as this
 	# could lead to inconsistencies. In the future we could interpret this as *adding*
 	# a congruence relation, but then we need to come up with a way to handle it.
@@ -30,7 +30,7 @@ function setcongruence(x::CharTable, new_congruence::Tuple{QQFieldElem, QQFieldE
 	return t
 end
 
-setcongruence(x::CharTable, new_congruence::Tuple{Int, Int}) = setcongruence(x, QQ.(new_congruence))
+setcongruence(x::CharTable, new_congruence::Tuple{Int, Int}) = setcongruence(x, ZZ.(new_congruence))
 
 congruence(x::CharTable) = x.ring.congruence
 congruence(x::SimpleCharTable) = nothing
