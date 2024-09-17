@@ -3,7 +3,6 @@ export genchartab, greenfuntab
 abstract type Table end
 abstract type AbstractGenericCharacter end
 
-# This is the main generic character table type.
 # T is usually of the type NfPoly.
 # `argumentring` is expected to have 6 complete batches of variables.
 # These are used to shift the variables to calculate e.g. scalar products.
@@ -11,6 +10,21 @@ abstract type AbstractGenericCharacter end
 # Therefore it is needed to disable caching in `argumentring`
 # to fix possible interplay issues caused by using multiple tables.
 # See for example A1/GL2.jl
+@doc raw"""
+    CharTable <: Table
+
+The type for generic character tables. This is used to model generic character tables containing generic cyclotomic entries.
+
+# Examples
+```jldoctest
+julia> g=genchartab("GL2")
+Generic character table GL2
+  of order q^4 - q^3 - q^2 + q
+  with 4 irreducible character types
+  with 4 class types
+  with parameters (i, j, l, k)
+```
+"""
 struct CharTable <: Table
 	order::UPoly  # Order of the associated group
 	classinfo::Vector{<:Any}  # Info about class types
@@ -42,6 +56,27 @@ end
 Base.getindex(ct::CharTable, i::Integer) = ct.chars[i]::GenericCharacter
 Base.getindex(ct::CharTable, i::Integer, j::Integer) = ct.chars[i].values[j]::GenericCyclo
 
+@doc raw"""
+    GenericCharacter <: AbstractGenericCharacter
+
+The type for generic characters. These are the generic characters used in `CharTable`.
+
+# Examples
+```jldoctest
+julia> g=genchartab("GL2");
+
+julia> g[1]
+Generic character of GL2
+  with parameters
+    k ∈ {1,…, q - 1}
+  of degree 1
+  with values
+    exp(2π𝑖((2*i*k)//(q - 1)))
+    exp(2π𝑖((2*i*k)//(q - 1)))
+    exp(2π𝑖((i*k + j*k)//(q - 1)))
+    exp(2π𝑖((i*k)//(q - 1)))
+```
+"""
 struct GenericCharacter <: AbstractGenericCharacter
 	parent::CharTable
 	values::Vector{GenericCyclo}
@@ -67,8 +102,23 @@ function (t::CharTable)(c::GenericCharacter)
 		)
 end
 
-# This is another generic character table type used for much simpler tables.
 # T is usually of th type NfPoly.
+@doc raw"""
+    SimpleCharTable{T} <: Table
+
+The type for simple generic character tables. This is used to model generic character tables containing polynomial entries. The type parameter `T` is
+the type of the table entries.
+
+# Examples
+```jldoctest
+julia> g=genchartab("uniGL2")
+Generic character table uniGL2
+  of order q^4 - q^3 - q^2 + q
+  with 2 irreducible character types
+  with 4 class types
+  without parameters
+```
+"""
 struct SimpleCharTable{T} <: Table
 	order::T  # Order of the associated group
 	classinfo::Vector{<:Any}  # Info about class types
@@ -96,6 +146,30 @@ Base.getindex(ct::SimpleCharTable{T}, i::Integer) where T<:NfPoly = ct.chars[i]:
 Base.getindex(ct::SimpleCharTable{T}, i::Integer, j::Integer) where T<:NfPoly = ct.chars[i].values[j]::T
 Base.setindex!(ct::SimpleCharTable{T}, v::T, i::Integer, j::Integer) where T<:NfPoly = setindex!(ct.chars[i].values, v, j)
 
+@doc raw"""
+    SimpleGenericCharacter <: AbstractGenericCharacter
+
+The type for simple generic characters. These are the generic characters used in `SimpleCharTable`.
+
+# Examples
+```jldoctest
+julia> g=genchartab("uniGL2")
+Generic character table uniGL2
+  of order q^4 - q^3 - q^2 + q
+  with 2 irreducible character types
+  with 4 class types
+  without parameters
+
+julia> g[1]
+Generic character of uniGL2
+  of degree q
+  with values
+    q
+    0
+    1
+    -1
+```
+"""
 struct SimpleGenericCharacter{T} <: AbstractGenericCharacter
 	parent::SimpleCharTable{T}
 	values::Vector{T}

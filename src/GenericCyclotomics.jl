@@ -146,11 +146,45 @@ end
 
 strip_zeros!(f::Dict{UPolyFrac, UPoly}) = filter!(p->!iszero(p.second), f)
 
+@doc raw"""
+    GenericCycloRing <: Ring
+
+The ring of generic cyclotomic numbers.
+
+# Examples
+```jldoctest
+julia> R = universal_polynomial_ring(QQ; cached=false);
+
+julia> q = gen(R, "q");
+
+julia> S = generic_cyclotomic_ring(R)
+Generic cyclotomic ring
+  over Rational field
+  dependent on q
+```
+"""
 mutable struct GenericCycloRing <: Ring
 	base_ring::UPolyRing
 	congruence::Union{Tuple{ZZRingElem, ZZRingElem}, Nothing}
 end
 
+@doc raw"""
+    GenericCyclo <: RingElem
+
+The type for generic cyclotomic numbers.
+
+# Examples
+```jldoctest
+julia> R = universal_polynomial_ring(QQ; cached=false);
+
+julia> q = gen(R, "q");
+
+julia> S = generic_cyclotomic_ring(R);
+
+julia> S(q; exponent=1//(q-1))
+q*exp(2π𝑖(1//(q - 1)))
+```
+"""
 mutable struct GenericCyclo <: RingElem
 	f::Dict{UPolyFrac, UPoly}
 	parent::GenericCycloRing
