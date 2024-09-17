@@ -7,6 +7,29 @@ import Base: show, isone, iszero, one, zero, conj, inv, +, -, *, //, ==
 # According to the original implementation
 # more advanced simplifications seem to have
 # no positive effect on the performance.
+@doc raw"""
+    GenericCycloFrac
+
+The type for fractions of generic cyclotomic numbers.
+
+# Examples
+```jldoctest
+julia> R = universal_polynomial_ring(QQ; cached=false);
+
+julia> q = gen(R, "q");
+
+julia> S = generic_cyclotomic_ring(R);
+
+julia> a = S(q; exponent=1//(q-1))
+q*exp(2π𝑖(1//(q - 1)))
+
+julia> b = S(q^2; exponent=1//(q^2-1))
+q^2*exp(2π𝑖(1//(q^2 - 1)))
+
+julia> a//b
+q*exp(2π𝑖(1//(q - 1)))//(q^2*exp(2π𝑖(1//(q^2 - 1))))
+```
+"""
 struct GenericCycloFrac
 	numerator::GenericCyclo
 	denominator::GenericCyclo
