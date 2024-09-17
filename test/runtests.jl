@@ -83,7 +83,7 @@ end
 	@test iszero(scalar_product(g[6],h), ignore_exceptions=true)
 	q,(a,b,m,n)=params(g)
 	x=param(g,"x")
-	g2=setcongruence(g, (0,2))
+	g2=setcongruence(g; remainder=0, modulus=2)
 	j=specialize(g2[6], n, -m+(q-1)*x)
 	@test isone(scalar_product(j,g2(h)))
 end

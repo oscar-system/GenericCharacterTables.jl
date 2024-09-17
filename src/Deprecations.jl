@@ -123,3 +123,5 @@ end
 # Aliases
 scalar(char1::GenericCharacter, char2::GenericCharacter) = scalar_product(char1, char2)
 scalar(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T <: NfPoly = scalar_product(char1, char2)
+
+setcongruence(x::CharTable, congruence::Tuple{Int, Int}) = setcongruence(x, ZZ.(congruence))
