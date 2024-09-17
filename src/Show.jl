@@ -196,7 +196,7 @@ julia> classtypes(g)
 ```
 """
 function classtypes(t::Table)  # TODO ?
-	length(t.chars[1].values)
+	length(t[1].values)
 end
 
 @doc raw"""
