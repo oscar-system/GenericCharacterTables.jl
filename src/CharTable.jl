@@ -148,7 +148,6 @@ end
 
 Base.getindex(ct::SimpleCharTable{T}, i::Integer) where T<:NfPoly = ct.chars[i]::SimpleGenericCharacter{T}
 Base.getindex(ct::SimpleCharTable{T}, i::Integer, j::Integer) where T<:NfPoly = ct[i].values[j]::T
-Base.setindex!(ct::SimpleCharTable{T}, v::T, i::Integer, j::Integer) where T<:NfPoly = setindex!(ct.chars[i].values, v, j)
 
 @doc raw"""
     SimpleGenericCharacter <: AbstractGenericCharacter
