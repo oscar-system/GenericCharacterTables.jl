@@ -13,8 +13,7 @@ end
 
 function ishalf(a::UPolyFrac)  # TODO
 	if isone(denominator(a))
-		n=numerator(a)
-		for coeff in coefficients(a)
+		for coeff in coefficients(numerator(a))
 			if denominator(coeff) != 2 && denominator(coeff) != 1  # TODO the second case should always be true for "argument" of GenericCyclo
 				return false
 			end
