@@ -120,8 +120,6 @@ function Oscar.scalar_product(t::Table, char1::Int64, char2::Int64)
 	return scalar_product(t[char1], t[char2])
 end
 
-# Aliases
-scalar(char1::GenericCharacter, char2::GenericCharacter) = scalar_product(char1, char2)
-scalar(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T <: NfPoly = scalar_product(char1, char2)
+@alias scalar scalar_product
 
 setcongruence(x::CharTable, congruence::Tuple{Int, Int}) = setcongruence(x, ZZ.(congruence))
