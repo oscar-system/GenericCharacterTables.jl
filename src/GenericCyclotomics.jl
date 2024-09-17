@@ -510,7 +510,7 @@ end
 
 # TODO Maybe don't require at least one variable?
 function generic_cyclotomic_ring(R::UPolyRing; congruence::Union{Tuple{ZZRingElem, ZZRingElem}, Nothing}=nothing, cached::Bool=true)
-	length(gens(R)) < 1 && error("At least one free variable is needed")
+	ngens(R) < 1 && error("At least one free variable is needed")
 	return GenericCycloRing(R, congruence)
 end
 
