@@ -54,7 +54,9 @@ function CharTable(order::UPoly, table::Matrix{GenericCyclo}, classinfo::Vector{
 end
 
 Base.getindex(ct::CharTable, i::Integer) = ct.chars[i]::GenericCharacter
-Base.getindex(ct::CharTable, i::Integer, j::Integer) = ct.chars[i].values[j]::GenericCyclo
+Base.getindex(ct::CharTable, i::Integer, j::Integer) = ct[i].values[j]::GenericCyclo
+
+classsum(t::CharTable, class::Integer, x::Union{GenericCyclo, GenericCycloFrac}) = t.classsums[class](x)::Union{GenericCyclo, GenericCycloFrac}
 
 @doc raw"""
     GenericCharacter <: AbstractGenericCharacter
@@ -85,6 +87,8 @@ struct GenericCharacter <: AbstractGenericCharacter
 	sum::Union{Function, Nothing}  # Function to sum a Cyclotomic over all characters in this type
 	params::Parameters  # Info about the parameters in this character type
 end
+
+charsum(c::GenericCharacter, x::Union{GenericCyclo, GenericCycloFrac}) = c.sum(x)::Union{GenericCyclo, GenericCycloFrac}
 
 @doc raw"""
     (t::CharTable)(c::GenericCharacter)
@@ -143,7 +147,7 @@ struct SimpleCharTable{T} <: Table
 end
 
 Base.getindex(ct::SimpleCharTable{T}, i::Integer) where T<:NfPoly = ct.chars[i]::SimpleGenericCharacter{T}
-Base.getindex(ct::SimpleCharTable{T}, i::Integer, j::Integer) where T<:NfPoly = ct.chars[i].values[j]::T
+Base.getindex(ct::SimpleCharTable{T}, i::Integer, j::Integer) where T<:NfPoly = ct[i].values[j]::T
 Base.setindex!(ct::SimpleCharTable{T}, v::T, i::Integer, j::Integer) where T<:NfPoly = setindex!(ct.chars[i].values, v, j)
 
 @doc raw"""
