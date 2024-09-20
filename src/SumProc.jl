@@ -1,28 +1,5 @@
 export eesubs, nesum
 
-function isunitfraction(a::UPolyFrac)
-	if isone(denominator(a))
-		n=numerator(a)
-		if is_constant(n)
-			return isone(numerator(constant_coefficient(n)))
-		end
-		return false
-	end
-	return false
-end
-
-function ishalf(a::UPolyFrac)  # TODO
-	if isone(denominator(a))
-		for coeff in coefficients(numerator(a))
-			if denominator(coeff) != 2 && denominator(coeff) != 1  # TODO the second case should always be true for "argument" of GenericCyclo
-				return false
-			end
-		end
-		return true
-	end
-	return false
-end
-
 @doc raw"""
     eesubs(a::Union{GenericCyclo,GenericCycloFrac}, vars::Vector{UPoly}, vals::Vector{<:RingElement})
 
@@ -100,9 +77,7 @@ function nesum(a::GenericCyclo, var::Int64, lower::Int64, upper::Union{Int64,UPo
 			sum+=geometric_sum
 			# If `var_coeff` evaluates to an integer `R(Dict(var_coeff => o))` evaluates to one and thus `R(Dict(var_coeff => o))-1`
 			# to zero. So in this case the closed formular for the geometric sum doesn't hold.
-			if !(ishalf(var_coeff) && isunitfraction(var_coeff))  # TODO make this more general to skip more exceptions?
-				add_exception!(sum, var_coeff)
-			end
+			add_exception!(sum, var_coeff)
 		else  # `argument` nonlinearly depends on `var` so the sum is currently not computable.
 			# This exception shouldn't be thrown when using the included character tables.
 			throw(DomainError(argument, "Nonlinear dependencies on the summation variable can't be resolved."))
