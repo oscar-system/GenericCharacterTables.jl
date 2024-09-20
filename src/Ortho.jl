@@ -12,7 +12,7 @@ julia> g=genchartab("SL2.0");
 julia> classmult(g,2,2,4)
 q + 1
 With exceptions:
-  -a3 ∈ (q + 1)ℤ
+  a3 ∈ (q + 1)ℤ
 ```
 """
 function classmult(t::CharTable, class1::Int64, class2::Int64, class3::Int64)
@@ -112,8 +112,8 @@ julia> scalar_product(g[3],g[2])
 0
 With exceptions:
   l1 + k1 - 2*k2 ∈ (q - 1)ℤ
-  k1 - k2 ∈ (q - 1)ℤ
   l1 - k2 ∈ (q - 1)ℤ
+  k1 - k2 ∈ (q - 1)ℤ
 ```
 """
 function Oscar.scalar_product(char1::GenericCharacter, char2::GenericCharacter)
@@ -217,8 +217,8 @@ julia> ortho2scalar(g,3,2)
 0
 With exceptions:
   i1 + j1 - 2*i2 ∈ (q - 1)ℤ
-  j1 - i2 ∈ (q - 1)ℤ
   i1 - i2 ∈ (q - 1)ℤ
+  j1 - i2 ∈ (q - 1)ℤ
 ```
 """
 function ortho2scalar(t::CharTable, class1::Int64, class2::Int64)

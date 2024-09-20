@@ -109,8 +109,8 @@ julia> scalar_product(g,3,2)
 0
 With exceptions:
   l1 + k1 - 2*k2 ∈ (q - 1)ℤ
-  k1 - k2 ∈ (q - 1)ℤ
   l1 - k2 ∈ (q - 1)ℤ
+  k1 - k2 ∈ (q - 1)ℤ
 ```
 """
 function Oscar.scalar_product(t::Table, char1::Int64, char2::Int64)

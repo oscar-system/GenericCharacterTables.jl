@@ -33,8 +33,8 @@ q*exp(2π𝑖(1//(q - 1)))//(q^2*exp(2π𝑖(1//(q^2 - 1))))
 struct GenericCycloFrac
 	numerator::GenericCyclo
 	denominator::GenericCyclo
-	exceptions::Set{UPolyFrac}  # The element may only be evaluated if none of the exceptions evaluates to an integer.
-	function GenericCycloFrac(numerator::GenericCyclo, denominator::GenericCyclo, exceptions::Set{UPolyFrac}; simplify::Bool=true)
+	exceptions::ParameterExceptions  # The element may only be evaluated if none of the exceptions evaluates to an integer.
+	function GenericCycloFrac(numerator::GenericCyclo, denominator::GenericCyclo, exceptions::ParameterExceptions; simplify::Bool=true)
 		check_parent(numerator, denominator)
 		if simplify
 			if iszero(numerator)
@@ -49,7 +49,7 @@ struct GenericCycloFrac
 end
 
 function add_exception!(a::GenericCycloFrac, exception::UPolyFrac)
-	push!(a.exceptions, exception)
+	add_exception!(a.exceptions, exception)
 end
 
 @doc raw"""
@@ -70,32 +70,7 @@ function shrink(a::GenericCycloFrac)  # TODO Move this to the constructor of Gen
 			new_denominator=o*denominator(b)
 		end
 	end
-	new_exceptions = Set{UPolyFrac}()
-	exceptions=collect(a.exceptions)
-	for i in 1:length(exceptions)
-		needed = true
-		for j in (i+1):length(exceptions)
-			quotient=exceptions[j]//exceptions[i]
-			if isone(denominator(quotient))
-				if is_constant(numerator(quotient))
-					c=constant_coefficient(numerator(quotient))
-					if isone(denominator(c))
-						# In this case exceptions[j] is an integer multiple of exceptions[i], so if exception1 evaluates to an
-						# integer exceptions[j] does as well. Hence, it suffices to track exceptions[j] and we can discard
-						# exceptions[i].
-						needed = false
-						break
-					end
-				end
-			end
-		end
-		if needed
-			# TODO test if exception1 is a rational number and apply normal_form to the "whole" part of exception1, similar to the
-			# simplification of GenericCyclotomic.
-			push!(new_exceptions,exceptions[i])
-		end
-	end
-	return GenericCycloFrac(new_numerator, new_denominator, new_exceptions, simplify=false)
+	return GenericCycloFrac(new_numerator, new_denominator, a.exceptions, simplify=false)
 end
 
 function show(io::IO, x::GenericCycloFrac)
@@ -119,15 +94,9 @@ function show(io::IO, x::GenericCycloFrac)
 			print(io, "($(x.denominator))")
 		end
 	end
-	if !isempty(x.exceptions)
-		print(io, "\nWith exceptions:", Indent())
-		for exception in x.exceptions
-			if isone(denominator(exception))
-				print(io, "\n$(numerator(exception)) ∈ ℤ")
-			else
-				print(io, "\n$(numerator(exception)) ∈ ($(denominator(exception)))ℤ")
-			end
-		end
+	if is_restriction(x.exceptions)
+		print(io, "\nWith exceptions:\n", Indent())
+		print(io, x.exceptions)
 		print(io, Dedent())
 	end
 end
@@ -143,7 +112,7 @@ function iszero(x::GenericCycloFrac; ignore_exceptions::Bool=false)
 	if ignore_exceptions
 		return iszero(x.numerator)
 	end
-	return iszero(x.numerator) && isempty(x.exceptions)
+	return iszero(x.numerator) && !is_restriction(x.exceptions)
 end
 
 # Unary operations
@@ -175,17 +144,17 @@ inv(x::GenericCycloFrac) = GenericCycloFrac(x.denominator, x.numerator, x.except
 function *(x::GenericCycloFrac, y::GenericCycloFrac)
 	numerator=x.numerator*y.numerator
 	denominator=x.denominator*y.denominator
-	exceptions=union(x.exceptions, y.exceptions)
+	exceptions=merge(x.exceptions, y.exceptions)
 	GenericCycloFrac(numerator, denominator, exceptions)
 end
 
 function +(x::GenericCycloFrac, y::GenericCycloFrac)
 	if x.denominator == y.denominator
-		return GenericCycloFrac(x.numerator+y.numerator, x.denominator, union(x.exceptions, y.exceptions), simplify=!isone(x.denominator))
+		return GenericCycloFrac(x.numerator+y.numerator, x.denominator, merge(x.exceptions, y.exceptions), simplify=!isone(x.denominator))
 	else
 		numerator=x.numerator*y.denominator+y.numerator*x.denominator
 		denominator=x.denominator*y.denominator
-		exceptions=union(x.exceptions, y.exceptions)
+		exceptions=merge(x.exceptions, y.exceptions)
 		return GenericCycloFrac(numerator, denominator, exceptions)
 	end
 end
@@ -206,17 +175,17 @@ end
 
 //(x::RingElement, y::GenericCycloFrac) = x*inv(y)
 
-//(x::GenericCyclo, y::GenericCyclo) = GenericCycloFrac(x, y, Set{UPolyFrac}())
+//(x::GenericCyclo, y::GenericCyclo) = GenericCycloFrac(x, y, parameter_exceptions())
 
-//(x::GenericCyclo, y::UPoly) = GenericCycloFrac(x, parent(x)(y), Set{UPolyFrac}())
+//(x::GenericCyclo, y::UPoly) = GenericCycloFrac(x, parent(x)(y), parameter_exceptions())
 
-//(x::UPoly, y::GenericCyclo) = GenericCycloFrac(parent(y)(x), y, Set{UPolyFrac}())
+//(x::UPoly, y::GenericCyclo) = GenericCycloFrac(parent(y)(x), y, parameter_exceptions())
 
 # evaluate
 
 function evaluate(x::GenericCycloFrac, vars::Vector{Int64}, vals::Vector{<:RingElement})
 	numerator=evaluate(x.numerator, vars, vals)
 	denominator=evaluate(x.denominator, vars, vals)
-	exceptions=evaluate.(x.exceptions, Ref(vars), Ref(vals))
-	return GenericCycloFrac(numerator, denominator, Set{UPolyFrac}(exceptions))
+	exceptions=evaluate(x.exceptions, vars, vals)
+	return GenericCycloFrac(numerator, denominator, exceptions)
 end
