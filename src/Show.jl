@@ -1,4 +1,5 @@
 import Oscar.order
+import Oscar.AbstractAlgebra: degree
 
 export centord
 export chardeg
@@ -307,8 +308,24 @@ function chardeg(t::Table, char::Int64)
 	if char > chartypes(t)
 		throw(DomainError(char, "Character type is out of range."))
 	end
-	t[char].degree
+	return degree(t[char])
 end
+
+@doc raw"""
+    degree(char::AbstractGenericCharacter)
+
+Return the character degree of `char`.
+
+# Examples
+```jldoctest
+julia> g=genchartab("GL2");
+
+julia> degree(g[3])
+q + 1
+
+```
+"""
+degree(char::AbstractGenericCharacter) = char.degree
 
 @doc raw"""
     nrchars(t::Table, char::Int64)
@@ -326,21 +343,35 @@ q - 1
 
 ```
 """
-function nrchars(t::CharTable, char::Int64)
-	if char > irrchartypes(t)
-		throw(DomainError(char, "Cannot calculate number of characters in reducible types."))
-	else
-		o=t.ring(1)
-		result=t[char].sum(o//o)
-		return shrink(result)
-	end
-end
-function nrchars(t::SimpleCharTable, char::Int64)
+function nrchars(t::Table, char::Int64)
 	if char > chartypes(t)
 		throw(DomainError(char, "Character type is out of range."))
 	end
-	1
+	return nrchars(t[char])
 end
+
+@doc raw"""
+    nrchars(char::GenericCharacter)
+
+Return the number of characters in the generic character `char`.
+
+# Examples
+```jldoctest
+julia> g=genchartab("GL2");
+
+julia> nrchars(g[1])
+q - 1
+
+```
+"""
+function nrchars(char::GenericCharacter)
+	!iszero(chartypeid(char)) || error("Cannot calculate number of characters in reducible types.")
+	o=parent(char).ring(1)
+	result=charsum(char, o//o)
+	return shrink(result)
+end
+
+nrchars(char::SimpleGenericCharacter) = 1
 
 @doc raw"""
     nrclasses(t::Table, class::Int64)
