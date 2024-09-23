@@ -31,7 +31,7 @@ function tensor_product(char1::GenericCharacter, char2::GenericCharacter)
 	t=parent(char1)
 	char1id=chartypeid(char1)
 	char2id=chartypeid(char2)
-	if iszero(char1id) || iszero(char2id)
+	if char1id === nothing || char2id === nothing
 		throw(DomainError((char1,char2), "Characters are not both irreducible."))
 	end
 	new_char_degree=char1.degree*char2.degree
@@ -75,7 +75,7 @@ function tensor_product(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCh
 	t=parent(char1)
 	char1id=chartypeid(char1)
 	char2id=chartypeid(char2)
-	if iszero(char1id) || iszero(char2id)
+	if char1id === nothing || char2id === nothing
 		throw(DomainError((char1,char2), "Characters are not both irreducible."))
 	end
 	new_char_degree=char1.degree*char2.degree
@@ -186,7 +186,7 @@ function lincomb(coeffs::Vector{Int64}, chars::Vector{<:GenericCharacter})
 	charids=Vector{Int64}(undef, n)
 	for i in 1:n
 		charids[i]=chartypeid(chars[i])
-		if iszero(charids[i])
+		if charids[i] === nothing
 			throw(DomainError(chars[i], "Character is not irreducible."))
 		end
 	end
@@ -250,7 +250,7 @@ function lincomb(coeffs::Vector{Int64}, chars::Vector{SimpleGenericCharacter{T}}
 	charids=Vector{Int64}(undef, n)
 	for i in 1:n
 		charids[i]=chartypeid(chars[i])
-		if iszero(charids[i])
+		if charids[i] === nothing
 			throw(DomainError(chars[i], "Character is not irreducible."))
 		end
 	end
@@ -318,13 +318,17 @@ end
 @doc raw"""
     chartypeid(c::AbstractGenericCharacter)
 
-Return if the index of `c` in `parent(c)`. If `c` is not in `parent(c)` (e.g. if it is a tensor product) `0` is returned.
+Return the index of `c` in `parent(c)`. If `c` is not an irreducible character type (e.g. if it is a tensor product)
+then `nothing` is returned.
+
 # Examples
 ```jldoctest
 julia> g=genchartab("GL2");
 
 julia> chartypeid(g[1])
 1
+
+julia> chartypeid(g[1]*g[1])
 
 ```
 """
@@ -335,7 +339,7 @@ function chartypeid(c::AbstractGenericCharacter)
 			return i
 		end
 	end
-	return 0
+	return nothing
 end
 
 @doc raw"""
@@ -369,7 +373,7 @@ q - 1
 ```
 """
 function nrchars(char::GenericCharacter)
-	!iszero(chartypeid(char)) || error("Cannot calculate number of characters in reducible types.")
+	chartypeid(char) !== nothing || error("Cannot calculate number of characters in reducible types.")
 	o=parent(char).ring(1)
 	result=charsum(char, o//o)
 	return shrink(result)
