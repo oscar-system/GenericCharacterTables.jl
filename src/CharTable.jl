@@ -53,6 +53,8 @@ end
 Base.getindex(ct::CharTable, i::Integer) = ct.chars[i]::GenericCharacter
 Base.getindex(ct::CharTable, i::Integer, j::Integer) = ct[i].values[j]::GenericCyclo
 
+Base.eltype(::Type{CharTable}) = GenericCharacter
+
 classsum(t::CharTable, class::Integer, x::Union{GenericCyclo, GenericCycloFrac}) = t.classsums[class](x)::Union{GenericCyclo, GenericCycloFrac}
 
 @doc raw"""
@@ -146,7 +148,10 @@ end
 Base.getindex(ct::SimpleCharTable{T}, i::Integer) where T<:NfPoly = ct.chars[i]::SimpleGenericCharacter{T}
 Base.getindex(ct::SimpleCharTable{T}, i::Integer, j::Integer) where T<:NfPoly = ct[i].values[j]::T
 
+Base.eltype(::Type{SimpleCharTable{T}}) where T<:NfPoly = SimpleGenericCharacter{T}
+
 Base.length(ct::Table) = length(ct.chars)
+Base.iterate(ct::Table, state::Integer=1) = state > length(ct) ? nothing : (ct[state], state+1)
 
 @doc raw"""
     SimpleGenericCharacter <: AbstractGenericCharacter

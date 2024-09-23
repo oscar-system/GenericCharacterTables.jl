@@ -104,9 +104,7 @@ q^2 - 1
 
 ```
 """
-function nrirrchars(t::Table)
-	return sum(nrchars.(Ref(t), 1:length(t)))
-end
+nrirrchars(t::Table) = sum(nrchars.(t))
 
 @doc raw"""
     classtypes(t::Table)
