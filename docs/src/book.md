@@ -171,7 +171,7 @@ handling duplicates, one finally obtains
     +\frac12\sum_{n=1}^{q-2} \chi_6(n,q-1-n)
     +\frac12\sum_{n=1}^{q} \chi_7(n(q-1)).
 ```
-Where $\chi_6(n,q-1-n)$ shows that the $6$th character in the table `T2`
+Where $\chi_6(n,q-1-n)$ indicates that the $6$th character in the table `T2`
 is a family on two parameters: $n$ and $q-1-n$, while $\chi_7$ depends on only
 one, namely $n(q-1)$.
 A similar result can be obtained for odd $q$ albeit with a few more cases that need
