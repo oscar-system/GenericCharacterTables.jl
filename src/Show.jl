@@ -113,7 +113,6 @@ end
 
 Return the number of irreducible character types of table `t`.
 
-For example this excludes character types created with [`tensor!`](@ref) or [`lincomb!`](@ref).
 """
 function irrchartypes(t::Table)
 	return t.irrchartypes
@@ -123,8 +122,6 @@ end
     nrirrchars(t::Table)
 
 Return the number of irreducible characters of table `t`.
-
-For example this excludes characters created with [`tensor!`](@ref) or [`lincomb!`](@ref).
 
 # Examples
 ```jldoctest

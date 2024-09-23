@@ -5,12 +5,13 @@ CurrentModule = GenericCharacterTables
 # Modify Tables
 
 # Add Characters
-It is also possible to create new character types with GenericCharacterTables. These new characters will be added to the tables inplace.
+It is also possible to create new character types with GenericCharacterTables.
 
 ```@docs
-tensor!
-lincomb!
-omega!
+tensor_product(char1::GenericCharacter, char2::GenericCharacter)
+tensor_product(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T <: PolyRingElem
+lincomb
+omega
 ```
 
 # Change Values
