@@ -366,54 +366,6 @@ end
 printinfoclass(t::Table, class::Union{Int64, Nothing}=nothing) = printinfoclass(Base.stdout, t, class)
 
 @doc raw"""
-    printval([io::IO], t::Table; char::Union{Int64, Nothing}=nothing, class::Union{Int64, Nothing}=nothing)
-
-Print to `io` (or to the default output stream `stdout` if `io` is not given)
-the values of the char type `char` and the class type `class` of the table `t`.
-
-Leaving `class` unspecified will print the values of all class types at `char`.
-Leaving both unspecified will print all values of t
-
-# Examples
-```jldoctest
-julia> g=genchartab("GL2");
-
-julia> printval(g,char=1)
-Value of character type 1 on class type
-  1: exp(2π𝑖((2*i*k)//(q - 1)))
-  2: exp(2π𝑖((2*i*k)//(q - 1)))
-  3: exp(2π𝑖((i*k + j*k)//(q - 1)))
-  4: exp(2π𝑖((i*k)//(q - 1)))
-
-julia> printval(g,char=4,class=2)
-Value of character type 4 on class type
-  2: (-1)*exp(2π𝑖((i*k)//(q - 1)))
-```
-"""
-function printval(io::IO, t::Table; char::Union{Int64, Nothing}=nothing, class::Union{Int64, Nothing}=nothing)
-	if char === nothing
-		chars=1:length(t)
-	else
-		chars=[char]
-	end
-	if class === nothing
-		classes=1:classtypes(t)
-	else
-		classes=[class]
-	end
-	io = pretty(io)
-	for i in chars
-		println(io, "Value of character type $i on class type", Indent())
-		for j in classes
-			println(io, j, ": ", t[i,j])
-		end
-		print(io, Dedent())
-	end
-end
-
-printval(t::Table; kwarg...) = printval(stdout, t; kwarg...)
-
-@doc raw"""
     nrparams(t::CharTable)
 
 Return the number of class and character parameters of the table `t`.

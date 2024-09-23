@@ -277,12 +277,16 @@ Return the generic character where the parameter `var` is replaced with `expr` i
 ```jldoctest
 julia> g=genchartab("GL2");
 
-julia> printval(g,char=1)
-Value of character type 1 on class type
-  1: exp(2π𝑖((2*i*k)//(q - 1)))
-  2: exp(2π𝑖((2*i*k)//(q - 1)))
-  3: exp(2π𝑖((i*k + j*k)//(q - 1)))
-  4: exp(2π𝑖((i*k)//(q - 1)))
+julia> g[1]
+Generic character of GL2
+  with parameters
+    k ∈ {1,…, q - 1}
+  of degree 1
+  with values
+    exp(2π𝑖((2*i*k)//(q - 1)))
+    exp(2π𝑖((2*i*k)//(q - 1)))
+    exp(2π𝑖((i*k + j*k)//(q - 1)))
+    exp(2π𝑖((i*k)//(q - 1)))
 
 julia> q,(i,j,l,k) = params(g);
 

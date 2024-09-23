@@ -28,7 +28,6 @@ export printcharparam
 export printclassparam
 export printinfochar
 export printinfoclass
-export printval
 export scalar_product
 export setcongruence
 export specclassparam!
