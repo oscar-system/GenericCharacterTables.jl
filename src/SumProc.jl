@@ -1,5 +1,3 @@
-export eesubs, nesum
-
 @doc raw"""
     eesubs(a::Union{GenericCyclo,GenericCycloFrac}, vars::Vector{UPoly}, vals::Vector{<:RingElement})
 

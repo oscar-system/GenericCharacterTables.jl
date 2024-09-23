@@ -1,5 +1,3 @@
-export setcongruence
-
 # TODO: find a better name
 # TODO: simplify? always? on request? never? (currently always)
 @doc raw"""

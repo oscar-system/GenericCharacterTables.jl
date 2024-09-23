@@ -1,5 +1,3 @@
-export norm, scalar_product, ortho2norm, ortho2scalar, classmult
-
 @doc raw"""
     classmult(t::CharTable, class1::Int64, class2::Int64, class3::Int64)
 

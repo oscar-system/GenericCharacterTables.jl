@@ -1,26 +1,6 @@
 import Oscar.order
 import Oscar.AbstractAlgebra: degree
 
-export centord
-export chardeg
-export chartypes
-export classtypes
-export irrchartypes
-export nrchars
-export nrclasses
-export nrirrchars
-export chartypeid
-export nrparams
-export order
-export param
-export params
-export printcharparam
-export printclassparam
-export printinfochar
-export printinfoclass
-export printinfotab
-export printval
-export status
 # TODO PrintValPhi, PrintToTex?
 
 import Oscar: pretty, Indent, Dedent, terse, is_terse

@@ -11,8 +11,6 @@ import Base: show, +, -, *, ^, ==, inv, isone, iszero, one, zero, rand, deepcopy
 
 import Compat
 
-export kempner, kempner_with_data, generic_cyclotomic_ring
-
 if Compat.pkgversion(Oscar.AbstractAlgebra) >= v"0.42.0"
 	const UPoly = Generic.UnivPoly{QQFieldElem}
 	const UPolyRing = Generic.UniversalPolyRing{QQFieldElem}
