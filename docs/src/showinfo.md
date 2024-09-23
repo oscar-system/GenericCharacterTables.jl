@@ -16,8 +16,6 @@ order(t::Table)
 ## About Characters
 
 ```@docs
-chartypes
-irrchartypes
 nrchars
 nrirrchars
 chardeg

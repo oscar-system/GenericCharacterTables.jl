@@ -1,7 +1,6 @@
 export centord
 export chardeg
 export chartypeid
-export chartypes
 export classmult
 export classtypes
 export degree
@@ -10,7 +9,6 @@ export genchartab
 export generic_cyclotomic_ring
 export greenfuntab
 export info
-export irrchartypes
 export kempner
 export kempner_with_data
 export lincomb

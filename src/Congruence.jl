@@ -25,11 +25,10 @@ function setcongruence(x::CharTable, congruence::Tuple{ZZRingElem, ZZRingElem})
 		deepcopy(x.classparams),
 		S,  # <- this changed
 		x.information,
-		Vector{GenericCharacter}(undef, chartypes(x)),
-		x.irrchartypes,
+		Vector{GenericCharacter}(undef, length(x)),
 		x.importname*"*"
 	)
-	for i in 1:chartypes(x)
+	for i in 1:length(x)
 		t.chars[i]=t(x[i])
 	end
 	return t

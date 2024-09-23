@@ -34,7 +34,6 @@ struct CharTable <: Table
 	ring::GenericCycloRing  # Parent ring of the cyclotomics in this table
 	information::String  # General info about the table
 	chars::Vector{<:AbstractGenericCharacter}
-	irrchartypes::Int64  # Number of irreducible character types
 	importname::String  # This name can be used to import the table, a "*" indicates a modified table
 end
 function CharTable(order::UPoly, table::Matrix{GenericCyclo}, classinfo::Vector{<:Any}, classlength::Vector{UPoly},
@@ -44,7 +43,7 @@ function CharTable(order::UPoly, table::Matrix{GenericCyclo}, classinfo::Vector{
 	num_chars=size(table, 1)
 	chars=Vector{GenericCharacter}(undef, num_chars)
 	ct=CharTable(order, classinfo, classlength, classsums, classparamindex, charparamindex,
-			classparams, ring, information, chars, num_chars, importname)
+			classparams, ring, information, chars, importname)
 	for i in 1:num_chars
 		ct.chars[i]=GenericCharacter(ct, table[i,:], charinfo[i], chardegree[i], charsums[i], charparams[i])
 	end
@@ -146,6 +145,8 @@ end
 
 Base.getindex(ct::SimpleCharTable{T}, i::Integer) where T<:NfPoly = ct.chars[i]::SimpleGenericCharacter{T}
 Base.getindex(ct::SimpleCharTable{T}, i::Integer, j::Integer) where T<:NfPoly = ct[i].values[j]::T
+
+Base.length(ct::Table) = length(ct.chars)
 
 @doc raw"""
     SimpleGenericCharacter <: AbstractGenericCharacter

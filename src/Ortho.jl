@@ -18,7 +18,7 @@ function classmult(t::CharTable, class1::Int64, class2::Int64, class3::Int64)
 		throw(DomainError((class1,class2,class3), "Some class types are out of range."))
 	end
 	sum=0
-	for char in 1:irrchartypes(t)
+	for char in 1:length(t)
 		val1=shift_class_parameters(t, t[char, class1], 1)
 		val2=shift_class_parameters(t, t[char, class2], 2)
 		val3=shift_class_parameters(t, t[char, class3], 3)
@@ -45,7 +45,7 @@ function classmult(t::SimpleCharTable{T}, class1::Int64, class2::Int64, class3::
 		throw(DomainError((class1,class2,class3), "Some class types are out of range."))
 	end
 	sum=0
-	for char in 1:irrchartypes(t)
+	for char in 1:length(t)
 		sum1=t[char, class1]*t[char, class2]*t[char, class3]
 		sum+=t.order*sum1//t[char].degree  # TODO move t.order* to the end of the function
 	end
@@ -171,7 +171,7 @@ function ortho2norm(t::CharTable, class::Int64)
 		throw(DomainError(class, "Class type is out of range."))
 	end
 	sum=0
-	for char in 1:irrchartypes(t)
+	for char in 1:length(t)
 		val=t[char, class]
 		sum+=charsum(t[char], val*conj(val))
 	end
@@ -196,7 +196,7 @@ function ortho2norm(t::SimpleCharTable{T}, class::Int64) where T <: NfPoly  # TO
 		throw(DomainError(class, "Class type is out of range."))
 	end
 	sum=0
-	for char in 1:irrchartypes(t)
+	for char in 1:length(t)
 		sum+=t[char, class]^2
 	end
 	return t.classlength[class]*sum//t.order
@@ -224,7 +224,7 @@ function ortho2scalar(t::CharTable, class1::Int64, class2::Int64)
 		throw(DomainError((class1,class2), "Some class types are out of range."))
 	end
 	sum=0
-	for char in 1:irrchartypes(t)
+	for char in 1:length(t)
 		val1=shift_class_parameters(t, t[char, class1], 1)
 		val2=shift_class_parameters(t, t[char, class2], 2)
 		sum+=charsum(t[char], val1*conj(val2))
@@ -250,7 +250,7 @@ function ortho2scalar(t::SimpleCharTable{T}, class1::Int64, class2::Int64) where
 		throw(DomainError((class1,class2), "Some class types are out of range."))
 	end
 	sum=0
-	for char in 1:irrchartypes(t)
+	for char in 1:length(t)
 		sum+=t[char, class1]*t[char, class2]
 	end
 	return t.classlength[class1]*sum//t.order

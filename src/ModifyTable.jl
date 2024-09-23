@@ -39,7 +39,7 @@ function specclassparam!(t::CharTable, class::Int64, var::UPoly, expr::RingEleme
 	if !is_gen(var)
 		throw(DomainError(var, "Not a single variable."))
 	end
-	for char in 1:chartypes(t)
+	for char in 1:length(t)
 		t[char].values[class]=evaluate(t[char,class], [var_index(var)], [expr])
 	end
 	push!(t.classparams[class].substitutions, ParameterSubstitution(var, base_ring(t.ring)(expr)))

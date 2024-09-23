@@ -330,7 +330,7 @@ julia> chartypeid(g[1])
 """
 function chartypeid(c::AbstractGenericCharacter)
 	ct=parent(c)
-	for i in 1:irrchartypes(ct)
+	for i in 1:length(ct)
 		if ct[i] === c
 			return i
 		end

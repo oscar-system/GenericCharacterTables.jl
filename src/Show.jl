@@ -33,7 +33,7 @@ function Base.show(io::IO, ::MIME"text/plain", t::Table)
 	if c !== nothing
 		println(io, "restricted to ", gens(base_ring(t.ring))[1], " congruent to ", c[1], " modulo ", c[2])
 	end
-	println(io, "with ", irrchartypes(t)," irreducible character types")
+	println(io, "with ", length(t)," irreducible character types")
 	println(io, "with ", classtypes(t)," class types")
 	if t isa SimpleCharTable
 		print(io, "without parameters")
@@ -91,34 +91,6 @@ function Base.show(io::IO, c::AbstractGenericCharacter)
 end
 
 @doc raw"""
-    chartypes(t::Table)
-
-Return the number of character types of table `t`.
-
-# Examples
-```jldoctest
-julia> g=genchartab("GL2");
-
-julia> chartypes(g)
-4
-
-```
-"""
-function chartypes(t::Table)
-	length(t.chars)
-end
-
-@doc raw"""
-    irrchartypes(t::Table)
-
-Return the number of irreducible character types of table `t`.
-
-"""
-function irrchartypes(t::Table)
-	return t.irrchartypes
-end
-
-@doc raw"""
     nrirrchars(t::Table)
 
 Return the number of irreducible characters of table `t`.
@@ -133,7 +105,7 @@ q^2 - 1
 ```
 """
 function nrirrchars(t::Table)
-	return sum(nrchars.(Ref(t), 1:irrchartypes(t)))
+	return sum(nrchars.(Ref(t), 1:length(t)))
 end
 
 @doc raw"""
@@ -286,7 +258,7 @@ julia> printcharparam(g)
 """
 function printcharparam(io::IO, t::CharTable, char::Union{Int64, Nothing}=nothing)
 	if char === nothing
-		chars=1:chartypes(t)
+		chars=1:length(t)
 	else
 		chars=[char]
 	end
@@ -351,7 +323,7 @@ julia> printinfochar(g)
 """
 function printinfochar(io::IO, t::Table, char::Union{Int64, Nothing}=nothing)
 	if char === nothing
-		chars=1:chartypes(t)
+		chars=1:length(t)
 	else
 		chars=[char]
 	end
@@ -422,7 +394,7 @@ Value of character type 4 on class type
 """
 function printval(io::IO, t::Table; char::Union{Int64, Nothing}=nothing, class::Union{Int64, Nothing}=nothing)
 	if char === nothing
-		chars=1:chartypes(t)
+		chars=1:length(t)
 	else
 		chars=[char]
 	end

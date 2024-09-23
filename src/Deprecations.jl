@@ -1,4 +1,4 @@
-export scalar
+export scalar, irrchartypes, chartypes
 
 @doc raw"""
     norm(t::Table, char::Int64)
@@ -47,3 +47,27 @@ end
 @alias scalar scalar_product
 
 setcongruence(x::CharTable, congruence::Tuple{Int, Int}) = setcongruence(x, ZZ.(congruence))
+
+@doc raw"""
+    chartypes(t::Table)
+
+Return the number of character types of table `t`.
+
+# Examples
+```jldoctest
+julia> g=genchartab("GL2");
+
+julia> chartypes(g)
+4
+
+```
+"""
+chartypes(t::Table) = length(t)
+
+@doc raw"""
+    irrchartypes(t::Table)
+
+Return the number of irreducible character types of table `t`.
+
+"""
+irrchartypes(t::Table) = length(t)
