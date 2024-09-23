@@ -35,5 +35,4 @@ export scalar_product
 export setcongruence
 export specclassparam!
 export specialize
-export status
 export tensor_product

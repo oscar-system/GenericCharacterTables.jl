@@ -199,28 +199,6 @@ function nrclasses(t::Table)
 end
 
 @doc raw"""
-    status(t::Table)
-
-Print the order of the group associated to `t` and the number of class and character types of the table `t`.
-
-# Examples
-```jldoctest
-julia> g=genchartab("GL2");
-
-julia> status(g)
-Order:                     q^4 - q^3 - q^2 + q
-Number of character types: 4
-Number of class types:     4
-
-```
-"""
-function status(t::Table)
-	println("Order:                     ", t.order)
-	println("Number of character types: ", chartypes(t))
-	println("Number of class types:     ", classtypes(t))
-end
-
-@doc raw"""
     info(t::Table)
 
 Return the metadata of `t` in LaTeX format. This usually includes the time the table was first computed.
