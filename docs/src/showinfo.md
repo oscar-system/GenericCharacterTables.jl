@@ -6,7 +6,6 @@ CurrentModule = GenericCharacterTables
 
 ## About Tables
 ```@docs
-status
 printval
 info
 nrparams
