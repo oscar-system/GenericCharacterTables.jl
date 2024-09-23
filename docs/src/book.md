@@ -12,7 +12,7 @@ source concurrently with the present text.
 
 To start we load the generic character table for $\mathrm{SL}_3(q)$ with
 $q\not\equiv 1\pmod 3$.
-To learn about the origin of the table, we could enter `info(T)`.
+To learn about the origin of the table, we could enter `print(info(T))`.
 ```jldoctest book
 julia> T = genchartab("SL3.n1")
 Generic character table SL3.n1
