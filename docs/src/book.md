@@ -149,7 +149,7 @@ julia> (q, (a, b, m, n)) = params(T2);
 
 julia> x = param(T2, "x");  # create an additional "free" variable
 
-julia> s = specialize(T2[6], m, -n + (q-1)*x)  # force m = -n (mod q-1)
+julia> s = specialize(T2[6], m, -n + (q-1)*x);  # force m = -n (mod q-1)
 ```
 
 Recomputing the scalar product now gives a new result. Note that
