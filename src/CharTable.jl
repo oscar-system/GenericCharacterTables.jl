@@ -1,5 +1,3 @@
-export genchartab, greenfuntab
-
 abstract type Table end
 abstract type AbstractGenericCharacter end
 

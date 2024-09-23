@@ -1,7 +1,5 @@
 import Oscar: tensor_product
 
-export tensor_product, omega, lincomb, specialize, specclassparam!
-
 # TODO deal with ParameterSubstitution, this is not done in the original implementation.
 
 @doc raw"""
