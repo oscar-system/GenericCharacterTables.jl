@@ -9,6 +9,7 @@ export eesubs
 export genchartab
 export generic_cyclotomic_ring
 export greenfuntab
+export info
 export irrchartypes
 export kempner
 export kempner_with_data
@@ -29,7 +30,6 @@ export printcharparam
 export printclassparam
 export printinfochar
 export printinfoclass
-export printinfotab
 export printval
 export scalar_product
 export setcongruence

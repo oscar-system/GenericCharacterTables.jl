@@ -8,7 +8,7 @@ CurrentModule = GenericCharacterTables
 ```@docs
 status
 printval
-printinfotab
+info
 nrparams
 params
 order(t::Table)

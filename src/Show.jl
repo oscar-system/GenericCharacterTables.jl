@@ -221,18 +221,11 @@ function status(t::Table)
 end
 
 @doc raw"""
-    printinfotab([io::IO], t::Table)
+    info(t::Table)
 
-Print to `io` (or to the default output stream `stdout` if `io` is not given)
-metadata of `t` in LaTeX format.
-
-This usually includes the time the table was first computed.
+Return the metadata of `t` in LaTeX format. This usually includes the time the table was first computed.
 """
-function printinfotab(io::IO, t::Table)
-	println(io, t.information)
-end
-
-printinfotab(t::Table) = printinfotab(Base.stdout, t)
+info(t::Table) = t.information
 
 @doc raw"""
     order(t::Table)
