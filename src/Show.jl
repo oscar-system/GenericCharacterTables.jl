@@ -283,12 +283,7 @@ q^4 - q^3 - q^2 + q
 
 ```
 """
-function centord(t::Table, class::Int64)
-	if class > classtypes(t)
-		throw(DomainError(class, "Class type is out of range."))
-	end
-	div(t.order, t.classlength[class])
-end
+centord(t::Table, class::Int64) = div(t.order, t.classlength[class])
 
 @doc raw"""
     chardeg(t::Table, char::Int64)
@@ -304,12 +299,7 @@ q + 1
 
 ```
 """
-function chardeg(t::Table, char::Int64)
-	if char > chartypes(t)
-		throw(DomainError(char, "Character type is out of range."))
-	end
-	return degree(t[char])
-end
+chardeg(t::Table, char::Int64) = degree(t[char])
 
 @doc raw"""
     degree(char::AbstractGenericCharacter)
@@ -343,12 +333,7 @@ q - 1
 
 ```
 """
-function nrchars(t::Table, char::Int64)
-	if char > chartypes(t)
-		throw(DomainError(char, "Character type is out of range."))
-	end
-	return nrchars(t[char])
-end
+nrchars(t::Table, char::Int64) = nrchars(t[char])
 
 @doc raw"""
     nrchars(char::GenericCharacter)
@@ -388,19 +373,11 @@ q - 1
 ```
 """
 function nrclasses(t::CharTable, class::Int64)
-	if class > classtypes(t)
-		throw(DomainError(class, "Class type is out of range."))
-	end
 	o=t.ring(1)
 	result=t.classsums[class](o//o)
 	return shrink(result)
 end
-function nrclasses(t::SimpleCharTable, class::Int64)
-	if class > classtypes(t)
-		throw(DomainError(class, "Class type is out of range."))
-	end
-	t.classtypeorder[class]
-end
+nrclasses(t::SimpleCharTable, class::Int64) = t.classtypeorder[class]
 
 @doc raw"""
     printcharparam([io::IO], t::CharTable, char::Union{Int64, Nothing}=nothing)
@@ -425,9 +402,6 @@ function printcharparam(io::IO, t::CharTable, char::Union{Int64, Nothing}=nothin
 	if char === nothing
 		chars=1:chartypes(t)
 	else
-		if char > chartypes(t)
-			throw(DomainError(char, "Character type is out of range."))
-		end
 		chars=[char]
 	end
 	for i in chars
@@ -460,9 +434,6 @@ function printclassparam(io::IO, t::CharTable, class::Union{Int64, Nothing}=noth
 	if class === nothing
 		classes=1:classtypes(t)
 	else
-		if class > classtypes(t)
-			throw(DomainError(class, "Class type is out of range."))
-		end
 		classes=[class]
 	end
 	for i in classes
@@ -496,9 +467,6 @@ function printinfochar(io::IO, t::Table, char::Union{Int64, Nothing}=nothing)
 	if char === nothing
 		chars=1:chartypes(t)
 	else
-		if char > chartypes(t)
-			throw(DomainError(char, "Character type is out of range."))
-		end
 		chars=[char]
 	end
 	for i in chars
@@ -532,9 +500,6 @@ function printinfoclass(io::IO, t::Table, class::Union{Int64, Nothing}=nothing)
 	if class === nothing
 		classes=1:classtypes(t)
 	else
-		if class > classtypes(t)
-			throw(DomainError(class, "Class type is out of range."))
-		end
 		classes=[class]
 	end
 	for i in classes
@@ -573,17 +538,11 @@ function printval(io::IO, t::Table; char::Union{Int64, Nothing}=nothing, class::
 	if char === nothing
 		chars=1:chartypes(t)
 	else
-		if char > chartypes(t)
-			throw(DomainError(char, "Character type is out of range."))
-		end
 		chars=[char]
 	end
 	if class === nothing
 		classes=1:classtypes(t)
 	else
-		if class > classtypes(t)
-			throw(DomainError(class, "Class type is out of range."))
-		end
 		classes=[class]
 	end
 	io = pretty(io)
