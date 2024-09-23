@@ -140,29 +140,6 @@ function nrirrchars(t::Table)
 end
 
 @doc raw"""
-    chartypeid(c::AbstractGenericCharacter)
-
-Return if the index of `c` in `parent(c)`. If `c` is not in `parent(c)` (e.g. if it is a tensor product) `0` is returned.
-# Examples
-```jldoctest
-julia> g=genchartab("GL2");
-
-julia> chartypeid(g[1])
-1
-
-```
-"""
-function chartypeid(c::AbstractGenericCharacter)
-	ct=parent(c)
-	for i in 1:irrchartypes(ct)
-		if ct[i] === c
-			return i
-		end
-	end
-	return 0
-end
-
-@doc raw"""
     classtypes(t::Table)
 
 Return the number of conjugacy class types of table `t`.
@@ -253,22 +230,6 @@ q + 1
 chardeg(t::Table, char::Int64) = degree(t[char])
 
 @doc raw"""
-    degree(char::AbstractGenericCharacter)
-
-Return the character degree of `char`.
-
-# Examples
-```jldoctest
-julia> g=genchartab("GL2");
-
-julia> degree(g[3])
-q + 1
-
-```
-"""
-degree(char::AbstractGenericCharacter) = char.degree
-
-@doc raw"""
     nrchars(t::Table, char::Int64)
 
 Return the number of characters in the character type `char` of the table `t`.
@@ -285,29 +246,6 @@ q - 1
 ```
 """
 nrchars(t::Table, char::Int64) = nrchars(t[char])
-
-@doc raw"""
-    nrchars(char::GenericCharacter)
-
-Return the number of characters in the generic character `char`.
-
-# Examples
-```jldoctest
-julia> g=genchartab("GL2");
-
-julia> nrchars(g[1])
-q - 1
-
-```
-"""
-function nrchars(char::GenericCharacter)
-	!iszero(chartypeid(char)) || error("Cannot calculate number of characters in reducible types.")
-	o=parent(char).ring(1)
-	result=charsum(char, o//o)
-	return shrink(result)
-end
-
-nrchars(char::SimpleGenericCharacter) = 1
 
 @doc raw"""
     nrclasses(t::Table, class::Int64)
