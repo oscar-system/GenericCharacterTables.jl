@@ -73,7 +73,7 @@ This returns a “generic” scalar product, plus a (possibly empty)
 list of parameter exceptions for which the general result may not hold.
 For example:
 ```jldoctest book
-julia> scalar(T[4], h)
+julia> scalar_product(T[4], h)
 0
 With exceptions:
   2*n1 ∈ (q - 1)ℤ
@@ -83,7 +83,7 @@ except when $q-1$ divides $2n_1$, where $n_1$ indicates the value of the paramet
 For a “generic decomposition” we need to compute all the scalar products and
 exceptions.
 ```jldoctest book
-julia> for i in 1:8 println("<$i, h> = ", scalar(T[i], h)) end
+julia> for i in 1:8 println("<$i, h> = ", scalar_product(T[i], h)) end
 <1, h> = 1
 <2, h> = 2
 <3, h> = 2
@@ -155,7 +155,7 @@ julia> s = specialize(T2[6], m, -n + (q-1)*x)  # force m = -n (mod q-1)
 Recomputing the scalar product now gives a new result. Note that
 we have to map the character type `h` into the new table for this work.
 ```jldoctest book
-julia> scalar(s, T2(h))
+julia> scalar_product(s, T2(h))
 1
 With exceptions:
   3*n1 ∈ (q - 1)ℤ
