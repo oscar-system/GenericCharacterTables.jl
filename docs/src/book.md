@@ -126,8 +126,8 @@ Recall that earlier we saw that $\langle\chi_4,\chi_2^2\rangle=0$
 except when $q-1$ divides $2n_1$, where $n_1$ was the value of the parameter $n$
 used in $\chi_4$. Further restrictions apply to $n$:
 ```jldoctest book
-julia> printcharparam(T,4)
-4	n ∈ {1,…, q - 1} except n ∈ (q - 1)ℤ
+julia> params(T[4])
+n ∈ {1,…, q - 1} except n ∈ (q - 1)ℤ
 ```
 
 So $n$ may take on any value between $1$ and $q-1$ not divisible by $q-1$.
@@ -139,28 +139,27 @@ We demonstrate this for $q$ even. Then $\langle\chi_4,\chi_2^2\rangle=0$
 and with a similar argument $\langle\chi_5,\chi_2^2\rangle=0$.
 We now construct a copy of the table but with the congruence equation $q\equiv 0\pmod 2$ applied:
 ```jldoctest book
-julia> T2 = setcongruence(T, (0,2));
-
+julia> T2 = setcongruence(T; remainder=0, modulus=2);
 ```
 Inspecting the list of exceptions for $\langle\chi_6,\chi_2^2\rangle$, the first
-occurs when $q-1$ divides $m+n$. To study this case we specialize $m$:
+occurs when $q-1$ divides $m+n$. To study this case we specialize $m$ for
+character type 6:
 ```jldoctest book
 julia> (q, (a, b, m, n)) = params(T2);
 
 julia> x = param(T2, "x");  # create an additional "free" variable
 
-julia> speccharparam!(T2, 6, m, -n + (q-1)*x)  # force m = -n (mod q-1)
+julia> s = specialize(T2[6], m, -n + (q-1)*x)  # force m = -n (mod q-1)
 ```
 
-Recomputing the scalar product gives a new result
+Recomputing the scalar product now gives a new result. Note that
+we have to map the character type `h` into the new table for this work.
 ```jldoctest book
-julia> h = T2[2] * T2[2];
-
-julia> scalar(T2[6], h)
+julia> scalar(s, T2(h))
 1
 With exceptions:
-  2*n1 ∈ (q - 1)ℤ
   3*n1 ∈ (q - 1)ℤ
+  2*n1 ∈ (q - 1)ℤ
 ```
 
 The exceptions both cannot occur as $q$ is even and the table we are considering
