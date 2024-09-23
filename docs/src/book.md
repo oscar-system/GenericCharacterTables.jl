@@ -12,7 +12,7 @@ source concurrently with the present text.
 
 To start we load the generic character table for $\mathrm{SL}_3(q)$ with
 $q\not\equiv 1\pmod 3$.
-To learn about the origin of the table, we could enter `printinfotab(T)`.
+To learn about the origin of the table, we could enter `info(T)`.
 ```jldoctest book
 julia> T = genchartab("SL3.n1")
 Generic character table SL3.n1
@@ -153,7 +153,7 @@ julia> s = specialize(T2[6], m, -n + (q-1)*x);  # force m = -n (mod q-1)
 ```
 
 Recomputing the scalar product now gives a new result. Note that
-we have to map the character type `h` into the new table for this work.
+we have to map the character type `h` into the new table for this to work.
 ```jldoctest book
 julia> scalar_product(s, T2(h))
 1
