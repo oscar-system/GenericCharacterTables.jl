@@ -380,3 +380,20 @@ function nrchars(char::GenericCharacter)
 end
 
 nrchars(char::SimpleGenericCharacter) = 1
+
+@doc raw"""
+    params(chi::AbstractGenericCharacter)
+
+Return the parameters of the character type `chi`.
+This includes the parameter names, ranges and exceptions.
+
+# Examples
+```jldoctest
+julia> g=genchartab("GL2");
+
+julia> params(g[3])
+k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except -l + k ∈ (q - 1)ℤ
+```
+"""
+params(chi::GenericCharacter) = chi.params
+params(chi::SimpleGenericCharacter) = Parameters(Parameter[])
