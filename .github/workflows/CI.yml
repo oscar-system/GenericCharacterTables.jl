@@ -30,7 +30,7 @@ jobs:
           - '1.9'
           - '1.10'
           - '~1.11.0-0'
-          - 'nightly'
+          #- 'nightly'  # disabled due to https://github.com/JuliaLang/julia/issues/55006
         os:
           - ubuntu-latest
         #include:
