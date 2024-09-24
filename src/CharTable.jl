@@ -87,6 +87,8 @@ struct GenericCharacter <: AbstractGenericCharacter
 	params::Parameters  # Info about the parameters in this character type
 end
 
+Base.eltype(::Type{GenericCharacter}) = GenericCyclo
+
 charsum(c::GenericCharacter, x::Union{GenericCyclo, GenericCycloFrac}) = c.sum(x)::Union{GenericCyclo, GenericCycloFrac}
 
 @doc raw"""
@@ -185,6 +187,11 @@ end
 
 AbstractAlgebra.parent(c::AbstractGenericCharacter) = c.parent
 Base.getindex(c::AbstractGenericCharacter, i::Integer) = c.values[i]
+
+Base.eltype(::Type{SimpleGenericCharacter{T}}) where T<:NfPoly = T
+
+Base.length(c::AbstractGenericCharacter) = length(c.values)
+Base.iterate(c::AbstractGenericCharacter, state::Integer=1) = state > length(c) ? nothing : (c[state], state+1)
 
 function loadtab(path::String)
 	return (@eval module $(gensym("CHAR_TABLE")) include($(path)) end).TABLE
