@@ -181,40 +181,6 @@ q^4 - q^3 - q^2 + q
 centord(t::Table, class::Int64) = div(t.order, t.classlength[class])
 
 @doc raw"""
-    chardeg(t::Table, char::Int64)
-
-Return the character degree of the character type `char` of the table `t`.
-
-# Examples
-```jldoctest
-julia> g=genchartab("GL2");
-
-julia> chardeg(g, 3)
-q + 1
-
-```
-"""
-chardeg(t::Table, char::Int64) = degree(t[char])
-
-@doc raw"""
-    nrchars(t::Table, char::Int64)
-
-Return the number of characters in the character type `char` of the table `t`.
-
-In the case of a `SimpleCharTable` this is always one.
-
-# Examples
-```jldoctest
-julia> g=genchartab("GL2");
-
-julia> nrchars(g, 1)
-q - 1
-
-```
-"""
-nrchars(t::Table, char::Int64) = nrchars(t[char])
-
-@doc raw"""
     nrclasses(t::Table, class::Int64)
 
 Return the number of conjugacy classes in the class type `class` of the table `t`.
@@ -234,38 +200,6 @@ function nrclasses(t::CharTable, class::Int64)
 	return shrink(result)
 end
 nrclasses(t::SimpleCharTable, class::Int64) = t.classtypeorder[class]
-
-@doc raw"""
-    printcharparam([io::IO], t::CharTable, char::Union{Int64, Nothing}=nothing)
-
-Print to `io` (or to the default output stream `stdout` if `io` is not given)
-the parameters of the character type `char` of the table `t`.
-
-This includes the parameter names, ranges and exceptions. Leaving `char` unspecified will print the parameters of all character types.
-
-# Examples
-```jldoctest
-julia> g=genchartab("GL2");
-
-julia> printcharparam(g)
-1	k ∈ {1,…, q - 1}
-2	k ∈ {1,…, q - 1}
-3	k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except -l + k ∈ (q - 1)ℤ
-4	k ∈ {1,…, q^2 - 1} except k ∈ (q + 1)ℤ
-```
-"""
-function printcharparam(io::IO, t::CharTable, char::Union{Int64, Nothing}=nothing)
-	if char === nothing
-		chars=1:length(t)
-	else
-		chars=[char]
-	end
-	for i in chars
-		println(io, i, "\t", t[i].params)
-	end
-end
-
-printcharparam(t::CharTable, char::Union{Int64, Nothing}=nothing) = printcharparam(Base.stdout, t, char)
 
 @doc raw"""
     printclassparam([io::IO], t::CharTable, class::Union{Int64, Nothing}=nothing)

@@ -130,14 +130,13 @@ struct SimpleCharTable{T} <: Table
 	ring::PolyRing  # Ring of polynomials of type T used in table
 	information::String  # General info about the table
 	chars::Vector{<:AbstractGenericCharacter}
-	irrchartypes::Int64  # Number of irreducible character types
 	importname::String  # This name can be used to import the table
 	function SimpleCharTable(order::T, table::Matrix{T}, classinfo::Vector{<:Any}, classlength::Vector{T},
 		classtypeorder::Vector{T}, charinfo::Vector{<:Any}, chardegree::Vector{T},
 		ring::PolyRing, information::String, importname::String) where T<:NfPoly
 		num_chars=size(table, 1)
 		chars=Vector{SimpleGenericCharacter{T}}(undef, num_chars)
-		ct=new{T}(order, classinfo, classlength, classtypeorder, ring, information, chars, num_chars, importname)
+		ct=new{T}(order, classinfo, classlength, classtypeorder, ring, information, chars, importname)
 		for i in 1:num_chars
 			ct.chars[i]=SimpleGenericCharacter(ct, table[i,:], charinfo[i], chardegree[i])
 		end
