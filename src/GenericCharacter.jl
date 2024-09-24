@@ -349,7 +349,7 @@ end
 @doc raw"""
     degree(char::AbstractGenericCharacter)
 
-Return the character degree of `char`.
+Return the character degree of the characters in `char`.
 
 # Examples
 ```jldoctest
@@ -386,9 +386,9 @@ end
 nrchars(char::SimpleGenericCharacter) = 1
 
 @doc raw"""
-    params(chi::AbstractGenericCharacter)
+    params(char::AbstractGenericCharacter)
 
-Return the parameters of the character type `chi`.
+Return the parameters of the character type `char`.
 This includes the parameter names, ranges and exceptions.
 
 # Examples
@@ -399,5 +399,5 @@ julia> params(g[3])
 k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except -l + k ∈ (q - 1)ℤ
 ```
 """
-params(chi::GenericCharacter) = chi.params
-params(chi::SimpleGenericCharacter) = Parameters(Parameter[])
+params(char::GenericCharacter) = char.params
+params(char::SimpleGenericCharacter) = Parameters(Parameter[])
