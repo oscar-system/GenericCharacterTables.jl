@@ -22,9 +22,11 @@ makedocs(
 	doctest = true,
 	pages=[
 		"index.md",
-		"showinfo.md",
-		"calculations.md",
+		"tables.md",
+		"characters.md",
+		"classes.md",
 		"modify.md",
+		"cyclo.md",
 		"book.md",
 		"unexported.md",
 		"references.md",
