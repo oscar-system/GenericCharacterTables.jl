@@ -145,7 +145,7 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss5=nesum(ss5a, b, 1, q-2)
 	tt1=eesubs(tt, [b], [a])
 	ss6=nesum(tt1, a, 1, q-2)
-	ss7=eesubs(tt, [a,b], S.([(q-1)*1//3,2*(q-1)*1//3]))
+	ss7=eesubs(tt, [a,b], R.([(q-1)*1//3,2*(q-1)*1//3]))
 	1//6*ss5-1//6*ss6-1//3*ss7
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
