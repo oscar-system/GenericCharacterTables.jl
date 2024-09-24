@@ -197,7 +197,7 @@ function lincomb(coeffs::Vector{Int64}, chars::Vector{<:GenericCharacter})
 	if missing_var_batches > 0
 		vars=map(x -> String(x), symbols(S)[2:(nrparams(t)+1)]).*"l"
 		for i in 1:missing_var_batches
-			gens(S, vars.*string(i))
+			gens(S, vars.*string(extra_var_batches+i))
 		end
 	end
 	degrees=map(x -> x.degree, chars)

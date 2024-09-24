@@ -14,6 +14,9 @@ end
 function var_shift(a::UPoly, vars::Vector{Int64}, step_size::Int64, steps::Int64)
 	return evaluate(a, vars, get_shift_mask(parent(a), vars, step_size, steps))
 end
+function var_shift(a::UPolyFrac, vars::Vector{Int64}, step_size::Int64, steps::Int64)
+	return evaluate(a, vars, get_shift_mask(parent(numerator(a)), vars, step_size, steps))
+end
 function var_shift(a::GenericCyclo, vars::Vector{Int64}, step_size::Int64, steps::Int64)
 	return evaluate(a, vars, get_shift_mask(base_ring(parent(a)), vars, step_size, steps))
 end
