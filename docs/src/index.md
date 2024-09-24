@@ -30,18 +30,3 @@ and also includes many such tables.
 The code in this package is based on Maple code included in the CHEVIE project.
 
 For more details about the mathematical background, see [GHLMP96](@cite).
-
-
-## Loading tables
-
-Before doing anything you need to load a table first. GenericCharacterTables comes with a variety of precomputed tables.
-
-```@docs
-genchartab
-```
-
-GenericCharacterTables also provides some tables of Green functions. They can be loaded similarly.
-
-```@docs
-greenfuntab
-```
