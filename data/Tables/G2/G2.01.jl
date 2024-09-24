@@ -917,7 +917,7 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s4=nesum(tt1, i, 1, q-2)
 	tt1=eesubs(tt, [i], [-j])
 	s5=nesum(tt1, j, 1, q-2)
-	s7=eesubs(tt, [j,i], S.([i,(q-1)*1//3]))
+	s7=eesubs(tt, [j,i], R.([i,(q-1)*1//3]))
 	1//12*s2-1//12*s3-1//6*s4-1//12*s5+1//3*s7
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
@@ -1057,8 +1057,8 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	s4=nesum(tt1, k, 1, q-2)
 	tt1=eesubs(tt, [k], [-l])
 	s5=nesum(tt1, l, 1, q-2)
-	s7=eesubs(tt, [k,l], S.([(q-1)*1//3,2*(q-1)*1//3]))
-	s8=eesubs(tt, [k,l], S.([2*(q-1)*1//3,(q-1)*1//3]))
+	s7=eesubs(tt, [k,l], R.([(q-1)*1//3,2*(q-1)*1//3]))
+	s8=eesubs(tt, [k,l], R.([2*(q-1)*1//3,(q-1)*1//3]))
 	1//12*s2-1//12*s3-1//6*s4-1//12*s5+1//6*s7+1//6*s8
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
