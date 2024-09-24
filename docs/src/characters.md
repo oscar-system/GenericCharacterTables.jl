@@ -1,5 +1,6 @@
 ```@meta
 CurrentModule = GenericCharacterTables
+DocTestSetup = :(using GenericCharacterTables, Oscar)
 ```
 
 # Character types
