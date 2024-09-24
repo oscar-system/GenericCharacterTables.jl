@@ -269,6 +269,107 @@ function lincomb(coeffs::Vector{Int64}, chars::Vector{SimpleGenericCharacter{T}}
 end
 
 @doc raw"""
+    norm(char::GenericCharacter)
+
+Return the norm of the character type `char`.
+
+# Examples
+```jldoctest
+julia> g=genchartab("GL2");
+
+julia> norm(g[1])
+1
+```
+"""
+function Oscar.norm(char::GenericCharacter)
+	t=parent(char)
+	sum=0
+	for class in 1:classtypes(t)
+		val=char[class]
+		sum+=t.classlength[class]*classsum(t, class, val*conj(val))
+	end
+	return shrink(sum//t.order)
+end
+
+@doc raw"""
+    norm(char::SimpleGenericCharacter{T}) where T <: NfPoly
+
+Return the norm of the character type `char`.
+
+# Examples
+```jldoctest
+julia> g=greenfuntab("GL3");
+
+julia> norm(g[1])
+6//(q^3 - 3*q^2 + 3*q - 1)
+```
+"""
+function Oscar.norm(char::SimpleGenericCharacter{T}) where T <: NfPoly
+	t=parent(char)
+	sum=0
+	for class in 1:classtypes(t)
+		sum+=char[class]^2*t.classlength[class]*t.classtypeorder[class]
+	end
+	return sum//t.order
+end
+
+@doc raw"""
+    scalar_product(char1::GenericCharacter, char2::GenericCharacter)
+
+Return the scalar product between the character types `char1` and `char2`.
+
+# Examples
+```jldoctest
+julia> g=genchartab("GL2");
+
+julia> scalar_product(g[3],g[2])
+0
+With exceptions:
+  l1 + k1 - 2*k2 ∈ (q - 1)ℤ
+  l1 - k2 ∈ (q - 1)ℤ
+  k1 - k2 ∈ (q - 1)ℤ
+```
+"""
+function Oscar.scalar_product(char1::GenericCharacter, char2::GenericCharacter)
+	if parent(char1) != parent(char2)
+		throw(DomainError((parent(char1),parent(char2)), "Tables do not match."))
+	end
+	t=parent(char1)
+	sum=0
+	for class in 1:classtypes(t)
+		val1=shift_char_parameters(t, char1[class], 1)
+		val2=shift_char_parameters(t, char2[class], 2)
+		sum+=t.classlength[class]*classsum(t, class, val1*conj(val2))
+	end
+	return shrink(sum//t.order)
+end
+
+@doc raw"""
+    scalar_product(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T <: NfPoly
+
+Return the scalar product between the character types `char1` and `char2`.
+
+# Examples
+```jldoctest
+julia> g=greenfuntab("GL3");
+
+julia> scalar_product(g[1],g[2])
+0
+```
+"""
+function Oscar.scalar_product(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T <:NfPoly
+	if parent(char1) != parent(char2)
+		throw(DomainError((parent(char1),parent(char2)), "Tables do not match."))
+	end
+	t=parent(char1)
+	sum=0
+	for class in 1:classtypes(t)
+		sum+=char1[class]*char2[class]*t.classlength[class]*t.classtypeorder[class]
+	end
+	return sum//t.order
+end
+
+@doc raw"""
     specialize(char::GenericCharacter, var::UPoly, expr::RingElement)
 
 Return the generic character where the parameter `var` is replaced with `expr` in `char`.
