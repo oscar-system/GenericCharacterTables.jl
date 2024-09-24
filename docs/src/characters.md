@@ -18,7 +18,8 @@ In particular the Julia types we use to represent character types are called
 ## Properties
 
 ```@docs
-nrchars
+number_of_character_types
+number_of_characters(char::GenericCharacter)
 degree(chi::AbstractGenericCharacter)
 params(chi::GenericCharacter)
 printinfochar

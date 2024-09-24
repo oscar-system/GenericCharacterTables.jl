@@ -12,9 +12,10 @@ excluded parameter values.
 ## Properties
 
 ```@docs
-classtypes
-nrclasses
-centord
+number_of_conjugacy_class_types
+number_of_conjugacy_classes(t::Table)
+number_of_conjugacy_classes(t::CharTable, class::Int64)
+centralizer_order
 printclassparam
 printinfoclass
 ```
@@ -30,7 +31,10 @@ satisfied if the evaluation of this polynomial is an integer.
 
 
 ```@docs
-ortho2norm
-ortho2scalar
-classmult
+norm(t::CharTable, class::Int64)
+norm(t::SimpleCharTable{T}, class::Int64) where T <: NfPoly
+scalar_product(t::CharTable, class1::Int64, class2::Int64)
+scalar_product(t::SimpleCharTable{T}, class1::Int64, class2::Int64) where T <: NfPoly
+class_multiplication_coefficient(t::CharTable, class1::Int64, class2::Int64, class3::Int64)
+class_multiplication_coefficient(t::SimpleCharTable{T}, class1::Int64, class2::Int64, class3::Int64) where T <: NfPoly
 ```
