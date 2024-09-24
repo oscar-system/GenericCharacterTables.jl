@@ -18,10 +18,8 @@ order(t::Table)
 ```@docs
 nrchars
 nrirrchars
-chardeg
 degree(chi::AbstractGenericCharacter)
 params(chi::GenericCharacter)
-printcharparam
 printinfochar
 ```
 

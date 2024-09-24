@@ -1,5 +1,4 @@
 export centord
-export chardeg
 export chartypeid
 export classmult
 export classtypes
@@ -24,7 +23,6 @@ export ortho2norm
 export ortho2scalar
 export param
 export params
-export printcharparam
 export printclassparam
 export printinfochar
 export printinfoclass
