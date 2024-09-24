@@ -4,20 +4,61 @@ CurrentModule = GenericCharacterTables
 
 # Character types
 
-TODO: recall what those are. Explain that "character types" are represented
-by the type `GenericCharacter` (because "type" already has another meaning in Julia).
+A *character type* is a family of characters which are indexed by a set of parameters,
+together with ranges of admissible values for each parameters, and a set of
+excluded parameter values. The characters in a character type share many properties,
+e.g. they all have the same degree.
+
+Since "types" already have a very specific meaning in Julia (and other programming
+languages), we instead sometimes refer to character types as "generic characters".
+In particular the Julia types we use to represent character types are called
+`AbstractGenericCharacter`, `GenericCharacter` and `SimpleGenericCharacter`.
 
 ## Properties
 
 ```@docs
 nrchars
-nrirrchars
 degree(chi::AbstractGenericCharacter)
 params(chi::GenericCharacter)
 printinfochar
 ```
 
-## Deriving new character types
+## Iteration
+
+Tables implement Julia's iteration interface to iterate over values stored in character types.
+For a character type `ct`,
+- `length(ct)` returns the number of values in the character type (which is equal to the number
+   of class types s in the table), and
+- `ct[i]` returns the $i$th value of the character type.
+
+```jldoctest
+julia> g=genchartab("GL2");
+
+julia> ct = g[3]
+Generic character of GL2
+  with parameters
+    k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except -l + k ∈ (q - 1)ℤ
+  of degree q + 1
+  with values
+    (q + 1)*exp(2π𝑖((i*l + i*k)//(q - 1)))
+    exp(2π𝑖((i*l + i*k)//(q - 1)))
+    exp(2π𝑖((i*l + j*k)//(q - 1))) + exp(2π𝑖((i*k + j*l)//(q - 1)))
+    0
+
+julia> collect(ct)
+4-element Vector{GenericCharacterTables.GenericCyclo}:
+ (q + 1)*exp(2π𝑖((i*l + i*k)//(q - 1)))
+ exp(2π𝑖((i*l + i*k)//(q - 1)))
+ exp(2π𝑖((i*l + j*k)//(q - 1))) + exp(2π𝑖((i*k + j*l)//(q - 1)))
+ 0
+```
+
+## Constructing new character types
+
+The immediate way to obtain a character type object is to get it from a 
+table `T` via indexing, i.e., as `T[i]` for some index $i$.
+
+In addition, there are a few ways to construct new character types.
 
 ```@docs
 tensor_product(char1::GenericCharacter, char2::GenericCharacter)

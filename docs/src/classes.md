@@ -4,7 +4,10 @@ CurrentModule = GenericCharacterTables
 
 # Conjugacy class types
 
-TODO: recall what those are
+A *class type* is a family of conjugacy classes which are indexed by a set of parameters,
+together with ranges of admissible values for each parameters, and a set of
+excluded parameter values.
+
 
 ## Properties
 
