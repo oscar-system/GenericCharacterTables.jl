@@ -86,6 +86,10 @@ end
 	g2=setcongruence(g; remainder=0, modulus=2)
 	j=specialize(g2[6], n, -m+(q-1)*x)
 	@test isone(scalar_product(j,g2(h)))
+
+	g3=setcongruence(g2; remainder=2, modulus=3)
+	S=g3.ring
+	@test isone(S(1, exponent=(q-2)//6))
 end
 
 @testset "Import green functions" begin
