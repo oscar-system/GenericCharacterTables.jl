@@ -27,12 +27,6 @@ julia> [c[1] for c in g]
 ```
 """
 function specclassparam!(t::CharTable, class::Int64, var::UPoly, expr::RingElement)
-	if class > number_of_conjugacy_class_types(t)
-		throw(DomainError(class, "Class type is out of range."))
-	end
-	if !is_gen(var)
-		throw(DomainError(var, "Not a single variable."))
-	end
 	for char in 1:length(t)
 		t[char].values[class]=evaluate(t[char,class], [var_index(var)], [expr])
 	end

@@ -10,9 +10,6 @@ struct Parameter
 	modulus::UPoly  # Said modulus
 end
 show(io::IO, a::Parameter) = print(io, "$(a.var) ∈ {1,…, $(a.modulus)}")
-function show(io::IO, m::MIME{Symbol("text/latex")}, a::Parameter)
-	print(io, "$(repr("text/latex",a.var)) \\in \\{1,\\ldots, $(repr("text/latex",a.modulus))\\}")
-end
 
 @doc raw"""
     ParameterSubstitution
@@ -24,7 +21,6 @@ struct ParameterSubstitution
 	expression::UPoly  # The substitute for the parameter  # TODO do we need UPolyFrac here?
 end
 show(io::IO, a::ParameterSubstitution) = print(io, "$(a.var) = $(a.expression)")
-show(io::IO, m::MIME{Symbol("text/latex")}, a::ParameterSubstitution) = print(io, "$(a.var) \\eq $(repr("text/latex",a.expression))")
 
 @doc raw"""
     Parameters
@@ -63,23 +59,5 @@ function show(io::IO, a::Parameters)
 	end
 	if !isempty(a.substitutions)
 		print(io, ", substitutions: $(join(a.substitutions, ", "))")
-	end
-end
-function show(io::IO, m::MIME{Symbol("text/latex")}, a::Parameters)
-	params = repr.(Ref("text/latex"),a.params)
-	substitutions = repr.(Ref("text/latex"),a.substitutions)
-	exceptions = repr.(Ref("text/latex"),a.exceptions)
-	if isempty(a.exceptions)
-		if isempty(a.substitutions)
-			print(io, join(params, ", "))
-		else
-			print(io, "$(join(params, ", ")), \\textrm{substitutions}\\colon $(join(substitutions, ", "))")
-		end
-	else
-		if isempty(a.substitutions)
-			print(io, "$(join(params, ", ")) \\textrm{except} $(join(exceptions, ", "))")
-		else
-			print(io, "$(join(params, ", ")) \\textrm{except} $(join(exceptions, ", ")), \\textrm{substitutions}\\colon  $(join(substitutions, ", "))")
-		end
 	end
 end

@@ -117,6 +117,7 @@ julia> g=genchartab("GL2");
 julia> number_of_character_types(g)
 4
 
+```
 """
 number_of_character_types(t::Table) = length(t)
 
@@ -195,7 +196,7 @@ q^4 - q^3 - q^2 + q
 centralizer_order(t::Table, class::Int64) = div(t.order, t.classlength[class])
 
 @doc raw"""
-    number_of_conjugacy_classes(t::Table, class::Int64)
+    number_of_conjugacy_classes(t::CharTable, class::Int64)
 
 Return the number of conjugacy classes in the class type `class` of the table `t`.
 
@@ -213,7 +214,22 @@ function number_of_conjugacy_classes(t::CharTable, class::Int64)
 	result=t.classsums[class](o//o)
 	return shrink(result)
 end
-Oscar.number_of_conjugacy_classes(t::SimpleCharTable, class::Int64) = t.classtypeorder[class]
+
+@doc raw"""
+    number_of_conjugacy_classes(t::SimpleCharTable, class::Int64)
+
+Return the number of conjugacy classes in the class type `class` of the table `t`.
+
+# Examples
+```jldoctest
+julia> g=greenfuntab("GL2");
+
+julia> number_of_conjugacy_classes(g, 1)
+1
+
+```
+"""
+number_of_conjugacy_classes(t::SimpleCharTable, class::Int64) = t.classtypeorder[class]
 
 @doc raw"""
     printclassparam([io::IO], t::CharTable, class::Union{Int64, Nothing}=nothing)

@@ -26,15 +26,12 @@ Generic character of GL2
 ```
 """
 function tensor_product(char1::GenericCharacter, char2::GenericCharacter)
-	if parent(char1) != parent(char2)
-		throw(DomainError((parent(char1),parent(char2)), "Tables do not match."))
-	end
+	check_parent(char1, char2)
 	t=parent(char1)
 	char1id=chartypeid(char1)
 	char2id=chartypeid(char2)
-	if char1id === nothing || char2id === nothing
-		throw(DomainError((char1,char2), "Characters are not both irreducible."))
-	end
+	char1id !== nothing || error("Characters are not both irreducible.")
+	char2id !== nothing || error("Characters are not both irreducible.")
 	new_char_degree=char1.degree*char2.degree
 	new_char_values=Vector{GenericCyclo}(undef, number_of_conjugacy_class_types(t))
 	for class in 1:number_of_conjugacy_class_types(t)
@@ -70,15 +67,12 @@ Generic character of GL3
 ```
 """
 function tensor_product(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T<:PolyRingElem
-	if parent(char1) != parent(char2)
-		throw(DomainError((parent(char1),parent(char2)), "Tables do not match."))
-	end
+	check_parent(char1, char2)
 	t=parent(char1)
 	char1id=chartypeid(char1)
 	char2id=chartypeid(char2)
-	if char1id === nothing || char2id === nothing
-		throw(DomainError((char1,char2), "Characters are not both irreducible."))
-	end
+	char1id !== nothing || error("Characters are not both irreducible.")
+	char2id !== nothing || error("Characters are not both irreducible.")
 	new_char_degree=char1.degree*char2.degree
 	new_char_values=Vector{T}(undef, number_of_conjugacy_class_types(t))
 	for class in 1:number_of_conjugacy_class_types(t)
@@ -174,22 +168,16 @@ Generic character of GL2
 ```
 """
 function lincomb(coeffs::Vector{Int64}, chars::Vector{<:GenericCharacter})
-	if length(coeffs)!=length(chars)
-		throw(DomainError((coeffs,chars), "Different number of coefficients and character types."))
-	end
+	length(coeffs) == length(chars) || error("Different number of coefficients and character types.")
 	n=length(coeffs)
 	t=parent(chars[1])
 	for char in chars[2:end]
-		if parent(char) != t
-			throw(DomainError(parent(char), "Tables do not match."))
-		end
+		check_parent(char, chars[1])
 	end
 	charids=Vector{Int64}(undef, n)
 	for i in 1:n
 		charids[i]=chartypeid(chars[i])
-		if charids[i] === nothing
-			throw(DomainError(chars[i], "Character is not irreducible."))
-		end
+		charids[i] !== nothing || error("Characters are not all irreducible.")
 	end
 	S=base_ring(t.ring)
 	# There a 6 pre defined variable sets used in Ortho.jl and for tensor products.
@@ -238,22 +226,16 @@ Generic character of GL3
 ```
 """
 function lincomb(coeffs::Vector{Int64}, chars::Vector{SimpleGenericCharacter{T}}) where T <: NfPoly
-	if length(coeffs)!=length(chars)
-		throw(DomainError((coeffs,chars), "Different number of coefficients and character types."))
-	end
+	length(coeffs) == length(chars) || error("Different number of coefficients and character types.")
 	n=length(coeffs)
 	t=parent(chars[1])
 	for char in chars[2:end]
-		if parent(char) != t
-			throw(DomainError(parent(char), "Tables do not match."))
-		end
+		check_parent(char, chars[1])
 	end
 	charids=Vector{Int64}(undef, n)
 	for i in 1:n
 		charids[i]=chartypeid(chars[i])
-		if charids[i] === nothing
-			throw(DomainError(chars[i], "Character is not irreducible."))
-		end
+		charids[i] !== nothing || error("Characters are not all irreducible.")
 	end
 	coeffs=map(x -> t.ring(x), coeffs)  # TODO ring needed?
 	degrees=map(x -> x.degree, chars)
@@ -332,9 +314,7 @@ With exceptions:
 ```
 """
 function scalar_product(char1::GenericCharacter, char2::GenericCharacter)
-	if parent(char1) != parent(char2)
-		throw(DomainError((parent(char1),parent(char2)), "Tables do not match."))
-	end
+	check_parent(char1, char2)
 	t=parent(char1)
 	sum=0
 	for class in 1:number_of_conjugacy_class_types(t)
@@ -359,9 +339,7 @@ julia> scalar_product(g[1],g[2])
 ```
 """
 function scalar_product(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T <:NfPoly
-	if parent(char1) != parent(char2)
-		throw(DomainError((parent(char1),parent(char2)), "Tables do not match."))
-	end
+	check_parent(char1, char2)
 	t=parent(char1)
 	sum=0
 	for class in 1:number_of_conjugacy_class_types(t)
@@ -406,9 +384,6 @@ Generic character of GL2
 ```
 """
 function specialize(char::GenericCharacter, var::UPoly, expr::RingElement)
-	if !is_gen(var)
-		throw(DomainError(var, "Not a single variable."))
-	end
 	t=parent(char)
 	new_char_values=Vector{GenericCyclo}(undef, number_of_conjugacy_class_types(t))
 	for class in 1:number_of_conjugacy_class_types(t)
