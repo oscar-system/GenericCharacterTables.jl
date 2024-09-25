@@ -60,7 +60,8 @@ end
 @doc raw"""
     kempner(m::Int64)
 
-Return the `m`-th Kempner number.
+Return the minimal non-negative integer `k` such that `k!` is a multiple of `m`. This is called the `m`-th Kempner number.
+Details about the Kempner numbers and how to compute them can be found in [MR1501173](@cite).
 
 # Examples
 ```jldoctest
