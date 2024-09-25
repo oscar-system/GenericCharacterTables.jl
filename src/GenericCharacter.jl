@@ -172,12 +172,12 @@ function lincomb(coeffs::Vector{Int64}, chars::Vector{<:GenericCharacter})
 	n=length(coeffs)
 	t=parent(chars[1])
 	for char in chars[2:end]
-		check_parent(char, char1)
+		check_parent(char, chars[1])
 	end
 	charids=Vector{Int64}(undef, n)
 	for i in 1:n
 		charids[i]=chartypeid(chars[i])
-		charids[i] !== nothing || error("Characters are not all irreducible."))
+		charids[i] !== nothing || error("Characters are not all irreducible.")
 	end
 	S=base_ring(t.ring)
 	# There a 6 pre defined variable sets used in Ortho.jl and for tensor products.
@@ -230,7 +230,7 @@ function lincomb(coeffs::Vector{Int64}, chars::Vector{SimpleGenericCharacter{T}}
 	n=length(coeffs)
 	t=parent(chars[1])
 	for char in chars[2:end]
-		check_parent(char, char1)
+		check_parent(char, chars[1])
 	end
 	charids=Vector{Int64}(undef, n)
 	for i in 1:n
