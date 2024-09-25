@@ -15,6 +15,7 @@ excluded parameter values.
 number_of_conjugacy_class_types
 number_of_conjugacy_classes(t::Table)
 number_of_conjugacy_classes(t::CharTable, class::Int64)
+number_of_conjugacy_classes(t::SimpleCharTable, class::Int64)
 centralizer_order
 printclassparam
 printinfoclass
