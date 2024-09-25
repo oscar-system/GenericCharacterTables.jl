@@ -17,8 +17,8 @@ number_of_conjugacy_classes(t::Table)
 number_of_conjugacy_classes(t::CharTable, class::Int64)
 number_of_conjugacy_classes(t::SimpleCharTable, class::Int64)
 centralizer_order
-printclassparam
-printinfoclass
+params(t::CharTable, class::Int64)
+info(t::Table, class::Int64)
 ```
 
 ## Norms and scalar products

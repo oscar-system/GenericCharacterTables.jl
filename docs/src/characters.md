@@ -22,7 +22,7 @@ number_of_character_types
 number_of_characters(char::GenericCharacter)
 degree(chi::AbstractGenericCharacter)
 params(chi::GenericCharacter)
-printinfochar
+info(char::AbstractGenericCharacter)
 ```
 
 ## Iteration

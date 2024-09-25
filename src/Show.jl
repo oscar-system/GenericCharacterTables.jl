@@ -232,102 +232,57 @@ julia> number_of_conjugacy_classes(g, 1)
 number_of_conjugacy_classes(t::SimpleCharTable, class::Int64) = t.classtypeorder[class]
 
 @doc raw"""
-    printclassparam([io::IO], t::CharTable, class::Union{Int64, Nothing}=nothing)
+    params(t::CharTable, class::Int64)
 
-Print to `io` (or to the default output stream `stdout` if `io` is not given)
-the parameters of the class type `class` of the table `t`.
-
-This includes the parameter names, ranges and exceptions. Leaving `class` unspecified will print the parameters of all character types.
+Return the parameters of the class type `class` of the table `t`.
+This includes the parameter names, ranges and exceptions.
 
 # Examples
 ```jldoctest
 julia> g=genchartab("GL2");
 
-julia> printclassparam(g)
-1	i ∈ {1,…, q - 1}
-2	i ∈ {1,…, q - 1}
-3	i ∈ {1,…, q - 1}, j ∈ {1,…, q - 1} except i - j ∈ (q - 1)ℤ
-4	i ∈ {1,…, q^2 - 1} except i ∈ (q + 1)ℤ
+julia> params(g, 3)
+i ∈ {1,…, q - 1}, j ∈ {1,…, q - 1} except i - j ∈ (q - 1)ℤ
+
 ```
 """
-function printclassparam(io::IO, t::CharTable, class::Union{Int64, Nothing}=nothing)
-	if class === nothing
-		classes=1:number_of_conjugacy_class_types(t)
-	else
-		classes=[class]
-	end
-	for i in classes
-		println(io, i, "\t", t.classparams[i])
-	end
-end
-
-printclassparam(t::CharTable, class::Union{Int64, Nothing}=nothing) = printclassparam(stdout, t, class)
+params(t::CharTable, class::Int64) = t.classparams[class]
 
 @doc raw"""
-    printinfochar([io::IO], t::Table, char::Union{Int64, Nothing}=nothing)
+    info(char::AbstractGenericCharacter)
 
-Print to `io` (or to the default output stream `stdout` if `io` is not given)
-the infolists of the character type `char` of the table `t`.
-
-Leaving `char` unspecified will print the infolists of all character types.
+Return the infolists of the character type `char`.
 
 # Examples
 ```jldoctest
 julia> g=genchartab("GL2");
 
-julia> printinfochar(g)
-1	Any[Any[1, 0], Any["A_1", [2]]]
-2	Any[Any[1, 1], Any["A_1", [1, 1]]]
-3	Any[Any[2, 0], Any["A_0", [1]]]
-4	Any[Any[3, 0], Any["A_0", [1]]]
+julia> info(g[2])
+2-element Vector{Any}:
+ Any[1, 1]
+ Any["A_1", [1, 1]]
 
 ```
 """
-function printinfochar(io::IO, t::Table, char::Union{Int64, Nothing}=nothing)
-	if char === nothing
-		chars=1:length(t)
-	else
-		chars=[char]
-	end
-	for i in chars
-		println(io, i, "\t", t[i].info)
-	end
-end
-
-printinfochar(t::Table, char::Union{Int64, Nothing}=nothing) = printinfochar(stdout, t, char)
+info(char::AbstractGenericCharacter) = char.info
 
 @doc raw"""
-    printinfoclass([io::IO], t::Table, class::Union{Int64, Nothing}=nothing)
+    info(t::Table, class::Int64)
 
-Print to `io` (or to the default output stream `stdout` if `io` is not given)
-the infolists of the class type `class` of the table `t`.
-
-Leaving `class` unspecified will print the infolists of all class types.
+Return the infolists of the class type `class` of the table `t`.
 
 # Examples
 ```jldoctest
 julia> g=genchartab("GL2");
 
-julia> printinfoclass(g)
-1	Any[Any[1, 0], Any["A_1", [1, 1]]]
-2	Any[Any[1, 1], Any["A_1", [2]]]
-3	Any[Any[2, 0], Any["A_0", [1]]]
-4	Any[Any[3, 0], Any["A_0", [1]]]
+julia> info(g, 1)
+2-element Vector{Any}:
+ Any[1, 0]
+ Any["A_1", [1, 1]]
 
 ```
 """
-function printinfoclass(io::IO, t::Table, class::Union{Int64, Nothing}=nothing)
-	if class === nothing
-		classes=1:number_of_conjugacy_class_types(t)
-	else
-		classes=[class]
-	end
-	for i in classes
-		println(io, i, "\t", t.classinfo[i])
-	end
-end
-
-printinfoclass(t::Table, class::Union{Int64, Nothing}=nothing) = printinfoclass(stdout, t, class)
+info(t::Table, class::Int64) = t.classinfo[class]
 
 @doc raw"""
     nrparams(t::CharTable)
