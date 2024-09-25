@@ -16,9 +16,6 @@ With exceptions:
 ```
 """
 function class_multiplication_coefficient(t::CharTable, class1::Int64, class2::Int64, class3::Int64)
-	if any((class1, class2, class3).>number_of_conjugacy_class_types(t))
-		throw(DomainError((class1,class2,class3), "Some class types are out of range."))
-	end
 	sum=0
 	for char in t
 		val1=shift_class_parameters(t, char[class1], 1)
@@ -43,9 +40,6 @@ julia> class_multiplication_coefficient(g,1,2,3)
 ```
 """
 function class_multiplication_coefficient(t::SimpleCharTable{T}, class1::Int64, class2::Int64, class3::Int64) where T <: NfPoly  # TODO is correct?
-	if any((class1, class2, class3).>number_of_conjugacy_class_types(t))
-		throw(DomainError((class1,class2,class3), "Some class types are out of range."))
-	end
 	sum=0
 	for char in t
 		sum1=char[class1]*char[class2]*char[class3]
@@ -68,9 +62,6 @@ julia> norm(g,2)
 ```
 """
 function norm(t::CharTable, class::Int64)
-	if class > number_of_conjugacy_class_types(t)
-		throw(DomainError(class, "Class type is out of range."))
-	end
 	sum=0
 	for char in t
 		val=char[class]
@@ -93,9 +84,6 @@ julia> norm(g,2)
 ```
 """
 function norm(t::SimpleCharTable{T}, class::Int64) where T <: NfPoly  # TODO is correct?
-	if class > number_of_conjugacy_class_types(t)
-		throw(DomainError(class, "Class type is out of range."))
-	end
 	sum=0
 	for char in t
 		sum+=char[class]^2
@@ -121,9 +109,6 @@ With exceptions:
 ```
 """
 function scalar_product(t::CharTable, class1::Int64, class2::Int64)
-	if any((class1, class2).>number_of_conjugacy_class_types(t))
-		throw(DomainError((class1,class2), "Some class types are out of range."))
-	end
 	sum=0
 	for char in t
 		val1=shift_class_parameters(t, char[class1], 1)
@@ -147,9 +132,6 @@ julia> scalar_product(g,2,2)
 ```
 """
 function scalar_product(t::SimpleCharTable{T}, class1::Int64, class2::Int64) where T <: NfPoly  # TODO is correct?
-	if any((class1, class2).>number_of_conjugacy_class_types(t))
-		throw(DomainError((class1,class2), "Some class types are out of range."))
-	end
 	sum=0
 	for char in t
 		sum+=char[class1]*char[class2]

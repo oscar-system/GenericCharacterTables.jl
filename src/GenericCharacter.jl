@@ -406,9 +406,6 @@ Generic character of GL2
 ```
 """
 function specialize(char::GenericCharacter, var::UPoly, expr::RingElement)
-	if !is_gen(var)
-		throw(DomainError(var, "Not a single variable."))
-	end
 	t=parent(char)
 	new_char_values=Vector{GenericCyclo}(undef, number_of_conjugacy_class_types(t))
 	for class in 1:number_of_conjugacy_class_types(t)
