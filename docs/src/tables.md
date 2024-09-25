@@ -25,7 +25,7 @@ greenfuntab
 ## Properties
 
 ```@docs
-info
+info(t::Table)
 number_of_characters(t::Table)
 nrparams
 params

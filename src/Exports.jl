@@ -21,9 +21,6 @@ export omega
 export order
 export param
 export params
-export printclassparam
-export printinfochar
-export printinfoclass
 export scalar_product
 export setcongruence
 export specclassparam!
