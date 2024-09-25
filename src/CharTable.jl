@@ -1,3 +1,5 @@
+import Base: getindex, eltype, length, iterate
+
 abstract type Table end
 abstract type AbstractGenericCharacter end
 
@@ -50,10 +52,10 @@ function CharTable(order::UPoly, table::Matrix{GenericCyclo}, classinfo::Vector{
 	return ct
 end
 
-Base.getindex(ct::CharTable, i::Integer) = ct.chars[i]::GenericCharacter
-Base.getindex(ct::CharTable, i::Integer, j::Integer) = ct[i].values[j]::GenericCyclo
+getindex(ct::CharTable, i::Integer) = ct.chars[i]::GenericCharacter
+getindex(ct::CharTable, i::Integer, j::Integer) = ct[i].values[j]::GenericCyclo
 
-Base.eltype(::Type{CharTable}) = GenericCharacter
+eltype(::Type{CharTable}) = GenericCharacter
 
 classsum(t::CharTable, class::Integer, x::Union{GenericCyclo, GenericCycloFrac}) = t.classsums[class](x)::Union{GenericCyclo, GenericCycloFrac}
 
@@ -87,7 +89,7 @@ struct GenericCharacter <: AbstractGenericCharacter
 	params::Parameters  # Info about the parameters in this character type
 end
 
-Base.eltype(::Type{GenericCharacter}) = GenericCyclo
+eltype(::Type{GenericCharacter}) = GenericCyclo
 
 charsum(c::GenericCharacter, x::Union{GenericCyclo, GenericCycloFrac}) = c.sum(x)::Union{GenericCyclo, GenericCycloFrac}
 
@@ -146,13 +148,13 @@ struct SimpleCharTable{T} <: Table
 	end
 end
 
-Base.getindex(ct::SimpleCharTable{T}, i::Integer) where T<:NfPoly = ct.chars[i]::SimpleGenericCharacter{T}
-Base.getindex(ct::SimpleCharTable{T}, i::Integer, j::Integer) where T<:NfPoly = ct[i].values[j]::T
+getindex(ct::SimpleCharTable{T}, i::Integer) where T<:NfPoly = ct.chars[i]::SimpleGenericCharacter{T}
+getindex(ct::SimpleCharTable{T}, i::Integer, j::Integer) where T<:NfPoly = ct[i].values[j]::T
 
-Base.eltype(::Type{SimpleCharTable{T}}) where T<:NfPoly = SimpleGenericCharacter{T}
+eltype(::Type{SimpleCharTable{T}}) where T<:NfPoly = SimpleGenericCharacter{T}
 
-Base.length(ct::Table) = length(ct.chars)
-Base.iterate(ct::Table, state::Integer=1) = state > length(ct) ? nothing : (ct[state], state+1)
+length(ct::Table) = length(ct.chars)
+iterate(ct::Table, state::Integer=1) = state > length(ct) ? nothing : (ct[state], state+1)
 
 @doc raw"""
     SimpleGenericCharacter <: AbstractGenericCharacter
@@ -186,12 +188,12 @@ struct SimpleGenericCharacter{T} <: AbstractGenericCharacter
 end
 
 AbstractAlgebra.parent(c::AbstractGenericCharacter) = c.parent
-Base.getindex(c::AbstractGenericCharacter, i::Integer) = c.values[i]
+getindex(c::AbstractGenericCharacter, i::Integer) = c.values[i]
 
-Base.eltype(::Type{SimpleGenericCharacter{T}}) where T<:NfPoly = T
+eltype(::Type{SimpleGenericCharacter{T}}) where T<:NfPoly = T
 
-Base.length(c::AbstractGenericCharacter) = length(c.values)
-Base.iterate(c::AbstractGenericCharacter, state::Integer=1) = state > length(c) ? nothing : (c[state], state+1)
+length(c::AbstractGenericCharacter) = length(c.values)
+iterate(c::AbstractGenericCharacter, state::Integer=1) = state > length(c) ? nothing : (c[state], state+1)
 
 function loadtab(path::String)
 	return (@eval module $(gensym("CHAR_TABLE")) include($(path)) end).TABLE

@@ -1,3 +1,5 @@
+import Oscar: norm, scalar_product, class_multiplication_coefficient
+
 @doc raw"""
     class_multiplication_coefficient(t::CharTable, class1::Int64, class2::Int64, class3::Int64)
 
@@ -13,7 +15,7 @@ With exceptions:
   a3 ∈ (q + 1)ℤ
 ```
 """
-function Oscar.class_multiplication_coefficient(t::CharTable, class1::Int64, class2::Int64, class3::Int64)
+function class_multiplication_coefficient(t::CharTable, class1::Int64, class2::Int64, class3::Int64)
 	if any((class1, class2, class3).>number_of_conjugacy_class_types(t))
 		throw(DomainError((class1,class2,class3), "Some class types are out of range."))
 	end
@@ -40,7 +42,7 @@ julia> class_multiplication_coefficient(g,1,2,3)
 (q + 3)//(q^5 - 2*q^4 + q^3)
 ```
 """
-function Oscar.class_multiplication_coefficient(t::SimpleCharTable{T}, class1::Int64, class2::Int64, class3::Int64) where T <: NfPoly  # TODO is correct?
+function class_multiplication_coefficient(t::SimpleCharTable{T}, class1::Int64, class2::Int64, class3::Int64) where T <: NfPoly  # TODO is correct?
 	if any((class1, class2, class3).>number_of_conjugacy_class_types(t))
 		throw(DomainError((class1,class2,class3), "Some class types are out of range."))
 	end
@@ -65,7 +67,7 @@ julia> norm(g,2)
 1
 ```
 """
-function Oscar.norm(t::CharTable, class::Int64)
+function norm(t::CharTable, class::Int64)
 	if class > number_of_conjugacy_class_types(t)
 		throw(DomainError(class, "Class type is out of range."))
 	end
@@ -90,7 +92,7 @@ julia> norm(g,2)
 (5*q^2 + 2*q + 3)//(q^5 - 2*q^4 + q^3)
 ```
 """
-function Oscar.norm(t::SimpleCharTable{T}, class::Int64) where T <: NfPoly  # TODO is correct?
+function norm(t::SimpleCharTable{T}, class::Int64) where T <: NfPoly  # TODO is correct?
 	if class > number_of_conjugacy_class_types(t)
 		throw(DomainError(class, "Class type is out of range."))
 	end
@@ -118,7 +120,7 @@ With exceptions:
   j1 - i2 ∈ (q - 1)ℤ
 ```
 """
-function Oscar.scalar_product(t::CharTable, class1::Int64, class2::Int64)
+function scalar_product(t::CharTable, class1::Int64, class2::Int64)
 	if any((class1, class2).>number_of_conjugacy_class_types(t))
 		throw(DomainError((class1,class2), "Some class types are out of range."))
 	end
@@ -144,7 +146,7 @@ julia> scalar_product(g,2,2)
 (5*q^2 + 2*q + 3)//(q^5 - 2*q^4 + q^3)
 ```
 """
-function Oscar.scalar_product(t::SimpleCharTable{T}, class1::Int64, class2::Int64) where T <: NfPoly  # TODO is correct?
+function scalar_product(t::SimpleCharTable{T}, class1::Int64, class2::Int64) where T <: NfPoly  # TODO is correct?
 	if any((class1, class2).>number_of_conjugacy_class_types(t))
 		throw(DomainError((class1,class2), "Some class types are out of range."))
 	end

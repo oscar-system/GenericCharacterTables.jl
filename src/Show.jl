@@ -1,9 +1,7 @@
-import Oscar.order
-import Oscar.AbstractAlgebra: degree
+import Oscar: order, degree, number_of_conjugacy_classes, pretty, Indent, Dedent, terse, is_terse
+import Base: show
 
 # TODO PrintValPhi, PrintToTex?
-
-import Oscar: pretty, Indent, Dedent, terse, is_terse
 
 @doc raw"""
     show(io::IO, t::Table)
@@ -25,7 +23,7 @@ julia> [g]
 
 ```
 """
-function Base.show(io::IO, ::MIME"text/plain", t::Table)
+function show(io::IO, ::MIME"text/plain", t::Table)
 	io = pretty(io)
 	println(io, "Generic character table ", t.importname, Indent())
 	println(io, "of order ", t.order)
@@ -42,7 +40,7 @@ function Base.show(io::IO, ::MIME"text/plain", t::Table)
 	end
 end
 
-function Base.show(io::IO, t::Table)
+function show(io::IO, t::Table)
 	print(io, "Generic character table ", t.importname)
 end
 
@@ -72,7 +70,7 @@ julia> [g[3]]
 
 ```
 """
-function Base.show(io::IO, ::MIME"text/plain", c::AbstractGenericCharacter)
+function show(io::IO, ::MIME"text/plain", c::AbstractGenericCharacter)
 	io = pretty(io)
 	println(io, "Generic character of ", parent(c).importname, Indent())
 	if c isa GenericCharacter && !isempty(c.params.params)
@@ -86,7 +84,7 @@ function Base.show(io::IO, ::MIME"text/plain", c::AbstractGenericCharacter)
 	end
 end
 
-function Base.show(io::IO, c::AbstractGenericCharacter)
+function show(io::IO, c::AbstractGenericCharacter)
 	print(io, "Generic character of ", parent(c).importname)
 end
 
@@ -154,7 +152,7 @@ q^2 - 1
 
 ```
 """
-function Oscar.number_of_conjugacy_classes(t::Table)
+function number_of_conjugacy_classes(t::Table)
 	return sum(number_of_conjugacy_classes.(Ref(t), 1:number_of_conjugacy_class_types(t)))
 end
 
@@ -210,7 +208,7 @@ q - 1
 
 ```
 """
-function Oscar.number_of_conjugacy_classes(t::CharTable, class::Int64)
+function number_of_conjugacy_classes(t::CharTable, class::Int64)
 	o=t.ring(1)
 	result=t.classsums[class](o//o)
 	return shrink(result)
@@ -247,7 +245,7 @@ function printclassparam(io::IO, t::CharTable, class::Union{Int64, Nothing}=noth
 	end
 end
 
-printclassparam(t::CharTable, class::Union{Int64, Nothing}=nothing) = printclassparam(Base.stdout, t, class)
+printclassparam(t::CharTable, class::Union{Int64, Nothing}=nothing) = printclassparam(stdout, t, class)
 
 @doc raw"""
     printinfochar([io::IO], t::Table, char::Union{Int64, Nothing}=nothing)
@@ -280,7 +278,7 @@ function printinfochar(io::IO, t::Table, char::Union{Int64, Nothing}=nothing)
 	end
 end
 
-printinfochar(t::Table, char::Union{Int64, Nothing}=nothing) = printinfochar(Base.stdout, t, char)
+printinfochar(t::Table, char::Union{Int64, Nothing}=nothing) = printinfochar(stdout, t, char)
 
 @doc raw"""
     printinfoclass([io::IO], t::Table, class::Union{Int64, Nothing}=nothing)
@@ -313,7 +311,7 @@ function printinfoclass(io::IO, t::Table, class::Union{Int64, Nothing}=nothing)
 	end
 end
 
-printinfoclass(t::Table, class::Union{Int64, Nothing}=nothing) = printinfoclass(Base.stdout, t, class)
+printinfoclass(t::Table, class::Union{Int64, Nothing}=nothing) = printinfoclass(stdout, t, class)
 
 @doc raw"""
     nrparams(t::CharTable)

@@ -1,5 +1,4 @@
 import Oscar.AbstractAlgebra: evaluate
-
 import Base: show, isone, iszero, one, zero, conj, inv, +, -, *, //, ==
 
 # This models fractions of sums of cyclotomics.

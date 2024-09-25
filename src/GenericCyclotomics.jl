@@ -2,12 +2,10 @@ using Oscar.Random: Random, SamplerTrivial, GLOBAL_RNG
 using Oscar.RandomExtensions: RandomExtensions, Make2, AbstractRNG
 
 import Oscar.AbstractAlgebra: parent_type, elem_type, base_ring, base_ring_type, parent, is_domain_type,
-	is_exact_type, canonical_unit, isequal, divexact, zero!, mul!, add!, addeq!,
-	get_cached!, is_unit, characteristic, Ring, RingElem, expressify, evaluate
+	is_exact_type, canonical_unit, isequal, divexact, zero!, mul!, add!, addeq!, get_cached!, is_unit,
+	characteristic, Ring, RingElem, expressify, evaluate, normal_form, divexact
 import Oscar: pretty, Indent, Dedent, terse, is_terse
-import Oscar.AbstractAlgebra: normal_form, divexact
-
-import Base: show, +, -, *, ^, ==, inv, isone, iszero, one, zero, rand, deepcopy_internal, hash, conj
+import Base: show, +, -, *, ^, ==, inv, isone, iszero, one, zero, rand, deepcopy_internal, hash, conj, promote_rule
 
 import Compat
 
@@ -386,11 +384,11 @@ rand(R::GenericCycloRing, n::AbstractUnitRange{Int}) = rand(Random.GLOBAL_RNG, R
 
 # Promotion rules
 
-Base.promote_rule(::Type{GenericCyclo}, ::Type{GenericCyclo}) = GenericCyclo
+promote_rule(::Type{GenericCyclo}, ::Type{GenericCyclo}) = GenericCyclo
 
-Base.promote_rule(::Type{GenericCyclo}, ::Type{UPoly}) = GenericCyclo
+promote_rule(::Type{GenericCyclo}, ::Type{UPoly}) = GenericCyclo
 
-function Base.promote_rule(::Type{GenericCyclo}, ::Type{T}) where T <: RingElement
+function promote_rule(::Type{GenericCyclo}, ::Type{T}) where T <: RingElement
 	promote_rule(T, UPoly) == T ? GenericCyclo : Union{}
 end
 

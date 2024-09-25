@@ -1,3 +1,5 @@
+import Base: show
+
 @doc raw"""
     Parameter
 
@@ -7,8 +9,8 @@ struct Parameter
 	var::UPoly  # Actual name of the parameter  # TODO make this an Int?
 	modulus::UPoly  # Said modulus
 end
-Base.show(io::IO, a::Parameter) = print(io, "$(a.var) ∈ {1,…, $(a.modulus)}")
-function Base.show(io::IO, m::MIME{Symbol("text/latex")}, a::Parameter) 
+show(io::IO, a::Parameter) = print(io, "$(a.var) ∈ {1,…, $(a.modulus)}")
+function show(io::IO, m::MIME{Symbol("text/latex")}, a::Parameter)
 	print(io, "$(repr("text/latex",a.var)) \\in \\{1,\\ldots, $(repr("text/latex",a.modulus))\\}")
 end
 
@@ -21,8 +23,8 @@ struct ParameterSubstitution
 	var::UPoly  # The name of the replaced parameter  # TODO make this an Int?
 	expression::UPoly  # The substitute for the parameter  # TODO do we need UPolyFrac here?
 end
-Base.show(io::IO, a::ParameterSubstitution) = print(io, "$(a.var) = $(a.expression)")
-Base.show(io::IO, m::MIME{Symbol("text/latex")}, a::ParameterSubstitution) = print(io, "$(a.var) \\eq $(repr("text/latex",a.expression))")
+show(io::IO, a::ParameterSubstitution) = print(io, "$(a.var) = $(a.expression)")
+show(io::IO, m::MIME{Symbol("text/latex")}, a::ParameterSubstitution) = print(io, "$(a.var) \\eq $(repr("text/latex",a.expression))")
 
 @doc raw"""
     Parameters
@@ -44,7 +46,7 @@ function Parameters(p::Vector{Parameter})
 end
 
 # TODO Use OSCAR's expressify system here.
-function Base.show(io::IO, a::Parameters)
+function show(io::IO, a::Parameters)
 	print(io, join(a.params, ", "))
 	if !isempty(a.exceptions)
 		print(io, " except ")
@@ -63,7 +65,7 @@ function Base.show(io::IO, a::Parameters)
 		print(io, ", substitutions: $(join(a.substitutions, ", "))")
 	end
 end
-function Base.show(io::IO, m::MIME{Symbol("text/latex")}, a::Parameters) 
+function show(io::IO, m::MIME{Symbol("text/latex")}, a::Parameters)
 	params = repr.(Ref("text/latex"),a.params)
 	substitutions = repr.(Ref("text/latex"),a.substitutions)
 	exceptions = repr.(Ref("text/latex"),a.exceptions)

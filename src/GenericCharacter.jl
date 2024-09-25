@@ -1,6 +1,7 @@
-# TODO deal with ParameterSubstitution when creating new characters, this is not done in the original implementation.
+import Oscar: tensor_product, norm, scalar_product
+import Base: *
 
-import Oscar: tensor_product
+# TODO deal with ParameterSubstitution when creating new characters, this is not done in the original implementation.
 
 @doc raw"""
     tensor_product(char1::GenericCharacter, char2::GenericCharacter)
@@ -87,7 +88,7 @@ function tensor_product(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCh
 end
 
 # 'classical' group characters in OSCAR treat '*' as tensor product, so we do it, too
-Base.:*(char1::AbstractGenericCharacter, char2::AbstractGenericCharacter) = tensor_product(char1, char2)
+*(char1::AbstractGenericCharacter, char2::AbstractGenericCharacter) = tensor_product(char1, char2)
 
 @doc raw"""
     omega(char::GenericCharacter)
@@ -281,7 +282,7 @@ julia> norm(g[1])
 1
 ```
 """
-function Oscar.norm(char::GenericCharacter)
+function norm(char::GenericCharacter)
 	t=parent(char)
 	sum=0
 	for class in 1:number_of_conjugacy_class_types(t)
@@ -304,7 +305,7 @@ julia> norm(g[1])
 6//(q^3 - 3*q^2 + 3*q - 1)
 ```
 """
-function Oscar.norm(char::SimpleGenericCharacter{T}) where T <: NfPoly
+function norm(char::SimpleGenericCharacter{T}) where T <: NfPoly
 	t=parent(char)
 	sum=0
 	for class in 1:number_of_conjugacy_class_types(t)
@@ -330,7 +331,7 @@ With exceptions:
   k1 - k2 ∈ (q - 1)ℤ
 ```
 """
-function Oscar.scalar_product(char1::GenericCharacter, char2::GenericCharacter)
+function scalar_product(char1::GenericCharacter, char2::GenericCharacter)
 	if parent(char1) != parent(char2)
 		throw(DomainError((parent(char1),parent(char2)), "Tables do not match."))
 	end
@@ -357,7 +358,7 @@ julia> scalar_product(g[1],g[2])
 0
 ```
 """
-function Oscar.scalar_product(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T <:NfPoly
+function scalar_product(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T <:NfPoly
 	if parent(char1) != parent(char2)
 		throw(DomainError((parent(char1),parent(char2)), "Tables do not match."))
 	end
