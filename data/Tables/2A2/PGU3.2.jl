@@ -146,20 +146,20 @@ end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss5a=nesum(tt, k, 1, q)
 	ss5=nesum(ss5a, l, 1, q)
-	tt1=eesubs(tt, [l], [k])
+	tt1=evaluate(tt, [l], [k])
 	ss6=nesum(tt1, k, 1, q)
-	ss7=eesubs(tt, [k,l], R.([(q+1)*1//3,2*(q+1)*1//3]))
+	ss7=evaluate(tt, [k,l], R.([(q+1)*1//3,2*(q+1)*1//3]))
 	1//6*ss5-1//6*ss6-1//3*ss7
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss7=nesum(tt, k, 0, q^2-2)
-	tt1=eesubs(tt, [k], [(q-1)*k])
+	tt1=evaluate(tt, [k], [(q-1)*k])
 	ss8=nesum(tt1, k, 0, q)
 	1//2*ss7-1//2*ss8
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss10=nesum(tt, k, 0, q^2-q)
-	tt1=eesubs(tt, [k], [(q^2-q+1)*1//3*k])
+	tt1=evaluate(tt, [k], [(q^2-q+1)*1//3*k])
 	ss11=nesum(tt1, k, 0, 2)
 	1//3*ss10-1//3*ss11
 end
@@ -177,38 +177,38 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss6=nesum(tt, u, 1, q)
-	tt1=eesubs(tt, [u], [(q+1)*1//3])
-	tt2=eesubs(tt, [u], [2*(q+1)*1//3])
+	tt1=evaluate(tt, [u], [(q+1)*1//3])
+	tt2=evaluate(tt, [u], [2*(q+1)*1//3])
 	ss6-tt1-tt2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss6=nesum(tt, u, 1, q)
-	tt1=eesubs(tt, [u], [(q+1)*1//3])
-	tt2=eesubs(tt, [u], [2*(q+1)*1//3])
+	tt1=evaluate(tt, [u], [(q+1)*1//3])
+	tt2=evaluate(tt, [u], [2*(q+1)*1//3])
 	ss6-tt1-tt2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss5=nesum(tt, u, 0, q)
 	ss8=nesum(ss5, v, 0, q)
-	tt1=eesubs(tt, [v], [-2*u])
+	tt1=evaluate(tt, [v], [-2*u])
 	ss9=nesum(tt1, u, 0, q)
-	tt1=eesubs(tt, [u], [-2*v])
+	tt1=evaluate(tt, [u], [-2*v])
 	ss10=nesum(tt1, v, 0, q)
-	tt1=eesubs(tt, [v], [u])
+	tt1=evaluate(tt, [v], [u])
 	ss11=nesum(tt1, u, 0, q)
-	tt1=eesubs(tt1, [u], [(q+1)*1//3*u])
+	tt1=evaluate(tt1, [u], [(q+1)*1//3*u])
 	ss12=nesum(tt1, u, 0, 2)
 	1//6*ss8-1//6*ss9-1//6*ss10-1//6*ss11+1//3*ss12
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss7=nesum(tt, u, 0, q^2-2)
-	tt1=eesubs(tt, [u], [(q-1)*u])
+	tt1=evaluate(tt, [u], [(q-1)*u])
 	ss8=nesum(tt1, u, 0, q)
 	1//2*ss7-1//2*ss8
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss10=nesum(tt, u, 0, q^2-q)
-	tt1=eesubs(tt, [u], [(q^2-q+1)*1//3*u])
+	tt1=evaluate(tt, [u], [(q^2-q+1)*1//3*u])
 	ss11=nesum(tt1, u, 0, 2)
 	1//3*ss10-1//3*ss11
 end

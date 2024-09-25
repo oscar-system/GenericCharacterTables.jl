@@ -2,7 +2,7 @@ export centralizer_order
 export chartypeid
 export class_multiplication_coefficient
 export degree
-export eesubs
+export evaluate
 export genchartab
 export generic_cyclotomic_ring
 export greenfuntab

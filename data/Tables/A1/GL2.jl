@@ -37,14 +37,14 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	nesum(tt, i, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=eesubs(tt, [j], [i])
+	s1=evaluate(tt, [j], [i])
 	s2=nesum(tt, j, 0, q-2)
 	s1=s2-s1
 	s2=nesum(s1, i, 0, q-2)
 	1//2*s2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=eesubs(tt, [i], [(q+1)*i])
+	s1=evaluate(tt, [i], [(q+1)*i])
 	s1=nesum(s1, i, 0, q-2)
 	s2=nesum(tt, i, 0, q^2-2)
 	1//2*s2-1//2*s1
@@ -59,14 +59,14 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	nesum(tt, k, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=eesubs(tt, [l], [k])
+	s1=evaluate(tt, [l], [k])
 	s2=nesum(tt, l, 0, q-2)
 	s1=s2-s1
 	s2=nesum(s1, k, 0, q-2)
 	1//2*s2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=eesubs(tt, [k], [(q+1)*k])
+	s1=evaluate(tt, [k], [(q+1)*k])
 	s1=nesum(s1, k, 0, q-2)
 	s2=nesum(tt, k, 0, q^2-2)
 	1//2*s2-1//2*s1

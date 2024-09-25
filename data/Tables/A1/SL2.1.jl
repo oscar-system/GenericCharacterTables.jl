@@ -68,27 +68,27 @@ chardegree = R.([1, q^2, 1//2*(q^2+1), 1//2*(q^2+1), 1//2*(q^2-1), 1//2*(q^2-1),
 
 classsums=[
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=eesubs(tt, [i], [0])
-	s2=eesubs(tt, [i], [1])
+	s1=evaluate(tt, [i], [0])
+	s2=evaluate(tt, [i], [1])
 	s1+s2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=eesubs(tt, [i], [0])
-	s2=eesubs(tt, [i], [1])
+	s1=evaluate(tt, [i], [0])
+	s2=evaluate(tt, [i], [1])
 	s1+s2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=eesubs(tt, [i], [0])
-	s2=eesubs(tt, [i], [1])
+	s1=evaluate(tt, [i], [0])
+	s2=evaluate(tt, [i], [1])
 	s1+s2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=eesubs(tt, [i], [(q^2-1)*1//2])
+	s1=evaluate(tt, [i], [(q^2-1)*1//2])
 	t1=nesum(tt, i, 1, q^2-2)
 	1//2*t1-1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=eesubs(tt, [i], [(q^2+1)*1//2])
+	s1=evaluate(tt, [i], [(q^2+1)*1//2])
 	t1=nesum(tt, i, 1, q^2)
 	1//2*t1-1//2*s1
 end
@@ -114,12 +114,12 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	tt
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=eesubs(tt, [k], [(q^2-1)*1//2])
+	s1=evaluate(tt, [k], [(q^2-1)*1//2])
 	t1=nesum(tt, k, 1, q^2-2)
 	1//2*t1-1//2*s1
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	s1=eesubs(tt, [k], [(q^2+1)*1//2])
+	s1=evaluate(tt, [k], [(q^2+1)*1//2])
 	t1=nesum(tt, k, 1, q^2)
 	1//2*t1-1//2*s1
 end

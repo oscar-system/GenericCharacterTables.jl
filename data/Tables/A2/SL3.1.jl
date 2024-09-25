@@ -255,34 +255,34 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss6=nesum(tt, a, 1, q-2)
-	tt1=eesubs(tt, [a], [(q-1)*1//3])
-	tt2=eesubs(tt, [a], [2*(q-1)*1//3])
+	tt1=evaluate(tt, [a], [(q-1)*1//3])
+	tt2=evaluate(tt, [a], [2*(q-1)*1//3])
 	ss6-tt1-tt2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss6=nesum(tt, a, 1, q-2)
-	tt1=eesubs(tt, [a], [(q-1)*1//3])
-	tt2=eesubs(tt, [a], [2*(q-1)*1//3])
+	tt1=evaluate(tt, [a], [(q-1)*1//3])
+	tt2=evaluate(tt, [a], [2*(q-1)*1//3])
 	ss6-tt1-tt2
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss5=nesum(tt, a, 0, q-2)
 	ss8=nesum(ss5, b, 0, q-2)
-	tt1=eesubs(tt, [b], [a])
+	tt1=evaluate(tt, [b], [a])
 	ss9=nesum(tt1, a, 0, q-2)
-	tt2=eesubs(tt1, [a], [(q-1)*1//3*a])
+	tt2=evaluate(tt1, [a], [(q-1)*1//3*a])
 	ss10=nesum(tt2, a, 0, 2)
 	1//6*ss8-1//2*ss9+1//3*ss10
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss7=nesum(tt, a, 0, q^2-2)
-	tt1=eesubs(tt, [a], [(q+1)*a])
+	tt1=evaluate(tt, [a], [(q+1)*a])
 	ss8=nesum(tt1, a, 0, q-2)
 	1//2*ss7-1//2*ss8
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss10=nesum(tt, a, 0, q^2+q)
-	tt1=eesubs(tt, [a], [(q^2+q+1)*1//3*a])
+	tt1=evaluate(tt, [a], [(q^2+q+1)*1//3*a])
 	ss11=nesum(tt1, a, 0, 2)
 	1//3*ss10-1//3*ss11
 end
@@ -316,14 +316,14 @@ end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss5a=nesum(tt, n, 1, q-2)
 	ss5=nesum(ss5a, m, 1, q-2)
-	tt1=eesubs(tt, [m], [n])
+	tt1=evaluate(tt, [m], [n])
 	ss6=nesum(tt1, n, 1, q-2)
-	ss7=eesubs(tt, [m,n], [(q-1)*1//3,2*(q-1)*1//3])
+	ss7=evaluate(tt, [m,n], [(q-1)*1//3,2*(q-1)*1//3])
 	1//6*ss5-1//6*ss6-1//3*ss7
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss7=nesum(tt, n, 0, q^2-2)
-	tt1=eesubs(tt, [n], [(q+1)*n])
+	tt1=evaluate(tt, [n], [(q+1)*n])
 	ss8=nesum(tt1, n, 0, q-2)
 	1//2*ss7-1//2*ss8
 end,
@@ -347,7 +347,7 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss8=nesum(tt, n, 0, q^2+q)
-	tt1=eesubs(tt, [n], [(q^2+q+1)*1//3*n])
+	tt1=evaluate(tt, [n], [(q^2+q+1)*1//3*n])
 	ss9=nesum(tt1, n, 0, 2)
 	1//3*ss8-1//3*ss9
 end
