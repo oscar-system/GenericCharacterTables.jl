@@ -32,7 +32,7 @@ function tensor_product(char1::GenericCharacter, char2::GenericCharacter)
 	char2id=chartypeid(char2)
 	char1id !== nothing || error("Characters are not both irreducible.")
 	char2id !== nothing || error("Characters are not both irreducible.")
-	new_char_degree=char1.degree*char2.degree
+	new_char_degree=degree(char1)*degree(char2)
 	new_char_values=Vector{GenericCyclo}(undef, number_of_conjugacy_class_types(t))
 	for class in 1:number_of_conjugacy_class_types(t)
 		# The first 4 variable sets are reserved for the computations in Ortho.jl
@@ -73,7 +73,7 @@ function tensor_product(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCh
 	char2id=chartypeid(char2)
 	char1id !== nothing || error("Characters are not both irreducible.")
 	char2id !== nothing || error("Characters are not both irreducible.")
-	new_char_degree=char1.degree*char2.degree
+	new_char_degree=degree(char1)*degree(char2)
 	new_char_values=Vector{T}(undef, number_of_conjugacy_class_types(t))
 	for class in 1:number_of_conjugacy_class_types(t)
 		new_char_values[class]=char1[class]*char2[class]
@@ -112,7 +112,7 @@ function omega(char::GenericCharacter)
 	new_char_degree=base_ring(t.ring)(1)
 	new_char_values=Vector{GenericCyclo}(undef, number_of_conjugacy_class_types(t))
 	for class in 1:number_of_conjugacy_class_types(t)
-		new_char_values[class]=divexact(t.classlength[class]*char[class], char.degree)
+		new_char_values[class]=divexact(t.classlength[class]*char[class], degree(char))
 	end
 	return GenericCharacter(t, new_char_values, ["Omega of type $charid"], new_char_degree, nothing, char.params)
 end
@@ -141,7 +141,7 @@ function omega(char::SimpleGenericCharacter{T}) where T <: NfPoly
 	new_char_degree=t.ring(1)
 	new_char_values=Vector{T}(undef, number_of_conjugacy_class_types(t))
 	for class in 1:number_of_conjugacy_class_types(t)
-		new_char_values[class]=divexact(t.classlength[class]*char[class], char.degree)
+		new_char_values[class]=divexact(t.classlength[class]*char[class], degree(char))
 	end
 	return SimpleGenericCharacter{T}(t, new_char_values, ["Omega of type $charid"], new_char_degree)
 end
@@ -189,7 +189,7 @@ function lincomb(coeffs::Vector{Int64}, chars::Vector{<:GenericCharacter})
 			gens(S, vars.*string(extra_var_batches+i))
 		end
 	end
-	degrees=map(x -> x.degree, chars)
+	degrees=map(degree, chars)
 	new_char_degree=sum(coeffs.*degrees)
 	new_char_values=Vector{GenericCyclo}(undef, number_of_conjugacy_class_types(t))
 	for class in 1:number_of_conjugacy_class_types(t)
@@ -238,7 +238,7 @@ function lincomb(coeffs::Vector{Int64}, chars::Vector{SimpleGenericCharacter{T}}
 		charids[i] !== nothing || error("Characters are not all irreducible.")
 	end
 	coeffs=map(x -> t.ring(x), coeffs)  # TODO ring needed?
-	degrees=map(x -> x.degree, chars)
+	degrees=map(degree, chars)
 	new_char_degree=sum(coeffs.*degrees)
 	new_char_values=Vector{T}(undef, number_of_conjugacy_class_types(t))
 	for class in 1:number_of_conjugacy_class_types(t)
@@ -271,7 +271,7 @@ function norm(char::GenericCharacter)
 		val=char[class]
 		sum+=t.classlength[class]*classsum(t, class, val*conj(val))
 	end
-	return shrink(sum//t.order)
+	return shrink(sum//order(t))
 end
 
 @doc raw"""
@@ -293,7 +293,7 @@ function norm(char::SimpleGenericCharacter{T}) where T <: NfPoly
 	for class in 1:number_of_conjugacy_class_types(t)
 		sum+=char[class]^2*t.classlength[class]*t.classtypeorder[class]
 	end
-	return sum//t.order
+	return sum//order(t)
 end
 
 @doc raw"""
@@ -322,7 +322,7 @@ function scalar_product(char1::GenericCharacter, char2::GenericCharacter)
 		val2=shift_char_parameters(t, char2[class], 2)
 		sum+=t.classlength[class]*classsum(t, class, val1*conj(val2))
 	end
-	return shrink(sum//t.order)
+	return shrink(sum//order(t))
 end
 
 @doc raw"""
@@ -345,7 +345,7 @@ function scalar_product(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCh
 	for class in 1:number_of_conjugacy_class_types(t)
 		sum+=char1[class]*char2[class]*t.classlength[class]*t.classtypeorder[class]
 	end
-	return sum//t.order
+	return sum//order(t)
 end
 
 @doc raw"""
@@ -392,7 +392,7 @@ function specialize(char::GenericCharacter, var::UPoly, expr::RingElement)
 	new_params=deepcopy(char.params)
 	push!(new_params.substitutions, ParameterSubstitution(var, base_ring(t.ring)(expr)))
 	# TODO: What about the sum function here?
-	return GenericCharacter(t, new_char_values, char.info, char.degree, nothing, new_params)
+	return GenericCharacter(t, new_char_values, char.info, degree(char), nothing, new_params)
 
 end
 
