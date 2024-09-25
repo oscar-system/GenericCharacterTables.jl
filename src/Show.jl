@@ -1,9 +1,7 @@
-import Oscar.order
-import Oscar.AbstractAlgebra: degree
+import Oscar: order, degree, number_of_conjugacy_classes, pretty, Indent, Dedent, terse, is_terse
+import Base: show
 
 # TODO PrintValPhi, PrintToTex?
-
-import Oscar: pretty, Indent, Dedent, terse, is_terse
 
 @doc raw"""
     show(io::IO, t::Table)
@@ -25,7 +23,7 @@ julia> [g]
 
 ```
 """
-function Base.show(io::IO, ::MIME"text/plain", t::Table)
+function show(io::IO, ::MIME"text/plain", t::Table)
 	io = pretty(io)
 	println(io, "Generic character table ", t.importname, Indent())
 	println(io, "of order ", t.order)
@@ -34,7 +32,7 @@ function Base.show(io::IO, ::MIME"text/plain", t::Table)
 		println(io, "restricted to ", gens(base_ring(t.ring))[1], " congruent to ", c[1], " modulo ", c[2])
 	end
 	println(io, "with ", length(t)," irreducible character types")
-	println(io, "with ", classtypes(t)," class types")
+	println(io, "with ", number_of_conjugacy_class_types(t)," class types")
 	if t isa SimpleCharTable
 		print(io, "without parameters")
 	else
@@ -42,7 +40,7 @@ function Base.show(io::IO, ::MIME"text/plain", t::Table)
 	end
 end
 
-function Base.show(io::IO, t::Table)
+function show(io::IO, t::Table)
 	print(io, "Generic character table ", t.importname)
 end
 
@@ -72,7 +70,7 @@ julia> [g[3]]
 
 ```
 """
-function Base.show(io::IO, ::MIME"text/plain", c::AbstractGenericCharacter)
+function show(io::IO, ::MIME"text/plain", c::AbstractGenericCharacter)
 	io = pretty(io)
 	println(io, "Generic character of ", parent(c).importname, Indent())
 	if c isa GenericCharacter && !isempty(c.params.params)
@@ -86,12 +84,12 @@ function Base.show(io::IO, ::MIME"text/plain", c::AbstractGenericCharacter)
 	end
 end
 
-function Base.show(io::IO, c::AbstractGenericCharacter)
+function show(io::IO, c::AbstractGenericCharacter)
 	print(io, "Generic character of ", parent(c).importname)
 end
 
 @doc raw"""
-    nrirrchars(t::Table)
+    number_of_characters(t::Table)
 
 Return the number of irreducible characters of table `t`.
 
@@ -99,15 +97,31 @@ Return the number of irreducible characters of table `t`.
 ```jldoctest
 julia> g=genchartab("GL2");
 
-julia> nrirrchars(g)
+julia> number_of_characters(g)
 q^2 - 1
 
 ```
 """
-nrirrchars(t::Table) = sum(nrchars.(t))
+number_of_characters(t::Table) = sum(number_of_characters.(t))
 
 @doc raw"""
-    classtypes(t::Table)
+    number_of_character_types(t::Table)
+
+Return the number of character types of table `t`.
+This can also be obtained via `length(t)`.
+
+# Examples
+```jldoctest
+julia> g=genchartab("GL2");
+
+julia> number_of_character_types(g)
+4
+
+"""
+number_of_character_types(t::Table) = length(t)
+
+@doc raw"""
+    number_of_conjugacy_class_types(t::Table)
 
 Return the number of conjugacy class types of table `t`.
 
@@ -115,17 +129,17 @@ Return the number of conjugacy class types of table `t`.
 ```jldoctest
 julia> g=genchartab("GL2");
 
-julia> classtypes(g)
+julia> number_of_conjugacy_class_types(g)
 4
 
 ```
 """
-function classtypes(t::Table)  # TODO ?
+function number_of_conjugacy_class_types(t::Table)  # TODO ?
 	length(t[1])
 end
 
 @doc raw"""
-    nrclasses(t::Table)
+    number_of_conjugacy_classes(t::Table)
 
 Return the number of conjugacy classes of table `t`.
 
@@ -133,13 +147,13 @@ Return the number of conjugacy classes of table `t`.
 ```jldoctest
 julia> g=genchartab("GL2");
 
-julia> nrclasses(g)
+julia> number_of_conjugacy_classes(g)
 q^2 - 1
 
 ```
 """
-function nrclasses(t::Table)
-	return sum(nrclasses.(Ref(t), 1:classtypes(t)))
+function number_of_conjugacy_classes(t::Table)
+	return sum(number_of_conjugacy_classes.(Ref(t), 1:number_of_conjugacy_class_types(t)))
 end
 
 @doc raw"""
@@ -165,7 +179,7 @@ q^4 - q^3 - q^2 + q
 order(t::Table) = t.order
 
 @doc raw"""
-    centord(t::Table, class::Int64)
+    centralizer_order(t::Table, class::Int64)
 
 Return the order of the centralizer of the class type `class` of the table `t`.
 
@@ -173,15 +187,15 @@ Return the order of the centralizer of the class type `class` of the table `t`.
 ```jldoctest
 julia> g=genchartab("GL2");
 
-julia> centord(g, 1)
+julia> centralizer_order(g, 1)
 q^4 - q^3 - q^2 + q
 
 ```
 """
-centord(t::Table, class::Int64) = div(t.order, t.classlength[class])
+centralizer_order(t::Table, class::Int64) = div(t.order, t.classlength[class])
 
 @doc raw"""
-    nrclasses(t::Table, class::Int64)
+    number_of_conjugacy_classes(t::Table, class::Int64)
 
 Return the number of conjugacy classes in the class type `class` of the table `t`.
 
@@ -189,17 +203,17 @@ Return the number of conjugacy classes in the class type `class` of the table `t
 ```jldoctest
 julia> g=genchartab("GL2");
 
-julia> nrclasses(g, 1)
+julia> number_of_conjugacy_classes(g, 1)
 q - 1
 
 ```
 """
-function nrclasses(t::CharTable, class::Int64)
+function number_of_conjugacy_classes(t::CharTable, class::Int64)
 	o=t.ring(1)
 	result=t.classsums[class](o//o)
 	return shrink(result)
 end
-nrclasses(t::SimpleCharTable, class::Int64) = t.classtypeorder[class]
+Oscar.number_of_conjugacy_classes(t::SimpleCharTable, class::Int64) = t.classtypeorder[class]
 
 @doc raw"""
     printclassparam([io::IO], t::CharTable, class::Union{Int64, Nothing}=nothing)
@@ -222,7 +236,7 @@ julia> printclassparam(g)
 """
 function printclassparam(io::IO, t::CharTable, class::Union{Int64, Nothing}=nothing)
 	if class === nothing
-		classes=1:classtypes(t)
+		classes=1:number_of_conjugacy_class_types(t)
 	else
 		classes=[class]
 	end
@@ -231,7 +245,7 @@ function printclassparam(io::IO, t::CharTable, class::Union{Int64, Nothing}=noth
 	end
 end
 
-printclassparam(t::CharTable, class::Union{Int64, Nothing}=nothing) = printclassparam(Base.stdout, t, class)
+printclassparam(t::CharTable, class::Union{Int64, Nothing}=nothing) = printclassparam(stdout, t, class)
 
 @doc raw"""
     printinfochar([io::IO], t::Table, char::Union{Int64, Nothing}=nothing)
@@ -264,7 +278,7 @@ function printinfochar(io::IO, t::Table, char::Union{Int64, Nothing}=nothing)
 	end
 end
 
-printinfochar(t::Table, char::Union{Int64, Nothing}=nothing) = printinfochar(Base.stdout, t, char)
+printinfochar(t::Table, char::Union{Int64, Nothing}=nothing) = printinfochar(stdout, t, char)
 
 @doc raw"""
     printinfoclass([io::IO], t::Table, class::Union{Int64, Nothing}=nothing)
@@ -288,7 +302,7 @@ julia> printinfoclass(g)
 """
 function printinfoclass(io::IO, t::Table, class::Union{Int64, Nothing}=nothing)
 	if class === nothing
-		classes=1:classtypes(t)
+		classes=1:number_of_conjugacy_class_types(t)
 	else
 		classes=[class]
 	end
@@ -297,7 +311,7 @@ function printinfoclass(io::IO, t::Table, class::Union{Int64, Nothing}=nothing)
 	end
 end
 
-printinfoclass(t::Table, class::Union{Int64, Nothing}=nothing) = printinfoclass(Base.stdout, t, class)
+printinfoclass(t::Table, class::Union{Int64, Nothing}=nothing) = printinfoclass(stdout, t, class)
 
 @doc raw"""
     nrparams(t::CharTable)

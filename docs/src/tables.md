@@ -26,7 +26,7 @@ greenfuntab
 
 ```@docs
 info
-nrirrchars
+number_of_characters(t::Table)
 nrparams
 params
 order(t::Table)
@@ -45,7 +45,7 @@ precomputed value.)
 ```jldoctest
 julia> g=genchartab("GL2");
 
-julia> sum(nrchars(c)*degree(c)^2 for c in g)
+julia> sum(number_of_characters(c)*degree(c)^2 for c in g)
 q^4 - q^3 - q^2 + q
 
 julia> order(g)

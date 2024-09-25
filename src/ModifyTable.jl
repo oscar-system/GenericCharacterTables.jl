@@ -27,7 +27,7 @@ julia> [c[1] for c in g]
 ```
 """
 function specclassparam!(t::CharTable, class::Int64, var::UPoly, expr::RingElement)
-	if class > classtypes(t)
+	if class > number_of_conjugacy_class_types(t)
 		throw(DomainError(class, "Class type is out of range."))
 	end
 	if !is_gen(var)
