@@ -21,9 +21,9 @@ function class_multiplication_coefficient(t::CharTable, class1::Int64, class2::I
 		val1=shift_class_parameters(t, char[class1], 1)
 		val2=shift_class_parameters(t, char[class2], 2)
 		val3=shift_class_parameters(t, char[class3], 3)
-		sum+=t.order*charsum(char, val1*val2*conj(val3))//char.degree  # TODO move t.order* to the end of the function
+		sum+=order(t)*charsum(char, val1*val2*conj(val3))//degree(char)  # TODO move order(t)* to the end of the function
 	end
-	return shrink((t.classlength[class1]*t.classlength[class2])*sum//(t.order^2))
+	return shrink((t.classlength[class1]*t.classlength[class2])*sum//(order(t)^2))
 end
 
 @doc raw"""
@@ -43,9 +43,9 @@ function class_multiplication_coefficient(t::SimpleCharTable{T}, class1::Int64, 
 	sum=0
 	for char in t
 		sum1=char[class1]*char[class2]*char[class3]
-		sum+=t.order*sum1//char.degree  # TODO move t.order* to the end of the function
+		sum+=order(t)*sum1//degree(char)  # TODO move order(t)* to the end of the function
 	end
-	return (t.classlength[class1]*t.classlength[class2])*sum//(t.order^2)
+	return (t.classlength[class1]*t.classlength[class2])*sum//(order(t)^2)
 end
 
 @doc raw"""
@@ -67,7 +67,7 @@ function norm(t::CharTable, class::Int64)
 		val=char[class]
 		sum+=charsum(char, val*conj(val))
 	end
-	return shrink(t.classlength[class]*sum//t.order)
+	return shrink(t.classlength[class]*sum//order(t))
 end
 
 @doc raw"""
@@ -88,7 +88,7 @@ function norm(t::SimpleCharTable{T}, class::Int64) where T <: NfPoly  # TODO is 
 	for char in t
 		sum+=char[class]^2
 	end
-	return t.classlength[class]*sum//t.order
+	return t.classlength[class]*sum//order(t)
 end
 
 @doc raw"""
@@ -115,7 +115,7 @@ function scalar_product(t::CharTable, class1::Int64, class2::Int64)
 		val2=shift_class_parameters(t, char[class2], 2)
 		sum+=charsum(char, val1*conj(val2))
 	end
-	return shrink(t.classlength[class1]*sum//t.order)
+	return shrink(t.classlength[class1]*sum//order(t))
 end
 
 @doc raw"""
@@ -136,5 +136,5 @@ function scalar_product(t::SimpleCharTable{T}, class1::Int64, class2::Int64) whe
 	for char in t
 		sum+=char[class1]*char[class2]
 	end
-	return t.classlength[class1]*sum//t.order
+	return t.classlength[class1]*sum//order(t)
 end

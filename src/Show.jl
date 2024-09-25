@@ -26,7 +26,7 @@ julia> [g]
 function show(io::IO, ::MIME"text/plain", t::Table)
 	io = pretty(io)
 	println(io, "Generic character table ", t.importname, Indent())
-	println(io, "of order ", t.order)
+	println(io, "of order ", order(t))
 	c = congruence(t)
 	if c !== nothing
 		println(io, "restricted to ", gens(base_ring(t.ring))[1], " congruent to ", c[1], " modulo ", c[2])
@@ -77,7 +77,7 @@ function show(io::IO, ::MIME"text/plain", c::AbstractGenericCharacter)
 		println(io, "with parameters ", Indent())
 		println(io, c.params, Dedent())
 	end
-	println(io, "of degree ", c.degree)
+	println(io, "of degree ", degree(c))
 	print(io, "with values", Indent())
 	for val in c.values
 		print(io, "\n", val)
@@ -193,7 +193,7 @@ q^4 - q^3 - q^2 + q
 
 ```
 """
-centralizer_order(t::Table, class::Int64) = div(t.order, t.classlength[class])
+centralizer_order(t::Table, class::Int64) = div(order(t), t.classlength[class])
 
 @doc raw"""
     number_of_conjugacy_classes(t::CharTable, class::Int64)
