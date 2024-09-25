@@ -249,24 +249,6 @@ i ∈ {1,…, q - 1}, j ∈ {1,…, q - 1} except i - j ∈ (q - 1)ℤ
 params(t::CharTable, class::Int64) = t.classparams[class]
 
 @doc raw"""
-    info(char::AbstractGenericCharacter)
-
-Return the infolists of the character type `char`.
-
-# Examples
-```jldoctest
-julia> g=genchartab("GL2");
-
-julia> info(g[2])
-2-element Vector{Any}:
- Any[1, 1]
- Any["A_1", [1, 1]]
-
-```
-"""
-info(char::AbstractGenericCharacter) = char.info
-
-@doc raw"""
     info(t::Table, class::Int64)
 
 Return the infolists of the class type `class` of the table `t`.

@@ -463,6 +463,24 @@ end
 number_of_characters(char::SimpleGenericCharacter) = 1
 
 @doc raw"""
+    info(char::AbstractGenericCharacter)
+
+Return the infolists of the character type `char`.
+
+# Examples
+```jldoctest
+julia> g=genchartab("GL2");
+
+julia> info(g[2])
+2-element Vector{Any}:
+ Any[1, 1]
+ Any["A_1", [1, 1]]
+
+```
+"""
+info(char::AbstractGenericCharacter) = char.info
+
+@doc raw"""
     params(char::AbstractGenericCharacter)
 
 Return the parameters of the character type `char`.
