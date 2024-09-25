@@ -112,14 +112,14 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	nesum(tt, a, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	tt1=eesubs(tt, [b], [a])
+	tt1=evaluate(tt, [b], [a])
 	ss4=nesum(tt, b, 0, q-2)
 	ss5=ss4-tt1
 	ss5=nesum(ss5, a, 0, q-2)
 	ss5
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	tt1=eesubs(tt, [b], [a])
+	tt1=evaluate(tt, [b], [a])
 	ss4=nesum(tt, b, 0, q-2)
 	ss5=ss4-tt1
 	ss5=nesum(ss5, a, 0, q-2)
@@ -129,23 +129,23 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss6a=nesum(tt, a, 0, q-2)
 	ss6b=nesum(ss6a, b, 0, q-2)
 	ss6=nesum(ss6b, c, 0, q-2)
-	tt1=eesubs(tt, [b], [a])
+	tt1=evaluate(tt, [b], [a])
 	ss7a=nesum(tt1, a, 0, q-2)
 	ss7=nesum(ss7a, c, 0, q-2)
-	tt2=eesubs(tt, [c], [b])
+	tt2=evaluate(tt, [c], [b])
 	ss8a=nesum(tt2, a, 0, q-2)
 	ss8=nesum(ss8a, b, 0, q-2)
-	tt3=eesubs(tt, [c], [a])
+	tt3=evaluate(tt, [c], [a])
 	ss9a=nesum(tt3, a, 0, q-2)
 	ss9=nesum(ss9a, b, 0, q-2)
-	tt4a=eesubs(tt, [b], [a])
-	tt4=eesubs(tt4a, [c], [a])
+	tt4a=evaluate(tt, [b], [a])
+	tt4=evaluate(tt4a, [c], [a])
 	ss10=nesum(tt4, a, 0, q-2)
 	1//6*ss6-1//6*ss7-1//6*ss8-1//6*ss9+1//3*ss10
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss7=nesum(tt, b, 0, q^2-2)
-	tt1=eesubs(tt, [b], [(q+1)*b])
+	tt1=evaluate(tt, [b], [(q+1)*b])
 	ss8=nesum(tt1, b, 0, q-2)
 	tt1=ss7-ss8
 	ss9=nesum(tt1, a, 0, q-2)
@@ -153,7 +153,7 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss8=nesum(tt, a, 0, q^3-2)
-	tt1=eesubs(tt, [a], [(q^2+q+1)*a])
+	tt1=evaluate(tt, [a], [(q^2+q+1)*a])
 	ss9=nesum(tt1, a, 0, q-2)
 	1//3*ss8-1//3*ss9
 end
@@ -170,14 +170,14 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	nesum(tt, n, 0, q-2)
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	tt1=eesubs(tt, [m], [n])
+	tt1=evaluate(tt, [m], [n])
 	ss4=nesum(tt, m, 0, q-2)
 	ss5=ss4-tt1
 	ss5=nesum(ss5, n, 0, q-2)
 	ss5
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
-	tt1=eesubs(tt, [m], [n])
+	tt1=evaluate(tt, [m], [n])
 	ss4=nesum(tt, m, 0, q-2)
 	ss5=ss4-tt1
 	ss5=nesum(ss5, n, 0, q-2)
@@ -187,23 +187,23 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss6a=nesum(tt, n, 0, q-2)
 	ss6b=nesum(ss6a, m, 0, q-2)
 	ss6=nesum(ss6b, l, 0, q-2)
-	tt1=eesubs(tt, [m], [n])
+	tt1=evaluate(tt, [m], [n])
 	ss7a=nesum(tt1, n, 0, q-2)
 	ss7=nesum(ss7a, l, 0, q-2)
-	tt2=eesubs(tt, [l], [m])
+	tt2=evaluate(tt, [l], [m])
 	ss8a=nesum(tt2, n, 0, q-2)
 	ss8=nesum(ss8a, m, 0, q-2)
-	tt3=eesubs(tt, [l], [n])
+	tt3=evaluate(tt, [l], [n])
 	ss9a=nesum(tt3, n, 0, q-2)
 	ss9=nesum(ss9a, m, 0, q-2)
-	tt4a=eesubs(tt, [m], [n])
-	tt4=eesubs(tt4a, [l], [n])
+	tt4a=evaluate(tt, [m], [n])
+	tt4=evaluate(tt4a, [l], [n])
 	ss10=nesum(tt4, n, 0, q-2)
 	1//6*ss6-1//6*ss7-1//6*ss8-1//6*ss9+1//3*ss10
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss7=nesum(tt, n, 0, q^2-2)
-	tt1=eesubs(tt, [n], [(q+1)*n])
+	tt1=evaluate(tt, [n], [(q+1)*n])
 	ss8=nesum(tt1, n, 0, q-2)
 	tt1=ss7-ss8
 	ss9=nesum(tt1, m, 0, q-2)
@@ -211,7 +211,7 @@ function (tt::Union{GenericCyclo, GenericCycloFrac})
 end,
 function (tt::Union{GenericCyclo, GenericCycloFrac})
 	ss8=nesum(tt, n, 0, q^3-2)
-	tt1=eesubs(tt, [n], [(q^2+q+1)*n])
+	tt1=evaluate(tt, [n], [(q^2+q+1)*n])
 	ss9=nesum(tt1, n, 0, q-2)
 	1//3*ss8-1//3*ss9
 end

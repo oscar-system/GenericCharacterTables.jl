@@ -1,5 +1,7 @@
+import Oscar.AbstractAlgebra: evaluate
+
 @doc raw"""
-    eesubs(a::Union{GenericCyclo,GenericCycloFrac}, vars::Vector{UPoly}, vals::Vector{<:RingElement})
+    evaluate(a::Union{GenericCyclo,GenericCycloFrac}, vars::Vector{UPoly}, vals::Vector{<:RingElement})
 
 Substitute `vals[i]` for `vars[i]` in `a`.
 
@@ -18,12 +20,12 @@ julia> i, j, k, l = gens(R, ["i", "j", "k", "l"]);
 julia> a = S(Dict(2//(q-1)*i*j+1//q*k^2+1//2*i*l => R(1)))
 exp(2π𝑖((1//2*q^2*i*l + 2*q*i*j - 1//2*q*i*l + q*k^2 - k^2)//(q^2 - q)))
 
-julia> eesubs(a,[i,k],[j,3*i])
+julia> evaluate(a,[i,k],[j,3*i])
 exp(2π𝑖((1//2*q^2*j*l + 9*q*i^2 + 2*q*j^2 - 1//2*q*j*l - 9*i^2)//(q^2 - q)))
 
 ```
 """
-eesubs(a::Union{GenericCyclo,GenericCycloFrac}, vars::Vector{UPoly}, vals::Vector{<:RingElement}) = evaluate(a, var_index.(vars), vals)  # TODO remove?
+evaluate(a::Union{GenericCyclo,GenericCycloFrac}, vars::Vector{UPoly}, vals::Vector{<:RingElement}) = evaluate(a, var_index.(vars), vals)  # TODO remove?
 
 @doc raw"""
     nesum(a::GenericCyclo, var::Int64, lower::Int64, upper::Union{Int64,UPoly})
