@@ -413,6 +413,25 @@ function (R::GenericCycloRing)(x::RingElement; exponent::UPolyFrac)
 	return R(Dict(exponent => base_ring(R)(x)))
 end
 
+# TODO: move the following methods to Nemo
+function *(p::Generic.UnivPoly{T, U}, n::ZZRingElem) where {T, U}
+   S = parent(p)
+   return Generic.UnivPoly{T, U}(p.p*n, S)
+end
+
+*(n::ZZRingElem, p::Generic.UnivPoly) = p*n
+
+function -(p::Generic.UnivPoly{T, U}, n::ZZRingElem) where {T, U}
+   S = parent(p)
+   return Generic.UnivPoly{T, U}(p.p-n, S)
+end
+
+function -(n::ZZRingElem, p::Generic.UnivPoly{T, U}) where {T, U}
+   S = parent(p)
+   return Generic.UnivPoly{T, U}(n-p.p, S)
+end
+
+
 function (R::GenericCycloRing)(f::Dict{UPolyFrac, UPoly}; simplify::Bool=true)  # TODO check parent rings?
 	if !simplify
 		return GenericCyclo(f, R)
