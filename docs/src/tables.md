@@ -13,13 +13,13 @@ as well as various functions for accessing properties of these tables.
 Before doing anything you need to load a table first. GenericCharacterTables comes with a variety of precomputed tables.
 
 ```@docs
-genchartab
+generic_character_table
 ```
 
 GenericCharacterTables also provides some tables of Green functions. They can be loaded similarly.
 
 ```@docs
-greenfuntab
+green_function_table
 ```
 
 ## Properties
@@ -27,8 +27,8 @@ greenfuntab
 ```@docs
 info(t::Table)
 number_of_characters(t::Table)
-nrparams
-params
+number_of_parameters
+parameters
 order(t::Table)
 ```
 
@@ -43,7 +43,7 @@ For example we can use this to compute the order of the underlying group type.
 (Of course this can also be checked via [`order`](@ref), which retrieves a
 precomputed value.)
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
 julia> sum(number_of_characters(c)*degree(c)^2 for c in g)
 q^4 - q^3 - q^2 + q

@@ -10,7 +10,7 @@ Display a summary of the generic character table `t`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2")
+julia> g=generic_character_table("GL2")
 Generic character table GL2
   of order q^4 - q^3 - q^2 + q
   with 4 irreducible character types
@@ -36,7 +36,7 @@ function show(io::IO, ::MIME"text/plain", t::Table)
 	if t isa SimpleCharTable
 		print(io, "without parameters")
 	else
-		print(io, "with parameters ", params(t)[2])
+		print(io, "with parameters ", parameters(t)[2])
 	end
 end
 
@@ -51,7 +51,7 @@ Display a summary of the generic character `c`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
 julia> g[3]
 Generic character of GL2
@@ -95,7 +95,7 @@ Return the number of irreducible characters of table `t`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
 julia> number_of_characters(g)
 q^2 - 1
@@ -112,7 +112,7 @@ This can also be obtained via `length(t)`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
 julia> number_of_character_types(g)
 4
@@ -128,7 +128,7 @@ Return the number of conjugacy class types of table `t`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
 julia> number_of_conjugacy_class_types(g)
 4
@@ -146,7 +146,7 @@ Return the number of conjugacy classes of table `t`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
 julia> number_of_conjugacy_classes(g)
 q^2 - 1
@@ -171,7 +171,7 @@ Return the order of the table `t`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
 julia> order(g)
 q^4 - q^3 - q^2 + q
@@ -186,7 +186,7 @@ Return the order of the centralizer of the class type `class` of the table `t`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
 julia> centralizer_order(g, 1)
 q^4 - q^3 - q^2 + q
@@ -202,7 +202,7 @@ Return the number of conjugacy classes in the class type `class` of the table `t
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
 julia> number_of_conjugacy_classes(g, 1)
 q - 1
@@ -222,7 +222,7 @@ Return the number of conjugacy classes in the class type `class` of the table `t
 
 # Examples
 ```jldoctest
-julia> g=greenfuntab("GL2");
+julia> g=green_function_table("GL2");
 
 julia> number_of_conjugacy_classes(g, 1)
 1
@@ -232,21 +232,21 @@ julia> number_of_conjugacy_classes(g, 1)
 number_of_conjugacy_classes(t::SimpleCharTable, class::Int64) = t.classtypeorder[class]
 
 @doc raw"""
-    params(t::CharTable, class::Int64)
+    parameters(t::CharTable, class::Int64)
 
 Return the parameters of the class type `class` of the table `t`.
 This includes the parameter names, ranges and exceptions.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
-julia> params(g, 3)
+julia> parameters(g, 3)
 i ∈ {1,…, q - 1}, j ∈ {1,…, q - 1} except i - j ∈ (q - 1)ℤ
 
 ```
 """
-params(t::CharTable, class::Int64) = t.classparams[class]
+parameters(t::CharTable, class::Int64) = t.classparams[class]
 
 @doc raw"""
     info(t::Table, class::Int64)
@@ -255,7 +255,7 @@ Return the infolists of the class type `class` of the table `t`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
 julia> info(g, 1)
 2-element Vector{Any}:
@@ -267,43 +267,43 @@ julia> info(g, 1)
 info(t::Table, class::Int64) = t.classinfo[class]
 
 @doc raw"""
-    nrparams(t::CharTable)
+    number_of_parameters(t::CharTable)
 
 Return the number of class and character parameters of the table `t`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
-julia> nrparams(g)
+julia> number_of_parameters(g)
 4
 
 ```
 """
-function nrparams(t::CharTable)
+function number_of_parameters(t::CharTable)
 	return length(t.classparamindex)+length(t.charparamindex)
 end
 
 @doc raw"""
-    params(t::CharTable)
+    parameters(t::CharTable)
 
 Return all parameters the table `t` depends on.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
-julia> params(g)
+julia> parameters(g)
 (q, (i, j, l, k))
 
 ```
 """
-function params(t::CharTable)
+function parameters(t::CharTable)
 	vars=gens(base_ring(t.ring))
 	q=vars[1]
-	return (q, Tuple(vars[2:(nrparams(t)+1)]))
+	return (q, Tuple(vars[2:(number_of_parameters(t)+1)]))
 end
 
 # HACK: allow requesting a free form parameter e.g. for use with `specclassparam!`
 # TODO: document this? or replace it by a better interface...
-param(t::CharTable, x::VarName) = gen(base_ring(t.ring), x)
+parameter(t::CharTable, x::VarName) = gen(base_ring(t.ring), x)

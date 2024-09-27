@@ -7,7 +7,7 @@ Return the (generic) class multiplication coefficient of the class types `class1
 
 # Examples
 ```jldoctest
-julia> g=genchartab("SL2.0");
+julia> g=generic_character_table("SL2.0");
 
 julia> class_multiplication_coefficient(g,2,2,4)
 q + 1
@@ -33,7 +33,7 @@ Return the (generic) class multiplication coefficient of the class types `class1
 
 # Examples
 ```jldoctest
-julia> g=greenfuntab("GL3");
+julia> g=green_function_table("GL3");
 
 julia> class_multiplication_coefficient(g,1,2,3)
 (q + 3)//(q^5 - 2*q^4 + q^3)
@@ -55,7 +55,7 @@ Return the (generic) norm of the class type `class`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
 julia> norm(g,2)
 1
@@ -77,7 +77,7 @@ Return the (generic) norm of the class type `class`.
 
 # Examples
 ```jldoctest
-julia> g=greenfuntab("GL3");
+julia> g=green_function_table("GL3");
 
 julia> norm(g,2)
 (5*q^2 + 2*q + 3)//(q^5 - 2*q^4 + q^3)
@@ -98,7 +98,7 @@ Return the (generic) scalar product between the class types `class1` and `class2
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
 julia> scalar_product(g,3,2)
 0
@@ -125,7 +125,7 @@ Return the (generic) scalar product between the class types `class1` and `class2
 
 # Examples
 ```jldoctest
-julia> g=greenfuntab("GL3");
+julia> g=green_function_table("GL3");
 
 julia> scalar_product(g,2,2)
 (5*q^2 + 2*q + 3)//(q^5 - 2*q^4 + q^3)
