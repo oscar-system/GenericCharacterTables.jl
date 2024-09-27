@@ -10,7 +10,6 @@ export info
 export kempner
 export kempner_with_data
 export linear_combination
-export nesum
 export norm
 export number_of_characters
 export number_of_character_types

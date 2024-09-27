@@ -46,7 +46,7 @@ julia> i, = gens(R, ["i"]);
 julia> a = S(Dict(1//(q-1)*i => R(1)))
 exp(2π𝑖(i//(q - 1)))
 
-julia> nesum(a, i, 1, q-1)
+julia> GenericCharacterTables.nesum(a, i, 1, q-1)
 0
 With exceptions:
   1 ∈ (q - 1)ℤ
