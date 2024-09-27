@@ -29,7 +29,7 @@ function show(io::IO, ::MIME"text/plain", t::Table)
 	println(io, "of order ", order(t))
 	c = congruence(t)
 	if c !== nothing
-		println(io, "restricted to ", gens(base_ring(t.ring))[1], " congruent to ", c[1], " modulo ", c[2])
+		println(io, "restricted to ", gen(base_ring(t.ring), 1), " congruent to ", c[1], " modulo ", c[2])
 	end
 	println(io, "with ", length(t)," irreducible character types")
 	println(io, "with ", number_of_conjugacy_class_types(t)," class types")

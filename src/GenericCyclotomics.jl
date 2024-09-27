@@ -244,7 +244,7 @@ function show(io::IO, ::MIME"text/plain", R::GenericCycloRing)
 	println(io, "over ", base_ring(base_ring(R)))
 	print(io, "dependent on ", join(gens(base_ring(R)), ", "))
 	if R.congruence !== nothing
-		print(io, "\nwhere ", gens(base_ring(R))[1], " is congruent to ", R.congruence[1], " modulo ", R.congruence[2])
+		print(io, "\nwhere ", gen(base_ring(R), 1), " is congruent to ", R.congruence[1], " modulo ", R.congruence[2])
 	end
 end
 
@@ -420,7 +420,7 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac, UPoly}; simplify::Bool=true)  
 
 	# congruence preparation
 	if R.congruence !== nothing
-		q=gens(base_ring(R))[1]
+		q=gen(base_ring(R), 1)
 		substitute=R.congruence[2]*q+R.congruence[1]
 		substitute_inv=(q-R.congruence[1])*1//R.congruence[2]
 	end
