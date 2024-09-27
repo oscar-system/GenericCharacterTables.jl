@@ -40,10 +40,10 @@ end
 
 Replace all class parameters of `t` in `a` by their counterparts suffixed with `steps`.
 
-This is done by shifting them `steps*nrparams(t)` steps further in `t.argumentring`.
+This is done by shifting them `steps*number_of_parameters(t)` steps further in `t.argumentring`.
 """
 function shift_class_parameters(t::CharTable, a::Union{Parameters,GenericCyclo,GenericCycloFrac}, steps::Int64)
-	return var_shift(a, t.classparamindex, nrparams(t), steps)
+	return var_shift(a, t.classparamindex, number_of_parameters(t), steps)
 end
 
 @doc raw"""
@@ -51,8 +51,8 @@ end
 
 Replace all character parameters of `t` in `a` by their counterparts suffixed with `steps`.
 
-This is done by shifting them `steps*nrparams(t)` steps further in `t.argumentring`.
+This is done by shifting them `steps*number_of_parameters(t)` steps further in `t.argumentring`.
 """
 function shift_char_parameters(t::CharTable, a::Union{Parameters,GenericCyclo,GenericCycloFrac}, steps::Int64)
-	return var_shift(a, t.charparamindex, nrparams(t), steps)
+	return var_shift(a, t.charparamindex, number_of_parameters(t), steps)
 end

@@ -11,7 +11,7 @@ This can also be obtained via `char1 * char2`.
 
 # Examples
 ```jldoctest
-julia> g = genchartab("GL2");
+julia> g = generic_character_table("GL2");
 
 julia> tensor_product(g[1], g[2])
 Generic character of GL2
@@ -28,8 +28,8 @@ Generic character of GL2
 function tensor_product(char1::GenericCharacter, char2::GenericCharacter)
 	check_parent(char1, char2)
 	t=parent(char1)
-	char1id=chartypeid(char1)
-	char2id=chartypeid(char2)
+	char1id=character_type_index(char1)
+	char2id=character_type_index(char2)
 	char1id !== nothing || error("Characters are not both irreducible.")
 	char2id !== nothing || error("Characters are not both irreducible.")
 	new_char_degree=degree(char1)*degree(char2)
@@ -55,7 +55,7 @@ This can also be obtained via `char1 * char2`.
 
 # Examples
 ```jldoctest
-julia> g = greenfuntab("GL3");
+julia> g = green_function_table("GL3");
 
 julia> tensor_product(g[1],g[2])
 Generic character of GL3
@@ -69,8 +69,8 @@ Generic character of GL3
 function tensor_product(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T<:PolyRingElem
 	check_parent(char1, char2)
 	t=parent(char1)
-	char1id=chartypeid(char1)
-	char2id=chartypeid(char2)
+	char1id=character_type_index(char1)
+	char2id=character_type_index(char2)
 	char1id !== nothing || error("Characters are not both irreducible.")
 	char2id !== nothing || error("Characters are not both irreducible.")
 	new_char_degree=degree(char1)*degree(char2)
@@ -91,7 +91,7 @@ Return the (generic) central character of the character type `char`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
 julia> omega(g[1])
 Generic character of GL2
@@ -108,7 +108,7 @@ Generic character of GL2
 """
 function omega(char::GenericCharacter)
 	t=parent(char)
-	charid=chartypeid(char)
+	charid=character_type_index(char)
 	new_char_degree=base_ring(t.ring)(1)
 	new_char_values=Vector{GenericCyclo}(undef, number_of_conjugacy_class_types(t))
 	for class in 1:number_of_conjugacy_class_types(t)
@@ -124,7 +124,7 @@ Return the (generic) central character of the character type `char`.
 
 # Examples
 ```jldoctest
-julia> g=greenfuntab("GL3");
+julia> g=green_function_table("GL3");
 
 julia> omega(g[1])
 Generic character of GL3
@@ -137,7 +137,7 @@ Generic character of GL3
 """
 function omega(char::SimpleGenericCharacter{T}) where T <: NfPoly
 	t=parent(char)
-	charid=chartypeid(char)
+	charid=character_type_index(char)
 	new_char_degree=t.ring(1)
 	new_char_values=Vector{T}(undef, number_of_conjugacy_class_types(t))
 	for class in 1:number_of_conjugacy_class_types(t)
@@ -147,15 +147,15 @@ function omega(char::SimpleGenericCharacter{T}) where T <: NfPoly
 end
 
 @doc raw"""
-    lincomb(coeffs::Vector{Int64}, chars::Vector{<:GenericCharacter})
+    linear_combination(coeffs::Vector{Int64}, chars::Vector{<:GenericCharacter})
 
 Return the linear combination of the character types `chars` with coefficients `coeffs`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
-julia> lincomb([5,1],[g[1],g[2]])
+julia> linear_combination([5,1],[g[1],g[2]])
 Generic character of GL2
   with parameters
     kl1 ∈ {1,…, q - 1}, kl2 ∈ {1,…, q - 1}
@@ -167,7 +167,7 @@ Generic character of GL2
     (-1)*exp(2π𝑖((i*kl2)//(q - 1))) + (5)*exp(2π𝑖((i*kl1)//(q - 1)))
 ```
 """
-function lincomb(coeffs::Vector{Int64}, chars::Vector{<:GenericCharacter})
+function linear_combination(coeffs::Vector{Int64}, chars::Vector{<:GenericCharacter})
 	length(coeffs) == length(chars) || error("Different number of coefficients and character types.")
 	n=length(coeffs)
 	t=parent(chars[1])
@@ -176,15 +176,15 @@ function lincomb(coeffs::Vector{Int64}, chars::Vector{<:GenericCharacter})
 	end
 	charids=Vector{Int64}(undef, n)
 	for i in 1:n
-		charids[i]=chartypeid(chars[i])
+		charids[i]=character_type_index(chars[i])
 		charids[i] !== nothing || error("Characters are not all irreducible.")
 	end
 	S=base_ring(t.ring)
 	# There a 6 pre defined variable sets used in Ortho.jl and for tensor products.
-	extra_var_batches=(nvars(S)-1)÷nrparams(t)-6
+	extra_var_batches=(nvars(S)-1)÷number_of_parameters(t)-6
 	missing_var_batches=n-extra_var_batches
 	if missing_var_batches > 0
-		vars=map(x -> String(x), symbols(S)[2:(nrparams(t)+1)]).*"l"
+		vars=map(x -> String(x), symbols(S)[2:(number_of_parameters(t)+1)]).*"l"
 		for i in 1:missing_var_batches
 			gens(S, vars.*string(extra_var_batches+i))
 		end
@@ -204,19 +204,19 @@ function lincomb(coeffs::Vector{Int64}, chars::Vector{<:GenericCharacter})
 		params[i]=shift_char_parameters(t, chars[i].params, 5+i)
 	end
 	new_char_params=Parameters(vcat(map(x -> x.params, params)...), vcat(map(x -> x.exceptions, params)...), ParameterSubstitution[])
-	return GenericCharacter(t, new_char_values, ["Lincomb $info"], new_char_degree, nothing, new_char_params)
+	return GenericCharacter(t, new_char_values, ["linear_combination $info"], new_char_degree, nothing, new_char_params)
 end
 
 @doc raw"""
-    lincomb(coeffs::Vector{Int64}, chars::Vector{SimpleGenericCharacter{T}}) where T <: NfPoly
+    linear_combination(coeffs::Vector{Int64}, chars::Vector{SimpleGenericCharacter{T}}) where T <: NfPoly
 
 Return the linear combination of the character types `chars` with coefficients `coeffs`.
 
 # Examples
 ```jldoctest
-julia> g=greenfuntab("GL3");
+julia> g=green_function_table("GL3");
 
-julia> lincomb([5,1],[g[1],g[2]])
+julia> linear_combination([5,1],[g[1],g[2]])
 Generic character of GL3
   of degree 4*q^3 + 10*q^2 + 10*q + 6
   with values
@@ -225,7 +225,7 @@ Generic character of GL3
     6
 ```
 """
-function lincomb(coeffs::Vector{Int64}, chars::Vector{SimpleGenericCharacter{T}}) where T <: NfPoly
+function linear_combination(coeffs::Vector{Int64}, chars::Vector{SimpleGenericCharacter{T}}) where T <: NfPoly
 	length(coeffs) == length(chars) || error("Different number of coefficients and character types.")
 	n=length(coeffs)
 	t=parent(chars[1])
@@ -234,7 +234,7 @@ function lincomb(coeffs::Vector{Int64}, chars::Vector{SimpleGenericCharacter{T}}
 	end
 	charids=Vector{Int64}(undef, n)
 	for i in 1:n
-		charids[i]=chartypeid(chars[i])
+		charids[i]=character_type_index(chars[i])
 		charids[i] !== nothing || error("Characters are not all irreducible.")
 	end
 	coeffs=map(x -> t.ring(x), coeffs)  # TODO ring needed?
@@ -248,7 +248,7 @@ function lincomb(coeffs::Vector{Int64}, chars::Vector{SimpleGenericCharacter{T}}
 		end
 	end
 	info=join(map(x -> join(x, " * type "), zip(coeffs, charids)), " + ")  # TODO
-	return SimpleGenericCharacter{T}(t, new_char_values, ["Lincomb $info"], new_char_degree)
+	return SimpleGenericCharacter{T}(t, new_char_values, ["linear_combination $info"], new_char_degree)
 end
 
 @doc raw"""
@@ -258,7 +258,7 @@ Return the norm of the character type `char`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
 julia> norm(g[1])
 1
@@ -281,7 +281,7 @@ Return the norm of the character type `char`.
 
 # Examples
 ```jldoctest
-julia> g=greenfuntab("GL3");
+julia> g=green_function_table("GL3");
 
 julia> norm(g[1])
 6//(q^3 - 3*q^2 + 3*q - 1)
@@ -303,7 +303,7 @@ Return the scalar product between the character types `char1` and `char2`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
 julia> scalar_product(g[3],g[2])
 0
@@ -332,7 +332,7 @@ Return the scalar product between the character types `char1` and `char2`.
 
 # Examples
 ```jldoctest
-julia> g=greenfuntab("GL3");
+julia> g=green_function_table("GL3");
 
 julia> scalar_product(g[1],g[2])
 0
@@ -355,7 +355,7 @@ Return the generic character where the parameter `var` is replaced with `expr` i
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
 julia> g[1]
 Generic character of GL2
@@ -368,7 +368,7 @@ Generic character of GL2
     exp(2π𝑖((i*k + j*k)//(q - 1)))
     exp(2π𝑖((i*k)//(q - 1)))
 
-julia> q,(i,j,l,k) = params(g);
+julia> q,(i,j,l,k) = parameters(g);
 
 julia> specialize(g[1], i, q)
 Generic character of GL2
@@ -397,23 +397,23 @@ function specialize(char::GenericCharacter, var::UPoly, expr::RingElement)
 end
 
 @doc raw"""
-    chartypeid(c::AbstractGenericCharacter)
+    character_type_index(c::AbstractGenericCharacter)
 
 Return the index of `c` in `parent(c)`. If `c` is not an irreducible character type (e.g. if it is a tensor product)
 then `nothing` is returned.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
-julia> chartypeid(g[1])
+julia> character_type_index(g[1])
 1
 
-julia> chartypeid(g[1]*g[1])
+julia> character_type_index(g[1]*g[1])
 
 ```
 """
-function chartypeid(c::AbstractGenericCharacter)
+function character_type_index(c::AbstractGenericCharacter)
 	ct=parent(c)
 	for i in 1:length(ct)
 		if ct[i] === c
@@ -430,7 +430,7 @@ Return the character degree of the characters in `char`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
 julia> degree(g[3])
 q + 1
@@ -446,7 +446,7 @@ Return the number of characters in the generic character `char`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
 julia> number_of_characters(g[1])
 q - 1
@@ -454,7 +454,7 @@ q - 1
 ```
 """
 function number_of_characters(char::GenericCharacter)
-	chartypeid(char) !== nothing || error("Cannot calculate number of characters in reducible types.")
+	character_type_index(char) !== nothing || error("Cannot calculate number of characters in reducible types.")
 	o=parent(char).ring(1)
 	result=charsum(char, o//o)
 	return shrink(result)
@@ -469,7 +469,7 @@ Return the infolists of the character type `char`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
 julia> info(g[2])
 2-element Vector{Any}:
@@ -481,18 +481,18 @@ julia> info(g[2])
 info(char::AbstractGenericCharacter) = char.info
 
 @doc raw"""
-    params(char::AbstractGenericCharacter)
+    parameters(char::AbstractGenericCharacter)
 
 Return the parameters of the character type `char`.
 This includes the parameter names, ranges and exceptions.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
-julia> params(g[3])
+julia> parameters(g[3])
 k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except -l + k ∈ (q - 1)ℤ
 ```
 """
-params(char::GenericCharacter) = char.params
-params(char::SimpleGenericCharacter) = Parameters(Parameter[])
+parameters(char::GenericCharacter) = char.params
+parameters(char::SimpleGenericCharacter) = Parameters(Parameter[])

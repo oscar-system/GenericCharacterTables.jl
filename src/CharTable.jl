@@ -17,7 +17,7 @@ The type for generic character tables. This is used to model generic character t
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2")
+julia> g=generic_character_table("GL2")
 Generic character table GL2
   of order q^4 - q^3 - q^2 + q
   with 4 irreducible character types
@@ -66,7 +66,7 @@ The type for generic characters. These are the generic characters used in `CharT
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
 julia> g[1]
 Generic character of GL2
@@ -118,7 +118,7 @@ the type of the table entries.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("uniGL2")
+julia> g=generic_character_table("uniGL2")
 Generic character table uniGL2
   of order q^4 - q^3 - q^2 + q
   with 2 irreducible character types
@@ -163,7 +163,7 @@ The type for simple generic characters. These are the generic characters used in
 
 # Examples
 ```jldoctest
-julia> g=genchartab("uniGL2")
+julia> g=generic_character_table("uniGL2")
 Generic character table uniGL2
   of order q^4 - q^3 - q^2 + q
   with 2 irreducible character types
@@ -222,7 +222,7 @@ function gentab(tabletype::String)
 end
 
 @doc raw"""
-    genchartab(x::String)
+    generic_character_table(x::String)
 
 Return the generic character table with name `x`.
 
@@ -230,7 +230,7 @@ Omitting `x` will return the names of all importable character tables.
 
 # Examples
 ```jldoctest
-julia> g = genchartab("GL2")
+julia> g = generic_character_table("GL2")
 Generic character table GL2
   of order q^4 - q^3 - q^2 + q
   with 4 irreducible character types
@@ -238,11 +238,11 @@ Generic character table GL2
   with parameters (i, j, l, k)
 ```
 """
-genchartab(x::String) = gentab(x, "Tables")
-genchartab() = gentab("Tables")
+generic_character_table(x::String) = gentab(x, "Tables")
+generic_character_table() = gentab("Tables")
 
 @doc raw"""
-    greenfuntab(x::String)
+    green_function_table(x::String)
 
 Return the greenfunction table with name `x`.
 
@@ -250,7 +250,7 @@ Omitting `x` will return the names of all importable greenfunctions.
 
 # Examples
 ```jldoctest
-julia> g = greenfuntab("GL2")
+julia> g = green_function_table("GL2")
 Generic character table GL2
   of order q^4 - q^3 - q^2 + q
   with 2 irreducible character types
@@ -258,5 +258,5 @@ Generic character table GL2
   without parameters
 ```
 """
-greenfuntab(x::String) = gentab(x, "Greenfunctions")
-greenfuntab() = gentab("Greenfunctions")
+green_function_table(x::String) = gentab(x, "Greenfunctions")
+green_function_table() = gentab("Greenfunctions")

@@ -63,47 +63,47 @@ test_Ring_interface(S)
 end
 
 @testset "Shifts" begin
-	g=genchartab("GL2")
+	g=generic_character_table("GL2")
 	a=GenericCharacterTables.shift_class_parameters(g, g[1,1], 1)
-	q,(i,j,l,k)=params(g)
+	q,(i,j,l,k)=parameters(g)
 	@test a==evaluate(a,[i],[0])
 end
 
 @testset "Congruence" begin
-	g=genchartab("SL3.1")
-	q,(a,b,m,n)=params(g)
+	g=generic_character_table("SL3.1")
+	q,(a,b,m,n)=parameters(g)
 	R=parent(q)
 	S=g.ring
 	@test isone(S(Dict(a*(q-1)//R(3) => R(1))))
 end
 
-@testset "setcongruence(table)" begin
-	g=genchartab("SL3.n1")
+@testset "set_congruence(table)" begin
+	g=generic_character_table("SL3.n1")
 	h=tensor_product(g[2],g[2])
 	@test iszero(scalar_product(g[6],h), ignore_exceptions=true)
-	q,(a,b,m,n)=params(g)
-	x=param(g,"x")
-	g2=setcongruence(g; remainder=0, modulus=2)
+	q,(a,b,m,n)=parameters(g)
+	x=parameter(g,"x")
+	g2=set_congruence(g; remainder=0, modulus=2)
 	j=specialize(g2[6], n, -m+(q-1)*x)
 	@test isone(scalar_product(j,g2(h)))
 
-	g3=setcongruence(g2; remainder=2, modulus=3)
+	g3=set_congruence(g2; remainder=2, modulus=3)
 	S=g3.ring
 	@test isone(S(1, exponent=(q-2)//6))
 end
 
 @testset "Import green functions" begin
-	list=greenfuntab()
+	list=green_function_table()
 	for green in list
-		g=greenfuntab(green)
+		g=green_function_table(green)
 		@test g!=nothing
 		@test g.importname==green
 	end
 end
 
 @testset "Import tables with consistency checks" begin
-	for table in genchartab()
-		g=genchartab(table)
+	for table in generic_character_table()
+		g=generic_character_table(table)
 		@test g!=nothing
 		@test g.importname==table
 

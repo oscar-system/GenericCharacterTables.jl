@@ -21,7 +21,7 @@ In particular the Julia types we use to represent character types are called
 number_of_character_types
 number_of_characters(char::GenericCharacter)
 degree(chi::AbstractGenericCharacter)
-params(chi::GenericCharacter)
+parameters(chi::GenericCharacter)
 info(char::AbstractGenericCharacter)
 ```
 
@@ -34,7 +34,7 @@ For a character type `ct`,
 - `ct[i]` returns the $i$th value of the character type.
 
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
 julia> ct = g[3]
 Generic character of GL2
@@ -65,7 +65,7 @@ In addition, there are a few ways to construct new character types.
 ```@docs
 tensor_product(char1::GenericCharacter, char2::GenericCharacter)
 tensor_product(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T <: PolyRingElem
-lincomb
+linear_combination
 omega
 ```
 

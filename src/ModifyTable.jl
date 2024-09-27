@@ -5,7 +5,7 @@ Replace the parameter `var` with `expr` in the class type `class`.
 
 # Examples
 ```jldoctest
-julia> g=genchartab("GL2");
+julia> g=generic_character_table("GL2");
 
 julia> [c[1] for c in g]
 4-element Vector{GenericCharacterTables.GenericCyclo}:
@@ -14,7 +14,7 @@ julia> [c[1] for c in g]
  (q + 1)*exp(2π𝑖((i*l + i*k)//(q - 1)))
  (q - 1)*exp(2π𝑖((i*k)//(q - 1)))
 
-julia> q,(i,j,l,k) = params(g);
+julia> q,(i,j,l,k) = parameters(g);
 
 julia> specclassparam!(g, 1, k, 3)
 
