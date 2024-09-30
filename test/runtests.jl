@@ -60,6 +60,24 @@ test_Ring_interface(S)
 	@test isone((S(1)//S(2))*2)
 
 	@test conj(a//c) == conj(a)//conj(c)
+
+	x=deepcopy(a)
+	y=deepcopy(b)
+	ab=a+b
+	@test add!(y, a, y) == ab
+	@test y == ab
+	@test a == x
+
+	add!(a, a, a)
+	@test a == 2*x
+
+	y=deepcopy(b)
+	z=deepcopy(c)
+	cb=c+b
+	add!(a, c, b)
+	@test a == cb
+	@test b == y
+	@test c == z
 end
 
 @testset "Shifts" begin
