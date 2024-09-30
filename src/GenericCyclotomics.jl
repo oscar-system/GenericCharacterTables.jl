@@ -417,13 +417,8 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac, UPoly}; simplify::Bool=true)  
 	if !simplify
 		return GenericCyclo(f, R)
 	end
-	
-	if length(f) == 1 && is_one(numerator(first(first(f))))
-		return GenericCyclo(f, R)
-	end
 
 	# congruence preparation
-	# 68 allocations
 	if R.congruence !== nothing
 		q=gen(base_ring(R), 1)
 		substitute=R.congruence[2]*q+R.congruence[1]
@@ -431,23 +426,17 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac, UPoly}; simplify::Bool=true)  
 	end
 
 	# reduce numerators modulo denominators
-	# 757 allocations -> 444
 	L=NTuple{4, UPoly}[]
 	for (g,c) in f
-		iszero(c) && continue
-
-        n = numerator(g, false)
-        d = denominator(g, false)
-        if R.congruence !== nothing
-            if !is_constant(n) n=evaluate(n, [1], [substitute]) end
-            if !is_constant(d) d=evaluate(d, [1], [substitute]) end
-        end
-        if is_one(n)
-          a,r=zero(n),n
-        else
-          a,r=divrem(n,d)
-        end
-        push!(L,(c,d,r,a))
+		if !iszero(c)
+			if R.congruence === nothing
+				gp=g
+			else
+				gp=evaluate(numerator(g), [1], [substitute])//evaluate(denominator(g), [1], [substitute])
+			end
+			a,r=divrem(numerator(gp),denominator(gp))
+			push!(L,(c,denominator(gp),r,a))
+		end
 	end
 
 	# return early if `L` is empty
@@ -474,22 +463,22 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac, UPoly}; simplify::Bool=true)  
 	fp=Dict{UPolyFrac, UPoly}()
 	for (c,g_2,r,a) in L
 		# normalize the polynomial part of the exponent
-		ap=normal_form(change_base_ring(ZZ,d*a), d)  # 32 allocations
+		ap=normal_form(change_base_ring(ZZ,d*a), d)
 
 		# normalize the constant part
 		t=constant_coefficient(ap)
-		app=change_base_ring(base_ring(base_ring(R)), ap-t, parent=base_ring(R))  # 25 allocations
-		SSSS,x=ZZ[:x]
-		p=mod(x^t,cyclotomic_polynomial(d,SSSS))
+		app=change_base_ring(base_ring(base_ring(R)), ap-t, parent=base_ring(R))
+		S,x=ZZ[:x]
+		p=mod(x^t,cyclotomic_polynomial(d,S))
 
 		# distribute the normalized constant part
 		for (i,cp) in enumerate(coefficients(p))
 			tp=i-1
-			g=1//d*app+r//g_2+tp//d   # 153 allocations
+			g=1//d*app+r//g_2+tp//d
 			if R.congruence === nothing
 				gp=g
 			else
-				gp=evaluate(numerator(g), [1], [substitute_inv])//evaluate(denominator(g), [1], [substitute_inv])  # 692 allocations
+				gp=evaluate(numerator(g), [1], [substitute_inv])//evaluate(denominator(g), [1], [substitute_inv])
 			end
 			if haskey(fp,gp)
 				fp[gp]+=cp*c
