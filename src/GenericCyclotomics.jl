@@ -2,7 +2,7 @@ using Oscar.Random: Random, SamplerTrivial, GLOBAL_RNG
 using Oscar.RandomExtensions: RandomExtensions, Make2, AbstractRNG
 
 import Oscar.AbstractAlgebra: parent_type, elem_type, base_ring, base_ring_type, parent, is_domain_type,
-	is_exact_type, canonical_unit, isequal, divexact, zero!, mul!, add!, addeq!, get_cached!, is_unit,
+	is_exact_type, canonical_unit, isequal, divexact, zero!, mul!, add!, get_cached!, is_unit,
 	characteristic, Ring, RingElem, expressify, evaluate, normal_form, divexact
 import Oscar: pretty, Indent, Dedent, terse, is_terse
 import Base: show, +, -, *, ^, ==, inv, isone, iszero, one, zero, rand, deepcopy_internal, hash, conj, promote_rule
@@ -367,10 +367,13 @@ end
 
 mul!(x::GenericCyclo, y::GenericCyclo, z::GenericCyclo) = y*z
 
-add!(x::GenericCyclo, y::GenericCyclo, z::GenericCyclo) = y+z
-
-function addeq!(x::GenericCyclo, y::GenericCyclo)
-	mergewith!(+, x.f, y.f)
+function add!(x::GenericCyclo, y::GenericCyclo, z::GenericCyclo)
+	if x === z
+		y,z=z,y
+	elseif x !== y
+		x.f = deepcopy(y.f)
+	end
+	mergewith!(+, x.f, z.f)
 	strip_zeros!(x.f)
 	return x
 end
