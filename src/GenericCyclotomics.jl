@@ -10,9 +10,11 @@ import Base: show, +, -, *, ^, ==, inv, isone, iszero, one, zero, rand, deepcopy
 import Compat
 
 if Compat.pkgversion(Oscar.AbstractAlgebra) >= v"0.42.0"
+	const ZZUPoly = Generic.UnivPoly{ZZRingElem}
 	const UPoly = Generic.UnivPoly{QQFieldElem}
 	const UPolyRing = Generic.UniversalPolyRing{QQFieldElem}
 else
+	const ZZUPoly = Generic.UnivPoly{ZZRingElem, Generic.MPoly{ZZRingElem}}
 	const UPoly = Generic.UnivPoly{QQFieldElem, Generic.MPoly{QQFieldElem}}
 	const UPolyRing = Generic.UniversalPolyRing{QQFieldElem, Generic.MPoly{QQFieldElem}}
 end
@@ -73,7 +75,7 @@ julia> kempner(12)
 kempner(m::Int64) = kempner_with_data(m)[1]
 
 @doc raw"""
-    normal_form(f::AbstractAlgebra.Generic.UnivPoly{ZZRingElem, AbstractAlgebra.Generic.MPoly{ZZRingElem}}, m::Int64)
+    normal_form(f::ZZUPoly, m::Int64)
 
 Return a normal form of `f` modulo `m`, such that `normal_form(f,m)` is equal
 to `normal_form(g,m)` if and only if `f` and `g` are congruent modulo `m`.
@@ -98,7 +100,7 @@ julia> normal_form(4*x^9+x^7-(x^3+4*x),12)
 
 ```
 """
-function normal_form(f::AbstractAlgebra.Generic.UnivPoly{ZZRingElem, AbstractAlgebra.Generic.MPoly{ZZRingElem}}, m::Int64)
+function normal_form(f::ZZUPoly, m::Int64)
 	if m < 1
 		throw(DomainError(m, "A normal form for non-positive moduli is not defined!"))
 	end
