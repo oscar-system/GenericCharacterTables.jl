@@ -31,6 +31,9 @@ jobs:
           - '1.10'
           - '~1.11.0-0'
           #- 'nightly'  # disabled due to https://github.com/JuliaLang/julia/issues/55006
+        oscar-version:
+          - stable
+          - devel
         os:
           - ubuntu-latest
         #include:
@@ -50,6 +53,13 @@ jobs:
         with:
           version: ${{ matrix.julia-version }}
       - uses: julia-actions/cache@v2
+      - name: "Install OSCAR dev version"
+        if: ${{ matrix.oscar-version == 'devel' }}
+        run: |
+          julia --project=@. --color=yes --code-coverage -e '
+            using Pkg
+            Pkg.develop("Oscar")
+            Pkg.pin("Oscar")'
       - uses: julia-actions/julia-buildpkg@v1
       - uses: julia-actions/julia-runtest@v1
         with:
