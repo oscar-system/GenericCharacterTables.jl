@@ -4,7 +4,7 @@ using Oscar
 R = universal_polynomial_ring(QQ; cached=false)
 q = gen(R, "q")
 S = generic_cyclotomic_ring(R)
-i,j,l,k, _...=gens(R, ["i", "j", "l", "k", "i1", "j1", "l1", "k1", "i2", "j2", "l2", "k2", "i3", "j3", "l3", "k3", "it1", "jt1", "lt1", "kt1", "it2", "jt2", "lt2", "kt2"])
+i,j,l,k = gens(R, ["i", "j", "l", "k"])
 
 order = (q^2-1)*(q^2-q)
 table = GenericCyclo[[

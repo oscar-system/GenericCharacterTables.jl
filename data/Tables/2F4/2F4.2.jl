@@ -4,7 +4,7 @@ using Oscar
 R = universal_polynomial_ring(QQ; cached=false)
 q0 = gen(R, "q0")
 S = generic_cyclotomic_ring(R; congruence=ZZ.((-1, 3)))
-a,b,k,l, _...=gens(R, ["a", "b", "k", "l", "a1", "b1", "k1", "l1", "a2", "b2", "k2", "l2", "a3", "b3", "k3", "l3", "at1", "bt1", "kt1", "lt1", "at2", "bt2", "kt2", "lt2"])
+a,b,k,l = gens(R, ["a", "b", "k", "l"])
 sqrt3 = S(Dict(1//R(12) => R(1), -1//R(12) => R(1)))
 
 order = 4096*q0^24*(64*q0^12+1)*(16*q0^8-1)*(8*q0^6+1)*(2*q0^2-1)
