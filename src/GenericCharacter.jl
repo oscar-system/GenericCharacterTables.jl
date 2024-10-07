@@ -176,8 +176,9 @@ function linear_combination(coeffs::Vector{Int64}, chars::Vector{<:GenericCharac
 	end
 	charids=Vector{Int64}(undef, n)
 	for i in 1:n
-		charids[i]=character_type_index(chars[i])
-		charids[i] !== nothing || error("Characters are not all irreducible.")
+		tmp=character_type_index(chars[i])
+		tmp !== nothing || error("Characters are not all irreducible.")
+		charids[i]=tmp
 	end
 	S=base_ring(t.ring)
 	# There a 6 pre defined variable sets used in Ortho.jl and for tensor products.
@@ -234,8 +235,9 @@ function linear_combination(coeffs::Vector{Int64}, chars::Vector{SimpleGenericCh
 	end
 	charids=Vector{Int64}(undef, n)
 	for i in 1:n
-		charids[i]=character_type_index(chars[i])
-		charids[i] !== nothing || error("Characters are not all irreducible.")
+		tmp=character_type_index(chars[i])
+		tmp !== nothing || error("Characters are not all irreducible.")
+		charids[i]=tmp
 	end
 	coeffs=map(x -> t.ring(x), coeffs)  # TODO ring needed?
 	degrees=map(degree, chars)
