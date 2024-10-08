@@ -110,6 +110,16 @@ end
 	@test isone(S(1, exponent=(q-2)//6))
 end
 
+@testset "linear_combination" begin
+	g=generic_character_table("GL2")
+	h=linear_combination([1,1], [g[1], g[1]])
+	@test_throws ErrorException("Characters are not all irreducible.") linear_combination([1,1], [h, g[1]])
+
+	g=generic_character_table("uniGL2")
+	h=linear_combination([1,1], [g[1], g[1]])
+	@test_throws ErrorException("Characters are not all irreducible.") linear_combination([1,1], [h, g[1]])
+end
+
 @testset "Import green functions" begin
 	list=green_function_table()
 	for green in list
