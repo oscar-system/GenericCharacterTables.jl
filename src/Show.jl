@@ -89,6 +89,54 @@ function show(io::IO, c::AbstractGenericCharacter)
 end
 
 @doc raw"""
+    show(io::IO, c::AbstractGenericConjugacyClass)
+
+Display a summary of the generic character `c`.
+
+# Examples
+```jldoctest
+julia> g=generic_character_table("GL2");
+
+julia> conjugacy_class_type(g, 3)
+Generic conjugacy class of GL2
+  with parameters 
+    i ∈ {1,…, q - 1}, j ∈ {1,…, q - 1} except i - j ∈ (q - 1)ℤ
+  of order q^2 + q
+  with values
+    exp(2π𝑖((i*k + j*k)//(q - 1)))
+    exp(2π𝑖((i*k + j*k)//(q - 1)))
+    exp(2π𝑖((i*l + j*k)//(q - 1))) + exp(2π𝑖((i*k + j*l)//(q - 1)))
+    0
+
+julia> [conjugacy_class_type(g, 3)]
+1-element Vector{GenericCharacterTables.GenericConjugacyClass}:
+ Generic conjugacy class of GL2
+
+```
+"""
+function show(io::IO, ::MIME"text/plain", c::AbstractGenericConjugacyClass)
+	io = pretty(io)
+	println(io, "Generic conjugacy class of ", parent(c).importname, Indent())
+	if c isa GenericConjugacyClass && !isempty(parent(c).classparams[c.index].params)
+		println(io, "with parameters ", Indent())
+		print(io, parent(c).classparams[c.index])
+		if !isempty(c.substitutions)
+			print(io, ", substitutions: $(join(c.substitutions, ", "))")
+		end
+		println(io, Dedent())
+	end
+	println(io, "of order ", order(c))
+	print(io, "with values", Indent())
+	for val in c
+		print(io, "\n", val)
+	end
+end
+
+function show(io::IO, c::AbstractGenericConjugacyClass)
+	print(io, "Generic conjugacy class of ", parent(c).importname)
+end
+
+@doc raw"""
     number_of_characters(t::Table)
 
 Return the number of irreducible characters of table `t`.
@@ -178,93 +226,6 @@ q^4 - q^3 - q^2 + q
 ```
 """
 order(t::Table) = t.order
-
-@doc raw"""
-    centralizer_order(t::Table, class::Int64)
-
-Return the order of the centralizer of the class type `class` of the table `t`.
-
-# Examples
-```jldoctest
-julia> g=generic_character_table("GL2");
-
-julia> centralizer_order(g, 1)
-q^4 - q^3 - q^2 + q
-
-```
-"""
-centralizer_order(t::Table, class::Int64) = div(order(t), t.classlength[class])
-
-@doc raw"""
-    number_of_conjugacy_classes(t::CharTable, class::Int64)
-
-Return the number of conjugacy classes in the class type `class` of the table `t`.
-
-# Examples
-```jldoctest
-julia> g=generic_character_table("GL2");
-
-julia> number_of_conjugacy_classes(g, 1)
-q - 1
-
-```
-"""
-function number_of_conjugacy_classes(t::CharTable, class::Int64)
-	o=t.ring(1)
-	result=t.classsums[class](o//o)
-	return shrink(result)
-end
-
-@doc raw"""
-    number_of_conjugacy_classes(t::SimpleCharTable, class::Int64)
-
-Return the number of conjugacy classes in the class type `class` of the table `t`.
-
-# Examples
-```jldoctest
-julia> g=green_function_table("GL2");
-
-julia> number_of_conjugacy_classes(g, 1)
-1
-
-```
-"""
-number_of_conjugacy_classes(t::SimpleCharTable, class::Int64) = t.classtypeorder[class]
-
-@doc raw"""
-    parameters(t::CharTable, class::Int64)
-
-Return the parameters of the class type `class` of the table `t`.
-This includes the parameter names, ranges and exceptions.
-
-# Examples
-```jldoctest
-julia> g=generic_character_table("GL2");
-
-julia> parameters(g, 3)
-i ∈ {1,…, q - 1}, j ∈ {1,…, q - 1} except i - j ∈ (q - 1)ℤ
-
-```
-"""
-parameters(t::CharTable, class::Int64) = t.classparams[class]
-
-@doc raw"""
-    info(t::Table, class::Int64)
-
-Return the infolists of the class type `class` of the table `t`.
-
-# Examples
-```jldoctest
-julia> g=generic_character_table("GL2");
-
-julia> info(g, 1)
-2-element Vector{Any}:
- Any[1, 0]
- Any["A_1", [1, 1]]
-
-```
-"""
-info(t::Table, class::Int64) = t.classinfo[class]
 
 @doc raw"""
     number_of_parameters(t::CharTable)

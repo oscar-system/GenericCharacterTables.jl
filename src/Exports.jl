@@ -1,6 +1,8 @@
 export centralizer_order
 export character_type_index
 export class_multiplication_coefficient
+export conjugacy_class_type
+export conjugacy_class_type_index
 export degree
 export evaluate
 export generic_character_table
