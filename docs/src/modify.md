@@ -9,5 +9,4 @@ Sometimes one likes to specify some of the free variables in the tables to simpl
 ```@docs
 set_congruence
 specialize
-specclassparam!
 ```

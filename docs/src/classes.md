@@ -14,10 +14,17 @@ excluded parameter values.
 ```@docs
 number_of_conjugacy_class_types
 number_of_conjugacy_classes(t::Table)
-number_of_conjugacy_classes(t::CharTable, class::Int64)
-number_of_conjugacy_classes(t::SimpleCharTable, class::Int64)
+number_of_conjugacy_classes(class::GenericConjugacyClass)
+number_of_conjugacy_classes(class::SimpleGenericConjugacyClass)
+number_of_conjugacy_classes(t::Table, class::Int64)
+order(class::AbstractGenericConjugacyClass)
+order(t::Table, class::Int64)
 centralizer_order
-parameters(t::CharTable, class::Int64)
+parameters(class::GenericConjugacyClass)
+parameters(class::SimpleGenericConjugacyClass)
+parameters(t::Table, class::Int64)
+info(class::GenericConjugacyClass)
+info(class::SimpleGenericConjugacyClass)
 info(t::Table, class::Int64)
 ```
 
@@ -32,10 +39,13 @@ satisfied if the evaluation of this polynomial is an integer.
 
 
 ```@docs
-norm(t::CharTable, class::Int64)
-norm(t::SimpleCharTable{T}, class::Int64) where T <: NfPoly
-scalar_product(t::CharTable, class1::Int64, class2::Int64)
-scalar_product(t::SimpleCharTable{T}, class1::Int64, class2::Int64) where T <: NfPoly
-class_multiplication_coefficient(t::CharTable, class1::Int64, class2::Int64, class3::Int64)
-class_multiplication_coefficient(t::SimpleCharTable{T}, class1::Int64, class2::Int64, class3::Int64) where T <: NfPoly
+norm(class::GenericConjugacyClass)
+norm(class::SimpleGenericConjugacyClass)
+norm(t::Table, class::Int64)
+scalar_product(class1::GenericConjugacyClass, class2::GenericConjugacyClass)
+scalar_product(class1::SimpleGenericConjugacyClass, class2::SimpleGenericConjugacyClass)
+scalar_product(t::Table, class1::Int64, class2::Int64)
+class_multiplication_coefficient(class1::SimpleGenericConjugacyClass, class2::SimpleGenericConjugacyClass, class3::SimpleGenericConjugacyClass)
+class_multiplication_coefficient(class1::GenericConjugacyClass, class2::GenericConjugacyClass, class3::GenericConjugacyClass)
+class_multiplication_coefficient(t::Table, class1::Int64, class2::Int64, class3::Int64)
 ```
