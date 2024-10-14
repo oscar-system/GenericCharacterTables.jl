@@ -197,7 +197,7 @@ elem_type(::Type{GenericCycloRing}) = GenericCyclo
 
 base_ring_type(::Type{GenericCycloRing}) = UPolyRing
 
-base_ring(R::GenericCycloRing) = R.base_ring::base_ring_type(R)
+base_ring(R::GenericCycloRing) = R.base_ring::base_ring_type(typeof(R))
 
 parent(f::GenericCyclo) = f.parent
 
