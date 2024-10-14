@@ -4,7 +4,7 @@ using Oscar.RandomExtensions: RandomExtensions, Make2, AbstractRNG
 import Oscar.AbstractAlgebra: parent_type, elem_type, base_ring, base_ring_type, parent, is_domain_type,
 	is_exact_type, canonical_unit, isequal, divexact, zero!, mul!, add!, get_cached!, is_unit,
 	characteristic, Ring, RingElem, expressify, evaluate, normal_form, divexact
-import Oscar: pretty, Indent, Dedent, terse, is_terse
+import Oscar: pretty, Indent, Dedent
 import Base: show, +, -, *, ^, ==, inv, isone, iszero, one, zero, rand, deepcopy_internal, hash, conj, promote_rule
 
 import Compat
@@ -20,6 +20,13 @@ else
 end
 const UPolyFrac = Generic.FracFieldElem{UPoly}
 const UPolyFracRing = Generic.FracField{UPoly}
+
+
+if isdefined(Oscar,:is_terse)
+	import Oscar: is_terse
+else
+	is_terse(io::IO) = get(io, :supercompact, false)::Bool
+end
 
 @doc raw"""
     kempner_with_data(m::Int64)

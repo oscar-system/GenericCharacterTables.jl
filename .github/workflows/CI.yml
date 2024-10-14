@@ -31,9 +31,9 @@ jobs:
           - '1.11'
           #- 'nightly'  # disabled due to https://github.com/JuliaLang/julia/issues/55006
         oscar-version:
-          - stable
-          - devel
-          - 1.0
+          - 'stable'
+          - 'devel'
+          - '1.0'
         os:
           - ubuntu-latest
         #include:
