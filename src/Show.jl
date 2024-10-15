@@ -1,4 +1,4 @@
-import Oscar: order, degree, number_of_conjugacy_classes, pretty, Indent, Dedent, terse, is_terse
+import Oscar: order, degree, number_of_conjugacy_classes, pretty, Indent, Dedent
 import Base: show
 
 # TODO PrintValPhi, PrintToTex?
