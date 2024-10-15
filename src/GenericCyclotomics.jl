@@ -13,10 +13,24 @@ if Compat.pkgversion(Oscar.AbstractAlgebra) >= v"0.42.0"
 	const ZZUPoly = Generic.UnivPoly{ZZRingElem}
 	const UPoly = Generic.UnivPoly{QQFieldElem}
 	const UPolyRing = Generic.UniversalPolyRing{QQFieldElem}
+	const univ_poly_change_base_ring = change_base_ring
 else
 	const ZZUPoly = Generic.UnivPoly{ZZRingElem, Generic.MPoly{ZZRingElem}}
 	const UPoly = Generic.UnivPoly{QQFieldElem, Generic.MPoly{QQFieldElem}}
 	const UPolyRing = Generic.UniversalPolyRing{QQFieldElem, Generic.MPoly{QQFieldElem}}
+
+	# for compat with Oscar 1.0: workaround for broken change_base_ring (this
+	# was fixed in a subsequent AA release)
+	function univ_poly_change_base_ring(R, f; cached::Bool=true)
+		Rx = parent(f)
+		#P = AbstractAlgebra.polynomial_ring_only(R, symbols(Rx); internal_ordering=internal_ordering(Rx), cached)
+		#P, _ = polynomial_ring(R, map(string, symbols(Rx)), internal_ordering=internal_ordering(Rx), cached=cached)
+		P = AbstractAlgebra.Generic.MPolyRing{elem_type(R)}(R, symbols(Rx), internal_ordering(Rx), cached)
+		S = universal_polynomial_ring(R; internal_ordering=internal_ordering(Rx), cached)
+		S.S = deepcopy(symbols(Rx))
+		S.mpoly_ring = P
+		return change_base_ring(R, f, parent=S)
+	end
 end
 const UPolyFrac = Generic.FracFieldElem{UPoly}
 const UPolyFracRing = Generic.FracField{UPoly}
@@ -474,7 +488,7 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac, UPoly}; simplify::Bool=true)  
 	fp=Dict{UPolyFrac, UPoly}()
 	for (c,g_2,r,a) in L
 		# normalize the polynomial part of the exponent
-		ap=normal_form(change_base_ring(ZZ,d*a), d)
+		ap=normal_form(univ_poly_change_base_ring(ZZ,d*a), d)
 
 		# normalize the constant part
 		t=constant_coefficient(ap)
