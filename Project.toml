@@ -1,7 +1,7 @@
 name = "GenericCharacterTables"
 uuid = "fdcc7804-6c20-4e83-8118-baad6b7d05b7"
 authors = ["Andreas Leim <leim@rhrk.uni-kl.de>", "Martin Wagner <marwagne@rhrk.uni-kl.de>", "Max Horn <mhorn@rptu.de>"]
-version = "0.4.1"
+version = "0.4.2"
 
 [deps]
 Compat = "34da2185-b29b-5c13-b0c7-acf172513d20"
