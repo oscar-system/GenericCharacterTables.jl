@@ -21,8 +21,7 @@ end
 const UPolyFrac = Generic.FracFieldElem{UPoly}
 const UPolyFracRing = Generic.FracField{UPoly}
 
-
-if isdefined(Oscar,:is_terse)
+if isdefined(Oscar,:is_terse)  # for compat with Oscar 1.0
 	import Oscar: is_terse
 else
 	is_terse(io::IO) = get(io, :supercompact, false)::Bool
