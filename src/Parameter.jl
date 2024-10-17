@@ -30,15 +30,10 @@ Parameters of generic characters and class types. This is used in `GenericCharac
 struct Parameters
 	params::Vector{Parameter}
 	exceptions::Vector{UPolyFrac}
-	substitutions::Vector{ParameterSubstitution}
-end
-
-function Parameters(p::Vector{Parameter},e::Vector{UPolyFrac})
-	return Parameters(p,e,ParameterSubstitution[])
 end
 
 function Parameters(p::Vector{Parameter})
-	return Parameters(p,UPolyFrac[],ParameterSubstitution[])
+	return Parameters(p,UPolyFrac[])
 end
 
 # TODO Use OSCAR's expressify system here.
@@ -56,8 +51,5 @@ function show(io::IO, a::Parameters)
 				print(io, ", ")
 			end
 		end
-	end
-	if !isempty(a.substitutions)
-		print(io, ", substitutions: $(join(a.substitutions, ", "))")
 	end
 end
