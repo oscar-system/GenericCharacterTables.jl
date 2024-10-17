@@ -43,8 +43,8 @@ function tensor_product(char1::GenericCharacter, char2::GenericCharacter)
 	end
 	param1 = shift_char_parameters(t, char1.params, 4)
 	param2 = shift_char_parameters(t, char2.params, 5)
-	new_char_params=Parameters(vcat(param1.params, param2.params), vcat(param1.exceptions, param2.exceptions), ParameterSubstitution[])
-	return GenericCharacter(t, new_char_values, ["Tensor of type $char1id and $char2id"], new_char_degree, nothing, new_char_params)
+	new_char_params=Parameters(vcat(param1.params, param2.params), vcat(param1.exceptions, param2.exceptions))
+	return GenericCharacter(t, new_char_values, ["Tensor of type $char1id and $char2id"], new_char_degree, nothing, new_char_params, ParameterSubstitution[])
 end
 
 @doc raw"""
@@ -114,7 +114,7 @@ function omega(char::GenericCharacter)
 	for class in 1:number_of_conjugacy_class_types(t)
 		new_char_values[class]=divexact(t.classlength[class]*char[class], degree(char))
 	end
-	return GenericCharacter(t, new_char_values, ["Omega of type $charid"], new_char_degree, nothing, char.params)
+	return GenericCharacter(t, new_char_values, ["Omega of type $charid"], new_char_degree, nothing, char.params, ParameterSubstitution[])
 end
 
 @doc raw"""
@@ -204,8 +204,8 @@ function linear_combination(coeffs::Vector{Int64}, chars::Vector{<:GenericCharac
 	for i in 1:n
 		params[i]=shift_char_parameters(t, chars[i].params, 5+i)
 	end
-	new_char_params=Parameters(vcat(map(x -> x.params, params)...), vcat(map(x -> x.exceptions, params)...), ParameterSubstitution[])
-	return GenericCharacter(t, new_char_values, ["linear_combination $info"], new_char_degree, nothing, new_char_params)
+	new_char_params=Parameters(vcat(map(x -> x.params, params)...), vcat(map(x -> x.exceptions, params)...))
+	return GenericCharacter(t, new_char_values, ["linear_combination $info"], new_char_degree, nothing, new_char_params, ParameterSubstitution[])
 end
 
 @doc raw"""
@@ -391,10 +391,10 @@ function specialize(char::GenericCharacter, var::UPoly, expr::RingElement)
 	for class in 1:number_of_conjugacy_class_types(t)
 		new_char_values[class]=evaluate(char[class], [var_index(var)], [expr])
 	end
-	new_params=deepcopy(char.params)
-	push!(new_params.substitutions, ParameterSubstitution(var, base_ring(t.ring)(expr)))
+	substitutions=deepcopy(char.substitutions)
+	push!(substitutions, ParameterSubstitution(var, base_ring(t.ring)(expr)))
 	# TODO: What about the sum function here?
-	return GenericCharacter(t, new_char_values, char.info, degree(char), nothing, new_params)
+	return GenericCharacter(t, new_char_values, char.info, degree(char), nothing, char.params, substitutions)
 
 end
 

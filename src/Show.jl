@@ -75,7 +75,11 @@ function show(io::IO, ::MIME"text/plain", c::AbstractGenericCharacter)
 	println(io, "Generic character of ", parent(c).importname, Indent())
 	if c isa GenericCharacter && !isempty(c.params.params)
 		println(io, "with parameters ", Indent())
-		println(io, c.params, Dedent())
+		print(io, c.params)
+		if !isempty(c.substitutions)
+			print(io, ", substitutions: $(join(c.substitutions, ", "))")
+		end
+		println(io, Dedent())
 	end
 	println(io, "of degree ", degree(c))
 	print(io, "with values", Indent())

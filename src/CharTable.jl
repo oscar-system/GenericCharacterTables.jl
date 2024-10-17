@@ -47,7 +47,7 @@ function CharTable(order::UPoly, table::Matrix{GenericCyclo}, classinfo::Vector{
 	ct=CharTable(order, classinfo, classlength, classsums, classparamindex, charparamindex,
 			classparams, ring, information, chars, importname)
 	for i in 1:num_chars
-		ct.chars[i]=GenericCharacter(ct, table[i,:], charinfo[i], chardegree[i], charsums[i], charparams[i])
+		ct.chars[i]=GenericCharacter(ct, table[i,:], charinfo[i], chardegree[i], charsums[i], charparams[i], ParameterSubstitution[])
 	end
 	return ct
 end
@@ -87,6 +87,7 @@ struct GenericCharacter <: AbstractGenericCharacter
 	degree::UPoly  # Degree of the characters in this type
 	sum::Union{Function, Nothing}  # Function to sum a Cyclotomic over all characters in this type
 	params::Parameters  # Info about the parameters in this character type
+	substitutions::Vector{ParameterSubstitution}
 end
 
 eltype(::Type{GenericCharacter}) = GenericCyclo
@@ -105,7 +106,8 @@ function (t::CharTable)(c::GenericCharacter)
 			deepcopy(c.info),
 			deepcopy(c.degree),
 			deepcopy(c.sum),
-			deepcopy(c.params)
+			deepcopy(c.params),
+			deepcopy(c.substitutions)
 		)
 end
 

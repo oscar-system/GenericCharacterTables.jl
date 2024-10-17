@@ -26,13 +26,9 @@ end
 function var_shift(a::Parameter, vars::Vector{Int64}, step_size::Int64, steps::Int64)
 	return Parameter(var_shift(a.var, vars, step_size, steps), a.modulus)
 end
-function var_shift(a::ParameterSubstitution, vars::Vector{Int64}, step_size::Int64, steps::Int64)
-	return ParameterSubstitution(var_shift(a.var, vars, step_size, steps), var_shift(a.expression, vars, step_size, steps))
-end
 function var_shift(a::Parameters, vars::Vector{Int64}, step_size::Int64, steps::Int64)
 	return Parameters(var_shift.(a.params, Ref(vars),Ref(step_size), Ref(steps)),
-		var_shift.(a.exceptions, Ref(vars),Ref(step_size), Ref(steps)),
-		var_shift.(a.substitutions, Ref(vars),Ref(step_size), Ref(steps)))
+		var_shift.(a.exceptions, Ref(vars),Ref(step_size), Ref(steps)))
 end
 
 @doc raw"""
