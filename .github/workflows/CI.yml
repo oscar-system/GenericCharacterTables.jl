@@ -33,7 +33,7 @@ jobs:
         oscar-version:
           - 'stable'
           - 'devel'
-          - '1.0'
+          - '1.1'
         os:
           - ubuntu-latest
         #include:
@@ -60,12 +60,12 @@ jobs:
             using Pkg
             Pkg.develop("Oscar")
             Pkg.pin("Oscar")'
-      - name: "Install OSCAR 1.0"
-        if: ${{ matrix.oscar-version == '1.0' }}
+      - name: "Install OSCAR 1.1"
+        if: ${{ matrix.oscar-version == '1.1' }}
         run: |
           julia --project=@. --color=yes --code-coverage -e '
             using Pkg
-            Pkg.add(name="Oscar", version="1.0")
+            Pkg.add(name="Oscar", version="1.1")
             Pkg.pin("Oscar")'
       - uses: julia-actions/julia-buildpkg@v1
       - uses: julia-actions/julia-runtest@v1

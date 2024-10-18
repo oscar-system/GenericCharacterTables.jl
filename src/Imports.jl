@@ -52,6 +52,7 @@ import Oscar:
 	is_domain_type,
 	isequal,
 	is_exact_type,
+	is_terse,
 	is_unit,
 	mul!,
 	norm,
