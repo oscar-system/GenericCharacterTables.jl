@@ -24,6 +24,5 @@ export parameter
 export parameters
 export scalar_product
 export set_congruence
-export specclassparam!
 export specialize
 export tensor_product
