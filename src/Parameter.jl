@@ -1,4 +1,4 @@
-import Base: show
+import Base: show, getindex, eltype, length, iterate
 
 @doc raw"""
     Parameter
@@ -31,6 +31,14 @@ struct Parameters
 	params::Vector{Parameter}
 	exceptions::Vector{UPolyFrac}
 end
+
+getindex(p::Parameters, i::Integer) = p.params[i]
+
+eltype(::Type{Parameters}) = Parameter
+
+length(p::Parameters) = length(p.params)
+
+iterate(p::Parameters, state::Integer=1) = state > length(p) ? nothing : (p[state], state+1)
 
 function Parameters(p::Vector{Parameter})
 	return Parameters(p,UPolyFrac[])
