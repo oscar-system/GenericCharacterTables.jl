@@ -1,6 +1,3 @@
-import Oscar: tensor_product, norm, scalar_product
-import Base: *
-
 # TODO deal with ParameterSubstitution when creating new characters, this is not done in the original implementation.
 
 @doc raw"""

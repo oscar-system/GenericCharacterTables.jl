@@ -1,15 +1,4 @@
-using Oscar.Random: Random, SamplerTrivial, GLOBAL_RNG
-using Oscar.RandomExtensions: RandomExtensions, Make2, AbstractRNG
-
-import Oscar.AbstractAlgebra: parent_type, elem_type, base_ring, base_ring_type, parent, is_domain_type,
-	is_exact_type, canonical_unit, isequal, divexact, zero!, mul!, add!, get_cached!, is_unit,
-	characteristic, Ring, RingElem, expressify, evaluate, normal_form, divexact
-import Oscar: pretty, Indent, Dedent
-import Base: show, +, -, *, ^, ==, inv, isone, iszero, one, zero, rand, deepcopy_internal, hash, conj, promote_rule
-
-import Compat
-
-if Compat.pkgversion(Oscar.AbstractAlgebra) >= v"0.42.0"
+if pkgversion(Oscar.AbstractAlgebra) >= v"0.42.0"
 	const ZZUPoly = Generic.UnivPoly{ZZRingElem}
 	const UPoly = Generic.UnivPoly{QQFieldElem}
 	const UPolyRing = Generic.UniversalPolyRing{QQFieldElem}

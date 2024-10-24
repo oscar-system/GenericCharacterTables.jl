@@ -1,5 +1,3 @@
-import Oscar.AbstractAlgebra: evaluate
-
 @doc raw"""
     is_integer(x::UPolyFrac)
 

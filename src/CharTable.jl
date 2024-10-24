@@ -1,5 +1,3 @@
-import Base: getindex, eltype, length, iterate
-
 abstract type Table end
 abstract type AbstractGenericCharacter end
 
@@ -189,7 +187,7 @@ struct SimpleGenericCharacter{T} <: AbstractGenericCharacter
 	degree::T  # Degree of the characters in this type
 end
 
-AbstractAlgebra.parent(c::AbstractGenericCharacter) = c.parent
+parent(c::AbstractGenericCharacter) = c.parent
 getindex(c::AbstractGenericCharacter, i::Integer) = c.values[i]
 
 eltype(::Type{SimpleGenericCharacter{T}}) where T<:NfPoly = T

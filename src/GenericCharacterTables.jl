@@ -21,6 +21,7 @@ import Oscar.AbstractAlgebra.Generic
 
 const NfPoly = Union{PolyRingElem{QQFieldElem}, PolyRingElem{AbsSimpleNumFieldElem}}
 
+include("Imports.jl")
 include("GenericCyclotomics.jl")
 include("ParameterExceptions.jl")
 include("GenericCyclotomicFractions.jl")
