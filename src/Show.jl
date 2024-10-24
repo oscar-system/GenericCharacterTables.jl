@@ -73,9 +73,9 @@ julia> [g[3]]
 function show(io::IO, ::MIME"text/plain", c::AbstractGenericCharacter)
 	io = pretty(io)
 	println(io, "Generic character of ", parent(c).importname, Indent())
-	if c isa GenericCharacter && !isempty(c.params.params)
+	if !isempty(parameters(c))
 		println(io, "with parameters ", Indent())
-		print(io, c.params)
+		print(io, parameters(c))
 		if !isempty(c.substitutions)
 			print(io, ", substitutions: $(join(c.substitutions, ", "))")
 		end
@@ -121,9 +121,9 @@ julia> [conjugacy_class_type(g, 3)]
 function show(io::IO, ::MIME"text/plain", c::AbstractGenericConjugacyClass)
 	io = pretty(io)
 	println(io, "Generic conjugacy class of ", parent(c).importname, Indent())
-	if c isa GenericConjugacyClass && !isempty(parent(c).classparams[c.index].params)
+	if !isempty(parameters(c))
 		println(io, "with parameters ", Indent())
-		print(io, parent(c).classparams[c.index])
+		print(io, parameters(c))
 		if !isempty(c.substitutions)
 			print(io, ", substitutions: $(join(c.substitutions, ", "))")
 		end
