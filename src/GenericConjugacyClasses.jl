@@ -1,5 +1,3 @@
-import Oscar: norm, scalar_product, class_multiplication_coefficient, order, number_of_conjugacy_classes
-
 abstract type AbstractGenericConjugacyClass end
 
 @doc raw"""

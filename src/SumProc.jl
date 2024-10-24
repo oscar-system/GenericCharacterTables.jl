@@ -1,5 +1,3 @@
-import Oscar.AbstractAlgebra: evaluate
-
 @doc raw"""
     evaluate(a::Union{GenericCyclo,GenericCycloFrac}, vars::Vector{UPoly}, vals::Vector{<:RingElement})
 
