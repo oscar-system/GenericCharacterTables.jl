@@ -1,6 +1,3 @@
-import Oscar.AbstractAlgebra: evaluate
-import Base: show, isone, iszero, one, zero, conj, inv, +, -, *, //, ==
-
 # This models fractions of sums of cyclotomics.
 # The simplification is currently only very basic.
 # According to the original implementation
