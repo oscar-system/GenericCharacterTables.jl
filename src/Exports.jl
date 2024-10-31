@@ -22,6 +22,7 @@ export omega
 export order
 export parameter
 export parameters
+export parent
 export scalar_product
 export set_congruence
 export specialize
