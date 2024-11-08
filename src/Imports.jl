@@ -47,7 +47,6 @@ import Oscar:
 	elem_type,
 	evaluate,
 	expressify,
-	get_cached!,
 	Indent,
 	is_domain_type,
 	isequal,
