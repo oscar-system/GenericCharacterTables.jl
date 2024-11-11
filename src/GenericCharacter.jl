@@ -23,25 +23,35 @@ Generic character of GL2
 ```
 """
 function tensor_product(char1::GenericCharacter, char2::GenericCharacter)
-	check_parent(char1, char2)
-	t=parent(char1)
-	char1id=character_type_index(char1)
-	char2id=character_type_index(char2)
-	char1id !== nothing || error("Characters are not both irreducible.")
-	char2id !== nothing || error("Characters are not both irreducible.")
-	new_char_degree=degree(char1)*degree(char2)
-	new_char_values=Vector{GenericCyclo}(undef, number_of_conjugacy_class_types(t))
-	for class in 1:number_of_conjugacy_class_types(t)
-		# The first 4 variable sets are reserved for the computations in Ortho.jl
-		# so we can use the 5th and 6th set here.
-		val1=shift_char_parameters(t, char1[class], 4)
-		val2=shift_char_parameters(t, char2[class], 5)
-		new_char_values[class]=val1*val2
-	end
-	param1 = shift_char_parameters(t, char1.params, 4)
-	param2 = shift_char_parameters(t, char2.params, 5)
-	new_char_params=Parameters(vcat(param1.params, param2.params), vcat(param1.exceptions, param2.exceptions))
-	return GenericCharacter(t, new_char_values, ["Tensor of type $char1id and $char2id"], new_char_degree, nothing, new_char_params, ParameterSubstitution[])
+  check_parent(char1, char2)
+  t = parent(char1)
+  char1id = character_type_index(char1)
+  char2id = character_type_index(char2)
+  char1id !== nothing || error("Characters are not both irreducible.")
+  char2id !== nothing || error("Characters are not both irreducible.")
+  new_char_degree = degree(char1) * degree(char2)
+  new_char_values = Vector{GenericCyclo}(undef, number_of_conjugacy_class_types(t))
+  for class in 1:number_of_conjugacy_class_types(t)
+    # The first 4 variable sets are reserved for the computations in Ortho.jl
+    # so we can use the 5th and 6th set here.
+    val1 = shift_char_parameters(t, char1[class], 4)
+    val2 = shift_char_parameters(t, char2[class], 5)
+    new_char_values[class] = val1 * val2
+  end
+  param1 = shift_char_parameters(t, char1.params, 4)
+  param2 = shift_char_parameters(t, char2.params, 5)
+  new_char_params = Parameters(
+    vcat(param1.params, param2.params), vcat(param1.exceptions, param2.exceptions)
+  )
+  return GenericCharacter(
+    t,
+    new_char_values,
+    ["Tensor of type $char1id and $char2id"],
+    new_char_degree,
+    nothing,
+    new_char_params,
+    ParameterSubstitution[],
+  )
 end
 
 @doc raw"""
@@ -63,23 +73,28 @@ Generic character of GL3
     1
 ```
 """
-function tensor_product(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T<:PolyRingElem
-	check_parent(char1, char2)
-	t=parent(char1)
-	char1id=character_type_index(char1)
-	char2id=character_type_index(char2)
-	char1id !== nothing || error("Characters are not both irreducible.")
-	char2id !== nothing || error("Characters are not both irreducible.")
-	new_char_degree=degree(char1)*degree(char2)
-	new_char_values=Vector{T}(undef, number_of_conjugacy_class_types(t))
-	for class in 1:number_of_conjugacy_class_types(t)
-		new_char_values[class]=char1[class]*char2[class]
-	end
-	return SimpleGenericCharacter{T}(t, new_char_values, ["Tensor of type $char1id and $char2id"], new_char_degree)
+function tensor_product(
+  char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}
+) where {T<:PolyRingElem}
+  check_parent(char1, char2)
+  t = parent(char1)
+  char1id = character_type_index(char1)
+  char2id = character_type_index(char2)
+  char1id !== nothing || error("Characters are not both irreducible.")
+  char2id !== nothing || error("Characters are not both irreducible.")
+  new_char_degree = degree(char1) * degree(char2)
+  new_char_values = Vector{T}(undef, number_of_conjugacy_class_types(t))
+  for class in 1:number_of_conjugacy_class_types(t)
+    new_char_values[class] = char1[class] * char2[class]
+  end
+  return SimpleGenericCharacter{T}(
+    t, new_char_values, ["Tensor of type $char1id and $char2id"], new_char_degree
+  )
 end
 
 # 'classical' group characters in OSCAR treat '*' as tensor product, so we do it, too
-*(char1::AbstractGenericCharacter, char2::AbstractGenericCharacter) = tensor_product(char1, char2)
+*(char1::AbstractGenericCharacter, char2::AbstractGenericCharacter) =
+  tensor_product(char1, char2)
 
 @doc raw"""
     omega(char::GenericCharacter)
@@ -104,14 +119,22 @@ Generic character of GL2
 ```
 """
 function omega(char::GenericCharacter)
-	t=parent(char)
-	charid=character_type_index(char)
-	new_char_degree=base_ring(t.ring)(1)
-	new_char_values=Vector{GenericCyclo}(undef, number_of_conjugacy_class_types(t))
-	for class in 1:number_of_conjugacy_class_types(t)
-		new_char_values[class]=divexact(t.classlength[class]*char[class], degree(char))
-	end
-	return GenericCharacter(t, new_char_values, ["Omega of type $charid"], new_char_degree, nothing, char.params, ParameterSubstitution[])
+  t = parent(char)
+  charid = character_type_index(char)
+  new_char_degree = base_ring(t.ring)(1)
+  new_char_values = Vector{GenericCyclo}(undef, number_of_conjugacy_class_types(t))
+  for class in 1:number_of_conjugacy_class_types(t)
+    new_char_values[class] = divexact(t.classlength[class] * char[class], degree(char))
+  end
+  return GenericCharacter(
+    t,
+    new_char_values,
+    ["Omega of type $charid"],
+    new_char_degree,
+    nothing,
+    char.params,
+    ParameterSubstitution[],
+  )
 end
 
 @doc raw"""
@@ -132,15 +155,17 @@ Generic character of GL3
     q^3 - 2*q^2 + q
 ```
 """
-function omega(char::SimpleGenericCharacter{T}) where T <: NfPoly
-	t=parent(char)
-	charid=character_type_index(char)
-	new_char_degree=t.ring(1)
-	new_char_values=Vector{T}(undef, number_of_conjugacy_class_types(t))
-	for class in 1:number_of_conjugacy_class_types(t)
-		new_char_values[class]=divexact(t.classlength[class]*char[class], degree(char))
-	end
-	return SimpleGenericCharacter{T}(t, new_char_values, ["Omega of type $charid"], new_char_degree)
+function omega(char::SimpleGenericCharacter{T}) where {T<:NfPoly}
+  t = parent(char)
+  charid = character_type_index(char)
+  new_char_degree = t.ring(1)
+  new_char_values = Vector{T}(undef, number_of_conjugacy_class_types(t))
+  for class in 1:number_of_conjugacy_class_types(t)
+    new_char_values[class] = divexact(t.classlength[class] * char[class], degree(char))
+  end
+  return SimpleGenericCharacter{T}(
+    t, new_char_values, ["Omega of type $charid"], new_char_degree
+  )
 end
 
 @doc raw"""
@@ -165,44 +190,55 @@ Generic character of GL2
 ```
 """
 function linear_combination(coeffs::Vector{Int64}, chars::Vector{<:GenericCharacter})
-	length(coeffs) == length(chars) || error("Different number of coefficients and character types.")
-	n=length(coeffs)
-	t=parent(chars[1])
-	for char in chars[2:end]
-		check_parent(char, chars[1])
-	end
-	charids=Vector{Int64}(undef, n)
-	for i in 1:n
-		tmp=character_type_index(chars[i])
-		tmp !== nothing || error("Characters are not all irreducible.")
-		charids[i]=tmp
-	end
-	S=base_ring(t.ring)
-	# There a 6 pre defined variable sets used in Ortho.jl and for tensor products.
-	extra_var_batches=(nvars(S)-1)÷number_of_parameters(t)-6
-	missing_var_batches=n-extra_var_batches
-	if missing_var_batches > 0
-		vars=map(x -> String(x), symbols(S)[2:(number_of_parameters(t)+1)]).*"l"
-		for i in 1:missing_var_batches
-			gens(S, vars.*string(extra_var_batches+i))
-		end
-	end
-	degrees=map(degree, chars)
-	new_char_degree=sum(coeffs.*degrees)
-	new_char_values=Vector{GenericCyclo}(undef, number_of_conjugacy_class_types(t))
-	for class in 1:number_of_conjugacy_class_types(t)
-		new_char_values[class]=t.ring(0)
-		for i in 1:n
-			new_char_values[class]+=shift_char_parameters(t, coeffs[i]*chars[i][class], 5+i)
-		end
-	end
-	info=join(map(x -> join(x, " * type "), zip(coeffs, charids)), " + ")  # TODO
-	params=Vector{Parameters}(undef, n)
-	for i in 1:n
-		params[i]=shift_char_parameters(t, chars[i].params, 5+i)
-	end
-	new_char_params=Parameters(vcat(map(x -> x.params, params)...), vcat(map(x -> x.exceptions, params)...))
-	return GenericCharacter(t, new_char_values, ["linear_combination $info"], new_char_degree, nothing, new_char_params, ParameterSubstitution[])
+  length(coeffs) == length(chars) ||
+    error("Different number of coefficients and character types.")
+  n = length(coeffs)
+  t = parent(chars[1])
+  for char in chars[2:end]
+    check_parent(char, chars[1])
+  end
+  charids = Vector{Int64}(undef, n)
+  for i in 1:n
+    tmp = character_type_index(chars[i])
+    tmp !== nothing || error("Characters are not all irreducible.")
+    charids[i] = tmp
+  end
+  S = base_ring(t.ring)
+  # There a 6 pre defined variable sets used in Ortho.jl and for tensor products.
+  extra_var_batches = (nvars(S) - 1) ÷ number_of_parameters(t) - 6
+  missing_var_batches = n - extra_var_batches
+  if missing_var_batches > 0
+    vars = map(x -> String(x), symbols(S)[2:(number_of_parameters(t) + 1)]) .* "l"
+    for i in 1:missing_var_batches
+      gens(S, vars .* string(extra_var_batches + i))
+    end
+  end
+  degrees = map(degree, chars)
+  new_char_degree = sum(coeffs .* degrees)
+  new_char_values = Vector{GenericCyclo}(undef, number_of_conjugacy_class_types(t))
+  for class in 1:number_of_conjugacy_class_types(t)
+    new_char_values[class] = t.ring(0)
+    for i in 1:n
+      new_char_values[class] += shift_char_parameters(t, coeffs[i] * chars[i][class], 5 + i)
+    end
+  end
+  info = join(map(x -> join(x, " * type "), zip(coeffs, charids)), " + ")  # TODO
+  params = Vector{Parameters}(undef, n)
+  for i in 1:n
+    params[i] = shift_char_parameters(t, chars[i].params, 5 + i)
+  end
+  new_char_params = Parameters(
+    vcat(map(x -> x.params, params)...), vcat(map(x -> x.exceptions, params)...)
+  )
+  return GenericCharacter(
+    t,
+    new_char_values,
+    ["linear_combination $info"],
+    new_char_degree,
+    nothing,
+    new_char_params,
+    ParameterSubstitution[],
+  )
 end
 
 @doc raw"""
@@ -223,31 +259,36 @@ Generic character of GL3
     6
 ```
 """
-function linear_combination(coeffs::Vector{Int64}, chars::Vector{SimpleGenericCharacter{T}}) where T <: NfPoly
-	length(coeffs) == length(chars) || error("Different number of coefficients and character types.")
-	n=length(coeffs)
-	t=parent(chars[1])
-	for char in chars[2:end]
-		check_parent(char, chars[1])
-	end
-	charids=Vector{Int64}(undef, n)
-	for i in 1:n
-		tmp=character_type_index(chars[i])
-		tmp !== nothing || error("Characters are not all irreducible.")
-		charids[i]=tmp
-	end
-	coeffs=map(x -> t.ring(x), coeffs)  # TODO ring needed?
-	degrees=map(degree, chars)
-	new_char_degree=sum(coeffs.*degrees)
-	new_char_values=Vector{T}(undef, number_of_conjugacy_class_types(t))
-	for class in 1:number_of_conjugacy_class_types(t)
-		new_char_values[class]=t.ring(0)
-		for i in 1:n
-			new_char_values[class]+=coeffs[i]*chars[i][class]
-		end
-	end
-	info=join(map(x -> join(x, " * type "), zip(coeffs, charids)), " + ")  # TODO
-	return SimpleGenericCharacter{T}(t, new_char_values, ["linear_combination $info"], new_char_degree)
+function linear_combination(
+  coeffs::Vector{Int64}, chars::Vector{SimpleGenericCharacter{T}}
+) where {T<:NfPoly}
+  length(coeffs) == length(chars) ||
+    error("Different number of coefficients and character types.")
+  n = length(coeffs)
+  t = parent(chars[1])
+  for char in chars[2:end]
+    check_parent(char, chars[1])
+  end
+  charids = Vector{Int64}(undef, n)
+  for i in 1:n
+    tmp = character_type_index(chars[i])
+    tmp !== nothing || error("Characters are not all irreducible.")
+    charids[i] = tmp
+  end
+  coeffs = map(x -> t.ring(x), coeffs)  # TODO ring needed?
+  degrees = map(degree, chars)
+  new_char_degree = sum(coeffs .* degrees)
+  new_char_values = Vector{T}(undef, number_of_conjugacy_class_types(t))
+  for class in 1:number_of_conjugacy_class_types(t)
+    new_char_values[class] = t.ring(0)
+    for i in 1:n
+      new_char_values[class] += coeffs[i] * chars[i][class]
+    end
+  end
+  info = join(map(x -> join(x, " * type "), zip(coeffs, charids)), " + ")  # TODO
+  return SimpleGenericCharacter{T}(
+    t, new_char_values, ["linear_combination $info"], new_char_degree
+  )
 end
 
 @doc raw"""
@@ -264,13 +305,13 @@ julia> norm(g[1])
 ```
 """
 function norm(char::GenericCharacter)
-	t=parent(char)
-	sum=0
-	for class in 1:number_of_conjugacy_class_types(t)
-		val=char[class]
-		sum+=t.classlength[class]*classsum(t, class, val*conj(val))
-	end
-	return shrink(sum//order(t))
+  t = parent(char)
+  sum = 0
+  for class in 1:number_of_conjugacy_class_types(t)
+    val = char[class]
+    sum += t.classlength[class] * classsum(t, class, val * conj(val))
+  end
+  return shrink(sum//order(t))
 end
 
 @doc raw"""
@@ -286,13 +327,13 @@ julia> norm(g[1])
 6//(q^3 - 3*q^2 + 3*q - 1)
 ```
 """
-function norm(char::SimpleGenericCharacter{T}) where T <: NfPoly
-	t=parent(char)
-	sum=0
-	for class in 1:number_of_conjugacy_class_types(t)
-		sum+=char[class]^2*t.classlength[class]*t.classtypeorder[class]
-	end
-	return sum//order(t)
+function norm(char::SimpleGenericCharacter{T}) where {T<:NfPoly}
+  t = parent(char)
+  sum = 0
+  for class in 1:number_of_conjugacy_class_types(t)
+    sum += char[class]^2 * t.classlength[class] * t.classtypeorder[class]
+  end
+  return sum//order(t)
 end
 
 @doc raw"""
@@ -313,15 +354,15 @@ With exceptions:
 ```
 """
 function scalar_product(char1::GenericCharacter, char2::GenericCharacter)
-	check_parent(char1, char2)
-	t=parent(char1)
-	sum=0
-	for class in 1:number_of_conjugacy_class_types(t)
-		val1=shift_char_parameters(t, char1[class], 1)
-		val2=shift_char_parameters(t, char2[class], 2)
-		sum+=t.classlength[class]*classsum(t, class, val1*conj(val2))
-	end
-	return shrink(sum//order(t))
+  check_parent(char1, char2)
+  t = parent(char1)
+  sum = 0
+  for class in 1:number_of_conjugacy_class_types(t)
+    val1 = shift_char_parameters(t, char1[class], 1)
+    val2 = shift_char_parameters(t, char2[class], 2)
+    sum += t.classlength[class] * classsum(t, class, val1 * conj(val2))
+  end
+  return shrink(sum//order(t))
 end
 
 @doc raw"""
@@ -337,14 +378,16 @@ julia> scalar_product(g[1],g[2])
 0
 ```
 """
-function scalar_product(char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}) where T <:NfPoly
-	check_parent(char1, char2)
-	t=parent(char1)
-	sum=0
-	for class in 1:number_of_conjugacy_class_types(t)
-		sum+=char1[class]*char2[class]*t.classlength[class]*t.classtypeorder[class]
-	end
-	return sum//order(t)
+function scalar_product(
+  char1::SimpleGenericCharacter{T}, char2::SimpleGenericCharacter{T}
+) where {T<:NfPoly}
+  check_parent(char1, char2)
+  t = parent(char1)
+  sum = 0
+  for class in 1:number_of_conjugacy_class_types(t)
+    sum += char1[class] * char2[class] * t.classlength[class] * t.classtypeorder[class]
+  end
+  return sum//order(t)
 end
 
 @doc raw"""
@@ -383,16 +426,17 @@ Generic character of GL2
 ```
 """
 function specialize(char::GenericCharacter, var::UPoly, expr::RingElement)
-	t=parent(char)
-	new_char_values=Vector{GenericCyclo}(undef, number_of_conjugacy_class_types(t))
-	for class in 1:number_of_conjugacy_class_types(t)
-		new_char_values[class]=evaluate(char[class], [var_index(var)], [expr])
-	end
-	substitutions=deepcopy(char.substitutions)
-	push!(substitutions, ParameterSubstitution(var, base_ring(t.ring)(expr)))
-	# TODO: What about the sum function here?
-	return GenericCharacter(t, new_char_values, char.info, degree(char), nothing, char.params, substitutions)
-
+  t = parent(char)
+  new_char_values = Vector{GenericCyclo}(undef, number_of_conjugacy_class_types(t))
+  for class in 1:number_of_conjugacy_class_types(t)
+    new_char_values[class] = evaluate(char[class], [var_index(var)], [expr])
+  end
+  substitutions = deepcopy(char.substitutions)
+  push!(substitutions, ParameterSubstitution(var, base_ring(t.ring)(expr)))
+  # TODO: What about the sum function here?
+  return GenericCharacter(
+    t, new_char_values, char.info, degree(char), nothing, char.params, substitutions
+  )
 end
 
 @doc raw"""
@@ -413,13 +457,13 @@ julia> character_type_index(g[1]*g[1])
 ```
 """
 function character_type_index(c::AbstractGenericCharacter)
-	ct=parent(c)
-	for i in 1:length(ct)
-		if ct[i] === c
-			return i
-		end
-	end
-	return nothing
+  ct = parent(c)
+  for i in 1:length(ct)
+    if ct[i] === c
+      return i
+    end
+  end
+  return nothing
 end
 
 @doc raw"""
@@ -453,10 +497,11 @@ q - 1
 ```
 """
 function number_of_characters(char::GenericCharacter)
-	character_type_index(char) !== nothing || error("Cannot calculate number of characters in reducible types.")
-	o=parent(char).ring(1)
-	result=charsum(char, o//o)
-	return shrink(result)
+  character_type_index(char) !== nothing ||
+    error("Cannot calculate number of characters in reducible types.")
+  o = parent(char).ring(1)
+  result = charsum(char, o//o)
+  return shrink(result)
 end
 
 number_of_characters(char::SimpleGenericCharacter) = 1

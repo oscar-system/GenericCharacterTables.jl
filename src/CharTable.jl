@@ -24,30 +24,41 @@ Generic character table GL2
 ```
 """
 struct CharTable <: Table
-	order::UPoly  # Order of the associated group
-	classinfo::Vector{<:Any}  # Info about class types
-	classlength::Vector{UPoly}  # Order of the classes in each type
-	classsums::Vector{Function}  # Functions to sum a cyclotomic over all classes in a type
-	classparamindex::Vector{Int64}  # Indices of the class parameters
-	charparamindex::Vector{Int64}  # Indices of the character parameters
-	classparams::Vector{Parameters}  # Info about the parameters of each class type
-	ring::GenericCycloRing  # Parent ring of the cyclotomics in this table
-	information::String  # General info about the table
-	chars::Vector{<:AbstractGenericCharacter}
-	importname::String  # This name can be used to import the table, a "*" indicates a modified table
+  order::UPoly  # Order of the associated group
+  classinfo::Vector{<:Any}  # Info about class types
+  classlength::Vector{UPoly}  # Order of the classes in each type
+  classsums::Vector{Function}  # Functions to sum a cyclotomic over all classes in a type
+  classparamindex::Vector{Int64}  # Indices of the class parameters
+  charparamindex::Vector{Int64}  # Indices of the character parameters
+  classparams::Vector{Parameters}  # Info about the parameters of each class type
+  ring::GenericCycloRing  # Parent ring of the cyclotomics in this table
+  information::String  # General info about the table
+  chars::Vector{<:AbstractGenericCharacter}
+  importname::String  # This name can be used to import the table, a "*" indicates a modified table
 end
-function CharTable(order::UPoly, table::Matrix{GenericCyclo}, classinfo::Vector{<:Any}, classlength::Vector{UPoly},
-	charinfo::Vector{<:Any}, chardegree::Vector{UPoly}, classsums::Vector{Function}, charsums::Vector{Function},
-	classparamindex::Vector{Int64}, charparamindex::Vector{Int64}, classparams::Vector{Parameters}, charparams::Vector{Parameters},
-	ring::GenericCycloRing, information::String, importname::String)
-	num_chars=size(table, 1)
-	chars=Vector{GenericCharacter}(undef, num_chars)
-	ct=CharTable(order, classinfo, classlength, classsums, classparamindex, charparamindex,
-			classparams, ring, information, chars, importname)
-	for i in 1:num_chars
-		ct.chars[i]=GenericCharacter(ct, table[i,:], charinfo[i], chardegree[i], charsums[i], charparams[i], ParameterSubstitution[])
-	end
-	return ct
+function CharTable(order::UPoly, table::Matrix{GenericCyclo}, classinfo::Vector{<:Any},
+  classlength::Vector{UPoly},
+  charinfo::Vector{<:Any}, chardegree::Vector{UPoly}, classsums::Vector{Function},
+  charsums::Vector{Function},
+  classparamindex::Vector{Int64}, charparamindex::Vector{Int64},
+  classparams::Vector{Parameters}, charparams::Vector{Parameters},
+  ring::GenericCycloRing, information::String, importname::String)
+  num_chars = size(table, 1)
+  chars = Vector{GenericCharacter}(undef, num_chars)
+  ct = CharTable(order, classinfo, classlength, classsums, classparamindex, charparamindex,
+    classparams, ring, information, chars, importname)
+  for i in 1:num_chars
+    ct.chars[i] = GenericCharacter(
+      ct,
+      table[i, :],
+      charinfo[i],
+      chardegree[i],
+      charsums[i],
+      charparams[i],
+      ParameterSubstitution[],
+    )
+  end
+  return ct
 end
 
 getindex(ct::CharTable, i::Integer) = ct.chars[i]::GenericCharacter
@@ -55,7 +66,8 @@ getindex(ct::CharTable, i::Integer, j::Integer) = ct[i].values[j]::GenericCyclo
 
 eltype(::Type{CharTable}) = GenericCharacter
 
-classsum(t::CharTable, class::Integer, x::Union{GenericCyclo, GenericCycloFrac}) = t.classsums[class](x)::Union{GenericCyclo, GenericCycloFrac}
+classsum(t::CharTable, class::Integer, x::Union{GenericCyclo,GenericCycloFrac}) =
+  t.classsums[class](x)::Union{GenericCyclo,GenericCycloFrac}
 
 @doc raw"""
     GenericCharacter <: AbstractGenericCharacter
@@ -79,18 +91,19 @@ Generic character of GL2
 ```
 """
 struct GenericCharacter <: AbstractGenericCharacter
-	parent::CharTable
-	values::Vector{GenericCyclo}
-	info::Any
-	degree::UPoly  # Degree of the characters in this type
-	sum::Union{Function, Nothing}  # Function to sum a Cyclotomic over all characters in this type
-	params::Parameters  # Info about the parameters in this character type
-	substitutions::Vector{ParameterSubstitution}
+  parent::CharTable
+  values::Vector{GenericCyclo}
+  info::Any
+  degree::UPoly  # Degree of the characters in this type
+  sum::Union{Function,Nothing}  # Function to sum a Cyclotomic over all characters in this type
+  params::Parameters  # Info about the parameters in this character type
+  substitutions::Vector{ParameterSubstitution}
 end
 
 eltype(::Type{GenericCharacter}) = GenericCyclo
 
-charsum(c::GenericCharacter, x::Union{GenericCyclo, GenericCycloFrac}) = c.sum(x)::Union{GenericCyclo, GenericCycloFrac}
+charsum(c::GenericCharacter, x::Union{GenericCyclo,GenericCycloFrac}) =
+  c.sum(x)::Union{GenericCyclo,GenericCycloFrac}
 
 @doc raw"""
     (t::CharTable)(c::GenericCharacter)
@@ -98,15 +111,15 @@ charsum(c::GenericCharacter, x::Union{GenericCyclo, GenericCycloFrac}) = c.sum(x
 Return `c` as a generic character of `t`. This will only work if `t` is a version of the parent table of `c` with a more restricted congruence.
 """
 function (t::CharTable)(c::GenericCharacter)
-	return GenericCharacter(
-			t,
-			t.ring.(c.values),
-			deepcopy(c.info),
-			deepcopy(c.degree),
-			deepcopy(c.sum),
-			deepcopy(c.params),
-			deepcopy(c.substitutions)
-		)
+  return GenericCharacter(
+    t,
+    t.ring.(c.values),
+    deepcopy(c.info),
+    deepcopy(c.degree),
+    deepcopy(c.sum),
+    deepcopy(c.params),
+    deepcopy(c.substitutions),
+  )
 end
 
 # T is usually of th type NfPoly.
@@ -127,34 +140,39 @@ Generic character table uniGL2
 ```
 """
 struct SimpleCharTable{T} <: Table
-	order::T  # Order of the associated group
-	classinfo::Vector{<:Any}  # Info about class types
-	classlength::Vector{T}  # Order of the classes in each type
-	classtypeorder::Vector{T}  # Number of classes in each type
-	ring::PolyRing  # Ring of polynomials of type T used in table
-	information::String  # General info about the table
-	chars::Vector{<:AbstractGenericCharacter}
-	importname::String  # This name can be used to import the table
-	function SimpleCharTable(order::T, table::Matrix{T}, classinfo::Vector{<:Any}, classlength::Vector{T},
-		classtypeorder::Vector{T}, charinfo::Vector{<:Any}, chardegree::Vector{T},
-		ring::PolyRing, information::String, importname::String) where T<:NfPoly
-		num_chars=size(table, 1)
-		chars=Vector{SimpleGenericCharacter{T}}(undef, num_chars)
-		ct=new{T}(order, classinfo, classlength, classtypeorder, ring, information, chars, importname)
-		for i in 1:num_chars
-			ct.chars[i]=SimpleGenericCharacter(ct, table[i,:], charinfo[i], chardegree[i])
-		end
-		return ct
-	end
+  order::T  # Order of the associated group
+  classinfo::Vector{<:Any}  # Info about class types
+  classlength::Vector{T}  # Order of the classes in each type
+  classtypeorder::Vector{T}  # Number of classes in each type
+  ring::PolyRing  # Ring of polynomials of type T used in table
+  information::String  # General info about the table
+  chars::Vector{<:AbstractGenericCharacter}
+  importname::String  # This name can be used to import the table
+  function SimpleCharTable(order::T, table::Matrix{T}, classinfo::Vector{<:Any},
+    classlength::Vector{T},
+    classtypeorder::Vector{T}, charinfo::Vector{<:Any}, chardegree::Vector{T},
+    ring::PolyRing, information::String, importname::String) where {T<:NfPoly}
+    num_chars = size(table, 1)
+    chars = Vector{SimpleGenericCharacter{T}}(undef, num_chars)
+    ct = new{T}(
+      order, classinfo, classlength, classtypeorder, ring, information, chars, importname
+    )
+    for i in 1:num_chars
+      ct.chars[i] = SimpleGenericCharacter(ct, table[i, :], charinfo[i], chardegree[i])
+    end
+    return ct
+  end
 end
 
-getindex(ct::SimpleCharTable{T}, i::Integer) where T<:NfPoly = ct.chars[i]::SimpleGenericCharacter{T}
-getindex(ct::SimpleCharTable{T}, i::Integer, j::Integer) where T<:NfPoly = ct[i].values[j]::T
+getindex(ct::SimpleCharTable{T}, i::Integer) where {T<:NfPoly} =
+  ct.chars[i]::SimpleGenericCharacter{T}
+getindex(ct::SimpleCharTable{T}, i::Integer, j::Integer) where {T<:NfPoly} =
+  ct[i].values[j]::T
 
-eltype(::Type{SimpleCharTable{T}}) where T<:NfPoly = SimpleGenericCharacter{T}
+eltype(::Type{SimpleCharTable{T}}) where {T<:NfPoly} = SimpleGenericCharacter{T}
 
 length(ct::Table) = length(ct.chars)
-iterate(ct::Table, state::Integer=1) = state > length(ct) ? nothing : (ct[state], state+1)
+iterate(ct::Table, state::Integer=1) = state > length(ct) ? nothing : (ct[state], state + 1)
 
 @doc raw"""
     SimpleGenericCharacter <: AbstractGenericCharacter
@@ -181,44 +199,47 @@ Generic character of uniGL2
 ```
 """
 struct SimpleGenericCharacter{T} <: AbstractGenericCharacter
-	parent::SimpleCharTable{T}
-	values::Vector{T}
-	info::Any
-	degree::T  # Degree of the characters in this type
+  parent::SimpleCharTable{T}
+  values::Vector{T}
+  info::Any
+  degree::T  # Degree of the characters in this type
 end
 
 parent(c::AbstractGenericCharacter) = c.parent
 getindex(c::AbstractGenericCharacter, i::Integer) = c.values[i]
 
-eltype(::Type{SimpleGenericCharacter{T}}) where T<:NfPoly = T
+eltype(::Type{SimpleGenericCharacter{T}}) where {T<:NfPoly} = T
 
 length(c::AbstractGenericCharacter) = length(c.values)
-iterate(c::AbstractGenericCharacter, state::Integer=1) = state > length(c) ? nothing : (c[state], state+1)
+iterate(c::AbstractGenericCharacter, state::Integer=1) =
+  state > length(c) ? nothing : (c[state], state + 1)
 
 function loadtab(path::String)
-	return (@eval module $(gensym("CHAR_TABLE")) include($(path)) end).TABLE
+  return (@eval module $(gensym("CHAR_TABLE"))
+  include($(path))
+  end).TABLE
 end
 
 function gentab(table::String, tabletype::String)
-	!isempty(table) || error("table name must not be empty")
-	!isempty(tabletype) || error("tabletype name must not be empty")
-	path=joinpath(@__DIR__, "..", "data")
-	for dir in readdir("$path/$tabletype")
-		fname = "$path/$tabletype/$dir/$table.jl"
-		isfile(fname) && return loadtab(fname)
-	end
-	error("table '$table' not found")
+  !isempty(table) || error("table name must not be empty")
+  !isempty(tabletype) || error("tabletype name must not be empty")
+  path = joinpath(@__DIR__, "..", "data")
+  for dir in readdir("$path/$tabletype")
+    fname = "$path/$tabletype/$dir/$table.jl"
+    isfile(fname) && return loadtab(fname)
+  end
+  error("table '$table' not found")
 end
 
 function gentab(tabletype::String)
-	tables=[]
-	path=joinpath(@__DIR__, "..", "data")
-	for dir in readdir("$path/$tabletype")
-		for table_file in readdir("$path/$tabletype/$dir")
-		push!(tables, replace(table_file, ".jl" => ""))
-		end
-	end
-	return tables
+  tables = []
+  path = joinpath(@__DIR__, "..", "data")
+  for dir in readdir("$path/$tabletype")
+    for table_file in readdir("$path/$tabletype/$dir")
+      push!(tables, replace(table_file, ".jl" => ""))
+    end
+  end
+  return tables
 end
 
 @doc raw"""

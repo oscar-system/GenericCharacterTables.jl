@@ -3,17 +3,17 @@ import ..GenericCharacterTables: SimpleCharTable
 using Oscar
 R, q = polynomial_ring(QQ, "q")
 
-order = (q-1)^2*(q+1)*q
+order = (q - 1)^2 * (q + 1) * q
 table = QQPolyRingElem[[
-	q+1,
-	R(1)] [
-	1-q,
-	R(1)]]
-classinfo = Vector{Any}[[[[1,1]]], [[[2]]]]
-classlength = R.([1, (q-1)*(q+1)])
+  q + 1,
+  R(1)] [
+  1 - q,
+  R(1)]]
+classinfo = Vector{Any}[[[[1, 1]]], [[[2]]]]
+classlength = R.([1, (q - 1) * (q + 1)])
 classtypeorder = R.([1, 1])
-charinfo = Vector{Any}[[[1,1]], [[2]]]
-chardegree = R.([q+1, 1-q])
+charinfo = Vector{Any}[[[1, 1]], [[2]]]
+chardegree = R.([q + 1, 1 - q])
 
 information = raw"""- Information about the tables of Green functions for GL_2(q).
 
@@ -43,4 +43,15 @@ information = raw"""- Information about the tables of Green functions for GL_2(q
   These programs are written by U. Porsch and F. Luebeck.
 """
 
-TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])
+TABLE = SimpleCharTable(
+  order,
+  permutedims(table),
+  classinfo,
+  classlength,
+  classtypeorder,
+  charinfo,
+  chardegree,
+  R,
+  information,
+  splitext(basename(@__FILE__))[1],
+)

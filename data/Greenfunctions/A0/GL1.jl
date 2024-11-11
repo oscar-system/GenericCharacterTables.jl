@@ -3,7 +3,7 @@ import ..GenericCharacterTables: SimpleCharTable
 using Oscar
 R, q = polynomial_ring(QQ, "q")
 
-order = q-1
+order = q - 1
 table = QQPolyRingElem[R(1)]
 classinfo = Vector{Any}[[[[1]]]]
 classlength = R.([1])
@@ -38,4 +38,15 @@ information = raw"""- Information about the tables of Green functions for GL_1(q
   These programs are written by U. Porsch and F. Luebeck.
 """
 
-TABLE=SimpleCharTable(order,reshape(table,1,1),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])
+TABLE = SimpleCharTable(
+  order,
+  reshape(table, 1, 1),
+  classinfo,
+  classlength,
+  classtypeorder,
+  charinfo,
+  chardegree,
+  R,
+  information,
+  splitext(basename(@__FILE__))[1],
+)
