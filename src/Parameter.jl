@@ -42,7 +42,6 @@ function Parameters(p::Vector{Parameter})
 	return Parameters(p,UPolyFrac[])
 end
 
-# TODO Use OSCAR's expressify system here.
 function show(io::IO, a::Parameters)
 	print(io, join(a.params, ", "))
 	if !isempty(a.exceptions)

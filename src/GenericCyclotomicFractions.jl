@@ -69,8 +69,17 @@ function shrink(a::GenericCycloFrac)  # TODO Move this to the constructor of Gen
 	return GenericCycloFrac(new_numerator, new_denominator, a.exceptions, simplify=false)
 end
 
-function show(io::IO, x::GenericCycloFrac)
+function show(io::IO, ::MIME"text/plain", x::GenericCycloFrac)
 	io=pretty(io)
+	print(io, x)
+	if is_restriction(x.exceptions)
+		print(io, "\nWith exceptions:\n", Indent())
+		print(io, x.exceptions)
+		print(io, Dedent())
+	end
+end
+
+function show(io::IO, x::GenericCycloFrac)
 	if isone(x.denominator)
 		print(io, "$(x.numerator)")
 	else
@@ -89,11 +98,6 @@ function show(io::IO, x::GenericCycloFrac)
 		else
 			print(io, "($(x.denominator))")
 		end
-	end
-	if is_restriction(x.exceptions)
-		print(io, "\nWith exceptions:\n", Indent())
-		print(io, x.exceptions)
-		print(io, Dedent())
 	end
 end
 
