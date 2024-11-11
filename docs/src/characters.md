@@ -55,6 +55,21 @@ julia> collect(ct)
  0
 ```
 
+## Parameter names
+When two characters types are for example added together or multiplied with each
+other, it is necessary to differentiate the parameters of the two character
+types. Otherwise the result will only represent a fraction of all possible
+combinations of characters. Namely those where the parameters of the character
+types with identical name have the same value. Therefore the parameter `k` will
+be called `kti` whenever it represents the parameter `k` of the $i$-th character
+type of a tensor product. Similarly it will be called `kli` in a linear
+combination and `ki` in a scalar product.
+
+Note that for linear combinations this has the possibly unexpected implication
+that $2\chi$ represents the character type containing the double of each
+character contained in $\chi$ while $\chi+\chi$ represents the character type
+containing every possible sum of two characters in $\chi$.
+
 ## Constructing new character types
 
 The immediate way to obtain a character type object is to get it from a 
