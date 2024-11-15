@@ -3,22 +3,23 @@ import ..GenericCharacterTables: SimpleCharTable
 using Oscar
 R, q = polynomial_ring(QQ, "q")
 
-order = (q-1)^3*(q^2+q+1)*q^3*(q+1)
+order = (q - 1)^3 * (q^2 + q + 1) * q^3 * (q + 1)
 table = QQPolyRingElem[[
-	(q+1)*(q^2+q+1),
-	2*q+1,
-	R(1)] [
-	-(q-1)*(q^2+q+1),
-	R(1),
-	R(1)] [
-	(q-1)^2*(q+1),
-	1-q,
-	R(1)]]
-classinfo = Vector{Any}[[[[1,1,1]]], [[[2,1]]], [[[3]]]]
-classlength = R.([1, (q-1)*(q^2+q+1)*(q+1), (q-1)^2*(q^2+q+1)*q*(q+1)])
+  (q + 1) * (q^2 + q + 1),
+  2 * q + 1,
+  R(1)] [
+  -(q - 1) * (q^2 + q + 1),
+  R(1),
+  R(1)] [
+  (q - 1)^2 * (q + 1),
+  1 - q,
+  R(1)]]
+classinfo = Vector{Any}[[[[1, 1, 1]]], [[[2, 1]]], [[[3]]]]
+classlength =
+  R.([1, (q - 1) * (q^2 + q + 1) * (q + 1), (q - 1)^2 * (q^2 + q + 1) * q * (q + 1)])
 classtypeorder = R.([1, 1, 1])
-charinfo = Vector{Any}[[[1,1,1]], [[2,1]], [[3]]]
-chardegree = R.([(q+1)*(q^2+q+1), -(q-1)*(q^2+q+1), (q-1)^2*(q+1)])
+charinfo = Vector{Any}[[[1, 1, 1]], [[2, 1]], [[3]]]
+chardegree = R.([(q + 1) * (q^2 + q + 1), -(q - 1) * (q^2 + q + 1), (q - 1)^2 * (q + 1)])
 
 information = raw"""- Information about the tables of Green functions for GL_3(q).
 
@@ -48,4 +49,15 @@ information = raw"""- Information about the tables of Green functions for GL_3(q
   These programs are written by U. Porsch and F. Luebeck.
 """
 
-TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information,splitext(basename(@__FILE__))[1])
+TABLE = SimpleCharTable(
+  order,
+  permutedims(table),
+  classinfo,
+  classlength,
+  classtypeorder,
+  charinfo,
+  chardegree,
+  R,
+  information,
+  splitext(basename(@__FILE__))[1],
+)

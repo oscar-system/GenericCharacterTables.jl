@@ -6,10 +6,10 @@ abstract type AbstractGenericConjugacyClass end
 The type for generic conjugacy classes. These are the generic conjugacy classes used in `CharTable`.
 """
 struct GenericConjugacyClass <: AbstractGenericConjugacyClass
-	parent::CharTable
-	index::Int64
-	values::Union{Vector{GenericCyclo}, Nothing}
-	substitutions::Vector{ParameterSubstitution}
+  parent::CharTable
+  index::Int64
+  values::Union{Vector{GenericCyclo},Nothing}
+  substitutions::Vector{ParameterSubstitution}
 end
 
 @doc raw"""
@@ -17,9 +17,11 @@ end
 
 Return the generic conjugacy class `class` of `t`.
 """
-conjugacy_class_type(t::CharTable, class::Int64) = GenericConjugacyClass(t, class, nothing, ParameterSubstitution[])
+conjugacy_class_type(t::CharTable, class::Int64) =
+  GenericConjugacyClass(t, class, nothing, ParameterSubstitution[])
 
-getindex(c::GenericConjugacyClass, i::Integer) = c.values === nothing ? parent(c)[i][c.index] : c.values[i]
+getindex(c::GenericConjugacyClass, i::Integer) =
+  c.values === nothing ? parent(c)[i][c.index] : c.values[i]
 
 eltype(::Type{GenericConjugacyClass}) = GenericCyclo
 
@@ -29,8 +31,8 @@ eltype(::Type{GenericConjugacyClass}) = GenericCyclo
 The type for simple generic conjugacy classes. These are the generic conjugacy classes used in `SimpleCharTable`.
 """
 struct SimpleGenericConjugacyClass{T} <: AbstractGenericConjugacyClass
-	parent::SimpleCharTable{T}
-	index::Int64
+  parent::SimpleCharTable{T}
+  index::Int64
 end
 
 @doc raw"""
@@ -38,16 +40,18 @@ end
 
 Return the generic conjugacy class `class` of `t`.
 """
-conjugacy_class_type(t::SimpleCharTable{T}, class::Int64) where T <: NfPoly = SimpleGenericConjugacyClass{T}(t, class)
+conjugacy_class_type(t::SimpleCharTable{T}, class::Int64) where {T<:NfPoly} =
+  SimpleGenericConjugacyClass{T}(t, class)
 
 getindex(c::SimpleGenericConjugacyClass, i::Integer) = parent(c)[i][c.index]
 
-eltype(::Type{SimpleGenericConjugacyClass{T}}) where T<:NfPoly = T
+eltype(::Type{SimpleGenericConjugacyClass{T}}) where {T<:NfPoly} = T
 
 AbstractAlgebra.parent(c::AbstractGenericConjugacyClass) = c.parent
 
 length(c::AbstractGenericConjugacyClass) = length(parent(c))
-iterate(c::AbstractGenericConjugacyClass, state::Integer=1) = state > length(c) ? nothing : (c[state], state+1)
+iterate(c::AbstractGenericConjugacyClass, state::Integer=1) =
+  state > length(c) ? nothing : (c[state], state + 1)
 
 @doc raw"""
     info(class::AbstractGenericConjugacyClass)
@@ -118,10 +122,10 @@ q - 1
 ```
 """
 function number_of_conjugacy_classes(class::GenericConjugacyClass)
-	t=parent(class)
-	o=t.ring(1)
-	result=classsum(t, conjugacy_class_type_index(class), o//o)
-	return shrink(result)
+  t = parent(class)
+  o = t.ring(1)
+  result = classsum(t, conjugacy_class_type_index(class), o//o)
+  return shrink(result)
 end
 
 @doc raw"""
@@ -137,7 +141,8 @@ julia> number_of_conjugacy_classes(conjugacy_class_type(g, 1))
 1
 ```
 """
-number_of_conjugacy_classes(class::SimpleGenericConjugacyClass) = parent(class).classtypeorder[class.index]
+number_of_conjugacy_classes(class::SimpleGenericConjugacyClass) =
+  parent(class).classtypeorder[class.index]
 
 @doc raw"""
     number_of_conjugacy_classes(t::Table, class::Int64)
@@ -152,7 +157,8 @@ julia> number_of_conjugacy_classes(g, 1)
 q - 1
 ```
 """
-number_of_conjugacy_classes(t::Table, class::Int64) = number_of_conjugacy_classes(conjugacy_class_type(t, class))
+number_of_conjugacy_classes(t::Table, class::Int64) =
+  number_of_conjugacy_classes(conjugacy_class_type(t, class))
 
 @doc raw"""
     class_multiplication_coefficient(class1::GenericConjugacyClass, class2::GenericConjugacyClass, class3::GenericConjugacyClass)
@@ -169,18 +175,22 @@ With exceptions:
   a3 ∈ (q + 1)ℤ
 ```
 """
-function class_multiplication_coefficient(class1::GenericConjugacyClass, class2::GenericConjugacyClass, class3::GenericConjugacyClass)
-	check_parent(class1, class2)
-	check_parent(class1, class3)
-	t=parent(class1)
-	sum=0
-	for (i, char) in enumerate(t)
-		val1=shift_class_parameters(t, class1[i], 1)
-		val2=shift_class_parameters(t, class2[i], 2)
-		val3=shift_class_parameters(t, class3[i], 3)
-		sum+=charsum(char, val1*val2*conj(val3))//degree(char)
-	end
-	return shrink((order(class1)*order(class2))*sum//order(t))
+function class_multiplication_coefficient(
+  class1::GenericConjugacyClass,
+  class2::GenericConjugacyClass,
+  class3::GenericConjugacyClass,
+)
+  check_parent(class1, class2)
+  check_parent(class1, class3)
+  t = parent(class1)
+  sum = 0
+  for (i, char) in enumerate(t)
+    val1 = shift_class_parameters(t, class1[i], 1)
+    val2 = shift_class_parameters(t, class2[i], 2)
+    val3 = shift_class_parameters(t, class3[i], 3)
+    sum += charsum(char, val1 * val2 * conj(val3))//degree(char)
+  end
+  return shrink((order(class1) * order(class2)) * sum//order(t))
 end
 
 @doc raw"""
@@ -196,15 +206,19 @@ julia> class_multiplication_coefficient(conjugacy_class_type(g, 1), conjugacy_cl
 (q + 3)//(q^5 - 2*q^4 + q^3)
 ```
 """
-function class_multiplication_coefficient(class1::SimpleGenericConjugacyClass, class2::SimpleGenericConjugacyClass, class3::SimpleGenericConjugacyClass)
-	check_parent(class1, class2)
-	check_parent(class1, class3)
-	t=parent(class1)
-	sum=0
-	for (i, char) in enumerate(t)
-		sum+=(class1[i]*class2[i]*class3[i])//degree(char)
-	end
-	return (order(class1)*order(class2)*sum)//order(t)
+function class_multiplication_coefficient(
+  class1::SimpleGenericConjugacyClass,
+  class2::SimpleGenericConjugacyClass,
+  class3::SimpleGenericConjugacyClass,
+)
+  check_parent(class1, class2)
+  check_parent(class1, class3)
+  t = parent(class1)
+  sum = 0
+  for (i, char) in enumerate(t)
+    sum += (class1[i] * class2[i] * class3[i])//degree(char)
+  end
+  return (order(class1) * order(class2) * sum)//order(t)
 end
 
 @doc raw"""
@@ -222,8 +236,14 @@ With exceptions:
   a3 ∈ (q + 1)ℤ
 ```
 """
-function class_multiplication_coefficient(t::Table, class1::Int64, class2::Int64, class3::Int64)
-	return class_multiplication_coefficient(conjugacy_class_type(t, class1), conjugacy_class_type(t, class2), conjugacy_class_type(t, class3))
+function class_multiplication_coefficient(
+  t::Table, class1::Int64, class2::Int64, class3::Int64
+)
+  return class_multiplication_coefficient(
+    conjugacy_class_type(t, class1),
+    conjugacy_class_type(t, class2),
+    conjugacy_class_type(t, class3),
+  )
 end
 
 @doc raw"""
@@ -240,13 +260,13 @@ julia> norm(conjugacy_class_type(g, 2))
 ```
 """
 function norm(class::GenericConjugacyClass)
-	t=parent(class)
-	sum=0
-	for (i, char) in enumerate(t)
-		val=class[i]
-		sum+=charsum(char, val*conj(val))
-	end
-	return shrink((order(class)*sum)//order(t))
+  t = parent(class)
+  sum = 0
+  for (i, char) in enumerate(t)
+    val = class[i]
+    sum += charsum(char, val * conj(val))
+  end
+  return shrink((order(class) * sum)//order(t))
 end
 
 @doc raw"""
@@ -262,7 +282,8 @@ julia> norm(conjugacy_class_type(g, 2))
 (5*q^2 + 2*q + 3)//(q^5 - 2*q^4 + q^3)
 ```
 """
-norm(class::SimpleGenericConjugacyClass) = (order(class)*sum(class.^2))//order(parent(class))
+norm(class::SimpleGenericConjugacyClass) =
+  (order(class) * sum(class .^ 2))//order(parent(class))
 
 @doc raw"""
     norm(t::Table, class::Int64)
@@ -297,15 +318,15 @@ With exceptions:
 ```
 """
 function scalar_product(class1::GenericConjugacyClass, class2::GenericConjugacyClass)
-	check_parent(class1, class2)
-	t=parent(class1)
-	sum=0
-	for (i, char) in enumerate(t)
-		val1=shift_class_parameters(t, class1[i], 1)
-		val2=shift_class_parameters(t, class2[i], 2)
-		sum+=charsum(char, val1*conj(val2))
-	end
-	return shrink((order(class1)*sum)//order(t))
+  check_parent(class1, class2)
+  t = parent(class1)
+  sum = 0
+  for (i, char) in enumerate(t)
+    val1 = shift_class_parameters(t, class1[i], 1)
+    val2 = shift_class_parameters(t, class2[i], 2)
+    sum += charsum(char, val1 * conj(val2))
+  end
+  return shrink((order(class1) * sum)//order(t))
 end
 
 @doc raw"""
@@ -321,9 +342,11 @@ julia> scalar_product(conjugacy_class_type(g, 2), conjugacy_class_type(g, 2))
 (5*q^2 + 2*q + 3)//(q^5 - 2*q^4 + q^3)
 ```
 """
-function scalar_product(class1::SimpleGenericConjugacyClass, class2::SimpleGenericConjugacyClass)
-	check_parent(class1, class2)
-	return (order(class1)*sum(class1.*class2))//order(parent(class1))
+function scalar_product(
+  class1::SimpleGenericConjugacyClass, class2::SimpleGenericConjugacyClass
+)
+  check_parent(class1, class2)
+  return (order(class1) * sum(class1 .* class2))//order(parent(class1))
 end
 
 @doc raw"""
@@ -343,7 +366,8 @@ With exceptions:
   j1 - i2 ∈ (q - 1)ℤ
 ```
 """
-scalar_product(t::Table, class1::Int64, class2::Int64) = scalar_product(conjugacy_class_type(t, class1), conjugacy_class_type(t, class2))
+scalar_product(t::Table, class1::Int64, class2::Int64) =
+  scalar_product(conjugacy_class_type(t, class1), conjugacy_class_type(t, class2))
 
 @doc raw"""
     specialize(class::GenericConjugacyClass, var::UPoly, expr::RingElement)
@@ -380,11 +404,11 @@ Generic conjugacy class of GL2
 ```
 """
 function specialize(class::GenericConjugacyClass, var::UPoly, expr::RingElement)
-	t=parent(class)
-	values=map(v -> evaluate(v, [var_index(var)], [expr]), class)
-	substitutions=deepcopy(class.substitutions)
-	push!(substitutions, ParameterSubstitution(var, base_ring(t.ring)(expr)))
-	return GenericConjugacyClass(parent(class), class.index, values, substitutions)
+  t = parent(class)
+  values = map(v -> evaluate(v, [var_index(var)], [expr]), class)
+  substitutions = deepcopy(class.substitutions)
+  push!(substitutions, ParameterSubstitution(var, base_ring(t.ring)(expr)))
+  return GenericConjugacyClass(parent(class), class.index, values, substitutions)
 end
 
 @doc raw"""
@@ -450,7 +474,8 @@ q^4 - q^3 - q^2 + q
 
 ```
 """
-centralizer_order(class::AbstractGenericConjugacyClass) = div(order(parent(class)), order(class))
+centralizer_order(class::AbstractGenericConjugacyClass) =
+  div(order(parent(class)), order(class))
 
 @doc raw"""
     centralizer_order(t::Table, class::Int64)
@@ -466,7 +491,8 @@ q^4 - q^3 - q^2 + q
 
 ```
 """
-centralizer_order(t::Table, class::Int64) = centralizer_order(conjugacy_class_type(t, class))
+centralizer_order(t::Table, class::Int64) =
+  centralizer_order(conjugacy_class_type(t, class))
 
 @doc raw"""
     conjugacy_class_type_index(c::AbstractGenericConjugacyClass)
@@ -488,10 +514,9 @@ julia> conjugacy_class_type_index(specialize(conjugacy_class_type(g, 1), i, q))
 ```
 """
 function conjugacy_class_type_index(c::GenericConjugacyClass)
-	if c.values === nothing
-		return c.index
-	end
-	return nothing
+  if c.values === nothing
+    return c.index
+  end
+  return nothing
 end
 conjugacy_class_type_index(c::SimpleGenericConjugacyClass) = c.index
-

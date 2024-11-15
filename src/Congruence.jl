@@ -6,32 +6,32 @@
 Return a new generic character table based on `x` where the main parameter is additionally assumed to be congruent to `congruence[1]` modulo
 `congruence[2]`. So the entries of `x` can potentially be simplified further.
 """
-function set_congruence(x::CharTable, congruence::Tuple{ZZRingElem, ZZRingElem})
-	if x.ring.congruence === nothing
-		remainder,modulus=congruence
-	else
-		remainder=crt(congruence..., x.ring.congruence...)
-		modulus=lcm(congruence[2], x.ring.congruence[2])
-	end
-	# The coercion of `GnericCharacter` relies on `base_ring(S) == base_ring(x.ring)`
-	S=generic_cyclotomic_ring(base_ring(x.ring); congruence=(remainder, modulus))
-	t=typeof(x)(
-		x.order,
-		deepcopy(x.classinfo),
-		deepcopy(x.classlength),
-		deepcopy(x.classsums),
-		deepcopy(x.classparamindex),
-		deepcopy(x.charparamindex),
-		deepcopy(x.classparams),
-		S,  # <- this changed
-		x.information,
-		Vector{GenericCharacter}(undef, length(x)),
-		x.importname*"*"
-	)
-	for i in 1:length(x)
-		t.chars[i]=t(x[i])
-	end
-	return t
+function set_congruence(x::CharTable, congruence::Tuple{ZZRingElem,ZZRingElem})
+  if x.ring.congruence === nothing
+    remainder, modulus = congruence
+  else
+    remainder = crt(congruence..., x.ring.congruence...)
+    modulus = lcm(congruence[2], x.ring.congruence[2])
+  end
+  # The coercion of `GnericCharacter` relies on `base_ring(S) == base_ring(x.ring)`
+  S = generic_cyclotomic_ring(base_ring(x.ring); congruence=(remainder, modulus))
+  t = typeof(x)(
+    x.order,
+    deepcopy(x.classinfo),
+    deepcopy(x.classlength),
+    deepcopy(x.classsums),
+    deepcopy(x.classparamindex),
+    deepcopy(x.charparamindex),
+    deepcopy(x.classparams),
+    S,  # <- this changed
+    x.information,
+    Vector{GenericCharacter}(undef, length(x)),
+    x.importname * "*",
+  )
+  for i in 1:length(x)
+    t.chars[i] = t(x[i])
+  end
+  return t
 end
 
 @doc raw"""
@@ -59,8 +59,10 @@ Generic character table GL2*
   with parameters (i, j, l, k)
 ```
 """
-function set_congruence(x::CharTable; remainder::Union{Int, ZZRingElem}, modulus::Union{Int, ZZRingElem})
-	return set_congruence(x::CharTable, ZZ.((remainder, modulus)))
+function set_congruence(
+  x::CharTable; remainder::Union{Int,ZZRingElem}, modulus::Union{Int,ZZRingElem}
+)
+  return set_congruence(x::CharTable, ZZ.((remainder, modulus)))
 end
 
 congruence(x::CharTable) = x.ring.congruence

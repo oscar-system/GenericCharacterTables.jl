@@ -21,24 +21,32 @@ julia> [g]
 ```
 """
 function show(io::IO, ::MIME"text/plain", t::Table)
-	io = pretty(io)
-	println(io, "Generic character table ", t.importname, Indent())
-	println(io, "of order ", order(t))
-	c = congruence(t)
-	if c !== nothing
-		println(io, "restricted to ", gen(base_ring(t.ring), 1), " congruent to ", c[1], " modulo ", c[2])
-	end
-	println(io, "with ", length(t)," irreducible character types")
-	println(io, "with ", number_of_conjugacy_class_types(t)," class types")
-	if t isa SimpleCharTable
-		print(io, "without parameters")
-	else
-		print(io, "with parameters ", parameters(t)[2])
-	end
+  io = pretty(io)
+  println(io, "Generic character table ", t.importname, Indent())
+  println(io, "of order ", order(t))
+  c = congruence(t)
+  if c !== nothing
+    println(
+      io,
+      "restricted to ",
+      gen(base_ring(t.ring), 1),
+      " congruent to ",
+      c[1],
+      " modulo ",
+      c[2],
+    )
+  end
+  println(io, "with ", length(t), " irreducible character types")
+  println(io, "with ", number_of_conjugacy_class_types(t), " class types")
+  if t isa SimpleCharTable
+    print(io, "without parameters")
+  else
+    print(io, "with parameters ", parameters(t)[2])
+  end
 end
 
 function show(io::IO, t::Table)
-	print(io, "Generic character table ", t.importname)
+  print(io, "Generic character table ", t.importname)
 end
 
 @doc raw"""
@@ -68,25 +76,25 @@ julia> [g[3]]
 ```
 """
 function show(io::IO, ::MIME"text/plain", c::AbstractGenericCharacter)
-	io = pretty(io)
-	println(io, "Generic character of ", parent(c).importname, Indent())
-	if !isempty(parameters(c))
-		println(io, "with parameters ", Indent())
-		print(io, parameters(c))
-		if !isempty(c.substitutions)
-			print(io, ", substitutions: $(join(c.substitutions, ", "))")
-		end
-		println(io, Dedent())
-	end
-	println(io, "of degree ", degree(c))
-	print(io, "with values", Indent())
-	for val in c.values
-		print(io, "\n", val)
-	end
+  io = pretty(io)
+  println(io, "Generic character of ", parent(c).importname, Indent())
+  if !isempty(parameters(c))
+    println(io, "with parameters ", Indent())
+    print(io, parameters(c))
+    if !isempty(c.substitutions)
+      print(io, ", substitutions: $(join(c.substitutions, ", "))")
+    end
+    println(io, Dedent())
+  end
+  println(io, "of degree ", degree(c))
+  print(io, "with values", Indent())
+  for val in c.values
+    print(io, "\n", val)
+  end
 end
 
 function show(io::IO, c::AbstractGenericCharacter)
-	print(io, "Generic character of ", parent(c).importname)
+  print(io, "Generic character of ", parent(c).importname)
 end
 
 @doc raw"""
@@ -116,25 +124,25 @@ julia> [conjugacy_class_type(g, 3)]
 ```
 """
 function show(io::IO, ::MIME"text/plain", c::AbstractGenericConjugacyClass)
-	io = pretty(io)
-	println(io, "Generic conjugacy class of ", parent(c).importname, Indent())
-	if !isempty(parameters(c))
-		println(io, "with parameters ", Indent())
-		print(io, parameters(c))
-		if !isempty(c.substitutions)
-			print(io, ", substitutions: $(join(c.substitutions, ", "))")
-		end
-		println(io, Dedent())
-	end
-	println(io, "of order ", order(c))
-	print(io, "with values", Indent())
-	for val in c
-		print(io, "\n", val)
-	end
+  io = pretty(io)
+  println(io, "Generic conjugacy class of ", parent(c).importname, Indent())
+  if !isempty(parameters(c))
+    println(io, "with parameters ", Indent())
+    print(io, parameters(c))
+    if !isempty(c.substitutions)
+      print(io, ", substitutions: $(join(c.substitutions, ", "))")
+    end
+    println(io, Dedent())
+  end
+  println(io, "of order ", order(c))
+  print(io, "with values", Indent())
+  for val in c
+    print(io, "\n", val)
+  end
 end
 
 function show(io::IO, c::AbstractGenericConjugacyClass)
-	print(io, "Generic conjugacy class of ", parent(c).importname)
+  print(io, "Generic conjugacy class of ", parent(c).importname)
 end
 
 @doc raw"""
@@ -185,7 +193,7 @@ julia> number_of_conjugacy_class_types(g)
 ```
 """
 function number_of_conjugacy_class_types(t::Table)  # TODO ?
-	length(t[1])
+  length(t[1])
 end
 
 @doc raw"""
@@ -203,7 +211,7 @@ q^2 - 1
 ```
 """
 function number_of_conjugacy_classes(t::Table)
-	return sum(number_of_conjugacy_classes.(Ref(t), 1:number_of_conjugacy_class_types(t)))
+  return sum(number_of_conjugacy_classes.(Ref(t), 1:number_of_conjugacy_class_types(t)))
 end
 
 @doc raw"""
@@ -243,7 +251,7 @@ julia> number_of_parameters(g)
 ```
 """
 function number_of_parameters(t::CharTable)
-	return length(t.classparamindex)+length(t.charparamindex)
+  return length(t.classparamindex) + length(t.charparamindex)
 end
 
 @doc raw"""
@@ -261,9 +269,9 @@ julia> parameters(g)
 ```
 """
 function parameters(t::CharTable)
-	vars=gens(base_ring(t.ring))
-	q=vars[1]
-	return (q, Tuple(vars[2:(number_of_parameters(t)+1)]))
+  vars = gens(base_ring(t.ring))
+  q = vars[1]
+  return (q, Tuple(vars[2:(number_of_parameters(t) + 1)]))
 end
 
 # HACK: allow requesting a free form parameter e.g. for use with `specclassparam!`

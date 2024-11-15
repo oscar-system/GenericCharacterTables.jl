@@ -19,7 +19,7 @@ module GenericCharacterTables
 using Oscar
 import Oscar.AbstractAlgebra.Generic
 
-const NfPoly = Union{PolyRingElem{QQFieldElem}, PolyRingElem{AbsSimpleNumFieldElem}}
+const NfPoly = Union{PolyRingElem{QQFieldElem},PolyRingElem{AbsSimpleNumFieldElem}}
 
 include("Imports.jl")
 include("GenericCyclotomics.jl")
