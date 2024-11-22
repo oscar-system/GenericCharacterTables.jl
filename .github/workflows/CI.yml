@@ -29,7 +29,7 @@ jobs:
           - '1.6'
           - '1.10'
           - '1.11'
-          #- 'nightly'  # disabled due to https://github.com/JuliaLang/julia/issues/55006
+          - 'nightly'
         oscar-version:
           - 'stable'
           - 'devel'
