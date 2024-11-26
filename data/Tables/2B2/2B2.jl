@@ -146,18 +146,10 @@ chardegree =
   ])
 
 classsums = [
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
+  identity,
+  identity,
+  identity,
+  identity,
   function (tt::Union{GenericCyclo,GenericCycloFrac})
     s1 = nesum(tt, a, 1, 2 * q0^2 - 2)
     1//2 * s1
@@ -173,18 +165,10 @@ classsums = [
 ]
 
 charsums = [
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
+  identity,
+  identity,
+  identity,
+  identity,
   function (tt::Union{GenericCyclo,GenericCycloFrac})
     s1 = nesum(tt, s, 1, 2 * q0^2 - 2)
     1//2 * s1

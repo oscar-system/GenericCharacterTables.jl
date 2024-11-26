@@ -179,18 +179,10 @@ chardegree =
   ])
 
 classsums = [
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
+  identity,
+  identity,
+  identity,
+  identity,
   function (tt::Union{GenericCyclo,GenericCycloFrac})
     nesum(tt, k, 1, 2)
   end,
