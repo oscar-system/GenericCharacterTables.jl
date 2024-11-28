@@ -154,6 +154,10 @@ end
     # skip tables containing only unipotent character types
     startswith(table, "uni") && continue
 
-    @test order(g) == sum(number_of_characters(c) * degree(c)^2 for c in g)
+    # Workaround that may be needed in Julia >= 1.12. Can be removed
+    # when we manage to remove the need for `eval` when loading tables.
+    Base.invokelatest() do
+      @test order(g) == sum(number_of_characters(c) * degree(c)^2 for c in g)
+    end
   end
 end
