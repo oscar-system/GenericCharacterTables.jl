@@ -29,13 +29,16 @@ jobs:
           - '1.6'
           - '1.10'
           - '1.11'
-          #- 'nightly'  # disabled due to https://github.com/JuliaLang/julia/issues/55006
+          - 'nightly'
         oscar-version:
           - 'stable'
           - 'devel'
           - '1.1'
         os:
           - ubuntu-latest
+        exclude:
+          - julia-version: 'nightly'
+            oscar-version: '1.1'
         #include:
         #  # Add a few windows and macOS jobs (not too many, the number we can run in parallel is limited)
         #  - julia-version: '1.10'
