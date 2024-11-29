@@ -1,15 +1,3 @@
-if pkgversion(Oscar.AbstractAlgebra) >= v"0.42.0"
-  const ZZUPoly = Generic.UnivPoly{ZZRingElem}
-  const UPoly = Generic.UnivPoly{QQFieldElem}
-  const UPolyRing = Generic.UniversalPolyRing{QQFieldElem}
-else
-  const ZZUPoly = Generic.UnivPoly{ZZRingElem,Generic.MPoly{ZZRingElem}}
-  const UPoly = Generic.UnivPoly{QQFieldElem,Generic.MPoly{QQFieldElem}}
-  const UPolyRing = Generic.UniversalPolyRing{QQFieldElem,Generic.MPoly{QQFieldElem}}
-end
-const UPolyFrac = Generic.FracFieldElem{UPoly}
-const UPolyFracRing = Generic.FracField{UPoly}
-
 @doc raw"""
     kempner_with_data(m::Int64)
 
@@ -133,50 +121,6 @@ function normal_form(f::ZZUPoly, m::Int64)
 end
 
 strip_zeros!(f::Dict{UPolyFrac,UPoly}) = filter!(p -> !iszero(p.second), f)
-
-@doc raw"""
-    GenericCycloRing <: Ring
-
-The ring of generic cyclotomic numbers.
-
-# Examples
-```jldoctest
-julia> R = universal_polynomial_ring(QQ; cached=false);
-
-julia> q = gen(R, "q");
-
-julia> S = generic_cyclotomic_ring(R)
-Generic cyclotomic ring
-  over Rational field
-  dependent on q
-```
-"""
-mutable struct GenericCycloRing <: Ring
-  base_ring::UPolyRing
-  congruence::Union{Tuple{ZZRingElem,ZZRingElem},Nothing}
-end
-
-@doc raw"""
-    GenericCyclo <: RingElem
-
-The type for generic cyclotomic numbers.
-
-# Examples
-```jldoctest
-julia> R = universal_polynomial_ring(QQ; cached=false);
-
-julia> q = gen(R, "q");
-
-julia> S = generic_cyclotomic_ring(R);
-
-julia> S(q; exponent=1//(q-1))
-q*exp(2π𝑖(1//(q - 1)))
-```
-"""
-mutable struct GenericCyclo <: RingElem
-  f::Dict{UPolyFrac,UPoly}
-  parent::GenericCycloRing
-end
 
 # Data type and parent object methods
 
