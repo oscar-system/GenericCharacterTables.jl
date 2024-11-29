@@ -496,3 +496,51 @@ function conjugacy_class_type_index(c::GenericConjugacyClass)
   return nothing
 end
 conjugacy_class_type_index(c::SimpleGenericConjugacyClass) = c.index
+
+@doc raw"""
+    show(io::IO, c::AbstractGenericConjugacyClass)
+
+Display a summary of the generic character `c`.
+
+# Examples
+```jldoctest
+julia> g=generic_character_table("GL2");
+
+julia> conjugacy_class_type(g, 3)
+Generic conjugacy class of GL2
+  with parameters
+    i ∈ {1,…, q - 1}, j ∈ {1,…, q - 1} except i - j ∈ (q - 1)ℤ
+  of order q^2 + q
+  with values
+    exp(2π𝑖((i*k + j*k)//(q - 1)))
+    exp(2π𝑖((i*k + j*k)//(q - 1)))
+    exp(2π𝑖((i*l + j*k)//(q - 1))) + exp(2π𝑖((i*k + j*l)//(q - 1)))
+    0
+
+julia> [conjugacy_class_type(g, 3)]
+1-element Vector{GenericCharacterTables.GenericConjugacyClass}:
+ Generic conjugacy class of GL2
+
+```
+"""
+function show(io::IO, ::MIME"text/plain", c::AbstractGenericConjugacyClass)
+  io = pretty(io)
+  println(io, "Generic conjugacy class of ", parent(c).importname, Indent())
+  if !isempty(parameters(c))
+    println(io, "with parameters", Indent())
+    print(io, parameters(c))
+    if !isempty(c.substitutions)
+      print(io, ", substitutions: $(join(c.substitutions, ", "))")
+    end
+    println(io, Dedent())
+  end
+  println(io, "of order ", order(c))
+  print(io, "with values", Indent())
+  for val in c
+    print(io, "\n", val)
+  end
+end
+
+function show(io::IO, c::AbstractGenericConjugacyClass)
+  print(io, "Generic conjugacy class of ", parent(c).importname)
+end
