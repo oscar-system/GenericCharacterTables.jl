@@ -540,3 +540,51 @@ k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except -l + k ∈ (q - 1)ℤ
 """
 parameters(char::GenericCharacter) = char.params
 parameters(char::SimpleGenericCharacter) = Parameters(Parameter[])
+
+@doc raw"""
+    show(io::IO, c::AbstractGenericCharacter)
+
+Display a summary of the generic character `c`.
+
+# Examples
+```jldoctest
+julia> g=generic_character_table("GL2");
+
+julia> g[3]
+Generic character of GL2
+  with parameters
+    k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except -l + k ∈ (q - 1)ℤ
+  of degree q + 1
+  with values
+    (q + 1)*exp(2π𝑖((i*l + i*k)//(q - 1)))
+    exp(2π𝑖((i*l + i*k)//(q - 1)))
+    exp(2π𝑖((i*l + j*k)//(q - 1))) + exp(2π𝑖((i*k + j*l)//(q - 1)))
+    0
+
+julia> [g[3]]
+1-element Vector{GenericCharacterTables.GenericCharacter}:
+ Generic character of GL2
+
+```
+"""
+function show(io::IO, ::MIME"text/plain", c::AbstractGenericCharacter)
+  io = pretty(io)
+  println(io, "Generic character of ", parent(c).importname, Indent())
+  if !isempty(parameters(c))
+    println(io, "with parameters ", Indent())
+    print(io, parameters(c))
+    if !isempty(c.substitutions)
+      print(io, ", substitutions: $(join(c.substitutions, ", "))")
+    end
+    println(io, Dedent())
+  end
+  println(io, "of degree ", degree(c))
+  print(io, "with values", Indent())
+  for val in c.values
+    print(io, "\n", val)
+  end
+end
+
+function show(io::IO, c::AbstractGenericCharacter)
+  print(io, "Generic character of ", parent(c).importname)
+end
