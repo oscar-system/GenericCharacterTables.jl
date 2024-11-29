@@ -1,17 +1,3 @@
-abstract type AbstractGenericConjugacyClass end
-
-@doc raw"""
-    GenericConjugacyClass <: AbstractGenericConjugacyClass
-
-The type for generic conjugacy classes. These are the generic conjugacy classes used in `CharTable`.
-"""
-struct GenericConjugacyClass <: AbstractGenericConjugacyClass
-  parent::CharTable
-  index::Int64
-  values::Union{Vector{GenericCyclo},Nothing}
-  substitutions::Vector{ParameterSubstitution}
-end
-
 @doc raw"""
     conjugacy_class_type(t::CharTable, class::Int64)
 
@@ -24,16 +10,6 @@ getindex(c::GenericConjugacyClass, i::Integer) =
   c.values === nothing ? parent(c)[i][c.index] : c.values[i]
 
 eltype(::Type{GenericConjugacyClass}) = GenericCyclo
-
-@doc raw"""
-    SimpleGenericConjugacyClass <: AbstractGenericConjugacyClass
-
-The type for simple generic conjugacy classes. These are the generic conjugacy classes used in `SimpleCharTable`.
-"""
-struct SimpleGenericConjugacyClass{T} <: AbstractGenericConjugacyClass
-  parent::SimpleCharTable{T}
-  index::Int64
-end
 
 @doc raw"""
     conjugacy_class_type(t::SimpleCharTable{T}, class::Int64) where T <: NfPoly

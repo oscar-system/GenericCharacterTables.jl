@@ -16,19 +16,6 @@ function is_integer(x::UPolyFrac)
 end
 
 @doc raw"""
-    ParameterExceptions
-
-A collection of parameter exceptions used in `GenericCycloFrac`.
-"""
-struct ParameterExceptions
-  exceptions::Vector{UPolyFrac}
-end
-
-function parameter_exceptions()
-  ParameterExceptions(UPolyFrac[])
-end
-
-@doc raw"""
     add_exception!(a::ParameterExceptions, exception::UPolyFrac)
 
 Include `exception` into `a`. This also removes all now redundant exceptions from `a`.
