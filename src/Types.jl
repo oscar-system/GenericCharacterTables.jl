@@ -27,7 +27,7 @@ Generic cyclotomic ring
   dependent on q
 ```
 """
-mutable struct GenericCycloRing <: Ring
+struct GenericCycloRing <: Ring
   base_ring::UPolyRing
   congruence::Union{Tuple{ZZRingElem,ZZRingElem},Nothing}
 end
