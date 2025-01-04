@@ -30,6 +30,23 @@ Generic cyclotomic ring
 struct GenericCycloRing <: Ring
   base_ring::UPolyRing
   congruence::Union{Tuple{ZZRingElem,ZZRingElem},Nothing}
+  substitute::UPoly
+  substitute_inv::UPoly
+  function GenericCycloRing(
+    R::UPolyRing,
+    congruence::Union{Tuple{ZZRingElem,ZZRingElem},Nothing},
+  )
+    # TODO Maybe don't require at least one variable?
+    length(gens(R)) < 1 && error("At least one free variable is needed")
+    if congruence == nothing
+      return new(R, congruence)
+    else
+      q = gen(R, 1)
+      substitute = congruence[2] * q + congruence[1]
+      substitute_inv = (q - congruence[1]) * 1//congruence[2]
+      return new(R, congruence, substitute, substitute_inv)
+    end
+  end
 end
 
 @doc raw"""

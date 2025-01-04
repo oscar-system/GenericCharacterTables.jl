@@ -365,13 +365,6 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
     return GenericCyclo(f, R)
   end
 
-  # congruence preparation
-  if R.congruence !== nothing
-    q = gen(base_ring(R), 1)
-    substitute = R.congruence[2] * q + R.congruence[1]
-    substitute_inv = (q - R.congruence[1]) * 1//R.congruence[2]
-  end
-
   # reduce numerators modulo denominators
   L = NTuple{4,UPoly}[]
   for (g, c) in f
@@ -381,8 +374,8 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
       else
         gp =
           evaluate(
-            numerator(g), [1], [substitute]
-          )//evaluate(denominator(g), [1], [substitute])
+            numerator(g), [1], [R.substitute]
+          )//evaluate(denominator(g), [1], [R.substitute])
       end
       a, r = divrem(numerator(gp), denominator(gp))
       push!(L, (c, denominator(gp), r, a))
@@ -430,8 +423,8 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
       else
         gp =
           evaluate(
-            numerator(g), [1], [substitute_inv]
-          )//evaluate(denominator(g), [1], [substitute_inv])
+            numerator(g), [1], [R.substitute_inv]
+          )//evaluate(denominator(g), [1], [R.substitute_inv])
       end
       if haskey(fp, gp)
         fp[gp] += cp * c
@@ -460,13 +453,11 @@ end
 
 # Parent constructor
 
-# TODO Maybe don't require at least one variable?
 function generic_cyclotomic_ring(
   R::UPolyRing;
   congruence::Union{Tuple{ZZRingElem,ZZRingElem},Nothing}=nothing,
   cached::Bool=true,
 )
-  length(gens(R)) < 1 && error("At least one free variable is needed")
   return GenericCycloRing(R, congruence)
 end
 
