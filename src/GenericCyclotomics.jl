@@ -374,6 +374,7 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
 
   # reduce numerators modulo denominators
   L = NTuple{4,UPoly}[]
+  d = 1
   for (g, c) in f
     if !iszero(c)
       if R.congruence === nothing
@@ -386,6 +387,9 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
       end
       a, r = divrem(numerator(gp), denominator(gp))
       push!(L, (c, denominator(gp), r, a))
+
+      # find the common denominator of the exponents of all 'a'
+      d = lcm(d, Int(denominator(a.p)))
     end
   end
 
@@ -393,22 +397,6 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
   if isempty(L)
     return R()
   end
-
-  # find the common denominator of the exponents
-  # TODO where did the denominator method for polynomials go?
-  # TODO why is lcm of empty list not defined?
-  denominators = [denominator(c) for (_, _, _, a) in L for c in coefficients(a)]
-  if isempty(denominators)
-    d = ZZ(1)
-  else
-    d = lcm(denominators)
-  end
-
-  # check if d fits into an Int64 as it needs to be an Int64 later
-  if !fits(Int64, d)
-    throw(OverflowError("Denominators are too big!"))
-  end
-  d = Int64(d)
 
   fp = Dict{UPolyFrac,UPoly}()
   for (c, g_2, r, a) in L
