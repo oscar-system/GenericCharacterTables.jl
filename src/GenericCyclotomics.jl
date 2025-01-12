@@ -77,7 +77,7 @@ julia> normal_form(4*x^9+x^7-(x^3+4*x),12)
 
 ```
 """
-function normal_form(f::ZZUPoly, m::Int64)
+function normal_form(f::RingElem, m::Int64) # <- TODO: better type for f
   if m < 1
     throw(DomainError(m, "A normal form for non-positive moduli is not defined!"))
   end
@@ -86,7 +86,8 @@ function normal_form(f::ZZUPoly, m::Int64)
     return R(mod(constant_coefficient(f), m))
   end
   # find the variable with highest index occurring in f
-  i = findlast(x -> degree(f, x) > 0, gens(R))
+  #i = findlast(x -> degree(f, x) > 0, gens(R))
+  i = findlast(x -> x > 0, degrees(f))
   x_i = R[i]
 
   # save Kempner schemes to be reused to compute reductions of m
@@ -364,7 +365,7 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
   if !simplify
     return GenericCyclo(f, R)
   end
-
+# this function is a bottleneck `904447` allocs
   # congruence preparation
   if R.congruence !== nothing
     q = gen(base_ring(R), 1)
@@ -385,6 +386,7 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
             numerator(g), [1], [substitute]
           )//evaluate(denominator(g), [1], [substitute])
       end
+      # Q: what type does `a` have here?
       a, r = divrem(numerator(gp), denominator(gp))
       push!(L, (c, denominator(gp), r, a))
 
@@ -401,7 +403,8 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
   fp = Dict{UPolyFrac,UPoly}()
   for (c, g_2, r, a) in L
     # normalize the polynomial part of the exponent
-    ap = normal_form(change_base_ring(ZZ, d * a), d)
+    tmp = change_base_ring(ZZ, d * a)  # TODO: add a dedicated function for this
+    ap = normal_form(tmp, d)  # <- bottleneck here: perhaps input MPolyRingElem instead of UNivPoly?
 
     # normalize the constant part
     t = constant_coefficient(ap)
@@ -410,9 +413,11 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
     p = mod(x^t, cyclotomic_polynomial(d, S))
 
     # distribute the normalized constant part
+    r_g_2 = r//g_2
     for (i, cp) in enumerate(coefficients(p))
       tp = i - 1
-      g = 1//d * app + r//g_2 + tp//d
+      #g = 1//d * app + r_g_2 + tp//d
+      g = (app+tp)/d + r_g_2
       if R.congruence === nothing
         gp = g
       else
