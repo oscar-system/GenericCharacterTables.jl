@@ -127,7 +127,7 @@ function normal_form(f::ZZUPoly, m::Int64)
     S_ik = rising_factorial(x_i, k)
     C_ik = coeff(f, [x_i], [k])
     c = normal_form(C_ik, reduction)
-    f -= (C_ik - c) * S_ik
+    submul!(f, C_ik - c, S_ik)
   end
   return f
 end
@@ -266,7 +266,7 @@ function *(x::GenericCyclo, y::GenericCyclo)
     for (key2, value2) in y.f
       key = key1 + key2
       if haskey(f, key)
-        f[key] += value1 * value2
+        addmul!(f[key], value1, value2)
       else
         f[key] = value1 * value2
       end
@@ -429,7 +429,7 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
         gp = evaluate(g, [1], [substitute_inv])
       end
       if haskey(fp, gp)
-        fp[gp] += cp * c
+        addmul!(fp[gp], cp, c)
       else
         fp[gp] = cp * c
       end
