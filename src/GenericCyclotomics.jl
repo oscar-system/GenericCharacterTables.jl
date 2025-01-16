@@ -1,3 +1,15 @@
+if pkgversion(Oscar) < v"1.2.0"
+  function Base.denominator(a::AbstractAlgebra.Generic.MPoly{QQFieldElem})
+    # TODO why is lcm of empty list not defined?
+    denominators = [denominator(c) for c in coefficients(a)]
+    if isempty(denominators)
+      d = ZZ(1)
+    else
+      d = lcm(denominators)
+    end
+  end
+end
+
 @doc raw"""
     kempner_with_data(m::Int64)
 
