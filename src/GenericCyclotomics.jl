@@ -98,7 +98,7 @@ function normal_form(f::ZZUPoly, m::Int64)
     return R(mod(constant_coefficient(f), m))
   end
   # find the variable with highest index occurring in f
-  i = findlast(x -> degree(f, x) > 0, gens(R))
+  i = findlast(x -> x > 0, degrees(f))
   x_i = R[i]
 
   # save Kempner schemes to be reused to compute reductions of m
@@ -392,10 +392,7 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
       if R.congruence === nothing
         gp = g
       else
-        gp =
-          evaluate(
-            numerator(g), [1], [substitute]
-          )//evaluate(denominator(g), [1], [substitute])
+        gp = evaluate(g, [1], [substitute])
       end
       a, r = divrem(numerator(gp), denominator(gp))
       push!(L, (c, denominator(gp), r, a))
@@ -422,16 +419,14 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
     p = mod(x^t, cyclotomic_polynomial(d, S))
 
     # distribute the normalized constant part
+    r_g_2 = r//g_2
     for (i, cp) in enumerate(coefficients(p))
       tp = i - 1
-      g = 1//d * app + r//g_2 + tp//d
+      g = (app + tp)//d + r_g_2
       if R.congruence === nothing
         gp = g
       else
-        gp =
-          evaluate(
-            numerator(g), [1], [substitute_inv]
-          )//evaluate(denominator(g), [1], [substitute_inv])
+        gp = evaluate(g, [1], [substitute_inv])
       end
       if haskey(fp, gp)
         fp[gp] += cp * c
