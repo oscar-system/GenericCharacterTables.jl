@@ -169,7 +169,7 @@ function omega(char::SimpleGenericCharacter{T}) where {T<:NfPoly}
 end
 
 @doc raw"""
-    linear_combination(coeffs::Vector{Int64}, chars::Vector{<:GenericCharacter})
+    linear_combination(coeffs::Vector{<:RingElement}, chars::Vector{<:GenericCharacter})
 
 Return the linear combination of the character types `chars` with coefficients `coeffs`.
 
@@ -189,7 +189,7 @@ Generic character of GL2
     (-1)*exp(2π𝑖((i*kl2)//(q - 1))) + (5)*exp(2π𝑖((i*kl1)//(q - 1)))
 ```
 """
-function linear_combination(coeffs::Vector{Int64}, chars::Vector{<:GenericCharacter})
+function linear_combination(coeffs::Vector{<:RingElement}, chars::Vector{<:GenericCharacter})
   length(coeffs) == length(chars) ||
     error("Different number of coefficients and character types.")
   n = length(coeffs)
@@ -242,7 +242,7 @@ function linear_combination(coeffs::Vector{Int64}, chars::Vector{<:GenericCharac
 end
 
 @doc raw"""
-    linear_combination(coeffs::Vector{Int64}, chars::Vector{SimpleGenericCharacter{T}}) where T <: NfPoly
+    linear_combination(coeffs::Vector{<:RingElement}, chars::Vector{SimpleGenericCharacter{T}}) where T <: NfPoly
 
 Return the linear combination of the character types `chars` with coefficients `coeffs`.
 
@@ -260,7 +260,7 @@ Generic character of GL3
 ```
 """
 function linear_combination(
-  coeffs::Vector{Int64}, chars::Vector{SimpleGenericCharacter{T}}
+  coeffs::Vector{<:RingElement}, chars::Vector{SimpleGenericCharacter{T}}
 ) where {T<:NfPoly}
   length(coeffs) == length(chars) ||
     error("Different number of coefficients and character types.")
