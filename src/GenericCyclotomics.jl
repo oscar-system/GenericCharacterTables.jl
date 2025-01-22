@@ -378,21 +378,17 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
   end
 
   # congruence preparation
-  if R.congruence !== nothing
-    q = gen(base_ring(R), 1)
-    substitute = R.congruence[2] * q + R.congruence[1]
-    substitute_inv = (q - R.congruence[1]) * 1//R.congruence[2]
-  end
+  substitutes = get_substitutes!(R)
 
   # reduce numerators modulo denominators
   L = NTuple{4,UPoly}[]
   d = 1
   for (g, c) in f
     if !iszero(c)
-      if R.congruence === nothing
+      if substitutes === nothing
         gp = g
       else
-        gp = evaluate(g, [1], [substitute])
+        gp = evaluate(g, [1], [substitutes[1]])
       end
       a, r = divrem(numerator(gp), denominator(gp))
       push!(L, (c, denominator(gp), r, a))
@@ -423,10 +419,10 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
     for (i, cp) in enumerate(coefficients(p))
       tp = i - 1
       g = (app + tp)//d + r_g_2
-      if R.congruence === nothing
+      if substitutes === nothing
         gp = g
       else
-        gp = evaluate(g, [1], [substitute_inv])
+        gp = evaluate(g, [1], [substitutes[2]])
       end
       if haskey(fp, gp)
         fp[gp] += cp * c
@@ -463,6 +459,20 @@ function generic_cyclotomic_ring(
 )
   length(gens(R)) < 1 && error("At least one free variable is needed")
   return GenericCycloRing(R, congruence)
+end
+
+# congruence computation
+function get_substitutes!(R::GenericCycloRing)
+  congruence = R.congruence
+  if congruence == nothing
+    return nothing
+  end
+  if !isdefined(R, :substitute)
+    q = gen(base_ring(R), 1)
+    R.substitute = congruence[2] * q + congruence[1]
+    R.substitute_inv = (q - congruence[1]) * 1//congruence[2]
+  end
+  return (R.substitute, R.substitute_inv)
 end
 
 # evaluate
