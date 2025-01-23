@@ -211,26 +211,14 @@ function show(io::IO, R::GenericCycloRing)
   end
 end
 
-function show(io::IO, x::GenericCyclo)  # TODO Use OSCAR's expressify system here.
+function expressify(x::GenericCyclo; context = nothing)
   if iszero(x)
-    print(io, "0")
-    return nothing
+    return 0
   end
-  for (i, (argument, modulus)) in enumerate(x.f)
-    if iszero(argument)
-      print(io, modulus)
-    elseif isone(modulus)
-      print(io, "exp(2π𝑖($(argument)))")
-    elseif is_monomial(modulus)
-      print(io, "$(modulus)*exp(2π𝑖($(argument)))")
-    else
-      print(io, "($(modulus))*exp(2π𝑖($(argument)))")
-    end
-    if i < length(x.f)
-      print(io, " + ")
-    end
-  end
+  return reduce((a, b) -> Expr(:call, :+, a, b), map(p -> Expr(:call, :*, expressify(p[2], context = context), Expr(:call, Symbol("exp"), Expr(:call, :*, Symbol("2π𝑖"), expressify(p[1], context = context)))), collect(x.f)))
 end
+
+@enable_all_show_via_expressify GenericCyclo
 
 # Unary operations
 
