@@ -225,6 +225,22 @@ function number_of_parameters(t::CharTable)
 end
 
 @doc raw"""
+    number_of_parameters(t::SimpleCharTable)
+
+Return the number of class and character parameters of the table `t`.
+
+# Examples
+```jldoctest
+julia> g=green_function_table("GL2");
+
+julia> number_of_parameters(g)
+0
+
+```
+"""
+number_of_parameters(t::SimpleCharTable) = 0
+
+@doc raw"""
     parameters(t::CharTable)
 
 Return all parameters the table `t` depends on.
@@ -243,6 +259,22 @@ function parameters(t::CharTable)
   q = vars[1]
   return (q, Tuple(vars[2:(number_of_parameters(t) + 1)]))
 end
+
+@doc raw"""
+    parameters(t::SimpleCharTable)
+
+Return all parameters the table `t` depends on.
+
+# Examples
+```jldoctest
+julia> g=green_function_table("GL2");
+
+julia> parameters(g)
+(q, ())
+
+```
+"""
+parameters(t::SimpleCharTable) = (gen(t.ring), ())
 
 # HACK: allow requesting a free form parameter e.g. for use with `specclassparam!`
 # TODO: document this? or replace it by a better interface...
