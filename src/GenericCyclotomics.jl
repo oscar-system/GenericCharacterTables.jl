@@ -388,6 +388,12 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
       if substitutes === nothing
         gp = g
       else
+        # After ensuring the congruence for the first parameter
+        # via the evaluation at `substitutes[1]` further
+        # simplifications may be possible. Let `g` for
+        # example be `(q+1)//2` and `q` congruent to `1`
+        # modulo `2`. Then `substitutes[1]` is `2*q+1`
+        # and `gp=(2*q+2)//2=q+1` which simplifies to `0`.
         gp = evaluate(g, [1], [substitutes[1]])
       end
       a, r = divrem(numerator(gp), denominator(gp))
