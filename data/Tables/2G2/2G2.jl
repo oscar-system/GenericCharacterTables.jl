@@ -372,36 +372,16 @@ chardegree =
     (3 * q0^2 - 1) * (3 * q0^2 - 3 * q0 + 1) * (3 * q0^2 + 1)])
 
 classsums = [
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
+  identity,
+  identity,
+  identity,
+  identity,
+  identity,
+  identity,
+  identity,
+  identity,
+  identity,
+  identity,
   function (tt::Union{GenericCyclo,GenericCycloFrac})
     s1 = evaluate(tt, [i], [0])
     s2 = evaluate(tt, [i], [(3 * q0^2 - 1) * 1//2])
@@ -427,36 +407,16 @@ classsums = [
 ]
 
 charsums = [
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
+  identity,
+  identity,
+  identity,
+  identity,
+  identity,
+  identity,
+  identity,
+  identity,
+  identity,
+  identity,
   function (tt::Union{GenericCyclo,GenericCycloFrac})
     s1 = evaluate(tt, [k], [0])
     s2 = evaluate(tt, [k], [(3 * q0^2 - 1) * 1//2])

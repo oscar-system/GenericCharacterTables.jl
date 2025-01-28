@@ -347,30 +347,18 @@ classsums = [
 ]
 
 charsums = [
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
+  identity,
+  identity,
+  identity,
   function (tt::Union{GenericCyclo,GenericCycloFrac})
     nesum(tt, n, 1, q - 2)
   end,
   function (tt::Union{GenericCyclo,GenericCycloFrac})
     nesum(tt, n, 1, q - 2)
   end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
+  identity,
+  identity,
+  identity,
   function (tt::Union{GenericCyclo,GenericCycloFrac})
     ss5a = nesum(tt, n, 1, q - 2)
     ss5 = nesum(ss5a, m, 1, q - 2)
@@ -385,24 +373,12 @@ charsums = [
     ss8 = nesum(tt1, n, 0, q - 2)
     1//2 * ss7 - 1//2 * ss8
   end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
+  identity,
+  identity,
+  identity,
+  identity,
+  identity,
+  identity,
   function (tt::Union{GenericCyclo,GenericCycloFrac})
     ss8 = nesum(tt, n, 0, q^2 + q)
     tt1 = evaluate(tt, [n], [(q^2 + q + 1) * 1//3 * n])

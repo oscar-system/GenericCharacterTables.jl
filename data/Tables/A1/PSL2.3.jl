@@ -75,15 +75,9 @@ charinfo = Vector{Any}[
 chardegree = R.([1, q^2, 1//2 * (q^2 - 1), 1//2 * (q^2 - 1), q^2 + 1, q^2 - 1])
 
 classsums = [
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
+  identity,
+  identity,
+  identity,
   function (tt::Union{GenericCyclo,GenericCycloFrac})
     s1 = nesum(tt, i, 1, (q^2 - 3) * 1//2)
     1//2 * s1
@@ -93,24 +87,14 @@ classsums = [
     s2 = evaluate(tt, [i], [(q^2 + 1) * 1//4])
     1//2 * s1 - 1//2 * s2
   end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
+  identity,
 ]
 
 charsums = [
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
-  function (tt::Union{GenericCyclo,GenericCycloFrac})
-    tt
-  end,
+  identity,
+  identity,
+  identity,
+  identity,
   function (tt::Union{GenericCyclo,GenericCycloFrac})
     s1 = nesum(tt, k, 1, (q^2 - 3) * 1//2)
     1//2 * s1
