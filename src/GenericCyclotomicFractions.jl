@@ -23,14 +23,33 @@ function shrink(a::GenericCycloFrac)  # TODO Move this to the constructor of Gen
   return GenericCycloFrac(new_numerator, new_denominator, a.exceptions; simplify=false)
 end
 
-function expressify(x::GenericCycloFrac; context = nothing)
-  n = expressify(x.numerator; context)
-  isone(x.denominator) && return n
-  d = expressify(x.denominator; context)
-  return Expr(:call, ://, n, d)
+function show(io::IO, x::GenericCycloFrac)
+  io = pretty(io)
+  if isone(x.denominator)
+    print(io, "$(x.numerator)")
+  else
+    if isone(length(x.numerator.f))
+      print(io, "$(x.numerator)//")
+    else
+      print(io, "($(x.numerator))//")
+    end
+    if isone(length(x.denominator.f))
+      argument, modulus = collect(x.denominator.f)[1]
+      if iszero(argument) && (is_monomial(modulus) || is_constant(modulus))
+        print(io, "$(x.denominator)")
+      else
+        print(io, "($(x.denominator))")
+      end
+    else
+      print(io, "($(x.denominator))")
+    end
+  end
+  if is_restriction(x.exceptions)
+    print(io, "\nWith exceptions:\n", Indent())
+    print(io, x.exceptions)
+    print(io, Dedent())
+  end
 end
-
-@enable_all_show_via_expressify GenericCycloFrac
 
 isone(x::GenericCycloFrac) = isone(x.numerator) && isone(x.denominator)
 
