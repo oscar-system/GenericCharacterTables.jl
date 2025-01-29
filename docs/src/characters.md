@@ -51,7 +51,7 @@ julia> collect(ct)
 4-element Vector{GenericCharacterTables.GenericCyclo}:
  (q + 1)*exp(2π𝑖*(i*l + i*k)//(q - 1))
  exp(2π𝑖*(i*l + i*k)//(q - 1))
- exp(2π𝑖*(i*l + j*k)//(q - 1)) + exp(2π𝑖*(i*k + j*l)//(q - 1)))
+ exp(2π𝑖*(i*l + j*k)//(q - 1)) + exp(2π𝑖*(i*k + j*l)//(q - 1))
  0
 ```
 
