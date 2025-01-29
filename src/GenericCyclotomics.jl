@@ -212,9 +212,19 @@ function show(io::IO, R::GenericCycloRing)
 end
 
 function expressify(x::GenericCyclo; context = nothing)
-  iszero(x) && return 0
-  isone(x) && return 1
-  return reduce((a, b) -> Expr(:call, :+, a, b), map(p -> Expr(:call, :*, expressify(p[2], context = context), Expr(:call, Symbol("exp"), Expr(:call, :*, Symbol("2π𝑖"), expressify(p[1], context = context)))), collect(x.f)))
+  sum = Expr(:call, :+)
+  for (argument, modulus) in x.f
+    modulus_expr = expressify(modulus; context)
+    if iszero(argument)
+      tmp = modulus_expr
+    else
+      argument_expr = expressify(argument; context)
+      exp_expr = Expr(:call, Symbol("exp"), Expr(:call, :*, Symbol("2π𝑖"), argument_expr))
+      tmp = Expr(:call, :*, modulus_expr, exp_expr)
+    end
+    push!(sum.args, tmp)
+  end
+  return sum
 end
 
 @enable_all_show_via_expressify GenericCyclo
