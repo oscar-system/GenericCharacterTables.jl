@@ -212,9 +212,8 @@ function show(io::IO, R::GenericCycloRing)
 end
 
 function expressify(x::GenericCyclo; context = nothing)
-  if iszero(x)
-    return 0
-  end
+  iszero(x) && return 0
+  isone(x) && return 1
   return reduce((a, b) -> Expr(:call, :+, a, b), map(p -> Expr(:call, :*, expressify(p[2], context = context), Expr(:call, Symbol("exp"), Expr(:call, :*, Symbol("2π𝑖"), expressify(p[1], context = context)))), collect(x.f)))
 end
 

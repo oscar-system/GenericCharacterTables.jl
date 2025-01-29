@@ -24,7 +24,10 @@ function shrink(a::GenericCycloFrac)  # TODO Move this to the constructor of Gen
 end
 
 function expressify(x::GenericCycloFrac; context = nothing)
-  return Expr(:call, ://, expressify(x.numerator, context = context), expressify(x.denominator, context = context))
+  n = expressify(x.numerator; context)
+  isone(x.denominator) && return n
+  d = expressify(x.denominator; context)
+  return Expr(:call, ://, n, d)
 end
 
 @enable_all_show_via_expressify GenericCycloFrac
