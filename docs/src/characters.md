@@ -42,16 +42,16 @@ Generic character of GL2
     k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except -l + k ∈ (q - 1)ℤ
   of degree q + 1
   with values
-    (q + 1)*exp(2π𝑖((i*l + i*k)//(q - 1)))
-    exp(2π𝑖((i*l + i*k)//(q - 1)))
-    exp(2π𝑖((i*l + j*k)//(q - 1))) + exp(2π𝑖((i*k + j*l)//(q - 1)))
+    (q + 1)*exp(2π𝑖*(i*l + i*k)//(q - 1))
+    exp(2π𝑖*(i*l + i*k)//(q - 1))
+    exp(2π𝑖*(i*l + j*k)//(q - 1)) + exp(2π𝑖*(i*k + j*l)//(q - 1))
     0
 
 julia> collect(ct)
 4-element Vector{GenericCharacterTables.GenericCyclo}:
- (q + 1)*exp(2π𝑖((i*l + i*k)//(q - 1)))
- exp(2π𝑖((i*l + i*k)//(q - 1)))
- exp(2π𝑖((i*l + j*k)//(q - 1))) + exp(2π𝑖((i*k + j*l)//(q - 1)))
+ (q + 1)*exp(2π𝑖*(i*l + i*k)//(q - 1))
+ exp(2π𝑖*(i*l + i*k)//(q - 1))
+ exp(2π𝑖*(i*l + j*k)//(q - 1)) + exp(2π𝑖*(i*k + j*l)//(q - 1))
  0
 ```
 
