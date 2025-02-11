@@ -196,7 +196,9 @@ length(c::AbstractGenericCharacter) = length(c.values)
 iterate(c::AbstractGenericCharacter, state::Integer=1) = state > length(c) ? nothing : (c[state], state+1)
 
 function loadtab(path::String)
-	return (@eval module $(gensym("CHAR_TABLE")) include($(path)) end).TABLE
+  return Base.invokelatest(getproperty, (@eval module $(gensym("CHAR_TABLE"))
+    include($(path))
+    end), :TABLE)
 end
 
 function gentab(table::String, tabletype::String)
