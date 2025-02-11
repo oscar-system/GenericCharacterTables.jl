@@ -29,6 +29,7 @@ jobs:
           - '1.6'
           - '1.10'
           - '1.11'
+          - '1.12-nightly'
           - 'nightly'
         oscar-version:
           - 'stable'
@@ -37,6 +38,8 @@ jobs:
         os:
           - ubuntu-latest
         exclude:
+          - julia-version: '1.12-nightly'
+            oscar-version: '1.1'
           - julia-version: 'nightly'
             oscar-version: '1.1'
         #include:
