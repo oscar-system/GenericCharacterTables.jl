@@ -1,12 +1,5 @@
-getindex(ct::CharTable, i::Integer) = ct.chars[i]::GenericCharacter
-getindex(ct::CharTable, i::Integer, j::Integer) = ct[i].values[j]::GenericCyclo
-
-eltype(::Type{CharTable}) = GenericCharacter
-
 classsum(t::CharTable, class::Integer, x::Union{GenericCyclo,GenericCycloFrac}) =
   t.classsums[class](x)::Union{GenericCyclo,GenericCycloFrac}
-
-eltype(::Type{GenericCharacter}) = GenericCyclo
 
 charsum(c::GenericCharacter, x::Union{GenericCyclo,GenericCycloFrac}) =
   c.sum(x)::Union{GenericCyclo,GenericCycloFrac}
@@ -27,25 +20,6 @@ function (t::CharTable)(c::GenericCharacter)
     deepcopy(c.substitutions),
   )
 end
-
-getindex(ct::SimpleCharTable{T}, i::Integer) where {T<:NfPoly} =
-  ct.chars[i]::SimpleGenericCharacter{T}
-getindex(ct::SimpleCharTable{T}, i::Integer, j::Integer) where {T<:NfPoly} =
-  ct[i].values[j]::T
-
-eltype(::Type{SimpleCharTable{T}}) where {T<:NfPoly} = SimpleGenericCharacter{T}
-
-length(ct::Table) = length(ct.chars)
-iterate(ct::Table, state::Integer=1) = state > length(ct) ? nothing : (ct[state], state + 1)
-
-parent(c::AbstractGenericCharacter) = c.parent
-getindex(c::AbstractGenericCharacter, i::Integer) = c.values[i]
-
-eltype(::Type{SimpleGenericCharacter{T}}) where {T<:NfPoly} = T
-
-length(c::AbstractGenericCharacter) = length(c.values)
-iterate(c::AbstractGenericCharacter, state::Integer=1) =
-  state > length(c) ? nothing : (c[state], state + 1)
 
 function loadtab(path::String)
   return Base.invokelatest(getproperty, (@eval module $(gensym("CHAR_TABLE"))

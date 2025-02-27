@@ -1,5 +1,7 @@
 # TODO deal with ParameterSubstitution when creating new characters, this is not done in the original implementation.
 
+parent(c::AbstractGenericCharacter) = c.parent
+
 @doc raw"""
     tensor_product(char1::GenericCharacter, char2::GenericCharacter)
 

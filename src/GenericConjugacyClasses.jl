@@ -6,11 +6,6 @@ Return the generic conjugacy class `class` of `t`.
 conjugacy_class_type(t::CharTable, class::Int64) =
   GenericConjugacyClass(t, class, nothing, ParameterSubstitution[])
 
-getindex(c::GenericConjugacyClass, i::Integer) =
-  c.values === nothing ? parent(c)[i][c.index] : c.values[i]
-
-eltype(::Type{GenericConjugacyClass}) = GenericCyclo
-
 @doc raw"""
     conjugacy_class_type(t::SimpleCharTable{T}, class::Int64) where T <: NfPoly
 
@@ -19,15 +14,7 @@ Return the generic conjugacy class `class` of `t`.
 conjugacy_class_type(t::SimpleCharTable{T}, class::Int64) where {T<:NfPoly} =
   SimpleGenericConjugacyClass{T}(t, class)
 
-getindex(c::SimpleGenericConjugacyClass, i::Integer) = parent(c)[i][c.index]
-
-eltype(::Type{SimpleGenericConjugacyClass{T}}) where {T<:NfPoly} = T
-
 parent(c::AbstractGenericConjugacyClass) = c.parent
-
-length(c::AbstractGenericConjugacyClass) = length(parent(c))
-iterate(c::AbstractGenericConjugacyClass, state::Integer=1) =
-  state > length(c) ? nothing : (c[state], state + 1)
 
 @doc raw"""
     info(class::AbstractGenericConjugacyClass)
