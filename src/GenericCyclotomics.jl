@@ -284,6 +284,14 @@ end
 
 *(x::GenericCyclo, y::UPoly) = y * x
 
+function ^(x::GenericCyclo, y::UPoly)
+  if isone(length(x.f))
+    expo, c = collect(x.f)[1]
+    return parent(x)(Dict(y*expo => c))
+  end
+  throw(ArgumentError("cyclotomic has to many summands"))
+end
+
 # Comparison
 
 function ==(x::GenericCyclo, y::GenericCyclo)  # TODO Make compatible with hashes. There might be some missing theory...

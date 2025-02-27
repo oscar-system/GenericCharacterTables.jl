@@ -86,6 +86,10 @@ test_Ring_interface(S)
   @test a == cb
   @test b == y
   @test c == z
+
+  a = S(1; exponent=(2 * i * j) * 1//R((q - 1)))
+  @test isone(a^(q-1))
+  @test a == a^q
 end
 
 @testset "Shifts" begin
