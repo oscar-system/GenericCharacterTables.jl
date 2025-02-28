@@ -295,8 +295,7 @@ end
 # Comparison
 
 function ==(x::GenericCyclo, y::GenericCyclo)  # TODO Make compatible with hashes. There might be some missing theory...
-  check_parent(x, y)
-  return iszero(x - y)
+  return parent(x) == parent(y) && iszero(x - y)
 end
 
 # Exact division
