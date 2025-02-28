@@ -7,6 +7,7 @@ import Base:
   ^,
   conj,
   deepcopy_internal,
+  denominator,
   eltype,
   getindex,
   hash,
