@@ -23,7 +23,7 @@ getindex(c::SimpleGenericConjugacyClass, i::Integer) = parent(c)[i][c.index]
 
 eltype(::Type{SimpleGenericConjugacyClass{T}}) where {T<:NfPoly} = T
 
-AbstractAlgebra.parent(c::AbstractGenericConjugacyClass) = c.parent
+parent(c::AbstractGenericConjugacyClass) = c.parent
 
 length(c::AbstractGenericConjugacyClass) = length(parent(c))
 iterate(c::AbstractGenericConjugacyClass, state::Integer=1) =
