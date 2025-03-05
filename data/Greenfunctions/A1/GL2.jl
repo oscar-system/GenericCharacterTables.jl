@@ -1,6 +1,6 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: SimpleCharTable
-using Oscar
+using ..GenericCharacterTables.Oscar
 R, q = polynomial_ring(QQ, "q")
 
 order = (q - 1)^2 * (q + 1) * q

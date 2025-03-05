@@ -1,7 +1,7 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables:
   Parameters, Parameter, CharTable, GenericCyclo, GenericCycloFrac, nesum
-using Oscar
+using ..GenericCharacterTables.Oscar
 R = universal_polynomial_ring(QQ; cached=false)
 q0 = gen(R, "q0")
 S = generic_cyclotomic_ring(R; congruence=ZZ.((-1, 3)))

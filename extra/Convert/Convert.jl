@@ -91,7 +91,7 @@ function readmaple(path::String, folder::String)
 
     kfin = cfin
     params = []
-    imports = "using ..GenericCharacterTables\nimport ..GenericCharacterTables: SimpleCharTable\nusing Oscar\n"
+    imports = "using ..GenericCharacterTables\nimport ..GenericCharacterTables: SimpleCharTable\nusing ..GenericCharacterTables.Oscar\n"
     head = "R, q = polynomial_ring(QQ, \"q\")\n"
     Coda = "TABLE=SimpleCharTable(order,permutedims(table),classinfo,classlength,classtypeorder,charinfo,chardegree,R,information)\n"
   end
@@ -117,7 +117,7 @@ function readmaple(path::String, folder::String)
     summationsprozeduren = convert_summen_parameter(
       removecomments(String(summationsprozeduren)), cht, clt, joinedparams
     )
-    imports = "using ..GenericCharacterTables\nimport ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterException, ParameterSubstitution, CharTable\nusing Oscar\n"
+    imports = "using ..GenericCharacterTables\nimport ..GenericCharacterTables: Cyclotomic, Parameters, Parameter, ParameterException, ParameterSubstitution, CharTable\nusing ..GenericCharacterTables.Oscar\n"
     head = "R, q = polynomial_ring(QQ, \"q\")\nQ = fraction_field(R)\nS = universal_polynomial_ring(Q; cached=false)\n"
     ring = join(rr[1:nrpar], ",") * ", _...=gens(S, " * repr(rr) * ")\n"
   end

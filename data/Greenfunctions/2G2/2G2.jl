@@ -1,6 +1,6 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: SimpleCharTable
-using Oscar
+using ..GenericCharacterTables.Oscar
 K, sqrt3 = quadratic_field(3)
 R, q = polynomial_ring(K, "q")
 
