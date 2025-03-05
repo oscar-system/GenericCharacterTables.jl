@@ -346,6 +346,10 @@ rand(rng::AbstractRNG, R::GenericCycloRing, n::AbstractUnitRange{Int}) = R(rand(
 
 rand(R::GenericCycloRing, n::AbstractUnitRange{Int}) = rand(Random.GLOBAL_RNG, R, n)
 
+function ConformanceTests.generate_element(R::GenericCycloRing)
+  return rand(R, -999:999)
+end
+
 # Promotion rules
 
 promote_rule(::Type{GenericCyclo}, ::Type{GenericCyclo}) = GenericCyclo
