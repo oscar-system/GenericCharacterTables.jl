@@ -1,7 +1,7 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables:
   Parameters, Parameter, CharTable, GenericCyclo, GenericCycloFrac, nesum
-using Oscar
+using ..GenericCharacterTables.Oscar
 R = universal_polynomial_ring(QQ; cached=false)
 q = gen(R, "q")
 S = generic_cyclotomic_ring(R; congruence=ZZ.((7, 12)))
@@ -1726,6 +1726,6 @@ cht   Information
   Character type 6 of G2.11 is called X_{18} by Chang and Ree
 """
 
-TABLE = CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
+CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
   classsums, charsums, classparamindex, charparamindex, classparams, charparams, S,
   information, splitext(basename(@__FILE__))[1])

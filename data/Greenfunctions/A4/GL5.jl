@@ -1,6 +1,6 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: SimpleCharTable
-using Oscar
+using ..GenericCharacterTables.Oscar
 R, q = polynomial_ring(QQ, "q")
 
 order = (q - 1)^5 * (q^4 + q^3 + q^2 + q + 1) * q^10 * (q + 1)^2 * (q^2 + 1) * (q^2 + q + 1)
@@ -114,7 +114,7 @@ information = raw"""- Information about the tables of Green functions for GL_5(q
   These programs are written by U. Porsch and F. Luebeck.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

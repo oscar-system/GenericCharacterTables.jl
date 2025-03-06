@@ -1,6 +1,6 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: SimpleCharTable
-using Oscar
+using ..GenericCharacterTables.Oscar
 R, q = polynomial_ring(QQ, "q")
 
 order =
@@ -177,7 +177,7 @@ information = raw"""- Information about the Green functions of $GL_6(2^n):2$.
     {\em J. Algebra \bf159} (1993), 64--97.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

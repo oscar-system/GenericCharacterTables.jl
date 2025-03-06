@@ -1,6 +1,6 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: SimpleCharTable
-using Oscar
+using ..GenericCharacterTables.Oscar
 R, q = polynomial_ring(QQ, "q")
 
 order = (q - 1)^2 * (q + 1) * q
@@ -43,7 +43,7 @@ information = raw"""- Information about the tables of Green functions for GL_2(q
   These programs are written by U. Porsch and F. Luebeck.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

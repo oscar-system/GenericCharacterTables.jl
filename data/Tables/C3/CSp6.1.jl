@@ -1,7 +1,7 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables:
   Parameters, Parameter, CharTable, GenericCyclo, GenericCycloFrac, nesum
-using Oscar
+using ..GenericCharacterTables.Oscar
 R = universal_polynomial_ring(QQ; cached=false)
 q = gen(R, "q")
 S = generic_cyclotomic_ring(R; congruence=ZZ.((1, 2)))
@@ -11416,6 +11416,6 @@ information = raw"""- Information about the generic character table of $CSp_6(q)
   use the table ``uniCSp6.1``, which allows faster calculations.
 """
 
-TABLE = CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
+CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
   classsums, charsums, classparamindex, charparamindex, classparams, charparams, S,
   information, splitext(basename(@__FILE__))[1])

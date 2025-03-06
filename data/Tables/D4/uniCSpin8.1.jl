@@ -1,6 +1,6 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: SimpleCharTable
-using Oscar
+using ..GenericCharacterTables.Oscar
 R, q = polynomial_ring(QQ, "q")
 
 order = q^12 * (q - 1)^2 * (q^2 - 1) * (q^4 - 1)^2 * (q^6 - 1)
@@ -3013,7 +3013,7 @@ information = raw"""- Information about the unipotent character table of $CSpin_
   information list. (Look at ``uniCSpin8.1``[i,-1][3][2], i = 1, ... ,14.)
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

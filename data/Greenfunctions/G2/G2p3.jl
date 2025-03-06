@@ -1,6 +1,6 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: SimpleCharTable
-using Oscar
+using ..GenericCharacterTables.Oscar
 R, q = polynomial_ring(QQ, "q")
 
 order = q^6 * (q - 1)^2 * (q + 1)^2 * (q^2 + q + 1) * (q^2 - q + 1)
@@ -105,7 +105,7 @@ information = raw"""- Information about the Green functions of $G_2(3^n)$.
   The notation for the unipotent classes is taken from that paper.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

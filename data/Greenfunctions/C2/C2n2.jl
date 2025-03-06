@@ -1,6 +1,6 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: SimpleCharTable
-using Oscar
+using ..GenericCharacterTables.Oscar
 R, q = polynomial_ring(QQ, "q")
 
 order = q^4 * (q - 1)^3 * (q + 1)^2 * (q^2 + 1)
@@ -71,7 +71,7 @@ information = raw"""- Information about the tables of Green functions for CSp_4(
 - The names of the unipotent classes are taken from the article of Shinoda.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

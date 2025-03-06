@@ -1,6 +1,6 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: SimpleCharTable
-using Oscar
+using ..GenericCharacterTables.Oscar
 R, q = polynomial_ring(QQ, "q")
 
 order = q^4 * (q - 1)^2 * (q + 1)^2 * (q^2 + 1)
@@ -68,7 +68,7 @@ information = raw"""- Information about the Green functions of $Sp_4(q)$, q even
 - The names of the unipotent classes are taken from this paper.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

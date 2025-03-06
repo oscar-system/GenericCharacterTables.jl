@@ -1,6 +1,6 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: SimpleCharTable
-using Oscar
+using ..GenericCharacterTables.Oscar
 R, q = polynomial_ring(QQ, "q")
 
 order = q^12 * (q - 1)^4 * (q + 1)^4 * (q^2 + 1)^2 * (q^2 + q + 1) * (q^2 - q + 1)
@@ -262,7 +262,7 @@ information = raw"""- Information about the Green functions of $O_8^+(q)$.
     Springer Lecture Notes 946, Berlin  - Heidelberg - New York 1982.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

@@ -1,6 +1,6 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: SimpleCharTable
-using Oscar
+using ..GenericCharacterTables.Oscar
 R, q = polynomial_ring(QQ, "q")
 
 order = q^10 * (q - 1)^5 * (q + 1)^2 * (q^2 + q + 1) * (q^2 + 1) * (q^4 + q^3 + q^2 + q + 1)
@@ -71,7 +71,7 @@ information = raw"""- Information about the Green functions of $GL_5(2^n):2$.
     {\em J. Algebra \bf159} (1993), 64--97.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

@@ -1,6 +1,6 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: SimpleCharTable
-using Oscar
+using ..GenericCharacterTables.Oscar
 R, q = polynomial_ring(QQ, "q")
 
 order = q - 1
@@ -38,7 +38,7 @@ information = raw"""- Information about the tables of Green functions for GL_1(q
   These programs are written by U. Porsch and F. Luebeck.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   reshape(table, 1, 1),
   classinfo,

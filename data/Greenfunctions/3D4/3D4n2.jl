@@ -1,6 +1,6 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: SimpleCharTable
-using Oscar
+using ..GenericCharacterTables.Oscar
 R, q = polynomial_ring(QQ, "q")
 
 order = q^12 * (q^8 + q^4 + 1) * (q^6 - 1) * (q^2 - 1)
@@ -89,7 +89,7 @@ information = raw"""- Information about the Green functions of $^3D_4(q)$, $p>2$
     {\em Comment. Math. Helvetici \bf57} (1982), 676--691.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

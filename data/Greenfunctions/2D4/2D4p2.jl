@@ -1,6 +1,6 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: SimpleCharTable
-using Oscar
+using ..GenericCharacterTables.Oscar
 R, q = polynomial_ring(QQ, "q")
 
 order = q^12 * (q - 1)^3 * (q + 1)^3 * (q^2 + q + 1) * (q^2 + 1) * (q^2 - q + 1) * (q^4 + 1)
@@ -149,7 +149,7 @@ information = raw"""- Information about the Green functions of $O_8^-(2^n)$.
 - The notation for the unipotent classes is as in that paper.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

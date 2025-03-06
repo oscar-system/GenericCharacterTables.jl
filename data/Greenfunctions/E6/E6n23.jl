@@ -1,6 +1,6 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: SimpleCharTable
-using Oscar
+using ..GenericCharacterTables.Oscar
 R, q = polynomial_ring(QQ, "q")
 
 order =
@@ -1032,7 +1032,7 @@ information = raw"""- Information about the Green functions of $E_6(q)$, $p>3$.
     {\em J. Algebra \bf88} (1984), 584--614.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

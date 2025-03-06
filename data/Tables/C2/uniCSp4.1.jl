@@ -1,6 +1,6 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: SimpleCharTable
-using Oscar
+using ..GenericCharacterTables.Oscar
 R, q = polynomial_ring(QQ, "q")
 
 order = (q - 1)^3 * (q + 1)^2 * (q^2 + 1) * q^4
@@ -278,7 +278,7 @@ information = raw"""- Information about the generic character table of $CSp_4(q)
   this  release.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

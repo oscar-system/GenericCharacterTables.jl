@@ -1,6 +1,6 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: SimpleCharTable
-using Oscar
+using ..GenericCharacterTables.Oscar
 R, q = polynomial_ring(QQ, "q")
 
 order =
@@ -520,7 +520,7 @@ information = raw"""- Information about the Green functions of $O_10^+(2^n)$.
     Springer Lecture Notes 946, Berlin  - Heidelberg - New York 1982.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

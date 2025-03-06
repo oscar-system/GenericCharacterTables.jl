@@ -1,6 +1,6 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: SimpleCharTable
-using Oscar
+using ..GenericCharacterTables.Oscar
 R, q = polynomial_ring(QQ, "q")
 
 order = q^12 * (q^2 + 1) * (q^2 - q + 1) * (q^2 + q + 1) * (q^4 + 1) * (q - 1)^4 * (q + 1)^4
@@ -1032,7 +1032,7 @@ information = raw"""- Information about the generic table of unipotent character
 - This table was computed by F.Luebeck, most of it with general programs.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

@@ -1,6 +1,6 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: SimpleCharTable
-using Oscar
+using ..GenericCharacterTables.Oscar
 R, q = polynomial_ring(QQ, "q")
 
 order = q^28 - q^26 - q^22 + q^18 + q^14 - q^12
@@ -138,7 +138,7 @@ information = raw"""- Information about the Green functions of $O_8^-(q)$ with o
   Foulkes functions and [0,-1] the corresponding labels.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

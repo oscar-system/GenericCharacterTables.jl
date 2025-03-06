@@ -1,6 +1,6 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: SimpleCharTable
-using Oscar
+using ..GenericCharacterTables.Oscar
 K, sqrt2 = quadratic_field(2)
 R, q = polynomial_ring(K, "q")
 
@@ -327,7 +327,7 @@ information = raw"""- Information about the Green functions of $^2F_4(q^2)$.
 
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

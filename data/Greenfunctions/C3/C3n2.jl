@@ -1,6 +1,6 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: SimpleCharTable
-using Oscar
+using ..GenericCharacterTables.Oscar
 R, q = polynomial_ring(QQ, "q")
 
 order = q^9 * (q - 1)^4 * (q + 1)^3 * (q^2 + 1) * (q^2 + q + 1) * (q^2 - q + 1)
@@ -162,7 +162,7 @@ information = raw"""- Information about the Green functions of $CSp_6(q)$, q odd
   classical  groups, {\em Comm. Alg.} {\bf18} (1990), 3507--3545.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

@@ -1,6 +1,6 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: SimpleCharTable
-using Oscar
+using ..GenericCharacterTables.Oscar
 R, q = polynomial_ring(QQ, "q")
 
 order = q^9 * (q^6 - 1) * (q^4 - 1) * (q^2 - 1)
@@ -1053,7 +1053,7 @@ information = raw"""- Information about the table of unipotent characters of $Sp
   of ``Sp6.0``, then dont use ``uniSp6.0``.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

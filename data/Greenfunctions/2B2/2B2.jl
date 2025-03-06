@@ -1,6 +1,6 @@
 using ..GenericCharacterTables
 import ..GenericCharacterTables: SimpleCharTable
-using Oscar
+using ..GenericCharacterTables.Oscar
 K, sqrt2 = quadratic_field(2)
 R, q = polynomial_ring(K, "q")
 
@@ -40,7 +40,7 @@ information = raw"""- Information about the Green functions of $^2B_2(q^2)$.
     Math. \bf75} (1962), 105--145.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,
