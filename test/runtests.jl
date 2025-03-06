@@ -1,27 +1,15 @@
 using GenericCharacterTables
 using GenericCharacterTables.Oscar
 using Test
-include(
-  joinpath(
-    pathof(GenericCharacterTables.Oscar.AbstractAlgebra),
-    "..",
-    "..",
-    "test",
-    "Rings-conformance-tests.jl",
-  ),
-)
 
 include("Aqua.jl")
 
-R = universal_polynomial_ring(QQ)
-q, i, j = gens(R, ["q", "i", "j"])
-S = generic_cyclotomic_ring(R)
-
-function test_elem(R::GenericCharacterTables.GenericCycloRing)
-  return rand(R, -999:999)
+@testset "Conformance tests" begin
+  R = universal_polynomial_ring(QQ)
+  q, i, j = gens(R, ["q", "i", "j"])
+  S = generic_cyclotomic_ring(R)
+  ConformanceTests.test_Ring_interface(S)
 end
-
-test_Ring_interface(S)
 
 @testset "GenericCyclo" begin
   R = universal_polynomial_ring(QQ)
