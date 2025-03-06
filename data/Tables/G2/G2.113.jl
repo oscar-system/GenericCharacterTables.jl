@@ -1726,6 +1726,6 @@ cht   Information
   Character type 6 of G2.11 is called X_{18} by Chang and Ree
 """
 
-TABLE = CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
+CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
   classsums, charsums, classparamindex, charparamindex, classparams, charparams, S,
   information, splitext(basename(@__FILE__))[1])

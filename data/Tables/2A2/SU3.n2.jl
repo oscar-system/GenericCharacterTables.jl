@@ -283,6 +283,6 @@ information = raw"""- Information about the generic character table of $SU_3(q)$
   and $PGL(4,q)$, {\em Can.\ J.~Math.} {\bf 3} (1951), 225--235.
 """
 
-TABLE = CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
+CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
   classsums, charsums, classparamindex, charparamindex, classparams, charparams, S,
   information, splitext(basename(@__FILE__))[1])

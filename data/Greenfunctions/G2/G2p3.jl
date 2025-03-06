@@ -105,7 +105,7 @@ information = raw"""- Information about the Green functions of $G_2(3^n)$.
   The notation for the unipotent classes is taken from that paper.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

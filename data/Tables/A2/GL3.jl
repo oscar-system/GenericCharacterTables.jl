@@ -334,6 +334,6 @@ information = raw"""- Information about the generic character table of $GL_3(q)$
   {\em Trans.\ Amer.\ Math.\ Soc.} {\bf 80} (1955), 402--447.
 """
 
-TABLE = CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
+CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
   classsums, charsums, classparamindex, charparamindex, classparams, charparams, S,
   information, splitext(basename(@__FILE__))[1])

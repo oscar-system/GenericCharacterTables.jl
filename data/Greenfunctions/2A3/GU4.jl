@@ -71,7 +71,7 @@ information = raw"""- Information about the tables of Green functions for GU_4(q
   > PrintInfoTab(GL2green);
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

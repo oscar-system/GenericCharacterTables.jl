@@ -68,7 +68,7 @@ information = raw"""- Information about the Green functions of $Sp_4(q)$, q even
 - The names of the unipotent classes are taken from this paper.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

@@ -138,7 +138,7 @@ information = raw"""- Information about the Green functions of $O_8^-(q)$ with o
   Foulkes functions and [0,-1] the corresponding labels.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

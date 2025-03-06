@@ -1675,6 +1675,6 @@ information = raw"""- Information about the table of unipotent characters of $F_
   notation with pairs of partitions.)
 """
 
-TABLE = CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
+CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
   classsums, charsums, classparamindex, charparamindex, classparams, charparams, S,
   information, splitext(basename(@__FILE__))[1])

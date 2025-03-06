@@ -262,7 +262,7 @@ information = raw"""- Information about the Green functions of $O_8^+(q)$.
     Springer Lecture Notes 946, Berlin  - Heidelberg - New York 1982.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

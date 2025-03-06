@@ -1053,7 +1053,7 @@ information = raw"""- Information about the table of unipotent characters of $Sp
   of ``Sp6.0``, then dont use ``uniSp6.0``.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

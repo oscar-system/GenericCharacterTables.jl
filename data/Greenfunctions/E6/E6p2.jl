@@ -1134,7 +1134,7 @@ information = raw"""- Information about the Green functions of $E_6(2^n)$.
     characteristic 2, {\em Comm. Algebra \bf21} (1993), 747--798.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

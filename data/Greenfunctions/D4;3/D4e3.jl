@@ -77,7 +77,7 @@ information = raw"""- Information about the Green functions of $O_8^+(3^n):3$.
     {\em J. Algebra \bf159} (1993), 64--97.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

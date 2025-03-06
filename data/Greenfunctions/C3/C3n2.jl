@@ -162,7 +162,7 @@ information = raw"""- Information about the Green functions of $CSp_6(q)$, q odd
   classical  groups, {\em Comm. Alg.} {\bf18} (1990), 3507--3545.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

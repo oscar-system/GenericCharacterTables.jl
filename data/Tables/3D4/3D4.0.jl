@@ -1846,6 +1846,6 @@ information = raw"""- Information about the generic character table of $^3D_4(2^
     \bf303} (1987), 39--70.
 """
 
-TABLE = CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
+CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
   classsums, charsums, classparamindex, charparamindex, classparams, charparams, S,
   information, splitext(basename(@__FILE__))[1])

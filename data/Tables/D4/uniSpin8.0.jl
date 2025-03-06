@@ -2484,7 +2484,7 @@ information = raw"""- Information about the unipotent character table of $Spin_8
   information list. (Look at ``uniSpin8.0``[i,-1][3][2], i = 1, ... ,14.)
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

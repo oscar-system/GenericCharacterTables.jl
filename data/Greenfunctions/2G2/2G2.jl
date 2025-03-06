@@ -63,7 +63,7 @@ information = raw"""- Information about the Green functions of $^2G_2(q^2)$.
     Soc. \bf121} (1966), 62--89.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

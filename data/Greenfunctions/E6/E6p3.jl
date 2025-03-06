@@ -1102,7 +1102,7 @@ information = raw"""- Information about the Green functions of $E_6(3^n)$.
 
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

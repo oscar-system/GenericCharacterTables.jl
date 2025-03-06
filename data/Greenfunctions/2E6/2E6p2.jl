@@ -1114,7 +1114,7 @@ information = raw"""- Information about the Green functions of $^2E_6(2^n)$.
 - The notation for the unipotent classes is as in that paper.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

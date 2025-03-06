@@ -71,7 +71,7 @@ information = raw"""- Information about the tables of Green functions for CSp_4(
 - The names of the unipotent classes are taken from the article of Shinoda.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

@@ -76,7 +76,7 @@ information = raw"""- Information about the tables of Green functions for GL_4(q
   These programs are written by U. Porsch and F. Luebeck.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

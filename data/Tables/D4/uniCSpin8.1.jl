@@ -3013,7 +3013,7 @@ information = raw"""- Information about the unipotent character table of $CSpin_
   information list. (Look at ``uniCSpin8.1``[i,-1][3][2], i = 1, ... ,14.)
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

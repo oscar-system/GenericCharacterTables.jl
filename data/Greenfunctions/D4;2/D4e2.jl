@@ -163,7 +163,7 @@ information = raw"""- Information about the Green functions of $SO_8^+(2^n)$.
     {\em J. Algebra \bf159} (1993), 64--97.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

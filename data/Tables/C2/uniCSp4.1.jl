@@ -278,7 +278,7 @@ information = raw"""- Information about the generic character table of $CSp_4(q)
   this  release.
 """
 
-TABLE = SimpleCharTable(
+SimpleCharTable(
   order,
   permutedims(table),
   classinfo,
