@@ -64,7 +64,7 @@ julia> kempner(12)
 kempner(m::Int64) = kempner_with_data(m)[1]
 
 @doc raw"""
-    normal_form(f::ZZUPoly, m::Int64)
+    normal_form(f::MPolyRingElem{ZZRingElem}, m::Int64)
 
 Return a normal form of `f` modulo `m`, such that `normal_form(f,m)` is equal
 to `normal_form(g,m)` if and only if `f` and `g` are congruent modulo `m`.
@@ -89,7 +89,7 @@ julia> normal_form(4*x^9+x^7-(x^3+4*x),12)
 
 ```
 """
-function normal_form(f::ZZUPoly, m::Int64)
+function normal_form(f::MPolyRingElem{ZZRingElem}, m::Int64)
   if m < 1
     throw(DomainError(m, "A normal form for non-positive moduli is not defined!"))
   end
@@ -131,6 +131,8 @@ function normal_form(f::ZZUPoly, m::Int64)
   end
   return f
 end
+
+normal_form(f::ZZUPoly, m::Int64) = Generic.UnivPoly(normal_form(data(f), m), parent(f))
 
 strip_zeros!(f::Dict{UPolyFrac,UPoly}) = filter!(p -> !iszero(p.second), f)
 
