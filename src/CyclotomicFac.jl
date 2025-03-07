@@ -1,5 +1,6 @@
 @doc raw"""
     CyclotomicFac{T <: PolyRingElem}
+
 The type representing a factorization into cyclotomic polynomials.
 """
 struct CyclotomicFac{T <: PolyRingElem}
@@ -49,11 +50,13 @@ end
 
 @doc raw"""
     factor_cyclotomic(p::T) where T <: PolyRingElem -> CyclotomicFac{T}
+
 Return a factorization of `p` into cyclotomic polynomials. The main difference
 to `factor` is the way the result gets printed.
 # Examples
 ```jldoctest
 julia> Qx, x = QQ["x"];
+
 julia> factor_cyclotomic(x^16 - x^15 - x^14 + 2*x^11 - x^8 - x^7 + x^6)
 x^6*Φ_4*Φ_2^2*Φ_3*Φ_1^4
 ```
@@ -62,13 +65,17 @@ factor_cyclotomic(p::PolyRingElem) = CyclotomicFac(factor(p))
 
 @doc raw"""
     evaluate(a::CyclotomicFac{T}) -> T
+
 Multiply out the factorization into a single element.
 # Examples
 ```jldoctest
 julia> Qx, x = QQ["x"];
+
 julia> f = x^16 - x^15 - x^14 + 2*x^11 - x^8 - x^7 + x^6;
+
 julia> fac = factor_cyclotomic(f)
 x^6*Φ_4*Φ_2^2*Φ_3*Φ_1^4
+
 julia> evaluate(fac)
 x^16 - x^15 - x^14 + 2*x^11 - x^8 - x^7 + x^6
 ```
@@ -112,6 +119,7 @@ eltype(::Type{CyclotomicFac{T}}) where {T} = eltype(Dict{T, Int})
 
 @doc raw"""
     length(a::CyclotomicFac) -> Int
+
 Return the number of factors of $a$, not including the unit.
 """
 length(a::CyclotomicFac) = length(a.fac) + length(a.cyclo_fac)
