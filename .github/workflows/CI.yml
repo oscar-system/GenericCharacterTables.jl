@@ -34,14 +34,9 @@ jobs:
         oscar-version:
           - 'stable'
           - 'devel'
-          - '1.1'
+          - '1.3'
         os:
           - ubuntu-latest
-        exclude:
-          - julia-version: '1.12-nightly'
-            oscar-version: '1.1'
-          - julia-version: 'nightly'
-            oscar-version: '1.1'
         #include:
         #  # Add a few windows and macOS jobs (not too many, the number we can run in parallel is limited)
         #  - julia-version: '1.10'
@@ -66,12 +61,12 @@ jobs:
             using Pkg
             Pkg.develop("Oscar")
             Pkg.pin("Oscar")'
-      - name: "Install OSCAR 1.1"
-        if: ${{ matrix.oscar-version == '1.1' }}
+      - name: "Install OSCAR 1.3"
+        if: ${{ matrix.oscar-version == '1.3' }}
         run: |
           julia --project=@. --color=yes --code-coverage -e '
             using Pkg
-            Pkg.add(name="Oscar", version="1.1")
+            Pkg.add(name="Oscar", version="1.3")
             Pkg.pin("Oscar")'
       - uses: julia-actions/julia-buildpkg@v1
       - uses: julia-actions/julia-runtest@v1

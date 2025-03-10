@@ -1,12 +1,6 @@
-if pkgversion(Oscar.AbstractAlgebra) >= v"0.42.0"
-  const ZZUPoly = Generic.UnivPoly{ZZRingElem}
-  const UPoly = Generic.UnivPoly{QQFieldElem}
-  const UPolyRing = Generic.UniversalPolyRing{QQFieldElem}
-else
-  const ZZUPoly = Generic.UnivPoly{ZZRingElem,Generic.MPoly{ZZRingElem}}
-  const UPoly = Generic.UnivPoly{QQFieldElem,Generic.MPoly{QQFieldElem}}
-  const UPolyRing = Generic.UniversalPolyRing{QQFieldElem,Generic.MPoly{QQFieldElem}}
-end
+const ZZUPoly = Generic.UnivPoly{ZZRingElem}
+const UPoly = Generic.UnivPoly{QQFieldElem}
+const UPolyRing = Generic.UniversalPolyRing{QQFieldElem}
 const UPolyFrac = Generic.FracFieldElem{UPoly}
 const UPolyFracRing = Generic.FracField{UPoly}
 
