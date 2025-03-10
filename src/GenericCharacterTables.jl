@@ -35,5 +35,6 @@ include("GenericCharacter.jl")
 include("Congruence.jl")
 include("Exports.jl")
 include("Deprecations.jl")
+include("CyclotomicFac.jl")
 
 end
