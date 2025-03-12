@@ -11,7 +11,7 @@ julia> R = universal_polynomial_ring(QQ; cached=false);
 
 julia> q = gen(R, "q");
 
-julia> S = generic_cyclotomic_ring(R);
+julia> S, E = generic_cyclotomic_ring(R);
 
 julia> i, j, k, l = gens(R, ["i", "j", "k", "l"]);
 
@@ -39,7 +39,7 @@ julia> R = universal_polynomial_ring(QQ; cached=false);
 
 julia> q = gen(R, "q");
 
-julia> S = generic_cyclotomic_ring(R);
+julia> S, E = generic_cyclotomic_ring(R);
 
 julia> i, = gens(R, ["i"]);
 

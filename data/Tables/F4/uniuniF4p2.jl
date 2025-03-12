@@ -4,7 +4,7 @@ import ..GenericCharacterTables:
 using ..GenericCharacterTables.Oscar
 R = universal_polynomial_ring(QQ; cached=false)
 q = gen(R, "q")
-S = generic_cyclotomic_ring(R)
+S, E = generic_cyclotomic_ring(R)
 
 order =
   q^24 * (q^4 - q^2 + 1) * (q^4 + 1) * (q^2 + q + 1)^2 * (q^2 - q + 1)^2 * (q^2 + 1)^2 *

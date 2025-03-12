@@ -15,7 +15,7 @@ julia> R = universal_polynomial_ring(QQ; cached=false);
 
 julia> q = gen(R, "q");
 
-julia> S = generic_cyclotomic_ring(R)
+julia> S, E = generic_cyclotomic_ring(R)
 Generic cyclotomic ring
   over Rational field
   dependent on q
@@ -23,15 +23,21 @@ Generic cyclotomic ring
 """
 mutable struct GenericCycloRing <: Ring
   base_ring::UPolyRing
+  symbol::Symbol
   congruence::Union{Tuple{ZZRingElem,ZZRingElem},Nothing}
   substitute::UPoly
   substitute_inv::UPoly
   function GenericCycloRing(
     R::UPolyRing,
+    symbol::Symbol,
     congruence::Union{Tuple{ZZRingElem,ZZRingElem},Nothing},
   )
-    return new(R, congruence)
+    return new(R, symbol, congruence)
   end
+end
+
+struct GenericCycloRingGen
+  parent::GenericCycloRing
 end
 
 @doc raw"""
@@ -45,7 +51,7 @@ julia> R = universal_polynomial_ring(QQ; cached=false);
 
 julia> q = gen(R, "q");
 
-julia> S = generic_cyclotomic_ring(R);
+julia> S, E = generic_cyclotomic_ring(R);
 
 julia> S(q; exponent=1//(q-1))
 q*exp(2π𝑖*1//(q - 1))
@@ -85,7 +91,7 @@ julia> R = universal_polynomial_ring(QQ; cached=false);
 
 julia> q = gen(R, "q");
 
-julia> S = generic_cyclotomic_ring(R);
+julia> S, E = generic_cyclotomic_ring(R);
 
 julia> a = S(q; exponent=1//(q-1))
 q*exp(2π𝑖*1//(q - 1))

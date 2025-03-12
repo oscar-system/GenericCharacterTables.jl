@@ -134,6 +134,8 @@ base_ring(R::GenericCycloRing) = R.base_ring::base_ring_type(typeof(R))
 
 parent(f::GenericCyclo) = f.parent
 
+parent(E::GenericCycloRingGen) = E.parent
+
 is_domain_type(::Type{GenericCyclo}) = false
 
 is_exact_type(::Type{GenericCyclo}) = true
@@ -199,15 +201,27 @@ function show(io::IO, R::GenericCycloRing)
   end
 end
 
+function show(io::IO, E::GenericCycloRingGen)
+  print(io, "Generator of ", parent(E))
+end
+
 function expressify(x::GenericCyclo; context = nothing)
+  symbol = parent(x).symbol
   sum = Expr(:call, :+)
   for (argument, modulus) in x.f
     modulus_expr = expressify(modulus; context)
     if iszero(argument)
       tmp = modulus_expr
     else
-      argument_expr = expressify(argument; context)
-      exp_expr = Expr(:call, Symbol("exp"), Expr(:call, :*, Symbol("2π𝑖"), argument_expr))
+      num = numerator(argument)
+      den = denominator(argument)
+      d = lcm(denominator(num), denominator(den))
+      num *= d
+      den *= d
+      exp_expr = Expr(:call, symbol, expressify(den; context))
+      if !isone(num)
+        exp_expr = Expr(:call, :^, exp_expr, expressify(num; context))
+      end
       tmp = Expr(:call, :*, modulus_expr, exp_expr)
     end
     push!(sum.args, tmp)
@@ -457,10 +471,19 @@ end
 function generic_cyclotomic_ring(
   R::UPolyRing;
   congruence::Union{Tuple{ZZRingElem,ZZRingElem},Nothing}=nothing,
+  symbol::Symbol=:E,
   cached::Bool=true,
 )
+  S = GenericCycloRing(R, symbol, congruence)
+  E = GenericCycloRingGen(S)
   length(gens(R)) < 1 && error("At least one free variable is needed")
-  return GenericCycloRing(R, congruence)
+  return (S, E)
+end
+
+function (E::GenericCycloRingGen)(order::RingElement)
+  S = parent(E)
+  R = base_ring(S)
+  return S(Dict(R(1)//R(order) => R(1)))
 end
 
 # congruence computation
