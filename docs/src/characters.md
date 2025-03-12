@@ -27,7 +27,8 @@ info(char::AbstractGenericCharacter)
 
 ## Iteration
 
-Character types implement Julia's iteration interface to iterate over the values.
+Character types behave in some ways similar to Julia `Vector` objects in that
+one can index into them to extract values.
 For a character type `ct`,
 - `length(ct)` returns the number of values in the character type (which is equal to the number
    of class types s in the table),
