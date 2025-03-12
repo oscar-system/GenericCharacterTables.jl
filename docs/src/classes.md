@@ -53,7 +53,7 @@ class_multiplication_coefficient(t::Table, class1::Int64, class2::Int64, class3:
 
 ## Iteration
 
-To get a specify conjugacy class type one can also use the indexing features
+To get a specific conjugacy class type one can also use the indexing features
 implemented for the tables. The conjugacy class type itself implements the
 interation interface in the same way character types do.
 
