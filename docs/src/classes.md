@@ -54,8 +54,9 @@ class_multiplication_coefficient(t::Table, class1::Int64, class2::Int64, class3:
 ## Iteration
 
 To get a specific conjugacy class type one can also use the indexing features
-implemented for the tables. The conjugacy class type itself implements the
-interation interface in the same way character types do.
+of generic character tables. Moreover the conjugacy class type itself implements
+the standard iteration and indexing interfaces and can thus be treated similarly
+to a `Vector` object.
 
 ```jldoctest
 julia> g=generic_character_table("GL2");
