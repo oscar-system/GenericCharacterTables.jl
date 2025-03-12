@@ -33,7 +33,7 @@ For a character type `ct`,
    of class types s in the table),
 - `ct[i]` returns the $i$th value of the character type,
 - `ct[i:j]` returns the values $i$ to $j$,
-- `ct[:]` returns all vales.
+- `ct[:]` returns all values.
 
 The character types can be obtained by using the iteration interface for tables.
 
