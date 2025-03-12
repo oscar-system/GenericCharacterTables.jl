@@ -53,7 +53,8 @@ q^4 - q^3 - q^2 + q
 ```
 
 Tables also implement a part of Julia's interface for matrices. This can be used
-to extract subtables.
+to extract "subtables" (although these are then of course merely matrices
+and not generic character table objects).
 ```jldoctest
 julia> g=generic_character_table("GL3");
 
