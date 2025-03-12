@@ -36,7 +36,7 @@ For a character type `ct`,
 - `ct[i:j]` returns the values $i$ to $j$,
 - `ct[:]` returns all values.
 
-The $i$th character type can be obtained by from a generic character table `g`
+The $i$th character type can be obtained from a generic character table `g`
 in two ways: via `g[i]` or via `g[i,:]`. The following example demonstrates this.
 
 ```jldoctest
