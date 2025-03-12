@@ -13,6 +13,7 @@ excluded parameter values.
 ## Properties
 
 ```@docs
+conjugacy_class_type
 number_of_conjugacy_class_types
 number_of_conjugacy_classes(t::Table)
 number_of_conjugacy_classes(class::GenericConjugacyClass)
