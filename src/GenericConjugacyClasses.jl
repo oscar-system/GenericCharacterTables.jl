@@ -343,27 +343,27 @@ julia> g=generic_character_table("GL2");
 
 julia> conjugacy_class_type(g, 1)
 Generic conjugacy class of GL2
-  with parameters 
+  with parameters
     i ∈ {1,…, q - 1}
   of order 1
   with values
-    exp(2π𝑖*(2*i*k)//(q - 1))
-    q*exp(2π𝑖*(2*i*k)//(q - 1))
-    (q + 1)*exp(2π𝑖*(i*l + i*k)//(q - 1))
-    (q - 1)*exp(2π𝑖*(i*k)//(q - 1))
+    E(q - 1)^(2*i*k)
+    q*E(q - 1)^(2*i*k)
+    (q + 1)*E(q - 1)^(i*l + i*k)
+    (q - 1)*E(q - 1)^(i*k)
 
 julia> q,(i,j,l,k) = parameters(g);
 
 julia> specialize(conjugacy_class_type(g, 1), i, q)
 Generic conjugacy class of GL2
-  with parameters 
+  with parameters
     i ∈ {1,…, q - 1}, substitutions: i = q
   of order 1
   with values
-    exp(2π𝑖*(2*k)//(q - 1))
-    q*exp(2π𝑖*(2*k)//(q - 1))
-    (q + 1)*exp(2π𝑖*(l + k)//(q - 1))
-    (q - 1)*exp(2π𝑖*k//(q - 1))
+    E(q - 1)^(2*k)
+    q*E(q - 1)^(2*k)
+    (q + 1)*E(q - 1)^(l + k)
+    (q - 1)*E(q - 1)^k
 ```
 """
 function specialize(class::GenericConjugacyClass, var::UPoly, expr::RingElement)
@@ -499,9 +499,9 @@ Generic conjugacy class of GL2
     i ∈ {1,…, q - 1}, j ∈ {1,…, q - 1} except i - j ∈ (q - 1)ℤ
   of order q^2 + q
   with values
-    exp(2π𝑖*(i*k + j*k)//(q - 1))
-    exp(2π𝑖*(i*k + j*k)//(q - 1))
-    exp(2π𝑖*(i*l + j*k)//(q - 1)) + exp(2π𝑖*(i*k + j*l)//(q - 1))
+    E(q - 1)^(i*k + j*k)
+    E(q - 1)^(i*k + j*k)
+    E(q - 1)^(i*l + j*k) + E(q - 1)^(i*k + j*l)
     0
 
 julia> [conjugacy_class_type(g, 3)]

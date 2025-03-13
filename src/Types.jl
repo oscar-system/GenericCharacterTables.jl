@@ -16,9 +16,7 @@ julia> R = universal_polynomial_ring(QQ; cached=false);
 julia> q = gen(R, "q");
 
 julia> S, E = generic_cyclotomic_ring(R)
-Generic cyclotomic ring
-  over Rational field
-  dependent on q
+(Generic cyclotomic ring over Rational field, Generator of Generic cyclotomic ring over Rational field)
 ```
 """
 mutable struct GenericCycloRing <: Ring
@@ -54,7 +52,7 @@ julia> q = gen(R, "q");
 julia> S, E = generic_cyclotomic_ring(R);
 
 julia> S(q; exponent=1//(q-1))
-q*exp(2π𝑖*1//(q - 1))
+q*E(q - 1)
 ```
 """
 mutable struct GenericCyclo <: RingElem
@@ -94,13 +92,13 @@ julia> q = gen(R, "q");
 julia> S, E = generic_cyclotomic_ring(R);
 
 julia> a = S(q; exponent=1//(q-1))
-q*exp(2π𝑖*1//(q - 1))
+q*E(q - 1)
 
 julia> b = S(q^2; exponent=1//(q^2-1))
-q^2*exp(2π𝑖*1//(q^2 - 1))
+q^2*E(q^2 - 1)
 
 julia> a//b
-q*exp(2π𝑖*1//(q - 1))//(q^2*exp(2π𝑖*1//(q^2 - 1)))
+q*E(q - 1)//(q^2*E(q^2 - 1))
 ```
 """
 struct GenericCycloFrac
@@ -234,10 +232,10 @@ Generic character of GL2
     k ∈ {1,…, q - 1}
   of degree 1
   with values
-    exp(2π𝑖*(2*i*k)//(q - 1))
-    exp(2π𝑖*(2*i*k)//(q - 1))
-    exp(2π𝑖*(i*k + j*k)//(q - 1))
-    exp(2π𝑖*(i*k)//(q - 1))
+    E(q - 1)^(2*i*k)
+    E(q - 1)^(2*i*k)
+    E(q - 1)^(i*k + j*k)
+    E(q - 1)^(i*k)
 ```
 """
 struct GenericCharacter <: AbstractGenericCharacter

@@ -18,10 +18,10 @@ Generic character of GL2
     kt1 ∈ {1,…, q - 1}, kt2 ∈ {1,…, q - 1}
   of degree q
   with values
-    q*exp(2π𝑖*(2*i*kt1 + 2*i*kt2)//(q - 1))
+    q*E(q - 1)^(2*i*kt1 + 2*i*kt2)
     0
-    exp(2π𝑖*(i*kt1 + i*kt2 + j*kt1 + j*kt2)//(q - 1))
-    -exp(2π𝑖*(i*kt1 + i*kt2)//(q - 1))
+    E(q - 1)^(i*kt1 + i*kt2 + j*kt1 + j*kt2)
+    -E(q - 1)^(i*kt1 + i*kt2)
 ```
 """
 function tensor_product(char1::GenericCharacter, char2::GenericCharacter)
@@ -113,10 +113,10 @@ Generic character of GL2
     k ∈ {1,…, q - 1}
   of degree 1
   with values
-    exp(2π𝑖*(2*i*k)//(q - 1))
-    (q^2 - 1)*exp(2π𝑖*(2*i*k)//(q - 1))
-    (q^2 + q)*exp(2π𝑖*(i*k + j*k)//(q - 1))
-    (q^2 - q)*exp(2π𝑖*(i*k)//(q - 1))
+    E(q - 1)^(2*i*k)
+    (q^2 - 1)*E(q - 1)^(2*i*k)
+    (q^2 + q)*E(q - 1)^(i*k + j*k)
+    (q^2 - q)*E(q - 1)^(i*k)
 
 ```
 """
@@ -185,10 +185,10 @@ Generic character of GL2
     kl1 ∈ {1,…, q - 1}, kl2 ∈ {1,…, q - 1}
   of degree q + 5
   with values
-    5*exp(2π𝑖*(2*i*kl1)//(q - 1)) + q*exp(2π𝑖*(2*i*kl2)//(q - 1))
-    5*exp(2π𝑖*(2*i*kl1)//(q - 1))
-    exp(2π𝑖*(i*kl2 + j*kl2)//(q - 1)) + 5*exp(2π𝑖*(i*kl1 + j*kl1)//(q - 1))
-    -exp(2π𝑖*(i*kl2)//(q - 1)) + 5*exp(2π𝑖*(i*kl1)//(q - 1))
+    5*E(q - 1)^(2*i*kl1) + q*E(q - 1)^(2*i*kl2)
+    5*E(q - 1)^(2*i*kl1)
+    E(q - 1)^(i*kl2 + j*kl2) + 5*E(q - 1)^(i*kl1 + j*kl1)
+    -E(q - 1)^(i*kl2) + 5*E(q - 1)^(i*kl1)
 ```
 """
 function linear_combination(coeffs::Vector{<:RingElement}, chars::Vector{<:GenericCharacter})
@@ -407,10 +407,10 @@ Generic character of GL2
     k ∈ {1,…, q - 1}
   of degree 1
   with values
-    exp(2π𝑖*(2*i*k)//(q - 1))
-    exp(2π𝑖*(2*i*k)//(q - 1))
-    exp(2π𝑖*(i*k + j*k)//(q - 1))
-    exp(2π𝑖*(i*k)//(q - 1))
+    E(q - 1)^(2*i*k)
+    E(q - 1)^(2*i*k)
+    E(q - 1)^(i*k + j*k)
+    E(q - 1)^(i*k)
 
 julia> q,(i,j,l,k) = parameters(g);
 
@@ -420,10 +420,10 @@ Generic character of GL2
     k ∈ {1,…, q - 1}, substitutions: i = q
   of degree 1
   with values
-    exp(2π𝑖*(2*k)//(q - 1))
-    exp(2π𝑖*(2*k)//(q - 1))
-    exp(2π𝑖*(j*k + k)//(q - 1))
-    exp(2π𝑖*k//(q - 1))
+    E(q - 1)^(2*k)
+    E(q - 1)^(2*k)
+    E(q - 1)^(j*k + k)
+    E(q - 1)^k
 
 ```
 """
@@ -558,9 +558,9 @@ Generic character of GL2
     k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except -l + k ∈ (q - 1)ℤ
   of degree q + 1
   with values
-    (q + 1)*exp(2π𝑖*(i*l + i*k)//(q - 1))
-    exp(2π𝑖*(i*l + i*k)//(q - 1))
-    exp(2π𝑖*(i*l + j*k)//(q - 1)) + exp(2π𝑖*(i*k + j*l)//(q - 1))
+    (q + 1)*E(q - 1)^(i*l + i*k)
+    E(q - 1)^(i*l + i*k)
+    E(q - 1)^(i*l + j*k) + E(q - 1)^(i*k + j*l)
     0
 
 julia> [g[3]]
