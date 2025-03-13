@@ -469,9 +469,9 @@ end
 
 # TODO Maybe don't require at least one variable?
 function generic_cyclotomic_ring(
-  R::UPolyRing;
+  R::UPolyRing,
+  symbol::Symbol=:E;
   congruence::Union{Tuple{ZZRingElem,ZZRingElem},Nothing}=nothing,
-  symbol::Symbol=:E,
   cached::Bool=true,
 )
   S = GenericCycloRing(R, symbol, congruence)
