@@ -51,3 +51,31 @@ q^4 - q^3 - q^2 + q
 julia> order(g)
 q^4 - q^3 - q^2 + q
 ```
+
+Tables also implement a part of Julia's interface for matrices. This can be used
+to extract "subtables" (although these are then of course merely matrices
+and not generic character table objects).
+```jldoctest
+julia> g=generic_character_table("GL3");
+
+julia> g[3:5,2:4]
+3×3 Matrix{GenericCharacterTables.GenericCyclo}:
+ 0                                        …  q*exp(2π𝑖*(2*a*n + b*n)//(q - 1))
+ (q + 1)*exp(2π𝑖*(a*m + 2*a*n)//(q - 1))     exp(2π𝑖*(2*a*n + b*m)//(q - 1)) + (q + 1)*exp(2π𝑖*(a*m + a*n + b*n)//(q - 1))
+ q*exp(2π𝑖*(a*m + 2*a*n)//(q - 1))           q*exp(2π𝑖*(2*a*n + b*m)//(q - 1)) + (q + 1)*exp(2π𝑖*(a*m + a*n + b*n)//(q - 1))
+
+```
+
+Here we extracted the values of the character types 3, 4 and 5 on the conjugacy
+class types 2, 3 and 4. Using colons one can even get all values into a matrix.
+```jldoctest
+julia> g=generic_character_table("GL2");
+
+julia> g[:,:]
+4×4 Matrix{GenericCharacterTables.GenericCyclo}:
+ exp(2π𝑖*(2*i*k)//(q - 1))              …  exp(2π𝑖*(i*k)//(q - 1))
+ q*exp(2π𝑖*(2*i*k)//(q - 1))               -exp(2π𝑖*(i*k)//(q - 1))
+ (q + 1)*exp(2π𝑖*(i*l + i*k)//(q - 1))     0
+ (q - 1)*exp(2π𝑖*(i*k)//(q - 1))           -exp(2π𝑖*(q*i*k)//(q^2 - 1)) - exp(2π𝑖*(i*k)//(q^2 - 1))
+
+```

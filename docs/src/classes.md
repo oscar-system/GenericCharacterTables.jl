@@ -1,5 +1,6 @@
 ```@meta
 CurrentModule = GenericCharacterTables
+DocTestSetup = :(using GenericCharacterTables, Oscar)
 ```
 
 # Conjugacy class types
@@ -12,6 +13,7 @@ excluded parameter values.
 ## Properties
 
 ```@docs
+conjugacy_class_type
 number_of_conjugacy_class_types
 number_of_conjugacy_classes(t::Table)
 number_of_conjugacy_classes(class::GenericConjugacyClass)
@@ -48,4 +50,50 @@ scalar_product(t::Table, class1::Int64, class2::Int64)
 class_multiplication_coefficient(class1::SimpleGenericConjugacyClass, class2::SimpleGenericConjugacyClass, class3::SimpleGenericConjugacyClass)
 class_multiplication_coefficient(class1::GenericConjugacyClass, class2::GenericConjugacyClass, class3::GenericConjugacyClass)
 class_multiplication_coefficient(t::Table, class1::Int64, class2::Int64, class3::Int64)
+```
+
+## Iteration
+
+To get a specific conjugacy class type one can also use the indexing features
+of generic character tables. Moreover the conjugacy class type itself implements
+the standard iteration and indexing interfaces and can thus be treated similarly
+to a `Vector` object.
+
+```jldoctest
+julia> g=generic_character_table("GL2");
+
+julia> cl=g[:,1]
+Generic conjugacy class of GL2
+  with parameters
+    i ∈ {1,…, q - 1}
+  of order 1
+  with values
+    exp(2π𝑖*(2*i*k)//(q - 1))
+    q*exp(2π𝑖*(2*i*k)//(q - 1))
+    (q + 1)*exp(2π𝑖*(i*l + i*k)//(q - 1))
+    (q - 1)*exp(2π𝑖*(i*k)//(q - 1))
+
+julia> cl[1]
+exp(2π𝑖*(2*i*k)//(q - 1))
+
+julia> cl[2:3]
+2-element Vector{GenericCharacterTables.GenericCyclo}:
+ q*exp(2π𝑖*(2*i*k)//(q - 1))
+ (q + 1)*exp(2π𝑖*(i*l + i*k)//(q - 1))
+
+julia> cl[:]
+4-element Vector{GenericCharacterTables.GenericCyclo}:
+ exp(2π𝑖*(2*i*k)//(q - 1))
+ q*exp(2π𝑖*(2*i*k)//(q - 1))
+ (q + 1)*exp(2π𝑖*(i*l + i*k)//(q - 1))
+ (q - 1)*exp(2π𝑖*(i*k)//(q - 1))
+
+julia> for v in cl
+           println(v)
+       end
+exp(2π𝑖*(2*i*k)//(q - 1))
+q*exp(2π𝑖*(2*i*k)//(q - 1))
+(q + 1)*exp(2π𝑖*(i*l + i*k)//(q - 1))
+(q - 1)*exp(2π𝑖*(i*k)//(q - 1))
+
 ```
