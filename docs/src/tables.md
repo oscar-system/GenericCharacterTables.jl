@@ -60,9 +60,9 @@ julia> g=generic_character_table("GL3");
 
 julia> g[3:5,2:4]
 3×3 Matrix{GenericCharacterTables.GenericCyclo}:
- 0                                        …  q*exp(2π𝑖*(2*a*n + b*n)//(q - 1))
- (q + 1)*exp(2π𝑖*(a*m + 2*a*n)//(q - 1))     exp(2π𝑖*(2*a*n + b*m)//(q - 1)) + (q + 1)*exp(2π𝑖*(a*m + a*n + b*n)//(q - 1))
- q*exp(2π𝑖*(a*m + 2*a*n)//(q - 1))           q*exp(2π𝑖*(2*a*n + b*m)//(q - 1)) + (q + 1)*exp(2π𝑖*(a*m + a*n + b*n)//(q - 1))
+ 0                               …  q*E(q - 1)^(2*a*n + b*n)
+ (q + 1)*E(q - 1)^(a*m + 2*a*n)     E(q - 1)^(2*a*n + b*m) + (q + 1)*E(q - 1)^(a*m + a*n + b*n)
+ q*E(q - 1)^(a*m + 2*a*n)           q*E(q - 1)^(2*a*n + b*m) + (q + 1)*E(q - 1)^(a*m + a*n + b*n)
 
 ```
 
@@ -73,9 +73,8 @@ julia> g=generic_character_table("GL2");
 
 julia> g[:,:]
 4×4 Matrix{GenericCharacterTables.GenericCyclo}:
- exp(2π𝑖*(2*i*k)//(q - 1))              …  exp(2π𝑖*(i*k)//(q - 1))
- q*exp(2π𝑖*(2*i*k)//(q - 1))               -exp(2π𝑖*(i*k)//(q - 1))
- (q + 1)*exp(2π𝑖*(i*l + i*k)//(q - 1))     0
- (q - 1)*exp(2π𝑖*(i*k)//(q - 1))           -exp(2π𝑖*(q*i*k)//(q^2 - 1)) - exp(2π𝑖*(i*k)//(q^2 - 1))
-
+ E(q - 1)^(2*i*k)              …  E(q - 1)^(i*k)
+ q*E(q - 1)^(2*i*k)               -E(q - 1)^(i*k)
+ (q + 1)*E(q - 1)^(i*l + i*k)     0
+ (q - 1)*E(q - 1)^(i*k)           -E(q^2 - 1)^(q*i*k) - E(q^2 - 1)^(i*k)
 ```

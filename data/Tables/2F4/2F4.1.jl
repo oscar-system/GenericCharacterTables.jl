@@ -4,7 +4,7 @@ import ..GenericCharacterTables:
 using ..GenericCharacterTables.Oscar
 R = universal_polynomial_ring(QQ; cached=false)
 q0 = gen(R, "q0")
-S = generic_cyclotomic_ring(R; congruence=ZZ.((1, 3)))
+S, E = generic_cyclotomic_ring(R; congruence=ZZ.((1, 3)))
 a, b, k, l, _... = gens(
   R,
   [

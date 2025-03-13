@@ -11,15 +11,15 @@ julia> R = universal_polynomial_ring(QQ; cached=false);
 
 julia> q = gen(R, "q");
 
-julia> S = generic_cyclotomic_ring(R);
+julia> S, E = generic_cyclotomic_ring(R);
 
 julia> i, j, k, l = gens(R, ["i", "j", "k", "l"]);
 
 julia> a = S(Dict(2//(q-1)*i*j+1//q*k^2+1//2*i*l => R(1)))
-exp(2π𝑖*(1//2*q^2*i*l + 2*q*i*j - 1//2*q*i*l + q*k^2 - k^2)//(q^2 - q))
+E(2*q^2 - 2*q)^(q^2*i*l + 4*q*i*j - q*i*l + 2*q*k^2 - 2*k^2)
 
 julia> evaluate(a,[i,k],[j,3*i])
-exp(2π𝑖*(1//2*q^2*j*l + 9*q*i^2 + 2*q*j^2 - 1//2*q*j*l - 9*i^2)//(q^2 - q))
+E(2*q^2 - 2*q)^(q^2*j*l + 18*q*i^2 + 4*q*j^2 - q*j*l - 18*i^2)
 
 ```
 """
@@ -39,12 +39,12 @@ julia> R = universal_polynomial_ring(QQ; cached=false);
 
 julia> q = gen(R, "q");
 
-julia> S = generic_cyclotomic_ring(R);
+julia> S, E = generic_cyclotomic_ring(R);
 
 julia> i, = gens(R, ["i"]);
 
 julia> a = S(Dict(1//(q-1)*i => R(1)))
-exp(2π𝑖*i//(q - 1))
+E(q - 1)^i
 
 julia> GenericCharacterTables.nesum(a, i, 1, q-1)
 0

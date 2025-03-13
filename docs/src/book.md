@@ -28,7 +28,7 @@ linear combinations over $\mathbb{Q}(q)$ of symbolic “roots of unity”
 depending on the parameters listed above.
 ```jldoctest book
 julia> T[4,4]
-(q + 1)*exp(2π𝑖*(a*n)//(q - 1)) + exp(-2π𝑖*(2*a*n)//(q - 1))
+(q + 1)*E(q - 1)^(a*n) + E(q - 1)^(-2*a*n)
 ```
 
 Denoting row 4 of the table by $\chi_4$, we note that is not a single
@@ -44,10 +44,10 @@ Generic character of SL3.n1
     q^2 + q + 1
     q + 1
     1
-    (q + 1)*exp(2π𝑖*(a*n)//(q - 1)) + exp(-2π𝑖*(2*a*n)//(q - 1))
-    exp(2π𝑖*(a*n)//(q - 1)) + exp(-2π𝑖*(2*a*n)//(q - 1))
-    exp(2π𝑖*(a*n)//(q - 1)) + exp(2π𝑖*(b*n)//(q - 1)) + exp(2π𝑖*(-a*n - b*n)//(q - 1))
-    exp(2π𝑖*(a*n)//(q - 1))
+    (q + 1)*E(q - 1)^(a*n) + E(q - 1)^(-2*a*n)
+    E(q - 1)^(a*n) + E(q - 1)^(-2*a*n)
+    E(q - 1)^(a*n) + E(q - 1)^(b*n) + E(q - 1)^(-a*n - b*n)
+    E(q - 1)^(a*n)
     0
 ```
 

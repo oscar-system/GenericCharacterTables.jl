@@ -5,7 +5,7 @@ using ..GenericCharacterTables.Oscar
 R = universal_polynomial_ring(QQ; cached=false)
 q0 = gen(R, "q0")
 q = q0^2
-S = generic_cyclotomic_ring(R; congruence=ZZ.((1, 2)))
+S, E = generic_cyclotomic_ring(R; congruence=ZZ.((1, 2)))
 i, k, _... = gens(
   R, ["i", "k", "i1", "k1", "i2", "k2", "i3", "k3", "it1", "kt1", "it2", "kt2"]
 )

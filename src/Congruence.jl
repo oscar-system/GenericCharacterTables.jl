@@ -14,7 +14,7 @@ function set_congruence(x::CharTable, congruence::Tuple{ZZRingElem,ZZRingElem})
     modulus = lcm(congruence[2], x.ring.congruence[2])
   end
   # The coercion of `GnericCharacter` relies on `base_ring(S) == base_ring(x.ring)`
-  S = generic_cyclotomic_ring(base_ring(x.ring); congruence=(remainder, modulus))
+  S, E = generic_cyclotomic_ring(base_ring(x.ring); congruence=(remainder, modulus))
   t = typeof(x)(
     x.order,
     deepcopy(x.classinfo),

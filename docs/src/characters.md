@@ -44,13 +44,13 @@ julia> g=generic_character_table("GL2");
 
 julia> g[3,:]
 Generic character of GL2
-  with parameters 
+  with parameters
     k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except -l + k ∈ (q - 1)ℤ
   of degree q + 1
   with values
-    (q + 1)*exp(2π𝑖*(i*l + i*k)//(q - 1))
-    exp(2π𝑖*(i*l + i*k)//(q - 1))
-    exp(2π𝑖*(i*l + j*k)//(q - 1)) + exp(2π𝑖*(i*k + j*l)//(q - 1))
+    (q + 1)*E(q - 1)^(i*l + i*k)
+    E(q - 1)^(i*l + i*k)
+    E(q - 1)^(i*l + j*k) + E(q - 1)^(i*k + j*l)
     0
 
 julia> ct = g[3]
@@ -59,38 +59,38 @@ Generic character of GL2
     k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except -l + k ∈ (q - 1)ℤ
   of degree q + 1
   with values
-    (q + 1)*exp(2π𝑖*(i*l + i*k)//(q - 1))
-    exp(2π𝑖*(i*l + i*k)//(q - 1))
-    exp(2π𝑖*(i*l + j*k)//(q - 1)) + exp(2π𝑖*(i*k + j*l)//(q - 1))
+    (q + 1)*E(q - 1)^(i*l + i*k)
+    E(q - 1)^(i*l + i*k)
+    E(q - 1)^(i*l + j*k) + E(q - 1)^(i*k + j*l)
     0
 
 julia> ct[1]
-(q + 1)*exp(2π𝑖*(i*l + i*k)//(q - 1))
+(q + 1)*E(q - 1)^(i*l + i*k)
 
 julia> ct[1:3]
 3-element Vector{GenericCharacterTables.GenericCyclo}:
- (q + 1)*exp(2π𝑖*(i*l + i*k)//(q - 1))
- exp(2π𝑖*(i*l + i*k)//(q - 1))
- exp(2π𝑖*(i*l + j*k)//(q - 1)) + exp(2π𝑖*(i*k + j*l)//(q - 1))
+ (q + 1)*E(q - 1)^(i*l + i*k)
+ E(q - 1)^(i*l + i*k)
+ E(q - 1)^(i*l + j*k) + E(q - 1)^(i*k + j*l)
 
 julia> ct[2:end]
 3-element Vector{GenericCharacterTables.GenericCyclo}:
- exp(2π𝑖*(i*l + i*k)//(q - 1))
- exp(2π𝑖*(i*l + j*k)//(q - 1)) + exp(2π𝑖*(i*k + j*l)//(q - 1))
+ E(q - 1)^(i*l + i*k)
+ E(q - 1)^(i*l + j*k) + E(q - 1)^(i*k + j*l)
  0
 
 julia> collect(ct)
 4-element Vector{GenericCharacterTables.GenericCyclo}:
- (q + 1)*exp(2π𝑖*(i*l + i*k)//(q - 1))
- exp(2π𝑖*(i*l + i*k)//(q - 1))
- exp(2π𝑖*(i*l + j*k)//(q - 1)) + exp(2π𝑖*(i*k + j*l)//(q - 1))
+ (q + 1)*E(q - 1)^(i*l + i*k)
+ E(q - 1)^(i*l + i*k)
+ E(q - 1)^(i*l + j*k) + E(q - 1)^(i*k + j*l)
  0
 
 julia> ct[:]
 4-element Vector{GenericCharacterTables.GenericCyclo}:
- (q + 1)*exp(2π𝑖*(i*l + i*k)//(q - 1))
- exp(2π𝑖*(i*l + i*k)//(q - 1))
- exp(2π𝑖*(i*l + j*k)//(q - 1)) + exp(2π𝑖*(i*k + j*l)//(q - 1))
+ (q + 1)*E(q - 1)^(i*l + i*k)
+ E(q - 1)^(i*l + i*k)
+ E(q - 1)^(i*l + j*k) + E(q - 1)^(i*k + j*l)
  0
 
 ```
