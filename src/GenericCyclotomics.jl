@@ -286,12 +286,20 @@ end
 
 *(x::GenericCyclo, y::UPoly) = y * x
 
-function ^(x::GenericCyclo, y::UPoly)
-  if isone(length(x.f))
-    expo, c = collect(x.f)[1]
-    return parent(x)(Dict(y*expo => c))
+function ^(x::GenericCyclo, y::Union{UPoly, Rational})
+  isone(length(x.f)) || error("cyclotomic has to many summands")
+  expo, c = collect(x.f)[1]
+  if iszero(expo) && isone(-c)  # in this case x is the primitive second root of unity -1
+    c = -c
+    y = 1//2*y
   end
-  throw(ArgumentError("cyclotomic has to many summands"))
+  isone(c) || error("cyclotomic is not a root of unity")
+  S = parent(x)
+  R = base_ring(S)
+  if iszero(expo)
+    return S(Dict(R(y)//R(1) => R(1)))
+  end
+  return S(Dict(y*expo => R(1)))
 end
 
 # Comparison

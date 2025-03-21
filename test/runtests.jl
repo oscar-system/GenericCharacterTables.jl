@@ -82,6 +82,10 @@ end
   a = S(1; exponent=(2 * i * j) * 1//R((q - 1)))
   @test isone(a^(q-1))
   @test a == a^q
+
+  @test E(1)^(1//2) == E(2)
+  @test E(2)^(1//3) == E(6)
+  @test E(3)^(1//2) == E(6)
 end
 
 @testset "Shifts" begin
