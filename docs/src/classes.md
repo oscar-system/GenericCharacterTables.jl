@@ -68,32 +68,32 @@ Generic conjugacy class of GL2
     i ∈ {1,…, q - 1}
   of order 1
   with values
-    exp(2π𝑖*(2*i*k)//(q - 1))
-    q*exp(2π𝑖*(2*i*k)//(q - 1))
-    (q + 1)*exp(2π𝑖*(i*l + i*k)//(q - 1))
-    (q - 1)*exp(2π𝑖*(i*k)//(q - 1))
+    E(q - 1)^(2*i*k)
+    q*E(q - 1)^(2*i*k)
+    (q + 1)*E(q - 1)^(i*l + i*k)
+    (q - 1)*E(q - 1)^(i*k)
 
 julia> cl[1]
-exp(2π𝑖*(2*i*k)//(q - 1))
+E(q - 1)^(2*i*k)
 
 julia> cl[2:3]
 2-element Vector{GenericCharacterTables.GenericCyclo}:
- q*exp(2π𝑖*(2*i*k)//(q - 1))
- (q + 1)*exp(2π𝑖*(i*l + i*k)//(q - 1))
+ q*E(q - 1)^(2*i*k)
+ (q + 1)*E(q - 1)^(i*l + i*k)
 
 julia> cl[:]
 4-element Vector{GenericCharacterTables.GenericCyclo}:
- exp(2π𝑖*(2*i*k)//(q - 1))
- q*exp(2π𝑖*(2*i*k)//(q - 1))
- (q + 1)*exp(2π𝑖*(i*l + i*k)//(q - 1))
- (q - 1)*exp(2π𝑖*(i*k)//(q - 1))
+ E(q - 1)^(2*i*k)
+ q*E(q - 1)^(2*i*k)
+ (q + 1)*E(q - 1)^(i*l + i*k)
+ (q - 1)*E(q - 1)^(i*k)
 
 julia> for v in cl
            println(v)
        end
-exp(2π𝑖*(2*i*k)//(q - 1))
-q*exp(2π𝑖*(2*i*k)//(q - 1))
-(q + 1)*exp(2π𝑖*(i*l + i*k)//(q - 1))
-(q - 1)*exp(2π𝑖*(i*k)//(q - 1))
+E(q - 1)^(2*i*k)
+q*E(q - 1)^(2*i*k)
+(q + 1)*E(q - 1)^(i*l + i*k)
+(q - 1)*E(q - 1)^(i*k)
 
 ```
