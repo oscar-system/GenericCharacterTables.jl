@@ -23,14 +23,16 @@ mutable struct GenericCycloRing <: Ring
   base_ring::UPolyRing
   symbol::Symbol
   congruence::Union{Tuple{ZZRingElem,ZZRingElem},Nothing}
+  power::Int64
   substitute::UPoly
   substitute_inv::UPoly
   function GenericCycloRing(
     R::UPolyRing,
     symbol::Symbol,
     congruence::Union{Tuple{ZZRingElem,ZZRingElem},Nothing},
+    power::Int64
   )
-    return new(R, symbol, congruence)
+    return new(R, symbol, congruence, power)
   end
 end
 

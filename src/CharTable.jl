@@ -278,10 +278,12 @@ function show(io::IO, ::MIME"text/plain", t::Table)
   println(io, "of order ", order(t))
   c = congruence(t)
   if c !== nothing
+    S = t.ring
+    q = gen(base_ring(S), 1)^S.power
     println(
       io,
       "restricted to ",
-      gen(base_ring(t.ring), 1),
+      q,
       " congruent to ",
       c[1],
       " modulo ",
