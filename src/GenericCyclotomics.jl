@@ -397,6 +397,7 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
 
   # congruence preparation
   substitutes = get_substitutes!(R)
+  power = R.power
 
   # reduce numerators modulo denominators
   L = NTuple{4,UPoly}[]
@@ -412,7 +413,17 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
         # example be `(q+1)//2` and `q` congruent to `1`
         # modulo `2`. Then `substitutes[1]` is `2*q+1`
         # and `gp=(2*q+2)//2=q+1` which simplifies to `0`.
-        gp = evaluate(g, [1], [substitutes[1]])
+        #
+        # `power` is used in cases where the first parameter
+        # represents a root of order `power`. In this case the
+        # polynomials need to be deflated before the evaluation
+        # and the inflated back again.
+        if isone(power)
+          gp = evaluate(g, [1], [substitutes[1]])
+        else
+          gd = deflate(numerator(g), [power])//deflate(denominator(g), [power])
+          gp = evaluate(gd, [1], [substitutes[1]])
+        end
       end
       a, r = divrem(numerator(gp), denominator(gp))
       push!(L, (c, denominator(gp), r, a))
@@ -447,6 +458,9 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
         gp = g
       else
         gp = evaluate(g, [1], [substitutes[2]])
+        if !isone(power)
+          gp = inflate(numerator(gp), [power])//inflate(denominator(gp), [power])
+        end
       end
       if haskey(fp, gp)
         fp[gp] += cp * c
@@ -480,9 +494,10 @@ function generic_cyclotomic_ring(
   R::UPolyRing,
   symbol::Symbol=:E;
   congruence::Union{Tuple{ZZRingElem,ZZRingElem},Nothing}=nothing,
+  power::Int64=1,
   cached::Bool=true,
 )
-  S = GenericCycloRing(R, symbol, congruence)
+  S = GenericCycloRing(R, symbol, congruence, power)
   E = GenericCycloRingGen(S)
   length(gens(R)) < 1 && error("At least one free variable is needed")
   return (S, E)
