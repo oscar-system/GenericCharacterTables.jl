@@ -392,6 +392,20 @@ function scalar_product(
   return sum//order(t)
 end
 
+function character_decomposition_multiplicity(char1::GenericCharacter, char2::GenericCharacter, char3::GenericCharacter)
+  check_parent(char1, char2)
+  check_parent(char1, char3)
+  t = parent(char1)
+  sum = 0
+  for class in 1:number_of_conjugacy_class_types(t)
+    val1 = shift_char_parameters(t, char1[class], 1)
+    val2 = shift_char_parameters(t, char2[class], 2)
+    val3 = shift_char_parameters(t, char3[class], 3)
+    sum += t.classlength[class] * classsum(t, class, val1 * val2 * conj(val3))
+  end
+  return shrink(sum//order(t))
+end
+
 @doc raw"""
     specialize(char::GenericCharacter, var::UPoly, expr::RingElement)
 
