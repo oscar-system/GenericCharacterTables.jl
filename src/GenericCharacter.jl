@@ -18,10 +18,10 @@ Generic character of GL2
     kt1 ∈ {1,…, q - 1}, kt2 ∈ {1,…, q - 1}
   of degree q
   with values
-    q*E(q - 1)^(2*i*kt1 + 2*i*kt2)
-    0
-    E(q - 1)^(i*kt1 + i*kt2 + j*kt1 + j*kt2)
-    -E(q - 1)^(i*kt1 + i*kt2)
+    1: q*E(q - 1)^(2*i*kt1 + 2*i*kt2)
+    2: 0
+    3: E(q - 1)^(i*kt1 + i*kt2 + j*kt1 + j*kt2)
+    4: -E(q - 1)^(i*kt1 + i*kt2)
 ```
 """
 function tensor_product(char1::GenericCharacter, char2::GenericCharacter)
@@ -70,9 +70,9 @@ julia> tensor_product(g[1],g[2])
 Generic character of GL3
   of degree -q^6 - 2*q^5 - 2*q^4 + 2*q^2 + 2*q + 1
   with values
-    -q^6 - 2*q^5 - 2*q^4 + 2*q^2 + 2*q + 1
-    2*q + 1
-    1
+    1: -q^6 - 2*q^5 - 2*q^4 + 2*q^2 + 2*q + 1
+    2: 2*q + 1
+    3: 1
 ```
 """
 function tensor_product(
@@ -113,10 +113,10 @@ Generic character of GL2
     k ∈ {1,…, q - 1}
   of degree 1
   with values
-    E(q - 1)^(2*i*k)
-    (q^2 - 1)*E(q - 1)^(2*i*k)
-    (q^2 + q)*E(q - 1)^(i*k + j*k)
-    (q^2 - q)*E(q - 1)^(i*k)
+    1: E(q - 1)^(2*i*k)
+    2: (q^2 - 1)*E(q - 1)^(2*i*k)
+    3: (q^2 + q)*E(q - 1)^(i*k + j*k)
+    4: (q^2 - q)*E(q - 1)^(i*k)
 
 ```
 """
@@ -152,9 +152,9 @@ julia> omega(g[1])
 Generic character of GL3
   of degree 1
   with values
-    1
-    2*q^2 - q - 1
-    q^3 - 2*q^2 + q
+    1: 1
+    2: 2*q^2 - q - 1
+    3: q^3 - 2*q^2 + q
 ```
 """
 function omega(char::SimpleGenericCharacter{T}) where {T<:NfPoly}
@@ -185,10 +185,10 @@ Generic character of GL2
     kl1 ∈ {1,…, q - 1}, kl2 ∈ {1,…, q - 1}
   of degree q + 5
   with values
-    5*E(q - 1)^(2*i*kl1) + q*E(q - 1)^(2*i*kl2)
-    5*E(q - 1)^(2*i*kl1)
-    E(q - 1)^(i*kl2 + j*kl2) + 5*E(q - 1)^(i*kl1 + j*kl1)
-    -E(q - 1)^(i*kl2) + 5*E(q - 1)^(i*kl1)
+    1: 5*E(q - 1)^(2*i*kl1) + q*E(q - 1)^(2*i*kl2)
+    2: 5*E(q - 1)^(2*i*kl1)
+    3: E(q - 1)^(i*kl2 + j*kl2) + 5*E(q - 1)^(i*kl1 + j*kl1)
+    4: -E(q - 1)^(i*kl2) + 5*E(q - 1)^(i*kl1)
 ```
 """
 function linear_combination(coeffs::Vector{<:RingElement}, chars::Vector{<:GenericCharacter})
@@ -256,9 +256,9 @@ julia> linear_combination([5,1],[g[1],g[2]])
 Generic character of GL3
   of degree 4*q^3 + 10*q^2 + 10*q + 6
   with values
-    4*q^3 + 10*q^2 + 10*q + 6
-    10*q + 6
-    6
+    1: 4*q^3 + 10*q^2 + 10*q + 6
+    2: 10*q + 6
+    3: 6
 ```
 """
 function linear_combination(
@@ -407,10 +407,10 @@ Generic character of GL2
     k ∈ {1,…, q - 1}
   of degree 1
   with values
-    E(q - 1)^(2*i*k)
-    E(q - 1)^(2*i*k)
-    E(q - 1)^(i*k + j*k)
-    E(q - 1)^(i*k)
+    1: E(q - 1)^(2*i*k)
+    2: E(q - 1)^(2*i*k)
+    3: E(q - 1)^(i*k + j*k)
+    4: E(q - 1)^(i*k)
 
 julia> q,(i,j,l,k) = parameters(g);
 
@@ -420,10 +420,10 @@ Generic character of GL2
     k ∈ {1,…, q - 1}, substitutions: i = q
   of degree 1
   with values
-    E(q - 1)^(2*k)
-    E(q - 1)^(2*k)
-    E(q - 1)^(j*k + k)
-    E(q - 1)^k
+    1: E(q - 1)^(2*k)
+    2: E(q - 1)^(2*k)
+    3: E(q - 1)^(j*k + k)
+    4: E(q - 1)^k
 
 ```
 """
@@ -558,10 +558,10 @@ Generic character of GL2
     k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except -l + k ∈ (q - 1)ℤ
   of degree q + 1
   with values
-    (q + 1)*E(q - 1)^(i*l + i*k)
-    E(q - 1)^(i*l + i*k)
-    E(q - 1)^(i*l + j*k) + E(q - 1)^(i*k + j*l)
-    0
+    1: (q + 1)*E(q - 1)^(i*l + i*k)
+    2: E(q - 1)^(i*l + i*k)
+    3: E(q - 1)^(i*l + j*k) + E(q - 1)^(i*k + j*l)
+    4: 0
 
 julia> [g[3]]
 1-element Vector{GenericCharacterTables.GenericCharacter}:
@@ -582,8 +582,9 @@ function show(io::IO, ::MIME"text/plain", c::AbstractGenericCharacter)
   end
   println(io, "of degree ", degree(c))
   print(io, "with values", Indent())
-  for val in c.values
-    print(io, "\n", val)
+  pad = ndigits(length(c))
+  for (i, val) in enumerate(c)
+    print(io, "\n", lpad(i, pad), ": ", val)
   end
 end
 

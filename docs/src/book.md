@@ -41,14 +41,14 @@ Generic character of SL3.n1
     n ∈ {1,…, q - 1} except n ∈ (q - 1)ℤ
   of degree q^2 + q + 1
   with values
-    q^2 + q + 1
-    q + 1
-    1
-    (q + 1)*E(q - 1)^(a*n) + E(q - 1)^(-2*a*n)
-    E(q - 1)^(a*n) + E(q - 1)^(-2*a*n)
-    E(q - 1)^(a*n) + E(q - 1)^(b*n) + E(q - 1)^(-a*n - b*n)
-    E(q - 1)^(a*n)
-    0
+    1: q^2 + q + 1
+    2: q + 1
+    3: 1
+    4: (q + 1)*E(q - 1)^(a*n) + E(q - 1)^(-2*a*n)
+    5: E(q - 1)^(a*n) + E(q - 1)^(-2*a*n)
+    6: E(q - 1)^(a*n) + E(q - 1)^(b*n) + E(q - 1)^(-a*n - b*n)
+    7: E(q - 1)^(a*n)
+    8: 0
 ```
 
 With these generic characters, we can compute norms, scalar products, and more.
@@ -58,14 +58,14 @@ julia> h = T[2] * T[2]
 Generic character of SL3.n1
   of degree q^4 + 2*q^3 + q^2
   with values
-    q^4 + 2*q^3 + q^2
-    q^2
-    0
-    q^2 + 2*q + 1
-    1
-    4
-    0
-    1
+    1: q^4 + 2*q^3 + q^2
+    2: q^2
+    3: 0
+    4: q^2 + 2*q + 1
+    5: 1
+    6: 4
+    7: 0
+    8: 1
 ```
 
 We may now attempt to decompose this character type `h` by computing its scalar product with the irreducible character types.

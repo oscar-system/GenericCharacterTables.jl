@@ -347,10 +347,10 @@ Generic conjugacy class of GL2
     i ∈ {1,…, q - 1}
   of order 1
   with values
-    E(q - 1)^(2*i*k)
-    q*E(q - 1)^(2*i*k)
-    (q + 1)*E(q - 1)^(i*l + i*k)
-    (q - 1)*E(q - 1)^(i*k)
+    1: E(q - 1)^(2*i*k)
+    2: q*E(q - 1)^(2*i*k)
+    3: (q + 1)*E(q - 1)^(i*l + i*k)
+    4: (q - 1)*E(q - 1)^(i*k)
 
 julia> q,(i,j,l,k) = parameters(g);
 
@@ -360,10 +360,10 @@ Generic conjugacy class of GL2
     i ∈ {1,…, q - 1}, substitutions: i = q
   of order 1
   with values
-    E(q - 1)^(2*k)
-    q*E(q - 1)^(2*k)
-    (q + 1)*E(q - 1)^(l + k)
-    (q - 1)*E(q - 1)^k
+    1: E(q - 1)^(2*k)
+    2: q*E(q - 1)^(2*k)
+    3: (q + 1)*E(q - 1)^(l + k)
+    4: (q - 1)*E(q - 1)^k
 ```
 """
 function specialize(class::GenericConjugacyClass, var::UPoly, expr::RingElement)
@@ -499,10 +499,10 @@ Generic conjugacy class of GL2
     i ∈ {1,…, q - 1}, j ∈ {1,…, q - 1} except i - j ∈ (q - 1)ℤ
   of order q^2 + q
   with values
-    E(q - 1)^(i*k + j*k)
-    E(q - 1)^(i*k + j*k)
-    E(q - 1)^(i*l + j*k) + E(q - 1)^(i*k + j*l)
-    0
+    1: E(q - 1)^(i*k + j*k)
+    2: E(q - 1)^(i*k + j*k)
+    3: E(q - 1)^(i*l + j*k) + E(q - 1)^(i*k + j*l)
+    4: 0
 
 julia> [conjugacy_class_type(g, 3)]
 1-element Vector{GenericCharacterTables.GenericConjugacyClass}:
@@ -523,8 +523,9 @@ function show(io::IO, ::MIME"text/plain", c::AbstractGenericConjugacyClass)
   end
   println(io, "of order ", order(c))
   print(io, "with values", Indent())
-  for val in c
-    print(io, "\n", val)
+  pad = ndigits(length(c))
+  for (i, val) in enumerate(c)
+    print(io, "\n", lpad(i, pad), ": ", val)
   end
 end
 
