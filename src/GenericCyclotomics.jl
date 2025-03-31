@@ -576,6 +576,7 @@ param(S::GenericCycloRing, var::Symbol) = gen(base_ring(S), var)
 
 @doc raw"""
     params(S::GenericCycloRing, vars::Vector{Symbol})
+    params(S::GenericCycloRing, vars::Vector{String})
 
 Return the parameters of `S` corresponding to the symbols `vars`. If any of those is missing create a new one.
 
@@ -590,6 +591,7 @@ julia> params(S, [:q, :i])
 ```
 """
 params(S::GenericCycloRing, vars::Vector{Symbol}) = gens(base_ring(S), vars)
+params(S::GenericCycloRing, vars::Vector{String}) = gens(base_ring(S), vars)
 
 # congruence computation
 function get_substitutes!(R::GenericCycloRing)

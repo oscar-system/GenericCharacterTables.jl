@@ -2,11 +2,10 @@ using ..GenericCharacterTables
 import ..GenericCharacterTables:
   Parameters, Parameter, CharTable, GenericCyclo, GenericCycloFrac, nesum
 using ..GenericCharacterTables.Oscar
-R = universal_polynomial_ring(QQ; cached=false)
-q0 = gen(R, "q0")
-S, E = generic_cyclotomic_ring(R; congruence=ZZ.((-1, 3)))
-a, b, k, l, _... = gens(
-  R,
+S, E, q0 = generic_cyclotomic_ring(; congruence=ZZ.((-1, 3)))
+R = base_ring(S)
+a, b, k, l, _... = params(
+  S,
   [
     "a",
     "b",
