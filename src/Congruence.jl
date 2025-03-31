@@ -7,14 +7,15 @@ Return a new generic character table based on `x` where the main parameter is ad
 `congruence[2]`. So the entries of `x` can potentially be simplified further.
 """
 function set_congruence(x::CharTable, congruence::Tuple{ZZRingElem,ZZRingElem})
-  if x.ring.congruence === nothing
+  R = x.ring
+  if R.congruence === nothing
     remainder, modulus = congruence
   else
-    remainder = crt(congruence..., x.ring.congruence...)
-    modulus = lcm(congruence[2], x.ring.congruence[2])
+    remainder = crt(congruence..., R.congruence...)
+    modulus = lcm(congruence[2], R.congruence[2])
   end
-  # The coercion of `GnericCharacter` relies on `base_ring(S) == base_ring(x.ring)`
-  S, E = generic_cyclotomic_ring(base_ring(x.ring); congruence=(remainder, modulus))
+  # The coercion of `GenericCharacter` relies on `base_ring(S) == base_ring(R)`
+  S = GenericCycloRing(base_ring(R), R.symbol, (remainder, modulus), R.power)
   t = typeof(x)(
     x.order,
     deepcopy(x.classinfo),

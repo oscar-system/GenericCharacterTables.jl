@@ -11,12 +11,9 @@ The ring of generic cyclotomic numbers.
 
 # Examples
 ```jldoctest
-julia> R = universal_polynomial_ring(QQ; cached=false);
+julia> S, E, q = generic_cyclotomic_ring()
+(Generic cyclotomic ring over Rational field, Generator of Generic cyclotomic ring over Rational field, q)
 
-julia> q = gen(R, "q");
-
-julia> S, E = generic_cyclotomic_ring(R)
-(Generic cyclotomic ring over Rational field, Generator of Generic cyclotomic ring over Rational field)
 ```
 """
 mutable struct GenericCycloRing <: Ring
@@ -47,11 +44,7 @@ The type for generic cyclotomic numbers.
 
 # Examples
 ```jldoctest
-julia> R = universal_polynomial_ring(QQ; cached=false);
-
-julia> q = gen(R, "q");
-
-julia> S, E = generic_cyclotomic_ring(R);
+julia> S, E, q = generic_cyclotomic_ring();
 
 julia> S(q; exponent=1//(q-1))
 q*E(q - 1)
@@ -87,11 +80,7 @@ The type for fractions of generic cyclotomic numbers.
 
 # Examples
 ```jldoctest
-julia> R = universal_polynomial_ring(QQ; cached=false);
-
-julia> q = gen(R, "q");
-
-julia> S, E = generic_cyclotomic_ring(R);
+julia> S, E, q = generic_cyclotomic_ring();
 
 julia> a = S(q; exponent=1//(q-1))
 q*E(q - 1)
