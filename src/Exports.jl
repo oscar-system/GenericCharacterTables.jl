@@ -20,8 +20,10 @@ export number_of_conjugacy_classes
 export number_of_parameters
 export omega
 export order
+export param
 export parameter
 export parameters
+export params
 export parent
 export scalar_product
 export set_congruence
