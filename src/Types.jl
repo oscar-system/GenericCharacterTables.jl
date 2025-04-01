@@ -234,10 +234,10 @@ Generic character of GL2
     k ∈ {1,…, q - 1}
   of degree 1
   with values
-    E(q - 1)^(2*i*k)
-    E(q - 1)^(2*i*k)
-    E(q - 1)^(i*k + j*k)
-    E(q - 1)^(i*k)
+    1: E(q - 1)^(2*i*k)
+    2: E(q - 1)^(2*i*k)
+    3: E(q - 1)^(i*k + j*k)
+    4: E(q - 1)^(i*k)
 ```
 """
 struct GenericCharacter <: AbstractGenericCharacter
@@ -310,10 +310,10 @@ julia> g[1]
 Generic character of uniGL2
   of degree q
   with values
-    q
-    0
-    1
-    -1
+    1: q
+    2: 0
+    3: 1
+    4: -1
 ```
 """
 struct SimpleGenericCharacter{T} <: AbstractGenericCharacter

@@ -68,10 +68,10 @@ Generic conjugacy class of GL2
     i ∈ {1,…, q - 1}
   of order 1
   with values
-    E(q - 1)^(2*i*k)
-    q*E(q - 1)^(2*i*k)
-    (q + 1)*E(q - 1)^(i*l + i*k)
-    (q - 1)*E(q - 1)^(i*k)
+    1: E(q - 1)^(2*i*k)
+    2: q*E(q - 1)^(2*i*k)
+    3: (q + 1)*E(q - 1)^(i*l + i*k)
+    4: (q - 1)*E(q - 1)^(i*k)
 
 julia> cl[1]
 E(q - 1)^(2*i*k)

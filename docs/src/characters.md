@@ -48,10 +48,10 @@ Generic character of GL2
     k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except -l + k ∈ (q - 1)ℤ
   of degree q + 1
   with values
-    (q + 1)*E(q - 1)^(i*l + i*k)
-    E(q - 1)^(i*l + i*k)
-    E(q - 1)^(i*l + j*k) + E(q - 1)^(i*k + j*l)
-    0
+    1: (q + 1)*E(q - 1)^(i*l + i*k)
+    2: E(q - 1)^(i*l + i*k)
+    3: E(q - 1)^(i*l + j*k) + E(q - 1)^(i*k + j*l)
+    4: 0
 
 julia> ct = g[3]
 Generic character of GL2
@@ -59,10 +59,10 @@ Generic character of GL2
     k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except -l + k ∈ (q - 1)ℤ
   of degree q + 1
   with values
-    (q + 1)*E(q - 1)^(i*l + i*k)
-    E(q - 1)^(i*l + i*k)
-    E(q - 1)^(i*l + j*k) + E(q - 1)^(i*k + j*l)
-    0
+    1: (q + 1)*E(q - 1)^(i*l + i*k)
+    2: E(q - 1)^(i*l + i*k)
+    3: E(q - 1)^(i*l + j*k) + E(q - 1)^(i*k + j*l)
+    4: 0
 
 julia> ct[1]
 (q + 1)*E(q - 1)^(i*l + i*k)
