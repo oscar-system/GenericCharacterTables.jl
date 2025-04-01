@@ -11,25 +11,25 @@ Generic character of SL3.n1
     n ∈ {1,…, q - 1} except n ∈ (q - 1)ℤ
   of degree q^2 + q + 1
   with values
-    q^2 + q + 1
-    q + 1
-    1
-    (q + 1)*E(q - 1)^(a*n) + E(q - 1)^(-2*a*n)
-    E(q - 1)^(a*n) + E(q - 1)^(-2*a*n)
-    E(q - 1)^(a*n) + E(q - 1)^(b*n) + E(q - 1)^(-a*n - b*n)
-    E(q - 1)^(a*n)
-    0</code></pre><p>With these generic characters, we can compute norms, scalar products, and more. For this demonstration we tensor the second character type <span>$\chi_2$</span> with itself.</p><pre><code class="language-julia-repl hljs">julia&gt; h = T[2] * T[2]
+    1: q^2 + q + 1
+    2: q + 1
+    3: 1
+    4: (q + 1)*E(q - 1)^(a*n) + E(q - 1)^(-2*a*n)
+    5: E(q - 1)^(a*n) + E(q - 1)^(-2*a*n)
+    6: E(q - 1)^(a*n) + E(q - 1)^(b*n) + E(q - 1)^(-a*n - b*n)
+    7: E(q - 1)^(a*n)
+    8: 0</code></pre><p>With these generic characters, we can compute norms, scalar products, and more. For this demonstration we tensor the second character type <span>$\chi_2$</span> with itself.</p><pre><code class="language-julia-repl hljs">julia&gt; h = T[2] * T[2]
 Generic character of SL3.n1
   of degree q^4 + 2*q^3 + q^2
   with values
-    q^4 + 2*q^3 + q^2
-    q^2
-    0
-    q^2 + 2*q + 1
-    1
-    4
-    0
-    1</code></pre><p>We may now attempt to decompose this character type <code>h</code> by computing its scalar product with the irreducible character types. This returns a “generic” scalar product, plus a (possibly empty) list of parameter exceptions for which the general result may not hold. For example:</p><pre><code class="language-julia-repl hljs">julia&gt; scalar_product(T[4], h)
+    1: q^4 + 2*q^3 + q^2
+    2: q^2
+    3: 0
+    4: q^2 + 2*q + 1
+    5: 1
+    6: 4
+    7: 0
+    8: 1</code></pre><p>We may now attempt to decompose this character type <code>h</code> by computing its scalar product with the irreducible character types. This returns a “generic” scalar product, plus a (possibly empty) list of parameter exceptions for which the general result may not hold. For example:</p><pre><code class="language-julia-repl hljs">julia&gt; scalar_product(T[4], h)
 0
 With exceptions:
   2*n1 ∈ (q - 1)ℤ</code></pre><p>This scalar product is <span>$0$</span> except when <span>$q-1$</span> divides <span>$2n_1$</span>, where <span>$n_1$</span> indicates the value of the parameter <span>$n$</span> for the first factor in the scalar product (i.e. the character type <span>$\chi_4$</span>). For a “generic decomposition” we need to compute all the scalar products and exceptions.</p><pre><code class="language-julia-repl hljs">julia&gt; for i in 1:8 println(&quot;&lt;$i, h&gt; = &quot;, scalar_product(T[i], h)) end
@@ -72,4 +72,4 @@ With exceptions:
   3*n1 ∈ (q - 1)ℤ
   2*n1 ∈ (q - 1)ℤ</code></pre><p>The exceptions both cannot occur as <span>$q$</span> is even and the table we are considering is only defined for <span>$q\not\equiv 1\pmod 3$</span>. By working through the other possible exceptions and irreducible character types, and handling duplicates, one finally obtains</p><p class="math-container">\[\chi_2^2 = \chi_1+2\chi_2+2\chi_3
     +\frac12\sum_{n=1}^{q-2} \chi_6(n,q-1-n)
-    +\frac12\sum_{n=1}^{q} \chi_7(n(q-1)).\]</p><p>Where <span>$\chi_6(n,q-1-n)$</span> indicates that the <span>$6$</span>th character in the table <code>T2</code> is a family on two parameters: <span>$n$</span> and <span>$q-1-n$</span>, while <span>$\chi_7$</span> depends on only one, namely <span>$n(q-1)$</span>. A similar result can be obtained for odd <span>$q$</span> albeit with a few more cases that need to be dealt with, but all in essentially the same manner.</p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../cyclo/">« Generic cyclotomics</a><a class="docs-footer-nextpage" href="../unexported/">Unexported Functions »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.10.0 on <span class="colophon-date" title="Monday 31 March 2025 07:49">Monday 31 March 2025</span>. Using Julia version 1.9.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+    +\frac12\sum_{n=1}^{q} \chi_7(n(q-1)).\]</p><p>Where <span>$\chi_6(n,q-1-n)$</span> indicates that the <span>$6$</span>th character in the table <code>T2</code> is a family on two parameters: <span>$n$</span> and <span>$q-1-n$</span>, while <span>$\chi_7$</span> depends on only one, namely <span>$n(q-1)$</span>. A similar result can be obtained for odd <span>$q$</span> albeit with a few more cases that need to be dealt with, but all in essentially the same manner.</p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../cyclo/">« Generic cyclotomics</a><a class="docs-footer-nextpage" href="../unexported/">Unexported Functions »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.10.1 on <span class="colophon-date" title="Tuesday 1 April 2025 13:37">Tuesday 1 April 2025</span>. Using Julia version 1.9.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
