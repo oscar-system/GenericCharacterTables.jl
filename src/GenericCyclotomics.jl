@@ -503,7 +503,7 @@ Currently the optional argument `cached` is ignored.
 
 !!! warning
     In the exponents of the generic cyclotomic numbers `q` may only occur in powers which are a multiple of `power`.
-    Otherwise the simplification will return false results.
+    Otherwise the simplification may return incorrect results.
 
 # Examples
 ```jldoctest
