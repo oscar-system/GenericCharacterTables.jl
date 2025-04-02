@@ -5,6 +5,7 @@ export conjugacy_class_type
 export conjugacy_class_type_index
 export degree
 export evaluate
+export factor_cyclotomic
 export generic_character_table
 export generic_cyclotomic_ring
 export green_function_table
