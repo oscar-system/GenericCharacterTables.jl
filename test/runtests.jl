@@ -5,24 +5,19 @@ using Test
 include("Aqua.jl")
 
 @testset "Conformance tests" begin
-  R = universal_polynomial_ring(QQ)
-  q, i, j = gens(R, ["q", "i", "j"])
-  S, E = generic_cyclotomic_ring(R)
+  S, E, q = generic_cyclotomic_ring()
+  i, j = params(S, [:i, :j])
   ConformanceTests.test_Ring_interface(S)
 end
 
 @testset "GenericCyclo" begin
-  R = universal_polynomial_ring(QQ)
-  q, i, j = gens(R, [:q, :i, :j])
-  S, E = generic_cyclotomic_ring(R)
-  S1, E = generic_cyclotomic_ring(R)
+  S, E, q = generic_cyclotomic_ring()
+  i, j = params(S, [:i, :j])
+  R = base_ring(S)
 
   a = S(Dict(1//(q - 1) * i + 2//(q - 1) * j + q^2//(q + 1) * i => R(1)))
   b = S(Dict(2 * q//(q^2 - 1) * i + 2//(q - 1) * j => R(1)))
   @test a == b
-
-  b1 = S1(Dict(2 * q//(q^2 - 1) * i + 2//(q - 1) * j => R(1)))
-  @test b != b1
 
   c = S(Dict(1//q * j => R(1)))
   @test (a + c) == (c + a)

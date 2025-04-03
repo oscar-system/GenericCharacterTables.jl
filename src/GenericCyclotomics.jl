@@ -182,10 +182,11 @@ function show(io::IO, ::MIME"text/plain", R::GenericCycloRing)
   println(io, "over ", base_ring(base_ring(R)))
   print(io, "dependent on ", join(gens(base_ring(R)), ", "))
   if R.congruence !== nothing
+    q = gen(base_ring(R), 1)^R.power
     print(
       io,
       "\nwhere ",
-      gen(base_ring(R), 1),
+      q,
       " is congruent to ",
       R.congruence[1],
       " modulo ",
@@ -489,18 +490,60 @@ end
 
 # Parent constructor
 
-# TODO Maybe don't require at least one variable?
+@doc raw"""
+    generic_cyclotomic_ring(symbol::Symbol=:E; congruence::Union{Tuple{ZZRingElem,ZZRingElem},Nothing}=nothing, variable::Symbol=:q, power::Int64=1, cached::Bool=true)
+
+Return a tuple consisting of the generic cyclotomic ring `S` with the main variable `variable`,
+a generic root generator `E` and the parameter `q` corresponding to the symbol `variable`.
+The symbol `symbol` is used as a compact placeholder for $e^{2 \pi i}$ for printing.
+In the simplification process of the elements of `S` it is assumed that `q` to the power of `power`
+always represents a whole number cungruent to `congruence[1]` modulo `congruence[2]`.
+
+Currently the optional argument `cached` is ignored.
+
+!!! warning
+    In the exponents of the generic cyclotomic numbers `q` may only occur in powers which are a multiple of `power`.
+    Otherwise the simplification may return incorrect results.
+
+# Examples
+```jldoctest
+julia> S, E, q = generic_cyclotomic_ring()
+(Generic cyclotomic ring over Rational field, Generator of Generic cyclotomic ring over Rational field, q)
+
+julia> E(q-1)^(q-1)
+1
+
+julia> E(3)^2
+-E(3) - 1
+
+julia> S, E, q = generic_cyclotomic_ring(congruence=(ZZ(1),ZZ(3)), power=2)
+(Generic cyclotomic ring over Rational field, Generator of Generic cyclotomic ring over Rational field, q)
+
+julia> S
+Generic cyclotomic ring
+  over Rational field
+  dependent on q
+  where q^2 is congruent to 1 modulo 3
+
+julia> E(3)^(q^2-1)
+1
+
+julia> E(3)^(q^2)
+E(3)
+
+```
+"""
 function generic_cyclotomic_ring(
-  R::UPolyRing,
   symbol::Symbol=:E;
   congruence::Union{Tuple{ZZRingElem,ZZRingElem},Nothing}=nothing,
+  variable::Symbol=:q,
   power::Int64=1,
   cached::Bool=true,
 )
+  R, (q,) = universal_polynomial_ring(QQ, [variable]; cached=false)
   S = GenericCycloRing(R, symbol, congruence, power)
   E = GenericCycloRingGen(S)
-  length(gens(R)) < 1 && error("At least one free variable is needed")
-  return (S, E)
+  return (S, E, q)
 end
 
 function (E::GenericCycloRingGen)(order::RingElement)
@@ -508,6 +551,47 @@ function (E::GenericCycloRingGen)(order::RingElement)
   R = base_ring(S)
   return S(Dict(R(1)//R(order) => R(1)))
 end
+
+# Create parameters
+
+@doc raw"""
+    param(S::GenericCycloRing, var::Symbol)
+
+Return the parameter of `S` corresponding to the symbol `var`. If there is no such paramter it creates a new one.
+
+# Examples
+```jldoctest
+julia> S, E, q = generic_cyclotomic_ring()
+(Generic cyclotomic ring over Rational field, Generator of Generic cyclotomic ring over Rational field, q)
+
+julia> param(S, :q)
+q
+
+julia> param(S, :i)
+i
+
+```
+"""
+param(S::GenericCycloRing, var::Symbol) = gen(base_ring(S), var)
+
+@doc raw"""
+    params(S::GenericCycloRing, vars::Vector{Symbol})
+    params(S::GenericCycloRing, vars::Vector{String})
+
+Return the parameters of `S` corresponding to the symbols `vars`. If any of those is missing create a new one.
+
+# Examples
+```jldoctest
+julia> S, E, q = generic_cyclotomic_ring()
+(Generic cyclotomic ring over Rational field, Generator of Generic cyclotomic ring over Rational field, q)
+
+julia> params(S, [:q, :i])
+(q, i)
+
+```
+"""
+params(S::GenericCycloRing, vars::Vector{Symbol}) = gens(base_ring(S), vars)
+params(S::GenericCycloRing, vars::Vector{String}) = gens(base_ring(S), vars)
 
 # congruence computation
 function get_substitutes!(R::GenericCycloRing)

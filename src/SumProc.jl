@@ -7,13 +7,11 @@ If `vars` is `Vector{Int64}`, then `vars[i]` represents the index of the variabl
 
 # Examples
 ```jldoctest
-julia> R = universal_polynomial_ring(QQ; cached=false);
+julia> S, E, q = generic_cyclotomic_ring();
 
-julia> q = gen(R, "q");
+julia> R = base_ring(S);
 
-julia> S, E = generic_cyclotomic_ring(R);
-
-julia> i, j, k, l = gens(R, ["i", "j", "k", "l"]);
+julia> i, j, k, l = params(S, [:i, :j, :k, :l]);
 
 julia> a = S(Dict(2//(q-1)*i*j+1//q*k^2+1//2*i*l => R(1)))
 E(2*q^2 - 2*q)^(q^2*i*l + 4*q*i*j - q*i*l + 2*q*k^2 - 2*k^2)
@@ -35,13 +33,11 @@ an exception will be thrown.
 
 # Examples
 ```jldoctest
-julia> R = universal_polynomial_ring(QQ; cached=false);
+julia> S, E, q = generic_cyclotomic_ring();
 
-julia> q = gen(R, "q");
+julia> R = base_ring(S);
 
-julia> S, E = generic_cyclotomic_ring(R);
-
-julia> i, = gens(R, ["i"]);
+julia> i = param(S, :i);
 
 julia> a = S(Dict(1//(q-1)*i => R(1)))
 E(q - 1)^i

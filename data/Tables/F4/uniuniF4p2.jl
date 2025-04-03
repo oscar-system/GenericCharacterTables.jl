@@ -2,9 +2,8 @@ using ..GenericCharacterTables
 import ..GenericCharacterTables:
   Parameters, Parameter, CharTable, GenericCyclo, GenericCycloFrac, nesum
 using ..GenericCharacterTables.Oscar
-R = universal_polynomial_ring(QQ; cached=false)
-q = gen(R, "q")
-S, E = generic_cyclotomic_ring(R)
+S, E, q = generic_cyclotomic_ring()
+R = base_ring(S)
 
 order =
   q^24 * (q^4 - q^2 + 1) * (q^4 + 1) * (q^2 + q + 1)^2 * (q^2 - q + 1)^2 * (q^2 + 1)^2 *
