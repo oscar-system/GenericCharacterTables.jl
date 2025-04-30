@@ -97,40 +97,11 @@ x^16 - x^15 - x^14 + 2*x^11 - x^8 - x^7 + x^6
 """
 function evaluate(a::CyclotomicFac)
    r = a.unit
-   for (p, e) in a
+   for (p, e) in Base.Iterators.flatten((a.fac, Base.Iterators.map(x -> cyclotomic_polynomial(first(x), parent(a.unit)) => last(x), a.cyclo_fac)))
       r *= p^e
    end
    return r
 end
-
-function iterate(a::CyclotomicFac, state=(nothing, true))
-  if state[2]
-    if state[1] === nothing
-      fac_iter = iterate(a.fac)
-    else
-      fac_iter = iterate(a.fac, state[1])
-    end
-    if fac_iter === nothing
-      return iterate(a, (nothing, false))
-    end
-    elem, state = fac_iter
-    return (elem, (state, true))
-  else
-    if state[1] === nothing
-      cyclo_fac_iter = iterate(a.cyclo_fac)
-    else
-      cyclo_fac_iter = iterate(a.cyclo_fac, state[1])
-    end
-    if cyclo_fac_iter === nothing
-      return nothing
-    end
-    (n, expo), new_state = cyclo_fac_iter
-    pol = cyclotomic_polynomial(n, parent(a.unit))
-    return (pol => expo, (new_state, false))
-  end
-end
-
-eltype(::Type{CyclotomicFac{T}}) where {T} = eltype(Dict{T, Int})
 
 @doc raw"""
     length(a::CyclotomicFac)
