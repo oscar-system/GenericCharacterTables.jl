@@ -33,6 +33,7 @@ makedocs(;
     "modify.md",
     "cyclo.md",
     "book.md",
+    "printing.md",
     "unexported.md",
     "references.md",
   ],
