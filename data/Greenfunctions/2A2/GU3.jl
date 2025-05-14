@@ -21,17 +21,17 @@ classtypeorder = R.([1, 1, 1])
 charinfo = Vector{Any}[[[1, 1, 1]], [[2, 1]], [[3]]]
 chardegree = R.([-(q - 1) * (q^2 - q + 1), (q + 1) * (q^2 - q + 1), -(q + 1)^2 * (q - 1)])
 
-information = raw"""- Information about the tables of Green functions for GU_3(q).
+information = raw"""- Information about the tables of Green functions for $\mathrm{GU}_3(q)$.
 
-- CHEVIE-name of the table: GU3green
+- CHEVIE-name of the table: `GU3green`
 
 - By a theorem of Hotta, Springer and Kawanaka we can get the Green
-  functions of the unitary group GU_3(q^2) from those of GL_3(q) 
-  by substituting q by -q. This is proved in [HS77](@cite) and [Kaw85](@cite).
+  functions of the unitary group $\mathrm{GU}_3(q^2)$ from those of $\mathrm{GL}_3(q)$
+  by substituting $q$ by $-q$. This is proved in [HS77](@cite) and [Kaw85](@cite).
 
 - See also: [DM87*1](@cite).
 
-- For the computation of the Green functions for GL_n(q) see for example:
+- For the computation of the Green functions for $\mathrm{GL}_n(q)$ see for example:
   > GreenFunTab(GL2);
   > PrintInfoTab(GL2green);
 """

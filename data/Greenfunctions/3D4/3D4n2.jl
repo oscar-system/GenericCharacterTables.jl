@@ -80,13 +80,11 @@ chardegree =
     (q + 1)^2 * (q - 1)^2 * (q^2 - q + 1)^2 * (q^2 + q + 1)^2,
     (q^2 - q + 1) * (q^4 - q^2 + 1) * (q - 1)^2 * (q^2 + q + 1)^2])
 
-information = raw"""- Information about the Green functions of $^3D_4(q)$, $p>2$.
+information = raw"""- Information about the Green functions of $^3\mathrm{D}_4(q)$, $p>2$.
 
-- CHEVIE-name of the table: ``3D4n2green``
+- CHEVIE-name of the table: `3D4n2green`
 
-- The table was first computed in:
-  {\sc N. Spaltenstein}, Caract``eres unipotents de $^3D_4(F_q)$,
-    {\em Comment. Math. Helvetici \bf57} (1982), 676--691.
+- The table was first computed in [Spa82*1](@cite).
 """
 
 SimpleCharTable(

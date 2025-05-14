@@ -79,13 +79,11 @@ chardegree =
     (q - 1)^2 * (q + 1)^2 * (q^2 - q + 1),
     (q - 1)^2 * (q^2 + q + 1) * (q^2 - q + 1)])
 
-information = raw"""- Information about the Green functions of $G_2(2^n)$.
+information = raw"""- Information about the Green functions of $\mathrm{G}_2(2^n)$.
 
-- CHEVIE-name of the table: ``G2p2green``
+- CHEVIE-name of the table: `G2p2green`
 
-- The table was first computed in:
-  {\sc H. Enomoto, H. Yamada}, The characters of $G_2(2^n)$,
-    {\em Japan J. Math \bf12} (1986), 325--377.
+- The table was first computed in [EY86](@cite).
 
   The notation for the unipotent classes is taken from that paper.
 """

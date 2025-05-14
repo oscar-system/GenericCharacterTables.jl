@@ -70,13 +70,11 @@ chardegree =
     (q - 1)^2 * (q + 1)^2 * (q^2 - q + 1),
     (q - 1)^2 * (q^2 + q + 1) * (q^2 - q + 1)])
 
-information = raw"""- Information about the Green functions of $G_2(q)$, $p>3$.
+information = raw"""- Information about the Green functions of $\mathrm{G}_2(q)$, $p>3$.
 
-- CHEVIE-name of the table: ``G2n23green``
+- CHEVIE-name of the table: `G2n23green`
 
-- The table was first computed in:
-  {\sc B. Chang, R. Ree}, The characters of $G_2(q)$, Symposia
-    Mathematica XIII, London (1974), 395--413.
+- The table was first computed in [CR74](@cite).
 
   The notation for the unipotent classes is taken from that paper.
 """

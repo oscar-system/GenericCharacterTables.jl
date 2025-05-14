@@ -154,13 +154,11 @@ chardegree =
     -(q - 1)^3 * (q + 1)^2 * (q^2 + q + 1) * (q^2 - q + 1),
     -(q - 1)^3 * (q + 1)^2 * (q^2 + q + 1) * (q^2 + 1)])
 
-information = raw"""- Information about the Green functions of $SO_8^+(2^n)$.
+information = raw"""- Information about the Green functions of $\mathrm{SO}_8^+(2^n)$.
 
-- CHEVIE-name of the table: ``D4e2green``
+- CHEVIE-name of the table: `D4e2green`
 
-- The table was first computed in:
-  {\sc G. Malle}, Generalized Deligne-Lusztig characters,
-    {\em J. Algebra \bf159} (1993), 64--97.
+- The table was first computed in [Mal93*1](@cite).
 """
 
 SimpleCharTable(

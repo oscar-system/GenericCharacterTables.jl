@@ -57,13 +57,11 @@ chardegree =
     (q - 1)^2 * (q + 1)^2,
   ])
 
-information = raw"""- Information about the Green functions of $Sp_4(q)$, q even.
+information = raw"""- Information about the Green functions of $\mathrm{Sp}_4(q)$, q even.
 
-- CHEVIE-name of the table: ``C2p2green``
+- CHEVIE-name of the table: `C2p2green`
 
-- The table was first computed in:
-  {\sc H. Ennomoto}, The characters of the finite  symplectic group
-  $Sp(4,q)$, $q=2^f$, {\em Osaka J. Math.} {\bf9} (1972), 75--94.
+- The table was first computed in [Eno72](@cite).
 
 - The names of the unipotent classes are taken from this paper.
 """

@@ -838,13 +838,11 @@ chardegree =
     -(q - 1)^3 * (1 + q + q^2)^2 * (q + 1)^3 * (1 - q + q^2) * (q^2 + 1)^2 *
     (1 - q^2 + q^4) * (1 + q^4)])
 
-information = raw"""- Information about the Green functions of $F_4(q)$, $p>3$.
+information = raw"""- Information about the Green functions of $\mathrm{F}_4(q)$, $p>3$.
 
-- CHEVIE-name of the table: ``F4n23green``
+- CHEVIE-name of the table: `F4n23green`
 
-- The table was first computed in:
-  {\sc T. Shoji}, On the Green polynomials of a Chevalley group of type $F_4$,
-    {\em Comm. Algebra \bf10} (1982), 505--543.
+- The table was first computed in [Sho82](@cite).
 """
 
 SimpleCharTable(

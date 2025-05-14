@@ -316,14 +316,12 @@ chardegree =
     (q^2 + 1)^2 * (q^2 - 1)^2 * (q^4 + 1)^2 * (q^4 - q^2 + 1) *
     (q^4 - sqrt2 * q^3 + q^2 - sqrt2 * q + 1)])
 
-information = raw"""- Information about the Green functions of $^2F_4(q^2)$.
+information = raw"""- Information about the Green functions of $^2\mathrm{F}_4(q^2)$.
 
-- CHEVIE-name of the table: ``2F4green``
+- CHEVIE-name of the table: `2F4green`
 
 - The Green functions can easily be obtained from a knowledge of the unipotent
-  characters; these were first computed in:
-  {\sc G. Malle}, Die unipotenten Charaktere von $^2F_4(q^2)$,
-    {\em Comm. Algebra \bf18} (1990), 2361--2381.
+  characters; these were first computed in [Mal90](@cite).
 
 """
 

@@ -357,17 +357,17 @@ chardegree =
     -(q^2 + q + 1) * (q^4 - q^3 + q^2 - q + 1) * (q^2 + 1) * (q^2 - q + 1)^2 * (q - 1)^3 *
     (q + 1)^6])
 
-information = raw"""- Information about the tables of Green functions for GU_7(q).
+information = raw"""- Information about the tables of Green functions for $\mathrm{GU}_7(q)$.
 
-- CHEVIE-name of the table: GU7green
+- CHEVIE-name of the table: `GU7green`
 
 - By a theorem of Hotta, Springer and Kawanaka we can get the Green
-  functions of the unitary group GU_7(q^2) from those of GL_7(q) 
-  by substituting q by -q. This is proved in [HS77](@cite) and [Kaw85](@cite).
+  functions of the unitary group $\mathrm{GU}_7(q^2)$ from those of $\mathrm{GL}_7(q)$
+  by substituting $q$ by $-q$. This is proved in [HS77](@cite) and [Kaw85](@cite).
 
 - See also: [DM87*1](@cite).
 
-- For the computation of the Green functions for GL_n(q) see for example:
+- For the computation of the Green functions for $\mathrm{GL}_n(q)$ see for example:
   > GreenFunTab(GL2);
   > PrintInfoTab(GL2green);
 """

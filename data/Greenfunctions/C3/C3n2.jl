@@ -153,13 +153,11 @@ chardegree =
     -(q - 1)^3 * (q + 1)^2 * (q^2 + q + 1) * (q^2 - q + 1),
     -(q - 1)^3 * (q + 1)^2 * (q^2 + q + 1) * (q^2 + 1)])
 
-information = raw"""- Information about the Green functions of $CSp_6(q)$, q odd.
+information = raw"""- Information about the Green functions of $\mathrm{CSp}_6(q)$, $q$ odd.
 
-- CHEVIE-name of the table: ``C3n2green``
+- CHEVIE-name of the table: `C3n2green`
 
-- These Green functions are computed in:
-  {\sc L. Lambe, B. Srinivasan}, A computation of Green functions of some
-  classical  groups, {\em Comm. Alg.} {\bf18} (1990), 3507--3545.
+- These Green functions are computed in [LS90](@cite).
 """
 
 SimpleCharTable(

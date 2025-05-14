@@ -51,22 +51,16 @@ chardegree =
     (q - 1)^2 * (q + 1)^2,
   ])
 
-information = raw"""- Information about the tables of Green functions for CSp_4(q), q odd.
+information = raw"""- Information about the tables of Green functions for $\mathrm{CSp}_4(q)$, $q$ odd.
 
-- CHEVIE-name of the table: C2n2green
+- CHEVIE-name of the table: `C2n2green`
 
-- The generic character table of CSp_4(q), q odd, and hence its Green 
-  functions were computed in:
-  {\sc K.~Shinoda}, The Characters of the Finite Conformal Symplectic
-  Group CSp(4,q), {\em Comm. Alg.} {\bf 10(13)} (1982), 1369--1419.
+- The generic character table of $\mathrm{CSp}_4(q)$, $q$ odd, and hence its Green 
+  functions were computed in [Shi82](@cite).
 
-- They can also be read off the table of Sp_4(q), q odd, computed in:
-  {\sc B.~Srinivasan}, The characters of the finite symplectic group
-  $Sp(4,q)$, {\em Trans. Amer. Math. Soc.} {\bf 131} (1968), 488--525.
+- They can also be read off the table of $\mathrm{Sp}_4(q)$, $q$ odd, computed in [Sri68](@cite).
 
-- See also:
-  {\sc L.~Lambe and B.~Srinivasan}, A computation of Green functions for
-  some classical groups, {\em Comm. Alg.} {\bf 18(10)} (1990), 3507--3545.
+- See also: [LS90](@cite).
 
 - The names of the unipotent classes are taken from the article of Shinoda.
 """

@@ -249,17 +249,13 @@ chardegree =
     (q - 1)^4 * (q + 1)^4 * (q^2 + q + 1) * (q^2 - q + 1),
     (q - 1)^4 * (q + 1)^2 * (q^2 + q + 1) * (q^2 + 1)^2])
 
-information = raw"""- Information about the Green functions of $O_8^+(q)$.
+information = raw"""- Information about the Green functions of $\mathrm{O}_8^+(q)$.
 
-- CHEVIE-name of the table: ``D4p2green``
+- CHEVIE-name of the table: `D4p2green`
 
-- The table was published in:
-  {\sc G. Malle}, Green functions for groups of types E_6 and F_4 in
-    characteristic 2, {\em Comm. Algebra \bf21} (1993), 747--798.
+- The table was published in [Mal93](@cite).
 
-- The notation for the unipotent classes is taken from:
-  {\sc N. Spaltenstein}, Classes unipotents et sous-groupes de Borel,
-    Springer Lecture Notes 946, Berlin  - Heidelberg - New York 1982.
+- The notation for the unipotent classes is taken from [Spa82](@cite).
 """
 
 SimpleCharTable(
