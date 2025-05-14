@@ -139,14 +139,9 @@ information = raw"""- Information about the generic character table of $GU_2(q)$
 
 - CHEVIE-name of the table: ``GU2``
 
-- The table was first computed in:
-  {\sc V.~Ennola}, On the characters of the finite unitary groups,
-  {\em Ann.\ Acad.\ Sci.\ Fenn.\ Ser.~A~I} {\bf 323} (1963), 1--36.
+- The table was first computed in [Enn63](@cite).
 
-
-- See also:
-  {\sc V.~Ennola}, On the conjugacy classes of the finite unitary groups,
-  {\em Ann.\ Acad.\ Sci.\ Fenn.\ Ser.~A~I} {\bf 313} (1962), 1--14.
+- See also: [Enn62](@cite).
 """
 
 CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,

@@ -271,15 +271,7 @@ information = raw"""- Information about the generic character table of $SU_3(q)$
   special unitary groups in non-defining characteristic,
   {\em Comm.\ Algebra}, {\bf 18} (1990), 563--584.
 
-- See also:
-  {\sc V.~Ennola}, On the characters of the finite unitary groups,
-  {\em Ann.\ Acad.\ Sci.\ Fenn.\ Ser.~A~I} {\bf 323} (1963), 1--36.
-
-  {\sc V.~Ennola}, On the conjugacy classes of the finite unitary groups,
-  {\em Ann.\ Acad.\ Sci.\ Fenn.\ Ser.~A~I} {\bf 313} (1962), 1--14.
-
-  {\sc R.~Steinberg}, The representations of $GL(3,q)$, $GL(4,q)$, $PGL(3,q)$
-  and $PGL(4,q)$, {\em Can.\ J.~Math.} {\bf 3} (1951), 225--235.
+- See also: [Enn63](@cite), [Enn62](@cite), [Ste51](@cite).
 """
 
 CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,

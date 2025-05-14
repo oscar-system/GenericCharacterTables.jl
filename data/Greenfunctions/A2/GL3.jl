@@ -25,14 +25,9 @@ information = raw"""- Information about the tables of Green functions for GL_3(q
 
 - CHEVIE-name of the table: GL3green
 
-- These Green functions were introduced in:
-  {\sc J.~A.~Green}, The characters of the finite general linear
-  groups, {\em Trans. Amer. Math. Soc.} {\bf 80} (1955), 402--447.
+- These Green functions were introduced in: [Gre55](@cite).
 
-- See also:
-  {\sc R.~Steinberg}, The representations of $GL(3,q)$,  $GL(4,q)$, $PGL(3,q\
-)$ 
-  and $PGL(4,q)$, {\em Can. J. of Math.} {\bf 3} (1951), 225--235.
+- See also: [Ste51](@cite).
 
 - This CHEVIE-table is computed by an algorithm from 
   the following article:

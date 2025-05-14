@@ -302,14 +302,9 @@ information = raw"""- Information about the generic character table of $PGU_3(q)
 
 - CHEVIE-name of the table: ``PGU3.2``
 
-- The table was derived by Meinolf Geck from:
-  {\sc V.~Ennola}, On the characters of the finite unitary groups,
-  {\em Ann.\ Acad.\ Sci.\ Fenn.\ Ser.~A~I} {\bf 323} (1963), 1--36.
+- The table was derived by Meinolf Geck from: [Enn63](@cite).
 
-
-- See also:
-  {\sc V.~Ennola}, On the conjugacy classes of the finite unitary groups,
-  {\em Ann.\ Acad.\ Sci.\ Fenn.\ Ser.~A~I} {\bf 313} (1962), 1--14.
+- See also: [Enn62](@cite).
 """
 
 CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,

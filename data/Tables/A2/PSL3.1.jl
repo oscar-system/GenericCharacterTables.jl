@@ -376,12 +376,7 @@ information = raw"""- Information about the generic character table of $PSL_3(q)
 - The table was constructed by Jochen Gruber from the generic character
   table of $SL_3(q)$, $q$ congruent to $1$ modulo $3$.
 
-- See also:
-  {\sc R.~Steinberg}, The representations of $GL(3,q)$, $GL(4,q)$, $PGL(3,q)$
-  and $PGL(4,q)$, {\em Can.\ J.~Math.} {\bf 3} (1951), 225--235.
-
-  {\sc J.~A.~Green}, The characters of the finite general linear groups,
-  {\em Trans.\ Amer.\ Math.\ Soc.} {\bf 80} (1955), 402--447.
+- See also: [Ste51](@cite), [Gre55](@cite).
 """
 
 CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
