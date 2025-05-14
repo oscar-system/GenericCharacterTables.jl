@@ -2185,15 +2185,12 @@ charparams = [
 classparamindex = var_index.([a, b])
 charparamindex = var_index.([k, l])
 
-information = raw"""- Information about the generic character table of $^3D_4(q)$,
+information = raw"""- Information about the generic character table of $^3\mathrm{D}_4(q)$,
   $p>2$, congruent to $1$ modulo $4$.
 
-- CHEVIE-name of the table: ``3D4.1``
+- CHEVIE-name of the table: `3D4.1`
 
-- The table was first computed in:
-  {\sc D. I. Deriziotis, G. O. Michler}, Character table and blocks
-    of finite simple triality groups $^3D_4(q)$, {\em Trans. Am. Math. Soc.
-    \bf303} (1987), 39--70.
+- The table was first computed in [DM87](@cite).
 """
 
 CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,

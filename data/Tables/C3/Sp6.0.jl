@@ -11351,20 +11351,14 @@ charparams = [
 classparamindex = var_index.([i1, i2, i3])
 charparamindex = var_index.([k1, k2, k3])
 
-information = raw"""- Information about the generic character table of $Sp_6(q)$, $q$ even
+information = raw"""- Information about the generic character table of $\mathrm{Sp}_6(q)$, $q$ even
 
-- CHEVIE-name of the table: ``Sp6.0``
+- CHEVIE-name of the table: `Sp6.0`
 
-- The computation of this table is explained in:
-  {\sc F.~Lübeck}, Charaktertafeln für die Gruppen
-  $CSp_6(q)$ mit ungeradem $q$ und $Sp_6(q)$ mit geradem $q$,
-  Dissertation, Heidelberg (1993)
+- The computation of this table is explained in [Lbe93](@cite).
 
-- The irreducible characters of $Sp_6(q)$ with even $q$ were already
-  (independently) determined in:
-  {\sc J.~Looker}, The complex irreducible characters of $Sp(6,q)$,
-  $q$ even, Ph. D. Thesis, Department of pure mathematics, University 
-  of Sydney  (1977)
+- The irreducible characters of $\mathrm{Sp}_6(q)$ with even $q$ were already
+  (independently) determined in [Loo77](@cite).
 
 - This table is very big. The best way to work with it
   is to produce one time a file in ``Maple-internal-format``
@@ -11378,7 +11372,7 @@ information = raw"""- Information about the generic character table of $Sp_6(q)$
 
 - The first twelve character(type)s are the unipotent characters.
   If you are *only* interested in the unipotent characters, you can
-  use the table ``uniSp6.0``, which allows faster calculations.
+  use the table `uniSp6.0`, which allows faster calculations.
 """
 
 CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,

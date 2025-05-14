@@ -132,16 +132,12 @@ charparams = [
 classparamindex = var_index.([i, j])
 charparamindex = var_index.([l, k])
 
-information = raw"""- Information about the generic character table of $PGL_2(q)$, $q$ odd
-  (See ``SL2.0`` for the generic character table of $PGL_2(q)$, $q$ even)
+information = raw"""- Information about the generic character table of $\mathrm{PGL}_2(q)$, $q$ odd
+  (See `SL2.0` for the generic character table of $\mathrm{PGL}_2(q)$, $q$ even)
 
-- CHEVIE-name of the table: ``PGL2.1``
+- CHEVIE-name of the table: `PGL2.1`
 
-- The table was first computed in [Jor07](@cite).
-
-  {\sc I.~Schur}, Untersuchungen über die Darstellung der
-  endlichen Gruppen durch gebrochene lineare Substitutionen,
-  {\em J.~reine angew.\ Math.} {\bf 132} (1907), 85--137.
+- The table was first computed in [Jor07](@cite), [Sch07](@cite).
 
 - See also: [Ste51](@cite).
 """

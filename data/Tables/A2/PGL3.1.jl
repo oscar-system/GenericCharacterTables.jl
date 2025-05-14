@@ -297,12 +297,12 @@ charparams = [
 classparamindex = var_index.([a, b])
 charparamindex = var_index.([m, n])
 
-information = raw"""- Information about the generic character table of $PGL_3(q)$,
+information = raw"""- Information about the generic character table of $\mathrm{PGL}_3(q)$,
   $q$ congruent to $1$ modulo $3$.
-  (See ``SL3.n1`` for the generic character table of $PGL_3(q)$,
+  (See `SL3.n1` for the generic character table of $\mathrm{PGL}_3(q)$,
   $q$ not congruent to $1$ modulo $3$.)
 
-- CHEVIE-name of the table: ``PGL3.1``
+- CHEVIE-name of the table: `PGL3.1`
 
 - The table was first computed in [Ste51](@cite).
 

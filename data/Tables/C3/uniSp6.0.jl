@@ -1028,29 +1028,23 @@ chardegree =
     1//2 * q^4 * (q^2 + q + 1) * (q - 1)^2,
     q^9])
 
-information = raw"""- Information about the table of unipotent characters of $Sp_6(q)$, $q$ even
+information = raw"""- Information about the table of unipotent characters of $\mathrm{Sp}_6(q)$, $q$ even
 
-- CHEVIE-name of the table: ``uniSp6.0``
+- CHEVIE-name of the table: `uniSp6.0`
 
-- The computation of the whole table of this group is explained in:
-  {\sc F.Lübeck}, Charaktertafeln für die Gruppen
-  $CSp_6(q)$ mit ungeradem $q$ und $Sp_6(q)$ mit geradem $q$,
-  Dissertation, Heidelberg (1993)
+- The computation of the whole table of this group is explained in [Lbe93](@cite).
 
-- The irreducible characters of $Sp_6(q)$ with even $q$ were already
-  (independently) determined in:
-  {\sc J.~Looker}, The complex irreducible characters of $Sp(6,q)$,
-  $q$ even, Ph. D. Thesis, Departure of pure mathematics, University 
-  of Sidney  (1977)
+- The irreducible characters of $\mathrm{Sp}_6(q)$ with even $q$ were already
+  (independently) determined in [Loo77](@cite).
 
-- This table is extracted from the table ``Sp6.0``, which
+- This table is extracted from the table `Sp6.0`, which
   contains the unipotent characters in the first 12 character
   (type)s.
 
 - If you want to calculate *only* with the unipotent characters
-  then use this table ``uniSp6.0`` (the calculations will run
+  then use this table `uniSp6.0` (the calculations will run
   much faster). If you also want to use the other characters
-  of ``Sp6.0``, then dont use ``uniSp6.0``.
+  of `Sp6.0`, then dont use `uniSp6.0`.
 """
 
 SimpleCharTable(

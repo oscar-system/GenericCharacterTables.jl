@@ -320,9 +320,9 @@ charparams = [
 classparamindex = var_index.([a, b, c])
 charparamindex = var_index.([l, m, n])
 
-information = raw"""- Information about the generic character table of $GL_3(q)$.
+information = raw"""- Information about the generic character table of $\mathrm{GL}_3(q)$.
 
-- CHEVIE-name of the table: ``GL3``
+- CHEVIE-name of the table: `GL3`
 
 - The table was first computed in [Ste51](@cite).
 

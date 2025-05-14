@@ -3000,13 +3000,11 @@ chardegree =
     q^7 * (q^2 + 1)^2,
     q^12])
 
-information = raw"""- Information about the unipotent character table of $CSpin_8(q)$, $q$ odd
+information = raw"""- Information about the unipotent character table of $\mathrm{CSpin}_8(q)$, $q$ odd
 
-- CHEVIE-name of the table: ``uniCSpin8.1``
+- CHEVIE-name of the table: `uniCSpin8.1`
 
-- The table was first computed in:
-  {\sc M.~Geck and G.~Pfeiffer}, Unipotent characters of the Chevalley groups
-  $D_4(q)$, $q$ odd, {\em Manuscripta Math.} {\bf 76} (1992), 281--304.
+- The table was first computed in [GP92](@cite).
 
 - The symbols parametrizing the unipotent characters are given in form
   of a pair of lists in (the 2nd part of) position 3 of the character

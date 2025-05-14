@@ -1689,22 +1689,14 @@ charparams = [
 classparamindex = var_index.([i, j])
 charparamindex = var_index.([k, l])
 
-information = raw"""- Information about the generic character table of $G_2(q)$,
+information = raw"""- Information about the generic character table of $\mathrm{G}_2(q)$,
   $q$ odd, congruent to $2$ modulo $3$ and $3$ modulo $4$.
 
-- CHEVIE-name of the table: ``G2.12``
+- CHEVIE-name of the table: `G2.12`
 
-- The table was first computed in:
-  {\sc B.~Chang and R.~Ree}, The characters of $G_2(q)$, {\em in}:
-  Symposia Mathematica Vol.~13, pp.~395--413, Academic Press, London, 1974.
+- The table was first computed in [CR74](@cite).
 
-- See also:
-
-  {\sc B.~Chang}, The conjugate classes of Chevalley groups of
-  type ($G_2$), {\em J.~Algebra} {\bf 9} (1968), 190--211.
-
-  {\sc G.~Hiss}, Zerlegungszahlen endlicher Gruppen vom Lie-Typ in
-  nicht-definierender Charakteristik, Habilitationsschrift, Aachen 1990.
+- See also: [Cha68](@cite), [Hi90](@cite).
 
 - Note:
   Chang's and Ree's notation for the irreducible characters is

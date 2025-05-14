@@ -1653,24 +1653,18 @@ charparams = [
 classparamindex = Int64[]
 charparamindex = Int64[]
 
-information = raw"""- Information about the table of unipotent characters of $F_4(2^n)$
+information = raw"""- Information about the table of unipotent characters of $\mathrm{F}_4(2^n)$
   on unipotent classes.
 
-- CHEVIE-name of the table: ``uniuniF4p2``
+- CHEVIE-name of the table: `uniuniF4p2`
 
-- The table was computed by Marcelo and Shinoda. This is explained in:
-  {\sc R.M.~Marcelo and K.~Shinoda}, Values of the unipotent characters
-  of the Chevalley group of type $F_4$ at unipotent elements, Preprint,
-  Tokyo (1994)
+- The table was computed by Marcelo and Shinoda. This is explained in [MS95](@cite).
 
-- PrintInfoClass shows the geometric unipotent classes in the notation of:
-  {\sc N.~Spaltenstein}, Classes unipotentes et sous-groupes de Borel,
-  LNM {\bf 946}, Springer (1982), p.~29.
-  and also Shinoda's notation from the cited preprint.
+- PrintInfoClass shows the geometric unipotent classes in the notation of
+  [Spa82](@cite) and also Shinoda's notation from the cited preprint.
 
-- PrintInfoChar shows the unipotent characters in the notation of:
-  {\sc R.~Carter}, Finite Groups of Lie Type, Wiley (1985), p.~479.
-  (but for the characters of a Weyl group of type B_2 we use the
+- PrintInfoChar shows the unipotent characters in the notation of [Car85](@cite).
+  (but for the characters of a Weyl group of type $\mathrm{B}_2$ we use the
   notation with pairs of partitions.)
 """
 

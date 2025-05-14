@@ -455,9 +455,9 @@ chardegree =
     q * (q + 1) * (q^2 + 1),
     1])
 
-information = raw"""- Information about the tables of unipotent characters for GL_5(q).
+information = raw"""- Information about the tables of unipotent characters for $\mathrm{GL}_5(q)$.
 
-- CHEVIE-name of the table: uniGL5
+- CHEVIE-name of the table: `uniGL5`
 
 - This table is computed with general programs written by F.Luebeck.
   They compute the Deligne-Lusztig characters R_T^G(1) and find the

@@ -2473,9 +2473,9 @@ chardegree =
     q^7 * (q^2 + 1)^2,
     q^12])
 
-information = raw"""- Information about the unipotent character table of $Spin_8(q)$, $q$ even
+information = raw"""- Information about the unipotent character table of $\mathrm{Spin}_8(q)$, $q$ even
 
-- CHEVIE-name of the table: ``uniSpin8.0``
+- CHEVIE-name of the table: `uniSpin8.0`
 
 - The table was first computed by Meinolf Geck (unpublished).
 

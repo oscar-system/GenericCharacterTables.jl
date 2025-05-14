@@ -129,15 +129,11 @@ charparams = [
 classparamindex = var_index.([i, j])
 charparamindex = var_index.([l, k])
 
-information = raw"""- Information about the generic character table of $GL_2(q)$.
+information = raw"""- Information about the generic character table of $\mathrm{GL}_2(q)$.
 
-- CHEVIE-name of the table: ``GL2``
+- CHEVIE-name of the table: `GL2`
 
-- The table was first computed in [Jor07](@cite).
-
-  {\sc I.~Schur}, Untersuchungen über die Darstellung der
-  endlichen Gruppen durch gebrochene lineare Substitutionen,
-  {\em J.~reine angew.\ Math.} {\bf 132} (1907), 85--137.
+- The table was first computed in [Jor07](@cite), [Sch07](@cite).
 
 - See also: [Ste51](@cite).
 """

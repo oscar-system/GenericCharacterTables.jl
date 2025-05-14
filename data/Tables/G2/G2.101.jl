@@ -1565,21 +1565,14 @@ charparams = [
 classparamindex = var_index.([i, j])
 charparamindex = var_index.([k, l])
 
-information = raw"""- Information about the generic character table of $G_2(q)$,
+information = raw"""- Information about the generic character table of $\mathrm{G}_2(q)$,
    $q$ a power of $3$, congruent to $1$ modulo $4$.
 
-- CHEVIE-name of the table: ``G2.10``
+- CHEVIE-name of the table: `G2.10`
 
-- The table was first computed in:
-  {\sc H.~Enomoto}, The characters of the finite Chevalley group
-  $G_2(q), q = 3^f$, {\em Japan.\ J.~Math.}, {\bf 2} (1976), 191--248.
+- The table was first computed in [Eno76](@cite).
 
-- See also:
-  {\sc B.~Chang and R.~Ree}, The characters of $G_2(q)$, {\em in}:
-  Symposia Mathematica Vol.~13, pp.~395--413, Academic Press, London, 1974.
-
-  {\sc G.~Hiss}, Zerlegungszahlen endlicher Gruppen vom Lie-Typ in
-  nicht-definierender Charakteristik, Habilitationsschrift, Aachen 1990.
+- See also: [CR74](@cite), [Hi90](@cite).
 
 - Note:
   Enomoto's notation for the irreducible characters is given in
