@@ -163,23 +163,18 @@ charparams = [
 classparamindex = var_index.([i])
 charparamindex = var_index.([k])
 
-information = raw"""- Information about the generic character table of $SL_2(q)$,
+information = raw"""- Information about the generic character table of $\mathrm{SL}_2(q)$,
   $q$ odd. The possible values for $q$ are given by
   $q = q0^2 = p^m$ with m a non negative integer and $p$ a prime number.
-  Note that the variable $q_0$ represents $\sqrt[q}$ which is needed as
+  Note that the variable $q_0$ represents $\sqrt{q}$ which is needed as
   some table entries involve this value.
-  (See ``SL2.0`` for the generic character table of $SL_2(q)$, $q$ even).
+  (See `SL2.0` for the generic character table of $\mathrm{SL}_2(q)$, $q$ even).
 
-- CHEVIE-name of the table: ``SL2.1``
+- CHEVIE-name of the table: `SL2.1`
 
-- The table was first computed in:
-  {\sc F.~G.~Frobenius}, Über Gruppencharaktere, Sitzungsberichte
-  der Königlich Preussischen Akademie der Wissenschaften zu
-  Berlin (1896), 985--1021.
+- The table was first computed in [Fro96](@cite).
 
-  {\sc I.~Schur}, Untersuchungen über die Darstellung der
-  endlichen Gruppen durch gebrochene lineare Substitutionen,
-  {\em J.~reine angew.\ Math.} {\bf 132} (1907), 85--137.
+- See also: [Sch07](@cite).
 """
 
 CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,

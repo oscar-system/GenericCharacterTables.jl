@@ -2,6 +2,7 @@ using Documenter
 using DocumenterCitations
 using GenericCharacterTables
 
+include("generate_overview.jl")
 include("citation_style.jl")
 
 DocMeta.setdocmeta!(
@@ -35,6 +36,7 @@ makedocs(;
     "book.md",
     "printing.md",
     "unexported.md",
+    "tables_list.md",
     "references.md",
   ],
   plugins=[bib],

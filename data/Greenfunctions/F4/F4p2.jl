@@ -1128,18 +1128,13 @@ chardegree =
     (q - 1)^4 * (q + 1)^4 * (q^2 + q + 1)^2 * (q^2 + 1)^2 * (q^2 - q + 1)^2 * (q^4 + 1),
     (q - 1)^4 * (q + 1)^4 * (q^2 + q + 1)^2 * (q^2 + 1)^2 * (q^4 + 1) * (q^4 - q^2 + 1)])
 
-information = raw"""- Information about the Green functions of $F_4(2^n)$.
+information = raw"""- Information about the Green functions of $\mathrm{F}_4(2^n)$.
 
-- CHEVIE-name of the table: ``F4p2green``
+- CHEVIE-name of the table: `F4p2green`
 
-- The table was first computed in:
-  {\sc G. Malle}, Green functions for groups of types E_6 and F_4 in
-    characteristic 2, {\em Comm. Algebra \bf21} (1993), 747--798.
+- The table was first computed in [Mal93](@cite).
 
-- The unipotent classes were determined in:
-  {\sc K. Shinoda}, The conjugacy classes of Chevalley groups of type,
-    $(F_4)$ over finite fields of characteristic 2, {\em J. Fac Sci
-    Univ. Tokyo \bf21} (1974), 133--159.
+- The unipotent classes were determined in [Shi74](@cite).
 
   The notation for the unipotent classes is taken from that paper.
 """

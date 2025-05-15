@@ -295,21 +295,16 @@ charparams = [
 classparamindex = var_index.([k, l])
 charparamindex = var_index.([u, v])
 
-information = raw"""- Information about the generic character table of $PGU_3(q)$,
+information = raw"""- Information about the generic character table of $\mathrm{PGU}_3(q)$,
   $q$ congruent to $2$ modulo $3$.
-  (See ``SU3.n2`` for the generic character table of $PGU_3(q)$,
+  (See `SU3.n2` for the generic character table of $\mathrm{PGU}_3(q)$,
   $q$ not congruent to $2$ modulo $3$.)
 
-- CHEVIE-name of the table: ``PGU3.2``
+- CHEVIE-name of the table: `PGU3.2`
 
-- The table was derived by Meinolf Geck from:
-  {\sc V.~Ennola}, On the characters of the finite unitary groups,
-  {\em Ann.\ Acad.\ Sci.\ Fenn.\ Ser.~A~I} {\bf 323} (1963), 1--36.
+- The table was derived by Meinolf Geck from: [Enn63](@cite).
 
-
-- See also:
-  {\sc V.~Ennola}, On the conjugacy classes of the finite unitary groups,
-  {\em Ann.\ Acad.\ Sci.\ Fenn.\ Ser.~A~I} {\bf 313} (1962), 1--14.
+- See also: [Enn62](@cite).
 """
 
 CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,

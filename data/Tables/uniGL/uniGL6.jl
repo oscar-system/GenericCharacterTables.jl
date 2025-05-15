@@ -1700,9 +1700,9 @@ chardegree =
     q * (q^4 + q^3 + q^2 + q + 1),
     1])
 
-information = raw"""- Information about the tables of unipotent characters for GL_6(q).
+information = raw"""- Information about the tables of unipotent characters for $\mathrm{GL}_6(q)$.
 
-- CHEVIE-name of the table: uniGL6
+- CHEVIE-name of the table: `uniGL6`
 
 - This table is computed with general programs written by F.Luebeck.
   They compute the Deligne-Lusztig characters R_T^G(1) and find the

@@ -197,9 +197,9 @@ classtypeorder =
 charinfo = Vector{Any}[[[1, 1, 1, 1]], [[2, 1, 1]], [[2, 2]], [[3, 1]], [[4]]]
 chardegree = R.([q^6, (q^2 - q + 1) * q^3, q^2 * (q^2 + 1), q * (q^2 - q + 1), 1])
 
-information = raw"""- Information about the tables of unipotent characters for GU_4(q).
+information = raw"""- Information about the tables of unipotent characters for $\mathrm{GU}_4(q)$.
 
-- CHEVIE-name of the table: uniGU4
+- CHEVIE-name of the table: `uniGU4`
 
 - This table is computed with general programs written by F.Luebeck.
   They compute the Deligne-Lusztig characters R_T^G(1) and find the

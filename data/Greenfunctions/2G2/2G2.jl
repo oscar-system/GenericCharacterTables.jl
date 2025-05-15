@@ -54,13 +54,11 @@ chardegree =
     -(q^4 - 1) * (q^2 + sqrt3 * q + 1),
   ])
 
-information = raw"""- Information about the Green functions of $^2G_2(q^2)$.
+information = raw"""- Information about the Green functions of $^2\mathrm{G}_2(q^2)$.
 
-- CHEVIE-name of the table: ``2G2green``
+- CHEVIE-name of the table: `2G2green`
 
-- The table was first computed in:
-  {\sc H. N. Ward}, On Ree's series of simple groups, {\em Trans.  Am. Math.
-    Soc. \bf121} (1966), 62--89.
+- The table was first computed in [War66](@cite).
 """
 
 SimpleCharTable(

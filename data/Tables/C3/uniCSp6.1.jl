@@ -1388,23 +1388,20 @@ chardegree =
     1//2 * (q - 1)^2 * q^4 * (q^2 + q + 1),
     q^9])
 
-information = raw"""- Information about the table of unipotent characters of $CSp_6(q)$, $q$ odd
+information = raw"""- Information about the table of unipotent characters of $\mathrm{CSp}_6(q)$, $q$ odd
 
-- CHEVIE-name of the table: ``uniCSp6.1``
+- CHEVIE-name of the table: `uniCSp6.1`
 
-- The computation of the whole table of this group is explained in:
-  {\sc F.Lübeck}, Charaktertafeln für die Gruppen
-  $CSp_6(q)$ mit ungeradem $q$ und $Sp_6(q)$ mit geradem $q$,
-  Dissertation, Heidelberg (1993)
+- The computation of the whole table of this group is explained in [Lbe93](@cite).
 
-- This table is extracted from the table ``CSp6.1``, which
+- This table is extracted from the table `CSp6.1`, which
   contains the unipotent characters in the first 12 character
   types (specialize the parameter kK1 to 0).
 
 - If you want to calculate *only* with the unipotent characters
-  then use this table ``uniCSp6.1`` (the calculations will run
+  then use this table `uniCSp6.1` (the calculations will run
   much faster). If you also want to use the other characters
-  of ``CSp6.1``, then produce the unipotent characters with the
+  of `CSp6.1`, then produce the unipotent characters with the
   CHEVIE-commands ``Copy`` and ``SpecCharParam`` as explained
   above.
 """

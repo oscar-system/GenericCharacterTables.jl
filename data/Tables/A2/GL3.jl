@@ -320,17 +320,14 @@ charparams = [
 classparamindex = var_index.([a, b, c])
 charparamindex = var_index.([l, m, n])
 
-information = raw"""- Information about the generic character table of $GL_3(q)$.
+information = raw"""- Information about the generic character table of $\mathrm{GL}_3(q)$.
 
-- CHEVIE-name of the table: ``GL3``
+- CHEVIE-name of the table: `GL3`
 
-- The table was first computed in:
-  {\sc R.~Steinberg}, The representations of $GL(3,q)$, $GL(4,q)$, $PGL(3,q)$
-  and $PGL(4,q)$, {\em Can.\ J.~Math.} {\bf 3} (1951), 225--235.
+- The table was first computed in [Ste51](@cite).
 
-- See also:
-  {\sc J.~A.~Green}, The characters of the finite general linear groups,
-  {\em Trans.\ Amer.\ Math.\ Soc.} {\bf 80} (1955), 402--447.
+- See also: [Gre55](@cite).
+
 """
 
 CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,

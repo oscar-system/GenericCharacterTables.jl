@@ -1451,21 +1451,14 @@ charparams = [
 classparamindex = var_index.([i, j])
 charparamindex = var_index.([k, l])
 
-information = raw"""- Information about the generic character table of $G_2(q)$,
+information = raw"""- Information about the generic character table of $\mathrm{G}_2(q)$,
    $q$ even, congruent to $2$ modulo $3$
 
-- CHEVIE-name of the table: ``G2.02``
+- CHEVIE-name of the table: `G2.02`
 
-- The table was first computed in:
-  {\sc H.~Enomoto and H.~Yamada}, The characters of $G_2(2^n)$,
-  {\em Japan.\ J.~Math.}, {\bf 12} (1986), 325--377.
+- The table was first computed in [EY86](@cite).
 
-- See also:
-  {\sc B.~Chang and R.~Ree}, The characters of $G_2(q)$, {\em in}:
-  Symposia Mathematica Vol.~13, pp.~395--413, Academic Press, London, 1974.
-
-  {\sc G.~Hiss}, Zerlegungszahlen endlicher Gruppen vom Lie-Typ in
-  nicht-definierender Charakteristik, Habilitationsschrift, Aachen 1990.
+- See also: [CR74](@cite), [Hi90](@cite).
 
 - Note:
   Enomoto's and Yamada's notation for the irreducible characters is

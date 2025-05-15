@@ -428,24 +428,16 @@ charparams = [
 classparamindex = var_index.([a, b])
 charparamindex = var_index.([m, n])
 
-information = raw"""- Information about the generic character table of $SL_3(q)$,
+information = raw"""- Information about the generic character table of $\mathrm{SL}_3(q)$,
   $q$ congruent to $1$ modulo $3$.
-  (See ``SL3.n1`` for the generic character table of $SL_3(q)$,
+  (See `SL3.n1` for the generic character table of $\mathrm{SL}_3(q)$,
   $q$ not congruent to $1$ modulo $3$.)
 
-- CHEVIE-name of the table: ``SL3.1``
+- CHEVIE-name of the table: `SL3.1`
 
-- The table was first computed in:
-  {\sc W.~A.~Simpson and J.~S.~Frame}, The character tables for
-  $SL(3,q)$, $SU(3,q^2)$, $PSL(3,q)$, $PSU(3,q^2)$,
-  {\em Can.\ J.~Math.} {\bf 25} (1973), 486--494.
+- The table was first computed in [SF73](@cite).
 
-- See also:
-  {\sc R.~Steinberg}, The representations of $GL(3,q)$, $GL(4,q)$, $PGL(3,q)$
-  and $PGL(4,q)$, {\em Can.\ J.~Math.} {\bf 3} (1951), 225--235.
-
-  {\sc J.~A.~Green}, The characters of the finite general linear groups,
-  {\em Trans.\ Amer.\ Math.\ Soc.} {\bf 80} (1955), 402--447.
+- See also: [Ste51](@cite), [Gre55](@cite).
 """
 
 CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,

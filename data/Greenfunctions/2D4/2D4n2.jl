@@ -123,9 +123,9 @@ charinfo = Vector{Any}[ # TODO
 
 chardegree = R.([0, 0, 0, 0, 0, 0, 0, 0, 0])
 
-information = raw"""- Information about the Green functions of $O_8^-(q)$ with odd $q$.
+information = raw"""- Information about the Green functions of $\mathrm{O}_8^-(q)$ with odd $q$.
 
-- CHEVIE-name of the table: ``2D4n2green``
+- CHEVIE-name of the table: `2D4n2green`
 
 - This table of generalized Green functions is computed by F.Luebeck 
   using Lusztig's algorithm.`,`

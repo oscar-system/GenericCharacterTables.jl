@@ -363,35 +363,21 @@ charparams = [
 classparamindex = var_index.([a, b])
 charparamindex = var_index.([m, n])
 
-information = raw"""- Information about the generic character table of $PSU_3(q)$,
+information = raw"""- Information about the generic character table of $\mathrm{PSU}_3(q)$,
   $q$ congruent to $2$ modulo $3$
-  (See ``SU3.n2`` for the generic character table of $SL_3(q)$,
+  (See `SU3.n2` for the generic character table of $\mathrm{SL}_3(q)$,
   $q$ not congruent to $2$ modulo $3$.)
 
-- CHEVIE-name of the table: ``PSU3.2``
+- CHEVIE-name of the table: `PSU3.2`
 
-- The table was first computed in:
-  {\sc W.~A.~Simpson and J.~S.~Frame}, The character tables for
-  $SL(3,q)$, $SU(3,q^2)$, $PSL(3,q)$, $PSU(3,q^2)$,
-  {\em Can.\ J.~Math.} {\bf 25} (1973), 486--494.
+- The table was first computed in [SF73](@cite).
 
 - The table was constructed by Jochen Gruber from the generic character
-  table of $SL_3(q)$, $q$ congruent to $1$ modulo $3$.
+  table of $\mathrm{SL}_3(q)$, $q$ congruent to $1$ modulo $3$.
 
-- Corrections in:
-  {\sc M.~Geck}, Irreducible Brauer characters of the $3$-dimensional
-  special unitary groups in non-defining characteristic,
-  {\em Comm.\ Algebra}, {\bf 18} (1990), 563--584.
+- Corrections in [Gec90](@cite).
 
-- See also:
-  {\sc V.~Ennola}, On the characters of the finite unitary groups,
-  {\em Ann.\ Acad.\ Sci.\ Fenn.\ Ser.~A~I} {\bf 323} (1963), 1--36.
-
-  {\sc V.~Ennola}, On the conjugacy classes of the finite unitary groups,
-  {\em Ann.\ Acad.\ Sci.\ Fenn.\ Ser.~A~I} {\bf 313} (1962), 1--14.
-
-  {\sc R.~Steinberg}, The representations of $GL(3,q)$, $GL(4,q)$, $PGL(3,q)$
-  and $PGL(4,q)$, {\em Can.\ J.~Math.} {\bf 3} (1951), 225--235.
+- See also: [Enn63](@cite), [Enn62](@cite), [Ste51](@cite).
 """
 
 CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,

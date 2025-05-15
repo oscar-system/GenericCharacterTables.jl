@@ -880,10 +880,10 @@ chardegree =
     q * (q^4 + 1),
     1])
 
-information = raw"""- Information about the generic table of unipotent characters of $CO_8^-(q)$,
+information = raw"""- Information about the generic table of unipotent characters of $\mathrm{CO}_8^-(q)$,
   with even q.
 
-- CHEVIE-name of the table: ``uni2D4.0``
+- CHEVIE-name of the table: `uni2D4.0`
 
 - This table was computed by F.Luebeck, most of it with general programs.
 """

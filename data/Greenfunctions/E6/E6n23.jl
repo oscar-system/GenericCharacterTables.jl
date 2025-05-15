@@ -1022,14 +1022,11 @@ chardegree =
     -(q^2 + 1) * (q^4 + q^3 + q^2 + q + 1) * (q^2 - q + 1) * (q^4 + 1) * (q^4 - q^2 + 1) *
     (q^6 + q^3 + 1) * (q + 1)^3 * (q^2 + q + 1)^3 * (q - 1)^5])
 
-information = raw"""- Information about the Green functions of $E_6(q)$, $p>3$.
+information = raw"""- Information about the Green functions of $\mathrm{E}_6(q)$, $p>3$.
 
-- CHEVIE-name of the table: ``E6n23green``
+- CHEVIE-name of the table: `E6n23green`
 
-- The table was first computed in:
-  {\sc W. M. Beynon, N. Spaltenstein}, Green functions of finite
-    Chevalley groups of type $E_n$ ($n=6,7,8$),
-    {\em J. Algebra \bf88} (1984), 584--614.
+- The table was first computed in [BS84](@cite).
 """
 
 SimpleCharTable(

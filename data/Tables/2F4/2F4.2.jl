@@ -3830,14 +3830,12 @@ charparams = [
 classparamindex = var_index.([a, b])
 charparamindex = var_index.([k, l])
 
-information = raw"""- Information about the generic character table of $^2F_4(q^2)$,
+information = raw"""- Information about the generic character table of $^2\mathrm{F}_4(q^2)$,
   where $\frac{q}{\sqrt{2}} = q_0$ is congruent to $2$ modulo $3$.
 
-- CHEVIE-name of the table: ``Ree``
+- CHEVIE-name of the table: `Ree`
 
-- The unipotent characters were first computed in:
-  {\sc G. Malle}, Die unipotenten Charaktere von $^2F_4(q^2)$,
-    {\em Comm. Algebra \bf18} (1990), 2361--2381.
+- The unipotent characters were first computed in [Mal90](@cite).
 
 - The other irreducible characters were added by G. Malle
 """

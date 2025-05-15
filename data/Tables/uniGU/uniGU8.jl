@@ -13469,9 +13469,9 @@ chardegree =
     q * (q^6 - q^5 + q^4 - q^3 + q^2 - q + 1),
     1])
 
-information = raw"""- Information about the tables of unipotent characters for GU_8(q).
+information = raw"""- Information about the tables of unipotent characters for $\mathrm{GU}_8(q)$.
 
-- CHEVIE-name of the table: uniGU8
+- CHEVIE-name of the table: `uniGU8`
 
 - This table is computed with general programs written by F.Luebeck.
   They compute the Deligne-Lusztig characters R_T^G(1) and find the

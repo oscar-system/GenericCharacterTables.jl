@@ -255,14 +255,12 @@ chardegree =
     q^4,
   ])
 
-information = raw"""- Information about the generic character table of $CSp_4(q)$ with odd $q$
+information = raw"""- Information about the generic character table of $\mathrm{CSp}_4(q)$ with odd $q$
   (unipotent characters).
 
-- CHEVIE-name of the table: ``uniCSp4.1``
+- CHEVIE-name of the table: `uniCSp4.1`
 
-- The generic character table for $CSp_4(q)$ was computed in:
-  {\sc K.~Shinoda}, The Characters of the Finite Conformal Symplectic,
-  Group CSp(4,q) {\em Comm.~Alg.} {\bf 10(13)} (1982), 1369--1419.
+- The table was first computed in [Shi82](@cite).
 
 - The name of the i-th class type in the cited paper can be found by:
   > ``uniCSp4.1``[-1,i][4];
@@ -273,7 +271,7 @@ information = raw"""- Information about the generic character table of $CSp_4(q)
   a few errors.
 
 - We are developing programs for computing (parts of) generic character tables
-  and we will use the group $CSp_4(q)$ as \"test example\". This is the reason
+  and we will use the group $\mathrm{CSp}_4(q)$ as "test example". This is the reason
   that we did not try to find the errors in the above mentioned table for 
   this  release.
 """

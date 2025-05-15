@@ -777,13 +777,11 @@ charparams = [
 classparamindex = var_index.([i, j])
 charparamindex = var_index.([k, l])
 
-information = raw"""- Information about the generic character table of $Sp_4(q)$, $q$ even
+information = raw"""- Information about the generic character table of $\mathrm{Sp}_4(q)$, $q$ even
 
-- CHEVIE-name of the table: ``Sp4.0``
+- CHEVIE-name of the table: `Sp4.0`
 
-- The table was first computed in:
-  {\sc H.Enomoto}, The characters of the finite symplectic group
-  $Sp(4,q)$, $q=2^f$, {\em Osaka J. Math.} {\bf 9} (1972), 75--94.
+- The table was first computed in [Eno72](@cite)
 
 - The table in the cited paper contains a lot of misprints.
   The table in the CHEVIE-library was recomputed by F.Luebeck

@@ -31,13 +31,11 @@ charinfo = Vector{Any}[["T_1"], ["T_2"], ["T_3"]]
 chardegree =
   R.([q^4 + 1, -(q^2 - 1) * (q^2 - sqrt2 * q + 1), -(q^2 - 1) * (q^2 + sqrt2 * q + 1)])
 
-information = raw"""- Information about the Green functions of $^2B_2(q^2)$.
+information = raw"""- Information about the Green functions of $^2\mathrm{B}_2(q^2)$.
 
-- CHEVIE-name of the table: ``2B2green``
+- CHEVIE-name of the table: `2B2green`
 
-- The table was first computed in:
-  {\sc M. Suzuki}, On a class of doubly transitive groups, {\em Ann. of
-    Math. \bf75} (1962), 105--145.
+- The table was first computed in [Suz62](@cite).
 """
 
 SimpleCharTable(

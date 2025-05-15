@@ -205,14 +205,12 @@ charparams = [
 classparamindex = var_index.([a, b, c])
 charparamindex = var_index.([s, k, u])
 
-information = raw"""- Information about the generic character table of $^2B_2(q^2)$,
-  where ``q = \sqrt{2}q_0``.
+information = raw"""- Information about the generic character table of $^2\mathrm{B}_2(q^2)$,
+  where $q = \sqrt{2}q_0$.
 
-- CHEVIE-name of the table: ``Sz``
+- CHEVIE-name of the table: `Sz`
 
-- The table was first computed in:
-  {\sc M. Suzuki}, On a class of doubly transitive groups, {\em Ann. of
-    Math. \bf75} (1962), 105--145.
+- The table was first computed in [Suz62](@cite).
 """
 
 CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
