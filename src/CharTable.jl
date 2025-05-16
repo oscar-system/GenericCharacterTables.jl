@@ -160,8 +160,22 @@ end
     info(t::Table)
 
 Return the metadata of `t` in LaTeX format. This usually includes the time the table was first computed.
+
+# Examples
+```jldoctest
+julia> g=generic_character_table("GL2");
+
+julia> info(g)
+    •  Information about the generic character table of \mathrm{GL}_2(q).
+
+    •  CHEVIE-name of the table: GL2
+
+    •  The table was first computed in Jor07 (@cite), Sch07 (@cite).
+
+    •  See also: Ste51 (@cite).
+```
 """
-info(t::Table) = t.information
+info(t::Table) = Markdown.parse(t.information)
 
 @doc raw"""
     order(t::Table)
