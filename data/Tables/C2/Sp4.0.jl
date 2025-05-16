@@ -785,16 +785,20 @@ information = raw"""- Information about the generic character table of $\mathrm{
 
 - The table in the cited paper contains a lot of misprints.
   The table in the CHEVIE-library was recomputed by F.Luebeck
-  (using Deligne--Lusztig theory).
+  (using Deligne-Lusztig theory).
 
 - The names for the class (respectively character) types used in the
-  paper of Enomoto can be found as 4th component of the lists
-  in the (-1)st row (resp. column) of the table. Example:
-> ``Sp4.0``[-1,3][4];
+  paper of Enomoto can be found as 3rd component of the list returned
+  by the `info` functions when applied to the class type. Example:
+  ```jldoctest
+  julia> t = generic_character_table("Sp4.0");
+  
+  julia> cls = t[:,3];  # get the third column
 
-                                      A31
-
-  shows, that the class type of the third column of the table
+  julia> info(cls)[3]
+  "A31"
+  ```
+  This shows that the class type of the third column of the table
   is called A31 by Enomoto.
 """
 
