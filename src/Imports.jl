@@ -25,6 +25,8 @@ import Base:
 import Compat:
   pkgversion
 
+import Markdown
+
 import Oscar.Random:
   GLOBAL_RNG,
   Random,

@@ -30,7 +30,7 @@ open(joinpath(@__DIR__, "src", "tables_list.md"), "w") do out
                    ### Table `$name`
                    """)
       g = generic_character_table(name)
-      println(out, info(g))
+      println(out, g.information)
       println(out)
     end
   end
