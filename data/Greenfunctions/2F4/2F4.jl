@@ -316,7 +316,7 @@ chardegree =
     (q^2 + 1)^2 * (q^2 - 1)^2 * (q^4 + 1)^2 * (q^4 - q^2 + 1) *
     (q^4 - sqrt2 * q^3 + q^2 - sqrt2 * q + 1)])
 
-information = raw"""- Information about the Green functions of $^2\mathrm{F}_4(q^2)$.
+information = raw"""The Green functions of $^2\mathrm{F}_4(q^2)$.
 
 - CHEVIE-name of the table: `2F4green`
 

@@ -126,7 +126,7 @@ charparams = [
 classparamindex = var_index.([i])
 charparamindex = var_index.([k])
 
-information = raw"""- Information about the generic character table of $\mathrm{PSL}_2(q^2)$,
+information = raw"""The generic character table of $\mathrm{PSL}_2(q^2)$,
   $q^2$ congruent to $3$ modulo $4$. The possible values for q are given by
   $q^2 = p^m$ with m a non negative integer and $p$ a prime number.
 

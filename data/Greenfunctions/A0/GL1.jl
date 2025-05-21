@@ -11,7 +11,7 @@ classtypeorder = R.([1])
 charinfo = Vector{Any}[[[1]]]
 chardegree = R.([1])
 
-information = raw"""- Information about the tables of Green functions for $\mathrm{GL}_1(q)$.
+information = raw"""The Green functions of $\mathrm{GL}_1(q)$.
 
 - CHEVIE-name of the table: `GL1green`
 

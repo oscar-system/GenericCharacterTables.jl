@@ -455,7 +455,7 @@ chardegree =
     q * (q - 1) * (q^2 + 1),
     1])
 
-information = raw"""- Information about the tables of unipotent characters for $\mathrm{GU}_5(q)$.
+information = raw"""The unipotent characters for $\mathrm{GU}_5(q)$.
 
 - CHEVIE-name of the table: `uniGU5`
 

@@ -205,7 +205,7 @@ charparams = [
 classparamindex = var_index.([a, b, c])
 charparamindex = var_index.([s, k, u])
 
-information = raw"""- Information about the generic character table of $^2\mathrm{B}_2(q^2)$,
+information = raw"""The generic character table of $^2\mathrm{B}_2(q^2)$,
   where $q = \sqrt{2}q_0$.
 
 - CHEVIE-name of the table: `Sz`

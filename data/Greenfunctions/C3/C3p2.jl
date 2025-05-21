@@ -178,7 +178,7 @@ chardegree =
     -(q - 1)^3 * (q + 1)^2 * (q^2 + q + 1) * (q^2 - q + 1),
     -(q - 1)^3 * (q + 1)^2 * (q^2 + q + 1) * (q^2 + 1)])
 
-information = raw"""- Information about the Green functions of $\mathrm{Sp}_6(2^n)$.
+information = raw"""The Green functions of $\mathrm{Sp}_6(2^n)$.
 
 - CHEVIE-name of the table: `C3p2green`
 

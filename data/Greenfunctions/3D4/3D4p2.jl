@@ -88,7 +88,7 @@ chardegree =
     (q + 1)^2 * (q - 1)^2 * (q^2 - q + 1)^2 * (q^2 + q + 1)^2,
     (q^2 - q + 1) * (q^4 - q^2 + 1) * (q - 1)^2 * (q^2 + q + 1)^2])
 
-information = raw"""- Information about the Green functions of $^3\mathrm{D}_4(2^n)$.
+information = raw"""The Green functions of $^3\mathrm{D}_4(2^n)$.
 
 - CHEVIE-name of the table: `3D4p2green`
 

@@ -7742,7 +7742,7 @@ chardegree =
     (q^10 + q^9 + q^8 + q^7 + q^6 + q^5 + q^4 + q^3 + q^2 + q + 1) * (q^6 + q^3 + 1) *
     (q^4 + 1) * (q^2 + 1)^2 * (q^4 + q^3 + q^2 + q + 1)^2 * (q^2 + q + 1)^3 * (q + 1)^5])
 
-information = raw"""- Information about the tables of Green functions for $\mathrm{GL}_11(q)$.
+information = raw"""The Green functions of $\mathrm{GL}_11(q)$.
 
 - CHEVIE-name of the table: `GL11green`
 

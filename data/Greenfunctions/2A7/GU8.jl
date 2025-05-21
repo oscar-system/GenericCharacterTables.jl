@@ -777,7 +777,7 @@ chardegree =
     -(q^2 + q + 1) * (q^4 - q^3 + q^2 - q + 1) * (q^6 - q^5 + q^4 - q^3 + q^2 - q + 1) *
     (q^2 + 1) * (q^2 - q + 1)^2 * (q - 1)^3 * (q + 1)^7])
 
-information = raw"""- Information about the tables of Green functions for $\mathrm{GU}_8(q^2)$.
+information = raw"""The Green functions of $\mathrm{GU}_8(q^2)$.
 
 - CHEVIE-name of the table: `GU8green`
 

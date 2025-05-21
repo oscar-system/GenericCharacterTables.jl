@@ -3000,7 +3000,7 @@ chardegree =
     q^7 * (q^2 + 1)^2,
     q^12])
 
-information = raw"""- Information about the unipotent character table of $\mathrm{CSpin}_8(q)$, $q$ odd
+information = raw"""The unipotent characters of $\mathrm{CSpin}_8(q)$, $q$ odd
 
 - CHEVIE-name of the table: `uniCSpin8.1`
 

@@ -1028,7 +1028,7 @@ chardegree =
     1//2 * q^4 * (q^2 + q + 1) * (q - 1)^2,
     q^9])
 
-information = raw"""- Information about the table of unipotent characters of $\mathrm{Sp}_6(q)$, $q$ even
+information = raw"""The unipotent characters of $\mathrm{Sp}_6(q)$, $q$ even
 
 - CHEVIE-name of the table: `uniSp6.0`
 

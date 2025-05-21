@@ -4157,7 +4157,7 @@ chardegree =
     q * (q + 1) * (q^2 + q + 1) * (q^2 - q + 1),
     1])
 
-information = raw"""- Information about the tables of unipotent characters for $\mathrm{GL}_7(q)$.
+information = raw"""The unipotent characters for $\mathrm{GL}_7(q)$.
 
 - CHEVIE-name of the table: `uniGL7`
 

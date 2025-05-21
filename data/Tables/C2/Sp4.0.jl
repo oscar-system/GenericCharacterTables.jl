@@ -777,7 +777,7 @@ charparams = [
 classparamindex = var_index.([i, j])
 charparamindex = var_index.([k, l])
 
-information = raw"""- Information about the generic character table of $\mathrm{Sp}_4(q)$, $q$ even
+information = raw"""The generic character table of $\mathrm{Sp}_4(q)$, $q$ even
 
 - CHEVIE-name of the table: `Sp4.0`
 

@@ -1388,7 +1388,7 @@ chardegree =
     1//2 * (q - 1)^2 * q^4 * (q^2 + q + 1),
     q^9])
 
-information = raw"""- Information about the table of unipotent characters of $\mathrm{CSp}_6(q)$, $q$ odd
+information = raw"""The unipotent characters of $\mathrm{CSp}_6(q)$, $q$ odd
 
 - CHEVIE-name of the table: `uniCSp6.1`
 

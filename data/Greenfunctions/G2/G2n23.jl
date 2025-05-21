@@ -70,7 +70,7 @@ chardegree =
     (q - 1)^2 * (q + 1)^2 * (q^2 - q + 1),
     (q - 1)^2 * (q^2 + q + 1) * (q^2 - q + 1)])
 
-information = raw"""- Information about the Green functions of $\mathrm{G}_2(q)$, $p>3$.
+information = raw"""The Green functions of $\mathrm{G}_2(q)$, $p>3$.
 
 - CHEVIE-name of the table: `G2n23green`
 

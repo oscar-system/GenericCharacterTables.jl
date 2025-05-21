@@ -68,7 +68,7 @@ chardegree =
     (q - 1)^2 * (q + 1)^2 * (q^2 + q + 1),
     (q - 1)^2 * (q^2 + q + 1) * (q^2 - q + 1)])
 
-information = raw"""- Information about the Green functions of $\mathrm{O}_8^+(3^n):3$.
+information = raw"""The Green functions of $\mathrm{O}_8^+(3^n):3$.
 
 - CHEVIE-name of the table: `D4e3green`
 

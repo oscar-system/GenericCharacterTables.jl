@@ -1689,7 +1689,7 @@ charparams = [
 classparamindex = var_index.([i, j])
 charparamindex = var_index.([k, l])
 
-information = raw"""- Information about the generic character table of $G_2(q)$,
+information = raw"""The generic character table of $G_2(q)$,
   $q$ odd, congruent to $1$ modulo $3$ and $4$.
 
 - CHEVIE-name of the table: ``G2.11``

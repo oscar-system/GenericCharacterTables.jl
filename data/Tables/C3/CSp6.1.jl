@@ -11390,7 +11390,7 @@ charparams = [
 classparamindex = var_index.([i1, i2, i3, i4])
 charparamindex = var_index.([k1, k2, k3, k4])
 
-information = raw"""- Information about the generic character table of $\mathrm{CSp}_6(q)$, $q$ odd
+information = raw"""The generic character table of $\mathrm{CSp}_6(q)$, $q$ odd
 
 - CHEVIE-name of the table: `CSp6.1`
 

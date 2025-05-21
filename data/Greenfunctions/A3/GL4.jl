@@ -48,7 +48,7 @@ chardegree =
     (q^2 + 1) * (q - 1)^2 * (q + 1)^2,
     -(q + 1) * (q^2 + q + 1) * (q - 1)^3])
 
-information = raw"""- Information about the tables of Green functions for $\mathrm{GL}_4(q)$.
+information = raw"""The Green functions of $\mathrm{GL}_4(q)$.
 
 - CHEVIE-name of the table: `GL4green`
 

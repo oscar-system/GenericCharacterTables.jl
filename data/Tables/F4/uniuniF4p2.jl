@@ -1653,7 +1653,7 @@ charparams = [
 classparamindex = Int64[]
 charparamindex = Int64[]
 
-information = raw"""- Information about the table of unipotent characters of $\mathrm{F}_4(2^n)$
+information = raw"""The unipotent characters of $\mathrm{F}_4(2^n)$
   on unipotent classes.
 
 - CHEVIE-name of the table: `uniuniF4p2`

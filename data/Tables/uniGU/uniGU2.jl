@@ -23,7 +23,7 @@ classtypeorder = R.([q + 1, q + 1, 1//2 * q^2 - 1//2 * q - 1, 1//2 * q^2 + 1//2 
 charinfo = Vector{Any}[[[1, 1]], [[2]]]
 chardegree = R.([q, 1])
 
-information = raw"""- Information about the tables of unipotent characters for $\mathrm{GU}_2(q)$.
+information = raw"""The unipotent characters for $\mathrm{GU}_2(q)$.
 
 - CHEVIE-name of the table: `uniGU2`
 

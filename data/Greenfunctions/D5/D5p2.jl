@@ -507,7 +507,7 @@ chardegree =
     -(q - 1)^5 * (q + 1)^3 * (q^2 + q + 1) * (q^2 + 1) * (q^4 + q^3 + q^2 + q + 1) *
     (q^4 + 1)])
 
-information = raw"""- Information about the Green functions of $\mathrm{O}_{10}^+(2^n)$.
+information = raw"""The Green functions of $\mathrm{O}_{10}^+(2^n)$.
 
 - CHEVIE-name of the table: `D5p2green`
 
