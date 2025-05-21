@@ -11394,18 +11394,8 @@ information = raw"""The generic character table of $\mathrm{CSp}_6(q)$, $q$ odd
 
 - The computation of this table is explained in [Lbe93](@cite).
 
-- This table is very big. The best way to work with it
-  is to produce one time a file in ``Maple-internal-format``
-  (in a new cheviem-session say:
-> GenCharTab(``CSp6.1``);save ``CSp6_1.m``;quit;
-  and ask your system-administrator to copy  the file
-  CSp6_1.m into the CHEVIE-directory tables/C3/CSp6_1.m).
-  Now you can read in this table with the CHEVIE-command
-> GenCharTab(``CSp6_1.m``);
-  This is much faster and uses much less memory.
-
 - The first twelve character types contain the unipotent characters.
-  Specialize  the parameter kK1 to a multiple of q-1 e.g., kK1=0.
+  Specialize  the parameter `k1` to a multiple of $q-1$ e.g., `k1=0`.
   If you are *only* interested in the unipotent characters, you can
   use the table `uniCSp6.1`, which allows faster calculations.
 """

@@ -1037,12 +1037,12 @@ information = raw"""The unipotent characters of $\mathrm{Sp}_6(q)$, $q$ even
 
 - This table is extracted from the table `Sp6.0`, which
   contains the unipotent characters in the first 12 character
-  (type)s.
+  types.
 
 - If you want to calculate *only* with the unipotent characters
   then use this table `uniSp6.0` (the calculations will run
   much faster). If you also want to use the other characters
-  of `Sp6.0`, then dont use `uniSp6.0`.
+  of `Sp6.0`, then don't use `uniSp6.0`.
 """
 
 SimpleCharTable(

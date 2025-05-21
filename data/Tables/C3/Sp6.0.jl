@@ -11358,17 +11358,7 @@ information = raw"""The generic character table of $\mathrm{Sp}_6(q)$, $q$ even
 - The irreducible characters of $\mathrm{Sp}_6(q)$ with even $q$ were already
   (independently) determined in [Loo77](@cite).
 
-- This table is very big. The best way to work with it
-  is to produce one time a file in ``Maple-internal-format``
-  (in a new cheviem-session say:
-> GenCharTab(``Sp6.0``);save ``Sp6_0.m``;quit;
-  and ask your system-administrator to copy  the file
-  Sp6_0.m into the CHEVIE-directory tables/C3/Sp6_0.m).
-  Now you can read in this table with the CHEVIE-command
-> GenCharTab(``Sp6_0.m``);
-  This is much faster and uses much less memory.
-
-- The first twelve character(type)s are the unipotent characters.
+- The first twelve character types are the unipotent characters.
   If you are *only* interested in the unipotent characters, you can
   use the table `uniSp6.0`, which allows faster calculations.
 """
