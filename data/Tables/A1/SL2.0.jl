@@ -87,7 +87,7 @@ charparamindex = var_index.([n])
 information = raw"""The generic character table of $\mathrm{SL}_2(q)$, $q$ even
   (See `SL2.1` for the generic character table of $\mathrm{SL}_2(q)$, $q$ odd)
 
-- CHEVIE-name of the table: `SL2.0`
+
 
 - The table was first computed in [Sch07](@cite).
 """

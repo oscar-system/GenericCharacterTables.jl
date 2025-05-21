@@ -1130,7 +1130,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{F}_4(2^n)$.
 
-- CHEVIE-name of the table: `F4p2green`
+
 
 - The table was first computed in [Mal93](@cite).
 

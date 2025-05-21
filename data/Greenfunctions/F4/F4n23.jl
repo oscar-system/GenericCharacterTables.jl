@@ -840,7 +840,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{F}_4(q)$, $p>3$.
 
-- CHEVIE-name of the table: `F4n23green`
+
 
 - The table was first computed in [Sho82](@cite).
 """

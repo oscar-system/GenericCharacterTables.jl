@@ -199,7 +199,7 @@ chardegree = R.([q^6, (q^2 - q + 1) * q^3, q^2 * (q^2 + 1), q * (q^2 - q + 1), 1
 
 information = raw"""The unipotent characters for $\mathrm{GU}_4(q)$.
 
-- CHEVIE-name of the table: `uniGU4`
+
 
 - This table is computed with general programs written by F. Lübeck.
   They compute the Deligne-Lusztig characters $R_T^G(1)$ and find the

@@ -784,7 +784,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{GL}_8(q)$.
 
-- CHEVIE-name of the table: `GL8green`
+
 
 - These Green functions were introduced in: [Gre55](@cite).
 

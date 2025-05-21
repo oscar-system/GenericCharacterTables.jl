@@ -52,7 +52,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{GL}_4(2^n):2$.
 
-- CHEVIE-name of the table: `GL4e2green`
+
 
 - The table was first computed in [Mal93*1](@cite).
 """

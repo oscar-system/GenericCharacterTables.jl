@@ -779,7 +779,7 @@ charparamindex = var_index.([k, l])
 
 information = raw"""The generic character table of $\mathrm{Sp}_4(q)$, $q$ even
 
-- CHEVIE-name of the table: `Sp4.0`
+
 
 - The table was first computed in [Eno72](@cite)
 

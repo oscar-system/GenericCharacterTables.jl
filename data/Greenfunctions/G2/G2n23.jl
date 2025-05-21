@@ -72,7 +72,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{G}_2(q)$, $p>3$.
 
-- CHEVIE-name of the table: `G2n23green`
+
 
 - The table was first computed in [CR74](@cite).
 

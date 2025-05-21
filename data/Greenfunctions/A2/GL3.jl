@@ -23,7 +23,7 @@ chardegree = R.([(q + 1) * (q^2 + q + 1), -(q - 1) * (q^2 + q + 1), (q - 1)^2 * 
 
 information = raw"""The Green functions of $\mathrm{GL}_3(q)$.
 
-- CHEVIE-name of the table: `GL3green`
+
 
 - These Green functions were introduced in: [Gre55](@cite).
 

@@ -1701,7 +1701,7 @@ chardegree =
 
 information = raw"""The unipotent characters for $\mathrm{GU}_6(q)$.
 
-- CHEVIE-name of the table: `uniGU6`
+
 
 - This table is computed with general programs written by F. Lübeck.
   They compute the Deligne-Lusztig characters $R_T^G(1)$ and find the

@@ -59,7 +59,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{Sp}_4(q)$, q even.
 
-- CHEVIE-name of the table: `C2p2green`
+
 
 - The table was first computed in [Eno72](@cite).
 

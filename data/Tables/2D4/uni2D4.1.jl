@@ -1027,7 +1027,7 @@ chardegree =
 information = raw"""The unipotent characters of $\mathrm{CO}_8^-(q)$,
   with odd q.
 
-- CHEVIE-name of the table: `uni2D4.1`
+
 
 - This table was computed by F. Lübeck, most of it with general programs.
 """

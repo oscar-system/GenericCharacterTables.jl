@@ -300,7 +300,7 @@ information = raw"""The generic character table of $\mathrm{PGU}_3(q)$,
   (See `SU3.n2` for the generic character table of $\mathrm{PGU}_3(q)$,
   $q$ not congruent to $2$ modulo $3$.)
 
-- CHEVIE-name of the table: `PGU3.2`
+
 
 - The table was derived by Meinolf Geck from: [Enn63](@cite).
 

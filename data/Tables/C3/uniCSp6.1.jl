@@ -1390,7 +1390,7 @@ chardegree =
 
 information = raw"""The unipotent characters of $\mathrm{CSp}_6(q)$, $q$ odd
 
-- CHEVIE-name of the table: `uniCSp6.1`
+
 
 - The computation of the whole table of this group is explained in [Lbe93](@cite).
 

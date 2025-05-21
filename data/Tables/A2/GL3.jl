@@ -322,7 +322,7 @@ charparamindex = var_index.([l, m, n])
 
 information = raw"""The generic character table of $\mathrm{GL}_3(q)$.
 
-- CHEVIE-name of the table: `GL3`
+
 
 - The table was first computed in [Ste51](@cite).
 

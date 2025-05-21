@@ -81,7 +81,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{G}_2(2^n)$.
 
-- CHEVIE-name of the table: `G2p2green`
+
 
 - The table was first computed in [EY86](@cite).
 

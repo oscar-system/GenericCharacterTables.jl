@@ -156,7 +156,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{SO}_8^+(2^n)$.
 
-- CHEVIE-name of the table: `D4e2green`
+
 
 - The table was first computed in [Mal93*1](@cite).
 """

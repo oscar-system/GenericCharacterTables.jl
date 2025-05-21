@@ -50,7 +50,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{GU}_4(q)$.
 
-- CHEVIE-name of the table: `GU4green`
+
 
 - By a theorem of Hotta, Springer and Kawanaka we can get the Green
   functions of the unitary group $\mathrm{GU}_4(q^2)$ from those of $\mathrm{GL}_4(q)$

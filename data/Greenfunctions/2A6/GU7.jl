@@ -359,7 +359,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{GU}_7(q)$.
 
-- CHEVIE-name of the table: `GU7green`
+
 
 - By a theorem of Hotta, Springer and Kawanaka we can get the Green
   functions of the unitary group $\mathrm{GU}_7(q^2)$ from those of $\mathrm{GL}_7(q)$

@@ -125,7 +125,7 @@ chardegree = R.([0, 0, 0, 0, 0, 0, 0, 0, 0])
 
 information = raw"""The Green functions of $\mathrm{O}_8^-(q)$ with odd $q$.
 
-- CHEVIE-name of the table: `2D4n2green`
+
 
 - This table of generalized Green functions is computed by F. Lübeck
   using Lusztig's algorithm.`,`

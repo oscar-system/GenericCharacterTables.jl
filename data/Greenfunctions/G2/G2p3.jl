@@ -96,7 +96,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{G}_2(3^n)$.
 
-- CHEVIE-name of the table: `G2p3green`
+
 
 - The table was first computed in [Eno76](@cite).
 

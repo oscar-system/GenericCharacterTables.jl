@@ -23,7 +23,7 @@ chardegree = R.([-(q - 1) * (q^2 - q + 1), (q + 1) * (q^2 - q + 1), -(q + 1)^2 *
 
 information = raw"""The Green functions of $\mathrm{GU}_3(q)$.
 
-- CHEVIE-name of the table: `GU3green`
+
 
 - By a theorem of Hotta, Springer and Kawanaka we can get the Green
   functions of the unitary group $\mathrm{GU}_3(q^2)$ from those of $\mathrm{GL}_3(q)$

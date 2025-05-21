@@ -779,7 +779,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{GU}_8(q^2)$.
 
-- CHEVIE-name of the table: `GU8green`
+
 
 - By a theorem of Hotta, Springer and Kawanaka we can get the Green
   functions of the unitary group $\mathrm{GU}_8(q^2)$ from those of $\mathrm{GL}_8(q)$

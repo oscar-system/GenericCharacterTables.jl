@@ -17,7 +17,7 @@ chardegree = R.([q + 1, 1 - q])
 
 information = raw"""The Green functions of $\mathrm{GL}_2(q)$.
 
-- CHEVIE-name of the table: `GL2green`
+
 
 - These Green functions were introduced in: [Gre55](@cite).
 

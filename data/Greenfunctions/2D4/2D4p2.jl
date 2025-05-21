@@ -140,7 +140,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{O}_8^-(2^n)$.
 
-- CHEVIE-name of the table: `2D4p2green`
+
 
 - The table was published in [Mal93](@cite)
 

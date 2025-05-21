@@ -1024,7 +1024,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{E}_6(q)$, $p>3$.
 
-- CHEVIE-name of the table: `E6n23green`
+
 
 - The table was first computed in [BS84](@cite).
 """

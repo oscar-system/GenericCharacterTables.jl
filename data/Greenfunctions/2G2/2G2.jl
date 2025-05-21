@@ -56,7 +56,7 @@ chardegree =
 
 information = raw"""The Green functions of $^2\mathrm{G}_2(q^2)$.
 
-- CHEVIE-name of the table: `2G2green`
+
 
 - The table was first computed in [War66](@cite).
 """

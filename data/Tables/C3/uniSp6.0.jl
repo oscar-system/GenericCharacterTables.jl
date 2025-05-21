@@ -1030,7 +1030,7 @@ chardegree =
 
 information = raw"""The unipotent characters of $\mathrm{Sp}_6(q)$, $q$ even
 
-- CHEVIE-name of the table: `uniSp6.0`
+
 
 - The computation of the whole table of this group is explained in [Lbe93](@cite).
 

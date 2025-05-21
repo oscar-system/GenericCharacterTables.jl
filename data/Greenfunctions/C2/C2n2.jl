@@ -53,7 +53,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{CSp}_4(q)$, $q$ odd.
 
-- CHEVIE-name of the table: `C2n2green`
+
 
 - The generic character table of $\mathrm{CSp}_4(q)$, $q$ odd, and hence its Green 
   functions were computed in [Shi82](@cite).

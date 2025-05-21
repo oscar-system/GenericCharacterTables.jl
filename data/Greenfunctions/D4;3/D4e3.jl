@@ -70,7 +70,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{O}_8^+(3^n):3$.
 
-- CHEVIE-name of the table: `D4e3green`
+
 
 - The table was first computed in [Mal93*1](@cite).
 """

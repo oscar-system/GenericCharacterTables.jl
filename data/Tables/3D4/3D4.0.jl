@@ -1837,7 +1837,7 @@ charparamindex = var_index.([k, l])
 
 information = raw"""The generic character table of $^3\mathrm{D}_4(2^n)$.
 
-- CHEVIE-name of the table: `3D4.0`
+
 
 - The table was first computed in [DM87](@cite).
 """

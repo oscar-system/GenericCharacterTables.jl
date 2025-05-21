@@ -82,7 +82,7 @@ chardegree =
 
 information = raw"""The Green functions of $^3\mathrm{D}_4(q)$, $p>2$.
 
-- CHEVIE-name of the table: `3D4n2green`
+
 
 - The table was first computed in [Spa82*1](@cite).
 """

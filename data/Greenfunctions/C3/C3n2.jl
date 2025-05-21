@@ -155,7 +155,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{CSp}_6(q)$, $q$ odd.
 
-- CHEVIE-name of the table: `C3n2green`
+
 
 - These Green functions are computed in [LS90](@cite).
 """

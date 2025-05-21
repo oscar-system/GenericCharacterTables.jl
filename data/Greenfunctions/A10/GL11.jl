@@ -7744,7 +7744,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{GL}_11(q)$.
 
-- CHEVIE-name of the table: `GL11green`
+
 
 - These Green functions were introduced in: [Gre55](@cite).
 

@@ -1098,7 +1098,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{E}_6(3^n)$.
 
-- CHEVIE-name of the table: `E6p3green`
+
 
 """
 

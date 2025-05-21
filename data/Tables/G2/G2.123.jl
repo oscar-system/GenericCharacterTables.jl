@@ -1692,7 +1692,7 @@ charparamindex = var_index.([k, l])
 information = raw"""The generic character table of $\mathrm{G}_2(q)$,
   $q$ odd, congruent to $2$ modulo $3$ and $3$ modulo $4$.
 
-- CHEVIE-name of the table: `G2.12`
+
 
 - The table was first computed in [CR74](@cite).
 

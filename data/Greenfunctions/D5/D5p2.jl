@@ -509,7 +509,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{O}_{10}^+(2^n)$.
 
-- CHEVIE-name of the table: `D5p2green`
+
 
 - The table was published in [Mal93](@cite).
 

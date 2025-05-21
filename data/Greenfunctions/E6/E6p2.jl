@@ -1127,7 +1127,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{E}_6(2^n)$.
 
-- CHEVIE-name of the table: `E6p2green`
+
 
 - The table was first computed in [Mal93](@cite).
 """

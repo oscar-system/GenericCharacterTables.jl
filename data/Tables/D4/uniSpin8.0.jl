@@ -2475,7 +2475,7 @@ chardegree =
 
 information = raw"""The unipotent characters of $\mathrm{Spin}_8(q)$, $q$ even
 
-- CHEVIE-name of the table: `uniSpin8.0`
+
 
 - The table was first computed by Meinolf Geck (unpublished).
 

@@ -358,7 +358,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{GL}_7(q)$.
 
-- CHEVIE-name of the table: `GL7green`
+
 
 - These Green functions were introduced in: [Gre55](@cite).
 

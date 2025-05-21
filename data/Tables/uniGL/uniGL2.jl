@@ -25,7 +25,7 @@ chardegree = R.([q, 1])
 
 information = raw"""The unipotent characters for $\mathrm{GL}_2(q)$.
 
-- CHEVIE-name of the table: `uniGL2`
+
 
 - This table is computed with general programs written by F. Lübeck.
   They compute the Deligne-Lusztig characters $R_T^G(1)$ and find the

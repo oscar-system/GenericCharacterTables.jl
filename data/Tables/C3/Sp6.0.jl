@@ -11353,7 +11353,7 @@ charparamindex = var_index.([k1, k2, k3])
 
 information = raw"""The generic character table of $\mathrm{Sp}_6(q)$, $q$ even
 
-- CHEVIE-name of the table: `Sp6.0`
+
 
 - The computation of this table is explained in [Lbe93](@cite).
 

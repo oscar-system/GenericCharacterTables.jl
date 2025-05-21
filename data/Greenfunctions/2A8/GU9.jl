@@ -1605,7 +1605,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{GU}_9(q)$.
 
-- CHEVIE-name of the table: `GU9green`
+
 
 - By a theorem of Hotta, Springer and Kawanaka we can get the Green
   functions of the unitary group $\mathrm{GU}_9(q^2)$ from those of $\mathrm{GL}_9(q)$

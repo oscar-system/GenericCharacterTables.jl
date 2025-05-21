@@ -180,7 +180,7 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{Sp}_6(2^n)$.
 
-- CHEVIE-name of the table: `C3p2green`
+
 
 - The table was published in [Mal93](@cite).
 

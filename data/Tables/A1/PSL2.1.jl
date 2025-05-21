@@ -130,7 +130,7 @@ information = raw"""The generic character table of $\mathrm{PSL}_2(q^2)$,
   $q^2$ congruent to $1$ modulo $4$. The possible values for q are given by
   $q^2 = p^m$ with m a non negative integer and $p$ a prime number.
 
-- CHEVIE-name of the table: `PSL2.1`
+
 
 - The table was first (implicitly) computed in [Fro96](@cite).
 

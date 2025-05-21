@@ -3833,7 +3833,7 @@ charparamindex = var_index.([k, l])
 information = raw"""The generic character table of $^2\mathrm{F}_4(q^2)$,
   where $\frac{q}{\sqrt{2}} = q_0$ is congruent to $2$ modulo $3$.
 
-- CHEVIE-name of the table: `Ree`
+
 
 - The unipotent characters were first computed in [Mal90](@cite).
 
