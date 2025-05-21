@@ -5,7 +5,8 @@ println("@__DIR__")
 
 path = joinpath(@__DIR__, "..", "data")
 
-for (tabletype, header, filename) in (("Tables", "tables", "tables_list.md"), ("Greenfunctions", "Green functions", "greenfunctions_list.md"))
+for (tabletype, header, filename, loader) in (("Tables", "tables", "tables_list.md", generic_character_table),
+        ("Greenfunctions", "Green functions", "greenfunctions_list.md", green_function_table))
   open(joinpath(@__DIR__, "src", filename), "w") do out
     println("# List of $header")
     println(out, """
@@ -30,7 +31,7 @@ for (tabletype, header, filename) in (("Tables", "tables", "tables_list.md"), ("
         println(out, """
                      ### Table `$name`
                      """)
-        g = generic_character_table(name)
+        g = loader(name)
         println(out, g.information)
         println(out)
       end
