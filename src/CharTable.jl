@@ -166,9 +166,7 @@ Return the metadata of `t` in LaTeX format. This usually includes the time the t
 julia> g=generic_character_table("GL2");
 
 julia> info(g)
-    •  Information about the generic character table of \mathrm{GL}_2(q).
-
-    •  CHEVIE-name of the table: GL2
+    •  The generic character table of \mathrm{GL}_2(q).
 
     •  The table was first computed in Jor07 (@cite), Sch07 (@cite).
 
