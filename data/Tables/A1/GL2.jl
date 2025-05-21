@@ -131,8 +131,6 @@ charparamindex = var_index.([l, k])
 
 information = raw"""The generic character table of $\mathrm{GL}_2(q)$.
 
-
-
 - The table was first computed in [Jor07](@cite), [Sch07](@cite).
 
 - See also: [Ste51](@cite).

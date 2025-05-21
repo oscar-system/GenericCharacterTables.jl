@@ -2188,8 +2188,6 @@ charparamindex = var_index.([k, l])
 information = raw"""The generic character table of $^3\mathrm{D}_4(q)$,
   $p>2$, congruent to $1$ modulo $4$.
 
-
-
 - The table was first computed in [DM87](@cite).
 """
 

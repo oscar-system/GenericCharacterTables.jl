@@ -433,8 +433,6 @@ information = raw"""The generic character table of $\mathrm{SL}_3(q)$,
   (See `SL3.n1` for the generic character table of $\mathrm{SL}_3(q)$,
   $q$ not congruent to $1$ modulo $3$.)
 
-
-
 - The table was first computed in [SF73](@cite).
 
 - See also: [Ste51](@cite), [Gre55](@cite).

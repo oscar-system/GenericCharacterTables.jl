@@ -11392,8 +11392,6 @@ charparamindex = var_index.([k1, k2, k3, k4])
 
 information = raw"""The generic character table of $\mathrm{CSp}_6(q)$, $q$ odd
 
-
-
 - The computation of this table is explained in [Lbe93](@cite).
 
 - This table is very big. The best way to work with it

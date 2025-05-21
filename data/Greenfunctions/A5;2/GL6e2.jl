@@ -170,8 +170,6 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{GL}_6(2^n):2$.
 
-
-
 - The table was first computed in [Mal93*1](@cite).
 """
 

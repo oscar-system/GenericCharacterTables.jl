@@ -302,8 +302,6 @@ information = raw"""The generic character table of $\mathrm{PGL}_3(q)$,
   (See `SL3.n1` for the generic character table of $\mathrm{PGL}_3(q)$,
   $q$ not congruent to $1$ modulo $3$.)
 
-
-
 - The table was first computed in [Ste51](@cite).
 
 - See also: [Gre55](@cite).

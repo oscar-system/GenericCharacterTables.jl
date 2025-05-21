@@ -432,8 +432,6 @@ information = raw"""The generic character table of $\mathrm{SU}_3(q)$,
   (See `SU3.n2` for the generic character table of $\mathrm{SL}_3(q)$,
   $q$ not congruent to $2$ modulo $3$.)
 
-
-
 - The table was first computed in [SF73](@cite).
 
 - Corrections in [Gec90](@cite).

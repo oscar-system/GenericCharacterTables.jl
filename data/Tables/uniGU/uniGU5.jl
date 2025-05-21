@@ -457,8 +457,6 @@ chardegree =
 
 information = raw"""The unipotent characters for $\mathrm{GU}_5(q)$.
 
-
-
 - This table is computed with general programs written by F. Lübeck.
   They compute the Deligne-Lusztig characters $R_T^G(1)$ and find the
   unipotent characters as linear combinations of them.

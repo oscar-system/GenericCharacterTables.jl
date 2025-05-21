@@ -140,8 +140,6 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{O}_8^-(2^n)$.
 
-
-
 - The table was published in [Mal93](@cite)
 
 - The notation for the unipotent classes is as in that paper.

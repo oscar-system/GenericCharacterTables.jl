@@ -1656,8 +1656,6 @@ charparamindex = Int64[]
 information = raw"""The unipotent characters of $\mathrm{F}_4(2^n)$
   on unipotent classes.
 
-
-
 - The table was computed by Marcelo and Shinoda. This is explained in [MS95](@cite).
 
 - PrintInfoClass shows the geometric unipotent classes in the notation of

@@ -59,8 +59,6 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{Sp}_4(q)$, q even.
 
-
-
 - The table was first computed in [Eno72](@cite).
 
 - The names of the unipotent classes are taken from this paper.

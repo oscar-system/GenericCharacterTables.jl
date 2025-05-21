@@ -135,8 +135,6 @@ charparamindex = var_index.([l, k])
 information = raw"""The generic character table of $\mathrm{PGL}_2(q)$, $q$ odd
   (See `SL2.0` for the generic character table of $\mathrm{PGL}_2(q)$, $q$ even)
 
-
-
 - The table was first computed in [Jor07](@cite), [Sch07](@cite).
 
 - See also: [Ste51](@cite).

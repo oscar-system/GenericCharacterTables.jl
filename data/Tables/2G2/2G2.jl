@@ -488,8 +488,6 @@ information = raw"""The generic character table of the Ree groups
   $q^2 = 3^{2m+1}$ with m a non negative integer. So
   $q = \sqrt{3}q_0$ where $q_0 = 3^m$.
 
-
-
 - Most of the table was determined in [War66](@cite).
 
 - The values of the irreducible Deligne-Lusztig characters were

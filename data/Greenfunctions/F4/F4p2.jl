@@ -1130,8 +1130,6 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{F}_4(2^n)$.
 
-
-
 - The table was first computed in [Mal93](@cite).
 
 - The unipotent classes were determined in [Shi74](@cite).

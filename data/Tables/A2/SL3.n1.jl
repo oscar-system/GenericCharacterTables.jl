@@ -261,8 +261,6 @@ information = raw"""The generic character table of $\mathrm{SL}_3(q)$,
   The three groups $\mathrm{SL}_3(q)$, $\mathrm{PGL}_3(q)$ and $\mathrm{PSL}_3(q)$ are
   mutually isomorphic for these values of $q$.
 
-
-
 - The table was first computed in [SF73](@cite).
 
 - See also: [Ste51](@cite), [Gre55](@cite).

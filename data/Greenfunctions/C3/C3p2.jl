@@ -180,8 +180,6 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{Sp}_6(2^n)$.
 
-
-
 - The table was published in [Mal93](@cite).
 
 - The unipotent classes were determined in [Shi74](@cite).

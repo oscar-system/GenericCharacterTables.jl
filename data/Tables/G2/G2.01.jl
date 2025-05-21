@@ -1454,8 +1454,6 @@ charparamindex = var_index.([k, l])
 information = raw"""The generic character table of $\mathrm{G}_2(q)$,
    $q$ even, congruent to $1$ modulo $3$
 
-
-
 - The table was first computed in [EY86](@cite).
 
 - See also: [CR74](@cite), [Hi90](@cite).

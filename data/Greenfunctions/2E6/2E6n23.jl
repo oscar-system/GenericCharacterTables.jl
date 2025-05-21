@@ -1025,8 +1025,6 @@ chardegree =
 
 information = raw"""The Green functions of $^2\mathrm{E}_6(q)$, $p>3$.
 
-
-
 - The table was first computed in [BS84](@cite).
 """
 

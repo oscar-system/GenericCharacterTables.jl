@@ -3002,8 +3002,6 @@ chardegree =
 
 information = raw"""The unipotent characters of $\mathrm{CSpin}_8(q)$, $q$ odd
 
-
-
 - The table was first computed in [GP92](@cite).
 
 - The symbols parametrizing the unipotent characters are given in form

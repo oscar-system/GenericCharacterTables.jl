@@ -1609,14 +1609,11 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{GL}_9(q)$.
 
-
-
 - These Green functions were introduced in: [Gre55](@cite).
 
 - See also: [Ste51](@cite).
 
 - This CHEVIE-table is computed by an algorithm from [LS78](@cite).
-
 
 - The program which generates the files with the Green functions 
   of $\mathrm{GL}_n(q)$ and $\mathrm{GU}_n(q)$ is part of the CHEVIE-system. You 

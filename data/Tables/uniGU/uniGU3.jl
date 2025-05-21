@@ -64,8 +64,6 @@ chardegree = R.([q^3, (q - 1) * q, 1])
 
 information = raw"""The unipotent characters for $\mathrm{GU}_3(q)$.
 
-
-
 - This table is computed with general programs written by F. Lübeck.
   They compute the Deligne-Lusztig characters $R_T^G(1)$ and find the
   unipotent characters as linear combinations of them.

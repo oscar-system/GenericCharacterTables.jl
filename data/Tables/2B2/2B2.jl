@@ -208,8 +208,6 @@ charparamindex = var_index.([s, k, u])
 information = raw"""The generic character table of $^2\mathrm{B}_2(q^2)$,
   where $q = \sqrt{2}q_0$.
 
-
-
 - The table was first computed in [Suz62](@cite).
 """
 

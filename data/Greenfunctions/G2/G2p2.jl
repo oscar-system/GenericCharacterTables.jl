@@ -81,8 +81,6 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{G}_2(2^n)$.
 
-
-
 - The table was first computed in [EY86](@cite).
 
   The notation for the unipotent classes is taken from that paper.

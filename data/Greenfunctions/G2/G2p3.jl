@@ -96,8 +96,6 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{G}_2(3^n)$.
 
-
-
 - The table was first computed in [Eno76](@cite).
 
   The notation for the unipotent classes is taken from that paper.

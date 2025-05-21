@@ -1030,8 +1030,6 @@ chardegree =
 
 information = raw"""The unipotent characters of $\mathrm{Sp}_6(q)$, $q$ even
 
-
-
 - The computation of the whole table of this group is explained in [Lbe93](@cite).
 
 - The irreducible characters of $\mathrm{Sp}_6(q)$ with even $q$ were already

@@ -1127,8 +1127,6 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{E}_6(2^n)$.
 
-
-
 - The table was first computed in [Mal93](@cite).
 """
 

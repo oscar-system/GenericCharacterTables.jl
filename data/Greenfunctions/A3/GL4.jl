@@ -50,8 +50,6 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{GL}_4(q)$.
 
-
-
 - These Green functions were introduced in: [Gre55](@cite).
 
 - See also: [Ste51](@cite).

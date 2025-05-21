@@ -251,8 +251,6 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{O}_8^+(q)$.
 
-
-
 - The table was published in [Mal93](@cite).
 
 - The notation for the unipotent classes is taken from [Spa82](@cite).

@@ -1568,8 +1568,6 @@ charparamindex = var_index.([k, l])
 information = raw"""The generic character table of $\mathrm{G}_2(q)$,
    $q$ a power of $3$, congruent to $1$ modulo $4$.
 
-
-
 - The table was first computed in [Eno76](@cite).
 
 - See also: [CR74](@cite), [Hi90](@cite).

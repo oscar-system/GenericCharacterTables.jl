@@ -779,8 +779,6 @@ charparamindex = var_index.([k, l])
 
 information = raw"""The generic character table of $\mathrm{Sp}_4(q)$, $q$ even
 
-
-
 - The table was first computed in [Eno72](@cite)
 
 - The table in the cited paper contains a lot of misprints.

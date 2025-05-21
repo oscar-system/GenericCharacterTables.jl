@@ -883,8 +883,6 @@ chardegree =
 information = raw"""The unipotent characters of $\mathrm{CO}_8^-(q)$,
   with even q.
 
-
-
 - This table was computed by F. Lübeck, most of it with general programs.
 """
 

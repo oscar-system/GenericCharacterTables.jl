@@ -11353,8 +11353,6 @@ charparamindex = var_index.([k1, k2, k3])
 
 information = raw"""The generic character table of $\mathrm{Sp}_6(q)$, $q$ even
 
-
-
 - The computation of this table is explained in [Lbe93](@cite).
 
 - The irreducible characters of $\mathrm{Sp}_6(q)$ with even $q$ were already

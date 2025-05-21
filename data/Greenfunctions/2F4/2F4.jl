@@ -318,8 +318,6 @@ chardegree =
 
 information = raw"""The Green functions of $^2\mathrm{F}_4(q^2)$.
 
-
-
 - The Green functions can easily be obtained from a knowledge of the unipotent
   characters; these were first computed in [Mal90](@cite).
 

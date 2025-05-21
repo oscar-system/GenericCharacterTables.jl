@@ -258,8 +258,6 @@ chardegree =
 information = raw"""The generic character table of $\mathrm{CSp}_4(q)$ with odd $q$
   (unipotent characters).
 
-
-
 - The table was first computed in [Shi82](@cite).
 
 - The name of the i-th class type in the cited paper can be found by:

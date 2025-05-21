@@ -137,8 +137,6 @@ charparamindex = var_index.([u, v])
 
 information = raw"""The generic character table of $\mathrm{GU}_2(q)$.
 
-
-
 - The table was first computed in [Enn63](@cite).
 
 - See also: [Enn62](@cite).

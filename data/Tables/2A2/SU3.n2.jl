@@ -259,8 +259,6 @@ information = raw"""The generic character table of $\mathrm{SU}_3(q)$,
   The three groups $\mathrm{SU}_3(q)$, $\mathrm{PGU}_3(q)$ and $\mathrm{PSU}_3(q)$ are
   mutually isomorphic for these values of $q$.
 
-
-
 - The table was first computed in [SF73](@cite).
 
 - Corrections in [Gec90](@cite).

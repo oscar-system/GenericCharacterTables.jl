@@ -907,8 +907,6 @@ chardegree =
 
 information = raw"""The Green functions of $\mathrm{E}_6(2^n):2$.
 
-
-
 - The table was first computed in [Mal93](@cite).
 
 - The notation for the unipotent classes is as in that paper.

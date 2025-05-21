@@ -170,8 +170,6 @@ information = raw"""The generic character table of $\mathrm{SL}_2(q)$,
   some table entries involve this value.
   (See `SL2.0` for the generic character table of $\mathrm{SL}_2(q)$, $q$ even).
 
-
-
 - The table was first computed in [Fro96](@cite).
 
 - See also: [Sch07](@cite).
