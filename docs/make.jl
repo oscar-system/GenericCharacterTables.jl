@@ -37,6 +37,7 @@ makedocs(;
     "printing.md",
     "unexported.md",
     "tables_list.md",
+    "greenfunctions_list.md",
     "references.md",
   ],
   plugins=[bib],

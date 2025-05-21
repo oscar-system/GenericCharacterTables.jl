@@ -3000,15 +3000,13 @@ chardegree =
     q^7 * (q^2 + 1)^2,
     q^12])
 
-information = raw"""- Information about the unipotent character table of $\mathrm{CSpin}_8(q)$, $q$ odd
-
-- CHEVIE-name of the table: `uniCSpin8.1`
+information = raw"""The unipotent characters of $\mathrm{CSpin}_8(q)$, $q$ odd
 
 - The table was first computed in [GP92](@cite).
 
 - The symbols parametrizing the unipotent characters are given in form
-  of a pair of lists in (the 2nd part of) position 3 of the character
-  information list. (Look at ``uniCSpin8.1``[i,-1][3][2], i = 1, ... ,14.)
+  of a pair of lists in (the 2nd part of) position 2 of the character
+  information list returned by the `info` function.
 """
 
 SimpleCharTable(

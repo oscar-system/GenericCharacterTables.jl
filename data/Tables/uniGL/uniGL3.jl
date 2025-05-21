@@ -62,12 +62,10 @@ classtypeorder =
 charinfo = Vector{Any}[[[1, 1, 1]], [[2, 1]], [[3]]]
 chardegree = R.([q^3, (q + 1) * q, 1])
 
-information = raw"""- Information about the tables of unipotent characters for $\mathrm{GL}_3(q)$.
+information = raw"""The unipotent characters for $\mathrm{GL}_3(q)$.
 
-- CHEVIE-name of the table: `uniGL3`
-
-- This table is computed with general programs written by F.Luebeck.
-  They compute the Deligne-Lusztig characters R_T^G(1) and find the
+- This table is computed with general programs written by F. Lübeck.
+  They compute the Deligne-Lusztig characters $R_T^G(1)$ and find the
   unipotent characters as linear combinations of them.
 """
 

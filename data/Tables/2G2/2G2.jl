@@ -483,17 +483,15 @@ charparams = [
 classparamindex = var_index.([i, j])
 charparamindex = var_index.([k, l])
 
-information = raw"""- Information about the generic character table of the Ree groups
+information = raw"""The generic character table of the Ree groups
   $^2\mathrm{G}_2(q)$. The possible values for $q$ are given by
-  $q^2 = 3^{2*m+1}$ with m a non negative integer. So
+  $q^2 = 3^{2m+1}$ with m a non negative integer. So
   $q = \sqrt{3}q_0$ where $q_0 = 3^m$.
-
-- CHEVIE-name of the table: `ree`
 
 - Most of the table was determined in [War66](@cite).
 
 - The values of the irreducible Deligne-Lusztig characters were
-  computed by F.Luebeck.
+  computed by F. Lübeck.
 
 - The names of class types and character types used in the above
   cited article can be recovered as fourths components of the 

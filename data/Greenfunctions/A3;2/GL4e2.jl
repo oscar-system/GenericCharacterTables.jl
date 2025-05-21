@@ -50,9 +50,7 @@ chardegree =
     (q - 1)^2 * (q + 1)^2,
   ])
 
-information = raw"""- Information about the Green functions of $\mathrm{GL}_4(2^n):2$.
-
-- CHEVIE-name of the table: `GL4e2green`
+information = raw"""The Green functions of $\mathrm{GL}_4(2^n):2$.
 
 - The table was first computed in [Mal93*1](@cite).
 """

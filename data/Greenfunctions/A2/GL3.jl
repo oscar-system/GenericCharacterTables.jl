@@ -21,9 +21,7 @@ classtypeorder = R.([1, 1, 1])
 charinfo = Vector{Any}[[[1, 1, 1]], [[2, 1]], [[3]]]
 chardegree = R.([(q + 1) * (q^2 + q + 1), -(q - 1) * (q^2 + q + 1), (q - 1)^2 * (q + 1)])
 
-information = raw"""- Information about the tables of Green functions for $\mathrm{GL}_3(q)$.
-
-- CHEVIE-name of the table: `GL3green`
+information = raw"""The Green functions of $\mathrm{GL}_3(q)$.
 
 - These Green functions were introduced in: [Gre55](@cite).
 
@@ -37,7 +35,7 @@ information = raw"""- Information about the tables of Green functions for $\math
   > GreenFunctionsA(n,filename);
   > GreenFunctions2A(n,filename);
   (see the corresponding help)
-  These programs are written by U. Porsch and F. Luebeck.
+  These programs are written by U. Porsch and F. Lübeck.
 """
 
 SimpleCharTable(

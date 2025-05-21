@@ -138,9 +138,7 @@ chardegree =
     -(q - 1)^3 * (q + 1) * (q^2 + q + 1) * (q^2 - q + 1) * (q^4 + 1),
     -(q - 1)^3 * (q + 1)^3 * (q^2 + q + 1) * (q^2 + 1) * (q^2 - q + 1)])
 
-information = raw"""- Information about the Green functions of $\mathrm{O}_8^-(2^n)$.
-
-- CHEVIE-name of the table: `2D4p2green`
+information = raw"""The Green functions of $\mathrm{O}_8^-(2^n)$.
 
 - The table was published in [Mal93](@cite)
 

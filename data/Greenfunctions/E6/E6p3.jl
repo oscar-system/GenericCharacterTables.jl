@@ -1096,11 +1096,7 @@ chardegree =
     -(q - 1)^5 * (q + 1)^3 * (q^2 + q + 1)^3 * (q^2 + 1) * (q^4 + q^3 + q^2 + q + 1) *
     (q^4 + 1) * (q^2 - q + 1) * (q^6 + q^3 + 1) * (q^4 - q^2 + 1)])
 
-information = raw"""- Information about the Green functions of $\mathrm{E}_6(3^n)$.
-
-- CHEVIE-name of the table: `E6p3green`
-
-"""
+information = raw"""The Green functions of $\mathrm{E}_6(3^n)$."""
 
 SimpleCharTable(
   order,

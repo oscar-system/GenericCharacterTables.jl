@@ -31,9 +31,7 @@ charinfo = Vector{Any}[["T_1"], ["T_2"], ["T_3"]]
 chardegree =
   R.([q^4 + 1, -(q^2 - 1) * (q^2 - sqrt2 * q + 1), -(q^2 - 1) * (q^2 + sqrt2 * q + 1)])
 
-information = raw"""- Information about the Green functions of $^2\mathrm{B}_2(q^2)$.
-
-- CHEVIE-name of the table: `2B2green`
+information = raw"""The Green functions of $^2\mathrm{B}_2(q^2)$.
 
 - The table was first computed in [Suz62](@cite).
 """

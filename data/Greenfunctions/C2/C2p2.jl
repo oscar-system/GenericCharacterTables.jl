@@ -57,9 +57,7 @@ chardegree =
     (q - 1)^2 * (q + 1)^2,
   ])
 
-information = raw"""- Information about the Green functions of $\mathrm{Sp}_4(q)$, q even.
-
-- CHEVIE-name of the table: `C2p2green`
+information = raw"""The Green functions of $\mathrm{Sp}_4(q)$, q even.
 
 - The table was first computed in [Eno72](@cite).
 

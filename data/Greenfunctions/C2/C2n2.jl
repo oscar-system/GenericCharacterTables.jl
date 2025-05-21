@@ -51,9 +51,7 @@ chardegree =
     (q - 1)^2 * (q + 1)^2,
   ])
 
-information = raw"""- Information about the tables of Green functions for $\mathrm{CSp}_4(q)$, $q$ odd.
-
-- CHEVIE-name of the table: `C2n2green`
+information = raw"""The Green functions of $\mathrm{CSp}_4(q)$, $q$ odd.
 
 - The generic character table of $\mathrm{CSp}_4(q)$, $q$ odd, and hence its Green 
   functions were computed in [Shi82](@cite).

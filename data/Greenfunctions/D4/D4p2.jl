@@ -249,9 +249,7 @@ chardegree =
     (q - 1)^4 * (q + 1)^4 * (q^2 + q + 1) * (q^2 - q + 1),
     (q - 1)^4 * (q + 1)^2 * (q^2 + q + 1) * (q^2 + 1)^2])
 
-information = raw"""- Information about the Green functions of $\mathrm{O}_8^+(q)$.
-
-- CHEVIE-name of the table: `D4p2green`
+information = raw"""The Green functions of $\mathrm{O}_8^+(q)$.
 
 - The table was published in [Mal93](@cite).
 

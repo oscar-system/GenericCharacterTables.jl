@@ -1607,9 +1607,7 @@ chardegree =
     (q^6 + q^5 + q^4 + q^3 + q^2 + q + 1) * (q^2 + 1)^2 * (q^2 + q + 1)^2 * (q + 1)^4 *
     (q - 1)^8])
 
-information = raw"""- Information about the tables of Green functions for $\mathrm{GL}_9(q)$.
-
-- CHEVIE-name of the table: `GL9green`
+information = raw"""The Green functions of $\mathrm{GL}_9(q)$.
 
 - These Green functions were introduced in: [Gre55](@cite).
 
@@ -1617,14 +1615,13 @@ information = raw"""- Information about the tables of Green functions for $\math
 
 - This CHEVIE-table is computed by an algorithm from [LS78](@cite).
 
-
 - The program which generates the files with the Green functions 
   of $\mathrm{GL}_n(q)$ and $\mathrm{GU}_n(q)$ is part of the CHEVIE-system. You 
   can reproduce them with the CHEVIE commands: 
   > GreenFunctionsA(n,filename);
   > GreenFunctions2A(n,filename);
   (see the corresponding help)
-  These programs are written by U. Porsch and F. Luebeck.
+  These programs are written by U. Porsch and F. Lübeck.
 """
 
 SimpleCharTable(

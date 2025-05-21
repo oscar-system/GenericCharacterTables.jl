@@ -1028,9 +1028,7 @@ chardegree =
     1//2 * q^4 * (q^2 + q + 1) * (q - 1)^2,
     q^9])
 
-information = raw"""- Information about the table of unipotent characters of $\mathrm{Sp}_6(q)$, $q$ even
-
-- CHEVIE-name of the table: `uniSp6.0`
+information = raw"""The unipotent characters of $\mathrm{Sp}_6(q)$, $q$ even
 
 - The computation of the whole table of this group is explained in [Lbe93](@cite).
 
@@ -1039,12 +1037,12 @@ information = raw"""- Information about the table of unipotent characters of $\m
 
 - This table is extracted from the table `Sp6.0`, which
   contains the unipotent characters in the first 12 character
-  (type)s.
+  types.
 
 - If you want to calculate *only* with the unipotent characters
   then use this table `uniSp6.0` (the calculations will run
   much faster). If you also want to use the other characters
-  of `Sp6.0`, then dont use `uniSp6.0`.
+  of `Sp6.0`, then don't use `uniSp6.0`.
 """
 
 SimpleCharTable(

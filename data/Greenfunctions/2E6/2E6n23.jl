@@ -1023,9 +1023,7 @@ chardegree =
     -(q^2 + 1) * (q^4 - q^3 + q^2 - q + 1) * (q^2 + q + 1) * (q^4 - q^2 + 1) * (q^4 + 1) *
     (1 - q^3 + q^6) * (q - 1)^3 * (q^2 - q + 1)^3 * (q + 1)^5])
 
-information = raw"""- Information about the Green functions of $^2\mathrm{E}_6(q)$, $p>3$.
-
-- CHEVIE-name of the table: `2E6n23green`
+information = raw"""The Green functions of $^2\mathrm{E}_6(q)$, $p>3$.
 
 - The table was first computed in [BS84](@cite).
 """

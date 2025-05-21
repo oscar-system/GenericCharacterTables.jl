@@ -363,12 +363,10 @@ charparams = [
 classparamindex = var_index.([a, b])
 charparamindex = var_index.([m, n])
 
-information = raw"""- Information about the generic character table of $\mathrm{PSU}_3(q)$,
+information = raw"""The generic character table of $\mathrm{PSU}_3(q)$,
   $q$ congruent to $2$ modulo $3$
   (See `SU3.n2` for the generic character table of $\mathrm{SL}_3(q)$,
   $q$ not congruent to $2$ modulo $3$.)
-
-- CHEVIE-name of the table: `PSU3.2`
 
 - The table was first computed in [SF73](@cite).
 

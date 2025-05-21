@@ -1603,9 +1603,7 @@ chardegree =
     (q^6 - q^5 + q^4 - q^3 + q^2 - q + 1) * (q^2 - q + 1)^2 * (q^2 + 1)^2 * (q - 1)^4 *
     (q + 1)^8])
 
-information = raw"""- Information about the tables of Green functions for $\mathrm{GU}_9(q)$.
-
-- CHEVIE-name of the table: `GU9green`
+information = raw"""The Green functions of $\mathrm{GU}_9(q)$.
 
 - By a theorem of Hotta, Springer and Kawanaka we can get the Green
   functions of the unitary group $\mathrm{GU}_9(q^2)$ from those of $\mathrm{GL}_9(q)$

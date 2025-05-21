@@ -168,9 +168,7 @@ chardegree =
     -(q - 1)^3 * (q + 1)^2 * (q^2 + q + 1) * (q^2 - q + 1),
     -(q - 1)^3 * (q + 1)^2 * (q^2 + q + 1) * (q^2 + 1)])
 
-information = raw"""- Information about the Green functions of $\mathrm{GL}_6(2^n):2$.
-
-- CHEVIE-name of the table: `GL6e2green`
+information = raw"""The Green functions of $\mathrm{GL}_6(2^n):2$.
 
 - The table was first computed in [Mal93*1](@cite).
 """

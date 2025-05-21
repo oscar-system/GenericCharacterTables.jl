@@ -252,7 +252,7 @@ charparams = [
 classparamindex = var_index.([a, b])
 charparamindex = var_index.([m, n])
 
-information = raw"""- Information about the generic character table of $\mathrm{SL}_3(q)$,
+information = raw"""The generic character table of $\mathrm{SL}_3(q)$,
   $q$ not congruent to $1$ modulo $3$
   (See `SL3.1` for the generic character table of $\mathrm{SL}_3(q)$,
   $q$ congruent to $1$ modulo $3$.)
@@ -260,8 +260,6 @@ information = raw"""- Information about the generic character table of $\mathrm{
 - Note:
   The three groups $\mathrm{SL}_3(q)$, $\mathrm{PGL}_3(q)$ and $\mathrm{PSL}_3(q)$ are
   mutually isomorphic for these values of $q$.
-
-- CHEVIE-name of the table: `SL3.n1`
 
 - The table was first computed in [SF73](@cite).
 

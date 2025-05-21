@@ -123,11 +123,9 @@ charinfo = Vector{Any}[ # TODO
 
 chardegree = R.([0, 0, 0, 0, 0, 0, 0, 0, 0])
 
-information = raw"""- Information about the Green functions of $\mathrm{O}_8^-(q)$ with odd $q$.
+information = raw"""The Green functions of $\mathrm{O}_8^-(q)$ with odd $q$.
 
-- CHEVIE-name of the table: `2D4n2green`
-
-- This table of generalized Green functions is computed by F.Luebeck 
+- This table of generalized Green functions is computed by F. Lübeck
   using Lusztig's algorithm.`,`
 - The occuring Levi subgroups have the following relative (twisted)
   Weyl groups:

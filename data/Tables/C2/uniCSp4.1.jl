@@ -255,16 +255,14 @@ chardegree =
     q^4,
   ])
 
-information = raw"""- Information about the generic character table of $\mathrm{CSp}_4(q)$ with odd $q$
+information = raw"""The generic character table of $\mathrm{CSp}_4(q)$ with odd $q$
   (unipotent characters).
-
-- CHEVIE-name of the table: `uniCSp4.1`
 
 - The table was first computed in [Shi82](@cite).
 
-- The name of the i-th class type in the cited paper can be found by:
-  > ``uniCSp4.1``[-1,i][4];
-  or with 'PrintInfoClass'.
+- The name of the i-th class type in the cited paper can be found as
+  3rd component of the list returned by the `info` function when
+  applied to the i-th class type.
 
 - This release of CHEVIE only contains the unipotent characters.
   We have a preliminary version of the complete table, but it contains

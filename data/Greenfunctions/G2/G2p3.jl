@@ -94,9 +94,7 @@ chardegree =
     (q - 1)^2 * (q + 1)^2 * (q^2 - q + 1),
     (q - 1)^2 * (q^2 + q + 1) * (q^2 - q + 1)])
 
-information = raw"""- Information about the Green functions of $\mathrm{G}_2(3^n)$.
-
-- CHEVIE-name of the table: `G2p3green`
+information = raw"""The Green functions of $\mathrm{G}_2(3^n)$.
 
 - The table was first computed in [Eno76](@cite).
 

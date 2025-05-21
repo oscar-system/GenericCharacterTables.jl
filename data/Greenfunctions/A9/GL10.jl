@@ -3657,9 +3657,7 @@ chardegree =
     (q^6 + q^5 + q^4 + q^3 + q^2 + q + 1) * (q^2 + 1)^2 * (q^2 + q + 1)^3 * (q + 1)^4 *
     (q - 1)^9])
 
-information = raw"""- Information about the tables of Green functions for $\mathrm{GL}_10(q)$.
-
-- CHEVIE-name of the table: `GL10green`
+information = raw"""The Green functions of $\mathrm{GL}_10(q)$.
 
 - These Green functions were introduced in: [Gre55](@cite).
 
@@ -3673,7 +3671,7 @@ information = raw"""- Information about the tables of Green functions for $\math
   > GreenFunctionsA(n,filename);
   > GreenFunctions2A(n,filename);
   (see the corresponding help)
-  These programs are written by U. Porsch and F. Luebeck.
+  These programs are written by U. Porsch and F. Lübeck.
 """
 
 SimpleCharTable(

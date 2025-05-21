@@ -1689,10 +1689,8 @@ charparams = [
 classparamindex = var_index.([i, j])
 charparamindex = var_index.([k, l])
 
-information = raw"""- Information about the generic character table of $G_2(q)$,
+information = raw"""The generic character table of $G_2(q)$,
   $q$ odd, congruent to $1$ modulo $3$ and $4$.
-
-- CHEVIE-name of the table: ``G2.11``
 
 - The table was first computed in [CR74](@cite).
 
@@ -1700,21 +1698,24 @@ information = raw"""- Information about the generic character table of $G_2(q)$,
 
 - Note:
   Chang's and Ree's notation for the irreducible characters is
-  given in the fourth component of the character information list.
+  given in the third component of the character information list.
 
   Chang's and Ree's notation for the conjugacy classes is given in
-  the fourth component of the class information list.
+  the third component of the class information list.
 
 - Example:
-> PrintInfoChar(``G2.11``,6);
+  ```jldoctest
+  julia> t = generic_character_table("G2.111");
 
-cht   Information
-
-======================================================
-6   [ , [1, 5], [G_2, G_2[1]], X_{18}]
+  julia> info(t[6])
+  3-element Vector{Any}:
+   [1, 5]
+   ["G_2", "G_2[1]"]
+   "X_{18}"
+  ```
 
 - Explanation of example:
-  Character type 6 of G2.11 is called X_{18} by Chang and Ree
+  Character type six of `G2.111` is called $X_{18}$ by Chang and Ree
 """
 
 CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,

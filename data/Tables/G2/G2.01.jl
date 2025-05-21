@@ -1451,10 +1451,8 @@ charparams = [
 classparamindex = var_index.([i, j])
 charparamindex = var_index.([k, l])
 
-information = raw"""- Information about the generic character table of $\mathrm{G}_2(q)$,
+information = raw"""The generic character table of $\mathrm{G}_2(q)$,
    $q$ even, congruent to $1$ modulo $3$
-
-- CHEVIE-name of the table: `G2.01`
 
 - The table was first computed in [EY86](@cite).
 
@@ -1462,26 +1460,30 @@ information = raw"""- Information about the generic character table of $\mathrm{
 
 - Note:
   Enomoto's and Yamada's notation for the irreducible characters is
-  given in the fifth component of the character information list.
+  given in the fourth component of the character information list.
 
   An equivalent to Chang's and Ree's notation for the irreducible
-  characters is given in the fourth component of the character
+  characters is given in the third component of the character
   information list.
 
   Enomoto's and Yamada's notation for the conjugacy classes is given in
-  the fourth component of the class information list.
+  the third component of the class information list.
 
 - Example:
-> PrintInfoChar(``G2.01``,6);
+  ```jldoctest
+  julia> t = generic_character_table("G2.01");
 
-cht   Information
-
-======================================================
-6   [ , [1, 5], [G_2, G_2[1]], X_{18}, \vartheta_1']
+  julia> info(t[6])
+  4-element Vector{Any}:
+   [1, 5]
+   ["G_2", "G_2[1]"]
+   "X_{18}"
+   "\\vartheta_1'"
+  ```
 
 - Explanation of example:
-  Character type 6 of G2.01 is called \vartheta_1' by Enomoto--Yamada
-  and corresponds to X_{18} in Chang--Ree.
+  Character type six of `G2.01` is called $\vartheta_1$ by Enomoto--Yamada
+  and corresponds to $X_{18}$ in Chang--Ree.
 """
 
 CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,

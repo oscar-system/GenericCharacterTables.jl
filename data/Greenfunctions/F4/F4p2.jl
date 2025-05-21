@@ -1128,9 +1128,7 @@ chardegree =
     (q - 1)^4 * (q + 1)^4 * (q^2 + q + 1)^2 * (q^2 + 1)^2 * (q^2 - q + 1)^2 * (q^4 + 1),
     (q - 1)^4 * (q + 1)^4 * (q^2 + q + 1)^2 * (q^2 + 1)^2 * (q^4 + 1) * (q^4 - q^2 + 1)])
 
-information = raw"""- Information about the Green functions of $\mathrm{F}_4(2^n)$.
-
-- CHEVIE-name of the table: `F4p2green`
+information = raw"""The Green functions of $\mathrm{F}_4(2^n)$.
 
 - The table was first computed in [Mal93](@cite).
 

@@ -163,14 +163,12 @@ charparams = [
 classparamindex = var_index.([i])
 charparamindex = var_index.([k])
 
-information = raw"""- Information about the generic character table of $\mathrm{SL}_2(q)$,
+information = raw"""The generic character table of $\mathrm{SL}_2(q)$,
   $q$ odd. The possible values for $q$ are given by
-  $q = q0^2 = p^m$ with m a non negative integer and $p$ a prime number.
+  $q = q_0^2 = p^m$ with m a non negative integer and $p$ a prime number.
   Note that the variable $q_0$ represents $\sqrt{q}$ which is needed as
   some table entries involve this value.
   (See `SL2.0` for the generic character table of $\mathrm{SL}_2(q)$, $q$ even).
-
-- CHEVIE-name of the table: `SL2.1`
 
 - The table was first computed in [Fro96](@cite).
 

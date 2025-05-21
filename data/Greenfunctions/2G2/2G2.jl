@@ -54,9 +54,7 @@ chardegree =
     -(q^4 - 1) * (q^2 + sqrt3 * q + 1),
   ])
 
-information = raw"""- Information about the Green functions of $^2\mathrm{G}_2(q^2)$.
-
-- CHEVIE-name of the table: `2G2green`
+information = raw"""The Green functions of $^2\mathrm{G}_2(q^2)$.
 
 - The table was first computed in [War66](@cite).
 """

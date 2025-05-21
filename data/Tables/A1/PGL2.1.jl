@@ -132,10 +132,8 @@ charparams = [
 classparamindex = var_index.([i, j])
 charparamindex = var_index.([l, k])
 
-information = raw"""- Information about the generic character table of $\mathrm{PGL}_2(q)$, $q$ odd
+information = raw"""The generic character table of $\mathrm{PGL}_2(q)$, $q$ odd
   (See `SL2.0` for the generic character table of $\mathrm{PGL}_2(q)$, $q$ even)
-
-- CHEVIE-name of the table: `PGL2.1`
 
 - The table was first computed in [Jor07](@cite), [Sch07](@cite).
 
