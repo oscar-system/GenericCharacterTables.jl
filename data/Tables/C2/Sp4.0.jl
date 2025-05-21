@@ -784,7 +784,7 @@ information = raw"""- Information about the generic character table of $\mathrm{
 - The table was first computed in [Eno72](@cite)
 
 - The table in the cited paper contains a lot of misprints.
-  The table in the CHEVIE-library was recomputed by F.Luebeck
+  The table in the CHEVIE-library was recomputed by F. Lübeck
   (using Deligne-Lusztig theory).
 
 - The names for the class (respectively character) types used in the

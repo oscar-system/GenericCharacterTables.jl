@@ -372,7 +372,7 @@ information = raw"""- Information about the tables of Green functions for $\math
   > GreenFunctionsA(n,filename);
   > GreenFunctions2A(n,filename);
   (see the corresponding help)
-  These programs are written by U. Porsch and F. Luebeck.
+  These programs are written by U. Porsch and F. Lübeck.
 """
 
 SimpleCharTable(

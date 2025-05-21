@@ -66,7 +66,7 @@ information = raw"""- Information about the tables of unipotent characters for $
 
 - CHEVIE-name of the table: `uniGL3`
 
-- This table is computed with general programs written by F.Luebeck.
+- This table is computed with general programs written by F. Lübeck.
   They compute the Deligne-Lusztig characters $R_T^G(1)$ and find the
   unipotent characters as linear combinations of them.
 """

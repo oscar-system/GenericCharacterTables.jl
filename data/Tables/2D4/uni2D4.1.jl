@@ -1029,7 +1029,7 @@ information = raw"""- Information about the generic table of unipotent character
 
 - CHEVIE-name of the table: `uni2D4.1`
 
-- This table was computed by F.Luebeck, most of it with general programs.
+- This table was computed by F. Lübeck, most of it with general programs.
 """
 
 SimpleCharTable(

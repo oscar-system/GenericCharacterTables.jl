@@ -493,7 +493,7 @@ information = raw"""- Information about the generic character table of the Ree g
 - Most of the table was determined in [War66](@cite).
 
 - The values of the irreducible Deligne-Lusztig characters were
-  computed by F.Luebeck.
+  computed by F. Lübeck.
 
 - The names of class types and character types used in the above
   cited article can be recovered as fourths components of the 
