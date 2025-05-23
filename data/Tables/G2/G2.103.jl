@@ -1572,15 +1572,14 @@ information = raw"""The generic character table of $\mathrm{G}_2(q)$,
 
 - See also: [CR74](@cite), [Hi90](@cite).
 
-- Note:
-  Enomoto's notation for the irreducible characters is given in
+- Enomoto's notation for the irreducible characters is given in
   the fourth component of the character information list.
 
-  An equivalent to Chang's and Ree's notation for the irreducible
+- An equivalent to Chang's and Ree's notation for the irreducible
   characters is given in the third component of the character
   information list.
 
-  Enomoto's notation for the conjugacy classes is given in the
+- Enomoto's notation for the conjugacy classes is given in the
   third component of the class information list.
 
 - Example:

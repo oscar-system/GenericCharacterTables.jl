@@ -25,9 +25,25 @@ function loadtab(path::String)
   return evalfile(path)
 end
 
+# list of table name synonyms, for improved compatibility with CHEVIE
+# (but I don't expect new names to be added to this in the future)
+const synonyms = Dict([
+  "PGU3.n2" => "SU3.n2",
+  "PSU3.n2" => "SU3.n2",
+  "Sz" => "2B2",
+  "Ree.1" => "2F4.1",
+  "Ree.2" => "2F4.2",
+  "ree" => "2G2",
+  "PGL2.0" => "SL2.0",
+  "PSL2.0" => "SL2.0",
+  "PGL3.n1" => "SL3.n1",
+  "PSL3.n1" => "SL3.n1",
+  ])
+
 function gentab(table::String, tabletype::String)
   !isempty(table) || error("table name must not be empty")
   !isempty(tabletype) || error("tabletype name must not be empty")
+  table = get(synonyms, table, table)
   path = joinpath(@__DIR__, "..", "data")
   for dir in readdir("$path/$tabletype")
     fname = "$path/$tabletype/$dir/$table.jl"
