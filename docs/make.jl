@@ -46,6 +46,7 @@ makedocs(;
 deploydocs(;
   repo="github.com/oscar-system/GenericCharacterTables.jl.git",
   target="build",
+  push_preview = true,
   deps=nothing,
   make=nothing,
 )
