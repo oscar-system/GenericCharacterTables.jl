@@ -1217,7 +1217,8 @@ classsums = [
     s4 = nesum(tt1, i, 1, q)
     tt1 = evaluate(tt, [i], [-j])
     s5 = nesum(tt1, j, 1, q)
-    s7 = evaluate(tt, [j, i], R.([i, (q + 1) * 1//3]))
+    s7 = evaluate(tt, [j], [i])
+    s7 = evaluate(s7, [i], [(q + 1) * 1//3])
     1//12 * s2 - 1//12 * s3 - 1//6 * s4 - 1//12 * s5 + 1//3 * s7
   end,
   function (tt::Union{GenericCyclo,GenericCycloFrac})
