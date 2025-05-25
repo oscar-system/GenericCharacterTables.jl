@@ -11,6 +11,7 @@ on:
 permissions:
   actions: write
   contents: read
+  statuses: write
 
 concurrency:
   # group by workflow and ref; the last slightly strange component ensures that for pull
