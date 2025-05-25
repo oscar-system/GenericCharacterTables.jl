@@ -1696,11 +1696,10 @@ information = raw"""The generic character table of $\mathrm{G}_2(q)$,
 
 - See also: [Cha68](@cite), [Hi90](@cite).
 
-- Note:
-  Chang's and Ree's notation for the irreducible characters is
+- Chang's and Ree's notation for the irreducible characters is
   given in the third component of the character information list.
 
-  Chang's and Ree's notation for the conjugacy classes is given in
+- Chang's and Ree's notation for the conjugacy classes is given in
   the third component of the class information list.
 
 - Example:
