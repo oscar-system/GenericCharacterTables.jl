@@ -13,17 +13,16 @@ function get_ordinary(char::GenericCharacter, val)
   params = parameters(char)
   exceptions = params.exceptions
   ranges = UnitRange{Int64}[]
-  vars = Int64[]
+  vars = Int64[1]
   for param in params
     push!(vars, var_index(param.var))
     upper = evaluate(param.modulus, [q], [val])
     push!(ranges, 1:numerator(constant_coefficient(upper)))
   end
-  spec = specialize(char, q, val)
   for vals in Iterators.product(ranges...)
-    vals = collect(vals)
+    vals = collect((val, vals...))
     if !exceptions_apply(exceptions, vars, vals)
-      ordinary_char = evaluate.(spec.values, Ref(vars), Ref(vals))
+      ordinary_char = evaluate.(char.values, Ref(vars), Ref(vals))
       push!(ordinary_chars, ordinary_char)
     end
   end
@@ -46,14 +45,14 @@ function get_ordinary(table::CharTable, val)
     params = parameters(table[:,class])
     exceptions = params.exceptions
     ranges = UnitRange{Int64}[]
-    vars = Int64[]
+    vars = Int64[1]
     for param in params
       push!(vars, var_index(param.var))
       upper = evaluate(param.modulus, [q], [val])
       push!(ranges, 1:numerator(constant_coefficient(upper)))
     end
     for vals in Iterators.product(ranges...)
-      vals = collect(vals)
+      vals = collect((val, vals...))
       if !exceptions_apply(exceptions, vars, vals)
         for (i, ordinary_char) in enumerate(ordinary_chars)
           push!(ordinary_table[i], evaluate(ordinary_char[class], vars, vals))
