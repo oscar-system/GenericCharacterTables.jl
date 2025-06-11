@@ -586,7 +586,9 @@ julia> S, E, q = generic_cyclotomic_ring()
 (Generic cyclotomic ring over Rational field, Generator of Generic cyclotomic ring over Rational field, q)
 
 julia> params(S, [:q, :i])
-(q, i)
+2-element Vector{AbstractAlgebra.Generic.UnivPoly{QQFieldElem}}:
+ q
+ i
 
 ```
 """
