@@ -2,7 +2,7 @@ using ..GenericCharacterTables
 import ..GenericCharacterTables:
   Parameters, Parameter, CharTable, GenericCyclo, GenericCycloFrac, nesum
 using ..GenericCharacterTables.Oscar
-S, E, q0 = generic_cyclotomic_ring()
+S, E, q0 = generic_cyclotomic_ring(; variable=:q0)
 R = base_ring(S)
 a, b, c, s, k, u, _... = params(
   S,
