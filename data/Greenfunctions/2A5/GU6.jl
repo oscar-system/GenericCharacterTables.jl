@@ -204,10 +204,6 @@ information = raw"""The Green functions of $\mathrm{GU}_6(q)$.
   by substituting $q$ by $-q$. This is proved in [HS77](@cite) and [Kaw85](@cite).
 
 - See also: [DM87*1](@cite).
-
-- For the computation of the Green functions for $\mathrm{GL}_n(q)$ see for example:
-  > GreenFunTab(GL2);
-  > PrintInfoTab(GL2green);
 """
 
 SimpleCharTable(
