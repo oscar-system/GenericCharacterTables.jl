@@ -204,14 +204,6 @@ information = raw"""The Green functions of $\mathrm{GL}_6(q)$.
 - See also: [Ste51](@cite).
 
 - This CHEVIE-table is computed by an algorithm from [LS78](@cite).
-
-- The program which generates the files with the Green functions 
-  of $\mathrm{GL}_n(q)$ and $\mathrm{GU}_n(q)$ is part of the CHEVIE-system. You 
-  can reproduce them with the CHEVIE commands: 
-  > GreenFunctionsA(n,filename);
-  > GreenFunctions2A(n,filename);
-  (see the corresponding help)
-  These programs are written by U. Porsch and F. Lübeck.
 """
 
 SimpleCharTable(

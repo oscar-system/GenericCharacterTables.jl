@@ -128,12 +128,7 @@ information = raw"""The Green functions of $\mathrm{O}_8^-(q)$ with odd $q$.
 - This table of generalized Green functions is computed by F. Lübeck
   using Lusztig's algorithm.`,`
 - The occuring Levi subgroups have the following relative (twisted)
-  Weyl groups:
-      Levi L                           type of N(L)/L
-[ [ D, 0 ] ]           [ [ D, 4, 2 ] ]
-
-- Position [-1,-1] contains the transformation matrix to the
-  Foulkes functions and [0,-1] the corresponding labels.
+  Weyl groups: $L$ of type $D_0$ and $N(L)/L$ of type ${}^2D_4$.
 """
 
 SimpleCharTable(
