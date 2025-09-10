@@ -1,5 +1,12 @@
 # TODO deal with ParameterSubstitution when creating new characters, this is not done in the original implementation.
 
+@doc raw"""
+    character_type(t::Table, char::Int64)
+
+Return the generic character `char` of `t`.
+"""
+character_type(t::Table, char::Int64) = t[char]
+
 parent(c::AbstractGenericCharacter) = c.parent
 
 @doc raw"""
