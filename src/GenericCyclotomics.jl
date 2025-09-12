@@ -6,7 +6,7 @@ Return the `m`-th Kempner number, the associated Kempner schemes and a factoriza
 # Examples
 ```jldoctest
 julia> kempner_with_data(12)
-(4, Dict(2 => [1, 3], 3 => [1]), 1 * 2^2 * 3)
+(4, Dict(2 => [1, 3], 3 => [1]), 2^2 * 3)
 
 ```
 """
