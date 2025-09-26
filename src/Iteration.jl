@@ -5,8 +5,16 @@ getindex(ct::SimpleCharTable{T}, i::Integer) where {T<:NfPoly} =
 getindex(ct::SimpleCharTable{T}, i::Integer, j::Integer) where {T<:NfPoly} =
   ct[i].values[j]::T
 
-function getindex(ct::CharTable, ri::UnitRange{<:Integer}, rj::UnitRange{<:Integer})
-  m = Array{GenericCyclo}(undef, (length(ri), length(rj)))
+function getindex(ct::Table, r::UnitRange{<:Integer})
+  v = Vector{eltype(ct)}(undef, length(r))
+  for (i1, i2) in enumerate(r)
+    v[i1] = ct[i2]
+  end
+  return v
+end
+
+function getindex(ct::Table, ri::UnitRange{<:Integer}, rj::UnitRange{<:Integer})
+  m = Array{eltype(eltype(ct))}(undef, (length(ri), length(rj)))
   for (i1, i2) in enumerate(ri)
     for (j1, j2) in enumerate(rj)
       m[i1,j1] = ct[i2,j2]
@@ -15,19 +23,25 @@ function getindex(ct::CharTable, ri::UnitRange{<:Integer}, rj::UnitRange{<:Integ
   return m
 end
 
-function getindex(ct::SimpleCharTable{T}, ri::UnitRange{<:Integer}, rj::UnitRange{<:Integer}) where {T<:NfPoly}
-  m = Array{T}(undef, (length(ri), length(rj)))
-  for (i1, i2) in enumerate(ri)
-    for (j1, j2) in enumerate(rj)
-      m[i1,j1] = ct[i2,j2]
-    end
+function getindex(ct::CharTable, ::Colon, r::UnitRange{<:Integer})
+  v = Vector{GenericConjugacyClass}(undef, length(r))
+  for (i1, i2) in enumerate(r)
+    v[i1] = ct[:,i2]
   end
-  return m
+  return v
 end
 
-getindex(ct::Table, ::Colon, rj::UnitRange{<:Integer}) = ct[1:end,rj]
-getindex(ct::Table, ri::UnitRange{<:Integer}, ::Colon) = ct[ri,1:end]
-getindex(ct::Table, ::Colon, ::Colon) = ct[1:end,1:end]
+function getindex(ct::SimpleCharTable, ::Colon, r::UnitRange{<:Integer})
+  v = Vector{SimpleGenericConjugacyClass}(undef, length(r))
+  for (i1, i2) in enumerate(r)
+    v[i1] = ct[:,i2]
+  end
+  return v
+end
+
+getindex(ct::Table, ::Colon) = ct[1:end]
+getindex(ct::Table, ri::UnitRange{<:Integer}, ::Colon) = ct[ri]
+getindex(ct::Table, ::Colon, ::Colon) = ct[:,1:end]
 
 getindex(ct::Table, ::Colon, j::Integer) = conjugacy_class_type(ct, j)
 getindex(ct::Table, i::Integer, ::Colon) = ct[i]
@@ -78,3 +92,4 @@ eltype(::Type{GenericConjugacyClass}) = GenericCyclo
 eltype(::Type{SimpleGenericConjugacyClass{T}}) where {T<:NfPoly} = T
 
 Base.lastindex(c::Union{AbstractGenericConjugacyClass, AbstractGenericCharacter}) = length(c)
+Base.lastindex(ct::Table) = length(ct)

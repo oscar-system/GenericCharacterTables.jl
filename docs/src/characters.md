@@ -37,10 +37,21 @@ For a character type `ct`,
 - `ct[:]` returns all values.
 
 The $i$th character type can be obtained from a generic character table `g`
-in two ways: via `g[i]` or via `g[i,:]`. The following example demonstrates this.
+in multiple ways: `g[i]`, `g[i,:]` or `character_type(g,i)`. The following example demonstrates this.
 
 ```jldoctest
 julia> g=generic_character_table("GL2");
+
+julia> character_type(g,3)
+Generic character of GL2
+  with parameters
+    k ∈ {1,…, q - 1}, l ∈ {1,…, q - 1} except -l + k ∈ (q - 1)ℤ
+  of degree q + 1
+  with values
+    1: (q + 1)*E(q - 1)^(i*l + i*k)
+    2: E(q - 1)^(i*l + i*k)
+    3: E(q - 1)^(i*l + j*k) + E(q - 1)^(i*k + j*l)
+    4: 0
 
 julia> g[3,:]
 Generic character of GL2

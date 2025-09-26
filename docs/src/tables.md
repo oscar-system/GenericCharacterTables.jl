@@ -37,7 +37,8 @@ order(t::Table)
 Tables implement Julia's iteration interface to iterate over the irreducible character types
 stored in the table. For a table `T`,
 - `length(T)` returns the number of character types in the table,
-- `T[i]` returns the $i$th character type.
+- `T[i]` returns the $i$th character type,
+- `T[i:j]` returns a vector containing the character types $i$ to $j$.
 
 For example we can use this to compute the order of the underlying group type.
 (Of course this can also be checked via [`order`](@ref), which retrieves a
@@ -67,14 +68,25 @@ julia> g[3:5,2:4]
 ```
 
 Here we extracted the values of the character types 3, 4 and 5 on the conjugacy
-class types 2, 3 and 4. Using colons one can even get all values into a matrix.
+class types 2, 3 and 4. Only a single colon in at least one coordinate direction
+can be used to obtain ranges of character or conjugacy class types.
 ```jldoctest
 julia> g=generic_character_table("GL2");
 
+julia> g[2:3,:]
+2-element Vector{GenericCharacterTables.GenericCharacter}:
+ Generic character of GL2
+ Generic character of GL2
+
+julia> g[:,2:3]
+2-element Vector{GenericCharacterTables.GenericConjugacyClass}:
+ Generic conjugacy class of GL2
+ Generic conjugacy class of GL2
+
 julia> g[:,:]
-4×4 Matrix{GenericCharacterTables.GenericCyclo}:
- E(q - 1)^(2*i*k)              …  E(q - 1)^(i*k)
- q*E(q - 1)^(2*i*k)               -E(q - 1)^(i*k)
- (q + 1)*E(q - 1)^(i*l + i*k)     0
- (q - 1)*E(q - 1)^(i*k)           -E(q^2 - 1)^(q*i*k) - E(q^2 - 1)^(i*k)
+4-element Vector{GenericCharacterTables.GenericConjugacyClass}:
+ Generic conjugacy class of GL2
+ Generic conjugacy class of GL2
+ Generic conjugacy class of GL2
+ Generic conjugacy class of GL2
 ```

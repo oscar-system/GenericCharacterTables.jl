@@ -1,4 +1,5 @@
 export centralizer_order
+export character_type
 export character_type_index
 export class_multiplication_coefficient
 export conjugacy_class_type
