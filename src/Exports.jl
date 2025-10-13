@@ -9,6 +9,7 @@ export evaluate
 export factor_cyclotomic
 export generic_character_table
 export generic_cyclotomic_ring
+export get_ordinary
 export green_function_table
 export info
 export kempner
