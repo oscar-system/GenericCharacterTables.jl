@@ -179,7 +179,7 @@ canonical_unit(x::GenericCyclo) = parent(x)(1)  # TODO We need to know more abou
 function show(io::IO, ::MIME"text/plain", R::GenericCycloRing)
   io = pretty(io)
   println(io, "Generic cyclotomic ring", Indent())
-  println(io, "over ", base_ring(base_ring(R)))
+  println(io, "over ", coefficient_ring(base_ring(R)))
   print(io, "dependent on ", join(gens(base_ring(R)), ", "))
   if R.congruence !== nothing
     q = gen(base_ring(R), 1)^R.power
@@ -198,7 +198,7 @@ end
 function show(io::IO, R::GenericCycloRing)
   print(io, "Generic cyclotomic ring")
   if !is_terse(io)
-    print(io, " over ", base_ring(base_ring(R)))
+    print(io, " over ", coefficient_ring(base_ring(R)))
   end
 end
 
@@ -446,7 +446,7 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
 
     # normalize the constant part
     t = constant_coefficient(ap)
-    app = change_base_ring(base_ring(base_ring(R)), ap - t; parent=base_ring(R))
+    app = change_base_ring(coefficient_ring(base_ring(R)), ap - t; parent=base_ring(R))
     S, x = ZZ[:x]
     p = mod(x^t, cyclotomic_polynomial(d, S))
 
