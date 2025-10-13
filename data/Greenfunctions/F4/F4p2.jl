@@ -1,6 +1,6 @@
-using ..GenericCharacterTables
-import ..GenericCharacterTables: SimpleCharTable
-using ..GenericCharacterTables.Oscar
+using GenericCharacterTables
+import GenericCharacterTables: SimpleCharTable
+using GenericCharacterTables.Oscar
 R, q = polynomial_ring(QQ, "q")
 
 order =

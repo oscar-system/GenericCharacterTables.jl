@@ -1,6 +1,6 @@
-using ..GenericCharacterTables
-import ..GenericCharacterTables: SimpleCharTable
-using ..GenericCharacterTables.Oscar
+using GenericCharacterTables
+import GenericCharacterTables: SimpleCharTable
+using GenericCharacterTables.Oscar
 R, q = polynomial_ring(QQ, "q")
 
 order = 3 * q^12 * (q - 1)^4 * (q + 1)^4 * (q^2 + 1)^2 * (q^2 + q + 1) * (q^2 - q + 1)

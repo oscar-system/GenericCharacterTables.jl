@@ -1,7 +1,7 @@
-using ..GenericCharacterTables
-import ..GenericCharacterTables:
+using GenericCharacterTables
+import GenericCharacterTables
   Parameters, Parameter, CharTable, GenericCyclo, GenericCycloFrac, nesum
-using ..GenericCharacterTables.Oscar
+using GenericCharacterTablesar
 S, E, q = generic_cyclotomic_ring(; congruence=ZZ.((1, 2)))
 R = base_ring(S)
 i1, i2, i3, i4, k1, k2, k3, k4, i11, _... = params(
