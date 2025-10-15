@@ -145,7 +145,7 @@ information = raw"""The Green functions of $\mathrm{O}_8^-(2^n)$.
 - The notation for the unipotent classes is as in that paper.
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

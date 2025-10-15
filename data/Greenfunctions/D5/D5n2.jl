@@ -450,7 +450,7 @@ chardegree =
     (q^2 - q + 1)])
 
 information = raw""""""
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

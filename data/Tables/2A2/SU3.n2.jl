@@ -266,6 +266,6 @@ information = raw"""The generic character table of $\mathrm{SU}_3(q)$,
 - See also: [Enn63](@cite), [Enn62](@cite), [Ste51](@cite).
 """
 
-CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
+TABLE = CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
   classsums, charsums, classparamindex, charparamindex, classparams, charparams, S,
   information, splitext(basename(@__FILE__))[1])

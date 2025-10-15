@@ -323,7 +323,7 @@ information = raw"""The Green functions of $^2\mathrm{F}_4(q^2)$.
 
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

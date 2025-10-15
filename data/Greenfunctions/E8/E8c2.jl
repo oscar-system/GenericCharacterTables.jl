@@ -172,7 +172,7 @@ chardegree = inflate.([R([ 1, 8, 35, 112, 294, 672, 1386, 2640, 4718, 8000, 1297
 
 information = raw"""The Green functions of $\mathrm{E}_8(q)$ with $q$ congruent to $2$ modulo $30$, computed by Frank Lübeck"""
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   table,
   classinfo,

@@ -159,7 +159,7 @@ information = raw"""The Green functions of $\mathrm{SO}_8^+(2^n)$.
 - The table was first computed in [Mal93*1](@cite).
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

@@ -93,7 +93,7 @@ information = raw"""The Green functions of $^3\mathrm{D}_4(2^n)$.
 - The table was first computed in [Spa82*1](@cite).
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

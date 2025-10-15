@@ -3838,6 +3838,6 @@ information = raw"""The generic character table of $^2\mathrm{F}_4(q^2)$,
 - The other irreducible characters were added by G. Malle
 """
 
-CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
+TABLE = CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
   classsums, charsums, classparamindex, charparamindex, classparams, charparams, S,
   information, splitext(basename(@__FILE__))[1])

@@ -204,7 +204,7 @@ information = raw"""The unipotent characters for $\mathrm{GL}_4(q)$.
   unipotent characters as linear combinations of them.
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

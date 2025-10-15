@@ -514,7 +514,7 @@ information = raw"""The Green functions of $\mathrm{O}_{10}^+(2^n)$.
 - The notation for the unipotent classes is taken from [Spa82](@cite).
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

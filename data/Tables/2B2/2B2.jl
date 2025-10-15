@@ -211,6 +211,6 @@ information = raw"""The generic character table of $^2\mathrm{B}_2(q^2)$,
 - The table was first computed in [Suz62](@cite).
 """
 
-CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
+TABLE = CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
   classsums, charsums, classparamindex, charparamindex, classparams, charparams, S,
   information, splitext(basename(@__FILE__))[1])

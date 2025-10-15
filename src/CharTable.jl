@@ -22,7 +22,9 @@ function (t::CharTable)(c::GenericCharacter)
 end
 
 function loadtab(path::String)
-  return evalfile(path)
+  return Base.invokelatest(getproperty, (@eval module $(gensym("CHAR_TABLE"))
+    include($(path))
+    end), :TABLE)
 end
 
 # list of table name synonyms, for improved compatibility with CHEVIE

@@ -11363,6 +11363,6 @@ information = raw"""The generic character table of $\mathrm{Sp}_6(q)$, $q$ even
   use the table `uniSp6.0`, which allows faster calculations.
 """
 
-CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
+TABLE = CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
   classsums, charsums, classparamindex, charparamindex, classparams, charparams, S,
   information, splitext(basename(@__FILE__))[1])

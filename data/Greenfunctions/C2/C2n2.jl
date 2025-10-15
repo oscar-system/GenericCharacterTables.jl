@@ -63,7 +63,7 @@ information = raw"""The Green functions of $\mathrm{CSp}_4(q)$, $q$ odd.
 - The names of the unipotent classes are taken from the article of Shinoda.
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

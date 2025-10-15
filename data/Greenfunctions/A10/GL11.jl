@@ -7751,7 +7751,7 @@ information = raw"""The Green functions of $\mathrm{GL}_11(q)$.
 - This CHEVIE-table is computed by an algorithm from [LS78](@cite).
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

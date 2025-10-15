@@ -140,6 +140,6 @@ information = raw"""The generic character table of $\mathrm{PGL}_2(q)$, $q$ odd
 - See also: [Ste51](@cite).
 """
 
-CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
+TABLE = CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
   classsums, charsums, classparamindex, charparamindex, classparams, charparams, S,
   information, splitext(basename(@__FILE__))[1])

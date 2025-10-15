@@ -20,7 +20,7 @@ information = raw"""The Green functions of $\mathrm{GL}_1(q)$.
 - This CHEVIE-table is computed by an algorithm from [LS78](@cite).
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   reshape(table, 1, 1),
   classinfo,

@@ -274,7 +274,7 @@ information = raw"""The generic character table of $\mathrm{CSp}_4(q)$ with odd 
   this  release.
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

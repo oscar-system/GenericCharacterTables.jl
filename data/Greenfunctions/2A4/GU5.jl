@@ -95,7 +95,7 @@ information = raw"""The Green functions of $\mathrm{GU}_5(q)$.
 - See also: [DM87*1](@cite).
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

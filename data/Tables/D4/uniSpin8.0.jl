@@ -2482,7 +2482,7 @@ information = raw"""The unipotent characters of $\mathrm{Spin}_8(q)$, $q$ even
   information list returned by the `info` function.
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

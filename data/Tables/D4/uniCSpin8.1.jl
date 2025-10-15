@@ -3009,7 +3009,7 @@ information = raw"""The unipotent characters of $\mathrm{CSpin}_8(q)$, $q$ odd
   information list returned by the `info` function.
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,
