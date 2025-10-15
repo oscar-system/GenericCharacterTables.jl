@@ -22,9 +22,6 @@ import Base:
   show,
   zero
 
-import Compat:
-  pkgversion
-
 import Markdown
 
 import Oscar.Random:
