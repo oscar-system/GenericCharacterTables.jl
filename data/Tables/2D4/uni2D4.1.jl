@@ -1030,7 +1030,7 @@ information = raw"""The unipotent characters of $\mathrm{CO}_8^-(q)$,
 - This table was computed by F. Lübeck, most of it with general programs.
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

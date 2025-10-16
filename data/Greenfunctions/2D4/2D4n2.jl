@@ -131,7 +131,7 @@ information = raw"""The Green functions of $\mathrm{O}_8^-(q)$ with odd $q$.
   Weyl groups: $L$ of type $D_0$ and $N(L)/L$ of type ${}^2D_4$.
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

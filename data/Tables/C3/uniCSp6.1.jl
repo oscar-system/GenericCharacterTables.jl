@@ -1403,7 +1403,7 @@ information = raw"""The unipotent characters of $\mathrm{CSp}_6(q)$, $q$ odd
   `specialize` function as explained above.
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

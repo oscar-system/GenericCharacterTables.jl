@@ -11400,6 +11400,6 @@ information = raw"""The generic character table of $\mathrm{CSp}_6(q)$, $q$ odd
   use the table `uniCSp6.1`, which allows faster calculations.
 """
 
-CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
+TABLE = CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
   classsums, charsums, classparamindex, charparamindex, classparams, charparams, S,
   information, splitext(basename(@__FILE__))[1])

@@ -36,7 +36,7 @@ information = raw"""The Green functions of $^2\mathrm{B}_2(q^2)$.
 - The table was first computed in [Suz62](@cite).
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

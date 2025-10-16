@@ -1045,7 +1045,7 @@ information = raw"""The unipotent characters of $\mathrm{Sp}_6(q)$, $q$ even
   of `Sp6.0`, then don't use `uniSp6.0`.
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

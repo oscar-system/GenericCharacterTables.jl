@@ -1717,6 +1717,6 @@ information = raw"""The generic character table of $G_2(q)$,
   Character type six of `G2.111` is called $X_{18}$ by Chang and Ree
 """
 
-CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
+TABLE = CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
   classsums, charsums, classparamindex, charparamindex, classparams, charparams, S,
   information, splitext(basename(@__FILE__))[1])

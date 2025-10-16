@@ -67,7 +67,7 @@ information = raw"""The Green functions of $\mathrm{GL}_5(2^n):2$.
 - The table was first computed in [Mal93*1](@cite).
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

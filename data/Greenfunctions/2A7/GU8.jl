@@ -786,7 +786,7 @@ information = raw"""The Green functions of $\mathrm{GU}_8(q^2)$.
 - See also: [DM87*1](@cite).
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

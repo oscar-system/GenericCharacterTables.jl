@@ -90,6 +90,6 @@ information = raw"""The generic character table of $\mathrm{SL}_2(q)$, $q$ even
 - The table was first computed in [Sch07](@cite).
 """
 
-CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
+TABLE = CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
   classsums, charsums, classparamindex, charparamindex, classparams, charparams, S,
   information, splitext(basename(@__FILE__))[1])

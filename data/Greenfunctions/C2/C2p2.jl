@@ -64,7 +64,7 @@ information = raw"""The Green functions of $\mathrm{Sp}_4(q)$, q even.
 - The names of the unipotent classes are taken from this paper.
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

@@ -86,7 +86,7 @@ information = raw"""The Green functions of $\mathrm{G}_2(2^n)$.
   The notation for the unipotent classes is taken from that paper.
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

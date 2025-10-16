@@ -136,6 +136,6 @@ information = raw"""The generic character table of $\mathrm{GL}_2(q)$.
 - See also: [Ste51](@cite).
 """
 
-CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
+TABLE = CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
   classsums, charsums, classparamindex, charparamindex, classparams, charparams, S,
   information, splitext(basename(@__FILE__))[1])

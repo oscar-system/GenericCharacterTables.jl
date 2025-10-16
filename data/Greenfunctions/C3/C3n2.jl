@@ -158,7 +158,7 @@ information = raw"""The Green functions of $\mathrm{CSp}_6(q)$, $q$ odd.
 - These Green functions are computed in [LS90](@cite).
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

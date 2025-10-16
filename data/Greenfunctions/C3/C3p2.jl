@@ -187,7 +187,7 @@ information = raw"""The Green functions of $\mathrm{Sp}_6(2^n)$.
 - The notation for the unipotent classes is taken from that paper.
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,

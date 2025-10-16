@@ -256,7 +256,7 @@ information = raw"""The Green functions of $\mathrm{O}_8^+(q)$.
 - The notation for the unipotent classes is taken from [Spa82](@cite).
 """
 
-SimpleCharTable(
+TABLE = SimpleCharTable(
   order,
   permutedims(table),
   classinfo,
