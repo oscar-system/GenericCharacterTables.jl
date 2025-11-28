@@ -10,7 +10,16 @@ julia> kempner_with_data(12)
 
 ```
 """
-function kempner_with_data(m::Int64)
+kempner_with_data(m::Int64) = get!(() -> _kempner_with_data(m), kempner_cache, m)
+
+# FIXME/TODO: once we drop support for Oscar 1.1 we should change
+# the `Fac` in the next declaration to `Fac{Int}`.
+# Alternatively, we could remove the `factorization` return value
+# of `kempner_with_data` (a breaking change), and modify `_kempner_reduction`
+# to replace `factorization[p]` by `valuation(m, p)`
+const kempner_cache = Dict{Int,Tuple{Int, Dict{Int, Vector{Int}}, Fac}}()
+
+function _kempner_with_data(m::Int64)
   # factor m for later use
   factorization = factor(m)
 
@@ -51,6 +60,34 @@ julia> kempner(12)
 """
 kempner(m::Int64) = kempner_with_data(m)[1]
 
+# helper function for normal_form
+const kempner_reduction_cache = Dict{Int,Vector{Tuple{Int,Int}}}()
+function _kempner_reduction(m)
+  return get!(kempner_reduction_cache, m) do
+    res = Tuple{Int,Int}[]
+    K_m, schemes, factorization = kempner_with_data(m)
+
+    for k in reverse(0:(K_m - 1))
+      # compute the reduction of m by k by reusing the schemes
+      reduction = 1
+      for (p, scheme) in schemes
+        q = div(k, p)
+        if iszero(q)
+          reduction *= p^factorization[p]
+        elseif q <= length(scheme)
+          exponent = factorization[p] - scheme[q]
+          if exponent > 0
+            reduction *= p^exponent
+          end
+        end
+      end
+
+      push!(res, (k,reduction))
+    end
+    return res
+  end
+end
+
 @doc raw"""
     normal_form(f::ZZUPoly, m::Int64)
 
@@ -89,33 +126,19 @@ function normal_form(f::ZZUPoly, m::Int64)
   i = findlast(x -> x > 0, degrees(f))
   x_i = R[i]
 
-  # save Kempner schemes to be reused to compute reductions of m
-  K_m, schemes, factorization = kempner_with_data(m)
+  K_m = kempner(m)
 
   # reduce by the K(m)-th rising factorial of x_i
   S = rising_factorial(x_i, K_m)
   f = mod(f, S)
 
-  for k in reverse(0:(K_m - 1))
-    # compute the reduction of m by k by reusing the schemes
-    reduction = 1
-    for (p, scheme) in schemes
-      q = div(k, p)
-      if iszero(q)
-        reduction *= p^factorization[p]
-      elseif q <= length(scheme)
-        exponent = factorization[p] - scheme[q]
-        if exponent > 0
-          reduction *= p^exponent
-        end
-      end
-    end
+  for (k,reduction) in _kempner_reduction(m)
 
     # reduce coefficient of x_i^k
     S_ik = rising_factorial(x_i, k)
     C_ik = coeff(f, [x_i], [k])
     c = normal_form(C_ik, reduction)
-    f -= (C_ik - c) * S_ik
+    f = sub!(f, (C_ik - c) * S_ik)
   end
   return f
 end
