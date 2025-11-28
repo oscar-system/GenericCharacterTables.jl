@@ -77,7 +77,7 @@ julia> normal_form(4*x^9+x^7-(x^3+4*x),12)
 
 ```
 """
-function normal_form(f::ZZUPoly, m::Int64)
+function normal_form(f::RingElem, m::Int64) # <- TODO: better type for f
   if m < 1
     throw(DomainError(m, "A normal form for non-positive moduli is not defined!"))
   end
@@ -395,7 +395,7 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
   if !simplify
     return GenericCyclo(f, R)
   end
-
+# this function is a bottleneck `904447` allocs
   # congruence preparation
   substitutes = get_substitutes!(R)
   power = R.power
@@ -426,6 +426,7 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
           gp = evaluate(gd, [1], [substitutes[1]])
         end
       end
+      # Q: what type does `a` have here?
       a, r = divrem(numerator(gp), denominator(gp))
       push!(L, (c, denominator(gp), r, a))
 
@@ -442,7 +443,8 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
   fp = Dict{UPolyFrac,UPoly}()
   for (c, g_2, r, a) in L
     # normalize the polynomial part of the exponent
-    ap = normal_form(change_base_ring(ZZ, d * a), d)
+    tmp = change_base_ring(ZZ, d * a)  # TODO: add a dedicated function for this
+    ap = normal_form(tmp, d)  # <- bottleneck here: perhaps input MPolyRingElem instead of UNivPoly?
 
     # normalize the constant part
     t = constant_coefficient(ap)
