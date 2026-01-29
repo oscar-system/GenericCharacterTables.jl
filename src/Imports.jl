@@ -66,3 +66,8 @@ import Oscar:
   scalar_product,
   tensor_product,
   zero!
+
+# Newer versions of Oscar export `parameters` and we want to add our methods to it.
+if isdefined(Oscar, :parameters)
+  import Oscar: parameters
+end
