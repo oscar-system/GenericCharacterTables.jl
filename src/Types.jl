@@ -1,6 +1,6 @@
-const ZZUPoly = Generic.UnivPoly{ZZRingElem}
-const UPoly = Generic.UnivPoly{QQFieldElem}
-const UPolyRing = Generic.UniversalPolyRing{QQFieldElem}
+const ZZUPoly = universal_poly_type(ZZRingElem)
+const UPoly = universal_poly_type(QQFieldElem)
+const UPolyRing = universal_poly_ring_type(QQFieldElem)
 const UPolyFrac = Generic.FracFieldElem{UPoly}
 const UPolyFracRing = Generic.FracField{UPoly}
 
