@@ -429,8 +429,8 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
       a, r = divrem(numerator(gp), denominator(gp))
       push!(L, (c, denominator(gp), r, a))
 
-      # find the common denominator of the exponents of all 'a'
-      d = lcm(d, Int(denominator(a.p)))
+      # find the common denominator of the exponents in `f` (of all `a`)
+      d = lcm(d, Int(denominator(data(a))))
     end
   end
 
