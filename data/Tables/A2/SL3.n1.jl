@@ -233,7 +233,7 @@ classparams = [
   Parameters(Parameter[]),
   Parameters([Parameter(a, q - 1)], [((a) * 1//(q - 1))]),
   Parameters([Parameter(a, q - 1)], [((a) * 1//(q - 1))]),
-  Parameters([Parameter(a, q - 1), Parameter(b, q - 1)], [((a - b) * 1//(q - 1))]),
+  Parameters([Parameter(a, q - 1), Parameter(b, q - 1)], [((a - b) * 1//(q - 1)), ((a + 2*b) * 1//(q - 1)), ((2*a + b) * 1//(q - 1))]),
   Parameters([Parameter(a, q^2 - 1)], [((a) * 1//(q + 1))]),
   Parameters([Parameter(a, q^2 + q + 1)], [((a) * 1//(q^2 + q + 1))]),
 ]
@@ -244,7 +244,7 @@ charparams = [
   Parameters(Parameter[]),
   Parameters([Parameter(n, q - 1)], [((n) * 1//(q - 1))]),
   Parameters([Parameter(n, q - 1)], [((n) * 1//(q - 1))]),
-  Parameters([Parameter(n, q - 1), Parameter(m, q - 1)], [((n - m) * 1//(q - 1))]),
+  Parameters([Parameter(n, q - 1), Parameter(m, q - 1)], [((n - m) * 1//(q - 1)), ((n + 2*m) * 1//(q - 1)), ((2*n + m) * 1//(q - 1))]),
   Parameters([Parameter(n, q^2 - 1)], [((n) * 1//(q + 1))]),
   Parameters([Parameter(n, q^2 + q + 1)], [((n) * 1//(q^2 + q + 1))]),
 ]
