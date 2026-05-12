@@ -442,7 +442,7 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
   fp = Dict{UPolyFrac,UPoly}()
   for (c, g_2, r, a) in L
     # normalize the polynomial part of the exponent
-    ap = normal_form(change_base_ring(ZZ, d * a), d)
+    ap = normal_form(change_base_ring(ZZ, d * a; cached=false), d)
 
     # normalize the constant part
     t = constant_coefficient(ap)
