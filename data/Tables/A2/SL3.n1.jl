@@ -244,7 +244,7 @@ charparams = [
   Parameters(Parameter[]),
   Parameters([Parameter(n, q - 1)], [((n) * 1//(q - 1))]),
   Parameters([Parameter(n, q - 1)], [((n) * 1//(q - 1))]),
-  Parameters([Parameter(n, q - 1), Parameter(m, q - 1)], [((n - m) * 1//(q - 1)), ((n + 2*m) * 1//(q - 1)), ((2*n + m) * 1//(q - 1))]),
+  Parameters([Parameter(n, q - 1), Parameter(m, q - 1)], [((n - m) * 1//(q - 1)), ((n) * 1//(q - 1)), ((m) * 1//(q - 1))]),
   Parameters([Parameter(n, q^2 - 1)], [((n) * 1//(q + 1))]),
   Parameters([Parameter(n, q^2 + q + 1)], [((n) * 1//(q^2 + q + 1))]),
 ]
