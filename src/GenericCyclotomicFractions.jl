@@ -5,7 +5,7 @@ end
 @doc raw"""
     shrink(a::GenericCycloFrac{<:NfPoly})
 
-Remove exceptions from `a` that follow from the others. And try to simplify the representation of `a`.
+Try to simplify the representation of `a`.
 """
 function shrink(a::GenericCycloFrac)  # TODO Move this to the constructor of GenericCycloFrac?
   new_numerator = a.numerator
