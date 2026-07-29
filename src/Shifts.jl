@@ -40,7 +40,7 @@ end
 
 Replace all class parameters of `t` in `a` by their counterparts suffixed with `steps`.
 
-This is done by shifting them `steps*number_of_parameters(t)` steps further in `t.argumentring`.
+This is done by shifting them `steps*number_of_parameters(t)` steps further in `t.ring`.
 """
 function shift_class_parameters(
   t::CharTable, a::Union{Parameters,GenericCyclo,GenericCycloFrac}, steps::Int64
@@ -53,7 +53,7 @@ end
 
 Replace all character parameters of `t` in `a` by their counterparts suffixed with `steps`.
 
-This is done by shifting them `steps*number_of_parameters(t)` steps further in `t.argumentring`.
+This is done by shifting them `steps*number_of_parameters(t)` steps further in `t.ring`.
 """
 function shift_char_parameters(
   t::CharTable, a::Union{Parameters,GenericCyclo,GenericCycloFrac}, steps::Int64
