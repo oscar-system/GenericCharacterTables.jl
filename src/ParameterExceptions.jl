@@ -16,12 +16,20 @@ function is_integer(x::UPolyFrac)
 end
 
 @doc raw"""
+    is_rational_number(x::UPolyFrac)
+
+Return if `x` represents a rational number.
+"""
+is_rational_number(x::UPolyFrac) = is_constant(denominator(x)) && is_constant(numerator(x))
+
+@doc raw"""
     add_exception!(a::ParameterExceptions, exception::UPolyFrac)
 
 Include `exception` into `a`. This also removes all now redundant exceptions from `a`.
 """
 function add_exception!(a::ParameterExceptions, exception::UPolyFrac)
-  !is_integer(inv(exception)) || return nothing  # TODO make this more general
+  is_integer(inv(exception)) && return nothing
+  is_rational_number(exception) && !is_integer(exception) && return nothing
   new_exception = sign(leading_coefficient(numerator(exception))) * exception
   for old_exception in a.exceptions
     if is_integer(old_exception//new_exception)
