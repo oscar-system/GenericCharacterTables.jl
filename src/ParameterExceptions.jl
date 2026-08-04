@@ -41,6 +41,15 @@ function add_exception!(a::ParameterExceptions, exception::UPolyFrac)
 end
 
 @doc raw"""
+    remove_exceptions!(a::ParameterExceptions, b::ParameterExceptions)
+
+Remove the exceptions in `b` from `a`.
+"""
+function remove_exceptions!(a::ParameterExceptions, b::ParameterExceptions)
+  setdiff!(a.exceptions, b.exceptions)
+end
+
+@doc raw"""
     merge(x::ParameterExceptions, y::ParameterExceptions)
 
 Return a new collection of parameter exceptions composed of `x` and `y` where all redundant exceptions are omitted.

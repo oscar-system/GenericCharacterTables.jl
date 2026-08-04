@@ -134,8 +134,6 @@ julia> g=generic_character_table("SL2.0");
 
 julia> class_multiplication_coefficient(conjugacy_class_type(g, 2), conjugacy_class_type(g, 2), conjugacy_class_type(g, 4))
 q + 1
-With exceptions:
-  a3 ∈ (q + 1)ℤ
 ```
 """
 function class_multiplication_coefficient(
@@ -153,7 +151,11 @@ function class_multiplication_coefficient(
     val3 = shift_class_parameters(t, class3[i], 3)
     sum += charsum(char, val1 * val2 * conj(val3))//degree(char)
   end
-  return shrink((order(class1) * order(class2)) * sum//order(t))
+  result = shrink((order(class1) * order(class2)) * sum//order(t))
+  remove_exceptions!(result, shift_class_parameters(t, exceptions(parameters(class1)), 1))
+  remove_exceptions!(result, shift_class_parameters(t, exceptions(parameters(class2)), 2))
+  remove_exceptions!(result, shift_class_parameters(t, exceptions(parameters(class3)), 3))
+  return result
 end
 
 @doc raw"""
@@ -195,8 +197,6 @@ julia> g=generic_character_table("SL2.0");
 
 julia> class_multiplication_coefficient(g,2,2,4)
 q + 1
-With exceptions:
-  a3 ∈ (q + 1)ℤ
 ```
 """
 function class_multiplication_coefficient(
@@ -229,7 +229,9 @@ function norm(class::GenericConjugacyClass)
     val = class[i]
     sum += charsum(char, val * conj(val))
   end
-  return shrink((order(class) * sum)//order(t))
+  result = shrink((order(class) * sum)//order(t))
+  remove_exceptions!(result, exceptions(parameters(class)))
+  return result
 end
 
 @doc raw"""
@@ -289,7 +291,10 @@ function scalar_product(class1::GenericConjugacyClass, class2::GenericConjugacyC
     val2 = shift_class_parameters(t, class2[i], 2)
     sum += charsum(char, val1 * conj(val2))
   end
-  return shrink((order(class1) * sum)//order(t))
+  result = shrink((order(class1) * sum)//order(t))
+  remove_exceptions!(result, shift_class_parameters(t, exceptions(parameters(class1)), 1))
+  remove_exceptions!(result, shift_class_parameters(t, exceptions(parameters(class2)), 2))
+  return result
 end
 
 @doc raw"""

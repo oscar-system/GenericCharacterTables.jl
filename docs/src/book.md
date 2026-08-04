@@ -98,16 +98,13 @@ With exceptions:
   2*m1 - n1 ∈ (q - 1)ℤ
   m1 - 2*n1 ∈ (q - 1)ℤ
   m1 + n1 ∈ (q - 1)ℤ
-  m1 ∈ (q - 1)ℤ
   m1 - n1 ∈ (q - 1)ℤ
-  n1 ∈ (q - 1)ℤ
 <7, h> = 0
 With exceptions:
   n1 ∈ (q - 1)ℤ
 <8, h> = 0
 With exceptions:
   q*n1 ∈ (q^2 + q + 1)ℤ
-  n1 ∈ (q^2 + q + 1)ℤ
   q*n1 + n1 ∈ (q^2 + q + 1)ℤ
 ```
 
