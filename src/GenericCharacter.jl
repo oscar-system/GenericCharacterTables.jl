@@ -320,7 +320,9 @@ function norm(char::GenericCharacter)
     val = char[class]
     sum += t.classlength[class] * classsum(t, class, val * conj(val))
   end
-  return shrink(sum//order(t))
+  result = shrink(sum//order(t))
+  remove_exceptions!(result, exceptions(parameters(char)))
+  return result
 end
 
 @doc raw"""
@@ -371,7 +373,10 @@ function scalar_product(char1::GenericCharacter, char2::GenericCharacter)
     val2 = shift_char_parameters(t, char2[class], 2)
     sum += t.classlength[class] * classsum(t, class, val1 * conj(val2))
   end
-  return shrink(sum//order(t))
+  result = shrink(sum//order(t))
+  remove_exceptions!(result, shift_char_parameters(t, exceptions(parameters(char1)), 1))
+  remove_exceptions!(result, shift_char_parameters(t, exceptions(parameters(char2)), 2))
+  return result
 end
 
 @doc raw"""

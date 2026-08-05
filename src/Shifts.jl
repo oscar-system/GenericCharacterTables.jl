@@ -34,29 +34,33 @@ function var_shift(a::Parameters, vars::Vector{Int64}, step_size::Int64, steps::
   return Parameters(var_shift.(a.params, Ref(vars), Ref(step_size), Ref(steps)),
     var_shift.(a.exceptions, Ref(vars), Ref(step_size), Ref(steps)))
 end
+function var_shift(a::ParameterExceptions, vars::Vector{Int64}, step_size::Int64, steps::Int64)
+  isempty(a.exceptions) && return a
+  return evaluate(a, vars, get_shift_mask(parent(numerator(a.exceptions[1])), vars, step_size, steps))
+end
 
 @doc raw"""
-    shift_class_parameters(t::CharTable, a::Union{Parameters,GenericCyclo,GenericCycloFrac}, steps::Int64)
+    shift_class_parameters(t::CharTable, a::Union{Parameters,ParameterExceptions,GenericCyclo,GenericCycloFrac}, steps::Int64)
 
 Replace all class parameters of `t` in `a` by their counterparts suffixed with `steps`.
 
 This is done by shifting them `steps*number_of_parameters(t)` steps further in `t.ring`.
 """
 function shift_class_parameters(
-  t::CharTable, a::Union{Parameters,GenericCyclo,GenericCycloFrac}, steps::Int64
+  t::CharTable, a::Union{Parameters,ParameterExceptions,GenericCyclo,GenericCycloFrac}, steps::Int64
 )
   return var_shift(a, t.classparamindex, number_of_parameters(t), steps)
 end
 
 @doc raw"""
-    shift_char_parameters(t::CharTable, a::Union{Parameters,GenericCyclo,GenericCycloFrac}, steps::Int64)
+    shift_char_parameters(t::CharTable, a::Union{Parameters,ParameterExceptions,GenericCyclo,GenericCycloFrac}, steps::Int64)
 
 Replace all character parameters of `t` in `a` by their counterparts suffixed with `steps`.
 
 This is done by shifting them `steps*number_of_parameters(t)` steps further in `t.ring`.
 """
 function shift_char_parameters(
-  t::CharTable, a::Union{Parameters,GenericCyclo,GenericCycloFrac}, steps::Int64
+  t::CharTable, a::Union{Parameters,ParameterExceptions,GenericCyclo,GenericCycloFrac}, steps::Int64
 )
   return var_shift(a, t.charparamindex, number_of_parameters(t), steps)
 end

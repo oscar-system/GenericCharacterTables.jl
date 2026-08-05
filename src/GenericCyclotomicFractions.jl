@@ -2,8 +2,12 @@ function add_exception!(a::GenericCycloFrac, exception::UPolyFrac)
   add_exception!(a.exceptions, exception)
 end
 
+function remove_exceptions!(a::GenericCycloFrac, exceptions::ParameterExceptions)
+  remove_exceptions!(a.exceptions, exceptions)
+end
+
 @doc raw"""
-    shrink(a::GenericCycloFrac{<:NfPoly})
+    shrink(a::GenericCycloFrac{<:NfPoly}, exceptions::ParameterExceptions)
 
 Try to simplify the representation of `a`.
 """
