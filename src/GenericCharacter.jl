@@ -450,7 +450,7 @@ function specialize(char::GenericCharacter, var::UPoly, expr::RingElement)
   for param in parameters(char)
     if var == param.var
       found_var = true
-      c = coeff(expr, var)
+      c = coeff(expr, [var], [1])
       if !iszero(c)
         push!(params.params, Parameter(var, divexact(param.modulus, c)))
       end
