@@ -2,7 +2,7 @@ show(io::IO, a::Parameter) = print(io, "$(a.var) ∈ {1,…, $(a.modulus)}")
 
 show(io::IO, a::ParameterSubstitution) = print(io, "$(a.var) = $(a.expression)")
 
-exceptions(a::Parameters) = ParameterExceptions(a.exceptions)
+exceptions(a::Parameters) = a.exceptions
 
 getindex(p::Parameters, i::Integer) = p.params[i]
 

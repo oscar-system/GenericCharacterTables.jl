@@ -1,3 +1,12 @@
+getindex(exceptions::ParameterExceptions, i::Integer) = exceptions.exceptions[i]
+
+eltype(::Type{ParameterExceptions}) = UPolyFrac
+
+length(exceptions::ParameterExceptions) = length(exceptions.exceptions)
+
+iterate(exceptions::ParameterExceptions, state::Integer=1) =
+  state > length(exceptions) ? nothing : (exceptions[state], state + 1)
+
 @doc raw"""
     is_integer(x::UPolyFrac)
 
@@ -69,16 +78,16 @@ end
 
 Return if `x` actually restricts something.
 """
-is_restriction(x::ParameterExceptions) = !isempty(x.exceptions)
+is_restriction(x::ParameterExceptions) = !isempty(x)
 
 function show(io::IO, x::ParameterExceptions)
-  for (i, exception) in enumerate(x.exceptions)
+  for (i, exception) in enumerate(x)
     if isone(denominator(exception))
       print(io, "$(numerator(exception)) ∈ ℤ")
     else
       print(io, "$(numerator(exception)) ∈ ($(denominator(exception)))ℤ")
     end
-    if i < length(x.exceptions)
+    if i < length(x)
       print(io, "\n")
     end
   end
@@ -87,6 +96,9 @@ end
 # evaluate
 
 function evaluate(x::ParameterExceptions, vars::Vector{Int64}, vals::Vector{<:RingElement})
-  exceptions = evaluate.(x.exceptions, Ref(vars), Ref(vals))
-  return ParameterExceptions(exceptions)
+  exceptions = parameter_exceptions()
+  for exception in x
+    add_exception!(exceptions, evaluate(exception, vars, vals))
+  end
+  return exceptions
 end

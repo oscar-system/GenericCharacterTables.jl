@@ -50,7 +50,7 @@ function tensor_product(char1::GenericCharacter, char2::GenericCharacter)
   param1 = shift_char_parameters(t, char1.params, 4)
   param2 = shift_char_parameters(t, char2.params, 5)
   new_char_params = Parameters(
-    vcat(param1.params, param2.params), vcat(param1.exceptions, param2.exceptions)
+    vcat(param1.params, param2.params), ParameterExceptions(vcat(param1.exceptions.exceptions, param2.exceptions.exceptions))
   )
   return GenericCharacter(
     t,
@@ -237,7 +237,7 @@ function linear_combination(coeffs::Vector{<:RingElement}, chars::Vector{<:Gener
     params[i] = shift_char_parameters(t, chars[i].params, 5 + i)
   end
   new_char_params = Parameters(
-    vcat(map(x -> x.params, params)...), vcat(map(x -> x.exceptions, params)...)
+    vcat(map(x -> x.params, params)...), ParameterExceptions(vcat(map(x -> x.exceptions.exceptions, params)...))
   )
   return GenericCharacter(
     t,
@@ -445,11 +445,26 @@ function specialize(char::GenericCharacter, var::UPoly, expr::RingElement)
   for class in 1:number_of_conjugacy_class_types(t)
     new_char_values[class] = evaluate(char[class], [var_index(var)], [expr])
   end
+  params = Parameters(Parameter[], evaluate(exceptions(parameters(char)), [var_index(var)], [expr]))
+  found_var = false
+  for param in parameters(char)
+    if var == param.var
+      found_var = true
+      c = coeff(expr, var)
+      if !iszero(c)
+        push!(params.params, Parameter(var, divexact(param.modulus, c)))
+      end
+    else
+      push!(params.params, param)
+    end
+  end
   substitutions = deepcopy(char.substitutions)
-  push!(substitutions, ParameterSubstitution(var, base_ring(t.ring)(expr)))
+  if !found_var
+    push!(substitutions, ParameterSubstitution(var, base_ring(t.ring)(expr)))
+  end
   # TODO: What about the sum function here?
   return GenericCharacter(
-    t, new_char_values, char.info, degree(char), nothing, char.params, substitutions
+    t, new_char_values, char.info, degree(char), nothing, params, substitutions
   )
 end
 
