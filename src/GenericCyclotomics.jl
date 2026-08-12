@@ -442,11 +442,11 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
   fp = Dict{UPolyFrac,UPoly}()
   for (c, g_2, r, a) in L
     # normalize the polynomial part of the exponent
-    ap = normal_form(change_base_ring(ZZ, d * a; cached=false), d)
+    ap = normal_form(change_coefficient_ring(ZZ, d * a; cached=false), d)
 
     # normalize the constant part
     t = constant_coefficient(ap)
-    app = change_base_ring(coefficient_ring(base_ring(R)), ap - t; parent=base_ring(R))
+    app = change_coefficient_ring(coefficient_ring(base_ring(R)), ap - t; parent=base_ring(R))
     S, x = ZZ[:x]
     p = mod(x^t, cyclotomic_polynomial(d, S))
 
