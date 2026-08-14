@@ -35,7 +35,7 @@ jobs:
         oscar-version:
           - 'stable'
           - 'devel'
-          - '1.7'
+#          - '1.8'
         os:
           - ubuntu-latest
         #include:
