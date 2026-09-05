@@ -28,8 +28,9 @@ is_rational_number(x::UPolyFrac) = is_constant(denominator(x)) && is_constant(nu
 Include `exception` into `a`. This also removes all now redundant exceptions from `a`.
 """
 function add_exception!(a::ParameterExceptions, exception::UPolyFrac)
+  @req !is_integer(exception) "The computation has failed, possibly due to illegal parameter combinations"
   is_integer(inv(exception)) && return nothing
-  is_rational_number(exception) && !is_integer(exception) && return nothing
+  is_rational_number(exception) && return nothing
   new_exception = sign(leading_coefficient(numerator(exception))) * exception
   for old_exception in a.exceptions
     if is_integer(old_exception//new_exception)
