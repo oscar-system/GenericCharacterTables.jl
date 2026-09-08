@@ -441,10 +441,43 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
 
   fp = Dict{UPolyFrac,UPoly}()
   frac_ring = fraction_field(base_ring(R))
+
+  # Add `coefficient` to the summand of exponent `g`, after reversing the
+  # congruence preparation applied above.
+  function collect_summand!(g::UPolyFrac, coefficient::UPoly)
+    if substitutes !== nothing
+      g = evaluate(g, [1], [substitutes[2]])
+      if !isone(power)
+        g = inflate(numerator(g), [power])//inflate(denominator(g), [power])
+      end
+    end
+    if haskey(fp, g)
+      fp[g] += coefficient
+    else
+      fp[g] = coefficient
+    end
+  end
+
+  # Each `r` is a remainder modulo its `g_2` and the exponent it came from was
+  # already in lowest terms, so the two are coprime and `frac_ring` may skip
+  # cancelling them, which would cost a multivariate gcd.
+
+  # For `d == 1` all exponents are integral: their normal form is zero and
+  # `phi_1 = x - 1` leaves nothing to distribute, so the remainder is already
+  # the whole exponent. This is by far the most common case.
+  if isone(d)
+    for (c, g_2, r, _) in L
+      collect_summand!(frac_ring(r, g_2), c)
+    end
+    return GenericCyclo(strip_zeros!(fp), R)
+  end
+
   exponent_ring = get_exponent_ring!(R)
   S, x = ZZ[:x]
   phi_d = cyclotomic_polynomial(d, S)
   for (c, g_2, r, a) in L
+    r_g_2 = frac_ring(r, g_2)
+
     # normalize the polynomial part of the exponent
     ap = normal_form(change_coefficient_ring(ZZ, d * a; parent=exponent_ring), d)
 
@@ -453,30 +486,12 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
     app = change_coefficient_ring(coefficient_ring(base_ring(R)), ap - t; parent=base_ring(R))
     p = mod(x^t, phi_d)
 
-    # distribute the normalized constant part.
-    # `r` is a remainder modulo `g_2` and the exponent it came from was already
-    # in lowest terms, so the two are coprime and `frac_ring` may skip
-    # cancelling them, which would cost a multivariate gcd.
-    r_g_2 = frac_ring(r, g_2)
+    # distribute the normalized constant part
     for (i, cp) in enumerate(coefficients(p))
-      tp = i - 1
-      g = (app + tp)//d + r_g_2
-      if substitutes === nothing
-        gp = g
-      else
-        gp = evaluate(g, [1], [substitutes[2]])
-        if !isone(power)
-          gp = inflate(numerator(gp), [power])//inflate(denominator(gp), [power])
-        end
-      end
-      if haskey(fp, gp)
-        fp[gp] += cp * c
-      else
-        fp[gp] = cp * c
-      end
+      collect_summand!((app + (i - 1))//d + r_g_2, cp * c)
     end
   end
-  return GenericCyclo(filter(p -> !iszero(p.second), fp), R)
+  return GenericCyclo(strip_zeros!(fp), R)
 end
 
 function (R::GenericCycloRing)(x::GenericCyclo)
