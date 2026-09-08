@@ -1,4 +1,5 @@
 const ZZUPoly = universal_poly_type(ZZRingElem)
+const ZZUPolyRing = universal_poly_ring_type(ZZRingElem)
 const UPoly = universal_poly_type(QQFieldElem)
 const UPolyRing = universal_poly_ring_type(QQFieldElem)
 const UPolyFrac = Generic.FracFieldElem{UPoly}
@@ -23,6 +24,10 @@ mutable struct GenericCycloRing <: Ring
   power::Int64
   substitute::UPoly
   substitute_inv::UPoly
+  # Uncached companion of `base_ring` over ZZ, used to normalize exponents.
+  # It is private to this ring for the same reason `base_ring` is: variables
+  # get added on demand, so sharing it between tables would mix them up.
+  exponent_ring::ZZUPolyRing
   function GenericCycloRing(
     R::UPolyRing,
     symbol::Symbol,

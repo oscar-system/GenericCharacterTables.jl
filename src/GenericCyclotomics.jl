@@ -440,15 +440,17 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
   end
 
   fp = Dict{UPolyFrac,UPoly}()
+  exponent_ring = get_exponent_ring!(R)
+  S, x = ZZ[:x]
+  phi_d = cyclotomic_polynomial(d, S)
   for (c, g_2, r, a) in L
     # normalize the polynomial part of the exponent
-    ap = normal_form(change_coefficient_ring(ZZ, d * a; cached=false), d)
+    ap = normal_form(change_coefficient_ring(ZZ, d * a; parent=exponent_ring), d)
 
     # normalize the constant part
     t = constant_coefficient(ap)
     app = change_coefficient_ring(coefficient_ring(base_ring(R)), ap - t; parent=base_ring(R))
-    S, x = ZZ[:x]
-    p = mod(x^t, cyclotomic_polynomial(d, S))
+    p = mod(x^t, phi_d)
 
     # distribute the normalized constant part
     r_g_2 = r//g_2
@@ -594,6 +596,17 @@ julia> params(S, [:q, :i])
 """
 params(S::GenericCycloRing, vars::Vector{Symbol}) = gens(base_ring(S), vars)
 params(S::GenericCycloRing, vars::Vector{String}) = gens(base_ring(S), vars)
+
+# Lazily created ZZ counterpart of `base_ring(R)`; see `GenericCycloRing`.
+function get_exponent_ring!(R::GenericCycloRing)
+  if !isdefined(R, :exponent_ring)
+    S = base_ring(R)
+    R.exponent_ring = universal_polynomial_ring(
+      ZZ, symbols(S); internal_ordering=internal_ordering(S), cached=false
+    )[1]
+  end
+  return R.exponent_ring
+end
 
 # congruence computation
 function get_substitutes!(R::GenericCycloRing)
