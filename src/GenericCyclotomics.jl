@@ -396,42 +396,22 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
     return GenericCyclo(f, R)
   end
 
-  # congruence preparation
   substitutes = get_substitutes!(R)
-  power = R.power
 
-  # reduce numerators modulo denominators
+  # split each exponent into its polynomial part and a remainder
   L = NTuple{4,UPoly}[]
   d = 1
   for (g, c) in f
-    if !iszero(c)
-      if substitutes === nothing
-        gp = g
-      else
-        # After ensuring the congruence for the first parameter
-        # via the evaluation at `substitutes[1]` further
-        # simplifications may be possible. Let `g` for
-        # example be `(q+1)//2` and `q` congruent to `1`
-        # modulo `2`. Then `substitutes[1]` is `2*q+1`
-        # and `gp=(2*q+2)//2=q+1` which simplifies to `0`.
-        #
-        # `power` is used in cases where the first parameter
-        # represents a root of order `power`. In this case the
-        # polynomials need to be deflated before the evaluation
-        # and the inflated back again.
-        if isone(power)
-          gp = evaluate(g, [1], [substitutes[1]])
-        else
-          gd = deflate(numerator(g), [power])//deflate(denominator(g), [power])
-          gp = evaluate(gd, [1], [substitutes[1]])
-        end
-      end
-      a, r = divrem(numerator(gp), denominator(gp))
-      push!(L, (c, denominator(gp), r, a))
-
-      # find the common denominator of the exponents in `f` (of all `a`)
-      d = lcm(d, Int(denominator(data(a))))
+    iszero(c) && continue
+    g_2, r, a, a_denominator = if substitutes === nothing
+      split_exponent(g)
+    else
+      prepare_exponent!(R, substitutes, g)
     end
+    push!(L, (c, g_2, r, a))
+
+    # find the common denominator of the exponents in `f` (of all `a`)
+    d = lcm(d, a_denominator)
   end
 
   # return early if `L` is empty
@@ -446,10 +426,7 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
   # congruence preparation applied above.
   function collect_summand!(g::UPolyFrac, coefficient::UPoly)
     if substitutes !== nothing
-      g = evaluate(g, [1], [substitutes[2]])
-      if !isone(power)
-        g = inflate(numerator(g), [power])//inflate(denominator(g), [power])
-      end
+      g = restore_exponent!(R, substitutes, g)
     end
     if haskey(fp, g)
       fp[g] += coefficient
@@ -615,6 +592,53 @@ julia> params(S, [:q, :i])
 """
 params(S::GenericCycloRing, vars::Vector{Symbol}) = gens(base_ring(S), vars)
 params(S::GenericCycloRing, vars::Vector{String}) = gens(base_ring(S), vars)
+
+# Return `(denominator(g), r, a, den)` where `a` and `r` are the quotient and the
+# remainder of `g` and `den` is the common denominator of the coefficients of `a`.
+function split_exponent(g::UPolyFrac)
+  a, r = divrem(numerator(g), denominator(g))
+  return (denominator(g), r, a, Int(denominator(data(a))))
+end
+
+@doc raw"""
+    prepare_exponent!(R::GenericCycloRing, substitutes::Tuple{UPoly,UPoly}, g::UPolyFrac)
+
+Return `split_exponent` of `g` evaluated at `substitutes[1]`, memoized in `R`.
+
+That evaluation may open up further simplifications: let `g` be `(q+1)//2` with
+`q` congruent to `1` modulo `2`. Then the substitute is `2*q+1` and `g` becomes
+`(2*q+2)//2 = q+1`. `R.power` covers the case where the first parameter
+represents a root of order `power`; the polynomials are then deflated before the
+evaluation and inflated again in `restore_exponent!`.
+"""
+function prepare_exponent!(
+  R::GenericCycloRing, substitutes::Tuple{UPoly,UPoly}, g::UPolyFrac
+)
+  return get!(R.prepared_exponents, g) do
+    if isone(R.power)
+      gp = evaluate(g, [1], [substitutes[1]])
+    else
+      gd = deflate(numerator(g), [R.power])//deflate(denominator(g), [R.power])
+      gp = evaluate(gd, [1], [substitutes[1]])
+    end
+    split_exponent(gp)
+  end
+end
+
+@doc raw"""
+    restore_exponent!(R::GenericCycloRing, substitutes::Tuple{UPoly,UPoly}, g::UPolyFrac)
+
+Undo the evaluation done by `prepare_exponent!`, memoized in `R`.
+"""
+function restore_exponent!(
+  R::GenericCycloRing, substitutes::Tuple{UPoly,UPoly}, g::UPolyFrac
+)
+  return get!(R.restored_exponents, g) do
+    gp = evaluate(g, [1], [substitutes[2]])
+    isone(R.power) && return gp
+    inflate(numerator(gp), [R.power])//inflate(denominator(gp), [R.power])
+  end
+end
 
 # Lazily created ZZ counterpart of `base_ring(R)`; see `GenericCycloRing`.
 function get_exponent_ring!(R::GenericCycloRing)

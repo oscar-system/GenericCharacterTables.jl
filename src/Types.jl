@@ -22,6 +22,11 @@ mutable struct GenericCycloRing <: Ring
   symbol::Symbol
   congruence::Union{Tuple{ZZRingElem,ZZRingElem},Nothing}
   power::Int64
+  # The same exponents come up over and over while simplifying the sums and
+  # products making up e.g. a scalar product, so the work spent on a single
+  # exponent is memoized here. See `prepare_exponent!` and `restore_exponent!`.
+  prepared_exponents::Dict{UPolyFrac,Tuple{UPoly,UPoly,UPoly,Int64}}
+  restored_exponents::Dict{UPolyFrac,UPolyFrac}
   substitute::UPoly
   substitute_inv::UPoly
   # Uncached companion of `base_ring` over ZZ, used to normalize exponents.
@@ -34,7 +39,8 @@ mutable struct GenericCycloRing <: Ring
     congruence::Union{Tuple{ZZRingElem,ZZRingElem},Nothing},
     power::Int64
   )
-    return new(R, symbol, congruence, power)
+    return new(R, symbol, congruence, power,
+      Dict{UPolyFrac,Tuple{UPoly,UPoly,UPoly,Int64}}(), Dict{UPolyFrac,UPolyFrac}())
   end
 end
 
