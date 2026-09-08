@@ -440,6 +440,7 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
   end
 
   fp = Dict{UPolyFrac,UPoly}()
+  frac_ring = fraction_field(base_ring(R))
   exponent_ring = get_exponent_ring!(R)
   S, x = ZZ[:x]
   phi_d = cyclotomic_polynomial(d, S)
@@ -452,8 +453,11 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
     app = change_coefficient_ring(coefficient_ring(base_ring(R)), ap - t; parent=base_ring(R))
     p = mod(x^t, phi_d)
 
-    # distribute the normalized constant part
-    r_g_2 = r//g_2
+    # distribute the normalized constant part.
+    # `r` is a remainder modulo `g_2` and the exponent it came from was already
+    # in lowest terms, so the two are coprime and `frac_ring` may skip
+    # cancelling them, which would cost a multivariate gcd.
+    r_g_2 = frac_ring(r, g_2)
     for (i, cp) in enumerate(coefficients(p))
       tp = i - 1
       g = (app + tp)//d + r_g_2
