@@ -98,7 +98,6 @@ With exceptions:
   2*m1 - n1 ∈ (q - 1)ℤ
   m1 - 2*n1 ∈ (q - 1)ℤ
   m1 + n1 ∈ (q - 1)ℤ
-  m1 - n1 ∈ (q - 1)ℤ
 <7, h> = 0
 With exceptions:
   n1 ∈ (q - 1)ℤ

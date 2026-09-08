@@ -58,7 +58,7 @@ end
 @doc raw"""
     ParameterExceptions
 
-A collection of parameter exceptions used in `GenericCycloFrac`.
+A collection of parameter exceptions which describes illegal parameter combinations.
 """
 struct ParameterExceptions
   exceptions::Vector{UPolyFrac}
@@ -142,7 +142,10 @@ Parameters of generic characters and class types. This is used in `GenericCharac
 """
 struct Parameters
   params::Vector{Parameter}
-  exceptions::Vector{UPolyFrac}
+  exceptions::ParameterExceptions
+end
+function Parameters(params::Vector{Parameter}, exceptions::Vector{UPolyFrac})
+  return Parameters(params, ParameterExceptions(exceptions))
 end
 
 abstract type Table end
