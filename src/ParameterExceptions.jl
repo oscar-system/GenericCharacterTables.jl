@@ -8,23 +8,6 @@ iterate(exceptions::ParameterExceptions, state::Integer=1) =
   state > length(exceptions) ? nothing : (exceptions[state], state + 1)
 
 @doc raw"""
-    is_integer(x::UPolyFrac)
-
-Return if `x` represents an integer.
-"""
-function is_integer(x::UPolyFrac)
-  if isone(denominator(x))
-    if is_constant(numerator(x))
-      c = constant_coefficient(numerator(x))
-      if isone(denominator(c))
-        return true
-      end
-    end
-  end
-  return false
-end
-
-@doc raw"""
     is_rational_number(x::UPolyFrac)
 
 Return if `x` represents a rational number.
@@ -66,7 +49,7 @@ end
 Include `exception` into `a`. This also removes all now redundant exceptions from `a`.
 """
 function add_exception!(a::ParameterExceptions, exception::UPolyFrac)
-  @req !is_integer(exception) "The computation has failed, possibly due to illegal parameter combinations"
+  @req !is_integer_quotient(numerator(exception), denominator(exception)) "The computation has failed, possibly due to illegal parameter combinations"
   is_integer_quotient(denominator(exception), numerator(exception)) && return nothing
   is_rational_number(exception) && return nothing
   new_exception = sign(leading_coefficient(numerator(exception))) * exception
