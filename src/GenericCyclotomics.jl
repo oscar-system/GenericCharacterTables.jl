@@ -391,13 +391,17 @@ function (R::GenericCycloRing)(x::RingElement; exponent::UPolyFrac)
   return R(Dict(exponent => base_ring(R)(x)))
 end
 
-function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  # TODO check parent rings?
+function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true, use_congruence::Bool=false)  # TODO check parent rings?
   if !simplify
     return GenericCyclo(f, R)
   end
 
   # congruence preparation
-  substitutes = get_substitutes!(R)
+  if use_congruence
+    substitutes = get_substitutes!(R)
+  else
+    substitutes = nothing
+  end
   power = R.power
 
   # reduce numerators modulo denominators
@@ -418,7 +422,7 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
         # `power` is used in cases where the first parameter
         # represents a root of order `power`. In this case the
         # polynomials need to be deflated before the evaluation
-        # and the inflated back again.
+        # and then inflated back again.
         if isone(power)
           gp = evaluate(g, [1], [substitutes[1]])
         else

@@ -12,8 +12,9 @@ end
 Try to simplify the representation of `a`.
 """
 function shrink(a::GenericCycloFrac)  # TODO Move this to the constructor of GenericCycloFrac?
-  new_numerator = a.numerator
-  new_denominator = a.denominator
+  R = parent(a.numerator)
+  new_numerator = R(a.numerator.f, use_congruence=true)
+  new_denominator = R(a.denominator.f, use_congruence=true)
   if isone(length(new_numerator.f)) && isone(length(new_denominator.f))
     numerator_argument, numerator_modulus = collect(new_numerator.f)[1]
     denominator_argument, denominator_modulus = collect(new_denominator.f)[1]
