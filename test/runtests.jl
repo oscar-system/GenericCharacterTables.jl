@@ -113,6 +113,18 @@ end
   @test isone(S(1; exponent=(q - 2)//6))
 end
 
+@testset "GU2 type 3 with eigenvalue 1" begin
+  g = generic_character_table("GU2")
+  q, (k, l, u, v) = parameters(g)
+  l1 = parameter(g, "l1")
+  @test isone(norm(specialize(g[3], u, zero(q))))
+
+  # diag(ζ, ζ^l1) is conjugate to diag(1, ζ) for l1 ∈ (q + 1)ℤ
+  c = conjugacy_class_type(g, 3)
+  sp = scalar_product(specialize(c, k, 1), specialize(specialize(c, k, 0), l, 1))
+  @test l1//(q + 1) in sp.exceptions
+end
+
 @testset "linear_combination" begin
   g = generic_character_table("GL2")
   h = linear_combination([1, 1], [g[1], g[1]])
