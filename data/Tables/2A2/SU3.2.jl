@@ -395,7 +395,7 @@ classparams = [
   Parameters([Parameter(a, q + 1)], [((a) * 1//((q + 1) * 1//3))]),
   Parameters(
     [Parameter(a, q + 1), Parameter(b, q + 1)],
-    [((a) * 1//(q + 1)), ((b) * 1//(q + 1)), ((a - b) * 1//(q + 1))],
+    [((a - b) * 1//(q + 1)), ((2 * a + b) * 1//(q + 1)), ((a + 2 * b) * 1//(q + 1))],
   ),
   Parameters([Parameter(a, q^2 - 1)], [((a) * 1//(q - 1))]),
   Parameters([Parameter(a, q^2 - q + 1)], [((a) * 1//((q^2 - q + 1) * 1//3))]),

@@ -127,6 +127,42 @@ end
   )
 end
 
+@testset "2A2 types of the torus of order (q + 1)^2" begin
+  # Class type (a, b) is diag(ζ^a, ζ^b, ζ^(-a-b)) with ζ of order q + 1; it
+  # is excluded exactly when two eigenvalues agree.
+  for (name, i) in [("SU3.2", 8), ("SU3.n2", 6), ("PSU3.2", 9)]
+    g = generic_character_table(name)
+    q, (a, b) = parameters(g)
+    e = parameters(conjugacy_class_type(g, i)).exceptions
+    excludes(x, y) =
+      try
+        evaluate(e, var_index.([a, b]), parent(q).([x, y]))
+        false
+      catch err
+        err isa ArgumentError || rethrow()
+        true
+      end
+    @test !excludes(0, 1)
+    @test excludes(1, 1)
+    @test excludes(1, -2)
+    @test excludes(-2, 1)
+  end
+
+  g = generic_character_table("SU3.2")
+  q, (a, b) = parameters(g)
+  b1 = parameter(g, "b1")
+  c = conjugacy_class_type(g, 8)
+  # (1, b1) and (0, 1) are conjugate for b1 ∈ (q + 1)ℤ
+  sp = scalar_product(specialize(c, a, 1), specialize(specialize(c, a, 0), b, 1))
+  @test b1//(q + 1) in sp.exceptions
+
+  # character type (m, n) is reducible for m or n in (q + 1)ℤ
+  g = generic_character_table("SU3.n2")
+  q, (a, b, m, n) = parameters(g)
+  @test_throws ArgumentError specialize(g[6], m, zero(q))
+  @test_throws ArgumentError specialize(g[6], n, zero(q))
+end
+
 @testset "Import green functions" begin
   list = green_function_table()
   for green in list
