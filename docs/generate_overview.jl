@@ -70,7 +70,7 @@ for (tabletype, header, filename, loader) in (("Tables", "tables", "tables_list.
                    ## Table type $ntt
                    """)
 
-      tables = [replace(x, ".jl" => "") for x in readdir("$path/$tabletype/$tt")]
+      tables = unique(first.(splitext.(readdir("$path/$tabletype/$tt"))))
       for name in tables
         println("- Table $tt/$name")
         if haskey(reverse_synonyms, name)

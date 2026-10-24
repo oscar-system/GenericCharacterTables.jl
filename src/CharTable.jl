@@ -48,6 +48,8 @@ function gentab(table::String, tabletype::String)
   table = get(synonyms, table, table)
   path = joinpath(@__DIR__, "..", "data")
   for dir in readdir("$path/$tabletype")
+    fname = "$path/$tabletype/$dir/$table.toml"
+    isfile(fname) && return load_table_data(fname)
     fname = "$path/$tabletype/$dir/$table.jl"
     isfile(fname) && return loadtab(fname)
   end
@@ -59,7 +61,8 @@ function gentab(tabletype::String)
   path = joinpath(@__DIR__, "..", "data")
   for dir in readdir("$path/$tabletype")
     for table_file in readdir("$path/$tabletype/$dir")
-      push!(tables, replace(table_file, ".jl" => ""))
+      name, ext = splitext(table_file)
+      ext in (".jl", ".toml") && !(name in tables) && push!(tables, name)
     end
   end
   return tables
