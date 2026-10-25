@@ -5,32 +5,7 @@
 # programs in a subset of Julia syntax, run by `run_sum`. Nothing is passed to
 # `eval`, so loading a table neither lowers code nor advances the world age.
 #
-# A table file is a TOML document:
-#
-#   format = 1
-#   kind = "CharTable"
-#   order = "<polynomial>"
-#   congruence = [a, m]            # optional: q^power is a modulo m
-#   power = 1                      # optional
-#   variable = "q"                 # optional
-#   classparams = ["i", "j"]       # the copies i1, ..., jt2 used by the shift
-#   charparams = ["l", "k"]        #   functions are added by the reader
-#   information = '''<markdown>'''
-#
-#   [class_helpers]                # optional: sums the class sums call by name
-#   <name> = '''<sum>'''
-#   [char_helpers]                 # optional: likewise for character sums
-#
-#   [[classtypes]]                 # one per class type, in order
-#   info = [...]                   # any TOML array; { poly = "..." } is a polynomial
-#   length = "<polynomial>"
-#   params = [["i", "<modulus>"], ...]
-#   exceptions = ["<fraction>", ...]  # optional
-#   sum = '''<sum>'''
-#
-#   [[chartypes]]                  # one per character type, in order
-#   info, degree, params, exceptions and sum as for class types
-#   values = ["<value>", ...]      # one per class type
+# The format is specified in docs/src/table_format.md.
 
 const TABLE_FORMAT_VERSION = 1
 
@@ -369,7 +344,8 @@ end
 @doc raw"""
     load_table_data(path::String)
 
-Return the generic character table stored as TOML data in the file `path`.
+Return the generic character table stored as TOML data in the file `path`,
+see [Table file format](@ref).
 """
 function load_table_data(path::String)
   d = TOML.parsefile(path)
