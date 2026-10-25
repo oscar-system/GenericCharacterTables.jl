@@ -338,7 +338,7 @@ classparams = [
     [((a) * 1//((q - 1) * 1//3)), ((b) * 1//((q - 1) * 1//3)), ((a - b) * 1//(q - 1))],
   ),
   Parameters([Parameter(a, (q^2 - 1))], [((a) * 1//(q + 1))]),
-  Parameters([Parameter(a, (q^2 + q + 1))]),
+  Parameters([Parameter(a, (q^2 + q + 1))], [((a) * 1//((q^2 + q + 1) * 1//3))]),
 ]
 
 charparams = [
@@ -355,7 +355,7 @@ charparams = [
     [((3 * n - m) * 1//(q - 1)), ((m) * 1//(q - 1)), ((3 * n - 2 * m) * 1//(q - 1))],
   ),
   Parameters([Parameter(n, (q^2 - 1) * 1//3)], [((n) * 1//(q + 1))]),
-  Parameters([Parameter(n, (q^2 + q - 2) * 1//3)]),
+  Parameters([Parameter(n, (q^2 + q + 1) * 1//3)], [((n) * 1//((q^2 + q + 1) * 1//3))]),
 ]
 
 classparamindex = var_index.([a, b])
