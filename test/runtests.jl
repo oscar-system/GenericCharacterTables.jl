@@ -113,6 +113,27 @@ end
   @test isone(S(1; exponent=(q - 2)//6))
 end
 
+@testset "PSL2 involutions" begin
+  # The characters of degree (q^2 ± 1)/2 on the involutions (class type 6),
+  # by q^2 mod 8. CTblLib: A6 = L2(9), A5 = L2(5), L2(11), L2(7).
+  for (table, remainder, value) in
+      [("PSL2.1", 1, 1), ("PSL2.1", 5, -1), ("PSL2.3", 3, 1), ("PSL2.3", 7, -1)]
+    g = set_congruence(generic_character_table(table); remainder, modulus=8)
+    @test g[3, 6] == value
+    @test g[4, 6] == value
+
+    Base.invokelatest() do
+      for a in 1:length(g), b in (a + 1):length(g)
+        @test iszero(scalar_product(g[a], g[b]); ignore_exceptions=true)
+      end
+      n = number_of_conjugacy_class_types(g)
+      for a in 1:n, b in (a + 1):n
+        @test iszero(scalar_product(g[:, a], g[:, b]); ignore_exceptions=true)
+      end
+    end
+  end
+end
+
 @testset "linear_combination" begin
   g = generic_character_table("GL2")
   h = linear_combination([1, 1], [g[1], g[1]])
