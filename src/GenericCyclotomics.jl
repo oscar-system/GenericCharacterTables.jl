@@ -245,7 +245,7 @@ end
 function conj(x::GenericCyclo)
   f = Dict{UPolyFrac,UPoly}()
   for (key, value) in x.f
-    f[-key] = value
+    f[negative_exponent!(parent(x), key)] = value
   end
   return parent(x)(f)
 end
@@ -263,18 +263,37 @@ end
 
 function *(x::GenericCyclo, y::GenericCyclo)
   check_parent(x, y)
-  f = Dict{UPolyFrac,UPoly}()
+  R = parent(x)
+  y_summands = [(exponent_entry!(R, key).exponent, value) for (key, value) in y.f]
+  f = Summands()
   for (key1, value1) in x.f
-    for (key2, value2) in y.f
-      key = key1 + key2
-      if haskey(f, key)
-        f[key] += value1 * value2
-      else
-        f[key] = value1 * value2
-      end
+    data = exponent_entry!(R, key1)
+    for (key2, value2) in y_summands
+      add_summand!(f, exponent_sum!(R, data, key2), value1 * value2)
     end
   end
-  return parent(x)(f)
+  return simplify_summands(R, summands_dict(f))
+end
+
+# Return the stored exponent equal to the sum of the exponent of `data` and the
+# stored exponent `g`. The values of different characters on a class share
+# many exponents, so the same sums recur in the products of a scalar product.
+function exponent_sum!(R::GenericCycloRing, data::ExponentData, g::UPolyFrac)
+  if !isdefined(data, :sums)
+    data.sums = IdDict{UPolyFrac,UPolyFrac}()
+  end
+  return get!(data.sums, g) do
+    exponent_entry!(R, data.exponent + g).exponent
+  end
+end
+
+# Return the stored exponent equal to `-g`.
+function negative_exponent!(R::GenericCycloRing, g::UPolyFrac)
+  data = exponent_entry!(R, g)
+  if !isdefined(data, :negative)
+    data.negative = exponent_entry!(R, -data.exponent).exponent
+  end
+  return data.negative
 end
 
 +(x::UPoly, y::GenericCyclo) = parent(y)(x) + y

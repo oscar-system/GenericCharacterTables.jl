@@ -27,6 +27,10 @@ mutable struct ExponentData
   # The stored exponents that substitutions turn `g` into, by the number
   # `substitution_id!` gives the substitution.
   substitutions::Dict{Int64,UPolyFrac}
+  # The stored exponents equal to `g + h`, by the stored exponent `h`.
+  sums::IdDict{UPolyFrac,UPolyFrac}
+  # The stored exponent equal to `-g`.
+  negative::UPolyFrac
   ExponentData(g::UPolyFrac) = new(g)
 end
 
