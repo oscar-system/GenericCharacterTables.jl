@@ -613,10 +613,10 @@ function prepare_exponent(
   R::GenericCycloRing, substitutes::Tuple{UPoly,UPoly}, g::UPolyFrac
 )
   if isone(R.power)
-    return evaluate(g, [1], [substitutes[1]])
+    return substitute(g, [1], [substitutes[1]])
   end
   gd = deflate(numerator(g), [R.power])//deflate(denominator(g), [R.power])
-  return evaluate(gd, [1], [substitutes[1]])
+  return substitute(gd, [1], [substitutes[1]])
 end
 
 @doc raw"""
@@ -627,7 +627,7 @@ Undo the evaluation done by `prepare_exponent`.
 function restore_exponent(
   R::GenericCycloRing, substitutes::Tuple{UPoly,UPoly}, g::UPolyFrac
 )
-  gp = evaluate(g, [1], [substitutes[2]])
+  gp = substitute(g, [1], [substitutes[2]])
   isone(R.power) && return gp
   return inflate(numerator(gp), [R.power])//inflate(denominator(gp), [R.power])
 end
@@ -732,7 +732,7 @@ function evaluate(x::GenericCyclo, vars::Vector{Int64}, vals::Vector{<:RingEleme
   f = Summands()
   for (key, value) in x.f
     new_key = evaluate_exponent!(R, key, substitution, vars, polys)
-    new_value = depends_on(value, vars) ? evaluate(value, vars, polys) : value
+    new_value = depends_on(value, vars) ? substitute(value, vars, polys) : value
     add_summand!(f, new_key, new_value)
   end
   return simplify_summands(R, summands_dict(f))
@@ -762,15 +762,55 @@ end
 
 depends_on(p::UPoly, vars::Vector{Int64}) = any(v -> degree(p, v) > 0, vars)
 
+# Return `evaluate(p, vars, vals)`. The generic method multiplies out every
+# term on its own; collecting the terms of the result in a build context takes
+# half the time for the small polynomials in exponents.
+function substitute(p::UPoly, vars::Vector{Int64}, vals::Vector{UPoly})
+  q = data(AbstractAlgebra.upgrade!(p))
+  T = parent(q)
+  value_terms = map(vals) do v
+    w = data(AbstractAlgebra.upgrade!(v))
+    [(coeff(w, j), exponent_vector(w, j)) for j in 1:length(w)]
+  end
+  ctx = MPolyBuildCtx(T)
+  e = Vector{Int}(undef, nvars(T))
+  for i in 1:length(q)
+    exponent_vector!(e, q, i)
+    c = coeff(q, i)
+    if all(v -> iszero(e[v]), vars)
+      push_term!(ctx, c, e)
+      continue
+    end
+
+    # multiply the term without the substituted variables by their values
+    powers = [e[v] for v in vars]
+    e[vars] .= 0
+    summands = [(c, copy(e))]
+    for (k, m) in enumerate(powers), _ in 1:m
+      summands = [(c1 * c2, e1 + e2) for (c1, e1) in summands for (c2, e2) in value_terms[k]]
+    end
+    for (c1, e1) in summands
+      push_term!(ctx, c1, e1)
+    end
+  end
+  return UniversalRingElem(finish(ctx), parent(p))
+end
+
+substitute(p::UPoly, vars::Vector{Int64}, vals::Vector{<:RingElement}) =
+  substitute(p, vars, UPoly[parent(p)(v) for v in vals])
+
+substitute(g::UPolyFrac, vars::Vector{Int64}, vals::Vector{<:RingElement}) =
+  substitute(numerator(g), vars, vals)//substitute(denominator(g), vars, vals)
+
 # Substituting parameters normally changes only the numerator of an exponent,
 # the denominator being a polynomial in `q`; evaluating just what changes
 # saves most of the work.
 function evaluate_exponent(g::UPolyFrac, vars::Vector{Int64}, vals::Vector{<:RingElement})
   den = denominator(g, false)
-  depends_on(den, vars) && return evaluate(g, vars, vals)
+  depends_on(den, vars) && return substitute(g, vars, vals)
   num = numerator(g, false)
   depends_on(num, vars) || return g
-  new_num = evaluate(num, vars, vals)
+  new_num = substitute(num, vars, vals)
   # A nonzero numerator free of `q` (variable 1) has no common factor with
   # `den`, so `//` would spend a multivariate gcd on finding nothing to cancel.
   # This is the case whenever the substitution only renames parameters.
