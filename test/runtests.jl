@@ -98,6 +98,19 @@ end
   @test isone(S(Dict(a * (q - 1)//R(3) => R(1))))
 end
 
+@testset "PSL3.1 type 11" begin
+  g = generic_character_table("PSL3.1")
+  q, (a, b, m, n) = parameters(g)
+  M = (q^2 + q + 1) * 1//3
+
+  # the character sum runs over n mod M
+  @test only(parameters(g[11])).modulus == M
+
+  # the sums omit n ∈ Mℤ and a ∈ Mℤ
+  @test collect(parameters(g[11]).exceptions) == [n//M]
+  @test collect(parameters(g[:, 11]).exceptions) == [a//M]
+end
+
 @testset "set_congruence(table)" begin
   g = generic_character_table("SL3.n1")
   h = tensor_product(g[2], g[2])
