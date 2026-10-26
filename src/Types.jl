@@ -5,6 +5,28 @@ const UPolyRing = universal_poly_ring_type(QQFieldElem)
 const UPolyFrac = Generic.FracFieldElem{UPoly}
 const UPolyFracRing = Generic.FracField{UPoly}
 
+# What simplifying a generic cyclotomic needs to know about one of its
+# exponents `g`, see `exponent_data!`. The fields after `exponent` are set on
+# first use.
+mutable struct ExponentData
+  # The object stored for the value of `g`. Simplified cyclotomics use it as
+  # their key, so that looking them up compares objects instead of hashing.
+  exponent::UPolyFrac
+  # `g` after the congruence substitution is `a + r//g_2`, with
+  # `a_denominator` the common denominator of the coefficients of `a`.
+  g_2::UPoly
+  r::UPoly
+  a::UPoly
+  a_denominator::Int64
+  # What `g` simplifies to if all exponents have an integral polynomial part:
+  # `r//g_2` with the substitution undone.
+  remainder::UPolyFrac
+  # For each other common denominator `d` of the polynomial parts, the
+  # exponents and multiplicities that `E(1)^g` is distributed to.
+  distributions::Dict{Int64,Vector{Tuple{UPolyFrac,ZZRingElem}}}
+  ExponentData(g::UPolyFrac) = new(g)
+end
+
 @doc raw"""
     GenericCycloRing <: Ring
 
@@ -24,9 +46,10 @@ mutable struct GenericCycloRing <: Ring
   power::Int64
   # The same exponents come up over and over while simplifying the sums and
   # products making up e.g. a scalar product, so the work spent on a single
-  # exponent is memoized here. See `prepare_exponent!` and `restore_exponent!`.
-  prepared_exponents::Dict{UPolyFrac,Tuple{UPoly,UPoly,UPoly,Int64}}
-  restored_exponents::Dict{UPolyFrac,UPolyFrac}
+  # exponent is memoized here, see `exponent_data!`. Hashing an exponent costs
+  # more than looking it up by identity in `exponents_by_id`.
+  exponents::Dict{UPolyFrac,ExponentData}
+  exponents_by_id::IdDict{UPolyFrac,ExponentData}
   substitute::UPoly
   substitute_inv::UPoly
   # Uncached companion of `base_ring` over ZZ, used to normalize exponents.
@@ -40,7 +63,7 @@ mutable struct GenericCycloRing <: Ring
     power::Int64
   )
     return new(R, symbol, congruence, power,
-      Dict{UPolyFrac,Tuple{UPoly,UPoly,UPoly,Int64}}(), Dict{UPolyFrac,UPolyFrac}())
+      Dict{UPolyFrac,ExponentData}(), IdDict{UPolyFrac,ExponentData}())
   end
 end
 
