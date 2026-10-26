@@ -715,18 +715,19 @@ function distribution!(R::GenericCycloRing, data::ExponentData, d::Int64)
     r_g_2 = fraction_field(base_ring(R))(data.r, data.g_2)
 
     # normalize the polynomial part of the exponent
-    ap = normal_form(change_coefficient_ring(ZZ, d * data.a; parent=get_exponent_ring!(R)), d)
+    ap = normal_form(integral_multiple(R, data.a, d), d)
 
     # normalize the constant part
     t = constant_coefficient(ap)
     app = change_coefficient_ring(coefficient_ring(base_ring(R)), ap - t; parent=base_ring(R))
     p = mod(x^t, cyclotomic_polynomial(d, S))
 
-    # distribute the normalized constant part
+    # distribute the normalized constant part; a polynomial over QQ and an
+    # integer are coprime, so the fraction needs no gcd
     substitutes = get_substitutes!(R)
     summands = Tuple{UPolyFrac,ZZRingElem}[]
     for (i, cp) in enumerate(coefficients(p))
-      g = (app + (i - 1))//d + r_g_2
+      g = parent(r_g_2)(app + (i - 1), base_ring(R)(d)) + r_g_2
       if substitutes !== nothing
         g = restore_exponent(R, substitutes, g)
       end
@@ -734,6 +735,19 @@ function distribution!(R::GenericCycloRing, data::ExponentData, d::Int64)
     end
     return summands
   end
+end
+
+# Return `d * a` in the exponent ring, for `d` a multiple of the denominators
+# of the coefficients of `a`.
+function integral_multiple(R::GenericCycloRing, a::UPoly, d::Int64)
+  S = get_exponent_ring!(R)
+  q = data(AbstractAlgebra.upgrade!(a))
+  # The exponent ring gains the variables of `base_ring(R)` in the same order,
+  # but only when converting to it.
+  if nvars(base_ring(S)) != nvars(parent(q))
+    return change_coefficient_ring(ZZ, d * a; parent=S)
+  end
+  return UniversalRingElem(mul!(zero(base_ring(S)), q, d), S)
 end
 
 # Lazily created ZZ counterpart of `base_ring(R)`; see `GenericCycloRing`.
