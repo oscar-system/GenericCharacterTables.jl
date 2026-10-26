@@ -726,14 +726,38 @@ end
 # evaluate
 
 function evaluate(x::GenericCyclo, vars::Vector{Int64}, vals::Vector{<:RingElement})
-  f = Dict{UPolyFrac,UPoly}()
+  R = parent(x)
+  polys = UPoly[base_ring(R)(v) for v in vals]
+  substitution = substitution_id!(R, vars, polys)
+  f = Summands()
   for (key, value) in x.f
-    new_key = evaluate_exponent(key, vars, vals)
-    new_value = depends_on(value, vars) ? evaluate(value, vars, vals) : value
-    old_value = get(f, new_key, nothing)
-    f[new_key] = old_value === nothing ? new_value : old_value + new_value
+    new_key = evaluate_exponent!(R, key, substitution, vars, polys)
+    new_value = depends_on(value, vars) ? evaluate(value, vars, polys) : value
+    add_summand!(f, new_key, new_value)
   end
-  return parent(x)(f)
+  return simplify_summands(R, summands_dict(f))
+end
+
+# Return a number identifying the substitution of `vals` for `vars` in `R`.
+function substitution_id!(R::GenericCycloRing, vars::Vector{Int64}, vals::Vector{UPoly})
+  return get!(R.substitutions, (copy(vars), vals), length(R.substitutions) + 1)
+end
+
+# Return the stored exponent equal to `evaluate_exponent(g, vars, vals)`, where
+# `substitution` identifies `vars` and `vals`. A sum over a class type
+# substitutes the same parameters in many exponents, and the same sums recur
+# within and across scalar products, so the result is memoized.
+function evaluate_exponent!(
+  R::GenericCycloRing, g::UPolyFrac, substitution::Int,
+  vars::Vector{Int64}, vals::Vector{<:RingElement}
+)
+  data = exponent_entry!(R, g)
+  if !isdefined(data, :substitutions)
+    data.substitutions = Dict{Int,UPolyFrac}()
+  end
+  return get!(data.substitutions, substitution) do
+    exponent_entry!(R, evaluate_exponent(data.exponent, vars, vals)).exponent
+  end
 end
 
 depends_on(p::UPoly, vars::Vector{Int64}) = any(v -> degree(p, v) > 0, vars)

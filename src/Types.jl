@@ -24,6 +24,9 @@ mutable struct ExponentData
   # For each other common denominator `d` of the polynomial parts, the
   # exponents and multiplicities that `E(1)^g` is distributed to.
   distributions::Dict{Int64,Vector{Tuple{UPolyFrac,ZZRingElem}}}
+  # The stored exponents that substitutions turn `g` into, by the number
+  # `substitution_id!` gives the substitution.
+  substitutions::Dict{Int64,UPolyFrac}
   ExponentData(g::UPolyFrac) = new(g)
 end
 
@@ -50,6 +53,7 @@ mutable struct GenericCycloRing <: Ring
   # more than looking it up by identity in `exponents_by_id`.
   exponents::Dict{UPolyFrac,ExponentData}
   exponents_by_id::IdDict{UPolyFrac,ExponentData}
+  substitutions::Dict{Tuple{Vector{Int64},Vector{UPoly}},Int64}
   substitute::UPoly
   substitute_inv::UPoly
   # Uncached companion of `base_ring` over ZZ, used to normalize exponents.
@@ -63,7 +67,8 @@ mutable struct GenericCycloRing <: Ring
     power::Int64
   )
     return new(R, symbol, congruence, power,
-      Dict{UPolyFrac,ExponentData}(), IdDict{UPolyFrac,ExponentData}())
+      Dict{UPolyFrac,ExponentData}(), IdDict{UPolyFrac,ExponentData}(),
+      Dict{Tuple{Vector{Int64},Vector{UPoly}},Int64}())
   end
 end
 
