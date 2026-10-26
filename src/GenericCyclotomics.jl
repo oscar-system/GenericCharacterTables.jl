@@ -146,7 +146,7 @@ function hash(x::GenericCyclo, h::UInt)
 end
 
 function deepcopy_internal(x::GenericCyclo, dict::IdDict)
-  return GenericCyclo(deepcopy_internal(x.f, dict), parent(x))
+  return GenericCyclo(deepcopy_internal(x.f, dict), parent(x), x.simplified)
 end
 
 # Basic manipulation
@@ -239,7 +239,7 @@ function -(x::GenericCyclo)
   # also hash each of them again.
   f = copy(x.f)
   map!(-, values(f))
-  return parent(x)(f; simplify=false)
+  return GenericCyclo(f, parent(x), x.simplified)
 end
 
 function conj(x::GenericCyclo)
@@ -257,6 +257,19 @@ function +(x::GenericCyclo, y::GenericCyclo)
   f = mergewith(+, x.f, y.f)
   strip_zeros!(f)
   return parent(x)(f)
+end
+
+# Return the common denominator `d` that the sum of `x` and `y` as dictionaries
+# is simplified with, or 0 if it may need simplifying. Simplifying with `d`
+# keeps each exponent that a simplification with `d` produced, also for the
+# divisors of `d` that the polynomial parts of the exponents allow; and the
+# exponents produced with `d == 1` are remainders, which every `d` keeps.
+function simplified_sum(x::GenericCyclo, y::GenericCyclo)
+  dx, dy = x.simplified, y.simplified
+  (iszero(dx) || iszero(dy)) && return 0
+  isone(dx) && return dy
+  (isone(dy) || dx == dy) && return dx
+  return 0
 end
 
 -(x::GenericCyclo, y::GenericCyclo) = x + (-y)  # TODO make this more efficient?
@@ -327,7 +340,10 @@ end
 # Comparison
 
 function ==(x::GenericCyclo, y::GenericCyclo)  # TODO Make compatible with hashes. There might be some missing theory...
-  return parent(x) == parent(y) && iszero(x - y)
+  parent(x) == parent(y) || return false
+  # Then the difference is simplified as a difference of dictionaries.
+  iszero(simplified_sum(x, y)) || return x.f == y.f
+  return iszero(x - y)
 end
 
 # Exact division
@@ -351,12 +367,14 @@ end
 
 function zero!(x::GenericCyclo)
   x.f = Dict{UPolyFrac,UPoly}()
+  x.simplified = 1
   return x
 end
 
 mul!(x::GenericCyclo, y::GenericCyclo, z::GenericCyclo) = y * z
 
 function add!(x::GenericCyclo, y::GenericCyclo, z::GenericCyclo)
+  d = simplified_sum(y, z)
   if x === z
     y, z = z, y
   elseif x !== y
@@ -364,6 +382,7 @@ function add!(x::GenericCyclo, y::GenericCyclo, z::GenericCyclo)
   end
   mergewith!(+, x.f, z.f)
   strip_zeros!(x.f)
+  x.simplified = d
   return x
 end
 
@@ -394,18 +413,18 @@ end
 
 # Constructors
 
-(R::GenericCycloRing)() = GenericCyclo(Dict{UPolyFrac,UPoly}(), R)
+(R::GenericCycloRing)() = GenericCyclo(Dict{UPolyFrac,UPoly}(), R, 1)
 
 function (R::GenericCycloRing)(c::Union{Integer,Rational})
   if iszero(c)
     return R()
   end
-  return GenericCyclo(Dict(base_ring(R)()//base_ring(R)(1) => base_ring(R)(c)), R)
+  return GenericCyclo(Dict(base_ring(R)()//base_ring(R)(1) => base_ring(R)(c)), R, 1)
 end
 
 function (R::GenericCycloRing)(c::UPoly)
   base_ring(R) != parent(c) && error("Unable to coerce element")
-  return GenericCyclo(Dict(base_ring(R)()//base_ring(R)(1) => c), R)
+  return GenericCyclo(Dict(base_ring(R)()//base_ring(R)(1) => c), R, iszero(c) ? 0 : 1)
 end
 
 function (R::GenericCycloRing)(x::RingElement; exponent::UPolyFrac)
@@ -445,7 +464,7 @@ function simplify_summands(R::GenericCycloRing, f::AbstractDict{UPolyFrac,UPoly}
     for (data, c) in L
       add_summand!(fp, data.remainder, c)
     end
-    return GenericCyclo(strip_zeros!(summands_dict(fp)), R)
+    return GenericCyclo(strip_zeros!(summands_dict(fp)), R, 1)
   end
 
   for (data, c) in L
@@ -453,7 +472,7 @@ function simplify_summands(R::GenericCycloRing, f::AbstractDict{UPolyFrac,UPoly}
       add_summand!(fp, g, multiplicity * c)
     end
   end
-  return GenericCyclo(strip_zeros!(summands_dict(fp)), R)
+  return GenericCyclo(strip_zeros!(summands_dict(fp)), R, d)
 end
 
 # Summands collected by their exponents, which are the stored ones, so that

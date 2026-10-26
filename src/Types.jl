@@ -96,7 +96,13 @@ q*E(q - 1)
 mutable struct GenericCyclo <: RingElem
   f::Dict{UPolyFrac,UPoly}
   parent::GenericCycloRing
+  # The common denominator `d` that `f` is simplified with, or 0 if `f` may
+  # need simplifying; see `simplified_sum`.
+  simplified::Int64
 end
+
+GenericCyclo(f::Dict{UPolyFrac,UPoly}, parent::GenericCycloRing) =
+  GenericCyclo(f, parent, 0)
 
 @doc raw"""
     ParameterExceptions
