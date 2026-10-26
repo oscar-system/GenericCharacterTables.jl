@@ -660,13 +660,19 @@ end
 @doc raw"""
     restore_exponent(R::GenericCycloRing, substitutes::Tuple{UPoly,UPoly}, g::UPolyFrac)
 
-Undo the evaluation done by `prepare_exponent`.
+Undo the evaluation done by `prepare_exponent`. `g` has to be in lowest terms.
 """
 function restore_exponent(
   R::GenericCycloRing, substitutes::Tuple{UPoly,UPoly}, g::UPolyFrac
 )
+  if isone(R.power)
+    # The substitution is invertible, so the result is in lowest terms as well
+    # and `//` would spend a multivariate gcd on finding nothing to cancel.
+    num = substitute(numerator(g), [1], [substitutes[2]])
+    den = substitute(denominator(g), [1], [substitutes[2]])
+    return parent(g)(num, den)
+  end
   gp = substitute(g, [1], [substitutes[2]])
-  isone(R.power) && return gp
   return inflate(numerator(gp), [R.power])//inflate(denominator(gp), [R.power])
 end
 
