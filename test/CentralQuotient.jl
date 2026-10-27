@@ -206,47 +206,30 @@ end
 derived_table(name::String) = GenericCharacterTables.gentab(name, "Quotients")
 
 @testset "Central quotients" begin
-  # The stored PSL3.1 gives character type 11 the modulus (q^2+q-2)/3 instead of
-  # (q^2+q+1)/3, and omits the exceptions its sums apply.
-  psl3_defects = ["parameters of character 11", "exceptions of character 11",
-    "exceptions of class 11"]
-
   # The character sums of PGL3.1 and PGU3.2 run through a filter whose geometric sums
   # do not cancel, which makes products of values too slow.
-  @testset "$name" for (name, charsums, defects) in [
-    ("PGL2.1", :products, String[]),
-    ("PGL3.1", :values, String[]),
-    ("PGU3.2", :values, String[]),
-    ("PSL3.1", :products, psl3_defects),
-    ("PSU3.2", :products, String[]),
+  @testset "$name" for (name, charsums) in [
+    ("PGL2.1", :products),
+    ("PGL3.1", :values),
+    ("PGU3.2", :values),
+    ("PSL3.1", :products),
+    ("PSU3.2", :products),
   ]
     # the sums of freshly loaded tables are too new for code compiled before
     d, s = derived_table(name), generic_character_table(name)
     diffs, _ = Base.invokelatest(compare_tables, d, s; charsums)
-    @test diffs == defects
+    @test isempty(diffs)
     Base.invokelatest(check_orthogonality, d)
   end
 
   # SL2.1 labels the characters of degree (q ± 1)/2 by the value (±1 + √q i^((q-1)/2))/2
   # on the unipotent class, the stored PSL2 tables by a fixed square root, so they agree
-  # only for q congruent to 1 and 3 modulo 8. The stored tables put the congruence on
-  # √q rather than q, which breaks their values on the class with stabilizer of order 2.
-  psl23_defects = [
-    ["value of character $i on class 6" for i in 3:4];
-    ["character sum of type $i on classes $j, 6" for i in (3, 4, 6) for j in (1, 2, 3, 5)];
-    [
-      "class sum of type $j on characters $i, $k" for j in 5:6
-      for (i, k) in ((1, 3), (1, 4), (2, 3), (2, 4), (3, 6), (4, 6))
-    ]
-  ]
-  @testset "$name" for (name, remainder, defects) in [
-    ("PSL2.1", 1, String[]),
-    ("PSL2.3", 3, psl23_defects),
-  ]
+  # only for q congruent to 1 and 3 modulo 8.
+  @testset "$name" for (name, remainder) in [("PSL2.1", 1), ("PSL2.3", 3)]
     d, s = derived_table(name), generic_character_table(name)
     d8 = set_congruence(d; remainder, modulus=8)
     diffs, _ = Base.invokelatest(compare_tables, d8, s; rename=Dict(:q => :q0))
-    @test sort(diffs) == sort(defects)
+    @test isempty(diffs)
     Base.invokelatest(check_orthogonality, d)
   end
 
