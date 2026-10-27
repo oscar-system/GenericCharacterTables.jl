@@ -7,14 +7,18 @@
 #   product    := unary (('*' | '/') unary)*
 #   unary      := '-'? power
 #   power      := postfix ('^' unary)?
-#   postfix    := primary ('(' args ')' | '[' args ']' | '.' primary)*
-#   primary    := integer | name | `string` | '(' expr ')' | '[' args ']'
-#                 | '{' args '}' | proc
-#   proc       := 'proc' '(' names ')' ['local' names ';'] statement* 'end'
+#   postfix    := primary ('(' args ')' | '[' args ']' | ('.' | '||') primary)*
+#   primary    := integer | name | `string` | "string" | '(' expr ')'
+#                 | '[' args ']' | '{' args '}' | proc
+#   proc       := 'proc' '(' names ')' ['local' names ';'] statement* 'end' ['proc']
 #
 # Layout is irrelevant: CHEVIE3 wraps lines at 78 columns, in the middle of
 # identifiers and numbers, and puts the ':' terminating a `proc` on a line of
 # its own, which is where reading the files as raw text comes apart.
+#
+# Frank Lübeck's later tables, such as the uniform almost characters of SL_4(q)
+# and Spin_8^+(q), use the syntax of later Maple versions: "strings", `||` for
+# the name concatenation `.`, and `end proc` for `end`.
 
 module MapleParser
 
@@ -31,7 +35,8 @@ struct MName <: MExpr
   name::String
 end
 
-# A `backquoted` Maple name; used for labels and the lines of an Information block.
+# A `backquoted` Maple name or a "string"; used for labels and the lines of an
+# Information block.
 struct MStr <: MExpr
   text::String
 end
@@ -99,8 +104,8 @@ struct Token
   pos::Int  # for error messages
 end
 
-const OPERATORS = [":=", "..", "+", "-", "*", "/", "^", "=", "(", ")", "[", "]",
-  "{", "}", ",", ";", ":", "."]
+const OPERATORS = [":=", "..", "||", "+", "-", "*", "/", "^", "=", "(", ")", "[",
+  "]", "{", "}", ",", ";", ":", "."]
 
 function tokenize(text::AbstractString)
   s = String(text)
@@ -132,6 +137,11 @@ function tokenize(text::AbstractString)
       end
       push!(tokens, Token(:str, String(take!(buf)), i))
       i = j
+    elseif c == '"'  # a string; none of the files escapes a '"' in one
+      j = findnext('"', s, nextind(s, i))
+      j === nothing && error("unterminated string at $i")
+      push!(tokens, Token(:str, s[nextind(s, i):prevind(s, j)], i))
+      i = nextind(s, j)
     elseif c == '\''  # unevaluated name, as in `q := 'q'`
       j = findnext('\'', s, nextind(s, i))
       j === nothing && error("unterminated quoted name at $i")
@@ -230,6 +240,7 @@ function parse_proc!(st::State)
     push!(body, parse_statement!(st; terminator_optional=true))
   end
   advance!(st)  # 'end'
+  iskeyword(peek(st), "proc") && advance!(st)
   return MProc(args, locals, body)
 end
 
@@ -273,7 +284,7 @@ function parse_postfix!(st::State)
     elseif isop(t, "[")
       advance!(st)
       e = MIndex(e, parse_args!(st, "]"))
-    elseif isop(t, ".")  # name concatenation, as in `iI.k.class`
+    elseif isop(t, ".") || isop(t, "||")  # name concatenation, as in `iI.k.class`
       advance!(st)
       e = MBin(:concat, e, parse_primary!(st))
     else

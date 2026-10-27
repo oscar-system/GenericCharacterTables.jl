@@ -14,10 +14,10 @@
 #
 # What the Maple files hold, and where it goes:
 #
-#   NAME := array(-2 .. c, -1 .. k, [...])  the table itself, row -2 being the
-#         header [name, id, order, #chars, #classes], row -1 the class info,
-#         row 0 the class lengths, and rows 1.. the characters, each starting
-#         with its info and its degree
+#   NAME := array(-2 .. c, -1 .. k, [...])  the table itself, of c character
+#         and k class types: row -2 the header [name, id, order, ...], row -1
+#         the class info, row 0 the class lengths, and rows 1.. the
+#         characters, each starting with its info and its degree
 #   Klassen<NAME>Parameter, Char<NAME>Parameter   parameter ranges and the
 #         forbidden parameter combinations, per type -> `classparams`
 #   CenterSums<ID>[a,b,c], CenterSumsDual<ID>[a,b,c]   sums over a centralizer
@@ -32,11 +32,19 @@
 # Not handled, because the tables this was written for need none of it, but
 # present in the Maple library: files marked `NurPolynom`, which hold plain
 # polynomials and a `KlassentypOrd` instead of summation procedures and become
-# a `SimpleCharTable`; roots of unity whose order involves a square root, as
-# for the Suzuki and Ree groups; and parameter exceptions of several
-# conditions at once, which `Parameters` cannot express anyway. The converter
-# that produced the tables in `data` covered the first two; it is gone from
-# the working tree, so look for extra/Convert/Convert.jl in the history.
+# a `SimpleCharTable`; and roots of unity whose order involves a square root,
+# as for the Suzuki and Ree groups. The converter that produced the tables in
+# `data` covered both; it is gone from the working tree, so look for
+# extra/Convert/Convert.jl in the history.
+#
+# Parameter exceptions of several conditions at once cannot be expressed by
+# `Parameters`; they are left out and listed in a comment of the result.
+#
+# Frank Lübeck's partial tables of uniform almost characters, of SL_4(q) and
+# Spin_8^+(q), convert to a table of almost characters, not a character table:
+# some rows have norm greater than 1, and rows of degree 0 at the end of a
+# series stand in for the characters it does not determine. Decomposing them
+# is left to the user of the result.
 
 include("MapleParser.jl")
 using .MapleParser
@@ -231,6 +239,13 @@ function julia_scalar(e::MExpr)
   return render(p)
 end
 
+is_constant(e::MExpr) = all(isempty, keys(normalize(e).terms))
+
+# An element of `R`. Julia reads a constant as an `Int`, which `Parameter`
+# rejects, and which turns `k1 * 1//2` into a polynomial instead of a fraction
+# and `[k1, 0]` into a `Vector{Any}`.
+julia_poly(e::MExpr) = is_constant(e) ? "R($(julia_expr(e)))" : julia_expr(e)
+
 ## Provenance
 #
 # Where the characters of a series were determined in the literature. The
@@ -395,8 +410,29 @@ end
 
 ## Parameters
 
+# `[1, -1, q-1]` for the parameters `i1, i2`: i1 - i2 is divisible by q-1,
+# that is, `((i1 - i2) * 1//(q - 1))` is an integer.
+function julia_condition(names::Vector{String}, entries::Vector{MExpr})
+  length(entries) == length(names) + 1 ||
+    error("exception with $(length(entries)) entries for $(length(names)) parameters")
+  terms = String[]
+  for (name, coefficient) in zip(names, entries[1:(end - 1)])
+    p = normalize(coefficient)
+    iszero(p) && continue
+    push!(terms, render(p * Poly(name)))
+  end
+  numerator = join(terms, " + ")
+  numerator = replace(numerator, "+ -" => "- ")
+  modulus = entries[end]
+  denominator = julia_poly(modulus)
+  is_constant(modulus) || (denominator = "($denominator)")
+  return "(($numerator) * 1//$denominator)"
+end
+
 # `[[iI1 = 1 .. q-1, iI2 = 1 .. q-1], [[[1, -1, q-1]]]]`: two parameters, which
-# must not be congruent modulo q-1.
+# must not be congruent modulo q-1. An exception is a list of conditions that
+# hold at once. Returns the `Parameters`, and the exceptions of several
+# conditions, which it cannot express.
 function julia_parameters(e::MExpr)
   ranges, exceptions = e.items
   names = String[]
@@ -405,31 +441,27 @@ function julia_parameters(e::MExpr)
     range isa MEq && range.rhs isa MRange || error("malformed parameter range")
     name = julia_name(range.lhs.name)
     push!(names, name)
-    push!(parts, "Parameter($name, $(julia_expr(range.rhs.to)))")
+    push!(parts, "Parameter($name, $(julia_poly(range.rhs.to)))")
   end
   forbidden = String[]
+  left_out = String[]
   for exception in exceptions.items
-    conditions = exception.items
-    length(conditions) == 1 ||
-      error(
-        "$(length(conditions)) simultaneous conditions in one exception, " *
-        "which Parameters cannot express",
-      )
-    entries = conditions[1].items
-    length(entries) == length(names) + 1 ||
-      error("exception with $(length(entries)) entries for $(length(names)) parameters")
-    terms = String[]
-    for (name, coefficient) in zip(names, entries[1:(end - 1)])
-      p = normalize(coefficient)
-      iszero(p) && continue
-      push!(terms, render(p * Poly(name)))
+    # A condition without coefficients, such as `[0, 1]`, always holds.
+    conditions = filter(exception.items) do condition
+      !all(iszero(normalize(c)) for c in condition.items[1:(end - 1)])
     end
-    numerator = join(terms, " + ")
-    numerator = replace(numerator, "+ -" => "- ")
-    push!(forbidden, "(($numerator) * 1//($(julia_expr(entries[end]))))")
+    isempty(conditions) && error("an exception that excludes every parameter value")
+    expressions = [julia_condition(names, condition.items) for condition in conditions]
+    if length(expressions) == 1
+      push!(forbidden, expressions[1])
+    else
+      push!(left_out, join(expressions, ", "))
+    end
   end
-  isempty(forbidden) && return "Parameters([" * join(parts, ", ") * "])"
-  return "Parameters([" * join(parts, ", ") * "], [" * join(forbidden, ", ") * "])"
+  # `[]` would be a `Vector{Any}`.
+  params = isempty(parts) ? "Parameter[]" : "[" * join(parts, ", ") * "]"
+  isempty(forbidden) && return "Parameters($params)", left_out
+  return "Parameters($params, [" * join(forbidden, ", ") * "])", left_out
 end
 
 ## Sums
@@ -455,7 +487,7 @@ function julia_sum_expr(e::MExpr, dicts::Dict{String,String})
       for substitution in e.args[1:(end - 1)]
         substitution isa MEq || error("malformed substitution")
         push!(vars, julia_name(substitution.lhs.name))
-        push!(vals, julia_expr(substitution.rhs))
+        push!(vals, julia_poly(substitution.rhs))
       end
       return "evaluate($(julia_sum_expr(value, dicts)), [" * join(vars, ", ") * "], [" *
              join(vals, ", ") * "])"
@@ -493,6 +525,11 @@ function julia_sum_expr(e::MExpr, dicts::Dict{String,String})
 end
 
 function julia_proc(p::MProc, dicts::Dict{String,String}; indent::String="  ")
+  # The sum over a centralizer type without a class or character type of its
+  # own, which CHEVIE3 writes as `proc(tt) [[], [[1, 0, 1]]] end proc`.
+  if length(p.body) == 1 && p.body[1].target === nothing && p.body[1].value isa MList
+    return [indent * "zero(tt)"]
+  end
   lines = String[]
   for (n, statement) in enumerate(p.body)
     text = julia_sum_expr(statement.value, dicts)
@@ -549,8 +586,10 @@ function convert_table(path::AbstractString)
   table === nothing && error("no table found in $path")
   header = table.args[3].items[1].items
   id = header[2].text
-  nchars = Int(header[4].value)
-  nclasses = Int(header[5].value)
+  # The header repeats these, but the partial tables of uniform almost
+  # characters have [name, id, order, c, c, k, k] instead of [..., c, k].
+  nchars = Int(table.args[1].to.value)
+  nclasses = Int(table.args[2].to.value)
   return Conversion(name, id, statements, table, nchars, nclasses)
 end
 
@@ -583,19 +622,26 @@ function emit(c::Conversion, io::IO)
   charparams = assignment(c.statements, "Char$(c.name)Parameter")
   (classparams === nothing || charparams === nothing) && error("missing parameter arrays")
   # The parameter arrays are sparse tables `(n) = ...`, and also carry entries
-  # for the info and length rows, which are of no interest here.
-  function parameter_entries(array::MCall, count::Int)
+  # for the info and length rows, which are of no interest here. In the partial
+  # tables, the rows of degree 0 standing in for the characters a series does
+  # not determine have none; they share the parameters of the series.
+  function parameter_entries(array::MCall, count::Int; inherit::Bool=false)
     out = Dict{Int,MExpr}()
     for entry in array.args[2].items
       entry isa MEq && entry.lhs isa MNum || continue
       index = Int(entry.lhs.value)
       1 <= index <= count && (out[index] = entry.rhs)
     end
+    if inherit
+      for n in 2:count
+        haskey(out, n) || !haskey(out, n - 1) || (out[n] = out[n - 1])
+      end
+    end
     length(out) == count || error("$(length(out)) parameter entries for $count types")
     return [out[n] for n in 1:count]
   end
   classparams = parameter_entries(classparams, c.nclasses)
-  charparams = parameter_entries(charparams, c.nchars)
+  charparams = parameter_entries(charparams, c.nchars; inherit=true)
 
   # The parameters in use, as `i1, ..., in` and `k1, ..., kn`.
   function parameter_names(entries::Vector{<:MExpr})
@@ -715,12 +761,25 @@ function emit(c::Conversion, io::IO)
   end
 
   ## Parameters
-  for (field, entries) in ["classparams" => classparams, "charparams" => charparams]
+  left_out = String[]
+  for (field, kind, entries) in [("classparams", "class", classparams),
+    ("charparams", "character", charparams)]
     println(io, "$field = [")
-    for entry in entries
-      println(io, "  ", julia_parameters(entry), ",")
+    for (n, entry) in enumerate(entries)
+      text, exceptions = julia_parameters(entry)
+      println(io, "  ", text, ",")
+      append!(left_out, ["$kind type $n: $exception" for exception in exceptions])
     end
     println(io, "]")
+    println(io)
+  end
+  if !isempty(left_out)
+    println(io, "# Exceptions of the Maple source that `Parameters` cannot express, so the")
+    println(io, "# types above wrongly include the parameter values at which all")
+    println(io, "# expressions of one of these lines are integers.")
+    for line in left_out
+      println(io, "#   ", line)
+    end
     println(io)
   end
   println(io, "classparamindex = var_index.([", join(class_names, ", "), "])")
