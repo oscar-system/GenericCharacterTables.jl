@@ -98,6 +98,19 @@ end
   @test isone(S(Dict(a * (q - 1)//R(3) => R(1))))
 end
 
+@testset "PSL3.1 type 11" begin
+  g = generic_character_table("PSL3.1")
+  q, (a, b, m, n) = parameters(g)
+  M = (q^2 + q + 1) * 1//3
+
+  # the character sum runs over n mod M
+  @test only(parameters(g[11])).modulus == M
+
+  # the sums omit n ∈ Mℤ and a ∈ Mℤ
+  @test collect(parameters(g[11]).exceptions) == [n//M]
+  @test collect(parameters(g[:, 11]).exceptions) == [a//M]
+end
+
 @testset "set_congruence(table)" begin
   g = generic_character_table("SL3.n1")
   h = tensor_product(g[2], g[2])
@@ -123,6 +136,27 @@ end
   c = conjugacy_class_type(g, 3)
   sp = scalar_product(specialize(c, k, 1), specialize(specialize(c, k, 0), l, 1))
   @test l1//(q + 1) in sp.exceptions
+end
+
+@testset "PSL2 involutions" begin
+  # The characters of degree (q^2 ± 1)/2 on the involutions (class type 6),
+  # by q^2 mod 8. CTblLib: A6 = L2(9), A5 = L2(5), L2(11), L2(7).
+  for (table, remainder, value) in
+      [("PSL2.1", 1, 1), ("PSL2.1", 5, -1), ("PSL2.3", 3, 1), ("PSL2.3", 7, -1)]
+    g = set_congruence(generic_character_table(table); remainder, modulus=8)
+    @test g[3, 6] == value
+    @test g[4, 6] == value
+
+    Base.invokelatest() do
+      for a in 1:length(g), b in (a + 1):length(g)
+        @test iszero(scalar_product(g[a], g[b]); ignore_exceptions=true)
+      end
+      n = number_of_conjugacy_class_types(g)
+      for a in 1:n, b in (a + 1):n
+        @test iszero(scalar_product(g[:, a], g[:, b]); ignore_exceptions=true)
+      end
+    end
+  end
 end
 
 @testset "linear_combination" begin
