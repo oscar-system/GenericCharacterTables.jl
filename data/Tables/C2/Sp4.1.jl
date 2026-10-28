@@ -1,6 +1,3 @@
-# Generic character table of Sp4(q), q odd.
-# Values reconstructed from B. Srinivasan, The characters of the finite symplectic group Sp(4,q),
-# Trans. Amer. Math. Soc. 131 (1968), 488-525.  Format: GenericCharacterTables.jl table file.
 using ..GenericCharacterTables
 import ..GenericCharacterTables:
   Parameters, Parameter, CharTable, GenericCyclo, GenericCycloFrac, nesum
@@ -2574,31 +2571,39 @@ charparamindex = var_index.([k, l])
 
 information = raw"""The generic character table of $\mathrm{Sp}_4(q)$, $q$ odd.
   The possible values for $q$ are given by $q = q_0^2 = p^m$ with $p$ an odd prime.
-  The variable $q_0$ represents $\sqrt{q}$; `q0*E(16)^((q - 1)^2)` is the principal square root
-  of $sq$, where $s = (-1)^{(q-1)/2}$ = `E(4)^(q - 1)`.
+  The variable $q_0$ represents $\sqrt{q}$, and `q0*E(16)^((q - 1)^2)` is the principal
+  square root of $sq$, where $s = (-1)^{(q-1)/2}$ = `E(4)^(q - 1)`.
   (See `Sp4.0` for $q$ even.)
 
-- The table was computed by B. Srinivasan, The characters of the finite symplectic group
-  Sp(4,q), Trans. Amer. Math. Soc. 131 (1968), 488-525.
+- The table was first computed in [Sri68](@cite).
 
-- This file is not part of the official GenericCharacterTables.jl distribution. Its values were
-  reconstructed from Srinivasan's construction of the characters (Deligne-Lusztig characters and
-  their splittings) and checked against GAP: equal to the tables of Sp(4,3) and Sp(4,5), equal up to
-  ordering to the ATLAS tables of PSp4(7) and PSp4(9) on the characters trivial on -1, and both
-  orthogonality relations hold for all odd q <= 27.
+- The table in the cited paper contains misprints. [Prz82](@cite) corrects some of
+  them (Appendix II there) but has errors at $\xi'_{41}$ on $D_1$, $\Phi_3$ on $C_{21}$
+  and $\Phi_7$ on $B_3$. The value of $\theta_1$ on $A_1$ and the representatives of
+  $A_{41}$ and $A_{42}$ are misprinted in [Sri68](@cite); [Dab06](@cite) gives correct
+  ones, but its change to $\xi'_{21}$ is wrong.
 
-- Class and character names follow Srinivasan and are the 3rd component of `info`:
-  `info(t[:, 11])[3]` is "A41", `info(t[2])[3]` is "-chi_2(k)". Rows are the irreducible
-  characters; a leading "-" means the row is the negative of Srinivasan's (virtual) character.
+- The table was checked against the character tables of $\mathrm{Sp}_4(3)$ and
+  $\mathrm{Sp}_4(5)$ in GAP and against an unpublished table by F. Lübeck based on
+  [Prz82](@cite).
 
-- Class parameters i, j and character parameters k, l are exponents of eta = E(q + 1),
-  gamma = E(q - 1), theta = E(q^2 - 1) or zeta = E(q^2 + 1) as in the paper.
+- The names for the class and character types used in [Sri68](@cite) can be found as
+  3rd component of the list returned by the `info` functions. Example:
+  ```jldoctest
+  julia> t = generic_character_table("Sp4.1");
 
-- Split classes: A21 (A22) are the transvections x -> x + a*b(x,v)*v with a a square (non-square)
-  for Srinivasan's form b(x,y) = x*A*y^T; A41/A42, C21/C22, C41/C42, D21..D24, D31..D34 use the same
-  square-class invariant on the relevant eigenspace.  Within the pairs theta1/theta2, theta3/theta4,
-  theta5/theta6, theta7/theta8, theta11/theta12, Phi1/Phi2, ..., xi21/xi22, ... the assignment of the two
-  names is a convention that may differ from the printed table.
+  julia> info(t[:, 11])[3]
+  "A41"
+
+  julia> info(t[2])[3]
+  "-chi_2(k)"
+  ```
+  A leading `-` marks the negative of a character of [Sri68](@cite).
+
+- The classes are those of Srinivasan's representatives, with the parameters used
+  there. The two names in each pair such as $A_{21}$/$A_{22}$ or
+  $\theta_1$/$\theta_2$ are assigned as in [Sri68](@cite), with $(sq)^{1/2}$ in
+  $\tilde\varepsilon = -s(s + (sq)^{1/2})/2$ the principal square root above.
 """
 
 TABLE = CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
