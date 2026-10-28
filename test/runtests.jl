@@ -126,6 +126,18 @@ end
   @test isone(S(1; exponent=(q - 2)//6))
 end
 
+@testset "GU2 type 3 with eigenvalue 1" begin
+  g = generic_character_table("GU2")
+  q, (k, l, u, v) = parameters(g)
+  l1 = parameter(g, "l1")
+  @test isone(norm(specialize(g[3], u, zero(q))))
+
+  # diag(ζ, ζ^l1) is conjugate to diag(1, ζ) for l1 ∈ (q + 1)ℤ
+  c = conjugacy_class_type(g, 3)
+  sp = scalar_product(specialize(c, k, 1), specialize(specialize(c, k, 0), l, 1))
+  @test l1//(q + 1) in sp.exceptions
+end
+
 @testset "PSL2 involutions" begin
   # The characters of degree (q^2 ± 1)/2 on the involutions (class type 6),
   # by q^2 mod 8. CTblLib: A6 = L2(9), A5 = L2(5), L2(11), L2(7).

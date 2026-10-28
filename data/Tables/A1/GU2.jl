@@ -115,20 +115,14 @@ charsums = [
 classparams = [
   Parameters([Parameter(k, q + 1)]),
   Parameters([Parameter(k, q + 1)]),
-  Parameters(
-    [Parameter(k, q + 1), Parameter(l, q + 1)],
-    [((k) * 1//(q + 1)), ((l) * 1//(q + 1)), ((k - l) * 1//(q + 1))],
-  ),
+  Parameters([Parameter(k, q + 1), Parameter(l, q + 1)], [((k - l) * 1//(q + 1))]),
   Parameters([Parameter(k, q^2 - 1)], [((k) * 1//(q - 1))]),
 ]
 
 charparams = [
   Parameters([Parameter(u, q + 1)]),
   Parameters([Parameter(u, q + 1)]),
-  Parameters(
-    [Parameter(u, q + 1), Parameter(v, q + 1)],
-    [((u) * 1//(q + 1)), ((v) * 1//(q + 1)), ((u - v) * 1//(q + 1))],
-  ),
+  Parameters([Parameter(u, q + 1), Parameter(v, q + 1)], [((u - v) * 1//(q + 1))]),
   Parameters([Parameter(u, q^2 - 1)], [((u) * 1//(q - 1))]),
 ]
 
