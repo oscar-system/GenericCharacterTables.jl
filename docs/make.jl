@@ -36,6 +36,7 @@ makedocs(;
     "book.md",
     "printing.md",
     "unexported.md",
+    "table_format.md",
     "tables_list.md",
     "greenfunctions_list.md",
     "references.md",
