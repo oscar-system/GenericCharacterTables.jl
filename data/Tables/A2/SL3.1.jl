@@ -156,7 +156,7 @@ table = GenericCyclo[[
   -S(1; exponent=(n * a) * 1//R((q - 1))),
   S(0),
   -(
-    S(1; exponent=(n * a) * 1//R((q^2 - 1))) + S(1; exponent=(n * a * q) * 1//R((q^2 - 1)))
+    S(1; exponent=(-n * a) * 1//R((q^2 - 1))) + S(1; exponent=(-n * a * q) * 1//R((q^2 - 1)))
   ),
   S(0)] [
   (q - 1)^2 * (q + 1) * 1//3 * S(1; exponent=a * 1//R((3))),
@@ -434,6 +434,11 @@ information = raw"""The generic character table of $\mathrm{SL}_3(q)$,
   $q$ not congruent to $1$ modulo $3$.)
 
 - The table was first computed in [SF73](@cite).
+
+- Correction to [SF73](@cite), Table 1b: for $\mathrm{SL}_3(q)$,
+  $\chi_{rt}^{(u)}(C_7^{(k)})$ is $-(\eta^{-uk} + \eta^{-ukq})$, not
+  $-(\eta^{uk} + \eta^{ukq})$. The CHEVIE table has the printed value; here it is
+  corrected in character type 10 on class type 9.
 
 - See also: [Ste51](@cite), [Gre55](@cite).
 """
