@@ -111,7 +111,7 @@ end
 function evaluate(x::ParameterExceptions, vars::Vector{Int64}, vals::Vector{<:RingElement})
   exceptions = parameter_exceptions()
   for exception in x
-    add_exception!(exceptions, evaluate(exception, vars, vals))
+    add_exception!(exceptions, evaluate_exponent(exception, vars, vals))
   end
   return exceptions
 end
