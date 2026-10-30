@@ -111,6 +111,23 @@ end
   @test collect(parameters(g[:, 11]).exceptions) == [a//M]
 end
 
+@testset "SL3.1 and PSL3.1 type 10 on the mixed torus" begin
+  # The generic scalar products of types 4 and 5 with type 10 list
+  # 2n1 + n2 ∈ (q - 1)ℤ (6n1 + 3n2 in PSL3.1) as an exception; check that case.
+  for (table, d) in [("SL3.1", 1), ("PSL3.1", 3)]
+    g = generic_character_table(table)
+    q, (a, b, m, n) = parameters(g)
+    x = parameter(g, "x")
+    y = parameter(g, "y")
+    ψ = specialize(g[10], n, -2 * x + (q - 1) * 1//d * y)
+    Base.invokelatest() do
+      for t in (4, 5)
+        @test iszero(scalar_product(specialize(g[t], n, x), ψ); ignore_exceptions=true)
+      end
+    end
+  end
+end
+
 @testset "set_congruence(table)" begin
   g = generic_character_table("SL3.n1")
   h = tensor_product(g[2], g[2])

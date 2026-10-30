@@ -263,6 +263,12 @@ information = raw"""The generic character table of $\mathrm{SL}_3(q)$,
 
 - The table was first computed in [SF73](@cite).
 
+- Correction to [SF73](@cite), Table 1b: for $\mathrm{SL}_3(q)$,
+  $\chi_{rt}^{(u)}(C_7^{(k)})$ is $-(\eta^{-uk} + \eta^{-ukq})$, not
+  $-(\eta^{uk} + \eta^{ukq})$; the same applies to Table 2. Character type 7 on class
+  type 7 has the correct value, as does the CHEVIE table `SL3.n1`. The CHEVIE tables
+  `PSL3.n1` and `PGL3.n1`, which here are this table, have the printed value.
+
 - See also: [Ste51](@cite), [Gre55](@cite).
 """
 
