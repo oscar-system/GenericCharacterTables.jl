@@ -269,6 +269,11 @@ information = raw"""The generic character table of $\mathrm{SU}_3(q)$,
 
 - Corrections in [Gec90](@cite).
 
+- Correction to the CHEVIE table: class type 6 also excludes $a + 2b \equiv 0$ and
+  $2a + b \equiv 0$ modulo $q + 1$, and character type 6 also excludes $n \equiv 0$ and
+  $m \equiv 0$, as do [SF73](@cite), Tables 1a and 1b. CHEVIE excludes only $a \equiv b$
+  and $n \equiv m$.
+
 - See also: [Enn63](@cite), [Enn62](@cite), [Ste51](@cite).
 """
 

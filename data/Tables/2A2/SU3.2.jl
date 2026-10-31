@@ -436,6 +436,10 @@ information = raw"""The generic character table of $\mathrm{SU}_3(q)$,
 
 - Corrections in [Gec90](@cite).
 
+- Correction to the CHEVIE table: class type 8 excludes $a \equiv b$, $a + 2b \equiv 0$
+  and $2a + b \equiv 0$ modulo $q + 1$, as does [SF73](@cite), Table 1a. CHEVIE has
+  $a \equiv 0$ and $b \equiv 0$, which are valid, in place of the last two.
+
 - See also: [Enn63](@cite), [Enn62](@cite), [Ste51](@cite).
 """
 
