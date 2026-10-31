@@ -373,6 +373,17 @@ information = raw"""The generic character table of $\mathrm{PSL}_3(q)$,
   $-(\eta^{3uk} + \eta^{3uqk})$. The CHEVIE table has the printed value; here it is
   corrected in character type 10 on class type 10.
 
+- Correction to the CHEVIE table: the parameter $n$ of character type 11 runs modulo
+  $(q^2 + q + 1)/3$, not $(q^2 + q - 2)/3$. Class type 11 excludes $a$ and character
+  type 11 excludes $n$ divisible by $(q^2 + q + 1)/3$; CHEVIE lists no exceptions.
+
+- Correction to [SF73](@cite), Table 2: $\chi_{q^3}(C_2)$ is $0$, not $q$. Character
+  type 3 on class type 2 has the correct value, as does the CHEVIE table.
+
+- Correction to [SF73](@cite), Section 7: $\gamma_2$ in $B_{uk}$ of Table 2 has order
+  $(q^2 + q + 1)/3$, so it is $\gamma^3$, not $\gamma_1^{r'}$. Character type 11 on class
+  type 11 has the correct value, as does the CHEVIE table.
+
 - The table was constructed by Jochen Gruber from the generic character
   table of $\mathrm{SL}_3(q)$, $q$ congruent to $1$ modulo $3$.
 

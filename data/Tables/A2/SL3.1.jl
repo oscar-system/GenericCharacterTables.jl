@@ -440,6 +440,20 @@ information = raw"""The generic character table of $\mathrm{SL}_3(q)$,
   $-(\eta^{uk} + \eta^{ukq})$. The CHEVIE table has the printed value; here it is
   corrected in character type 10 on class type 9.
 
+- Correction to [SF73](@cite), Table 1b: the header of $\chi_{st}^{(u,v,w)}$ requires
+  $u + v + w \equiv 0$ modulo $q - 1$, which leaves only the third of these characters
+  with the centre in the kernel. Character type 9 has all of them, as does the CHEVIE
+  table, with $(u, v, w) = (n, m, 0)$.
+
+- Correction to [SF73](@cite), Table 1b: the header of $\chi_{r^2s}^{(u)}$ identifies $u$,
+  $uq$ and $uq^2$ modulo $(q^2 + q + 1)/3$. They are identified modulo $q^2 + q + 1$,
+  as in character type 17 and the CHEVIE table; only this gives the printed number of
+  characters.
+
+- Correction to [SF73](@cite), Table 1b: $\chi_{r^2s'}^{(u)\prime}(C_8^{(k)})$ is
+  $\omega^{2k}$, not $\omega^k$. Character types 14 to 16 on class type 10 have the
+  correct value, as does the CHEVIE table.
+
 - See also: [Ste51](@cite), [Gre55](@cite).
 """
 

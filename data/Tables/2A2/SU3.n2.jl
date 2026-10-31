@@ -261,7 +261,13 @@ information = raw"""The generic character table of $\mathrm{SU}_3(q)$,
 
 - The table was first computed in [SF73](@cite).
 
-- Corrections in [Gec90](@cite).
+- [Gec90](@cite), Section 3, corrects [SF73](@cite), Table 1b, for $q$ congruent to $2$
+  modulo $3$; see `SU3.2`. This table is not affected: the centre is trivial.
+
+- Correction to [SF73](@cite), Table 1a: for $\mathrm{SU}_3(q)$ the representative of
+  $C_8^{(k)}$ has the eigenvalues $\tau^k$, $\tau^{-kq}$, $\tau^{kq^2}$, not $\tau^k$,
+  $\tau^{kq}$, $\tau^{kq^2}$, whose product is $\tau^{2kq}$, not $1$. Class type 8 uses
+  the correct ones, as does the CHEVIE table.
 
 - See also: [Enn63](@cite), [Enn62](@cite), [Ste51](@cite).
 """

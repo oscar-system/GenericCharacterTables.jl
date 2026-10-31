@@ -373,7 +373,17 @@ information = raw"""The generic character table of $\mathrm{PSU}_3(q)$,
 - The table was constructed by Jochen Gruber from the generic character
   table of $\mathrm{SL}_3(q)$, $q$ congruent to $1$ modulo $3$.
 
-- Corrections in [Gec90](@cite).
+- [Gec90](@cite), Section 3, corrects [SF73](@cite), Table 1b, for $\mathrm{SU}_3(q)$;
+  see `SU3.2`. This table is not affected: $\chi_{st}^{(u,v,w)}$ with
+  $u + v + w \equiv 0$ modulo $q + 1$, as printed in [SF73](@cite), Table 2, are the
+  characters of that family with the centre in the kernel.
+
+- Correction to [SF73](@cite), Table 2: $\chi_{q^3}(C_2)$ is $0$, not $-q$. Character
+  type 3 on class type 2 has the correct value, as does the CHEVIE table.
+
+- Correction to [SF73](@cite), Section 7: $\gamma_2$ in $B_{uk}$ of Table 2 has order
+  $(q^2 - q + 1)/3$, so it is $\gamma^3$, not $\gamma_1^{r'}$. Character type 11 on class
+  type 11 has the correct value, as does the CHEVIE table.
 
 - See also: [Enn63](@cite), [Enn62](@cite), [Ste51](@cite).
 """
