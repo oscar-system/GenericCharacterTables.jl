@@ -269,6 +269,10 @@ information = raw"""The generic character table of $\mathrm{SL}_3(q)$,
   type 7 has the correct value, as does the CHEVIE table `SL3.n1`. The CHEVIE tables
   `PSL3.n1` and `PGL3.n1`, which here are this table, have the printed value.
 
+- Correction to the CHEVIE table: class type 6 also excludes $a + 2b \equiv 0$ and
+  $2a + b \equiv 0$ modulo $q - 1$, and character type 6 also excludes $n \equiv 0$ and
+  $m \equiv 0$. CHEVIE excludes only $a \equiv b$ and $n \equiv m$.
+
 - See also: [Ste51](@cite), [Gre55](@cite).
 """
 

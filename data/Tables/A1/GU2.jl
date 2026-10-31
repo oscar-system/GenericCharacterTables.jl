@@ -133,6 +133,10 @@ information = raw"""The generic character table of $\mathrm{GU}_2(q)$.
 
 - The table was first computed in [Enn63](@cite).
 
+- Correction to the CHEVIE table: class type 3 and character type 3 exclude
+  only $k \equiv l$ and $u \equiv v$ modulo $q + 1$. CHEVIE also excludes
+  $k, l, u, v \equiv 0$, which are valid.
+
 - See also: [Enn62](@cite).
 """
 
