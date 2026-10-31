@@ -3512,10 +3512,14 @@ classsums = [
     s11 = nesum(tt1, a, 1, 2 * q0^2)
     tt1 = evaluate(tt, [b], [-(2 * q0 + 1) * a])
     s12 = nesum(tt1, a, 1, 2 * q0^2)
-    s13 = evaluate(tt, [a, b], R.([b, (2 * q0^2 + 1) * 1//3]))
-    s14 = evaluate(tt, [a, b], R.([-b, (2 * q0^2 + 1) * 1//3]))
-    s15 = evaluate(tt, [a, b], R.([b, 2 * (2 * q0^2 + 1) * 1//3]))
-    s16 = evaluate(tt, [a, b], R.([-b, 2 * (2 * q0^2 + 1) * 1//3]))
+    s13 = evaluate(tt, [a], [b])
+    s13 = evaluate(s13, [b], [(2 * q0^2 + 1) * 1//3])
+    s14 = evaluate(tt, [a], [-b])
+    s14 = evaluate(s14, [b], [(2 * q0^2 + 1) * 1//3])
+    s15 = evaluate(tt, [a], [b])
+    s15 = evaluate(s15, [b], [2 * (2 * q0^2 + 1) * 1//3])
+    s16 = evaluate(tt, [a], [-b])
+    s16 = evaluate(s16, [b], [2 * (2 * q0^2 + 1) * 1//3])
     1//48 * s2 - 1//48 * s3 - 1//48 * s4 - 1//48 * s5 - 1//48 * s6 - 1//48 * s7 -
     1//48 * s8 - 1//48 * s9 - 1//48 * s10 - 1//48 * s11 - 1//48 * s12 + 1//12 * s13 +
     1//12 * s14 + 1//12 * s15 + 1//12 * s16
@@ -3667,10 +3671,14 @@ charsums = [
     s11 = nesum(tt1, k, 1, 2 * q0^2)
     tt1 = evaluate(tt, [l], [-(2 * q0 + 1) * k])
     s12 = nesum(tt1, k, 1, 2 * q0^2)
-    s13 = evaluate(tt, [k, l], R.([l, (2 * q0^2 + 1) * 1//3]))
-    s14 = evaluate(tt, [k, l], R.([-l, (2 * q0^2 + 1) * 1//3]))
-    s15 = evaluate(tt, [k, l], R.([l, 2 * (2 * q0^2 + 1) * 1//3]))
-    s16 = evaluate(tt, [k, l], R.([-l, 2 * (2 * q0^2 + 1) * 1//3]))
+    s13 = evaluate(tt, [k], [l])
+    s13 = evaluate(s13, [l], [(2 * q0^2 + 1) * 1//3])
+    s14 = evaluate(tt, [k], [-l])
+    s14 = evaluate(s14, [l], [(2 * q0^2 + 1) * 1//3])
+    s15 = evaluate(tt, [k], [l])
+    s15 = evaluate(s15, [l], [2 * (2 * q0^2 + 1) * 1//3])
+    s16 = evaluate(tt, [k], [-l])
+    s16 = evaluate(s16, [l], [2 * (2 * q0^2 + 1) * 1//3])
     1//48 * s2 - 1//48 * s3 - 1//48 * s4 - 1//48 * s5 - 1//48 * s6 - 1//48 * s7 -
     1//48 * s8 - 1//48 * s9 - 1//48 * s10 - 1//48 * s11 - 1//48 * s12 + 1//12 * s13 +
     1//12 * s14 + 1//12 * s15 + 1//12 * s16
@@ -3836,6 +3844,18 @@ information = raw"""The generic character table of $^2\mathrm{F}_4(q^2)$,
 - The unipotent characters were first computed in [Mal90](@cite).
 
 - The other irreducible characters were added by G. Malle
+
+- As in CHEVIE, the table is incomplete. It lacks 10 character types: four each
+  for the semisimple class types $t_7$ and $t_9$, whose centralizers are
+  $^2\mathrm{B}_2(q^2)$ times a torus of order $q^2 - \sqrt{2}q + 1$ and
+  $q^2 + \sqrt{2}q + 1$ respectively, and one each for $t_{12}$ and $t_{13}$,
+  which are regular in tori of the squares of these orders. That is
+  $(q_0^4 + 47q_0^2)/12$ characters in total.
+
+- Correction to the CHEVIE table: the sums over class type 48 and character
+  type 38 substitute $a = \pm b$ (respectively $k = \pm l$) and then
+  $b = (2q_0^2 + 1)/3$ or twice that. CHEVIE substitutes both at once, which
+  leaves $b$ (respectively $l$) free.
 """
 
 TABLE = CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
