@@ -1114,29 +1114,29 @@ table = GenericCyclo[[
     S(1; exponent=(-a * (k + l)) * 1//R((q^2 + q + 1))) +
     S(1; exponent=(a * (k - l)) * 1//R((q^2 + q + 1))) +
     S(1; exponent=(a * (l - k)) * 1//R((q^2 + q + 1))) +
-    S(1; exponent=(a * (k + (2 * q + 1) * l)) * 1//R((q^2 + q + 1))) +
-    S(1; exponent=(a * ((-2 * q - 1) * k + l)) * 1//R((q^2 + q + 1))) +
-    S(1; exponent=(a * ((2 * q + 1) * k - l)) * 1//R((q^2 + q + 1))) +
-    S(1; exponent=(a * (-k + (-2 * q - 1) * l)) * 1//R((q^2 + q + 1)))
+    S(1; exponent=(a * (k + (-2 * q - 1) * l)) * 1//R((q^2 + q + 1))) +
+    S(1; exponent=(a * ((-2 * q - 1) * k - l)) * 1//R((q^2 + q + 1))) +
+    S(1; exponent=(a * ((2 * q + 1) * k + l)) * 1//R((q^2 + q + 1))) +
+    S(1; exponent=(a * (-k + (2 * q + 1) * l)) * 1//R((q^2 + q + 1)))
   ),
   -(q - 1) * (
     S(1; exponent=(a * (k + l)) * 1//R((q^2 + q + 1))) +
     S(1; exponent=(-a * (k + l)) * 1//R((q^2 + q + 1))) +
     S(1; exponent=(a * (k - l)) * 1//R((q^2 + q + 1))) +
     S(1; exponent=(a * (l - k)) * 1//R((q^2 + q + 1))) +
-    S(1; exponent=(a * (k + (2 * q + 1) * l)) * 1//R((q^2 + q + 1))) +
-    S(1; exponent=(a * ((-2 * q - 1) * k + l)) * 1//R((q^2 + q + 1))) +
-    S(1; exponent=(a * ((2 * q + 1) * k - l)) * 1//R((q^2 + q + 1))) +
-    S(1; exponent=(a * (-k + (-2 * q - 1) * l)) * 1//R((q^2 + q + 1)))
+    S(1; exponent=(a * (k + (-2 * q - 1) * l)) * 1//R((q^2 + q + 1))) +
+    S(1; exponent=(a * ((-2 * q - 1) * k - l)) * 1//R((q^2 + q + 1))) +
+    S(1; exponent=(a * ((2 * q + 1) * k + l)) * 1//R((q^2 + q + 1))) +
+    S(1; exponent=(a * (-k + (2 * q + 1) * l)) * 1//R((q^2 + q + 1)))
   ),
   S(1; exponent=(a * (k + l)) * 1//R((q^2 + q + 1))) +
   S(1; exponent=(-a * (k + l)) * 1//R((q^2 + q + 1))) +
   S(1; exponent=(a * (k - l)) * 1//R((q^2 + q + 1))) +
   S(1; exponent=(a * (l - k)) * 1//R((q^2 + q + 1))) +
-  S(1; exponent=(a * (k + (2 * q + 1) * l)) * 1//R((q^2 + q + 1))) +
-  S(1; exponent=(a * ((-2 * q - 1) * k + l)) * 1//R((q^2 + q + 1))) +
-  S(1; exponent=(a * ((2 * q + 1) * k - l)) * 1//R((q^2 + q + 1))) +
-  S(1; exponent=(a * (-k + (-2 * q - 1) * l)) * 1//R((q^2 + q + 1))),
+  S(1; exponent=(a * (k + (-2 * q - 1) * l)) * 1//R((q^2 + q + 1))) +
+  S(1; exponent=(a * ((-2 * q - 1) * k - l)) * 1//R((q^2 + q + 1))) +
+  S(1; exponent=(a * ((2 * q + 1) * k + l)) * 1//R((q^2 + q + 1))) +
+  S(1; exponent=(a * (-k + (2 * q + 1) * l)) * 1//R((q^2 + q + 1))),
   S(0),
   S(0),
   S(0),
@@ -1153,26 +1153,26 @@ table = GenericCyclo[[
   S(1; exponent=(-a * k - b * l) * 1//R((q^2 + q + 1))) +
   S(1; exponent=(-b * k + a * l) * 1//R((q^2 + q + 1))) +
   S(1; exponent=(b * k - a * l) * 1//R((q^2 + q + 1))) +
-  S(1; exponent=(a * k + ((a + b) * q + b) * l) * 1//R((q^2 + q + 1))) +
+  S(1; exponent=(a * k + (-(a + b) * q - b) * l) * 1//R((q^2 + q + 1))) +
   S(1; exponent=(a * k + (-(a - b) * q - a) * l) * 1//R((q^2 + q + 1))) +
   S(1; exponent=((-(a - b) * q - a) * k + b * l) * 1//R((q^2 + q + 1))) +
-  S(1; exponent=((-(a + b) * q - b) * k + b * l) * 1//R((q^2 + q + 1))) +
-  S(1; exponent=((-(a + b) * q - b) * k + a * l) * 1//R((q^2 + q + 1))) +
-  S(1; exponent=(b * k + ((a + b) * q + b) * l) * 1//R((q^2 + q + 1))) +
+  S(1; exponent=((-(a + b) * q - b) * k - b * l) * 1//R((q^2 + q + 1))) +
+  S(1; exponent=((-(a + b) * q - b) * k - a * l) * 1//R((q^2 + q + 1))) +
+  S(1; exponent=(b * k + (-(a + b) * q - b) * l) * 1//R((q^2 + q + 1))) +
   S(1; exponent=((-(a - b) * q - a) * k - a * l) * 1//R((q^2 + q + 1))) +
   S(1; exponent=(b * k + ((a - b) * q + a) * l) * 1//R((q^2 + q + 1))) +
   S(1; exponent=(-b * k + ((-a + b) * q - a) * l) * 1//R((q^2 + q + 1))) +
   S(1; exponent=(((a - b) * q + a) * k + a * l) * 1//R((q^2 + q + 1))) +
-  S(1; exponent=(-b * k + (-(a + b) * q - b) * l) * 1//R((q^2 + q + 1))) +
-  S(1; exponent=(((a + b) * q + b) * k - a * l) * 1//R((q^2 + q + 1))) +
-  S(1; exponent=(((a + b) * q + b) * k - b * l) * 1//R((q^2 + q + 1))) +
+  S(1; exponent=(-b * k + ((a + b) * q + b) * l) * 1//R((q^2 + q + 1))) +
+  S(1; exponent=(((a + b) * q + b) * k + a * l) * 1//R((q^2 + q + 1))) +
+  S(1; exponent=(((a + b) * q + b) * k + b * l) * 1//R((q^2 + q + 1))) +
   S(1; exponent=(((a - b) * q + a) * k - b * l) * 1//R((q^2 + q + 1))) +
   S(1; exponent=(-a * k + ((a - b) * q + a) * l) * 1//R((q^2 + q + 1))) +
-  S(1; exponent=(-a * k + (-(a + b) * q - b) * l) * 1//R((q^2 + q + 1))) +
-  S(1; exponent=(((a + b) * q + b) * k + ((-a + b) * q - a) * l) * 1//R((q^2 + q + 1))) +
-  S(1; exponent=((-(a - b) * q - a) * k + (-(a + b) * q - b) * l) * 1//R((q^2 + q + 1))) +
-  S(1; exponent=(((a - b) * q + a) * k + ((a + b) * q + b) * l) * 1//R((q^2 + q + 1))) +
-  S(1; exponent=((-(a + b) * q - b) * k + ((a - b) * q + a) * l) * 1//R((q^2 + q + 1))),
+  S(1; exponent=(-a * k + ((a + b) * q + b) * l) * 1//R((q^2 + q + 1))) +
+  S(1; exponent=(((a + b) * q + b) * k + ((a - b) * q + a) * l) * 1//R((q^2 + q + 1))) +
+  S(1; exponent=((-(a - b) * q - a) * k + ((a + b) * q + b) * l) * 1//R((q^2 + q + 1))) +
+  S(1; exponent=(((a - b) * q + a) * k + (-(a + b) * q - b) * l) * 1//R((q^2 + q + 1))) +
+  S(1; exponent=((-(a + b) * q - b) * k + (-(a - b) * q - a) * l) * 1//R((q^2 + q + 1))),
   S(0),
   S(0),
   S(0)] [
@@ -1201,29 +1201,29 @@ table = GenericCyclo[[
     S(1; exponent=(-a * (k + l)) * 1//R((q^2 - q + 1))) +
     S(1; exponent=(a * (k - l)) * 1//R((q^2 - q + 1))) +
     S(1; exponent=(a * (l - k)) * 1//R((q^2 - q + 1))) +
-    S(1; exponent=(a * (k + (-2 * q + 1) * l)) * 1//R((q^2 - q + 1))) +
-    S(1; exponent=(a * ((2 * q - 1) * k + l)) * 1//R((q^2 - q + 1))) +
-    S(1; exponent=(a * ((-2 * q + 1) * k - l)) * 1//R((q^2 - q + 1))) +
-    S(1; exponent=(a * (-k + (2 * q - 1) * l)) * 1//R((q^2 - q + 1)))
+    S(1; exponent=(a * (k + (2 * q - 1) * l)) * 1//R((q^2 - q + 1))) +
+    S(1; exponent=(a * ((2 * q - 1) * k - l)) * 1//R((q^2 - q + 1))) +
+    S(1; exponent=(a * ((-2 * q + 1) * k + l)) * 1//R((q^2 - q + 1))) +
+    S(1; exponent=(a * (-k + (-2 * q + 1) * l)) * 1//R((q^2 - q + 1)))
   ),
   (q + 1) * (
     S(1; exponent=(a * (k + l)) * 1//R((q^2 - q + 1))) +
     S(1; exponent=(-a * (k + l)) * 1//R((q^2 - q + 1))) +
     S(1; exponent=(a * (k - l)) * 1//R((q^2 - q + 1))) +
     S(1; exponent=(a * (l - k)) * 1//R((q^2 - q + 1))) +
-    S(1; exponent=(a * (k + (-2 * q + 1) * l)) * 1//R((q^2 - q + 1))) +
-    S(1; exponent=(a * ((2 * q - 1) * k + l)) * 1//R((q^2 - q + 1))) +
-    S(1; exponent=(a * ((-2 * q + 1) * k - l)) * 1//R((q^2 - q + 1))) +
-    S(1; exponent=(a * (-k + (2 * q - 1) * l)) * 1//R((q^2 - q + 1)))
+    S(1; exponent=(a * (k + (2 * q - 1) * l)) * 1//R((q^2 - q + 1))) +
+    S(1; exponent=(a * ((2 * q - 1) * k - l)) * 1//R((q^2 - q + 1))) +
+    S(1; exponent=(a * ((-2 * q + 1) * k + l)) * 1//R((q^2 - q + 1))) +
+    S(1; exponent=(a * (-k + (-2 * q + 1) * l)) * 1//R((q^2 - q + 1)))
   ),
   S(1; exponent=(a * (k + l)) * 1//R((q^2 - q + 1))) +
   S(1; exponent=(-a * (k + l)) * 1//R((q^2 - q + 1))) +
   S(1; exponent=(a * (k - l)) * 1//R((q^2 - q + 1))) +
   S(1; exponent=(a * (l - k)) * 1//R((q^2 - q + 1))) +
-  S(1; exponent=(a * (k + (-2 * q + 1) * l)) * 1//R((q^2 - q + 1))) +
-  S(1; exponent=(a * ((2 * q - 1) * k + l)) * 1//R((q^2 - q + 1))) +
-  S(1; exponent=(a * ((-2 * q + 1) * k - l)) * 1//R((q^2 - q + 1))) +
-  S(1; exponent=(a * (-k + (2 * q - 1) * l)) * 1//R((q^2 - q + 1))),
+  S(1; exponent=(a * (k + (2 * q - 1) * l)) * 1//R((q^2 - q + 1))) +
+  S(1; exponent=(a * ((2 * q - 1) * k - l)) * 1//R((q^2 - q + 1))) +
+  S(1; exponent=(a * ((-2 * q + 1) * k + l)) * 1//R((q^2 - q + 1))) +
+  S(1; exponent=(a * (-k + (-2 * q + 1) * l)) * 1//R((q^2 - q + 1))),
   S(0),
   S(0),
   S(0),
@@ -1232,26 +1232,26 @@ table = GenericCyclo[[
   S(1; exponent=(-a * k - b * l) * 1//R((q^2 - q + 1))) +
   S(1; exponent=(-b * k + a * l) * 1//R((q^2 - q + 1))) +
   S(1; exponent=(b * k - a * l) * 1//R((q^2 - q + 1))) +
-  S(1; exponent=(a * k + ((-a - b) * q + b) * l) * 1//R((q^2 - q + 1))) +
+  S(1; exponent=(a * k + ((a + b) * q - b) * l) * 1//R((q^2 - q + 1))) +
   S(1; exponent=(a * k + ((a - b) * q - a) * l) * 1//R((q^2 - q + 1))) +
   S(1; exponent=(((a - b) * q - a) * k + b * l) * 1//R((q^2 - q + 1))) +
-  S(1; exponent=(((a + b) * q - b) * k + b * l) * 1//R((q^2 - q + 1))) +
-  S(1; exponent=(((a + b) * q - b) * k + a * l) * 1//R((q^2 - q + 1))) +
-  S(1; exponent=(b * k + ((-a - b) * q + b) * l) * 1//R((q^2 - q + 1))) +
+  S(1; exponent=(((a + b) * q - b) * k - b * l) * 1//R((q^2 - q + 1))) +
+  S(1; exponent=(((a + b) * q - b) * k - a * l) * 1//R((q^2 - q + 1))) +
+  S(1; exponent=(b * k + ((a + b) * q - b) * l) * 1//R((q^2 - q + 1))) +
   S(1; exponent=(((a - b) * q - a) * k - a * l) * 1//R((q^2 - q + 1))) +
   S(1; exponent=(b * k + ((-a + b) * q + a) * l) * 1//R((q^2 - q + 1))) +
   S(1; exponent=(-b * k + ((a - b) * q - a) * l) * 1//R((q^2 - q + 1))) +
   S(1; exponent=(((-a + b) * q + a) * k + a * l) * 1//R((q^2 - q + 1))) +
-  S(1; exponent=(-b * k + ((a + b) * q - b) * l) * 1//R((q^2 - q + 1))) +
-  S(1; exponent=(((-a - b) * q + b) * k - a * l) * 1//R((q^2 - q + 1))) +
-  S(1; exponent=(((-a - b) * q + b) * k - b * l) * 1//R((q^2 - q + 1))) +
+  S(1; exponent=(-b * k + ((-a - b) * q + b) * l) * 1//R((q^2 - q + 1))) +
+  S(1; exponent=(((-a - b) * q + b) * k + a * l) * 1//R((q^2 - q + 1))) +
+  S(1; exponent=(((-a - b) * q + b) * k + b * l) * 1//R((q^2 - q + 1))) +
   S(1; exponent=(((-a + b) * q + a) * k - b * l) * 1//R((q^2 - q + 1))) +
   S(1; exponent=(-a * k + ((-a + b) * q + a) * l) * 1//R((q^2 - q + 1))) +
-  S(1; exponent=(-a * k + ((a + b) * q - b) * l) * 1//R((q^2 - q + 1))) +
-  S(1; exponent=(((-a - b) * q + b) * k + ((a - b) * q - a) * l) * 1//R((q^2 - q + 1))) +
-  S(1; exponent=(((a - b) * q - a) * k + ((a + b) * q - b) * l) * 1//R((q^2 - q + 1))) +
-  S(1; exponent=(((-a + b) * q + a) * k + ((-a - b) * q + b) * l) * 1//R((q^2 - q + 1))) +
-  S(1; exponent=(((a + b) * q - b) * k + ((-a + b) * q + a) * l) * 1//R((q^2 - q + 1))),
+  S(1; exponent=(-a * k + ((-a - b) * q + b) * l) * 1//R((q^2 - q + 1))) +
+  S(1; exponent=(((-a - b) * q + b) * k + ((-a + b) * q + a) * l) * 1//R((q^2 - q + 1))) +
+  S(1; exponent=(((a - b) * q - a) * k + ((-a - b) * q + b) * l) * 1//R((q^2 - q + 1))) +
+  S(1; exponent=(((-a + b) * q + a) * k + ((a + b) * q - b) * l) * 1//R((q^2 - q + 1))) +
+  S(1; exponent=(((a + b) * q - b) * k + ((a - b) * q - a) * l) * 1//R((q^2 - q + 1))),
   S(0),
   S(0)] [
   ((q - 1)^2 * (q + 1)^2 * (q^2 + q + 1)^2 * (q^2 - q + 1)^2) * S(1),
@@ -1838,6 +1838,11 @@ charparamindex = var_index.([k, l])
 information = raw"""The generic character table of $^3\mathrm{D}_4(2^n)$.
 
 - The table was first computed in [DM87](@cite).
+
+- Correction to the CHEVIE table: character types 26 and 27 are sums over
+  the relative Weyl group of order 24. CHEVIE has the wrong sign of $l$ in
+  12 of the 24 summands on class types 26 and 27, and in 4 of the 8 summands
+  on class types 11 to 13 and 20 to 22.
 """
 
 TABLE = CharTable(order, permutedims(table), classinfo, classlength, charinfo, chardegree,
