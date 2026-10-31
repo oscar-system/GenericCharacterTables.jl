@@ -337,7 +337,7 @@ classparams = [
   Parameters(Parameter[]),
   Parameters(
     [Parameter(a, q + 1), Parameter(b, q + 1)],
-    [((a) * 1//((q + 1) * 1//3)), ((b) * 1//((q + 1) * 1//3)), ((a - b) * 1//(q + 1))],
+    [((a - b) * 1//(q + 1)), ((2 * a + b) * 1//(q + 1)), ((a + 2 * b) * 1//(q + 1))],
   ),
   Parameters([Parameter(a, q^2 - 1)], [((a) * 1//(q - 1))]),
   Parameters([Parameter(a, q^2 - q + 1)], [((a) * 1//((q^2 - q + 1) * 1//3))]),
@@ -374,6 +374,13 @@ information = raw"""The generic character table of $\mathrm{PSU}_3(q)$,
   table of $\mathrm{SL}_3(q)$, $q$ congruent to $1$ modulo $3$.
 
 - Corrections in [Gec90](@cite).
+
+- Correction to the CHEVIE table: class type 9 excludes $a \equiv b$, $a + 2b \equiv 0$
+  and $2a + b \equiv 0$ modulo $q + 1$, as does [SF73](@cite), Table 2. CHEVIE has
+  $a \equiv 0$ and $b \equiv 0$ modulo $(q + 1)/3$, which excludes valid parameters, in
+  place of the last two. The six tuples $(a, a \pm (q + 1)/3)$ with $3a \equiv 0$ modulo
+  $q + 1$ belong to class type 8 but are not excluded: no single exception expresses
+  them.
 
 - See also: [Enn63](@cite), [Enn62](@cite), [Ste51](@cite).
 """
