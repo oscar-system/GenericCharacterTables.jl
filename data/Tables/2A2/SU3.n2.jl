@@ -231,7 +231,10 @@ classparams = [
   Parameters(Parameter[]),
   Parameters([Parameter(a, q + 1)], [((a) * 1//(q + 1))]),
   Parameters([Parameter(a, q + 1)], [((a) * 1//(q + 1))]),
-  Parameters([Parameter(a, q + 1), Parameter(b, q + 1)], [((a - b) * 1//(q + 1))]),
+  Parameters(
+    [Parameter(a, q + 1), Parameter(b, q + 1)],
+    [((a - b) * 1//(q + 1)), ((2 * a + b) * 1//(q + 1)), ((a + 2 * b) * 1//(q + 1))],
+  ),
   Parameters([Parameter(a, q^2 - 1)], [((a) * 1//(q - 1))]),
   Parameters([Parameter(a, q^2 - q + 1)], [((a) * 1//(q^2 - q + 1))]),
 ]
@@ -242,7 +245,10 @@ charparams = [
   Parameters(Parameter[]),
   Parameters([Parameter(n, q + 1)], [((n) * 1//(q + 1))]),
   Parameters([Parameter(n, q + 1)], [((n) * 1//(q + 1))]),
-  Parameters([Parameter(n, q + 1), Parameter(m, q + 1)], [((n - m) * 1//(q + 1))]),
+  Parameters(
+    [Parameter(n, q + 1), Parameter(m, q + 1)],
+    [((n) * 1//(q + 1)), ((m) * 1//(q + 1)), ((n - m) * 1//(q + 1))],
+  ),
   Parameters([Parameter(n, q^2 - 1)], [((n) * 1//(q - 1))]),
   Parameters([Parameter(n, q^2 - q + 1)], [((n) * 1//(q^2 - q + 1))]),
 ]
@@ -262,6 +268,11 @@ information = raw"""The generic character table of $\mathrm{SU}_3(q)$,
 - The table was first computed in [SF73](@cite).
 
 - Corrections in [Gec90](@cite).
+
+- Correction to the CHEVIE table: class type 6 also excludes $a + 2b \equiv 0$ and
+  $2a + b \equiv 0$ modulo $q + 1$, and character type 6 also excludes $n \equiv 0$ and
+  $m \equiv 0$, as do [SF73](@cite), Tables 1a and 1b. CHEVIE excludes only $a \equiv b$
+  and $n \equiv m$.
 
 - See also: [Enn63](@cite), [Enn62](@cite), [Ste51](@cite).
 """
