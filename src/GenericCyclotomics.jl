@@ -146,7 +146,7 @@ function hash(x::GenericCyclo, h::UInt)
 end
 
 function deepcopy_internal(x::GenericCyclo, dict::IdDict)
-  return GenericCyclo(deepcopy_internal(x.f, dict), parent(x))
+  return GenericCyclo(deepcopy_internal(x.f, dict), parent(x), x.simplified)
 end
 
 # Basic manipulation
@@ -239,13 +239,13 @@ function -(x::GenericCyclo)
   # also hash each of them again.
   f = copy(x.f)
   map!(-, values(f))
-  return parent(x)(f; simplify=false)
+  return GenericCyclo(f, parent(x), x.simplified)
 end
 
 function conj(x::GenericCyclo)
   f = Dict{UPolyFrac,UPoly}()
   for (key, value) in x.f
-    f[-key] = value
+    f[negative_exponent!(parent(x), key)] = value
   end
   return parent(x)(f)
 end
@@ -259,22 +259,54 @@ function +(x::GenericCyclo, y::GenericCyclo)
   return parent(x)(f)
 end
 
+# Return the common denominator `d` that the sum of `x` and `y` as dictionaries
+# is simplified with, or 0 if it may need simplifying. Simplifying with `d`
+# keeps each exponent that a simplification with `d` produced, also for the
+# divisors of `d` that the polynomial parts of the exponents allow; and the
+# exponents produced with `d == 1` are remainders, which every `d` keeps.
+function simplified_sum(x::GenericCyclo, y::GenericCyclo)
+  dx, dy = x.simplified, y.simplified
+  (iszero(dx) || iszero(dy)) && return 0
+  isone(dx) && return dy
+  (isone(dy) || dx == dy) && return dx
+  return 0
+end
+
 -(x::GenericCyclo, y::GenericCyclo) = x + (-y)  # TODO make this more efficient?
 
 function *(x::GenericCyclo, y::GenericCyclo)
   check_parent(x, y)
-  f = Dict{UPolyFrac,UPoly}()
+  R = parent(x)
+  y_summands = [(exponent_entry!(R, key).exponent, value) for (key, value) in y.f]
+  f = Summands()
   for (key1, value1) in x.f
-    for (key2, value2) in y.f
-      key = key1 + key2
-      if haskey(f, key)
-        f[key] += value1 * value2
-      else
-        f[key] = value1 * value2
-      end
+    data = exponent_entry!(R, key1)
+    for (key2, value2) in y_summands
+      add_summand!(f, exponent_sum!(R, data, key2), value1 * value2)
     end
   end
-  return parent(x)(f)
+  return simplify_summands(R, summands_dict(f))
+end
+
+# Return the stored exponent equal to the sum of the exponent of `data` and the
+# stored exponent `g`. The values of different characters on a class share
+# many exponents, so the same sums recur in the products of a scalar product.
+function exponent_sum!(R::GenericCycloRing, data::ExponentData, g::UPolyFrac)
+  if !isdefined(data, :sums)
+    data.sums = IdDict{UPolyFrac,UPolyFrac}()
+  end
+  return get!(data.sums, g) do
+    exponent_entry!(R, data.exponent + g).exponent
+  end
+end
+
+# Return the stored exponent equal to `-g`.
+function negative_exponent!(R::GenericCycloRing, g::UPolyFrac)
+  data = exponent_entry!(R, g)
+  if !isdefined(data, :negative)
+    data.negative = exponent_entry!(R, -data.exponent).exponent
+  end
+  return data.negative
 end
 
 +(x::UPoly, y::GenericCyclo) = parent(y)(x) + y
@@ -308,7 +340,10 @@ end
 # Comparison
 
 function ==(x::GenericCyclo, y::GenericCyclo)  # TODO Make compatible with hashes. There might be some missing theory...
-  return parent(x) == parent(y) && iszero(x - y)
+  parent(x) == parent(y) || return false
+  # Then the difference is simplified as a difference of dictionaries.
+  iszero(simplified_sum(x, y)) || return x.f == y.f
+  return iszero(x - y)
 end
 
 # Exact division
@@ -332,12 +367,14 @@ end
 
 function zero!(x::GenericCyclo)
   x.f = Dict{UPolyFrac,UPoly}()
+  x.simplified = 1
   return x
 end
 
 mul!(x::GenericCyclo, y::GenericCyclo, z::GenericCyclo) = y * z
 
 function add!(x::GenericCyclo, y::GenericCyclo, z::GenericCyclo)
+  d = simplified_sum(y, z)
   if x === z
     y, z = z, y
   elseif x !== y
@@ -345,6 +382,7 @@ function add!(x::GenericCyclo, y::GenericCyclo, z::GenericCyclo)
   end
   mergewith!(+, x.f, z.f)
   strip_zeros!(x.f)
+  x.simplified = d
   return x
 end
 
@@ -375,18 +413,18 @@ end
 
 # Constructors
 
-(R::GenericCycloRing)() = GenericCyclo(Dict{UPolyFrac,UPoly}(), R)
+(R::GenericCycloRing)() = GenericCyclo(Dict{UPolyFrac,UPoly}(), R, 1)
 
 function (R::GenericCycloRing)(c::Union{Integer,Rational})
   if iszero(c)
     return R()
   end
-  return GenericCyclo(Dict(base_ring(R)()//base_ring(R)(1) => base_ring(R)(c)), R)
+  return GenericCyclo(Dict(base_ring(R)()//base_ring(R)(1) => base_ring(R)(c)), R, 1)
 end
 
 function (R::GenericCycloRing)(c::UPoly)
   base_ring(R) != parent(c) && error("Unable to coerce element")
-  return GenericCyclo(Dict(base_ring(R)()//base_ring(R)(1) => c), R)
+  return GenericCyclo(Dict(base_ring(R)()//base_ring(R)(1) => c), R, iszero(c) ? 0 : 1)
 end
 
 function (R::GenericCycloRing)(x::RingElement; exponent::UPolyFrac)
@@ -397,23 +435,19 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
   if !simplify
     return GenericCyclo(f, R)
   end
+  return simplify_summands(R, f)
+end
 
-  substitutes = get_substitutes!(R)
-
-  # split each exponent into its polynomial part and a remainder
-  L = NTuple{4,UPoly}[]
+# Return the simplified generic cyclotomic with the summands `f`.
+function simplify_summands(R::GenericCycloRing, f::AbstractDict{UPolyFrac,UPoly})
+  # find the common denominator `d` of the polynomial parts of the exponents
+  L = Tuple{ExponentData,UPoly}[]
   d = 1
   for (g, c) in f
     iszero(c) && continue
-    g_2, r, a, a_denominator = if substitutes === nothing
-      split_exponent(g)
-    else
-      prepare_exponent!(R, substitutes, g)
-    end
-    push!(L, (c, g_2, r, a))
-
-    # find the common denominator of the exponents in `f` (of all `a`)
-    d = lcm(d, a_denominator)
+    data = exponent_data!(R, g)
+    push!(L, (data, c))
+    d = lcm(d, data.a_denominator)
   end
 
   # return early if `L` is empty
@@ -421,56 +455,56 @@ function (R::GenericCycloRing)(f::Dict{UPolyFrac,UPoly}; simplify::Bool=true)  #
     return R()
   end
 
-  fp = Dict{UPolyFrac,UPoly}()
-  frac_ring = fraction_field(base_ring(R))
-
-  # Add `coefficient` to the summand of exponent `g`, after reversing the
-  # congruence preparation applied above.
-  function collect_summand!(g::UPolyFrac, coefficient::UPoly)
-    if substitutes !== nothing
-      g = restore_exponent!(R, substitutes, g)
-    end
-    if haskey(fp, g)
-      fp[g] += coefficient
-    else
-      fp[g] = coefficient
-    end
-  end
-
-  # Each `r` is a remainder modulo its `g_2` and the exponent it came from was
-  # already in lowest terms, so the two are coprime and `frac_ring` may skip
-  # cancelling them, which would cost a multivariate gcd.
+  fp = Summands()
 
   # For `d == 1` all exponents are integral: their normal form is zero and
   # `phi_1 = x - 1` leaves nothing to distribute, so the remainder is already
   # the whole exponent. This is by far the most common case.
   if isone(d)
-    for (c, g_2, r, _) in L
-      collect_summand!(frac_ring(r, g_2), c)
+    for (data, c) in L
+      add_summand!(fp, data.remainder, c)
     end
-    return GenericCyclo(strip_zeros!(fp), R)
+    return GenericCyclo(strip_zeros!(summands_dict(fp)), R, 1)
   end
 
-  exponent_ring = get_exponent_ring!(R)
-  S, x = ZZ[:x]
-  phi_d = cyclotomic_polynomial(d, S)
-  for (c, g_2, r, a) in L
-    r_g_2 = frac_ring(r, g_2)
-
-    # normalize the polynomial part of the exponent
-    ap = normal_form(change_coefficient_ring(ZZ, d * a; parent=exponent_ring), d)
-
-    # normalize the constant part
-    t = constant_coefficient(ap)
-    app = change_coefficient_ring(coefficient_ring(base_ring(R)), ap - t; parent=base_ring(R))
-    p = mod(x^t, phi_d)
-
-    # distribute the normalized constant part
-    for (i, cp) in enumerate(coefficients(p))
-      collect_summand!((app + (i - 1))//d + r_g_2, cp * c)
+  for (data, c) in L
+    for (g, multiplicity) in distribution!(R, data, d)
+      add_summand!(fp, g, multiplicity * c)
     end
   end
-  return GenericCyclo(strip_zeros!(fp), R)
+  return GenericCyclo(strip_zeros!(summands_dict(fp)), R, d)
+end
+
+# Summands collected by their exponents, which are the stored ones, so that
+# they can be compared by identity instead of hashing them. The order of the
+# first occurrences is kept: the iteration order of a dictionary depends on the
+# order of insertion, and the result of e.g. `nesum` on that iteration order.
+struct Summands
+  coefficients::IdDict{UPolyFrac,UPoly}
+  order::Vector{UPolyFrac}
+end
+
+Summands() = Summands(IdDict{UPolyFrac,UPoly}(), UPolyFrac[])
+
+function add_summand!(f::Summands, g::UPolyFrac, c::UPoly)
+  old = get(f.coefficients, g, nothing)
+  if old === nothing
+    push!(f.order, g)
+    f.coefficients[g] = c
+  else
+    f.coefficients[g] = old + c
+  end
+  return f
+end
+
+# Return the summands as a dictionary, built as if they had been added to it
+# directly.
+function summands_dict(f::Summands)
+  fp = Dict{UPolyFrac,UPoly}()
+  for g in f.order
+    fp[g] = f.coefficients[g]
+  end
+  return fp
 end
 
 function (R::GenericCycloRing)(x::GenericCyclo)
@@ -603,43 +637,123 @@ function split_exponent(g::UPolyFrac)
 end
 
 @doc raw"""
-    prepare_exponent!(R::GenericCycloRing, substitutes::Tuple{UPoly,UPoly}, g::UPolyFrac)
+    prepare_exponent(R::GenericCycloRing, substitutes::Tuple{UPoly,UPoly}, g::UPolyFrac)
 
-Return `split_exponent` of `g` evaluated at `substitutes[1]`, memoized in `R`.
+Return `g` evaluated at `substitutes[1]`.
 
 That evaluation may open up further simplifications: let `g` be `(q+1)//2` with
 `q` congruent to `1` modulo `2`. Then the substitute is `2*q+1` and `g` becomes
 `(2*q+2)//2 = q+1`. `R.power` covers the case where the first parameter
 represents a root of order `power`; the polynomials are then deflated before the
-evaluation and inflated again in `restore_exponent!`.
+evaluation and inflated again in `restore_exponent`.
 """
-function prepare_exponent!(
+function prepare_exponent(
   R::GenericCycloRing, substitutes::Tuple{UPoly,UPoly}, g::UPolyFrac
 )
-  return get!(R.prepared_exponents, g) do
-    if isone(R.power)
-      gp = evaluate(g, [1], [substitutes[1]])
-    else
-      gd = deflate(numerator(g), [R.power])//deflate(denominator(g), [R.power])
-      gp = evaluate(gd, [1], [substitutes[1]])
-    end
-    split_exponent(gp)
+  if isone(R.power)
+    return substitute(g, [1], [substitutes[1]])
   end
+  gd = deflate(numerator(g), [R.power])//deflate(denominator(g), [R.power])
+  return substitute(gd, [1], [substitutes[1]])
 end
 
 @doc raw"""
-    restore_exponent!(R::GenericCycloRing, substitutes::Tuple{UPoly,UPoly}, g::UPolyFrac)
+    restore_exponent(R::GenericCycloRing, substitutes::Tuple{UPoly,UPoly}, g::UPolyFrac)
 
-Undo the evaluation done by `prepare_exponent!`, memoized in `R`.
+Undo the evaluation done by `prepare_exponent`. `g` has to be in lowest terms.
 """
-function restore_exponent!(
+function restore_exponent(
   R::GenericCycloRing, substitutes::Tuple{UPoly,UPoly}, g::UPolyFrac
 )
-  return get!(R.restored_exponents, g) do
-    gp = evaluate(g, [1], [substitutes[2]])
-    isone(R.power) && return gp
-    inflate(numerator(gp), [R.power])//inflate(denominator(gp), [R.power])
+  if isone(R.power)
+    # The substitution is invertible, so the result is in lowest terms as well
+    # and `//` would spend a multivariate gcd on finding nothing to cancel.
+    num = substitute(numerator(g), [1], [substitutes[2]])
+    den = substitute(denominator(g), [1], [substitutes[2]])
+    return parent(g)(num, den)
   end
+  gp = substitute(g, [1], [substitutes[2]])
+  return inflate(numerator(gp), [R.power])//inflate(denominator(gp), [R.power])
+end
+
+# Return the entry of `R.exponents` for the value of `g`, adding an empty one
+# for a new value.
+function exponent_entry!(R::GenericCycloRing, g::UPolyFrac)
+  data = get(R.exponents_by_id, g, nothing)
+  data === nothing || return data
+  data = get(R.exponents, g, nothing)
+  data === nothing || return data
+  data = ExponentData(g)
+  R.exponents[g] = data
+  R.exponents_by_id[g] = data
+  return data
+end
+
+# Return the data on `g` that the simplification needs, memoized in `R`.
+function exponent_data!(R::GenericCycloRing, g::UPolyFrac)
+  data = exponent_entry!(R, g)
+  isdefined(data, :remainder) && return data
+  substitutes = get_substitutes!(R)
+  if substitutes !== nothing
+    g = prepare_exponent(R, substitutes, g)
+  end
+  data.g_2, data.r, data.a, data.a_denominator = split_exponent(g)
+
+  # `r` is a remainder modulo `g_2` and `g` was in lowest terms, so the two are
+  # coprime and need no cancelling, which would cost a multivariate gcd.
+  remainder = fraction_field(base_ring(R))(data.r, data.g_2)
+  if substitutes !== nothing
+    remainder = restore_exponent(R, substitutes, remainder)
+  end
+  data.remainder = exponent_entry!(R, remainder).exponent
+  return data
+end
+
+# Return the exponents and multiplicities that `E(1)^g` is distributed to if
+# the polynomial parts of all exponents have the common denominator `d`, for
+# the `g` described by `data`.
+function distribution!(R::GenericCycloRing, data::ExponentData, d::Int64)
+  if !isdefined(data, :distributions)
+    data.distributions = Dict{Int64,Vector{Tuple{UPolyFrac,ZZRingElem}}}()
+  end
+  return get!(data.distributions, d) do
+    S, x = ZZ[:x]
+    r_g_2 = fraction_field(base_ring(R))(data.r, data.g_2)
+
+    # normalize the polynomial part of the exponent
+    ap = normal_form(integral_multiple(R, data.a, d), d)
+
+    # normalize the constant part
+    t = constant_coefficient(ap)
+    app = change_coefficient_ring(coefficient_ring(base_ring(R)), ap - t; parent=base_ring(R))
+    p = mod(x^t, cyclotomic_polynomial(d, S))
+
+    # distribute the normalized constant part; a polynomial over QQ and an
+    # integer are coprime, so the fraction needs no gcd
+    substitutes = get_substitutes!(R)
+    summands = Tuple{UPolyFrac,ZZRingElem}[]
+    for (i, cp) in enumerate(coefficients(p))
+      g = parent(r_g_2)(app + (i - 1), base_ring(R)(d)) + r_g_2
+      if substitutes !== nothing
+        g = restore_exponent(R, substitutes, g)
+      end
+      push!(summands, (exponent_entry!(R, g).exponent, cp))
+    end
+    return summands
+  end
+end
+
+# Return `d * a` in the exponent ring, for `d` a multiple of the denominators
+# of the coefficients of `a`.
+function integral_multiple(R::GenericCycloRing, a::UPoly, d::Int64)
+  S = get_exponent_ring!(R)
+  q = data(AbstractAlgebra.upgrade!(a))
+  # The exponent ring gains the variables of `base_ring(R)` in the same order,
+  # but only when converting to it.
+  if nvars(base_ring(S)) != nvars(parent(q))
+    return change_coefficient_ring(ZZ, d * a; parent=S)
+  end
+  return UniversalRingElem(mul!(zero(base_ring(S)), q, d), S)
 end
 
 # Lazily created ZZ counterpart of `base_ring(R)`; see `GenericCycloRing`.
@@ -670,27 +784,91 @@ end
 # evaluate
 
 function evaluate(x::GenericCyclo, vars::Vector{Int64}, vals::Vector{<:RingElement})
-  f = Dict{UPolyFrac,UPoly}()
+  R = parent(x)
+  polys = UPoly[base_ring(R)(v) for v in vals]
+  substitution = substitution_id!(R, vars, polys)
+  f = Summands()
   for (key, value) in x.f
-    new_key = evaluate_exponent(key, vars, vals)
-    new_value = depends_on(value, vars) ? evaluate(value, vars, vals) : value
-    old_value = get(f, new_key, nothing)
-    f[new_key] = old_value === nothing ? new_value : old_value + new_value
+    new_key = evaluate_exponent!(R, key, substitution, vars, polys)
+    new_value = depends_on(value, vars) ? substitute(value, vars, polys) : value
+    add_summand!(f, new_key, new_value)
   end
-  return parent(x)(f)
+  return simplify_summands(R, summands_dict(f))
+end
+
+# Return a number identifying the substitution of `vals` for `vars` in `R`.
+function substitution_id!(R::GenericCycloRing, vars::Vector{Int64}, vals::Vector{UPoly})
+  return get!(R.substitutions, (copy(vars), vals), length(R.substitutions) + 1)
+end
+
+# Return the stored exponent equal to `evaluate_exponent(g, vars, vals)`, where
+# `substitution` identifies `vars` and `vals`. A sum over a class type
+# substitutes the same parameters in many exponents, and the same sums recur
+# within and across scalar products, so the result is memoized.
+function evaluate_exponent!(
+  R::GenericCycloRing, g::UPolyFrac, substitution::Int,
+  vars::Vector{Int64}, vals::Vector{<:RingElement}
+)
+  data = exponent_entry!(R, g)
+  if !isdefined(data, :substitutions)
+    data.substitutions = Dict{Int,UPolyFrac}()
+  end
+  return get!(data.substitutions, substitution) do
+    exponent_entry!(R, evaluate_exponent(data.exponent, vars, vals)).exponent
+  end
 end
 
 depends_on(p::UPoly, vars::Vector{Int64}) = any(v -> degree(p, v) > 0, vars)
+
+# Return `evaluate(p, vars, vals)`. The generic method multiplies out every
+# term on its own; collecting the terms of the result in a build context takes
+# half the time for the small polynomials in exponents.
+function substitute(p::UPoly, vars::Vector{Int64}, vals::Vector{UPoly})
+  q = data(AbstractAlgebra.upgrade!(p))
+  T = parent(q)
+  value_terms = map(vals) do v
+    w = data(AbstractAlgebra.upgrade!(v))
+    [(coeff(w, j), exponent_vector(w, j)) for j in 1:length(w)]
+  end
+  ctx = MPolyBuildCtx(T)
+  e = Vector{Int}(undef, nvars(T))
+  for i in 1:length(q)
+    exponent_vector!(e, q, i)
+    c = coeff(q, i)
+    if all(v -> iszero(e[v]), vars)
+      push_term!(ctx, c, e)
+      continue
+    end
+
+    # multiply the term without the substituted variables by their values
+    powers = [e[v] for v in vars]
+    e[vars] .= 0
+    summands = [(c, copy(e))]
+    for (k, m) in enumerate(powers), _ in 1:m
+      summands = [(c1 * c2, e1 + e2) for (c1, e1) in summands for (c2, e2) in value_terms[k]]
+    end
+    for (c1, e1) in summands
+      push_term!(ctx, c1, e1)
+    end
+  end
+  return UniversalRingElem(finish(ctx), parent(p))
+end
+
+substitute(p::UPoly, vars::Vector{Int64}, vals::Vector{<:RingElement}) =
+  substitute(p, vars, UPoly[parent(p)(v) for v in vals])
+
+substitute(g::UPolyFrac, vars::Vector{Int64}, vals::Vector{<:RingElement}) =
+  substitute(numerator(g), vars, vals)//substitute(denominator(g), vars, vals)
 
 # Substituting parameters normally changes only the numerator of an exponent,
 # the denominator being a polynomial in `q`; evaluating just what changes
 # saves most of the work.
 function evaluate_exponent(g::UPolyFrac, vars::Vector{Int64}, vals::Vector{<:RingElement})
   den = denominator(g, false)
-  depends_on(den, vars) && return evaluate(g, vars, vals)
+  depends_on(den, vars) && return substitute(g, vars, vals)
   num = numerator(g, false)
   depends_on(num, vars) || return g
-  new_num = evaluate(num, vars, vals)
+  new_num = substitute(num, vars, vals)
   # A nonzero numerator free of `q` (variable 1) has no common factor with
   # `den`, so `//` would spend a multivariate gcd on finding nothing to cancel.
   # This is the case whenever the substitution only renames parameters.
