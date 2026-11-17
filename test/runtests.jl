@@ -176,6 +176,32 @@ end
   end
 end
 
+@testset "2F4 sums over class type 48 and character type 38" begin
+  # Both sums end in the points a = ±b = M/3 and a = ±b = 2M/3, so no parameter
+  # stays free. The other summands give 11//48 for generic parameters.
+  for table in ["2F4.1", "2F4.2"]
+    g = generic_character_table(table)
+    q0, (a, b, k, l) = parameters(g)
+    R = parent(q0)
+    S = g.ring
+    M = 2 * q0^2 + 1
+    E3(x) = S(1; exponent=x//R(3))
+    value(x, y) =
+      11//48 + 1//12 * (E3(x + y) + E3(y - x) + E3(2 * x + 2 * y) + E3(2 * y - 2 * x))
+    tt = S(1; exponent=(a * k + b * l)//M)
+
+    Base.invokelatest() do
+      @test g.classsums[48](tt) == value(k, l)
+      @test g[38].sum(tt) == value(a, b)
+
+      # the norms of issue #117
+      for i in [29, 30, 31, 32, 33, 38]
+        @test isone(norm(g[i]))
+      end
+    end
+  end
+end
+
 @testset "linear_combination" begin
   g = generic_character_table("GL2")
   h = linear_combination([1, 1], [g[1], g[1]])
