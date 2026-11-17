@@ -1457,6 +1457,10 @@ information = raw"""The generic character table of $\mathrm{G}_2(q)$,
 
 - The table was first computed in [EY86](@cite).
 
+- Correction to the CHEVIE table: the sum over class type 18 substitutes
+  $j = i$ and then $i = (q - 1)/3$, as proposed by F. Lübeck. CHEVIE substitutes both at
+  once, which leaves $i$ free.
+
 - See also: [CR74](@cite), [Hi90](@cite).
 
 - Enomoto's and Yamada's notation for the irreducible characters is

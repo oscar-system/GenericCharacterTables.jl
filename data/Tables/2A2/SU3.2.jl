@@ -434,7 +434,25 @@ information = raw"""The generic character table of $\mathrm{SU}_3(q)$,
 
 - The table was first computed in [SF73](@cite).
 
-- Corrections in [Gec90](@cite).
+- Correction to [SF73](@cite), Table 1b, following [Gec90](@cite), Section 3: the header
+  of $\chi_{st}^{(u,v,w)}$, of degree $(q - 1)(q^2 - q + 1)$, requires
+  $u + v + w \equiv 0$ modulo $q + 1$. That puts the centre in the kernel of all these
+  characters and leaves only a third of them. Character type 10 has all of them, as
+  does the CHEVIE table, with $(u, v, w) = (n, m, 0)$.
+
+- Correction to [SF73](@cite), Table 1b: the header of $\chi_{r^2s}^{(u)}$ identifies $u$,
+  $-uq$ and $uq^2$ modulo $(q^2 - q + 1)/3$. They are identified modulo $q^2 - q + 1$,
+  as in character type 17 and the CHEVIE table; only this gives the printed number of
+  characters.
+
+- Correction to [SF73](@cite), Table 1b: $\chi_{r^2s'}^{(u)\prime}(C_8^{(k)})$ is
+  $-\omega^{2k}$, not $-\omega^k$. Character types 14 to 16 on class type 10 have the
+  correct value, as does the CHEVIE table.
+
+- Correction to [SF73](@cite), Table 1a: for $\mathrm{SU}_3(q)$ the representative of
+  $C_8^{(k)}$ has the eigenvalues $\tau^k$, $\tau^{-kq}$, $\tau^{kq^2}$, not $\tau^k$,
+  $\tau^{kq}$, $\tau^{kq^2}$, whose product is $\tau^{2kq}$, not $1$. Class type 10 uses
+  the correct ones, as does the CHEVIE table.
 
 - See also: [Enn63](@cite), [Enn62](@cite), [Ste51](@cite).
 """
