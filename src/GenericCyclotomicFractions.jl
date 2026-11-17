@@ -112,6 +112,17 @@ function *(x::GenericCycloFrac, y::GenericCycloFrac)
 end
 
 function +(x::GenericCycloFrac, y::GenericCycloFrac)
+  # A zero summand only contributes its exceptions. Checking for it is cheap,
+  # unlike comparing the denominators, which simplifies their difference.
+  if iszero(y.numerator)
+    return GenericCycloFrac(
+      x.numerator, x.denominator, merge(x.exceptions, y.exceptions); simplify=false
+    )
+  elseif iszero(x.numerator)
+    return GenericCycloFrac(
+      y.numerator, y.denominator, merge(x.exceptions, y.exceptions); simplify=false
+    )
+  end
   if x.denominator == y.denominator
     return GenericCycloFrac(
       x.numerator + y.numerator,

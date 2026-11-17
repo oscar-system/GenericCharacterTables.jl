@@ -235,7 +235,9 @@ end
 # Unary operations
 
 function -(x::GenericCyclo)
-  f = deepcopy(x.f)
+  # The exponents are never mutated, so they can be shared; a deep copy would
+  # also hash each of them again.
+  f = copy(x.f)
   map!(-, values(f))
   return parent(x)(f; simplify=false)
 end
@@ -670,14 +672,32 @@ end
 function evaluate(x::GenericCyclo, vars::Vector{Int64}, vals::Vector{<:RingElement})
   f = Dict{UPolyFrac,UPoly}()
   for (key, value) in x.f
-    new_key = evaluate(key, vars, vals)
-    if haskey(f, new_key)
-      f[new_key] += evaluate(value, vars, vals)
-    else
-      f[new_key] = evaluate(value, vars, vals)
-    end
+    new_key = evaluate_exponent(key, vars, vals)
+    new_value = depends_on(value, vars) ? evaluate(value, vars, vals) : value
+    old_value = get(f, new_key, nothing)
+    f[new_key] = old_value === nothing ? new_value : old_value + new_value
   end
   return parent(x)(f)
+end
+
+depends_on(p::UPoly, vars::Vector{Int64}) = any(v -> degree(p, v) > 0, vars)
+
+# Substituting parameters normally changes only the numerator of an exponent,
+# the denominator being a polynomial in `q`; evaluating just what changes
+# saves most of the work.
+function evaluate_exponent(g::UPolyFrac, vars::Vector{Int64}, vals::Vector{<:RingElement})
+  den = denominator(g, false)
+  depends_on(den, vars) && return evaluate(g, vars, vals)
+  num = numerator(g, false)
+  depends_on(num, vars) || return g
+  new_num = evaluate(num, vars, vals)
+  # A nonzero numerator free of `q` (variable 1) has no common factor with
+  # `den`, so `//` would spend a multivariate gcd on finding nothing to cancel.
+  # This is the case whenever the substitution only renames parameters.
+  if !iszero(new_num) && iszero(degree(new_num, 1))
+    return parent(g)(new_num, den)
+  end
+  return new_num//den
 end
 
 function divexact(x::GenericCyclo, y::UPoly; check::Bool=true)
