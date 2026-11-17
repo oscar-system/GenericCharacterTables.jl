@@ -6,9 +6,11 @@ version = "0.9.0"
 [deps]
 Markdown = "d6f4376e-aef5-505a-96c1-9c027394607a"
 Oscar = "f1435218-dba5-11e9-1e4d-f1a5fab5fc13"
+TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
 
 [compat]
 Markdown = "1"
 Oscar = "1.8"
+TOML = "1"
 julia = "1.10"
 

@@ -18,6 +18,7 @@ module GenericCharacterTables
 
 using Oscar
 import Oscar.AbstractAlgebra.Generic
+import TOML
 
 const NfPoly = Union{PolyRingElem{QQFieldElem},PolyRingElem{AbsSimpleNumFieldElem}}
 
@@ -30,6 +31,7 @@ include("Parameter.jl")
 include("CharTable.jl")
 include("Shifts.jl")
 include("SumProc.jl")
+include("TableFormat.jl")
 include("GenericConjugacyClasses.jl")
 include("GenericCharacter.jl")
 include("Iteration.jl")
@@ -37,5 +39,9 @@ include("Congruence.jl")
 include("Exports.jl")
 include("Deprecations.jl")
 include("CyclotomicFac.jl")
+
+# Compile the reader of TOML tables into the package image; otherwise the
+# first table loaded in a session spends seconds compiling it.
+load_table_data(joinpath(@__DIR__, "..", "data", "Tables", "A1", "GL2.toml"))
 
 end
