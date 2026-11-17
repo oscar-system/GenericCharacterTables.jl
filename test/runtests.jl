@@ -3,6 +3,7 @@ using GenericCharacterTables.Oscar
 using Test
 
 include("Aqua.jl")
+include("CentralQuotient.jl")
 
 @testset "Conformance tests" begin
   S, E, q = generic_cyclotomic_ring()

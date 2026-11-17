@@ -22,6 +22,13 @@ GenericCharacterTables also provides some tables of Green functions. They can be
 green_function_table
 ```
 
+The table of a central quotient, such as $\mathrm{PGL}_n(q)$, can be derived from the
+table of the group.
+
+```@docs
+central_quotient
+```
+
 ## Properties
 
 ```@docs

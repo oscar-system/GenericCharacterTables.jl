@@ -1,3 +1,4 @@
+export central_quotient
 export centralizer_order
 export character_type
 export character_type_index
