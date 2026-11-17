@@ -49,6 +49,8 @@ With exceptions:
 ```
 """
 function nesum(a::GenericCyclo, var::Int64, lower::Int64, upper::Union{Int64,UPoly})
+  # called by a sum function of an Ennola dual table, see Ennola.jl
+  ennola_nesum_active() && return ennola_nesum(a, var, lower, upper)
   if isone(lower)
     return nesum(a, var, 0, upper) - evaluate(a, [var], [0])
   elseif lower > 1
@@ -88,6 +90,7 @@ function nesum(a::GenericCyclo, var::Int64, lower::Int64, upper::Union{Int64,UPo
   return sum
 end
 function nesum(a::GenericCycloFrac, var::Int64, lower::Int64, upper::Union{Int64,UPoly})
+  ennola_nesum_active() && return ennola_nesum(a, var, lower, upper)
   one(a) * nesum(a.numerator, var, lower, upper)//a.denominator  # one(a) is needed to track all exceptions
 end
 function nesum(
